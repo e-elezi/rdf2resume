@@ -1,0 +1,358 @@
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+/*************************************************************************/
+/**************************** BUTTON *************************************/
+/*************************************************************************/
+
+.btn {
+  background-color: #4bb3cc;
+  border-color: #4bb3cc;
+  padding: 10px;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #2d889e;
+  border-color: #2d889e;
+}
+
+.btn-success:hover {
+  background-color: #186426;
+  border-color: #186426;
+}
+
+.info-button {
+  background-color: #eee;
+  border-color: #eee;
+}
+
+.info-button:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.info-button:not(:disabled):not(.disabled):active {
+  background-color: lightgray;
+  border-color: lightgray;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem lightgray;
+}
+
+.info-button:not(:disabled):not(.disabled):active:focus {
+  background-color: lightgray;
+  border-color: lightgray;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem lightgray;
+}
+
+.info-button:focus {
+  box-shadow: 0 0 0 0.2rem lightgray !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  background-color: #4bb3cc;
+  border-color: #4bb3cc;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem #4bb3cc;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+  background-color: #4bb3cc;
+  border-color: #4bb3cc;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem #4bb3cc;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 0.2rem #4bb3cc;
+}
+
+.final-submit {
+  min-width: 150px;
+  margin-left: 0;
+}
+
+/*************************************************************************/
+/**************************** DROPDOWN ***********************************/
+/*************************************************************************/
+.dropdown-wrapper {
+  margin-bottom: 0;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  color: black;
+  border-radius: 0;
+  padding: 0;
+}
+
+.dropdown .btn {
+  margin: 0;
+  margin-top: 15px;
+  width: 100%;
+  text-align: left;
+  color: #495057;
+}
+
+.dropdown-toggle:focus {
+  background-color: white;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  color: black;
+  box-shadow: none;
+}
+
+.dropdown-toggle:hover {
+  background-color: white;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  box-shadow: none;
+}
+
+.dropdown-toggle::after {
+  margin-left: 81%;
+}
+
+.dropdown-menu {
+  border-color: #4bb3cc;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 100%;
+  max-height: 150px;
+  overflow: scroll;
+}
+
+.dropdown-item {
+  padding: 0.25rem 0.5rem;
+}
+
+.show > .btn-primary.dropdown-toggle {
+  background-color: white;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  color: #4bb3cc;
+  outline: none;
+  box-shadow: none;
+}
+
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.dropdown-toggle:not(:disabled):not(.disabled):active {
+  background-color: white;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  box-shadow: none;
+  color: black;
+}
+
+.dropdown-toggle:not(:disabled):not(.disabled):active:focus {
+  background-color: white;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  box-shadow: none;
+  color: black;
+}
+
+/*************************************************************************/
+/**************************** INPUT **************************************/
+/*************************************************************************/
+.floating-label {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.form-control {
+  position: relative !important;
+}
+
+.form-control {
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  margin-top: 5px;
+  padding-top: 10px !important;
+  padding: 0;
+  border-radius: 0;
+  display: block;
+  position: absolute;
+}
+.form-control:focus {
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  outline: none;
+  box-shadow: none;
+  padding-left: 5px;
+}
+
+.form-control:placeholder-shown + .form-label {
+  visibility: hidden;
+  z-index: -1;
+}
+
+.form-control:not(:placeholder-shown) + .form-label,
+.form-control:focus:not(:placeholder-shown) + .form-label {
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
+  top: -10%;
+}
+
+.floating-label .form-label {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  font-size: 0.8em;
+  color: black;
+}
+
+.form-label {
+  margin-bottom: 0;
+  color: black;
+}
+
+.muted-text {
+  padding: 0;
+  text-align: right;
+  color: darkgray;
+}
+
+/*************************************************************************/
+/**************************** TEXTAREA ***********************************/
+/*************************************************************************/
+textarea {
+  border: 2px solid #4bb3cc !important;
+  position: relative;
+  border-radius: 5px !important;
+  padding: 10px !important;
+  box-shadow: 0 0 5px 0 lightgray;
+}
+
+textarea.form-control {
+  position: relative;
+}
+
+textarea:focus {
+  -webkit-box-shadow: 0px 0px 5px 0px#4BB3CC !important;
+  -moz-box-shadow: 0px 0px 5px 0px #4bb3cc !important;
+  box-shadow: 0px 0px 5px 0px #4bb3cc !important;
+}
+
+/*************************************************************************/
+/**************************** CHECKBOX ***********************************/
+/*************************************************************************/
+/* .form-check-input {
+    margin-left: 97%;
+    border-color: #4BB3CC;
+}
+.form-check-input:active {
+    border-color: #4BB3CC;
+    background-color: #4BB3CC;
+}
+.form-check {
+    padding: 0;
+} */
+
+.form-check {
+  padding-left: 0;
+}
+
+/* The container */
+.form-check {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.form-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  left: 97%;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 96%;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 2px solid #4bb3cc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 lightgray;
+}
+
+/* On mouse-over, add a grey background color */
+.form-check:hover input ~ .checkmark {
+  background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.form-check input:checked ~ .checkmark {
+  background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.form-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.form-check .checkmark:after {
+  left: 7px;
+  top: 2px;
+  width: 8px;
+  height: 13px;
+  border: solid #4bb3cc;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.mb-3 {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-control-input {
+  box-shadow: 0 0 5px 0 lightgray;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #4bb3cc;
+  background-color: #4bb3cc;
+}
+
+.custom-control-inline {
+  margin-right: 2rem;
+}

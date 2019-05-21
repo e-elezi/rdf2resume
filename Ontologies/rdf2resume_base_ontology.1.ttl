@@ -1,0 +1,187 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mybase0: <http://example.com/base#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+mybase0:SexProperty
+  rdfs:label "SexProperty"@en ;
+  a owl:Class .
+
+mybase0:Female
+  rdfs:label "Female"@en  ;
+  a mybase0:SexProperty .
+
+mybase0:Male
+  rdfs:label "Male"@en  ;
+  a mybase0:SexProperty .
+
+mybase0:NotIndicated
+  rdfs:label "Not Indicated"@en  ;
+  a mybase0:SexProperty .
+
+mybase0:CompanySize
+  rdfs:label "CompanySize"@en ;
+  a owl:Class .
+
+mybase0:SmallCompany
+  rdfs:label "SmallCompany"@en  ;
+  a mybase0:CompanySize .
+
+mybase0:MediumCompany
+  rdfs:label "MediumCompany"@en  ;
+  a mybase0:CompanySize .
+
+mybase0:LargeCompany
+  rdfs:label "LargeCompany"@en  ;
+  a mybase0:CompanySize .
+
+mybase0:MaritalStatus
+  a owl:Class ;
+  rdfs:label "Marital Status"@en  .
+
+mybase0:Married
+  rdfs:label "Married"@en  ;
+  a mybase0:MaritalStatus .
+
+mybase0:Divorced
+  rdfs:label "Divorced"@en  ;
+  a mybase0:MaritalStatus .
+
+mybase0:Single
+  rdfs:label "Single"@en  ;
+  a mybase0:MaritalStatus .
+
+mybase0:Widowed
+  rdfs:label "Widowed"@en  ;
+  a mybase0:MaritalStatus .
+
+mybase0:CVJobMode
+  a owl:Class ;
+  rdfs:label "CV job mode (full/part - time)"@en  .
+
+mybase0:Full-time
+  rdfs:label "Full-time"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:Part-time
+  rdfs:label "Part-time"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:CVJobMode
+  a owl:Class ;
+  rdfs:label "CV job type (employee/contractor/intern)"@en  .
+
+mybase0:Employee
+  rdfs:label "Employee"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:Contractor
+  rdfs:label "Contractor"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:Intern
+  rdfs:label "Intern"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:CVCareerLevel
+  a owl:Class ;
+  rdfs:label "CV career level"@en  .
+
+mybase0:HighSchool
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Student (high school)"@en  .
+
+mybase0:Student
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Student (graduate/undergraduate)"@en  .
+
+mybase0:EntryLvl
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Entry level (less than 2 years of experience)"@en  .
+
+mybase0:MidCareer
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Mid-career (2+ years of experience)"@en  .
+
+mybase0:Management
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Management (manager/director of staff)"@en  .
+
+mybase0:Executive
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Executive (SVP, EVP, VP)"@en  .
+
+mybase0:SeniorExecutive
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Senior Executive (president / CEO)"@en  .
+
+mybase0:EduDegree
+  a owl:Class ;
+  rdfs:label "Degrees"@en  .
+
+mybase0:EduHighSchool
+  a mybase0:EduDegree ;
+  rdfs:label "High school or equivalent."@en  .
+
+mybase0:EduVocational
+  a mybase0:EduDegree ;
+  rdfs:label "Vocational"@en  .
+
+mybase0:EduCollegeCoursework
+  a mybase0:EduDegree ;
+  rdfs:label "Some college coursework completed."@en  .
+
+mybase0:EduBachelor
+  a mybase0:EduDegree ;
+  rdfs:label "Bachelor's degree"@en  .
+
+mybase0:EduMaster
+  a mybase0:EduDegree ;
+  rdfs:label "Master's degree"@en  .
+
+mybase0:EduDoctorate
+  a mybase0:EduDegree ;
+  rdfs:label "Doctorate"@en  .
+
+mybase0:EduAssociate
+  a mybase0:EduDegree ;
+  rdfs:label "Associate degree"@en  .
+
+mybase0:EduProfessional
+  a mybase0:EduDegree ;
+  rdfs:label "Professional"@en  .
+
+mybase0:OtherCVInfoType
+  a owl:Class ;
+  rdfs:label "Type of misc information added to a CV."@en  .
+
+mybase0:Interests
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Interests"@en  .
+
+mybase0:Awards
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Awards"@en  .
+
+mybase0:Accomplishments
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Accomplishments"@en  .
+
+mybase0:PointOfView
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "PointOfView"@en  .
+
+mybase0:Membership
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Membership"@en  .
+
+mybase0:SocialActivities
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "SocialActivities"@en  .
+
+mybase0:Publications
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Publications"@en  .
+
+mybase0:Other
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Other"@en  .
