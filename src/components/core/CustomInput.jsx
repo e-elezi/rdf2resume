@@ -2,17 +2,20 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import "./Form.css";
 
-const CustomInput = ({ id, label, handleChange, type, classnames, value }) => {
+const CustomInput = (props) => {
   return (
-    <Form.Group controlId={id} className="floating-label">
+    <Form.Group controlId={props.id} className="floating-label mb-2">
       <Form.Control
-        className={classnames}
-        type={type}
-        placeholder={label}
-        value={value}
-        onChange={e => handleChange(e)}
-      />
-      <Form.Label>{label}</Form.Label>
+        className={props.classnames}
+        type={props.type}
+        placeholder={props.label}
+        value={props.value}
+        name={props.name}
+        onChange={e => props.handleChange(e)}
+      >
+      </Form.Control>
+      <Form.Label>{props.label}</Form.Label>
+      {props.children}
     </Form.Group>
   );
 };

@@ -56,22 +56,14 @@ mybase0:Widowed
 
 mybase0:CVJobMode
   a owl:Class ;
-  rdfs:label "CV job mode (full/part - time)"@en  .
+  rdfs:label "CV job mode (employee/contractor/intern)"@en  .
 
-mybase0:Full-time
-  rdfs:label "Full-time"@en  ;
+mybase0:EmployeeFull
+  rdfs:label "Employee Full time"@en  ;
   a mybase0:CVJobMode .
 
-mybase0:Part-time
-  rdfs:label "Part-time"@en  ;
-  a mybase0:CVJobMode .
-
-mybase0:CVJobMode
-  a owl:Class ;
-  rdfs:label "CV job type (employee/contractor/intern)"@en  .
-
-mybase0:Employee
-  rdfs:label "Employee"@en  ;
+mybase0:EmployeePart
+  rdfs:label "Employee Part time"@en  ;
   a mybase0:CVJobMode .
 
 mybase0:Contractor

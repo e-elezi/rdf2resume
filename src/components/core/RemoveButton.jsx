@@ -1,20 +1,20 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import "./Form.css";
 
-const AddButton = ({ id, classnames, handleClick }) => {
+const RemoveButton = ({ id, classnames, handleClick }) => {
   return (
     <Button
       id={id}
-      variant="primary"
+      variant="danger"
       className={classnames}
       onClick={e => handleClick(e)}
     >
-      <FontAwesomeIcon icon={faPlus} />
+      <FontAwesomeIcon icon={faMinus} />
     </Button>
   );
 };
 
-export default AddButton;
+export default RemoveButton;

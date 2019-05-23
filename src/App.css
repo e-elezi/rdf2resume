@@ -148,7 +148,7 @@
 }
 
 .navbar-expand {
-  justify-content: end;
+  justify-content: flex-end;
   padding-left: 0;
 }
 
@@ -208,8 +208,98 @@
   box-shadow: 0 0 5px 0 lightgray;
 }
 
+.small-button {
+  width: 40px;
+  height: 40px;
+  margin-left: 0 !important;
+  font-size: 1em;
+  line-height: 1em;
+  font-weight: 500;
+}
+
+.small-button.no-button {
+  width: 10px;
+  height: 10px;
+  margin: 10px !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+  margin-left: 0px !important;
+  padding: 10px !important;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
+  position: absolute;
+  left: 94%;
+  top: 0%;
+}
+
+.small-button.no-button:not(:disabled):not(.disabled):active {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
+}
+
+.small-button.no-button:not(:disabled):not(.disabled):active:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
+}
+
+.small-button.no-button:hover {
+  background: transparent;
+}
+
+.small-button .fa-plus {
+  height: 20px;
+  width: 1em !important;
+}
+
+.no-button .fa-plus {
+  color: #4bb3cc !important;
+}
+
 .fa-plus {
   color: white !important;
   height: 30px;
   width: 1.4em !important;
+}
+
+.fa-minus {
+  background-color: #dc3545 !important;
+  color: #dc3545;
+  width: 1em !important;
+  height: 5px !important;
+}
+
+.main-content-row {
+  align-items: flex-start !important;
+}
+
+.instant-add-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.instant-add-wrapper .add-button {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 10px;
+  height: 10px;
+}
+
+.instant-add-wrapper .add-button .fa-plus {
+  color: #4bb3cc !important;
+}
+
+.shift-left {
+  padding-left: 3px !important;
 }

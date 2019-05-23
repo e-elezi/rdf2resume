@@ -59,18 +59,18 @@
   background-color: #4bb3cc;
   border-color: #4bb3cc;
   outline: none;
-  box-shadow: 0 0 0 0.2rem #4bb3cc;
+  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus {
   background-color: #4bb3cc;
   border-color: #4bb3cc;
   outline: none;
-  box-shadow: 0 0 0 0.2rem #4bb3cc;
+  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
 }
 
 .btn:focus {
-  box-shadow: 0 0 0 0.2rem #4bb3cc;
+  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
 }
 
 .final-submit {
@@ -81,87 +81,168 @@
 /*************************************************************************/
 /**************************** DROPDOWN ***********************************/
 /*************************************************************************/
-.dropdown-wrapper {
-  margin-bottom: 0;
-}
-
-.dropdown-toggle {
-  background-color: white;
-  border: 0;
-  border-bottom: 2px solid #4bb3cc;
-  color: black;
-  border-radius: 0;
-  padding: 0;
-}
-
-.dropdown .btn {
-  margin: 0;
-  margin-top: 15px;
+.dropdown {
   width: 100%;
-  text-align: left;
-  color: #495057;
 }
 
-.dropdown-toggle:focus {
-  background-color: white;
-  border: 0;
-  border-bottom: 2px solid #4bb3cc;
-  color: black;
-  box-shadow: none;
+.dropdown .title-toggle {
+  margin-bottom: 5px;
+  margin-right: 5px;
+  border: 1px solid #4bb3cc;
+  background-color: #4bb3cc;
+  color: white;
 }
 
-.dropdown-toggle:hover {
-  background-color: white;
-  border: 0;
-  border-bottom: 2px solid #4bb3cc;
-  box-shadow: none;
-}
-
-.dropdown-toggle::after {
-  margin-left: 81%;
-}
-
-.dropdown-menu {
-  border-color: #4bb3cc;
-  margin: 0;
-  padding: 0;
-  border-radius: 0;
+.dropdown .menu-title {
   width: 100%;
-  max-height: 150px;
+  margin-top: 10px;
+  border-bottom: 2px solid #4bb3cc;
+  cursor: pointer;
+}
+
+.dropdown .menu-title-hidden {
+  width: 100%;
+  margin-top: 0px;
+  border-bottom: 2px solid #4bb3cc;
+  cursor: pointer;
+}
+
+.dropdown .menu-title .menu-title-floating-hidden {
+  display: none;
+}
+
+.dropdown .menu-title .menu-title-floating, .dropdown .menu-title-hidden .menu-title-floating {
+  display: block;
+  text-transform: capitalize;
+  font-size: 0.8em;
+}
+
+.dropdown .menu-title a, .dropdown .menu-title-hidden a  {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dropdown .menu-title a .title-value, .dropdown .menu-title-hidden a .title-value {
+  margin: 5px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.dropdown .menu-title a .title-toggle .title-value-remove, .dropdown .menu-title-hidden a .title-toggle .title-value-remove {
+  color: white;
+  padding: 5px;
+  font-weight: 600;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.dropdown .menu-title a .title-toggle .title-value-remove:hover, .dropdown .menu-title-hidden a .title-toggle .title-value-remove:hover {
+  color: red;
+}
+
+.dropdown a {
+  color: black;
+}
+
+.dropdown a:hover {
+  text-decoration: none;
+}
+
+.dropdown a input {
+  width: 100% !important;
+  padding: 0;
+  margin: 0 !important;
+  text-transform: capitalize;
+}
+
+.dropdown-menu.show {
+  width: 100% !important;
+  max-height: 200px;
   overflow: scroll;
 }
 
+.dropdown-menu.show input {
+  width: 90% !important;
+  border: 1px solid #4bb3cc;
+  box-shadow: 0 0 5px 0 #4bb3cc;
+  padding: 5px;
+  text-transform: capitalize;
+}
+
 .dropdown-item {
-  padding: 0.25rem 0.5rem;
+  color: black !important;
 }
 
-.show > .btn-primary.dropdown-toggle {
-  background-color: white;
-  border: 0;
-  border-bottom: 2px solid #4bb3cc;
-  color: #4bb3cc;
-  outline: none;
-  box-shadow: none;
+.dropdown-item:hover {
+  background-color: #4bb3cc !important;
+  color: white !important;
 }
 
-.show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: none;
+.dropdown-item.active {
+  background-color: #4bb3cc !important;
+  color: white !important;
 }
 
-.dropdown-toggle:not(:disabled):not(.disabled):active {
-  background-color: white;
-  border: 0;
-  border-bottom: 2px solid #4bb3cc;
-  box-shadow: none;
-  color: black;
+.css-bg1rzq-control {
+  border-radius: 0 !important;
+  border: 0 !important;
+  border-bottom: 2px solid #4bb3cc !important;
 }
 
-.dropdown-toggle:not(:disabled):not(.disabled):active:focus {
-  background-color: white;
-  border: 0;
-  border-bottom: 2px solid #4bb3cc;
-  box-shadow: none;
-  color: black;
+.css-1szy77t-control {
+  border: 0 !important;
+  border-bottom: 2px solid #4bb3cc !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.css-es53b3-multiValue {
+  background-color: #4bb3cc !important;
+  color: white !important;
+}
+
+.css-12jo7m5 {
+  color: white !important;
+}
+
+.css-1szy77t-control:hover {
+  border: 0 !important;
+  border-bottom: 2px solid #4bb3cc !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.css-1szy77t-control:active {
+  border: 0 !important;
+  border-bottom: 2px solid #4bb3cc !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.css-1hwfws3 {
+  padding: 0 !important;
+  padding-bottom: 5px !important;
+}
+
+.css-bgvzuu-indicatorSeparator {
+  width: 0 !important;
+}
+
+.css-16pqwjk-indicatorContainer {
+  color: #4bb3cc !important;
+}
+
+.css-1thkkgx-indicatorContainer:hover {
+  color: #4bb3cc !important;
+}
+
+.css-kj6f9i-menu div div {
+  background-color: white !important;
+  color: black !important;
+}
+
+.css-kj6f9i-menu div div:hover {
+  background-color: #4bb3cc !important;
+  color: white !important;
 }
 
 /*************************************************************************/
@@ -339,9 +420,6 @@ textarea:focus {
 
 .mb-3 {
   margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .custom-control-input {
@@ -354,5 +432,11 @@ textarea:focus {
 }
 
 .custom-control-inline {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
+}
+
+.btn-danger {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  margin: 0;
 }

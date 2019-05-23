@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import CustomInput from "../../core/CustomInput";
-import CustomDropdown from "../../core/CustomDropdown";
-import CustomCheckbox from "../../core/CustomCheckbox";
 import { Form, Row, Col } from "react-bootstrap";
-import CustomButton from "../../core/CustomButton";
-import AddButton from "../../core/AddButton";
-import CustomRadioGroup from "../../core/CustomRadioGroup";
 
 class FormOtherInfo extends Component {
   state = {};
@@ -40,11 +35,11 @@ class FormOtherInfo extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <CustomDropdown
+            {/* <CustomDropdown
               id="birthPlace"
               title="Birth Place"
               items={["Albania", "Germany"]}
-            />
+            /> */}
           </Form.Group>
           <Form.Group>
             <CustomInput
