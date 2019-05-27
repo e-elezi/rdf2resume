@@ -276,6 +276,11 @@
   height: 5px !important;
 }
 
+.fa-map-marker-alt {
+  color: #4bb3cc !important;
+  margin-right: 5px;
+}
+
 .main-content-row {
   align-items: flex-start !important;
 }
@@ -302,4 +307,25 @@
 
 .shift-left {
   padding-left: 3px !important;
+}
+
+.row-cards {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.button-label p {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.button-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }

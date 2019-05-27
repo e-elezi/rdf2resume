@@ -44,14 +44,19 @@ class Main extends Component {
       otherInfo
     } = this.props.cv;
 
-    const { handleInputChange, handleCheckboxChange, handleFormSubmit, handleStateObjectUpdate } = this.props
+    const {
+      handleInputChange,
+      handleCheckboxChange,
+      handleFormSubmit,
+      handleStateObjectUpdate
+    } = this.props;
 
     return (
       <Row className="container-fluid" style={{ height: "100%" }}>
         <Col className="sidebar" md={2} style={{ height: "100%", padding: 0 }}>
           <Sidebar links={this.state.sidebar} />
         </Col>
-        <Col md={10}>
+        <Col md={10} style={{ overflow: "scroll" }}>
           <Form>
             <Route
               path="/d/about"
@@ -86,10 +91,7 @@ class Main extends Component {
             <Route
               path="/d/submit"
               render={props => (
-                <FormSubmit
-                  {...props}
-                  handleClick={handleFormSubmit}
-                />
+                <FormSubmit {...props} handleClick={handleFormSubmit} />
               )}
             />
           </Form>

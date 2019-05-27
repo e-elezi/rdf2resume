@@ -111,24 +111,28 @@
   display: none;
 }
 
-.dropdown .menu-title .menu-title-floating, .dropdown .menu-title-hidden .menu-title-floating {
+.dropdown .menu-title .menu-title-floating,
+.dropdown .menu-title-hidden .menu-title-floating {
   display: block;
   text-transform: capitalize;
   font-size: 0.8em;
 }
 
-.dropdown .menu-title a, .dropdown .menu-title-hidden a  {
+.dropdown .menu-title a,
+.dropdown .menu-title-hidden a {
   display: flex;
   align-items: flex-start;
 }
 
-.dropdown .menu-title a .title-value, .dropdown .menu-title-hidden a .title-value {
+.dropdown .menu-title a .title-value,
+.dropdown .menu-title-hidden a .title-value {
   margin: 5px;
   font-weight: 400;
   text-transform: capitalize;
 }
 
-.dropdown .menu-title a .title-toggle .title-value-remove, .dropdown .menu-title-hidden a .title-toggle .title-value-remove {
+.dropdown .menu-title a .title-toggle .title-value-remove,
+.dropdown .menu-title-hidden a .title-toggle .title-value-remove {
   color: white;
   padding: 5px;
   font-weight: 600;
@@ -136,7 +140,8 @@
   text-align: center;
 }
 
-.dropdown .menu-title a .title-toggle .title-value-remove:hover, .dropdown .menu-title-hidden a .title-toggle .title-value-remove:hover {
+.dropdown .menu-title a .title-toggle .title-value-remove:hover,
+.dropdown .menu-title-hidden a .title-toggle .title-value-remove:hover {
   color: red;
 }
 
@@ -251,6 +256,7 @@
 .floating-label {
   position: relative;
   margin-bottom: 0;
+  width: 100%;
 }
 
 .form-control {
@@ -435,8 +441,118 @@ textarea:focus {
   margin-right: 1.5rem;
 }
 
-.btn-danger {
+.btn-info {
   background-color: transparent !important;
   border-color: transparent !important;
   margin: 0;
+}
+
+.btn-danger {
+  background-color: red !important;
+  border-color: red !important;
+}
+
+.btn-danger:hover {
+  background-color: darkred !important;
+  border-color: darkred !important;
+}
+
+/*************************************************************************/
+/**************************** CARD ***************************************/
+/*************************************************************************/
+.card {
+  margin: 10px;
+  margin-left: 20px;
+  border: 2px solid #4bb3cc;
+  box-shadow: 0 0 5px 0 lightgray;
+  border-radius: 10px;
+}
+
+.card-header {
+  background-color: white;
+  border-radius: 10px !important;
+  border-bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.fa-user-circle {
+  height: 3em !important;
+  width: 3em !important;
+  color: #4bb3cc;
+}
+
+.fa-trash {
+  height: 1.2em !important;
+  width: 1.2em !important;
+  color: #4bb3cc;
+  cursor: pointer;
+}
+
+.fa-edit {
+  height: 1.2em !important;
+  width: 1.2em !important;
+  color: #4bb3cc;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 0.5em;
+  padding-left: 1.5em;
+}
+
+.card-title {
+  margin-top: 10px;
+  margin-bottom: 0.5em;
+}
+
+.card-text {
+  margin-bottom: 0.5em;
+}
+
+.card-link {
+  margin-bottom: 1em;
+  color: #4bb3cc;
+}
+
+.card-link:hover {
+  color: #2d889e;
+}
+
+a.inline-link {
+  color: black !important;
+}
+
+a.inline-link:hover {
+  color: #2d889e !important;
+  text-transform: none;
+}
+
+/*************************************************************************/
+/**************************** MODAL **************************************/
+/*************************************************************************/
+.modal-content {
+  border: 3px solid #4bb3cc;
+  border-radius: 10px;
+}
+
+.modal-title {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.modal-header {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.modal-footer {
+  border-top: 0;
+  padding-top: 0;
 }

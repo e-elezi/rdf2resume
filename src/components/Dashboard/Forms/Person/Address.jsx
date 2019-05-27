@@ -32,13 +32,15 @@ class Address extends Component {
 
   componentWillMount() {
     if (this.props.Address !== null) {
-      let { Address } = { ...this.state.Address };
-      Address.street = this.props.Address.street;
-      Address.postalCode = this.props.Address.postalCode;
-      Address.city = this.props.Address.city;
-      Address.country = this.props.Address.country;
+      let inputAddress = this.props.Address;
+      let Address = { ...this.state.Address };
+      //console.log(inputAddress.street, inputAddress.postalCode, inputAddress.city, inputAddress.country);
+      Address.street = inputAddress.street;
+      Address.postalCode = inputAddress.postalCode;
+      Address.city = inputAddress.city;
+      Address.country = inputAddress.country;
       this.setState({
-        Address: Address
+        Address
       });
     }
     this.setState({
@@ -59,6 +61,7 @@ class Address extends Component {
     let Address = { ...this.state.Address };
     Address[id] = e.target.text.trim();
     this.setState({ Address });
+    this.props.handleStateObjectUpdate(this.state);
   };
 
   render() {

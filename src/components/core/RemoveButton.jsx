@@ -8,7 +8,7 @@ const RemoveButton = ({ id, classnames, handleClick }) => {
   return (
     <Button
       id={id}
-      variant="danger"
+      variant="info"
       className={classnames}
       onClick={e => handleClick(e)}
     >
