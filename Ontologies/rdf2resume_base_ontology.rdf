@@ -3,278 +3,278 @@
          xmlns:owl="http://www.w3.org/2002/07/owl#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SexProperty">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#SexProperty">
     <rdfs:label xml:lang="en">SexProperty</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Female">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Female">
     <rdfs:label xml:lang="en">Female</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SexProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#SexProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Male">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Male">
     <rdfs:label xml:lang="en">Male</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SexProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#SexProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#NotIndicated">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#NotIndicated">
     <rdfs:label xml:lang="en">Not Indicated</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SexProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#SexProperty"/>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#SelfAssessmentProperty">
     <rdfs:label xml:lang="en">SelfAssessmentProperty</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#BasicUser">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#BasicUser">
     <rdfs:label xml:lang="en">BasicUser</rdfs:label>
     <rdfs:comment>I can look for information online using a search engine. I know not all online information is reliable. I can save or store files or content (e.g. text, pictures, music, videos, web pages) and retrieve them once saved or stored.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#IndependentUser">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#IndependentUser">
     <rdfs:label xml:lang="en">IndependentUser</rdfs:label>
     <rdfs:comment>I can use different search engines to find information. I use some filters when searching (e.g. searching only images, videos, maps). I compare different sources to assess the reliability of the information I find. I classify the information in a methodical way using files and folders to locate these easier. I do backups of information or files I have stored.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#ProficientUser">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#ProficientUser">
     <rdfs:label xml:lang="en">ProficientUser</rdfs:label>
     <rdfs:comment>I can use advanced search strategies (e.g. using search operators) to find reliable information on the internet. I can use web feeds (like RSS) to be updated with content I am interested in. I can assess the validity and credibility of information using a range of criteria. I am aware of new advances in information search, storage and retrieval. Ι can save information found on the internet in different formats. I can use cloud information storage services.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty">
     <rdfs:label xml:lang="en">LanguageSkillSelfAssessmentProperty</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#BasicUserA1">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#BasicUserA1">
     <rdfs:label xml:lang="en">BasicUserA1</rdfs:label>
     <rdfs:comment>I can understand familiar words and very basic phrases concerning myself, my family and immediate concrete surroundings when people speak slowly and clearly.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#BasicUserA2">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#BasicUserA2">
     <rdfs:label xml:lang="en">BasicUserA2</rdfs:label>
     <rdfs:comment>I can understand phrases and the highest frequency vocabulary related to areas of most immediate personal relevance (e.g. very basic personal and family information, shopping, local area, employment). I can catch the main point in short, clear, simple messages and announcements.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#IndependentUserB1">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1">
     <rdfs:label xml:lang="en">IndependentUserB1</rdfs:label>
     <rdfs:comment>I can understand the main points of clear standard speech on familiar matters regularly encountered in work, school, leisure, etc. I can understand the main point of many radio or TV programmes on current affairs or topics of personal or professional interest when the delivery is relatively slow and clear.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#IndependentUserB2">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB2">
     <rdfs:label xml:lang="en">IndependentUserB2</rdfs:label>
     <rdfs:comment>I can understand extended speech and lectures and follow even complex lines of argument provided the topic is reasonably familiar. I can understand most TV news and current affairs programmes. I can understand the majority of films in standard dialect.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#ProficientUserC1">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#ProficientUserC1">
     <rdfs:label xml:lang="en">ProficientUserC1</rdfs:label>
     <rdfs:comment>I can understand extended speech even when it is not clearly structured and when relationships are only implied and not signalled explicitly. I can understand television programmes and films without too much effort.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#ProficientUserC2">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#ProficientUserC2">
     <rdfs:label xml:lang="en">ProficientUserC2</rdfs:label>
     <rdfs:comment>I have no difficulty in understanding any kind of spoken language, whether live or broadcast, even when delivered at fast native speed, provided I have some time to get familiar with the accent.</rdfs:comment>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#TitleProperty">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#TitleProperty">
     <rdfs:label xml:lang="en">TitleProperty</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Mr">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Mr">
     <rdfs:label xml:lang="en">Mr</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#TitleProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#TitleProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Mrs">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Mrs">
     <rdfs:label xml:lang="en">Mrs</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#TitleProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#TitleProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#DrMrs">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#DrMrs">
     <rdfs:label xml:lang="en">DrMrs</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#TitleProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#TitleProperty"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#DrMr">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#DrMr">
     <rdfs:label xml:lang="en">DrMr</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#TitleProperty"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#TitleProperty"/>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CompanySize">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#CompanySize">
     <rdfs:label xml:lang="en">CompanySize</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SmallCompany">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#SmallCompany">
     <rdfs:label xml:lang="en">SmallCompany</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CompanySize"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CompanySize"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#MediumCompany">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#MediumCompany">
     <rdfs:label xml:lang="en">MediumCompany</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CompanySize"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CompanySize"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LargeCompany">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#LargeCompany">
     <rdfs:label xml:lang="en">LargeCompany</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CompanySize"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CompanySize"/>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#CVJobMode">
     <rdfs:label xml:lang="en">CV job mode (employee/contractor/intern)</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EmployeeFull">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EmployeeFull">
     <rdfs:label xml:lang="en">Employee Full time</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVJobMode"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EmployeePart">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EmployeePart">
     <rdfs:label xml:lang="en">Employee Part time</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVJobMode"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Contractor">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Contractor">
     <rdfs:label xml:lang="en">Contractor</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVJobMode"/>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Intern">
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Intern">
     <rdfs:label xml:lang="en">Intern</rdfs:label>
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode"/>
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVJobMode"/>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel">
     <rdfs:label xml:lang="en">CV career level</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#HighSchool">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#HighSchool">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Student (high school)</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Student">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Student">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Student (graduate/undergraduate)</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EntryLvl">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EntryLvl">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Entry level (less than 2 years of experience)</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#MidCareer">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#MidCareer">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Mid-career (2+ years of experience)</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Management">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Management">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Management (manager/director of staff)</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Executive">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Executive">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Executive (SVP, EVP, VP)</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SeniorExecutive">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#SeniorExecutive">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
     <rdfs:label xml:lang="en">Senior Executive (president / CEO)</rdfs:label>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduDegree">
     <rdfs:label xml:lang="en">Degrees</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduHighSchool">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduHighSchool">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">High school or equivalent.</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduVocational">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduVocational">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Vocational</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduCollegeCoursework">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduCollegeCoursework">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Some college coursework completed.</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduBachelor">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduBachelor">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Bachelor's degree</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduMaster">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduMaster">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Master's degree</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDoctorate">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduDoctorate">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Doctorate</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduAssociate">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduAssociate">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Associate degree</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduProfessional">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#EduProfessional">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#EduDegree"/>
     <rdfs:label xml:lang="en">Professional</rdfs:label>
   </rdf:Description>
 
-  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType">
+  <owl:Class rdf:about="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType">
     <rdfs:label xml:lang="en">Type of misc information added to a CV.</rdfs:label>
   </owl:Class>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Interests">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Interests">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">Interests</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Awards">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Awards">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">Awards</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Accomplishments">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Accomplishments">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">Accomplishments</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#PointOfView">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#PointOfView">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">PointOfView</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Membership">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Membership">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">Membership</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SocialActivities">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#SocialActivities">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">SocialActivities</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Publications">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Publications">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">Publications</rdfs:label>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#Other">
-    <rdf:type rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  <rdf:Description rdf:about="http://example.com/rdf2resume_base_ontology.rdf#Other">
+    <rdf:type rdf:resource="http://example.com/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
     <rdfs:label xml:lang="en">Other</rdfs:label>
   </rdf:Description>
 

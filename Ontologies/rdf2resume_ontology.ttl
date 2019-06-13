@@ -6,8 +6,8 @@
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix dbo: <http://dbpedia.org/resource/classes#> .
 @prefix esco: <http://data.europa.eu/esco/model> .
-@prefix my0: <https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#> .
-@prefix mybase0: <https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#> .
+@prefix my0: <http://example.com/rdf2resume_ontology.rdf#> .
+@prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#> .
 
 my0:
   a owl:Ontology ;
@@ -118,7 +118,7 @@ my0:hasOtherInfo
 
 my0:Person
   a owl:Class ;
-  rdfs:comment "Person Object that defines neccessary information about the specific person's curriculum vitae" ;
+  rdfs:comment "Person Class that defines neccessary information about the specific person's curriculum vitae" ;
   rdfs:label "Person"@en ;
   rdfs:subClassOf dbo:Person .
 
@@ -226,7 +226,7 @@ my0:email
   rdfs:range xsd:string .
 
 my0:hasTelephoneNumber
-  a owl:ObjectProperty ;
+  a owl:DatatypeProperty ;
   rdfs:label "telephoneNumber"@en ;
   rdfs:comment "Indicates a telephone number of the person" ;
   rdfs:domain my0:Person ;
@@ -307,7 +307,7 @@ my0:organizationName
 my0:organizationAddress
   a owl:ObjectProperty ;
   rdfs:comment "Address of the organization. Not all properties of the address are required" ;
-  rdfs:label "organizationCountry"@en ;
+  rdfs:label "organizationAddress"@en ;
   rdfs:domain my0:Organization ;
   rdfs:range my0:Address .
 
@@ -519,7 +519,7 @@ my0:Skill
 my0:skillDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description of the skill" ;
-  rdfs:label "skillName"@en ;
+  rdfs:label "skillDescription"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
 
@@ -583,14 +583,14 @@ my0:problemSolving
   rdfs:range mybase0:SelfAssessmentProperty .
 
 my0:hasICTCertificate
-  a owl:ObjectProperty ;
+  a owl:DatatypeProperty ;
   rdfs:comment "Property linking to an ICT certificate" ;
   rdfs:label "hasICTCertificate"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range xsd:string .
 
 my0:otherComputerSkills
-  a owl:ObjectProperty ;
+  a owl:DatatypeProperty ;
   rdfs:comment "Property regarding other computer skills" ;
   rdfs:label "otherComputerSkills"@en ;
   rdfs:domain my0:DigitalSkills ;
@@ -731,7 +731,7 @@ my0:targetCompanyIndustry
   rdfs:range xsd:string .
 
 my0:targetCompanySize
-  a owl:DatatypeProperty ;
+  a owl:ObjectProperty ;
   rdfs:comment "Size of the target company." ;
   rdfs:label "targetCompanySize"@en ;
   rdfs:domain my0:Target ;
@@ -740,7 +740,7 @@ my0:targetCompanySize
 my0:targetCountry
   a owl:ObjectProperty ;
   rdfs:label "targetCountry"@en ;
-  rdfs:comment "Country where would like to work." ;
+  rdfs:comment "Country where candidate would like to work." ;
   rdfs:domain my0:Target ;
   rdfs:range <http://www.daml.org/2001/09/countries/countries.daml#> .
 

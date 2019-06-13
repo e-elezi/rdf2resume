@@ -1,5 +1,5 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix mybase0: <https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#> .
+@prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 mybase0:SexProperty

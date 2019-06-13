@@ -1,0 +1,987 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{chngcntr}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{etoolbox}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{amsfonts}
+\newcommand{\E}[1]{{\mathbb E}\left[ #1 \right]}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\setlength{\parskip}{0.5em}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+
+
+\usepackage{listings}
+\lstset{language=[Sharp]C,
+captionpos=b,
+numbers=left,
+numberstyle=\tiny,
+frame=lines,
+showspaces=false,
+showtabs=false,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+commentstyle=\color{greencomments}\ttfamily,
+morekeywords={partial, var, value, get, set},
+keywordstyle=\color{bluekeywords}\ttfamily,
+stringstyle=\color{redstrings}\ttfamily,
+basicstyle=\ttfamily\small,
+}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\tcbuselibrary{skins}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\tcbset{tab2/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+colback=yellow!10!white,colframe=red!50!black,colbacktitle=Salmon!40!white,
+coltitle=black,center title}}
+
+\counterwithin{figure}{section}
+\numberwithin{equation}{section}
+
+\title{RDF2RESUME ONTOLOGY SPECIFICATION}
+\author{Enkeleda Elezi enkeleda.elezi@gmail.com}
+\date{June 2019}
+
+\begin{document}
+
+\maketitle
+
+%--{Abstract}--------------------------------------------------------------
+\begin{abstract}
+ The RDF2R{\'e}sum{\'e} Ontology provides the main concepts and properties required to describe the information contained in a Curriculum Vitae (CV) or a personal Resume on the Semantic Web. Information including work and academic experiences, skills, references, etc.
+\end{abstract}
+
+\pagenumbering{roman}\tableofcontents\newpage\pagenumbering{arabic}
+
+%--{Introduction}-----------------------------------------------------------
+\section{Introduction}\label{introduction}
+RDF2R{\'e}sum{\'e} is an ontology designed to express information contained within personal Resume or Curriculum Vitae (CV) on the Semantic Web.
+\\\\
+It allows to describe professional work experience, academic details, skills, certification and courses attended, and other relevant information.
+
+%--{Terminology and Notation}------------------------------------------------
+\subsection{Terminology and Notation}
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 \footnote{\url{https://www.ietf.org/rfc/rfc2119.txt}}.
+\\\\
+Namespace URIs of the general form "http://www.example.com/." represents some application-dependent or context-dependent URI as defined in RFC 2396 \footnote{\url{https://www.ietf.org/rfc/rfc2396.txt}}.
+\\\\
+The XML Namespace URIs that MUST be used by implementations of this specification is:
+
+\begin{itemize}
+\item[-] http://example.com/cv.rdfs\# - RDF2R{\'e}sum{\'e} ontology
+\item[-] http://example.com/base.rdfs\# - base taxonomy containing possible values for RDF2R{\'e}sum{\'e} properties
+\end{itemize}
+
+%--{RDF2Resume At A Glance}--------------------------------------------------
+\section{RDF2R{\'e}sum{\'e} At A Glance}\label{rdf2resumeataglance}
+An alphabetical index of RDF2R{\'e}sum{\'e} terms, by class (categories or types) and by property. All the terms are hyperlinked to their detailed description for quick reference. 
+\\\\
+Classes:  | \hyperlink{Address}{Address} | \hyperlink{CV}{CV} | \hyperlink{CV_Entry}{CV\_Entry} | \hyperlink{CommunicationSkill}{CommunicationSkill} | \hyperlink{Company}{Company} | \hyperlink{Course}{Course} | \hyperlink{DigitalSkills}{DigitalSkills} | \hyperlink{EducationalOrg}{EducationalOrg} | \hyperlink{InstantMessaging}{InstantMessaging} | \hyperlink{JobRelatedSkills}{JobRelatedSkills} | \hyperlink{LanguageSkill}{LanguageSkill} | \hyperlink{MotherTongue}{MotherTongue} | \hyperlink{OrganisationalSkills}{OrganisationalSkills} | \hyperlink{Organization}{Organization}  | \hyperlink{OtherInfo}{OtherInfo} | \hyperlink{Person}{Person} | \hyperlink{PersonalReference}{PersonalReference} | \hyperlink{ProfessionalReference}{ProfessionalReference} | \hyperlink{Reference}{Reference} | \hyperlink{Skill}{Skill}  | \hyperlink{Target}{Target}  | \hyperlink{Training}{Training} | \hyperlink{WorkHistory}{WorkHistory}
+\\\\
+Properties: | \hyperlink{aboutPerson}{aboutPerson} | \hyperlink{address}{address} | \hyperlink{careerLevel}{careerLevel} |  \hyperlink{city}{city} | \hyperlink{communication}{communication} | \hyperlink{companyIndustry}{companyIndustry} | \hyperlink{contentCreation}{contentCreation} | \hyperlink{country}{country} |\hyperlink{courseDescription}{courseDescription} |\hyperlink{courseFinishDate}{courseFinishDate} |\hyperlink{courseStartDate}{courseStartDate} |\hyperlink{courseTitle}{courseTitle} |\hyperlink{courseURL}{courseURL} |\hyperlink{cvCopyright}{cvCopyright} |\hyperlink{cvIsActive}{cvIsActive} |\hyperlink{cvIsConfidential}{cvIsConfidential} |\hyperlink{cvLastUpdate}{cvLastUpdate} |\hyperlink{cvNotes}{cvNotes} |\hyperlink{cvTitle}{cvTitle} |\hyperlink{dateOfBirth}{dateOfBirth} |\hyperlink{degreeType}{degreeType} |\hyperlink{driversLicence}{driversLicence} |\hyperlink{eduDescription}{eduDescription} |\hyperlink{eduGradDate}{eduGradDate} |\hyperlink{eduMajor}{eduMajor} |\hyperlink{eduMinor}{eduMinor} |\hyperlink{eduStartDate}{eduStartDate} |\hyperlink{email}{email} |\hyperlink{employedIn}{employedIn} 
+|\hyperlink{endDate}{endDate} 
+|\hyperlink{firstName}{firstName} |
+|\hyperlink{gender}{gender} |
+|\hyperlink{hasCertification}{hasCertification} |
+|\hyperlink{hasCitizenship}{hasCitizenship} |
+|\hyperlink{hasCourse}{hasCourse} |
+|\hyperlink{hasEducation}{hasEducation} |
+|\hyperlink{hasICTCertificate}{hasICTCertificate} |
+|\hyperlink{hasInstantMessaging}{hasInstantMessaging} |\hyperlink{hasNationality}{hasNationality} |\hyperlink{hasOtherInfo}{hasOtherInfo} |\hyperlink{hasQualification}{hasQualification} |\hyperlink{hasReference}{hasReference} |\hyperlink{hasSkill}{hasSkill} |\hyperlink{hasTarget}{hasTarget} |\hyperlink{hasTelephoneNumber}{hasTelephoneNumber} |\hyperlink{hasWebsite}{hasWebsite} |\hyperlink{hasWorkHistory}{hasWorkHistory} |\hyperlink{informationProcessing}{informationProcessing} |\hyperlink{instantMessagingName}{instantMessagingName} |\hyperlink{instantMessagingUsername}{instantMessagingUsername} |\hyperlink{isCurrent}{isCurrent} |\hyperlink{jobDescription}{jobDescription} |\hyperlink{jobMode}{jobMode} |\hyperlink{jobTitle}{jobTitle} |\hyperlink{languageSkillLevelListening}{languageSkillLevelListening} |\hyperlink{languageSkillLevelReading}{languageSkillLevelReading} |\hyperlink{languageSkillLevelSpokenInteraction}{languageSkillLevelSpokenInteraction} |\hyperlink{languageSkillLevelSpokenProduction}{languageSkillLevelSpokenProduction} |\hyperlink{languageSkillLevelWriting}{languageSkillLevelWriting} |\hyperlink{lastName}{lastName} |\hyperlink{organizationAddress}{organizationAddress} |\hyperlink{organizationDescription}{organizationDescription} |\hyperlink{organizationName}{organizationName} |\hyperlink{organizationWebsite}{organizationWebsite} |\hyperlink{organizedBy}{organizedBy} |\hyperlink{otherComputerSkills}{otherComputerSkills} |\hyperlink{otherInfoDescription}{otherInfoDescription} |\hyperlink{otherInfoType}{otherInfoType} |\hyperlink{photo}{photo} |\hyperlink{postalCode}{postalCode} |\hyperlink{problemSolving}{problemSolving} |\hyperlink{referenceBy}{referenceBy} |\hyperlink{safety}{safety} | \hyperlink{skillDescription}{skillDescription} |\hyperlink{skillHasCertificate}{skillHasCertificate} |\hyperlink{skillLastUsed}{skillLastUsed} |\hyperlink{skillLevel}{skillLevel} |\hyperlink{skillName}{skillName} |\hyperlink{skillYearsExperience}{skillYearsExperience} |\hyperlink{startDate}{startDate} |\hyperlink{street}{street} | \hyperlink{studiedIn}{studiedIn} |\hyperlink{targetCareerLevel}{targetCareerLevel} |\hyperlink{targetCompanyDescription}{targetCompanyDescription} |\hyperlink{targetCompanyIndustry}{targetCompanyIndustry} |\hyperlink{targetCompanySize}{targetCompanySize} |\hyperlink{targetConditionWillRelocate}{targetConditionWillRelocate} |\hyperlink{targetConditionWillTravel}{targetConditionWillTravel} |\hyperlink{targetCountry}{targetCountry} |\hyperlink{targetJobDescription}{targetJobDescription} |\hyperlink{targetJobMode}{targetJobMode} |\hyperlink{targetJobTitle}{targetJobTitle} |\hyperlink{targetSalaryCurrency}{targetSalaryCurrency} |\hyperlink{targetSalaryRange}{targetSalaryRange} |\hyperlink{targetWeeksNoticePeriod}{targetWeeksNoticePeriod} |\hyperlink{title}{title} |
+
+%--{RDF2Resume cross-reference: Classes and Properties}--------------------------------------------------
+\section{RDF2R{\'e}sum{\'e} cross-reference: Classes and Properties}
+
+%--{Classes}--------------------------------------------------
+\subsection{Classes}
+\subsubsection{Class: CV}\hypertarget{CV}{}
+\textit{CV} - Curriculum Vitae (CV) Class
+\\\\
+\textbf{in-domain-of:} \hyperlink{aboutPerson}{aboutPerson}, \hyperlink{cvCopyright}{cvCopyright}, \hyperlink{cvIsActive}{cvIsActive}, \hyperlink{cvIsConfidential}{cvIsConfidential}, \hyperlink{cvLastUpdate}{cvLastUpdate},  \hyperlink{cvNotes}{cvNotes}, \hyperlink{cvTitle}{cvTitle}, \hyperlink{hasCourse}{hasCourse}, \hyperlink{hasEducation}{hasEducation}, \hyperlink{hasOtherInfo}{hasOtherInfo}, \hyperlink{hasReference}{hasReference}, \hyperlink{hasSkill}{hasSkill}, \hyperlink{hasTarget}{hasTarget}, \hyperlink{hasWorkHistory}{hasWorkHistory}
+
+\subsubsection{Class: CV\_Entry}\hypertarget{CV_Entry}{}
+\textit{CV\_Entry} - Single entry of CV information. Type of CV information specified in subclasses.
+\\\\
+\textbf{subclassOf:} rdfs:Resource
+
+\subsubsection{Class: Person}\hypertarget{Person}{}
+\textit{Person} - Person Class that defines the necessary information about the specific person's curriculum vitae.
+\\\\
+\textbf{in-domain-of:} \hyperlink{address}{address}, \hyperlink{dateOfBirth}{dateOfBirth}, \hyperlink{driversLicence}{driversLicence}, \hyperlink{email}{email}, \hyperlink{firstName}{firstName},  \hyperlink{gender}{gender}, \hyperlink{hasCitizenship}{hasCitizenship}, \hyperlink{hasInstantMessaging}{hasInstantMessaging},  \hyperlink{hasNationality}{hasNationality}, \hyperlink{hasTelephoneNumber}{hasTelephoneNumber}, \hyperlink{hasWebsite}{hasWebsite}, \hyperlink{lastName}{lastName}, \hyperlink{photo}{photo}, \hyperlink{title}{title}
+\\\\
+\textbf{in-range-of:} \hyperlink{aboutPerson}{aboutPerson}, \hyperlink{referenceBy}{referenceBy}
+
+\subsubsection{Class: Address}\hypertarget{Address}{}
+\textit{Address} - Class that defines the necessary information for a full address.
+\\\\
+\textbf{in-domain-of:} \hyperlink{city}{city}, \hyperlink{country}{country}, \hyperlink{postalCode}{postalCode}, \hyperlink{street}{street}
+\\\\
+\textbf{in-range-of:} \hyperlink{address}{address}, \hyperlink{organizationAddress}{organizationAddress}
+
+\subsubsection{Class: InstantMessaging}\hypertarget{InstantMessaging}{}
+\textit{InstantMessaging} - Class that defines the type and username of the instant messaging options of a person.
+\\\\
+\textbf{in-domain-of:} \hyperlink{instantMessagingName}{instantMessagingName}, \hyperlink{instantMessagingUsername}{instantMessagingUsername}
+\\\\
+\textbf{in-range-of:} \hyperlink{hasInstantMessaging}{hasInstantMessaging}
+
+\subsubsection{Class: Organization}\hypertarget{Organization}{}
+\textit{Organization} - General class for organizations.
+\\\\
+\textbf{subclassOf:} rdfs:Resource
+\\\\
+\textbf{in-domain-of:} \hyperlink{organizationAddress}{organizationAddress}, \hyperlink{organizationDescription}{organizationDescription}, \hyperlink{organizationName}{organizationName}, \hyperlink{organizationWebsite}{organizationWebsite}
+\\\\
+\textbf{in-range-of:} \hyperlink{organizedBy}{organizedBy}
+
+\subsubsection{Class: Company}\hypertarget{Company}{}
+\textit{Company} - The class that defines a company's informations.
+\\\\
+\textbf{subclassOf:} \hyperlink{Organization}{Organization}
+\\\\
+\textbf{in-domain-of:} \hyperlink{companyIndustry}{companyIndustry}
+\\\\
+\textbf{in-range-of:} \hyperlink{employedIn}{employedIn}
+
+\subsubsection{Class: EducationalOrg}\hypertarget{EducationalOrg}{}
+\textit{EducationalOrg} - The class that defines an educational organization's (university, ...) informations.
+\\\\
+\textbf{subclassOf:} \hyperlink{Organization}{Organization}
+\\\\
+\textbf{in-range-of:} \hyperlink{studiedIn}{studiedIn}
+
+\subsubsection{Class: WorkHistory}\hypertarget{WorkHistory}{}
+\textit{WorkHistory} - CV entry for work history.
+\\\\
+\textbf{subclassOf:} \hyperlink{CV\_Entry}{CV\_Entry}
+\\\\
+\textbf{in-domain-of:} \hyperlink{careerLevel}{careerLevel}, \hyperlink{employedIn}{employedIn}, \hyperlink{endDate}{endDate}, \hyperlink{isCurrent}{isCurrent}, \hyperlink{jobDescription}{jobDescription}, \hyperlink{jobMode}{jobMode}, \hyperlink{jobTitle}{jobTitle}, \hyperlink{startDate}{startDate} 
+\\\\
+\textbf{in-range-of:} \hyperlink{hasWorkHistory}{hasWorkHistory}
+
+\subsubsection{Class: Course}\hypertarget{Course}{}
+\textit{Course} - CV entry for courses taken.
+\\\\
+\textbf{subclassOf:} \hyperlink{CV\_Entry}{CV\_Entry}
+\\\\
+\textbf{in-domain-of:} \hyperlink{courseDescription}{courseDescription}, \hyperlink{courseFinishDate}{courseFinishDate}, \hyperlink{courseStartDate}{courseStartDate}, \hyperlink{courseTitle}{courseTitle}, \hyperlink{courseURL}{courseURL}, \hyperlink{hasCertification}{hasCertification}, \hyperlink{organizedBy}{organizedBy}
+\\\\
+\textbf{in-range-of:} \hyperlink{hasCourse}{hasCourse}
+
+\subsubsection{Class: Training}\hypertarget{Training}{}
+\textit{Training} - CV entry for trainings taken.
+\\\\
+\textbf{subclassOf:} \hyperlink{Course}{Course}
+
+\subsubsection{Class: Skill}\hypertarget{Skill}{}
+\textit{Skill} - CV entry for description of skills.
+\\\\
+\textbf{subclassOf:} \hyperlink{CV\_Entry}{CV\_Entry}, esco:Skill
+\\\\
+\textbf{in-domain-of:} \hyperlink{skillDescription}{skillDescription}, \hyperlink{skillHasCertificate}{skillHasCertificate}, \hyperlink{skillLastUsed}{skillLastUsed}, \hyperlink{skillLevel}{skillLevel}, \hyperlink{skillName}{skillName}, \hyperlink{skillYearsExperience}{skillYearsExperience}
+\\\\
+\textbf{in-range-of:} \hyperlink{hasSkill}{hasSkill}
+
+\subsubsection{Class: CommunicationSkill}\hypertarget{CommunicationSkill}{}
+\textit{CommunicationSkill} - CV entry for communication skills.
+\\\\
+\textbf{subclassOf:} \hyperlink{Skill}{Skill}
+
+\subsubsection{Class: OrganisationalSkills}\hypertarget{OrganisationalSkills}{}
+\textit{OrganisationalSkills} - CV entry for organisational/ managerial skills.
+\\\\
+\textbf{subclassOf:} \hyperlink{Skill}{Skill}
+
+\subsubsection{Class: JobRelatedSkills}\hypertarget{JobRelatedSkills}{}
+\textit{JobRelatedSkills} - CV entry for job related skills.
+\\\\
+\textbf{subclassOf:} \hyperlink{Skill}{Skill}
+
+\subsubsection{Class: DigitalSkills}\hypertarget{DigitalSkills}{}
+\textit{DigitalSkills} - CV entry for digital skills.
+\\\\
+\textbf{subclassOf:} \hyperlink{Skill}{Skill}
+\\\\
+\textbf{in-domain-of:} \hyperlink{communication}{communication}, \hyperlink{contentCreation}{contentCreation}, \hyperlink{hasICTCertificate}{hasICTCertificate},  \hyperlink{informationProcessing}{informationProcessing}, \hyperlink{otherComputerSkills}{otherComputerSkills}, \hyperlink{problemSolving}{problemSolving} \hyperlink{safety}{safety}
+
+\subsubsection{Class: LanguageSkill}\hypertarget{LanguageSkill}{}
+\textit{LanguageSkill} - Language skill. Contains 5 levels for skill: spoken interaction, spoken production, listening, writing, reading.
+\\\\
+\textbf{subclassOf:} \hyperlink{Skill}{Skill}
+\\\\
+\textbf{in-domain-of:} \hyperlink{languageSkillLevelListening}{languageSkillLevelListening}, \hyperlink{languageSkillLevelReading}{languageSkillLevelReading}, \hyperlink{languageSkillLevelSpokenInteraction}{languageSkillLevelSpokenInteraction}, \hyperlink{languageSkillLevelSpokenProduction}{languageSkillLevelSpokenProduction}, \hyperlink{languageSkillLevelWriting}{languageSkillLevelWriting}
+
+\subsubsection{Class: MotherTongue}\hypertarget{MotherTongue}{}
+\textit{MotherTongue} - Mother tongue language skill. All 5 levels are expected to be max valued.
+\\\\
+\textbf{subclassOf:} \hyperlink{LanguageSkill}{LanguageSkill}
+
+\subsubsection{Class: Reference}\hypertarget{Reference}{}
+\textit{Reference} - CV entry for references.
+\\\\
+\textbf{subclassOf:} \hyperlink{CV\_Entry}{CV\_Entry}
+\\\\
+\textbf{in-domain-of:} \hyperlink{referenceBy}{referenceBy}
+\\\\
+\textbf{in-range-of:} \hyperlink{hasReference}{hasReference}
+
+\subsubsection{Class: ProfessionalReference}\hypertarget{ProfessionalReference}{}
+\textit{ProfessionalReference} - Professional reference, Subclass of Reference.
+\\\\
+\textbf{subclassOf:} \hyperlink{Reference}{Reference}
+
+\subsubsection{Class: PersonalReference}\hypertarget{PersonalReference}{}
+\textit{PersonalReference} - Personal reference, Subclass of Reference.
+\\\\
+\textbf{subclassOf:} \hyperlink{Reference}{Reference}
+
+\subsubsection{Class: Target}\hypertarget{Target}{}
+\textit{Target} - CV information for target of job application. (Single entry per CV. May be defined in the properties of CV class instead).
+\\\\
+\textbf{subclassOf:} \hyperlink{CV\_Entry}{CV\_Entry}
+\\\\
+\textbf{in-domain-of:} \hyperlink{targetCareerLevel}{targetCareerLevel}, \hyperlink{targetCompanyDescription}{targetCompanyDescription}, \hyperlink{targetCompanyIndustry}{targetCompanyIndustry}, \hyperlink{targetCompanySize}{targetCompanySize}, \hyperlink{targetConditionWillRelocate}{targetConditionWillRelocate}, \hyperlink{targetConditionWillTravel}{targetConditionWillTravel}, \hyperlink{targetCountry}{targetCountry}, \hyperlink{targetJobDescription}{targetJobDescription}, \hyperlink{targetJobMode}{targetJobMode}, \hyperlink{targetJobTitle}{targetJobTitle}, \hyperlink{targetSalaryCurrency}{targetSalaryCurrency}, \hyperlink{targetSalaryRange}{targetSalaryRange}, \hyperlink{targetWeeksNoticePeriod}{targetWeeksNoticePeriod}
+\\\\
+\textbf{in-range-of:} \hyperlink{hasTarget}{hasTarget}
+
+\subsubsection{Class: OtherInfo}\hypertarget{OtherInfo}{}
+\textit{OtherInfo} - CV Entry for other information in CV.
+\\\\
+\textbf{subclassOf:} \hyperlink{CV\_Entry}{CV\_Entry}
+\\\\
+\textbf{in-domain-of:} \hyperlink{otherInfoDescription}{otherInfoDescription}, \hyperlink{otherInfoType}{otherInfoType}
+\\\\
+\textbf{in-range-of:} \hyperlink{hasOtherInfo}{hasOtherInfo}
+
+%--{Properties}--------------------------------------------------
+\subsection{Properties}
+\subsubsection{Property: aboutPerson}\hypertarget{aboutPerson}{}
+\textit{aboutPerson} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{Person}{Person} 
+
+\subsubsection{Property: address}\hypertarget{address}{}
+\textit{address} - Property that points towards the address of the person
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  \hyperlink{Address}{Address} 
+
+\subsubsection{Property: careerLevel}\hypertarget{careerLevel}{}
+\textit{careerLevel} - Career level for the position in company.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  mybase0:CVCareerLevel
+
+\subsubsection{Property: city}\hypertarget{city}{}
+\textit{city} - Indicates the city in an address.
+\\\\
+\textbf{Domain:} \hyperlink{Address}{Address}
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: communication}\hypertarget{communication}{}
+\textit{communication} - Property regarding the communication skills.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  mybase0:SelfAssessmentProperty
+
+\subsubsection{Property: companyIndustry}\hypertarget{companyIndustry}{}
+\textit{companyIndustry} - Industry of the company where the candidate would like to work.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: contentCreation}\hypertarget{contentCreation}{}
+\textit{contentCreation} - Property regarding the content creation skills.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  mybase0:SelfAssessmentProperty
+
+\subsubsection{Property: country}\hypertarget{country}{}
+\textit{country} - Indicates the country in an address.
+\\\\
+\textbf{Domain:} \hyperlink{Address}{Address} 
+\\\\
+\textbf{Range:}  http://www.daml.org/2001/09/countries/countries.daml\#
+
+\subsubsection{Property: courseDescription}\hypertarget{courseDescription}{}
+\textit{courseDescription} - Description of the course / certification.
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: courseFinishDate}\hypertarget{courseFinishDate}{}
+\textit{courseFinishDate} - Date when course was finished / certification acquired.
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: courseStartDate}\hypertarget{courseStartDate}{}
+\textit{courseStartDate} - Start date of the course taken. acquired.
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: courseTitle}\hypertarget{courseTitle}{}
+\textit{courseTitle} - Title of the course taken or certification acquired.
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: courseURL}\hypertarget{courseURL}{}
+\textit{courseURL} - Web page of the courses taken / certification acquired. May be pointer to certification transcript.
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: cvCopyright}\hypertarget{cvCopyright}{}
+\textit{cvCopyright} - Copyright notice - who owns rights to CV, how may it be used, other legal info.
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: cvIsActive}\hypertarget{cvIsActive}{}
+\textit{cvIsActive} - If the CV is active and the person is actively looking for job opportunities.
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  xsd:boolean
+
+\subsubsection{Property: cvIsConfidential}\hypertarget{cvIsConfidential}{}
+\textit{cvIsConfidential} - If the CV is confidential and may be used by receiving party only.
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  xsd:boolean
+
+\subsubsection{Property: cvLastUpdate}\hypertarget{cvLastUpdate}{}
+\textit{cvLastUpdate} - Date when the information in CV was last updated.
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: cvNotes}\hypertarget{cvNotes}{}
+\textit{cvNotes} - Notes about specific things the person wants to have known.
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: cvTitle}\hypertarget{cvTitle}{}
+\textit{cvTitle} -
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: dateOfBirth}\hypertarget{dateOfBirth}{}
+\textit{dateOfBirth} - Indicates the person's date of birth.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: degreeType}\hypertarget{degreeType}{}
+\textit{degreeType} - Title of qualification awarded.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  mybase0:EduDegree
+
+\subsubsection{Property: driversLicence}\hypertarget{driversLicence}{}
+\textit{driversLicence} - Indicates the person's drivers license.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: eduDescription}\hypertarget{eduDescription}{}
+\textit{eduDescription} - Description of the main subjects / occupational skills covered.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: eduGradDate}\hypertarget{eduGradDate}{}
+\textit{eduGradDate} - Education end (graduation) date (YYYY-MM-DD)May contain only year or year and month.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: eduMajor}\hypertarget{eduMajor}{}
+\textit{eduMajor} - Major speciality graduated.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: eduMinor}\hypertarget{eduMinor}{}
+\textit{eduMinor} - Minor speciality(-ies) graduated.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: eduStartDate}\hypertarget{eduStartDate}{}
+\textit{eduStartDate} - Education start date (YYYY-MM-DD)May contain only year or year and month.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: email}\hypertarget{email}{}
+\textit{email} - Indicates the person's e-mail.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: employedIn}\hypertarget{employedIn}{}
+\textit{employedIn} - Property pointing to the company where the person is/was employed.
+\\\\
+\textbf{Domain:} \hyperlink{Company}{Company} 
+\\\\
+\textbf{Range:}  \hyperlink{WorkHistory}{WorkHistory} 
+
+\subsubsection{Property: endDate}\hypertarget{endDate}{}
+\textit{endDate} - End date of employment.Format: YYYY-MM-DD May contain only year or year and month.
+\\\\
+\textbf{Domain:} \hyperlink{WorkHistory}{WorkHistory} 
+\\\\
+\textbf{Range:}  xsd:date 
+
+\subsubsection{Property: firstName}\hypertarget{firstName}{}
+\textit{firstName} - Indicates the first name of the person.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: gender}\hypertarget{gender}{}
+\textit{gender} - Gender property (man/woman/not indicated).
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  mybase0:SexProperty
+
+\subsubsection{Property: hasCertification}\hypertarget{hasCertification}{}
+\textit{hasCertification} - Does this course entry include certification?
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: hasCitizenship}\hypertarget{hasCitizenship}{}
+\textit{hasCitizenship} - Person's citizenship.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  http://www.daml.org/2001/09/countries/countries.daml\#
+
+\subsubsection{Property: hasCourse}\hypertarget{hasCourse}{}
+\textit{hasCourse} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{Course}{Course} 
+
+\subsubsection{Property: hasEducation}\hypertarget{hasEducation}{}
+\textit{hasEducation} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{Education}{Education} 
+
+\subsubsection{Property: hasICTCertificate}\hypertarget{hasICTCertificate}{}
+\textit{hasICTCertificate} - Property linking to an ICT certificate.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: hasInstantMessaging}\hypertarget{hasInstantMessaging}{}
+\textit{hasInstantMessaging} - Property that points towards the instant messaging of a person.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  \hyperlink{InstantMessaging}{InstantMessaging} 
+
+\subsubsection{Property: hasNationality}\hypertarget{hasNationality}{}
+\textit{hasNationality} - Person's nationality.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  http://www.daml.org/2001/09/countries/countries.daml\#
+
+\subsubsection{Property: hasOtherInfo}\hypertarget{hasOtherInfo}{}
+\textit{hasOtherInfo} - Points to the Other Info Class
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{OtherInfo}{OtherInfo} 
+
+\subsubsection{Property: hasQualification}\hypertarget{hasQualification}{}
+\textit{hasQualification} -
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  esco:Qualification
+
+\subsubsection{Property: hasReference}\hypertarget{hasReference}{}
+\textit{hasReference} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{Reference}{Reference} 
+
+\subsubsection{Property: hasSkill}\hypertarget{hasSkill}{}
+\textit{hasSkill} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{Skill}{Skill} 
+
+\subsubsection{Property: hasTarget}\hypertarget{hasTarget}{}
+\textit{hasTarget} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{Target}{Target}
+
+
+\subsubsection{Property: hasTelephoneNumber}\hypertarget{hasTelephoneNumber}{}
+\textit{hasTelephoneNumber} - Indicates a telephone number of the person.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: hasWebsite}\hypertarget{hasWebsite}{}
+\textit{hasWebsite} - Indicates the url of a person's website, blog or linkedin.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: hasWorkHistory}\hypertarget{hasWorkHistory}{}
+\textit{hasWorkHistory} - 
+\\\\
+\textbf{Domain:} \hyperlink{CV}{CV} 
+\\\\
+\textbf{Range:}  \hyperlink{WorkHistory}{WorkHistory} 
+
+\subsubsection{Property: informationProcessing}\hypertarget{informationProcessing}{}
+\textit{informationProcessing} - Property regarding the information processing skills.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  mybase0:SelfAssessmentProperty
+
+\subsubsection{Property: instantMessagingName}\hypertarget{instantMessagingName}{}
+\textit{instantMessagingName} - Indicates the instant messaging app name.
+\\\\
+\textbf{Domain:} \hyperlink{InstantMessaging}{InstantMessaging} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: instantMessagingUsername}\hypertarget{instantMessagingUsername}{}
+\textit{instantMessagingUsername} - Indicates the instant messaging username.
+\\\\
+\textbf{Domain:} \hyperlink{InstantMessaging}{InstantMessaging} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: isCurrent}\hypertarget{isCurrent}{}
+\textit{isCurrent} - Indicates if this is a current workplace.
+\\\\
+\textbf{Domain:} \hyperlink{WorkHistory}{WorkHistory} 
+\\\\
+\textbf{Range:}  xsd:boolean
+
+\subsubsection{Property: jobDescription}\hypertarget{jobDescription}{}
+\textit{jobDescription} - Description of the main activities and responsibilities in the held position.
+\\\\
+\textbf{Domain:} \hyperlink{WorkHistory}{WorkHistory} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: jobMode}\hypertarget{jobMode}{}
+\textit{jobMode} - Type of the job: employee / contractor / intern.
+\\\\
+\textbf{Domain:} \hyperlink{WorkHistory}{WorkHistory} 
+\\\\
+\textbf{Range:}  mybase0:CVJobMode
+
+\subsubsection{Property: jobTitle}\hypertarget{jobTitle}{}
+\textit{jobTitle} - Occupation or position held.
+\\\\
+\textbf{Domain:} \hyperlink{WorkHistory}{WorkHistory} 
+\\\\
+\textbf{Range:}   xsd:string
+
+\subsubsection{Property: languageSkillLevelListening}\hypertarget{languageSkillLevelListening}{}
+\textit{languageSkillLevelListening} - Level of listening skills for language.
+\\\\
+\textbf{Domain:} \hyperlink{languageSkill}{languageSkill} 
+\\\\
+\textbf{Range:}   mybase0:LanguageSkillSelfAssessmentProperty 
+
+\subsubsection{Property: languageSkillLevelReading}\hypertarget{languageSkillLevelReading}{}
+\textit{languageSkillLevelReading} - Reading level of language skill.
+\\\\
+\textbf{Domain:} \hyperlink{languageSkill}{languageSkill} 
+\\\\
+\textbf{Range:}   mybase0:LanguageSkillSelfAssessmentProperty 
+
+\subsubsection{Property: languageSkillLevelSpokenInteraction}\hypertarget{languageSkillLevelSpokenInteraction}{}
+\textit{languageSkillLevelSpokenInteraction} - Level of spoken interaction for language.
+\\\\
+\textbf{Domain:} \hyperlink{languageSkill}{languageSkill} 
+\\\\
+\textbf{Range:}   mybase0:LanguageSkillSelfAssessmentProperty 
+
+\subsubsection{Property: languageSkillLevelSpokenProduction}\hypertarget{languageSkillLevelSpokenProduction}{}
+\textit{languageSkillLevelSpokenProduction} - Level of spoken production for language.
+\\\\
+\textbf{Domain:} \hyperlink{languageSkill}{languageSkill} 
+\\\\
+\textbf{Range:}   mybase0:LanguageSkillSelfAssessmentProperty 
+
+\subsubsection{Property: languageSkillLevelWriting}\hypertarget{languageSkillLevelWriting}{}
+\textit{languageSkillLevelWriting} - Level of writing skills for language.
+\\\\
+\textbf{Domain:} \hyperlink{languageSkill}{languageSkill} 
+\\\\
+\textbf{Range:}   mybase0:LanguageSkillSelfAssessmentProperty 
+
+\subsubsection{Property: lastName}\hypertarget{lastName}{}
+\textit{lastName} - Indicates the last name of the person.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}   xsd:string
+
+\subsubsection{Property: skillDescription}\hypertarget{skillDescription}{}
+\textit{skillDescription} - Description of the skill.
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}   xsd:string
+
+\subsubsection{Property: organizationAddress}\hypertarget{organizationAddress}{}
+\textit{organizationAddress} - Address of the organization. Not all properties of the address are required.
+\\\\
+\textbf{Domain:} \hyperlink{Organization}{Organization} 
+\\\\
+\textbf{Range:}   \hyperlink{Address}{Address} 
+
+\subsubsection{Property: organizationDescription}\hypertarget{organizationDescription}{}
+\textit{organizationDescription} - Description about the organization.
+\\\\
+\textbf{Domain:} \hyperlink{Organization}{Organization} 
+\\\\
+\textbf{Range:}   xsd:string
+
+\subsubsection{Property: organizationName}\hypertarget{organizationName}{}
+\textit{organizationName} - Name of the organization.
+\\\\
+\textbf{Domain:} \hyperlink{Organization}{Organization} 
+\\\\
+\textbf{Range:}   xsd:string
+
+\subsubsection{Property: organizationWebsite}\hypertarget{organizationWebsite}{}
+\textit{organizationWebsite} - Organization home page.
+\\\\
+\textbf{Domain:} \hyperlink{Organization}{Organization} 
+\\\\
+\textbf{Range:}   xsd:string
+
+\subsubsection{Property: organizedBy}\hypertarget{organizedBy}{}
+\textit{organizedBy} - Organization that organized courses and/or provided certification.
+\\\\
+\textbf{Domain:} \hyperlink{Course}{Course} 
+\\\\
+\textbf{Range:}  \hyperlink{Organization}{Organization} 
+
+\subsubsection{Property: otherComputerSkills}\hypertarget{otherComputerSkills}{}
+\textit{otherComputerSkills} - Property regarding other computer skills.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: otherInfoDescription}\hypertarget{otherInfoDescription}{}
+\textit{otherInfoDescription} - Description - content of misc CV information.
+\\\\
+\textbf{Domain:} \hyperlink{OtherInfo}{OtherInfo} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: otherInfoType}\hypertarget{otherInfoType}{}
+\textit{otherInfoType} - Type of other CV information (interests / awards / accomplishments / point of view / membership / social activities / other).
+\\\\
+\textbf{Domain:} \hyperlink{OtherInfo}{OtherInfo} 
+\\\\
+\textbf{Range:}  mybase0:OtherCVInfoType
+
+\subsubsection{Property: photo}\hypertarget{photo}{}
+\textit{photo} - Indicates the person's photo path.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: postalCode}\hypertarget{postalCode}{}
+\textit{postalCode} - Indicates the postal code in an address.
+\\\\
+\textbf{Domain:} \hyperlink{Address}{Address} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: problemSolving}\hypertarget{problemSolving}{}
+\textit{problemSolving} - Property regarding the problem solving skills.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  mybase0:SelfAssessmentProperty
+
+\subsubsection{Property: referenceBy}\hypertarget{referenceBy}{}
+\textit{referenceBy} - Points to a person who provides the reference.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  \hyperlink{Reference}{Reference} 
+
+\subsubsection{Property: safety}\hypertarget{safety}{}
+\textit{safety} - Property regarding the safety skills of your digital skills.
+\\\\
+\textbf{Domain:} \hyperlink{DigitalSkills}{DigitalSkills} 
+\\\\
+\textbf{Range:}  mybase0:SelfAssessmentProperty
+
+\subsubsection{Property: skillHasCertificate}\hypertarget{skillHasCertificate}{}
+\textit{skillHasCertificate} - Property regarding the certificate of the skill.
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: skillLastUsed}\hypertarget{skillLastUsed}{}
+\textit{skillLastUsed} - Date when skill was last used.
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: skillLevel}\hypertarget{skillLevel}{}
+\textit{skillLevel} - Level of the skill (0..5).
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}  xsd:integer
+
+\subsubsection{Property: skillDescription}\hypertarget{skillDescription}{}
+\textit{skillDescription} - Description of the skill.
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: skillName}\hypertarget{skillName}{}
+\textit{skillName} - Name of the skill.
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: skillYearsExperience}\hypertarget{skillYearsExperience}{}
+\textit{skillYearsExperience} - Year of experience in this skill.
+\\\\
+\textbf{Domain:} \hyperlink{Skill}{Skill} 
+\\\\
+\textbf{Range:}  xsd:decimal
+
+\subsubsection{Property: startDate}\hypertarget{startDate}{}
+\textit{startDate} - Start date of employment.Format: YYYY-MM-DD May contain only year or year and month.
+\\\\
+\textbf{Domain:} \hyperlink{WorkHistory}{WorkHistory} 
+\\\\
+\textbf{Range:}  xsd:date
+
+\subsubsection{Property: street}\hypertarget{street}{}
+\textit{street} - Indicates the street (name+code) in an address.
+\\\\
+\textbf{Domain:} \hyperlink{Address}{Address} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: studiedIn}\hypertarget{studiedIn}{}
+\textit{studiedIn} - Educational organization where person studied.
+\\\\
+\textbf{Domain:} \hyperlink{Education}{Education} 
+\\\\
+\textbf{Range:}  \hyperlink{EducationalOrg}{EducationalOrg} 
+
+\subsubsection{Property: targetCareerLevel}\hypertarget{targetCareerLevel}{}
+\textit{targetCareerLevel} - 
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  mybase0:CVCareerLevel 
+
+\subsubsection{Property: targetCompanyDescription}\hypertarget{targetCompanyDescription}{}
+\textit{targetCompanyDescription} - Description on the company where the candidate would like to work.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string 
+
+\subsubsection{Property: targetCompanyIndustry}\hypertarget{targetCompanyIndustry}{}
+\textit{targetCompanyIndustry} - Industry of the company where the candidate would like to work.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string 
+
+\subsubsection{Property: targetCompanySize}\hypertarget{targetCompanySize}{}
+\textit{targetCompanySize} - Size of the target company.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  mybase0:CompanySize
+
+\subsubsection{Property: targetConditionWillRelocate}\hypertarget{targetConditionWillRelocate}{}
+\textit{targetConditionWillRelocate} - Is candidate willing to relocate?
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:boolean
+
+\subsubsection{Property: targetConditionWillTravel}\hypertarget{targetConditionWillTravel}{}
+\textit{targetConditionWillTravel} - Is candidate willing to travel?
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:boolean
+
+\subsubsection{Property: targetCountry}\hypertarget{targetCountry}{}
+\textit{targetCountry} - Country where candidate would like to work.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  http://www.daml.org/2001/09/countries/countries.daml\#
+
+\subsubsection{Property: targetJobDescription}\hypertarget{targetJobDescription}{}
+\textit{targetJobDescription} - Description of the job applicant is seeking. Notes.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: targetJobMode}\hypertarget{targetJobMode}{}
+\textit{targetJobMode} - Job mode: full-time / part-time.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  mybase0:CVJobMode
+
+\subsubsection{Property: targetJobTitle}\hypertarget{targetJobTitle}{}
+\textit{targetJobTitle} - Title of the job applicant is seeking.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: targetSalaryCurrency}\hypertarget{targetSalaryCurrency}{}
+\textit{targetSalaryCurrency} - Currency for target salary.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: targetSalaryRange}\hypertarget{targetSalaryRange}{}
+\textit{targetSalaryRange} - 
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:string
+
+\subsubsection{Property: targetWeeksNoticePeriod}\hypertarget{targetWeeksNoticePeriod}{}
+\textit{targetWeeksNoticePeriod} - Notice period in weeks when can start to work.
+\\\\
+\textbf{Domain:} \hyperlink{Target}{Target} 
+\\\\
+\textbf{Range:}  xsd:decimal
+
+\subsubsection{Property: title}\hypertarget{title}{}
+\textit{title} - Indicates the title of the person.
+\\\\
+\textbf{Domain:} \hyperlink{Person}{Person} 
+\\\\
+\textbf{Range:}  mybase0:TitleProperty
+
+
+%--{External Classes and Properties}--------------------------------------------------
+\subsection{External Classes and Properties}
+Ontology namespaces referenced:
+
+\begin{tabular}{ | c | c  | } 
+\hline
+ \textbf{Prefix} & \textbf{XML Namespace}  \\ 
+\hline
+rdfs & \url{http://www.w3.org/2000/01/rdf-schema\#} \\ 
+\hline
+rdf & \url{http://www.w3.org/1999/02/22-rdf-syntax-ns\#}  \\ 
+\hline
+xsd & \url{https://www.w3.org/2001/XMLSchema\#}  \\ 
+\hline
+owl & \url{http://www.w3.org/2002/07/owl\#}  \\ 
+\hline
+esco & \url{http://data.europa.eu/esco/model\#}  \\ 
+\hline
+mybase0 & \url{http://example.com/base.resume\#}  \\ 
+\hline
+\end{tabular}
+
+\end{document}
+
+
+
