@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:dc="http://purl.org/dc/terms/"
+         xmlns:ns0="http://protege.stanford.edu/system#">
+
+  <owl:Ontology rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#">
+    <rdfs:label xml:lang="en">Curriculum Vitae Ontology</rdfs:label>
+    <dc:issued rdf:datatype="https://www.w3.org/2001/XMLSchema#date">2019-05-15</dc:issued>
+    <dc:modified rdf:datatype="https://www.w3.org/2001/XMLSchema#date">2019-06-13</dc:modified>
+  </owl:Ontology>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV">
+    <rdfs:comment>Curriculum Vitae (CV) Class</rdfs:comment>
+    <rdfs:label xml:lang="en">CV</rdfs:label>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#cvLastUpdate">
+    <rdfs:comment>Date when the information in CV was last updated.</rdfs:comment>
+    <rdfs:label xml:lang="en">lastUpdate</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#cvTitle">
+    <rdfs:comment>CV title.</rdfs:comment>
+    <rdfs:label xml:lang="en">cvTitle</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#cvNotes">
+    <rdfs:comment>Notes about specific things the person wants to have known</rdfs:comment>
+    <rdfs:label xml:lang="en">cvNotes</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#cvCopyright">
+    <rdfs:comment>Copyright notice - who owns rights to CV, how may it be used, other legal info.</rdfs:comment>
+    <rdfs:label xml:lang="en">cvCopyright</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#cvIsConfidential">
+    <rdfs:comment>If the CV is confidential and may be used by receiving party only.</rdfs:comment>
+    <rdfs:label xml:lang="en">cvIsConfidential</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#cvIsActive">
+    <rdfs:comment>If the CV is active and the person is actively looking for job opportunities.</rdfs:comment>
+    <rdfs:label xml:lang="en">cvIsActive</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#aboutPerson">
+    <rdfs:label xml:lang="en">aboutPerson</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry">
+    <rdfs:label xml:lang="en">CV_Entry</rdfs:label>
+    <rdfs:comment>Single entry of CV information. Type of CV information specified in subclasses</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasWorkHistory">
+    <rdfs:label xml:lang="en">hasWorkHistory</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasEducation">
+    <rdfs:label xml:lang="en">hasEducation</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasCourse">
+    <rdfs:label xml:lang="en">hasCourse</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasSkill">
+    <rdfs:label xml:lang="en">hasSkill</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasReference">
+    <rdfs:label xml:lang="en">hasReference</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Reference"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasTarget">
+    <rdfs:label xml:lang="en">hasTarget</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasOtherInfo">
+    <rdfs:label xml:lang="en">hasOtherInfo</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#OtherInfo"/>
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person">
+    <rdfs:comment>Person Object that defines neccessary information about the specific person's curriculum vitae</rdfs:comment>
+    <rdfs:label xml:lang="en">Person</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://dbpedia.org/resource/classes#Person"/>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#firstName">
+    <rdfs:label xml:lang="en">name</rdfs:label>
+    <rdfs:comment>Indicates the first name of the person</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#lastName">
+    <rdfs:label xml:lang="en">name</rdfs:label>
+    <rdfs:comment>Indicates the last name of the person</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#title">
+    <rdfs:label xml:lang="en">name</rdfs:label>
+    <rdfs:comment>Indicates the title of the person</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#TitleProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#photo">
+    <rdfs:label xml:lang="en">photo</rdfs:label>
+    <rdfs:comment>Indicates the person's photo path</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#gender">
+    <rdfs:label xml:lang="en">gender</rdfs:label>
+    <rdfs:comment>Gender property (man/woman/not indicated)</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SexProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasCitizenship">
+    <rdfs:label xml:lang="en">hasCitizenship</rdfs:label>
+    <rdfs:comment>Person's citizenship.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="http://www.daml.org/2001/09/countries/countries.daml#"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasNationality">
+    <rdfs:comment>Person's nationality.</rdfs:comment>
+    <rdfs:label xml:lang="en">hasNationality</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="http://www.daml.org/2001/09/countries/countries.daml#"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#driversLicence">
+    <rdfs:label xml:lang="en">driversLicence</rdfs:label>
+    <rdfs:comment>Indicates the person's drivers license.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#address">
+    <rdfs:label xml:lang="en">address</rdfs:label>
+    <rdfs:comment>Property that points towards the address of the person</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address"/>
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address">
+    <rdfs:label xml:lang="en">Address</rdfs:label>
+    <rdfs:comment>Indicates the full address object</rdfs:comment>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#street">
+    <rdfs:label xml:lang="en">street</rdfs:label>
+    <rdfs:comment>Indicates the street (name+code) in an address</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#postalCode">
+    <rdfs:label xml:lang="en">postalCode</rdfs:label>
+    <rdfs:comment>Indicates the postal code in an address</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#country">
+    <rdfs:label xml:lang="en">country</rdfs:label>
+    <rdfs:comment>Indicates the country in an address</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address"/>
+    <rdfs:range rdf:resource="http://www.daml.org/2001/09/countries/countries.daml#"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#city">
+    <rdfs:label xml:lang="en">city</rdfs:label>
+    <rdfs:comment>Indicates the city in an address</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#email">
+    <rdfs:label xml:lang="en">email</rdfs:label>
+    <rdfs:comment>Indicates the person's e-mail</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasTelephoneNumber">
+    <rdfs:label xml:lang="en">telephoneNumber</rdfs:label>
+    <rdfs:comment>Indicates a telephone number of the person</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasWebsite">
+    <rdfs:label xml:lang="en">website</rdfs:label>
+    <rdfs:comment>Indicates the url of a person's website, blog or linkedin</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasInstantMessaging">
+    <rdfs:label xml:lang="en">hasInstantMessaging</rdfs:label>
+    <rdfs:comment>Property that points towards the instant messaging of a person</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#InstantMessaging"/>
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#InstantMessaging">
+    <rdfs:label xml:lang="en">InstantMessaging</rdfs:label>
+    <rdfs:comment>Indicates the type and username of the instant messaging options of a person</rdfs:comment>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#instantMessagingName">
+    <rdfs:label xml:lang="en">instantMessagingName</rdfs:label>
+    <rdfs:comment>Indicates the instant messaging app name</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#InstantMessaging"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#instantMessagingUsername">
+    <rdfs:label xml:lang="en">instantMessagingUsername</rdfs:label>
+    <rdfs:comment>Indicates the instant messaging username</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#InstantMessaging"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#dateOfBirth">
+    <rdfs:label xml:lang="en">date of birth</rdfs:label>
+    <rdfs:comment>Indicates the person's date of birth</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization">
+    <rdfs:comment>General class for organizations</rdfs:comment>
+    <rdfs:label xml:lang="en">Organization</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Company">
+    <rdfs:comment>The object that holds a company's information.</rdfs:comment>
+    <rdfs:label xml:lang="en">Company</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#companyIndustry">
+    <rdfs:comment>Industry/Sector of the company</rdfs:comment>
+    <rdfs:label xml:lang="en">companyIndustry</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Company"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#EducationalOrg">
+    <rdfs:comment>The object that holds an educational organization's (university, ...) information</rdfs:comment>
+    <rdfs:label xml:lang="en">EducationalOrg</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#organizationName">
+    <rdfs:comment>Name of the organization</rdfs:comment>
+    <rdfs:label xml:lang="en">organizationName</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#organizationAddress">
+    <rdfs:comment>Address of the organization. Not all properties of the address are required</rdfs:comment>
+    <rdfs:label xml:lang="en">organizationCountry</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Address"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#organizationDescription">
+    <rdfs:comment>Description about the organization.</rdfs:comment>
+    <rdfs:label xml:lang="en">organizationDescription</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#organizationWebsite">
+    <rdfs:comment>Organization home page</rdfs:comment>
+    <rdfs:label xml:lang="en">organizationWebsite</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory">
+    <rdfs:comment>CV entry for work history</rdfs:comment>
+    <rdfs:label xml:lang="en">WorkHistory</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#employedIn">
+    <rdfs:comment>The company where the person is/was employed.</rdfs:comment>
+    <rdfs:label xml:lang="en">employedIn</rdfs:label>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Company"/>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#startDate">
+    <rdfs:label xml:lang="en">startDate</rdfs:label>
+    <rdfs:comment>Start date of employment.Format: YYYY-MM-DD May contain only year or year and month.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#endDate">
+    <rdfs:label xml:lang="en">endDate</rdfs:label>
+    <rdfs:comment>End date of employment.Format: YYYY-MM-DD May contain only year or year and month.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#jobTitle">
+    <rdfs:comment>Occupation or position held</rdfs:comment>
+    <rdfs:label xml:lang="en">jobTitle</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#jobDescription">
+    <rdfs:comment>Description of the main activities and responsibilities in the held position.</rdfs:comment>
+    <rdfs:label xml:lang="en">jobDescription</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#careerLevel">
+    <rdfs:comment>Career level for the position in company.</rdfs:comment>
+    <rdfs:label xml:lang="en">careerLevel</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#jobMode">
+    <rdfs:comment>Type of the job: employee / contractor / intern</rdfs:comment>
+    <rdfs:label xml:lang="en">jobMode</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#isCurrent">
+    <rdfs:comment>Indicates if this is a current workplace.</rdfs:comment>
+    <rdfs:label xml:lang="en">isCurrent</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#WorkHistory"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education">
+    <rdfs:comment>CV entry for education</rdfs:comment>
+    <rdfs:label xml:lang="en">Education</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#studiedIn">
+    <rdfs:comment>Educational organization where person studied.</rdfs:comment>
+    <rdfs:label xml:lang="en">studiedIn</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#EducationalOrg"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#eduStartDate">
+    <rdfs:label xml:lang="en">eduStartDate</rdfs:label>
+    <rdfs:comment>Education start date (YYYY-MM-DD)May contain only year or year and month.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#eduGradDate">
+    <rdfs:label xml:lang="en">eduGradDate</rdfs:label>
+    <rdfs:comment>Education end (graduation) date (YYYY-MM-DD)May contain only year or year and month.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#degreeType">
+    <rdfs:label xml:lang="en">degreeType</rdfs:label>
+    <rdfs:comment>Title of qualification awarded</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#EduDegree"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#eduMajor">
+    <rdfs:comment>Major speciality graduated.</rdfs:comment>
+    <rdfs:label xml:lang="en">eduMajor</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#eduMinor">
+    <rdfs:comment>Minor speciality(-ies) graduated.</rdfs:comment>
+    <rdfs:label xml:lang="en">eduMinor</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#eduDescription">
+    <rdfs:comment>Description of the main subjects / occupational skills covered.</rdfs:comment>
+    <rdfs:label xml:lang="en">eduDescription</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Education"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course">
+    <rdfs:comment>CV entry for courses taken</rdfs:comment>
+    <rdfs:label xml:lang="en">Course</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Training">
+    <rdfs:comment>Training entry for trainings taken</rdfs:comment>
+    <rdfs:label xml:lang="en">Training</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#organizedBy">
+    <rdfs:label xml:lang="en">organizedBy</rdfs:label>
+    <rdfs:comment>Organization that organized courses and/or provided certification.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Organization"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasCertification">
+    <rdfs:comment>Does this course entry include certification?</rdfs:comment>
+    <rdfs:label xml:lang="en">hasCertification</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasQualification">
+    <rdfs:label xml:lang="en">hasQualification</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="http://data.europa.eu/esco/modelQualification"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#courseTitle">
+    <rdfs:comment>Title of the course taken or certification acquired.</rdfs:comment>
+    <rdfs:label xml:lang="en">courseTitle</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#courseDescription">
+    <rdfs:comment>Description of the course / certification.</rdfs:comment>
+    <rdfs:label xml:lang="en">courseDescription</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#courseURL">
+    <rdfs:label xml:lang="en">courseURL</rdfs:label>
+    <rdfs:comment>Web page of the courses taken / certification acquired. May be pointer to certification transcript.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#courseStartDate">
+    <rdfs:comment>Start date of the course taken.</rdfs:comment>
+    <rdfs:label xml:lang="en">courseStartDate</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#courseFinishDate">
+    <rdfs:comment>Date when course was finished / certification acquired.</rdfs:comment>
+    <rdfs:label xml:lang="en">courseFinishDate</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Course"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill">
+    <rdfs:label xml:lang="en">Skill</rdfs:label>
+    <rdfs:comment>CV entry for description of skills</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+    <rdfs:subClassOf rdf:resource="http://data.europa.eu/esco/modelSkill"/>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#skillDescription">
+    <rdfs:comment>Description of the skill</rdfs:comment>
+    <rdfs:label xml:lang="en">skillName</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CommunicationSkill">
+    <rdfs:label xml:lang="en">CommunicationSkill</rdfs:label>
+    <rdfs:comment>CV entry for communication skills</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#OrganisationalSkills">
+    <rdfs:label xml:lang="en">OrganisationalSkills</rdfs:label>
+    <rdfs:comment>CV entry for organisational/ managerial skills</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#JobRelatedSkills">
+    <rdfs:label xml:lang="en">JobRelatedSkills</rdfs:label>
+    <rdfs:comment>CV entry for job related skills</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills">
+    <rdfs:label xml:lang="en">DigitalSkills</rdfs:label>
+    <rdfs:comment>CV entry for digital skills</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#informationProcessing">
+    <rdfs:comment>Property regarding the information processing skills</rdfs:comment>
+    <rdfs:label xml:lang="en">informationProcessing</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#communication">
+    <rdfs:comment>Property regarding the communication skills</rdfs:comment>
+    <rdfs:label xml:lang="en">communication</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#contentCreation">
+    <rdfs:comment>Property regarding the content creation skills</rdfs:comment>
+    <rdfs:label xml:lang="en">contentCreation</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#safety">
+    <rdfs:comment>Property regarding the safety skills</rdfs:comment>
+    <rdfs:label xml:lang="en">safety</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#problemSolving">
+    <rdfs:comment>Property regarding the problem solving skills</rdfs:comment>
+    <rdfs:label xml:lang="en">problemSolving</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#SelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#hasICTCertificate">
+    <rdfs:comment>Property linking to an ICT certificate</rdfs:comment>
+    <rdfs:label xml:lang="en">hasICTCertificate</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#otherComputerSkills">
+    <rdfs:comment>Property regarding other computer skills</rdfs:comment>
+    <rdfs:label xml:lang="en">otherComputerSkills</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#DigitalSkills"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#skillName">
+    <rdfs:comment>Name of the skill</rdfs:comment>
+    <rdfs:label xml:lang="en">skillName</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#skillLevel">
+    <rdfs:comment>Level of the skill (0..5)</rdfs:comment>
+    <rdfs:label xml:lang="en">skillLevel</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#integer"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#skillLastUsed">
+    <rdfs:comment>Date when skill was last used.</rdfs:comment>
+    <rdfs:label xml:lang="en">skillLastUsed</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#skillYearsExperience">
+    <rdfs:comment>Year of experience in this skill.</rdfs:comment>
+    <rdfs:label xml:lang="en">skillYearsExperience</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#decimal"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#skillHasCertificate">
+    <rdfs:comment>Property regarding the certificate of the skill</rdfs:comment>
+    <rdfs:label xml:lang="en">skillHasCertificate</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#LanguageSkill">
+    <rdfs:label xml:lang="en">LanguageSkill</rdfs:label>
+    <rdfs:comment>Language skill. Contains 5 levels for skill: spoken interaction, spoken production, listening, writing, reading.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Skill"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#MotherTongue">
+    <rdfs:label xml:lang="en">MotherTongue</rdfs:label>
+    <rdfs:comment>Mother tongue language skill. All 5 levels are expected to be max valued.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#LanguageSkill"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkillLevelReading">
+    <rdfs:comment>Reading level of language skill.</rdfs:comment>
+    <rdfs:label xml:lang="en">languageSkillLevelReading</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#LanguageSkill"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkillLevelWriting">
+    <rdfs:comment>Level of writing skills for language.</rdfs:comment>
+    <rdfs:label xml:lang="en">languageSkillLevelWriting</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkill"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkillLevelListening">
+    <rdfs:comment>Level of listening skills for language.</rdfs:comment>
+    <rdfs:label xml:lang="en">languageSkillLevelListening</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkill"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkillLevelSpokenInteraction">
+    <rdfs:comment>Level of spoken interaction for language.</rdfs:comment>
+    <rdfs:label xml:lang="en">languageSkillLevelSpokenInteraction</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkill"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkillLevelSpokenProduction">
+    <rdfs:comment>Level of spoken production for language.</rdfs:comment>
+    <rdfs:label xml:lang="en">languageSkillLevelSpokenProduction</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#languageSkill"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#LanguageSkillSelfAssessmentProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Reference">
+    <rdfs:comment>CV entry for references</rdfs:comment>
+    <rdfs:label xml:lang="en">Reference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#ProfessionalReference">
+    <rdfs:comment>Professional reference</rdfs:comment>
+    <rdfs:label xml:lang="en">ProfessionalReference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Reference"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#PersonalReference">
+    <rdfs:comment>Personal reference</rdfs:comment>
+    <rdfs:label xml:lang="en">PersonalReference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Reference"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#referenceBy">
+    <rdfs:comment>Points to a person who provides the reference.</rdfs:comment>
+    <rdfs:label xml:lang="en">referenceBy</rdfs:label>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Person"/>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Reference"/>
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target">
+    <rdfs:label xml:lang="en">Target</rdfs:label>
+    <rdfs:comment>CV information for target of job application. (Single entry per CV. May be defined in the properties of CV class instead).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetCareerLevel">
+    <rdfs:label xml:lang="en">targetCareerLevel</rdfs:label>
+    <rdfs:comment>Target career level.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVCareerLevel"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetCompanyDescription">
+    <rdfs:label xml:lang="en">targetCompanyDescription</rdfs:label>
+    <rdfs:comment>Description on the company where the candidate would like to work.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetCompanyIndustry">
+    <rdfs:comment>Industry of the company where the candidate would like to work.</rdfs:comment>
+    <rdfs:label xml:lang="en">targetCompanyIndustry</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetCompanySize">
+    <rdfs:comment>Size of the target company.</rdfs:comment>
+    <rdfs:label xml:lang="en">targetCompanySize</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CompanySize"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetCountry">
+    <rdfs:label xml:lang="en">targetCountry</rdfs:label>
+    <rdfs:comment>Country where would like to work.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="http://www.daml.org/2001/09/countries/countries.daml#"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetJobTitle">
+    <rdfs:comment>Title of the job applicant is seeking.</rdfs:comment>
+    <rdfs:label xml:lang="en">targetJobTitle</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetJobDescription">
+    <rdfs:comment>Description of the job applicant is seeking. Notes.</rdfs:comment>
+    <rdfs:label xml:lang="en">targetJobDescription</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetJobMode">
+    <rdfs:comment>Job mode: full-time / part-time</rdfs:comment>
+    <rdfs:label xml:lang="en">targetJobMode</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#CVJobMode"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetSalaryRange">
+    <ns0:maxCardinality>1</ns0:maxCardinality>
+    <ns0:range>integer</ns0:range>
+    <rdfs:comment>Target salary range</rdfs:comment>
+    <rdfs:label xml:lang="en">targetSalaryRange</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetSalaryCurrency">
+    <ns0:maxCardinality>1</ns0:maxCardinality>
+    <rdfs:label xml:lang="en">targetSalaryCurrency</rdfs:label>
+    <rdfs:comment>Currency for target salary.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetWeeksNoticePeriod">
+    <rdfs:comment>Notice period in weeks when can start to work.</rdfs:comment>
+    <rdfs:label xml:lang="en">targetWeeksNoticePeriod</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#number"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetConditionWillRelocate">
+    <rdfs:comment>Is candidate willing to relocate?</rdfs:comment>
+    <rdfs:label xml:lang="en">targetConditionWillRelocate</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#targetConditionWillTravel">
+    <rdfs:comment>Is candidate willing to travel?</rdfs:comment>
+    <rdfs:label xml:lang="en">targetConditionWillTravel</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#Target"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#OtherInfo">
+    <rdfs:comment>Other information in CV</rdfs:comment>
+    <rdfs:label xml:lang="en">OtherInfo</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#CV_Entry"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#otherInfoType">
+    <rdfs:label xml:lang="en">otherInfoType</rdfs:label>
+    <rdfs:comment>Type of other CV information (interests / awards / accomplishments / point of view / membership / social activities / other)</rdfs:comment>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#OtherInfo"/>
+    <rdfs:range rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_base_ontology.rdf#OtherCVInfoType"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#otherInfoDescription">
+    <rdfs:comment>Description - content of misc CV information.</rdfs:comment>
+    <rdfs:label xml:lang="en">otherInfoDescription</rdfs:label>
+    <rdfs:domain rdf:resource="https://raw.githubusercontent.com/e-elezi/rdf2resume/master/Ontologies/rdf2resume_ontology.rdf#OtherInfo"/>
+    <rdfs:range rdf:resource="https://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>
