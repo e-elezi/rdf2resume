@@ -3,6 +3,7 @@
 @prefix xsd: <https://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ns0: <http://protege.stanford.edu/system#> .
+@prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#> .
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix dbo: <http://dbpedia.org/resource/classes#> .
 @prefix esco: <http://data.europa.eu/esco/model> .
@@ -17,47 +18,47 @@ my0:
 
 my0:CV
   a owl:Class ;
-  rdfs:comment "Curriculum Vitae (CV) Class" ;
+  rdfs:comment "Curriculum Vitae (CV) Class"@en ;
   rdfs:label "CV"@en .
 
 my0:cvLastUpdate
   a owl:DatatypeProperty ;
-  rdfs:comment "Date when the information in CV was last updated." ;
+  rdfs:comment "Date when the information in CV was last updated."@en ;
   rdfs:label "lastUpdate"@en ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:date .
 
 my0:cvTitle
   a owl:DatatypeProperty ;
-  rdfs:comment "CV title." ;
+  rdfs:comment "CV title."@en ;
   rdfs:label "cvTitle"@en ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:string .
 
 my0:cvNotes
   a owl:DatatypeProperty ;
-  rdfs:comment "Notes about specific things the person wants to have known" ;
+  rdfs:comment "Notes about specific things the person wants to have known"@en ;
   rdfs:label "cvNotes"@en ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:string .
 
 my0:cvCopyright
   a owl:DatatypeProperty ;
-  rdfs:comment "Copyright notice - who owns rights to CV, how may it be used, other legal info." ;
+  rdfs:comment "Copyright notice - who owns rights to CV, how may it be used, other legal info."@en ;
   rdfs:label "cvCopyright"@en ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:string .
 
 my0:cvIsConfidential
   a owl:DatatypeProperty ;
-  rdfs:comment "If the CV is confidential and may be used by receiving party only." ;
+  rdfs:comment "If the CV is confidential and may be used by receiving party only."@en ;
   rdfs:label "cvIsConfidential"@en ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:boolean .
 
 my0:cvIsActive
   a owl:DatatypeProperty ;
-  rdfs:comment "If the CV is active and the person is actively looking for job opportunities." ;
+  rdfs:comment "If the CV is active and the person is actively looking for job opportunities."@en ;
   rdfs:label "cvIsActive"@en ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:boolean .
@@ -71,7 +72,7 @@ my0:aboutPerson
 my0:CV_Entry
   a owl:Class ;
   rdfs:label "CV_Entry"@en ;
-  rdfs:comment "Single entry of CV information. Type of CV information specified in subclasses" ;
+  rdfs:comment "Single entry of CV information. Type of CV information specified in subclasses"@en ;
   rdfs:subClassOf rdfs:Resource .
 
 my0:hasWorkHistory
@@ -118,222 +119,229 @@ my0:hasOtherInfo
 
 my0:Person
   a owl:Class ;
-  rdfs:comment "Person Class that defines neccessary information about the specific person's curriculum vitae" ;
+  rdfs:comment "Person Class that defines neccessary information about the specific person's curriculum vitae"@en ;
   rdfs:label "Person"@en ;
   rdfs:subClassOf dbo:Person .
 
 my0:firstName
   a owl:DatatypeProperty ;
   rdfs:label "name"@en ;
-  rdfs:comment "Indicates the first name of the person" ;
+  rdfs:comment "Indicates the first name of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:lastName
   a owl:DatatypeProperty ;
   rdfs:label "name"@en ;
-  rdfs:comment "Indicates the last name of the person" ;
+  rdfs:comment "Indicates the last name of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:title
   a owl:ObjectProperty ;
   rdfs:label "name"@en ;
-  rdfs:comment "Indicates the title of the person" ;
+  rdfs:comment "Indicates the title of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range mybase0:TitleProperty .
 
 my0:photo
   a owl:DatatypeProperty ;
   rdfs:label "photo"@en ;
-  rdfs:comment "Indicates the person's photo path" ;
+  rdfs:comment "Indicates the person's photo path"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:gender
   a owl:ObjectProperty ;
   rdfs:label "gender"@en;
-  rdfs:comment "Gender property (man/woman/not indicated)" ;
+  rdfs:comment "Gender property (man/woman/not indicated)"@en ;
   rdfs:domain my0:Person ;
   rdfs:range mybase0:SexProperty .
 
 my0:hasCitizenship
   a owl:ObjectProperty ;
   rdfs:label "hasCitizenship"@en ;
-  rdfs:comment "Person's citizenship." ;
+  rdfs:comment "Person's citizenship."@en ;
   rdfs:domain my0:Person ;
-  rdfs:range <http://www.daml.org/2001/09/countries/countries.daml#> .
+  rdfs:range country:ISO3166DefinedCountry .
 
 my0:hasNationality
   a owl:ObjectProperty ;
-  rdfs:comment "Person's nationality." ;
+  rdfs:comment "Person's nationality."@en ;
   rdfs:label "hasNationality"@en ;
   rdfs:domain my0:Person ;
-  rdfs:range <http://www.daml.org/2001/09/countries/countries.daml#> .
+  rdfs:range country:ISO3166DefinedCountry .
 
 my0:driversLicence
   a owl:DatatypeProperty ;
   rdfs:label "driversLicence"@en ;
-  rdfs:comment "Indicates the person's drivers license." ;
+  rdfs:comment "Indicates the person's drivers license."@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:address
   a owl:ObjectProperty ;
   rdfs:label "address"@en ;
-  rdfs:comment "Property that points towards the address of the person" ;
+  rdfs:comment "Property that points towards the address of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range my0:Address .
 
 my0:Address
   a owl:Class ;
   rdfs:label "Address"@en ;
-  rdfs:comment "Indicates the full address object" .
+  rdfs:comment "Indicates the full address object"@en .
 
 my0:street
   a owl:DatatypeProperty ;
   rdfs:label "street"@en ;
-  rdfs:comment "Indicates the street (name+code) in an address" ;
+  rdfs:comment "Indicates the street (name+code) in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
 my0:postalCode
   a owl:DatatypeProperty ;
   rdfs:label "postalCode"@en ;
-  rdfs:comment "Indicates the postal code in an address" ;
+  rdfs:comment "Indicates the postal code in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
 my0:country
   a owl:ObjectProperty ;
   rdfs:label "country"@en ;
-  rdfs:comment "Indicates the country in an address" ;
+  rdfs:comment "Indicates the country in an address"@en ;
   rdfs:domain my0:Address ;
-  rdfs:range <http://www.daml.org/2001/09/countries/countries.daml#> .
+  rdfs:range country:ISO3166DefinedCountry .
 
 my0:city
   a owl:DatatypeProperty ;
   rdfs:label "city"@en ;
-  rdfs:comment "Indicates the city in an address" ;
+  rdfs:comment "Indicates the city in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
 my0:email
   a owl:DatatypeProperty ;
   rdfs:label "email"@en ;
-  rdfs:comment "Indicates the person's e-mail" ;
+  rdfs:comment "Indicates the person's e-mail"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:hasTelephoneNumber
   a owl:DatatypeProperty ;
   rdfs:label "telephoneNumber"@en ;
-  rdfs:comment "Indicates a telephone number of the person" ;
+  rdfs:comment "Indicates a telephone number of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:hasWebsite
   a owl:DatatypeProperty ;
   rdfs:label "website"@en ;
-  rdfs:comment "Indicates the url of a person's website, blog or linkedin" ;
+  rdfs:comment "Indicates the url of a person's website, blog or linkedin"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:hasInstantMessaging
   a owl:ObjectProperty ;
   rdfs:label "hasInstantMessaging"@en ;
-  rdfs:comment "Property that points towards the instant messaging of a person" ;
+  rdfs:comment "Property that points towards the instant messaging of a person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range my0:InstantMessaging .
 
 my0:InstantMessaging
   a owl:Class ;
   rdfs:label "InstantMessaging"@en ;
-  rdfs:comment "Indicates the type and username of the instant messaging options of a person" .
+  rdfs:comment "Indicates the type and username of the instant messaging options of a person"@en .
 
 my0:instantMessagingName
   a owl:DatatypeProperty ;
   rdfs:label "instantMessagingName"@en ;
-  rdfs:comment "Indicates the instant messaging app name" ;
+  rdfs:comment "Indicates the instant messaging app name"@en ;
   rdfs:domain my0:InstantMessaging ;
   rdfs:range xsd:string .
 
 my0:instantMessagingUsername
   a owl:DatatypeProperty ;
   rdfs:label "instantMessagingUsername"@en ;
-  rdfs:comment "Indicates the instant messaging username" ;
+  rdfs:comment "Indicates the instant messaging username"@en ;
   rdfs:domain my0:InstantMessaging ;
   rdfs:range xsd:string .
 
 my0:dateOfBirth
   a owl:DatatypeProperty ;
   rdfs:label "date of birth"@en ;
-  rdfs:comment "Indicates the person's date of birth" ;
+  rdfs:comment "Indicates the person's date of birth"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:date .
 
 my0:Organization
   a owl:Class ;
-  rdfs:comment "General class for organizations" ;
+  rdfs:comment "General class for organizations"@en ;
   rdfs:label "Organization"@en ;
   rdfs:subClassOf rdfs:Resource .
 
 my0:Company
   a owl:Class ;
-  rdfs:comment "The object that holds a company's information." ;
+  rdfs:comment "The object that holds a company's information."@en ;
   rdfs:label "Company"@en ;
   rdfs:subClassOf my0:Organization .
 
 my0:companyIndustry
   a owl:DatatypeProperty ;
-  rdfs:comment "Industry/Sector of the company" ;
+  rdfs:comment "Industry/Sector of the company"@en ;
   rdfs:label "companyIndustry"@en ;
   rdfs:domain my0:Company ;
   rdfs:range xsd:string .
 
 my0:EducationalOrg
   a owl:Class ;
-  rdfs:comment "The object that holds an educational organization's (university, ...) information" ;
+  rdfs:comment "The object that holds an educational organization's (university, ...) information"@en ;
   rdfs:label "EducationalOrg"@en ;
   rdfs:subClassOf my0:Organization .
 
 my0:organizationName
   a owl:DatatypeProperty ;
-  rdfs:comment "Name of the organization" ;
+  rdfs:comment "Name of the organization"@en ;
   rdfs:label "organizationName"@en ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:organizationAddress
   a owl:ObjectProperty ;
-  rdfs:comment "Address of the organization. Not all properties of the address are required" ;
+  rdfs:comment "Address of the organization. Not all properties of the address are required"@en ;
   rdfs:label "organizationAddress"@en ;
   rdfs:domain my0:Organization ;
   rdfs:range my0:Address .
 
 my0:organizationDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description about the organization." ;
+  rdfs:comment "Description about the organization."@en ;
   rdfs:label "organizationDescription"@en ;
+  rdfs:domain my0:Organization ;
+  rdfs:range xsd:string .
+
+my0:organizationPhoneNumber
+  a owl:DatatypeProperty ;
+  rdfs:comment "Organization phone number"@en ;
+  rdfs:label "organizationPhoneNumber"@en ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:organizationWebsite
   a owl:DatatypeProperty ;
-  rdfs:comment "Organization home page" ;
+  rdfs:comment "Organization home page"@en ;
   rdfs:label "organizationWebsite"@en ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:WorkHistory
   a owl:Class ;
-  rdfs:comment "CV entry for work history" ;
+  rdfs:comment "CV entry for work history"@en ;
   rdfs:label "WorkHistory"@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:employedIn
   a owl:ObjectProperty ;
-  rdfs:comment "The company where the person is/was employed." ;
+  rdfs:comment "The company where the person is/was employed."@en;
   rdfs:label "employedIn"@en ;
   rdfs:range my0:Company ;
   rdfs:domain my0:WorkHistory .
@@ -341,61 +349,61 @@ my0:employedIn
 my0:startDate
   a owl:DatatypeProperty ;
   rdfs:label "startDate"@en ;
-  rdfs:comment "Start date of employment.Format: YYYY-MM-DD May contain only year or year and month." ;
+  rdfs:comment "Start date of employment.Format: YYYY-MM-DD May contain only year or year and month."@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:date .
 
 my0:endDate
   a owl:DatatypeProperty ;
   rdfs:label "endDate"@en ;
-  rdfs:comment "End date of employment.Format: YYYY-MM-DD May contain only year or year and month." ;
+  rdfs:comment "End date of employment.Format: YYYY-MM-DD May contain only year or year and month."@en;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:date .
 
 my0:jobTitle
   a owl:DatatypeProperty ;
-  rdfs:comment "Occupation or position held" ;
+  rdfs:comment "Occupation or position held"@en ;
   rdfs:label "jobTitle"@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:string .
 
 my0:jobDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description of the main activities and responsibilities in the held position." ;
+  rdfs:comment "Description of the main activities and responsibilities in the held position."@en ;
   rdfs:label "jobDescription"@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:string .
 
 my0:careerLevel
   a owl:ObjectProperty ;
-  rdfs:comment "Career level for the position in company." ;
+  rdfs:comment "Career level for the position in company."@en;
   rdfs:label "careerLevel"@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range mybase0:CVCareerLevel .
 
 my0:jobMode
   a owl:ObjectProperty ;
-  rdfs:comment "Type of the job: employee / contractor / intern" ;
+  rdfs:comment "Type of the job: employee / contractor / intern"@en ;
   rdfs:label "jobMode"@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range mybase0:CVJobMode .
 
 my0:isCurrent
   a owl:DatatypeProperty ;
-  rdfs:comment "Indicates if this is a current workplace." ;
+  rdfs:comment "Indicates if this is a current workplace."@en ;
   rdfs:label "isCurrent"@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:boolean .
 
 my0:Education
   a owl:Class ;
-  rdfs:comment "CV entry for education" ;
+  rdfs:comment "CV entry for education"@en ;
   rdfs:label "Education"@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:studiedIn
   a owl:ObjectProperty ;
-  rdfs:comment "Educational organization where person studied." ;
+  rdfs:comment "Educational organization where person studied."@en ;
   rdfs:label "studiedIn"@en ;
   rdfs:domain my0:Education ;
   rdfs:range my0:EducationalOrg .
@@ -403,67 +411,67 @@ my0:studiedIn
 my0:eduStartDate
   a owl:DatatypeProperty ;
   rdfs:label "eduStartDate"@en ;
-  rdfs:comment "Education start date (YYYY-MM-DD)May contain only year or year and month." ;
+  rdfs:comment "Education start date (YYYY-MM-DD)May contain only year or year and month."@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:date .
 
 my0:eduGradDate
   a owl:DatatypeProperty ;
   rdfs:label "eduGradDate"@en ;
-  rdfs:comment "Education end (graduation) date (YYYY-MM-DD)May contain only year or year and month." ;
+  rdfs:comment "Education end (graduation) date (YYYY-MM-DD)May contain only year or year and month."@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:date .
 
 my0:degreeType
   a owl:ObjectProperty ;
   rdfs:label "degreeType"@en ;
-  rdfs:comment "Title of qualification awarded" ;
+  rdfs:comment "Title of qualification awarded"@en ;
   rdfs:domain my0:Education ;
   rdfs:range mybase0:EduDegree .
 
 my0:eduMajor
   a owl:DatatypeProperty ;
-  rdfs:comment "Major speciality graduated." ;
+  rdfs:comment "Major speciality graduated."@en ;
   rdfs:label "eduMajor"@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:string .
 
 my0:eduMinor
   a owl:DatatypeProperty ;
-  rdfs:comment "Minor speciality(-ies) graduated." ;
+  rdfs:comment "Minor speciality(-ies) graduated."@en ;
   rdfs:label "eduMinor"@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:string .
 
 my0:eduDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description of the main subjects / occupational skills covered." ;
+  rdfs:comment "Description of the main subjects / occupational skills covered."@en ;
   rdfs:label "eduDescription"@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:string .
 
 my0:Course
   a owl:Class ;
-  rdfs:comment "CV entry for courses taken" ;
+  rdfs:comment "CV entry for courses taken"@en ;
   rdfs:label "Course"@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:Training
   a owl:Class ;
-  rdfs:comment "Training entry for trainings taken" ;
+  rdfs:comment "Training entry for trainings taken"@en ;
   rdfs:label "Training"@en ;
   rdfs:subClassOf my0:Course .
 
 my0:organizedBy
   a owl:ObjectProperty ;
   rdfs:label "organizedBy"@en ;
-  rdfs:comment "Organization that organized courses and/or provided certification." ;
+  rdfs:comment "Organization that organized courses and/or provided certification."@en ;
   rdfs:domain my0:Course ;
   rdfs:range my0:Organization .
 
 my0:hasCertification
   a owl:DatatypeProperty ;
-  rdfs:comment "Does this course entry include certification?" ;
+  rdfs:comment "Does this course entry include certification?"@en ;
   rdfs:label "hasCertification"@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:boolean .
@@ -476,14 +484,14 @@ my0:hasQualification
 
 my0:courseTitle
   a owl:DatatypeProperty ;
-  rdfs:comment "Title of the course taken or certification acquired." ;
+  rdfs:comment "Title of the course taken or certification acquired."@en ;
   rdfs:label "courseTitle"@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:string .
 
 my0:courseDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description of the course / certification." ;
+  rdfs:comment "Description of the course / certification."@en ;
   rdfs:label "courseDescription"@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:string .
@@ -491,20 +499,20 @@ my0:courseDescription
 my0:courseURL
   a owl:DatatypeProperty ;
   rdfs:label "courseURL"@en ;
-  rdfs:comment "Web page of the courses taken / certification acquired. May be pointer to certification transcript." ;
+  rdfs:comment "Web page of the courses taken / certification acquired. May be pointer to certification transcript."@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:string .
 
 my0:courseStartDate
   a owl:DatatypeProperty ;
-  rdfs:comment "Start date of the course taken." ;
+  rdfs:comment "Start date of the course taken."@en ;
   rdfs:label "courseStartDate"@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:date .
 
 my0:courseFinishDate
   a owl:DatatypeProperty ;
-  rdfs:comment "Date when course was finished / certification acquired." ;
+  rdfs:comment "Date when course was finished / certification acquired."@en ;
   rdfs:label "courseFinishDate"@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:date .
@@ -512,13 +520,13 @@ my0:courseFinishDate
 my0:Skill
   a owl:Class ;
   rdfs:label "Skill"@en ;
-  rdfs:comment "CV entry for description of skills" ;
+  rdfs:comment "CV entry for description of skills"@en ;
   rdfs:subClassOf my0:CV_Entry ;
   rdfs:subClassOf esco:Skill .
 
 my0:skillDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description of the skill" ;
+  rdfs:comment "Description of the skill"@en ;
   rdfs:label "skillDescription"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
@@ -526,107 +534,107 @@ my0:skillDescription
 my0:CommunicationSkill
   a owl:Class ;
   rdfs:label "CommunicationSkill"@en ;
-  rdfs:comment "CV entry for communication skills" ;
+  rdfs:comment "CV entry for communication skills"@en ;
   rdfs:subClassOf my0:Skill .
 
 my0:OrganisationalSkills
   a owl:Class ;
   rdfs:label "OrganisationalSkills"@en ;
-  rdfs:comment "CV entry for organisational/ managerial skills" ;
+  rdfs:comment "CV entry for organisational/ managerial skills"@en ;
   rdfs:subClassOf my0:Skill .
 
 my0:JobRelatedSkills
   a owl:Class ;
   rdfs:label "JobRelatedSkills"@en ;
-  rdfs:comment "CV entry for job related skills" ;
+  rdfs:comment "CV entry for job related skills"@en ;
   rdfs:subClassOf my0:Skill .
 
 my0:DigitalSkills
   a owl:Class ;
   rdfs:label "DigitalSkills"@en ;
-  rdfs:comment "CV entry for digital skills" ;
+  rdfs:comment "CV entry for digital skills"@en ;
   rdfs:subClassOf my0:Skill .
 
 my0:informationProcessing
   a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the information processing skills" ;
+  rdfs:comment "Property regarding the information processing skills"@en ;
   rdfs:label "informationProcessing"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range mybase0:SelfAssessmentProperty .
 
 my0:communication
   a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the communication skills" ;
+  rdfs:comment "Property regarding the communication skills"@en ;
   rdfs:label "communication"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range mybase0:SelfAssessmentProperty .
 
 my0:contentCreation
   a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the content creation skills" ;
+  rdfs:comment "Property regarding the content creation skills"@en ;
   rdfs:label "contentCreation"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range mybase0:SelfAssessmentProperty .
 
 my0:safety
   a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the safety skills" ;
+  rdfs:comment "Property regarding the safety skills"@en ;
   rdfs:label "safety"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range mybase0:SelfAssessmentProperty .
 
 my0:problemSolving
   a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the problem solving skills" ;
+  rdfs:comment "Property regarding the problem solving skills"@en ;
   rdfs:label "problemSolving"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range mybase0:SelfAssessmentProperty .
 
 my0:hasICTCertificate
   a owl:DatatypeProperty ;
-  rdfs:comment "Property linking to an ICT certificate" ;
+  rdfs:comment "Property linking to an ICT certificate"@en ;
   rdfs:label "hasICTCertificate"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range xsd:string .
 
 my0:otherComputerSkills
   a owl:DatatypeProperty ;
-  rdfs:comment "Property regarding other computer skills" ;
+  rdfs:comment "Property regarding other computer skills"@en ;
   rdfs:label "otherComputerSkills"@en ;
   rdfs:domain my0:DigitalSkills ;
   rdfs:range xsd:string .
 
 my0:skillName
   a owl:DatatypeProperty ;
-  rdfs:comment "Name of the skill" ;
+  rdfs:comment "Name of the skill"@en ;
   rdfs:label "skillName"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
 
 my0:skillLevel
   a owl:DatatypeProperty ;
-  rdfs:comment "Level of the skill (0..5)" ;
+  rdfs:comment "Level of the skill (0..5)"@en ;
   rdfs:label "skillLevel"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:integer .
 
 my0:skillLastUsed
   a owl:DatatypeProperty ;
-  rdfs:comment "Date when skill was last used." ;
+  rdfs:comment "Date when skill was last used."@en ;
   rdfs:label "skillLastUsed"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:date .
 
 my0:skillYearsExperience
   a owl:DatatypeProperty ;
-  rdfs:comment "Year of experience in this skill." ;
+  rdfs:comment "Year of experience in this skill."@en ;
   rdfs:label "skillYearsExperience"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:decimal .
 
 my0:skillHasCertificate
   a owl:DatatypeProperty ;
-  rdfs:comment "Property regarding the certificate of the skill" ;
+  rdfs:comment "Property regarding the certificate of the skill"@en ;
   rdfs:label "skillHasCertificate"@en ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
@@ -634,71 +642,71 @@ my0:skillHasCertificate
 my0:LanguageSkill
   a owl:Class ;
   rdfs:label "LanguageSkill"@en ;
-  rdfs:comment "Language skill. Contains 5 levels for skill: spoken interaction, spoken production, listening, writing, reading." ;
+  rdfs:comment "Language skill. Contains 5 levels for skill: spoken interaction, spoken production, listening, writing, reading."@en ;
   rdfs:subClassOf my0:Skill .
 
 my0:MotherTongue
   a owl:Class ;
   rdfs:label "MotherTongue"@en ;
-  rdfs:comment "Mother tongue language skill. All 5 levels are expected to be max valued." ;
+  rdfs:comment "Mother tongue language skill. All 5 levels are expected to be max valued."@en ;
   rdfs:subClassOf my0:LanguageSkill .
 
 my0:languageSkillLevelReading
   a owl:ObjectProperty ;
-  rdfs:comment "Reading level of language skill." ;
+  rdfs:comment "Reading level of language skill."@en ;
   rdfs:label "languageSkillLevelReading"@en ;
   rdfs:domain my0:LanguageSkill ;
   rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
 
 my0:languageSkillLevelWriting
   a owl:ObjectProperty ;
-  rdfs:comment "Level of writing skills for language." ;
+  rdfs:comment "Level of writing skills for language."@en ;
   rdfs:label "languageSkillLevelWriting"@en ;
   rdfs:domain my0:languageSkill ;
   rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
 
 my0:languageSkillLevelListening
   a owl:ObjectProperty ;
-  rdfs:comment "Level of listening skills for language." ;
+  rdfs:comment "Level of listening skills for language."@en ;
   rdfs:label "languageSkillLevelListening"@en ;
   rdfs:domain my0:languageSkill ;
   rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
 
 my0:languageSkillLevelSpokenInteraction
   a owl:ObjectProperty;
-  rdfs:comment "Level of spoken interaction for language." ;
+  rdfs:comment "Level of spoken interaction for language."@en ;
   rdfs:label "languageSkillLevelSpokenInteraction"@en ;
   rdfs:domain my0:languageSkill ;
   rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
 
 my0:languageSkillLevelSpokenProduction
   a owl:ObjectProperty;
-  rdfs:comment "Level of spoken production for language." ;
+  rdfs:comment "Level of spoken production for language."@en;
   rdfs:label "languageSkillLevelSpokenProduction"@en ;
   rdfs:domain my0:languageSkill ;
   rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
 
 my0:Reference
   a owl:Class ;
-  rdfs:comment "CV entry for references" ;
+  rdfs:comment "CV entry for references"@en ;
   rdfs:label "Reference"@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:ProfessionalReference
   a owl:Class ;
-  rdfs:comment "Professional reference" ;
+  rdfs:comment "Professional reference"@en ;
   rdfs:label "ProfessionalReference"@en ;
   rdfs:subClassOf my0:Reference .
 
 my0:PersonalReference
   a owl:Class ;
-  rdfs:comment "Personal reference" ;
+  rdfs:comment "Personal reference"@en ;
   rdfs:label "PersonalReference"@en ;
   rdfs:subClassOf my0:Reference .
 
 my0:referenceBy
   a owl:ObjectProperty ;
-  rdfs:comment "Points to a person who provides the reference." ;
+  rdfs:comment "Points to a person who provides the reference."@en ;
   rdfs:label "referenceBy"@en ;
   rdfs:range my0:Person ;
   rdfs:domain my0:Reference .
@@ -706,33 +714,33 @@ my0:referenceBy
 my0:Target
   a owl:Class ;
   rdfs:label "Target"@en ;
-  rdfs:comment "CV information for target of job application. (Single entry per CV. May be defined in the properties of CV class instead)." ;
+  rdfs:comment "CV information for target of job application. (Single entry per CV. May be defined in the properties of CV class instead)."@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:targetCareerLevel
   a owl:ObjectProperty ;
   rdfs:label "targetCareerLevel"@en ;
-  rdfs:comment "Target career level." ;
+  rdfs:comment "Target career level."@en ;
   rdfs:domain my0:Target ;
   rdfs:range mybase0:CVCareerLevel .
 
 my0:targetCompanyDescription
   a owl:DatatypeProperty ;
   rdfs:label "targetCompanyDescription"@en ;
-  rdfs:comment "Description on the company where the candidate would like to work." ;
+  rdfs:comment "Description on the company where the candidate would like to work."@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetCompanyIndustry
   a owl:DatatypeProperty ;
-  rdfs:comment "Industry of the company where the candidate would like to work." ;
+  rdfs:comment "Industry of the company where the candidate would like to work."@en ;
   rdfs:label "targetCompanyIndustry"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetCompanySize
   a owl:ObjectProperty ;
-  rdfs:comment "Size of the target company." ;
+  rdfs:comment "Size of the target company."@en ;
   rdfs:label "targetCompanySize"@en ;
   rdfs:domain my0:Target ;
   rdfs:range mybase0:CompanySize .
@@ -740,27 +748,27 @@ my0:targetCompanySize
 my0:targetCountry
   a owl:ObjectProperty ;
   rdfs:label "targetCountry"@en ;
-  rdfs:comment "Country where candidate would like to work." ;
+  rdfs:comment "Country where candidate would like to work."@en ;
   rdfs:domain my0:Target ;
   rdfs:range <http://www.daml.org/2001/09/countries/countries.daml#> .
 
 my0:targetJobTitle
   a owl:DatatypeProperty ;
-  rdfs:comment "Title of the job applicant is seeking." ;
+  rdfs:comment "Title of the job applicant is seeking."@en ;
   rdfs:label "targetJobTitle"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetJobDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description of the job applicant is seeking. Notes." ;
+  rdfs:comment "Description of the job applicant is seeking. Notes."@en ;
   rdfs:label "targetJobDescription"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetJobMode
   a owl:ObjectProperty ;
-  rdfs:comment "Job mode: full-time / part-time" ;
+  rdfs:comment "Job mode: full-time / part-time"@en ;
   rdfs:label "targetJobMode"@en ;
   rdfs:domain my0:Target ;
   rdfs:range mybase0:CVJobMode .
@@ -769,7 +777,7 @@ my0:targetSalaryRange
   a owl:DatatypeProperty ;
   ns0:maxCardinality "1" ;
   ns0:range "integer" ;
-  rdfs:comment "Target salary range" ;
+  rdfs:comment "Target salary range"@en ;
   rdfs:label "targetSalaryRange"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
@@ -778,47 +786,47 @@ my0:targetSalaryCurrency
   a owl:DatatypeProperty ;
   ns0:maxCardinality "1" ;
   rdfs:label "targetSalaryCurrency"@en ;
-  rdfs:comment "Currency for target salary." ;
+  rdfs:comment "Currency for target salary."@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetWeeksNoticePeriod
   a owl:DatatypeProperty ;
-  rdfs:comment "Notice period in weeks when can start to work." ;
+  rdfs:comment "Notice period in weeks when can start to work."@en ;
   rdfs:label "targetWeeksNoticePeriod"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:number .
 
 my0:targetConditionWillRelocate
   a owl:DatatypeProperty ;
-  rdfs:comment "Is candidate willing to relocate?" ;
+  rdfs:comment "Is candidate willing to relocate?"@en ;
   rdfs:label "targetConditionWillRelocate"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:boolean .
 
 my0:targetConditionWillTravel
   a owl:DatatypeProperty ;
-  rdfs:comment "Is candidate willing to travel?" ;
+  rdfs:comment "Is candidate willing to travel?"@en ;
   rdfs:label "targetConditionWillTravel"@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:boolean .
 
 my0:OtherInfo
   a owl:Class ;
-  rdfs:comment "Other information in CV" ;
+  rdfs:comment "Other information in CV"@en ;
   rdfs:label "OtherInfo"@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:otherInfoType
   a owl:ObjectProperty ;
   rdfs:label "otherInfoType"@en ;
-  rdfs:comment "Type of other CV information (interests / awards / accomplishments / point of view / membership / social activities / other)" ;
+  rdfs:comment "Type of other CV information (interests / awards / accomplishments / point of view / membership / social activities / other)"@en ;
   rdfs:domain my0:OtherInfo ;
   rdfs:range mybase0:OtherCVInfoType .
 
 my0:otherInfoDescription
   a owl:DatatypeProperty ;
-  rdfs:comment "Description - content of misc CV information." ;
+  rdfs:comment "Description - content of misc CV information."@en ;
   rdfs:label "otherInfoDescription"@en ;
   rdfs:domain my0:OtherInfo ;
   rdfs:range xsd:string .
