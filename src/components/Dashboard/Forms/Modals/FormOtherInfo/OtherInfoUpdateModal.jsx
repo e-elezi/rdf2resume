@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../core/CustomSelect";
-import CustomTextarea from "../../../core/CustomTextarea";
+import CustomSelect from "../../../../core/CustomSelect";
+import CustomTextarea from "../../../../core/CustomTextarea";
 
-class OtherInfoModal extends Component {
+class OtherInfoUpdateModal extends Component {
   state = {
     otherInfo: {
       otherInfoCategory: "",
@@ -17,6 +17,15 @@ class OtherInfoModal extends Component {
   }
 
   componentWillMount() {
+    if (this.props.otherInfoObject !== null) {
+      let inputRef = this.props.otherInfoObject;
+      let otherInfo = { ...this.state.otherInfo };
+      otherInfo.otherInfoCategory = inputRef.otherInfoCategory;
+      otherInfo.otherInfoDescription = inputRef.otherInfoDescription;
+      this.setState({
+        otherInfo
+      });
+    }
     this.setState({
       categoryValues: this.getCategoryValues()
     });
@@ -41,11 +50,6 @@ class OtherInfoModal extends Component {
     let otherInfo = { ...this.state.otherInfo };
     otherInfo[item.label] = item[item.label];
     this.setState({ otherInfo });
-  };
-
-  handleSave = () => {
-    console.log("Saved confirmed");
-    this.props.handleSaveOtherInfo(this.state.otherInfo);
   };
 
   render() {
@@ -83,8 +87,16 @@ class OtherInfoModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
-            Save
+        <Button
+            variant="primary"
+            onClick={() =>
+              this.props.handleUpdateOtherInfo(
+                this.state.otherInfo,
+                this.props.id
+              )
+            }
+          >
+            Update
           </Button>
           <Button variant="danger" onClick={onHide}>
             Close
@@ -95,4 +107,4 @@ class OtherInfoModal extends Component {
   }
 }
 
-export default OtherInfoModal;
+export default OtherInfoUpdateModal;

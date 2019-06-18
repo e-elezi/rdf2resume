@@ -355,3 +355,131 @@ WHERE {
   OPTIONAL { ?Course my0:courseStartDate ?courseStartDate. }
   OPTIONAL { ?Course my0:courseFinishDate ?courseFinishDate. }
 }
+
+###############################
+FETCHING ALL COUNTRIES
+###############################
+
+SELECT DISTINCT
+?isoCountry
+?countryObject
+?nameCountry
+WHERE {
+  ?isoCountry a country:ISO3166DefinedCountry ;
+  country:referencesCountry ?countryObject .
+  ?countryObject country:nameEnglish ?nameCountry .
+}
+
+###############################
+FETCHING ALL GENDERS
+###############################
+
+SELECT DISTINCT
+?genderClass
+?genderLabel
+WHERE {
+  ?genderClass a mybase0:SexProperty  ;
+  rdfs:label ?genderLabel.
+}
+
+###############################
+FETCHING ALL SelfAssessmentProperty
+###############################
+
+SELECT DISTINCT
+?SelfAssessmentPropertyClass
+?SelfAssessmentPropertyLabel
+?SelfAssessmentPropertyComment
+WHERE {
+  ?SelfAssessmentPropertyClass a mybase0:SelfAssessmentProperty  ;
+  rdfs:label ?SelfAssessmentPropertyLabel;
+  rdfs:comment ?SelfAssessmentPropertyComment
+}
+
+###############################
+FETCHING ALL LanguageSkillSelfAssessmentProperty
+###############################
+
+SELECT DISTINCT
+?LanguageSkillSelfAssessmentPropertyClass
+?LanguageSkillSelfAssessmentPropertyLabel
+?LanguageSkillSelfAssessmentPropertyComment
+WHERE {
+  ?LanguageSkillSelfAssessmentPropertyClass a mybase0:LanguageSkillSelfAssessmentProperty  ;
+  rdfs:label ?LanguageSkillSelfAssessmentPropertyLabel;
+  rdfs:comment ?LanguageSkillSelfAssessmentPropertyComment
+}
+
+###############################
+FETCHING ALL TitleProperty
+###############################
+
+SELECT DISTINCT
+?TitlePropertyClass
+?TitlePropertyLabel
+?TitlePropertyComment
+WHERE {
+  ?TitlePropertyClass a mybase0:TitleProperty  ;
+  rdfs:label ?TitlePropertyLabel;
+  rdfs:comment ?TitlePropertyComment.
+}
+
+###############################
+FETCHING ALL CompanySize
+###############################
+
+SELECT DISTINCT
+?CompanySizeClass
+?CompanySizeLabel
+WHERE {
+  ?CompanySizeClass a mybase0:CompanySize  ;
+  rdfs:label ?CompanySizeLabel.
+}
+
+###############################
+FETCHING ALL CVJobMode
+###############################
+
+SELECT DISTINCT
+?CVJobModeClass
+?CVJobModeLabel
+WHERE {
+  ?CVJobModeClass a mybase0:CVJobMode  ;
+  rdfs:label ?CVJobModeLabel.
+}
+
+###############################
+FETCHING ALL CVCareerLevel
+###############################
+
+SELECT DISTINCT
+?CVCareerLevelClass
+?CVCareerLevelLabel
+WHERE {
+  ?CVCareerLevelClass a mybase0:CVCareerLevel  ;
+  rdfs:label ?CVCareerLevelLabel.
+}
+
+###############################
+FETCHING ALL EduDegree
+###############################
+
+SELECT DISTINCT
+?EduDegreeClass
+?EduDegreeLabel
+WHERE {
+  ?EduDegreeClass a mybase0:EduDegree  ;
+  rdfs:label ?EduDegreeLabel.
+}
+
+###############################
+FETCHING ALL OtherCVInfoType
+###############################
+
+SELECT DISTINCT
+?OtherCVInfoTypeClass
+?OtherCVInfoTypeLabel
+WHERE {
+  ?OtherCVInfoTypeClass a mybase0:OtherCVInfoType  ;
+  rdfs:label ?OtherCVInfoTypeLabel.
+}

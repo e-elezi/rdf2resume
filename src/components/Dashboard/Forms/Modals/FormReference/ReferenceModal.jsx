@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Modal, Button, Row, Col } from "react-bootstrap";
-import CustomSelect from "../../../core/CustomSelect";
-import CustomInput from "../../../core/CustomInput";
-import Address from "../Person/Address";
+import CustomSelect from "../../../../core/CustomSelect";
+import CustomInput from "../../../../core/CustomInput";
+import Address from "../../Person/Address";
 
 class ReferenceModal extends Component {
   state = {

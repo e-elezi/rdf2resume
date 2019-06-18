@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../core/CustomSelect";
-import CustomTextarea from "../../../core/CustomTextarea";
+import CustomSelect from "../../../../core/CustomSelect";
+import CustomTextarea from "../../../../core/CustomTextarea";
 
-class OtherInfoUpdateModal extends Component {
+class OtherInfoModal extends Component {
   state = {
     otherInfo: {
       otherInfoCategory: "",
@@ -17,15 +17,6 @@ class OtherInfoUpdateModal extends Component {
   }
 
   componentWillMount() {
-    if (this.props.otherInfoObject !== null) {
-      let inputRef = this.props.otherInfoObject;
-      let otherInfo = { ...this.state.otherInfo };
-      otherInfo.otherInfoCategory = inputRef.otherInfoCategory;
-      otherInfo.otherInfoDescription = inputRef.otherInfoDescription;
-      this.setState({
-        otherInfo
-      });
-    }
     this.setState({
       categoryValues: this.getCategoryValues()
     });
@@ -50,6 +41,11 @@ class OtherInfoUpdateModal extends Component {
     let otherInfo = { ...this.state.otherInfo };
     otherInfo[item.label] = item[item.label];
     this.setState({ otherInfo });
+  };
+
+  handleSave = () => {
+    console.log("Saved confirmed");
+    this.props.handleSaveOtherInfo(this.state.otherInfo);
   };
 
   render() {
@@ -87,16 +83,8 @@ class OtherInfoUpdateModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
-        <Button
-            variant="primary"
-            onClick={() =>
-              this.props.handleUpdateOtherInfo(
-                this.state.otherInfo,
-                this.props.id
-              )
-            }
-          >
-            Update
+          <Button variant="primary" onClick={this.handleSave}>
+            Save
           </Button>
           <Button variant="danger" onClick={onHide}>
             Close
@@ -107,4 +95,4 @@ class OtherInfoUpdateModal extends Component {
   }
 }
 
-export default OtherInfoUpdateModal;
+export default OtherInfoModal;

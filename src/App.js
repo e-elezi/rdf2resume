@@ -8,6 +8,8 @@ import Topbar from "./components/Topbar";
 import Upload from "./components/Upload/Upload";
 import Main from "./components/Dashboard/Main";
 import About from "./components/About";
+import { fetchendpoint } from "./actions";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = {
@@ -34,35 +36,39 @@ class App extends Component {
     }
   };
 
+  componentDidMount() {
+    this.props.fetchendpoint("Enkeleda", "Elezi");
+  }
+
   handleInputChange = e => {
-    let cv ={...this.state.cv};
+    let cv = { ...this.state.cv };
     cv[e.target.id] = e.target.value;
     this.setState({
       cv
-    })
+    });
   };
 
   handleCheckboxChange = e => {
-    let cv ={...this.state.cv};
+    let cv = { ...this.state.cv };
     cv[e.target.id] = e.target.checked;
     this.setState({
       cv
-    })
+    });
   };
 
   handleStateObjectUpdate = item => {
-    let cv ={...this.state.cv};
-    cv[item.label]=item[item.label];
+    let cv = { ...this.state.cv };
+    cv[item.label] = item[item.label];
     this.setState({
       cv
-    })
-  }
+    });
+  };
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('Form submitted');
+    console.log("Form submitted");
     console.log(this.state.cv);
-  }
+  };
 
   handleFirstPageButtonClick = e => [
     this.setState({
@@ -142,7 +148,16 @@ class App extends Component {
         )}
         <Route
           path="/d"
-          render={props => <Main {...props} cv={this.state.cv} handleStateObjectUpdate={this.handleStateObjectUpdate} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleCheckboxChange={this.handleCheckboxChange} />}
+          render={props => (
+            <Main
+              {...props}
+              cv={this.state.cv}
+              handleStateObjectUpdate={this.handleStateObjectUpdate}
+              handleFormSubmit={this.handleFormSubmit}
+              handleInputChange={this.handleInputChange}
+              handleCheckboxChange={this.handleCheckboxChange}
+            />
+          )}
         />
         <Route path="/u/" component={Upload} />
         <Route path="/about/" component={About} />
@@ -151,4 +166,9 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default connect(
+  null,
+  {
+    fetchendpoint
+  }
+)(withRouter(App));

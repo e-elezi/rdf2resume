@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../core/CustomSelect";
-import CustomTextarea from "../../../core/CustomTextarea";
-import CustomInput from "../../../core/CustomInput";
-import CustomCheckbox from "../../../core/CustomCheckbox";
-import Organization from "../Person/Organization";
+import CustomSelect from "../../../../core/CustomSelect";
+import CustomTextarea from "../../../../core/CustomTextarea";
+import CustomInput from "../../../../core/CustomInput";
+import CustomCheckbox from "../../../../core/CustomCheckbox";
+import Organization from "../../Person/Organization";
 
 class WorkHistoryModal extends Component {
   state = {

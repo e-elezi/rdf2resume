@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
-import ReferenceCard from "./FormReference/ReferenceCard";
-import ReferenceModal from "./FormReference/ReferenceModal";
-import ReferenceUpdateModal from "./FormReference/ReferenceUpdateModal";
+import ReferenceCard from "./Modals/FormReference/ReferenceCard";
+import ReferenceModal from "./Modals/FormReference/ReferenceModal";
+import ReferenceUpdateModal from "./Modals/FormReference/ReferenceUpdateModal";
 
 class FormReference extends Component {
   state = {

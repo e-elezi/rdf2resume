@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import WorkHistoryModal from "./FormWorkHistory/WorkHistoryModal";
-import WorkHistoryView from "./FormWorkHistory/WorkHistoryView";
+import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
+import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
 import AddButton from "../../core/AddButton";
 
 class FormWorkHistory extends Component {
