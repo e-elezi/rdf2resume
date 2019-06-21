@@ -3,9 +3,16 @@ import CustomInput from "../../core/CustomInput";
 import CustomTextarea from "../../core/CustomTextarea";
 import CustomCheckbox from "../../core/CustomCheckbox";
 import { Form, Row, Col } from "react-bootstrap";
+import { fetchABoutCVInfo, fetchAboutPersonInfo } from '../../../actions';
+import { connect } from 'react-redux';
 
 class FormAboutCV extends Component {
   state = {};
+
+  componentDidMount(){
+    this.props.fetchABoutCVInfo();
+    this.props.fetchAboutPersonInfo();
+  }
 
   render() {
     let {
@@ -17,7 +24,6 @@ class FormAboutCV extends Component {
       handleInputChange,
       handleCheckboxChange
     } = this.props;
-
     return (
       <Row>
         <Col md={5}>
@@ -67,4 +73,4 @@ class FormAboutCV extends Component {
   }
 }
 
-export default FormAboutCV;
+export default connect(null, { fetchABoutCVInfo, fetchAboutPersonInfo })(FormAboutCV);

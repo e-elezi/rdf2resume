@@ -4,38 +4,41 @@
 /*******************************************************************************************************************/
 /*******************************************************************************************************************/
 
-export const fetchCVQuery = (firstName, lastName) => {
-  return (
-    'prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n ?cv\n  WHERE {\n ?cv a my0:CV;\n my0:aboutPerson ?person.\n ?person my0:firstName "' +
-    firstName +
-    '";\n my0:lastName "' +
-    lastName +
-    '".\n }'
-  );
-};
+// export const fetchCVQuery = (firstName, lastName) => {
+//   return (
+//     'prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n ?cv\n  WHERE {\n ?cv a my0:CV;\n my0:aboutPerson ?person.\n ?person my0:firstName "' +
+//     firstName +
+//     '";\n my0:lastName "' +
+//     lastName +
+//     '".\n }'
+//   );
+// };
 
-export const fetchAboutCV = cvURI => {
-  return (
-    "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n ?cvTitle\n?cvNotes\n?cvCopyright\n?cvIsConfidential\n?cvIsActive\nWHERE {\n OPTIONAL { <" +
-    cvURI +
-    "> my0:cvTitle ?cvTitle}\n OPTIONAL { <" +
-    cvURI +
-    "> my0:cvNotes ?cvNotes}\n OPTIONAL { <" +
-    cvURI +
-    "> my0:cvCopyright ?cvCopyright}\n OPTIONAL { <" +
-    cvURI +
-    "> my0:cvIsConfidential ?cvIsConfidential}\n OPTIONAL { <" +
-    cvURI +
-    "> my0:cvIsActive ?cvIsActive}\n}"
-  );
-};
+// export const fetchAboutCV = cvURI => {
+//   return (
+//     "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n ?cvTitle\n?cvNotes\n?cvCopyright\n?cvIsConfidential\n?cvIsActive\nWHERE {\n OPTIONAL { <" +
+//     cvURI +
+//     "> my0:cvTitle ?cvTitle}\n OPTIONAL { <" +
+//     cvURI +
+//     "> my0:cvNotes ?cvNotes}\n OPTIONAL { <" +
+//     cvURI +
+//     "> my0:cvCopyright ?cvCopyright}\n OPTIONAL { <" +
+//     cvURI +
+//     "> my0:cvIsConfidential ?cvIsConfidential}\n OPTIONAL { <" +
+//     cvURI +
+//     "> my0:cvIsActive ?cvIsActive}\n}"
+//   );
+// };
+
+// export const fetchAboutPerson = cvURI => {
+//   return "prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n SELECT DISTINCT \n?person\n?firstName\n?lastName\n?titleProperty\n?genderProperty\n?citizenshipProperty\n?photo\n?dateOfBirth\n?email\n?telephoneNumber\n?website\n?address\n?instantMessaging\nWHERE {\nmy0:CV_1 my0:aboutPerson ?person.\n?person my0:firstName ?firstName; my0:lastName ?lastName.\nOPTIONAL { ?person my0:title ?titleProperty.}\nOPTIONAL { ?person my0:gender ?genderProperty.}\nOPTIONAL { ?person my0:hasCitizenship ?citizenshipProperty.}\nOPTIONAL { ?person my0:hasNationality ?nationalityProperty.}\nOPTIONAL { ?person my0:photo ?photo.}\nOPTIONAL { ?person my0:dateOfBirth ?dateOfBirth.}\nOPTIONAL { ?person my0:email ?email.}\nOPTIONAL { ?person my0:hasTelephoneNumber ?telephoneNumber.}\nOPTIONAL { ?person my0:hasWebsite ?website.}\nOPTIONAL { ?person my0:address ?address.}\nOPTIONAL { ?person my0:hasInstantMessaging ?instantMessaging.}\n}";
+// };
 
 /*******************************************************************************************************************/
 /*******************************************************************************************************************/
 /********************************* QUERIES FOR DROPDOWNS VALUES ****************************************************/
 /*******************************************************************************************************************/
 /*******************************************************************************************************************/
-
 
 export const fetchAllCountries = () => {
   return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?isoCountry\n?countryObject\n?nameCountry\nWHERE {\n?isoCountry a country:ISO3166DefinedCountry;\n country:referencesCountry ?countryObject.\n?countryObject country:nameEnglish ?nameCountry.\n}";

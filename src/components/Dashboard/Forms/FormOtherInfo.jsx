@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CustomInput from "../../core/CustomInput";
-import { Form, Row, Col } from "react-bootstrap";
+// import CustomInput from "../../core/CustomInput";
+import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import OtherInfoView from "./Modals/FormOtherInfo/OtherInfoView";
 import OtherInfoModal from "./Modals/FormOtherInfo/OtherInfoModal";

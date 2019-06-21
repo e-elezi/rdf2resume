@@ -194,7 +194,6 @@ class FormPersonal extends Component {
       maritalStatus,
       noOfChildren,
       driversLicence,
-      photo,
       email,
       dateOfBirth,
       website,

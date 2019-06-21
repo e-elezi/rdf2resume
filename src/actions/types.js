@@ -3,6 +3,17 @@ export const SAVE_CV = "SAVE_CV";
 export const UPDATE_CV = "SAVE_CV";
 export const FETCH_CV = "FETCH_CV";
 
+/* Form level action creators */
+export const FETCH_ABOUT_CV ='FETCH_ABOUT_CV';
+export const FETCH_ABOUT_PERSON ='FETCH_ABOUT_PERSON';
+export const FETCH_WORK_HISTORY ='FETCH_WORK_HISTORY';
+export const FETCH_TARGET ='FETCH_TARGET';
+export const FETCH_EDUCATION ='FETCH_EDUCATION';
+export const FETCH_COURSES ='FETCH_COURSES';
+export const FETCH_REFERENCES ='FETCH_REFERENCES';
+export const FETCH_SKILLS ='FETCH_SKILLS';
+export const FETCH_OTHER_INFO ='FETCH_OTHER_INFO';
+
 /* UTILITY ACTION CREATORS */
 export const FETCH_ALL_COUNTRIES = 'FETCH_ALL_COUNTRIES';
 export const FETCH_ALL_GENDERS = 'FETCH_ALL_GENDERS';

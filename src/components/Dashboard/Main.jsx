@@ -34,14 +34,14 @@ class Main extends Component {
       cvDescription,
       cvIsActive,
       cvIsConfidential,
-      cvLastUpdated,
-      person,
-      target,
-      workHistory,
-      education,
-      references,
-      skills,
-      otherInfo
+      cvLastUpdated
+      // person,
+      // target,
+      // workHistory,
+      // education,
+      // references,
+      // skills,
+      // otherInfo
     } = this.props.cv;
 
     const {

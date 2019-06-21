@@ -59,8 +59,7 @@ class WorkHistoryModal extends Component {
       jobMode,
       careerLevel,
       jobDescription,
-      isCurrent,
-      Company
+      isCurrent
     } = this.state.workHistory;
     let { onHide } = this.props;
     return (

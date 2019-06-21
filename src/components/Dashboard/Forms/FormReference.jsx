@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import ReferenceCard from "./Modals/FormReference/ReferenceCard";
 import ReferenceModal from "./Modals/FormReference/ReferenceModal";
-import ReferenceUpdateModal from "./Modals/FormReference/ReferenceUpdateModal";
+// import ReferenceUpdateModal from "./Modals/FormReference/ReferenceUpdateModal";
 
 class FormReference extends Component {
   state = {
@@ -135,6 +135,7 @@ class FormReference extends Component {
                   id={idx}
                 />
               );
+              return '';
           })}
         </Row>
         <Row style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
@@ -153,6 +154,7 @@ class FormReference extends Component {
                   id={idx}
                 />
               );
+              return '';
           })}
         </Row>
       </React.Fragment>

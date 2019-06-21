@@ -144,6 +144,10 @@ my0:InstantMessaging_1 rdf:type owl:NamedIndividual , my0:InstantMessaging ;
                        my0:instantMessagingName "Skype";
                        my0:instantMessagingUsername "enkeleda.elezi25".
 
+my0:InstantMessaging_2 rdf:type owl:NamedIndividual , my0:InstantMessaging ;
+                       my0:instantMessagingName "Instagram";
+                       my0:instantMessagingUsername "enkeleda.elezi".
+
 
 my0:Person_1 rdf:type owl:NamedIndividual , my0:Person ;
              my0:firstName "Enkeleda";
@@ -160,6 +164,7 @@ my0:Person_1 rdf:type owl:NamedIndividual , my0:Person ;
              my0:hasTelephoneNumber "+49 010101010101";
              my0:hasWebsite "https://www.linkedin.com/in/enkeleda-elezi-928532a0/";
              my0:hasInstantMessaging my0:InstantMessaging_1;
+             my0:hasInstantMessaging my0:InstantMessaging_2;
              my0:dateOfBirth "25/11/1994"^^xsd:date.
 
 my0:Person_2 rdf:type owl:NamedIndividual , my0:Person ;

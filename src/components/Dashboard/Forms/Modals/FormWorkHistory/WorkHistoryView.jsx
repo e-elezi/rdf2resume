@@ -6,7 +6,7 @@ import {
   faTrash,
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
-import WorkHistoryUpdateModal from "./WorkHistoryUpdateModal";
+// import WorkHistoryUpdateModal from "./WorkHistoryUpdateModal";
 
 class WorkHistoryReview extends Component {
   state = {
@@ -67,7 +67,7 @@ class WorkHistoryReview extends Component {
                 <a
                   href={workHistory.Company.organizationWebsite}
                   className="inline-link"
-                  target="_blank"
+                  target=" blank"
                 >
                   {workHistory.Company.organizationName}
                 </a>{" "}

@@ -8,7 +8,7 @@ import Topbar from "./components/Topbar";
 import Upload from "./components/Upload/Upload";
 import Main from "./components/Dashboard/Main";
 import About from "./components/About";
-import { fetchendpoint } from "./actions";
+import { fetchCVURI } from "./actions";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -37,7 +37,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchendpoint("Enkeleda", "Elezi");
+    this.props.fetchCVURI("Enkeleda", "Elezi");
   }
 
   handleInputChange = e => {
@@ -169,6 +169,6 @@ class App extends Component {
 export default connect(
   null,
   {
-    fetchendpoint
+    fetchCVURI
   }
 )(withRouter(App));
