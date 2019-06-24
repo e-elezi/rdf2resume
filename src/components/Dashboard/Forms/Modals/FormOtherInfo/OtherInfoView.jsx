@@ -25,7 +25,7 @@ class OtherInfoView extends Component {
     });
   };
   render() {
-    let { otherInfoObject, handleRemove } = this.props;
+    let { otherInfoObject } = this.props;
     return (
       <React.Fragment>
         <Row
@@ -70,7 +70,7 @@ class OtherInfoView extends Component {
           show={this.state.editMode}
           id={this.props.id}
           onHide={this.handleCloseEdit}
-          // otherInfoObject={this.props.otherInfoObject}
+          otherInfoObject={this.props.otherInfoObject}
           // handleUpdateOtherInfo={this.props.handleUpdateOtherInfo}
           // handleStateObjectUpdate={this.props.handleStateObjectUpdate}
         />

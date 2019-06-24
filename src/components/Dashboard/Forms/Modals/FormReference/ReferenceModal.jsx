@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import CustomSelect from "../../../../core/CustomSelect";
 import CustomInput from "../../../../core/CustomInput";
-import Address from "../../Person/Address";
+import { createReference } from "../../../../../actions";
 
 class ReferenceModal extends Component {
   state = {
@@ -56,8 +57,18 @@ class ReferenceModal extends Component {
 
   handleSelectChange = (e, id) => {
     let reference = { ...this.state.reference };
-    reference[id] = e.target.text.trim();
-    this.setState({ reference });
+    if (id.indexOf("Address") >= 0) {
+      let sublabel = id.substr(8);
+      let mybj = reference["Address"];
+      mybj[sublabel] = e.target.text.trim();
+      reference["Address"] = mybj;
+      this.setState({
+        reference
+      });
+    } else {
+      reference[id] = e.target.text.trim();
+      this.setState({ reference });
+    }
   };
 
   handleInputChange = e => {
@@ -70,6 +81,14 @@ class ReferenceModal extends Component {
       this.setState({
         reference
       });
+    } else if (label.indexOf("Address") >= 0) {
+      let sublabel = label.substr(8);
+      let mybj = reference["Address"];
+      mybj[sublabel] = e.target.value;
+      reference["Address"] = mybj;
+      this.setState({
+        reference
+      });
     } else {
       reference[label] = e.target.value;
       this.setState({
@@ -78,15 +97,11 @@ class ReferenceModal extends Component {
     }
   };
 
-  handleStateObjectUpdate = item => {
-    let reference = { ...this.state.reference };
-    reference[item.label] = item[item.label];
-    this.setState({ reference });
-  };
-
   handleSave = () => {
-    console.log("Saved confirmed");
-    this.props.handleSaveReference(this.state.reference);
+    this.props.createReference({
+      ...this.state.reference,
+      id: Math.round(Date.now() + Math.random())
+    });
   };
 
   render() {
@@ -96,7 +111,8 @@ class ReferenceModal extends Component {
       name,
       email,
       hasTelephoneNumber,
-      jobTitle
+      jobTitle,
+      Address
     } = this.state.reference;
     let { name: OrganizatioName } = this.state.reference.Organization;
 
@@ -167,7 +183,42 @@ class ReferenceModal extends Component {
               />
             </Col>
           </Row>
-          <Address Address={this.state.reference.Address} handleStateObjectUpdate={this.handleStateObjectUpdate} />
+          <div>
+            <CustomInput
+              id="Address.street"
+              label="Street name + number"
+              type="text"
+              value={Address.street}
+              handleChange={this.handleInputChange}
+            />
+            <Row>
+              <Col md={6}>
+                <CustomInput
+                  id="Address.postalCode"
+                  label="Postal Code"
+                  type="text"
+                  value={Address.postalCode}
+                  handleChange={this.handleInputChange}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  id="Address.city"
+                  label="City"
+                  type="text"
+                  value={Address.city}
+                  handleChange={this.handleInputChange}
+                />
+              </Col>
+            </Row>
+            <CustomSelect
+              placeholder="Country"
+              id="Address.country"
+              value={Address.country}
+              items={this.state.countryValues}
+              handleSelectChange={this.handleSelectChange}
+            />
+          </div>
           <CustomInput
             id="hasTelephoneNumber"
             label="Telephone Number"
@@ -196,4 +247,7 @@ class ReferenceModal extends Component {
   }
 }
 
-export default ReferenceModal;
+export default connect(
+  null,
+  { createReference }
+)(ReferenceModal);

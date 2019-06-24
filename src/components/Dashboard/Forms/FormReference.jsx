@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import ReferenceCard from "./Modals/FormReference/ReferenceCard";
 import ReferenceModal from "./Modals/FormReference/ReferenceModal";
-// import ReferenceUpdateModal from "./Modals/FormReference/ReferenceUpdateModal";
 
 class FormReference extends Component {
   state = {
@@ -72,28 +72,6 @@ class FormReference extends Component {
     this.setState({ showModal: true });
   };
 
-  handleRemoveReferenceCard = idx => {
-    let references = [...this.state.references];
-    references = references.filter((s, sidx) => idx !== sidx);
-    this.setState({
-      references
-    });
-  };
-
-  handleSaveReferenceCard = reference => {
-    let references = [...this.state.references];
-    references.push(reference);
-    this.setState({
-      references
-    });
-  };
-
-  handleUpdateReferenceCard = (reference, idx) => {
-    let references = [...this.state.references];
-    references[idx] = reference;
-    this.setState({ references: references });
-  };
-
   render() {
     let { showModal } = this.state;
     return (
@@ -115,24 +93,19 @@ class FormReference extends Component {
                 <ReferenceModal
                   show={showModal}
                   onHide={this.handleClose}
-                  handleSaveReference={this.handleSaveReferenceCard}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
                 />
               </Col>
             </Row>
           </Col>
         </Row>
         <Row className="row-cards">
-          {this.state.references.map((reference, idx) => {
+          {this.props.references.map((reference) => {
             if (reference.type === "Professional")
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={idx}
-                  handleRemove={this.handleRemoveReferenceCard}
-                  handleUpdateReferenceCard={this.handleUpdateReferenceCard}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
-                  id={idx}
+                  key={reference.id}
+                  id={reference.id}
                 />
               );
               return '';
@@ -142,16 +115,13 @@ class FormReference extends Component {
           <h4 style={{ marginTop: "10px", marginLeft: '20px' }}>Personal References</h4>
         </Row>
         <Row className="row-cards">
-          {this.state.references.map((reference, idx) => {
+          {this.props.references.map((reference) => {
             if (reference.type === "Personal")
               return (
                 <ReferenceCard
-                  referenceObj={reference}
-                  key={idx}
-                  handleRemove={this.handleRemoveReferenceCard}
-                  handleUpdateReferenceCard={this.handleUpdateReferenceCard}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
-                  id={idx}
+                 referenceObj={reference}
+                  key={reference.id}
+                  id={reference.id}
                 />
               );
               return '';
@@ -162,4 +132,10 @@ class FormReference extends Component {
   }
 }
 
-export default FormReference;
+const mapStateToProps = state => {
+  return {
+    references: Object.values(state.cv.references)
+  };
+};
+
+export default connect(mapStateToProps, {})(FormReference);

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomDropdown from "../../../../coreRedux/CustomDropdown";
-import CustomTextarea from "../../../../coreRedux/CustomTextarea";
+import CustomSelect from "../../../../core/CustomSelect";
+import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherInfo } from "../../../../../actions";
-import Form from "react-bootstrap/FormControl";
 
 class OtherInfoModal extends Component {
   state = {
@@ -26,15 +24,31 @@ class OtherInfoModal extends Component {
     });
   }
 
+  handleSelectChange = (e, id) => {
+    let otherInfo = { ...this.state.otherInfo };
+    otherInfo[id] = e.target.text.trim();
+    this.setState({ otherInfo });
+  };
+
+  handleInputChange = e => {
+    let label = e.target.id;
+    let otherInfo = { ...this.state.otherInfo };
+    otherInfo[label] = e.target.value;
+    this.setState({
+      otherInfo
+    });
+  };
+
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherInfo({
-      ...this.props.formValues.values,
+      ...this.state.otherInfo,
       id: Math.round(Date.now() + Math.random())
     });
   };
 
   render() {
+    let { otherInfoDescription, otherInfoCategory } = this.state.otherInfo;
     let { onHide } = this.props;
     return (
       <Modal
@@ -53,16 +67,18 @@ class OtherInfoModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Field
-            name="otherInfoCategory"
-            component={CustomDropdown}
-            label="Category"
-            data={this.state.categoryValues}
+          <CustomSelect
+            placeholder="Category"
+            id="otherInfoCategory"
+            value={otherInfoCategory}
+            items={this.state.categoryValues}
+            handleSelectChange={this.handleSelectChange}
           />
-          <Field
-            name="otherInfoDescription"
-            component={CustomTextarea}
+          <CustomTextarea
+            id="otherInfoDescription"
             label="Description"
+            value={otherInfoDescription}
+            handleChange={this.handleInputChange}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -78,17 +94,7 @@ class OtherInfoModal extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    formValues: state.form.otherInfoCreateModal
-  };
-};
-
-OtherInfoModal = reduxForm({
-  form: "otherInfoCreateModal"
-})(OtherInfoModal);
-
 export default connect(
-  mapStateToProps,
+  null,
   { createOtherInfo }
 )(OtherInfoModal);

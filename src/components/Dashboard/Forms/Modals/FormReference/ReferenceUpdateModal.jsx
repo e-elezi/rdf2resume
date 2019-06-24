@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import CustomSelect from "../../../../core/CustomSelect";
 import CustomInput from "../../../../core/CustomInput";
 import Address from "../../Person/Address";
+import { updateReference } from "../../../../../actions";
 
 class ReferenceUpdateModal extends Component {
   state = {
     reference: {
+      id: "",
       type: "",
       title: "",
       name: "",
@@ -48,9 +51,10 @@ class ReferenceUpdateModal extends Component {
   };
 
   componentWillMount() {
-    if (this.props.referenceToUpdate !== null) {
-      let inputRef = this.props.referenceToUpdate;
+    if (this.props.id !== null) {
+      let inputRef = this.props.initialValues;
       let reference = { ...this.state.reference };
+      reference.id = inputRef.id;
       reference.title = inputRef.title;
       reference.jobTitle = inputRef.jobTitle;
       reference.name = inputRef.name;
@@ -93,16 +97,10 @@ class ReferenceUpdateModal extends Component {
     }
   };
 
-  handleStateObjectUpdate = item => {
-    let reference = { ...this.state.reference };
-    reference[item.label] = item[item.label];
-    this.setState({ reference });
+  handleUpdate = () => {
+    console.log("Update confirmed");
+    this.props.updateReference(this.state.reference);
   };
-
-  // handleUpdate = () => {
-  //   console.log("Update confirmed");
-  //   this.props.handleUpdateReference(this.state.reference);
-  // };
 
   render() {
     let {
@@ -202,15 +200,7 @@ class ReferenceUpdateModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="primary"
-            onClick={() =>
-              this.props.handleUpdateReference(
-                this.state.reference,
-                this.props.id
-              )
-            }
-          >
+          <Button variant="primary" onClick={this.handleUpdate}>
             Update
           </Button>
           <Button variant="danger" onClick={onHide}>
@@ -222,4 +212,13 @@ class ReferenceUpdateModal extends Component {
   }
 }
 
-export default ReferenceUpdateModal;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    initialValues: state.cv.references[ownProps.id]
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { updateReference }
+)(ReferenceUpdateModal);

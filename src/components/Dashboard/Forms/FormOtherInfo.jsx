@@ -27,28 +27,6 @@ class FormOtherInfo extends Component {
     this.setState({ showModal: true });
   };
 
-  // handleRemoveOtherInfo = idx => {
-  //   let otherInfos = [...this.state.otherInfos];
-  //   otherInfos = otherInfos.filter((s, sidx) => idx !== sidx);
-  //   this.setState({
-  //     otherInfos
-  //   });
-  // };
-
-  // handleSaveOtherInfo = otherInfo => {
-  //   let otherInfos = [...this.state.otherInfos];
-  //   otherInfos.push(otherInfo);
-  //   this.setState({
-  //     otherInfos
-  //   });
-  // };
-
-  // handleUpdateOtherInfo = (otherInfo, idx) => {
-  //   let otherInfos = [...this.state.otherInfos];
-  //   otherInfos[idx] = otherInfo;
-  //   this.setState({ otherInfos });
-  // };
-
   render() {
     let { showModal } = this.state;
     return (
@@ -67,8 +45,6 @@ class FormOtherInfo extends Component {
                 <OtherInfoModal
                   show={showModal}
                   onHide={this.handleClose}
-                  // handleSaveOtherInfo={this.handleSaveOtherInfo}
-                  // handleStateObjectUpdate={this.handleStateObjectUpdate}
                 />
               </Col>
               <Col md={10} className="button-label">
@@ -81,10 +57,7 @@ class FormOtherInfo extends Component {
           <OtherInfoView
             otherInfoObject={otherinfo}
             id={otherinfo.id}
-            // handleRemove={this.handleRemoveOtherInfo}
             key={otherinfo.id}
-            // handleUpdateOtherInfo={this.handleUpdateOtherInfo}
-            // handleStateObjectUpdate={this.handleStateObjectUpdate}
           />
         ))}
       </React.Fragment>

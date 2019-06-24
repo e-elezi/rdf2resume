@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import { Card } from "react-bootstrap";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
   faEdit,
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
+import { removeReference } from "../../../../../actions";
 import ReferenceUpdateModal from './ReferenceUpdateModal';
 
 class ReferenceCard extends Component {
@@ -37,7 +39,7 @@ class ReferenceCard extends Component {
           />
           <FontAwesomeIcon
             icon={faTrash}
-            onClick={() => this.props.handleRemove(this.props.id)}
+            onClick={() => this.props.removeReference(this.props.id)}
           />
         </Card.Header>
         <div className="card-icon">
@@ -66,13 +68,14 @@ class ReferenceCard extends Component {
           show={this.state.editMode}
           id={this.props.id}
           onHide={this.handleCloseEdit}
-          referenceToUpdate={this.props.referenceObj}
-          handleUpdateReference={this.props.handleUpdateReferenceCard}
-          handleStateObjectUpdate={this.props.handleStateObjectUpdate}
         />
       </Card>
     );
   }
 }
 
-export default ReferenceCard;
+export default connect(
+  null,
+  { removeReference }
+)(ReferenceCard);
+

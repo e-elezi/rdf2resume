@@ -13,7 +13,10 @@ import {
   FETCH_WORK_HISTORY,
   CREATE_OTHER_INFO,
   REMOVE_OTHER_INFO,
-  UPDATE_OTHER_INFO
+  UPDATE_OTHER_INFO,
+  CREATE_REFERENCE,
+  UPDATE_REFERENCE,
+  REMOVE_REFERENCE
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -24,7 +27,7 @@ const INITIAL_STATE = {
   education: [],
   courses: [],
   skills: [],
-  references: [],
+  references: {},
   workHistory: [],
   otherInfo: {}
 };
@@ -58,14 +61,29 @@ export default (state = INITIAL_STATE, action) => {
       };
       return { ...state, otherInfo: otherInfos };
     case UPDATE_OTHER_INFO:
-       otherInfos = {
+      otherInfos = {
         ...state.otherInfo,
         [action.payload.id]: action.payload
       };
       return { ...state, otherInfo: otherInfos };
     case REMOVE_OTHER_INFO:
-        let kot = _.omit(state.otherInfo, action.payload);
-        return { ...state, otherInfo: kot };
+      let kot = _.omit(state.otherInfo, action.payload);
+      return { ...state, otherInfo: kot };
+    case CREATE_REFERENCE:
+      let myreferences = {
+        ...state.references,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, references: myreferences };
+    case UPDATE_REFERENCE:
+      let myupdatereferences = {
+        ...state.references,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, references: myupdatereferences };
+    case REMOVE_REFERENCE:
+      let removedreferences = _.omit(state.references, action.payload);
+      return { ...state, references: removedreferences };
     default:
       return state;
   }

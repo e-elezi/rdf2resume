@@ -63,25 +63,53 @@
 //   });
 // };
 
-import { CREATE_OTHER_INFO, UPDATE_OTHER_INFO, REMOVE_OTHER_INFO } from "./types";
+import {
+  CREATE_OTHER_INFO,
+  UPDATE_OTHER_INFO,
+  REMOVE_OTHER_INFO,
+  CREATE_REFERENCE,
+  UPDATE_REFERENCE,
+  REMOVE_REFERENCE
+} from "./types";
 
-export const createOtherInfo = (formValues) => {
+export const createOtherInfo = formValues => {
   return {
     type: CREATE_OTHER_INFO,
     payload: formValues
   };
 };
 
-export const updateOtherInfo = (formValues) => {
-    return {
-      type: UPDATE_OTHER_INFO,
-      payload: formValues
-    };
+export const updateOtherInfo = formValues => {
+  return {
+    type: UPDATE_OTHER_INFO,
+    payload: formValues
   };
+};
 
-  export const removeOtherInfo = (index) => {
-    return {
-      type: REMOVE_OTHER_INFO,
-      payload: index
-    };
+export const removeOtherInfo = index => {
+  return {
+    type: REMOVE_OTHER_INFO,
+    payload: index
   };
+};
+
+export const createReference = formValues => {
+  return {
+    type: CREATE_REFERENCE,
+    payload: formValues
+  };
+};
+
+export const updateReference = formValues => {
+  return {
+    type: UPDATE_REFERENCE,
+    payload: formValues
+  };
+};
+
+export const removeReference = index => {
+  return {
+    type: REMOVE_REFERENCE,
+    payload: index
+  };
+};
