@@ -29,24 +29,24 @@ class Main extends Component {
   };
 
   render() {
-    let {
-      cvTitle,
-      cvDescription,
-      cvIsActive,
-      cvIsConfidential,
-      cvLastUpdated
-      // person,
-      // target,
-      // workHistory,
-      // education,
-      // references,
-      // skills,
-      // otherInfo
-    } = this.props.cv;
+    // let {
+    //   cvTitle,
+    //   cvDescription,
+    //   cvIsActive,
+    //   cvIsConfidential,
+    //   cvLastUpdated
+    //   // person,
+    //   // target,
+    //   // workHistory,
+    //   // education,
+    //   // references,
+    //   // skills,
+    //   // otherInfo
+    // } = this.props.cv;
 
     const {
-      handleInputChange,
-      handleCheckboxChange,
+      // handleInputChange,
+      // handleCheckboxChange,
       handleFormSubmit,
       handleStateObjectUpdate
     } = this.props;
@@ -58,21 +58,7 @@ class Main extends Component {
         </Col>
         <Col md={10} style={{ overflow: "scroll" }}>
           <Form>
-            <Route
-              path="/d/about"
-              render={props => (
-                <FormAboutCV
-                  {...props}
-                  cvTitle={cvTitle}
-                  cvDescription={cvDescription}
-                  cvIsActive={cvIsActive}
-                  cvIsConfidential={cvIsConfidential}
-                  cvLastUpdated={cvLastUpdated}
-                  handleInputChange={handleInputChange}
-                  handleCheckboxChange={handleCheckboxChange}
-                />
-              )}
-            />
+            <Route path="/d/about" component={FormAboutCV} />
             <Route
               path="/d/personal"
               render={props => (

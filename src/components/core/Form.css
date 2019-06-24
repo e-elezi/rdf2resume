@@ -251,6 +251,63 @@
 }
 
 /*************************************************************************/
+/**************************** DROPDOWN REDUX *****************************/
+/*************************************************************************/
+.rw-widget-input.rw-widget-picker.rw-widget-container {
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.rw-state-focus > .rw-widget-container:hover,
+.rw-widget-container.rw-state-focus:hover {
+  /* border: 0;
+  border-bottom: 2px solid #4BB3CC;
+  border-radius: 0; */
+  box-shadow: 0 0 8px #4bb3cc !important;
+  border-color: #4bb3cc !important;
+}
+
+.rw-multiselect-tag {
+  background-color: #4bb3cc !important;
+  color: white !important;
+  border-color: #4bb3cc !important;
+  margin-bottom: 5px;
+}
+
+.rw-multiselect,
+.rw-input-reset {
+  padding-left: 0 !important;
+}
+
+.rw-multiselect.rw-widget {
+  margin-top: 10px;
+}
+
+.rw-dropdown-list.rw-widget {
+  margin-top: 10px;
+}
+
+.rw-input,
+.rw-dropdown-list-autofill,
+.rw-filter-input {
+  padding-left: 0 !important;
+}
+
+.rw-list-option:hover {
+  background-color: #4bb3cc !important;
+  color: white !important;
+  border-color: #4bb3cc !important;
+}
+
+.rw-list-option.rw-state-focus.rw-state-selected {
+  background-color: #4bb3cc !important;
+  color: white !important;
+  border-color: #2d889e !important;
+}
+
+/*************************************************************************/
 /**************************** INPUT **************************************/
 /*************************************************************************/
 .floating-label {
@@ -334,21 +391,14 @@ textarea:focus {
   box-shadow: 0px 0px 5px 0px #4bb3cc !important;
 }
 
+.textarea-wrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /*************************************************************************/
 /**************************** CHECKBOX ***********************************/
 /*************************************************************************/
-/* .form-check-input {
-    margin-left: 97%;
-    border-color: #4BB3CC;
-}
-.form-check-input:active {
-    border-color: #4BB3CC;
-    background-color: #4BB3CC;
-}
-.form-check {
-    padding: 0;
-} */
-
 .form-check {
   padding-left: 0;
 }
@@ -428,13 +478,64 @@ textarea:focus {
   margin-top: 10px;
 }
 
-.custom-control-input {
-  box-shadow: 0 0 5px 0 lightgray;
+.label-radio {
+  position: relative;
+  padding-left: 30px;
+  margin-right: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #4bb3cc;
+.label-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.label-radio .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.label-radio:hover input ~ .checkmark {
+  background-color: lightgray;
+}
+
+/* When the radio button is checked, add a blue background */
+.label-radio input:checked ~ .checkmark {
   background-color: #4bb3cc;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.label-radio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.label-radio .checkmark:after {
+  top: 6px;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
 .custom-control-inline {

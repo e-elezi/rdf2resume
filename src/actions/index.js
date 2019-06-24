@@ -62,3 +62,26 @@
 //     payload: response.data.results.bindings[0]
 //   });
 // };
+
+import { CREATE_OTHER_INFO, UPDATE_OTHER_INFO, REMOVE_OTHER_INFO } from "./types";
+
+export const createOtherInfo = (formValues) => {
+  return {
+    type: CREATE_OTHER_INFO,
+    payload: formValues
+  };
+};
+
+export const updateOtherInfo = (formValues) => {
+    return {
+      type: UPDATE_OTHER_INFO,
+      payload: formValues
+    };
+  };
+
+  export const removeOtherInfo = (index) => {
+    return {
+      type: REMOVE_OTHER_INFO,
+      payload: index
+    };
+  };

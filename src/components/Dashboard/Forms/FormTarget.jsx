@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import CustomInput from "../../core/CustomInput";
-import CustomCheckbox from "../../core/CustomCheckbox";
+import CustomInput from "../../coreRedux/CustomInput";
 import { Row, Col } from "react-bootstrap";
-// import CustomButton from "../../core/CustomButton";
-// import AddButton from "../../core/AddButton";
-// import CustomRadioGroup from "../../core/CustomRadioGroup";
-// import Address from "./Person/Address";
-import CustomSelect from "../../core/CustomSelect";
-import CustomSelectMulti from "../../core/CustomSelectMulti";
-import CustomTextarea from "../../core/CustomTextarea";
+import { reduxForm, Field } from "redux-form";
+import CustomDropdown from "../../coreRedux/CustomDropdown";
+import CustomMultiSelect from "../../coreRedux/CustomMultiSelect";
+import CustomTextarea from "../../coreRedux/CustomTextarea";
+import CustomCheckbox from "../../coreRedux/CustomCheckbox";
 
 class FormTarget extends Component {
   state = {
@@ -99,155 +96,104 @@ class FormTarget extends Component {
     });
   }
 
-  handleInputChange = e => {
-    let Target = { ...this.state.Target };
-    Target[e.target.id] = e.target.value;
-    this.setState({
-      Target
-    });
-    this.props.handleStateObjectUpdate(this.state);
-  };
-
-  handleSelectChange = (e, id) => {
-    let Target = { ...this.state.Target };
-    Target[id] = e.target.text.trim();
-    this.setState({ Target });
-  };
-
-  handleMultiSelectChange = (e, id) => {
-    let Target = { ...this.state.Target };
-    let labelToAdd = e.target.text.trim();
-    console.log(labelToAdd, id);
-    let filtered = this.state.Target[id].filter(
-      oneval => oneval.toLowerCase() === labelToAdd.toLowerCase()
-    );
-    if (filtered.length === 0) Target[id].push(labelToAdd);
-    this.setState({ Target });
-  };
-
-  handleMultiSelectRemove = (e, id) => {
-    let Target = { ...this.state.Target };
-    let labelToRemove = e.target.parentNode.childNodes[0].innerText.trim();
-    Target[id] = Target[id].filter(
-      oneval => oneval.toLowerCase() !== labelToRemove.toLowerCase()
-    );
-    this.setState({ Target });
-  };
-
   render() {
-    let {
-      targetJobMode,
-      targetJobDescription,
-      targetJobCareerLevel,
-      targetSalary,
-      targetSalaryCurrency,
-      targetCompanyCountry,
-      targetCompanyLocality,
-      targetCompanyDescription,
-      targetCompanySize,
-      targetCompanyIndustry,
-      conditionWillRelocate,
-      conditionWillTravel,
-      weeksNoticePeriod
-    } = this.state.Target;
+    // let {
+    //   targetJobMode,
+    //   targetJobDescription,
+    //   targetJobCareerLevel,
+    //   targetSalary,
+    //   targetSalaryCurrency,
+    //   targetCompanyCountry,
+    //   targetCompanyLocality,
+    //   targetCompanyDescription,
+    //   targetCompanySize,
+    //   targetCompanyIndustry,
+    //   conditionWillRelocate,
+    //   conditionWillTravel,
+    //   weeksNoticePeriod
+    // } = this.state.Target;
 
     return (
       <Row className="main-content-row">
         <Col md={4}>
           <h4>Target Job</h4>
-          <CustomSelect
-            placeholder="Job Mode"
-            id="targetJobMode"
-            value={targetJobMode}
-            items={this.state.jobModeValues}
-            handleSelectChange={this.handleSelectChange}
+          <Field
+            name="targetJobMode"
+            component={CustomDropdown}
+            label="Job Mode"
+            data={this.state.jobModeValues}
           />
-          <CustomSelect
-            placeholder="Job Career Level"
-            id="targetJobCareerLevel"
-            value={targetJobCareerLevel}
-            items={this.state.jobCareerLevelValues}
-            handleSelectChange={this.handleSelectChange}
+          <Field
+            name="targetJobCareerLevel"
+            component={CustomDropdown}
+            label="Job Career Level"
+            data={this.state.jobCareerLevelValues}
           />
-          <CustomInput
-            id="targetJobSalary"
+          <Field
+            name="targetJobSalary"
+            component={CustomInput}
             label="Salary"
             type="text"
-            value={targetSalary}
-            handleChange={this.handleInputChange}
           />
-          <CustomSelect
-            placeholder="Salary Currency"
-            id="targetSalaryCurrency"
-            value={targetSalaryCurrency}
-            items={this.state.currencyValues}
-            handleSelectChange={this.handleSelectChange}
+          <Field
+            name="targetSalaryCurrency"
+            component={CustomDropdown}
+            label="Salary Currency"
+            data={this.state.currencyValues}
           />
-          <CustomInput
-            id="weeksNoticePeriod"
+          <Field
+            name="weeksNoticePeriod"
+            component={CustomInput}
             label="Weeks Notice Period"
-            type="number"
-            value={weeksNoticePeriod}
-            handleChange={this.handleInputChange}
+            type="text"
           />
-          <CustomCheckbox
-            id="conditionWillRelocate"
-            type="checkbox"
+          <div className="mb-3" />
+          <Field
+            name="conditionWillRelocate"
+            component={CustomCheckbox}
             label="Willing to relocate?"
-            checked={conditionWillRelocate}
-            handleChange={this.handleCheckboxChange}
           />
-          <CustomCheckbox
-            id="conditionWillTravel"
-            type="checkbox"
+          <Field
+            name="conditionWillTravel"
+            component={CustomCheckbox}
             label="Willing to travel?"
-            checked={conditionWillTravel}
-            handleChange={this.handleCheckboxChange}
           />
-          <CustomTextarea
-            id="targetJobDescription"
+          <Field
+            name="targetJobDescription"
+            component={CustomTextarea}
             label="Job Description"
-            value={targetJobDescription}
-            handleChange={this.handleInputChange}
           />
         </Col>
         <Col md={4}>
           <h4>Target Company</h4>
-          <CustomSelect
-            placeholder="Company Size"
-            id="targetCompanySize"
-            value={targetCompanySize}
-            items={this.state.targetCompanySizeValues}
-            handleSelectChange={this.handleSelectChange}
+          <Field
+            name="targetCompanySize"
+            component={CustomDropdown}
+            label="Company Size"
+            data={this.state.targetCompanySizeValues}
           />
-          <CustomSelectMulti
-            placeholder="Company Industry"
-            id="targetCompanyIndustry"
-            value={targetCompanyIndustry}
-            items={this.state.targetCompanyIndustryValues}
-            handleMultiSelectRemove={this.handleMultiSelectRemove}
-            handleMultiSelectChange={this.handleMultiSelectChange}
+          <Field
+            name="targetCompanyIndustry"
+            component={CustomMultiSelect}
+            label="Company Industry"
+            data={this.state.targetCompanyIndustryValues}
           />
-          <CustomInput
-            id="targetCompanyLocality"
+          <Field
+            name="targetCompanyLocality"
+            component={CustomInput}
             label="Company Locality"
             type="text"
-            value={targetCompanyLocality}
-            handleChange={this.handleInputChange}
           />
-          <CustomSelectMulti
-            placeholder="Company Country"
-            id="targetCompanyCountry"
-            value={targetCompanyCountry}
-            items={this.state.targetCompanyCountryValues}
-            handleMultiSelectRemove={this.handleMultiSelectRemove}
-            handleMultiSelectChange={this.handleMultiSelectChange}
+          <Field
+            name="targetCompanyCountry"
+            component={CustomMultiSelect}
+            label="Company Country"
+            data={this.state.targetCompanyCountryValues}
           />
-          <CustomTextarea
-            id="targetCompanyDescription"
+          <Field
+            name="targetCompanyDescription"
+            component={CustomTextarea}
             label="Company Description"
-            value={targetCompanyDescription}
-            handleChange={this.handleInputChange}
           />
         </Col>
         <Col md={4}> </Col>
@@ -255,5 +201,10 @@ class FormTarget extends Component {
     );
   }
 }
+
+FormTarget = reduxForm({
+  form: "target",
+  destroyOnUnmount: false
+})(FormTarget);
 
 export default FormTarget;

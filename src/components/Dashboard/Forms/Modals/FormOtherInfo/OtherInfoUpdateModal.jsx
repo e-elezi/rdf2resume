@@ -1,14 +1,13 @@
 import React, { Component } from "react";
+import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../../core/CustomSelect";
-import CustomTextarea from "../../../../core/CustomTextarea";
+import CustomDropdown from "../../../../coreRedux/CustomDropdown";
+import CustomTextarea from "../../../../coreRedux/CustomTextarea";
+import { updateOtherInfo } from "../../../../../actions";
 
 class OtherInfoUpdateModal extends Component {
   state = {
-    otherInfo: {
-      otherInfoCategory: "",
-      otherInfoDescription: ""
-    },
     categoryValues: []
   };
 
@@ -17,43 +16,19 @@ class OtherInfoUpdateModal extends Component {
   }
 
   componentWillMount() {
-    if (this.props.otherInfoObject !== null) {
-      let inputRef = this.props.otherInfoObject;
-      let otherInfo = { ...this.state.otherInfo };
-      otherInfo.otherInfoCategory = inputRef.otherInfoCategory;
-      otherInfo.otherInfoDescription = inputRef.otherInfoDescription;
-      this.setState({
-        otherInfo
-      });
-    }
     this.setState({
       categoryValues: this.getCategoryValues()
     });
   }
 
-  handleSelectChange = (e, id) => {
-    let otherInfo = { ...this.state.otherInfo };
-    otherInfo[id] = e.target.text.trim();
-    this.setState({ otherInfo });
-  };
-
-  handleInputChange = e => {
-    let label = e.target.id;
-    let otherInfo = { ...this.state.otherInfo };
-    otherInfo[label] = e.target.value;
-    this.setState({
-      otherInfo
-    });
-  };
-
-  handleStateObjectUpdate = item => {
-    let otherInfo = { ...this.state.otherInfo };
-    otherInfo[item.label] = item[item.label];
-    this.setState({ otherInfo });
+  handleUpdate = e => {
+    e.preventDefault();
+    this.props.updateOtherInfo(this.props.formValues.values);
   };
 
   render() {
-    let { otherInfoDescription, otherInfoCategory } = this.state.otherInfo;
+    let { otherInfoDescription, otherInfoCategory } = this.props.initialValues;
+    console.log(otherInfoDescription, otherInfoCategory);
     let { onHide } = this.props;
     return (
       <Modal
@@ -72,30 +47,20 @@ class OtherInfoUpdateModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CustomSelect
-            placeholder="Category"
-            id="otherInfoCategory"
-            value={otherInfoCategory}
-            items={this.state.categoryValues}
-            handleSelectChange={this.handleSelectChange}
+          <Field
+            name="otherInfoCategory"
+            component={CustomDropdown}
+            label="Category"
+            data={this.state.categoryValues}
           />
-          <CustomTextarea
-            id="otherInfoDescription"
+          <Field
+            name="otherInfoDescription"
+            component={CustomTextarea}
             label="Description"
-            value={otherInfoDescription}
-            handleChange={this.handleInputChange}
           />
         </Modal.Body>
         <Modal.Footer>
-        <Button
-            variant="primary"
-            onClick={() =>
-              this.props.handleUpdateOtherInfo(
-                this.state.otherInfo,
-                this.props.id
-              )
-            }
-          >
+          <Button variant="primary" onClick={this.handleUpdate}>
             Update
           </Button>
           <Button variant="danger" onClick={onHide}>
@@ -107,4 +72,18 @@ class OtherInfoUpdateModal extends Component {
   }
 }
 
-export default OtherInfoUpdateModal;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    formValues: state.form.otherInfoUpdateModal,
+    initialValues: state.cv.otherInfo[ownProps.id],
+  };
+};
+
+OtherInfoUpdateModal = reduxForm({
+  form: "otherInfoUpdateModal"
+})(OtherInfoUpdateModal);
+
+export default connect(
+  mapStateToProps,
+  { updateOtherInfo }
+)(OtherInfoUpdateModal);
