@@ -7,60 +7,6 @@ import ReferenceModal from "./Modals/FormReference/ReferenceModal";
 
 class FormReference extends Component {
   state = {
-    label: "references",
-    references: [
-      {
-        type: "Professional",
-        title: "Dr.",
-        name: "Enkeleda Elezi",
-        jobTitle: "Student",
-        Organization: {
-          name: "Fraunhofer"
-        },
-        Address: {
-          street: "Hirschberger Str",
-          postalCode: "53119",
-          city: "Bonn",
-          country: "Germany"
-        },
-        hasTelephoneNumber: ["+49 1522 7589766"],
-        email: "enkeleda.elezi@gmail.com"
-      },
-      {
-        type: "Personal",
-        title: "Dr.",
-        name: "Enkeleda Elezi",
-        jobTitle: "Student",
-        Organization: {
-          name: "Fraunhofer"
-        },
-        Address: {
-          street: "Hirschberger Str",
-          postalCode: "53119",
-          city: "Bonn",
-          country: "Germany"
-        },
-        hasTelephoneNumber: ["+49 1522 7589766"],
-        email: "enkeleda.elezi@gmail.com"
-      },
-      {
-        type: "Professional",
-        title: "Dr.",
-        name: "Enkeleda Elezi",
-        jobTitle: "Student",
-        Organization: {
-          name: "Fraunhofer"
-        },
-        Address: {
-          street: "Hirschberger Str",
-          postalCode: "53119",
-          city: "Bonn",
-          country: "Germany"
-        },
-        hasTelephoneNumber: ["+49 1522 7589766"],
-        email: "enkeleda.elezi@gmail.com"
-      }
-    ],
     showModal: false
   };
 

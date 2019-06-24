@@ -260,6 +260,10 @@
   box-shadow: none;
 }
 
+.menu-title-floating {
+  font-size: 1rem !important;
+}
+
 .rw-state-focus > .rw-widget-container:hover,
 .rw-widget-container.rw-state-focus:hover {
   /* border: 0;

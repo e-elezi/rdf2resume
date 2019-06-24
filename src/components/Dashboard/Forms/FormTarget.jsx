@@ -9,22 +9,6 @@ import CustomCheckbox from "../../coreRedux/CustomCheckbox";
 
 class FormTarget extends Component {
   state = {
-    label: "Target",
-    Target: {
-      targetJobMode: "",
-      targetJobDescription: "",
-      targetJobCareerLevel: "",
-      targetSalary: 0,
-      targetSalaryCurrency: "",
-      weeksNoticePeriod: 0,
-      conditionWillRelocate: true,
-      conditionWillTravel: true,
-      targetCompanyCountry: [],
-      targetCompanyLocality: "",
-      targetCompanyIndustry: [],
-      targetCompanyDescription: "",
-      targetCompanySize: ""
-    },
     jobModeValues: [],
     targetCompanyCountryValues: [],
     targetCompanySizeValues: [],
@@ -118,6 +102,12 @@ class FormTarget extends Component {
         <Col md={4}>
           <h4>Target Job</h4>
           <Field
+            name="targetJobTitle"
+            component={CustomInput}
+            label="Job Title"
+            type="text"
+          />
+          <Field
             name="targetJobMode"
             component={CustomDropdown}
             label="Job Mode"
@@ -130,9 +120,9 @@ class FormTarget extends Component {
             data={this.state.jobCareerLevelValues}
           />
           <Field
-            name="targetJobSalary"
+            name="targetSalaryRange"
             component={CustomInput}
-            label="Salary"
+            label="Salary Range"
             type="text"
           />
           <Field

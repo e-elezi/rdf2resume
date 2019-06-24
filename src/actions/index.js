@@ -69,7 +69,10 @@ import {
   REMOVE_OTHER_INFO,
   CREATE_REFERENCE,
   UPDATE_REFERENCE,
-  REMOVE_REFERENCE
+  REMOVE_REFERENCE,
+  CREATE_WORK_HISTORY,
+  UPDATE_WORK_HISTORY,
+  REMOVE_WORK_HISTORY
 } from "./types";
 
 export const createOtherInfo = formValues => {
@@ -110,6 +113,27 @@ export const updateReference = formValues => {
 export const removeReference = index => {
   return {
     type: REMOVE_REFERENCE,
+    payload: index
+  };
+};
+
+export const createWorkHistory = formValues => {
+  return {
+    type: CREATE_WORK_HISTORY,
+    payload: formValues
+  };
+};
+
+export const updateWorkHistory = formValues => {
+  return {
+    type: UPDATE_WORK_HISTORY,
+    payload: formValues
+  };
+};
+
+export const removeWorkHistory = index => {
+  return {
+    type: REMOVE_WORK_HISTORY,
     payload: index
   };
 };

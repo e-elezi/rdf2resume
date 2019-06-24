@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomSelect from "../../../../core/CustomSelect";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
-import Organization from "../../Person/Organization";
+import { createWorkHistory } from "../../../../../actions";
 
 class WorkHistoryModal extends Component {
   state = {
@@ -16,10 +17,25 @@ class WorkHistoryModal extends Component {
       careerLevel: "",
       jobMode: "",
       isCurrent: false,
-      Company: {}
+      Company: {
+        organizationName: "",
+        organizationAddress: {
+          street: "",
+          postalCode: "",
+          city: "",
+          country: ""
+        },
+        organizationDescription: "",
+        organizationPhoneNumber: "",
+        organizationWebsite: "",
+        companyIndustry: ""
+      }
     },
     careerLevelValues: [],
-    jobModeValues: []
+    jobModeValues: [],
+    CompanyIndustryValues: [],
+    CompanySizeValues: [],
+    CompanyCountryValues: []
   };
 
   getJobModeValues = () => {
@@ -38,17 +54,110 @@ class WorkHistoryModal extends Component {
     ];
   };
 
+  getCountries = () => {
+    return [
+      "United States of America",
+      "Albania",
+      "Germany",
+      "Italy",
+      "France",
+      "United Kingdom",
+      "Norway",
+      "Sweden",
+      "Spain",
+      "Portugal"
+    ];
+  };
+
+  getCompanySizeValues = () => {
+    return ["Small", "Medium", "Large"];
+  };
+
+  getCompanyIndustryValues = () => {
+    return ["Education", "Agriculture", "Computer Science", "Logistics"];
+  };
+
   componentWillMount() {
     this.setState({
       jobModeValues: this.getJobModeValues(),
-      careerLevelValues: this.getJobCareerLevels()
+      careerLevelValues: this.getJobCareerLevels(),
+      CompanyCountryValues: this.getCountries(),
+      CompanySizeValues: this.getCompanySizeValues(),
+      CompanyIndustryValues: this.getCompanyIndustryValues()
     });
   }
 
-  handleStateObjectUpdate = item => {
+  handleCheckboxChange = e => {
     let workHistory = { ...this.state.workHistory };
-    workHistory[item.label] = item[item.label];
-    this.setState({ workHistory });
+    workHistory[e.target.id] = e.target.checked;
+    this.setState({
+      workHistory
+    });
+  };
+
+  handleInputChange = e => {
+    let workHistory = { ...this.state.workHistory };
+    let label = e.target.id;
+    if (label.indexOf("Company") >= 0) {
+      let sublabel = label.substr(8);
+      if (sublabel.indexOf("organizationAddress") >= 0) {
+        let subsublabel = sublabel.substr(20);
+        let mybj = workHistory["Company"]["organizationAddress"];
+        mybj[subsublabel] = e.target.value;
+        workHistory["Company"]["organizationAddress"] = mybj;
+        this.setState({
+          workHistory
+        });
+      } else {
+        let mybj = workHistory["Company"];
+        mybj[sublabel] = e.target.value;
+        workHistory["Company"] = mybj;
+        this.setState({
+          workHistory
+        });
+      }
+    } else {
+      workHistory[label] = e.target.value;
+      this.setState({
+        workHistory
+      });
+    }
+  };
+
+  handleSelectChange = (e, id) => {
+    let workHistory = { ...this.state.workHistory };
+    let label = id;
+    if (label.indexOf("Company") >= 0) {
+      let sublabel = label.substr(8);
+      if (sublabel.indexOf("organizationAddress") >= 0) {
+        let subsublabel = sublabel.substr(20);
+        let mybj = workHistory["Company"]["organizationAddress"];
+        mybj[subsublabel] = e.target.text.trim();
+        workHistory["Company"]["organizationAddress"] = mybj;
+        this.setState({
+          workHistory
+        });
+      } else {
+        let mybj = workHistory["Company"];
+        mybj[sublabel] = e.target.text.trim();
+        workHistory["Company"] = mybj;
+        this.setState({
+          workHistory
+        });
+      }
+    } else {
+      workHistory[label] = e.target.text.trim();
+      this.setState({
+        workHistory
+      });
+    }
+  };
+
+  handleSave = () => {
+    this.props.createWorkHistory({
+      ...this.state.workHistory,
+      id: Math.round(Date.now() + Math.random())
+    });
   };
 
   render() {
@@ -59,7 +168,8 @@ class WorkHistoryModal extends Component {
       jobMode,
       careerLevel,
       jobDescription,
-      isCurrent
+      isCurrent,
+      Company
     } = this.state.workHistory;
     let { onHide } = this.props;
     return (
@@ -110,10 +220,73 @@ class WorkHistoryModal extends Component {
                   />
                 </Col>
               </Row>
-              <Organization
-                Organization={this.state.workHistory.Company}
-                handleStateObjectUpdate={this.handleStateObjectUpdate}
-              />
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex",
+                  marginLeft: "0px"
+                }}
+              >
+                <CustomInput
+                  id="Company.organizationName"
+                  label="Company Name"
+                  type="text"
+                  value={Company.organizationName}
+                  handleChange={this.handleInputChange}
+                />
+                <CustomInput
+                  id="Company.organizationWebsite"
+                  label="Company Website"
+                  type="text"
+                  value={Company.organizationWebsite}
+                  handleChange={this.handleInputChange}
+                />
+                <Row>
+                  <Col sm={6}>
+                    <CustomInput
+                      id="Company.organizationAddress.postalCode"
+                      label="Company Postal Code"
+                      value={Company.organizationAddress.postalCode}
+                      handleChange={this.handleInputChange}
+                    />
+                  </Col>
+                  <Col sm={6}>
+                    <CustomInput
+                      id="Company.organizationAddress.city"
+                      label="Company City"
+                      value={Company.organizationAddress.city}
+                      handleChange={this.handleInputChange}
+                    />
+                  </Col>
+                </Row>
+                <CustomSelect
+                  placeholder="Company Country"
+                  id="Company.organizationAddress.country"
+                  value={Company.organizationAddress.country}
+                  items={this.state.CompanyCountryValues}
+                  handleSelectChange={this.handleSelectChange}
+                />
+                <CustomInput
+                  id="Company.organizationPhoneNumber"
+                  label="Company Phone Number"
+                  value={Company.organizationPhoneNumber}
+                  handleChange={this.handleInputChange}
+                />
+                 <CustomSelect
+                  placeholder="Company Industry"
+                  id="Company.organizationIndustry"
+                  value={Company.organizationIndustry}
+                  items={this.state.CompanyIndustryValues}
+                  handleSelectChange={this.handleSelectChange}
+                />
+                <CustomTextarea
+                  id="Company.organizationDescription"
+                  label="Company Description"
+                  value={Company.organizationDescription}
+                  handleChange={this.handleInputChange}
+                />
+              </Row>
             </Col>
             <Col md={6}>
               <CustomInput
@@ -159,4 +332,7 @@ class WorkHistoryModal extends Component {
   }
 }
 
-export default WorkHistoryModal;
+export default connect(
+  null,
+  { createWorkHistory }
+)(WorkHistoryModal);

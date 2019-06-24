@@ -98,7 +98,6 @@ class ReferenceUpdateModal extends Component {
   };
 
   handleUpdate = () => {
-    console.log("Update confirmed");
     this.props.updateReference(this.state.reference);
   };
 

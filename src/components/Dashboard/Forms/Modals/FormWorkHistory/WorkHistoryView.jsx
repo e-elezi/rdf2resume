@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
-// import WorkHistoryUpdateModal from "./WorkHistoryUpdateModal";
+import { removeWorkHistory } from "../../../../../actions";
+import WorkHistoryUpdateModal from "./WorkHistoryUpdateModal";
 
 class WorkHistoryReview extends Component {
   state = {
@@ -26,8 +28,9 @@ class WorkHistoryReview extends Component {
       editMode: true
     });
   };
+
   render() {
-    let { workHistory, handleRemove } = this.props;
+    let { workHistory } = this.props;
     return (
       <React.Fragment>
         <Row
@@ -93,22 +96,21 @@ class WorkHistoryReview extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => handleRemove(this.props.id)}
+              onClick={() => this.props.removeWorkHistory(this.props.id)}
             />
           </Col>
         </Row>
-
-        {/* <WorkHistoryUpdateModal
+        <WorkHistoryUpdateModal
           show={this.state.editMode}
           id={this.props.id}
           onHide={this.handleCloseEdit}
-          workHistoryObject={this.props.workHistory}
-          handleUpdateWorkHistory={this.props.handleUpdateWorkHistory}
-          handleStateObjectUpdate={this.props.handleStateObjectUpdate}
-        /> */}
+        />
       </React.Fragment>
     );
   }
 }
 
-export default WorkHistoryReview;
+export default connect(
+  null,
+  { removeWorkHistory }
+)(WorkHistoryReview);

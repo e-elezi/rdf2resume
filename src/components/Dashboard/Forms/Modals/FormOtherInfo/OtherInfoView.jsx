@@ -24,6 +24,7 @@ class OtherInfoView extends Component {
       editMode: true
     });
   };
+  
   render() {
     let { otherInfoObject } = this.props;
     return (

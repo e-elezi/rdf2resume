@@ -16,7 +16,10 @@ import {
   UPDATE_OTHER_INFO,
   CREATE_REFERENCE,
   UPDATE_REFERENCE,
-  REMOVE_REFERENCE
+  REMOVE_REFERENCE,
+  CREATE_WORK_HISTORY,
+  UPDATE_WORK_HISTORY,
+  REMOVE_WORK_HISTORY
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -28,7 +31,7 @@ const INITIAL_STATE = {
   courses: [],
   skills: [],
   references: {},
-  workHistory: [],
+  workHistory: {},
   otherInfo: {}
 };
 
@@ -84,6 +87,21 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_REFERENCE:
       let removedreferences = _.omit(state.references, action.payload);
       return { ...state, references: removedreferences };
+      case CREATE_WORK_HISTORY:
+      let myworks = {
+        ...state.workHistory,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, workHistory: myworks };
+    case UPDATE_WORK_HISTORY:
+      let updateworks = {
+        ...state.workHistory,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, workHistory: updateworks };
+    case REMOVE_WORK_HISTORY:
+      let removedwork = _.omit(state.workHistory, action.payload);
+      return { ...state, workHistory: removedwork };
     default:
       return state;
   }

@@ -17,7 +17,7 @@ class FormAboutCV extends Component {
   render() {
     // let {
     //   cvTitle,
-    //   cvDescription,
+    //   cvNotes,
     //   cvIsActive,
     //   cvIsConfidential,
     //   cvLastUpdated,
@@ -41,9 +41,9 @@ class FormAboutCV extends Component {
             label="CV Copyright"
           />
           <Field
-            name="cvDescription"
+            name="cvNotes"
             component={CustomTextarea}
-            label="CV Description"
+            label="CV Notes"
           />
           <Field
             name="cvIsActive"

@@ -28,6 +28,7 @@ class FormPersonal extends Component {
     },
     genderStatus: [],
     maritalStatus: [],
+    titleValues: [],
     countries: [],
     instantMessagingNameValues: []
   };
@@ -35,6 +36,10 @@ class FormPersonal extends Component {
   getGenderStatus = () => {
     return ["Female", "Male", "Not indicated"];
   };
+
+  getTitleValues = () => {
+    return ['Mr', 'Mrs', 'Dr.Mr', 'Dr.Mrs'];
+  }
 
   getMaritalStatus = () => {
     return ["Single", "Widowed", "Married", "Divorced"];
@@ -64,6 +69,7 @@ class FormPersonal extends Component {
       genderStatus: this.getGenderStatus(),
       maritalStatus: this.getGenderStatus(),
       countries: this.getCountries(),
+      titleValues: this.getTitleValues(),
       instantMessagingNameValues: this.getInstantMessagingNameValues()
     });
   }
@@ -200,18 +206,20 @@ class FormPersonal extends Component {
 
   render() {
     // let {
-    //   name,
+    //   firstName,
+    //   lastName,
+    //   title,
+    //   photo,
     //   gender,
+    //   dateOfBirth
     //   hasCitizenship,
     //   hasNationality,
-    //   hasTelephoneNumber,
-    //   maritalStatus,
-    //   noOfChildren,
     //   driversLicence,
+    //   Address,
     //   email,
-    //   dateOfBirth,
-    //   website,
-    //   instantMessaging
+    //   hasTelephoneNumber,
+    //   hasWebsite,
+    //   InstantMessaging,
     // } = this.state.Person;
 
     return (
@@ -251,6 +259,12 @@ class FormPersonal extends Component {
           </div>
         </Col>
         <Col md={4} className="pt-4">
+        <Field
+                name="title"
+                component={CustomDropdown}
+                label="Title"
+                data={this.state.titleValues}
+              />
           <div className="row">
             <div className="col col-sm-6">
               <Field
@@ -300,7 +314,7 @@ class FormPersonal extends Component {
             label="Nationality"
             data={this.state.countries}
           />
-          <Row>
+          {/* <Row>
             <Col md={8} style={{ marginTop: "7px" }}>
               <Field
                 name="maritalStatus"
@@ -317,7 +331,7 @@ class FormPersonal extends Component {
                 label="No of Children"
               />
             </Col>
-          </Row>
+          </Row> */}
           <Field
             name="driversLicence"
             type="text"
