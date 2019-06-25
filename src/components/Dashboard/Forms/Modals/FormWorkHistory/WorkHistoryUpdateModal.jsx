@@ -335,7 +335,7 @@ class WorkHistoryUpdateModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={this.handleUpdate}>
-            Save
+            Update
           </Button>
           <Button variant="danger" onClick={onHide}>
             Close

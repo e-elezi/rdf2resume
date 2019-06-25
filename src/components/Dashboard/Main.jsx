@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import "./Main.css";
 import FormAboutCV from "./Forms/FormAboutCV";
 import FormEducation from "./Forms/FormEducation";
+import FormCourse from "./Forms/FormCourse";
 import FormOtherInfo from "./Forms/FormOtherInfo";
 import FormPersonal from "./Forms/FormPersonal";
 import FormSkill from "./Forms/FormSkill";
@@ -20,7 +21,8 @@ class Main extends Component {
       { label: "Personal Information", link: "/d/personal" },
       { label: "Target Job", link: "/d/target" },
       { label: "Work History", link: "/d/work" },
-      { label: "Education/Training", link: "/d/education" },
+      { label: "Education", link: "/d/education" },
+      { label: "Courses/Trainings", link: "/d/course" },
       { label: "Skills", link: "/d/skill" },
       { label: "Reference", link: "/d/reference" },
       { label: "Other Information", link: "/d/other" },
@@ -71,6 +73,7 @@ class Main extends Component {
             <Route path="/d/target" component={FormTarget} />
             <Route path="/d/work" component={FormWorkHistory} />
             <Route path="/d/education" component={FormEducation} />
+            <Route path="/d/course" component={FormCourse} />
             <Route path="/d/skill" component={FormSkill} />
             <Route path="/d/reference" component={FormReference} />
             <Route path="/d/other" component={FormOtherInfo} />

@@ -19,7 +19,13 @@ import {
   REMOVE_REFERENCE,
   CREATE_WORK_HISTORY,
   UPDATE_WORK_HISTORY,
-  REMOVE_WORK_HISTORY
+  REMOVE_WORK_HISTORY,
+  CREATE_EDUCATION,
+  UPDATE_EDUCATION,
+  REMOVE_EDUCATION,
+  CREATE_COURSE,
+  UPDATE_COURSE,
+  REMOVE_COURSE
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -27,8 +33,8 @@ const INITIAL_STATE = {
   aboutCV: {},
   aboutPerson: {},
   target: {},
-  education: [],
-  courses: [],
+  education: {},
+  courses: {},
   skills: [],
   references: {},
   workHistory: {},
@@ -87,7 +93,7 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_REFERENCE:
       let removedreferences = _.omit(state.references, action.payload);
       return { ...state, references: removedreferences };
-      case CREATE_WORK_HISTORY:
+    case CREATE_WORK_HISTORY:
       let myworks = {
         ...state.workHistory,
         [action.payload.id]: action.payload
@@ -102,6 +108,36 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_WORK_HISTORY:
       let removedwork = _.omit(state.workHistory, action.payload);
       return { ...state, workHistory: removedwork };
+    case CREATE_EDUCATION:
+      let myedu = {
+        ...state.education,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, education: myedu };
+    case UPDATE_EDUCATION:
+      let updateedu = {
+        ...state.education,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, education: updateedu };
+    case REMOVE_EDUCATION:
+      let removededu = _.omit(state.education, action.payload);
+      return { ...state, education: removededu };
+      case CREATE_COURSE:
+      let mycourse = {
+        ...state.courses,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, courses: mycourse };
+    case UPDATE_COURSE:
+      let updatecourse = {
+        ...state.courses,
+        [action.payload.id]: action.payload
+      };
+      return { ...state, courses: updatecourse };
+    case REMOVE_COURSE:
+      let removecourse = _.omit(state.courses, action.payload);
+      return { ...state, courses: removecourse };
     default:
       return state;
   }

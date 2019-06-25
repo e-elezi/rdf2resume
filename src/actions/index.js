@@ -72,7 +72,13 @@ import {
   REMOVE_REFERENCE,
   CREATE_WORK_HISTORY,
   UPDATE_WORK_HISTORY,
-  REMOVE_WORK_HISTORY
+  REMOVE_WORK_HISTORY,
+  CREATE_EDUCATION,
+  UPDATE_EDUCATION,
+  REMOVE_EDUCATION,
+  CREATE_COURSE,
+  UPDATE_COURSE,
+  REMOVE_COURSE
 } from "./types";
 
 export const createOtherInfo = formValues => {
@@ -134,6 +140,48 @@ export const updateWorkHistory = formValues => {
 export const removeWorkHistory = index => {
   return {
     type: REMOVE_WORK_HISTORY,
+    payload: index
+  };
+};
+
+export const createEducation = formValues => {
+  return {
+    type: CREATE_EDUCATION,
+    payload: formValues
+  };
+};
+
+export const updateEducation = formValues => {
+  return {
+    type: UPDATE_EDUCATION,
+    payload: formValues
+  };
+};
+
+export const removeEducation = index => {
+  return {
+    type: REMOVE_EDUCATION,
+    payload: index
+  };
+};
+
+export const createCourse = formValues => {
+  return {
+    type: CREATE_COURSE,
+    payload: formValues
+  };
+};
+
+export const updateCourse = formValues => {
+  return {
+    type: UPDATE_COURSE,
+    payload: formValues
+  };
+};
+
+export const removeCourse = index => {
+  return {
+    type: REMOVE_COURSE,
     payload: index
   };
 };
