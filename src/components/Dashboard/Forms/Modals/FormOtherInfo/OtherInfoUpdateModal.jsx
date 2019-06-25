@@ -70,7 +70,7 @@ class OtherInfoUpdateModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={4}>Add Other Information</Col>
+              <Col md={4}>Update Other Information</Col>
               <Col md={8} />
             </Row>
           </Modal.Title>

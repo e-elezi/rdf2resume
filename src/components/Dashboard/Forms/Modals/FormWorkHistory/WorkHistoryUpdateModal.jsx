@@ -197,7 +197,7 @@ class WorkHistoryUpdateModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={9}>Add New Work Experience</Col>
+              <Col md={9}>Update Work Experience</Col>
               <Col md={2}>
                 <CustomCheckbox
                   id="isCurrent"
