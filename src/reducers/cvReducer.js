@@ -25,7 +25,10 @@ import {
   REMOVE_EDUCATION,
   CREATE_COURSE,
   UPDATE_COURSE,
-  REMOVE_COURSE
+  REMOVE_COURSE,
+  CREATE_OTHER_SKILL,
+  UPDATE_OTHER_SKILL,
+  REMOVE_OTHER_SKILL
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -35,7 +38,67 @@ const INITIAL_STATE = {
   target: {},
   education: {},
   courses: {},
-  skills: [],
+  skills: {
+    CommunicationSkills: {
+      label: "Communication Skills",
+      description: ""
+    },
+    OrganisationalSkills: {
+      label: "Organisational Skills",
+      description: ""
+    },
+    JobRelatedSkills: {
+      label: "Job Related Skills",
+      description: ""
+    },
+    DigitalSkills: {
+      label: "Digital Skills",
+      hasICTCertificate: "",
+      otherDigitalSkills: "",
+      informationProcessing: {
+        label: "Information Processing",
+        value: ""
+      },
+      communication: {
+        label: "Communication",
+        value: ""
+      },
+      contentCreation: {
+        label: "Content Creation",
+        value: ""
+      },
+      safety: {
+        label: "Safety",
+        value: ""
+      },
+      problemSolving: {
+        label: "Problem Solving",
+        value: ""
+      }
+    },
+    LanguageSkill: {
+      MotherTongue: {
+        skillName: "",
+        languageSkillLevelReading: "",
+        languageSkillLevelWriting: "",
+        languageSkillLevelListening: "",
+        languageSkillLevelSpokenInteraction: "",
+        languageSkillLevelSpokenProduction: ""
+      },
+      OtherLanguages: {}
+    },
+    OtherSkills: {
+      // 1: {
+      //   skillName: "",
+      //   skillDescription: "",
+      //   skillLevel: "",
+      //   skillLastUsed: "",
+      //   skillYearsExperience: "",
+      //   skillHasCertificate: true,
+      //   id: 1
+      // }
+    }
+  },
   references: {},
   workHistory: {},
   otherInfo: {}
@@ -123,7 +186,7 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_EDUCATION:
       let removededu = _.omit(state.education, action.payload);
       return { ...state, education: removededu };
-      case CREATE_COURSE:
+    case CREATE_COURSE:
       let mycourse = {
         ...state.courses,
         [action.payload.id]: action.payload
@@ -138,6 +201,36 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_COURSE:
       let removecourse = _.omit(state.courses, action.payload);
       return { ...state, courses: removecourse };
+    case CREATE_OTHER_SKILL:
+      let myskills = {
+        ...state.skills
+      };
+      let myotherskills = {
+        ...myskills.OtherSkills,
+        [action.payload.id]: action.payload
+      };
+      myskills.OtherSkills = myotherskills;
+      return { ...state, skills: myskills };
+    case UPDATE_OTHER_SKILL:
+      let myupdateskills = {
+        ...state.skills
+      };
+      let myupdateotherskills = {
+        ...myupdateskills.OtherSkills,
+        [action.payload.id]: action.payload
+      };
+      myupdateskills.OtherSkills = myupdateotherskills;
+      return { ...state, skills: myupdateskills };
+    case REMOVE_OTHER_SKILL:
+      let myremoveskills = {
+        ...state.skills
+      };
+      let myremoveotherskills = _.omit(
+        myremoveskills.OtherSkills,
+        action.payload
+      );
+      myremoveskills.OtherSkills = myremoveotherskills;
+      return { ...state, skills: myremoveskills };
     default:
       return state;
   }

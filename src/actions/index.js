@@ -78,7 +78,10 @@ import {
   REMOVE_EDUCATION,
   CREATE_COURSE,
   UPDATE_COURSE,
-  REMOVE_COURSE
+  REMOVE_COURSE,
+  CREATE_OTHER_SKILL,
+  UPDATE_OTHER_SKILL,
+  REMOVE_OTHER_SKILL
 } from "./types";
 
 export const createOtherInfo = formValues => {
@@ -182,6 +185,27 @@ export const updateCourse = formValues => {
 export const removeCourse = index => {
   return {
     type: REMOVE_COURSE,
+    payload: index
+  };
+};
+
+export const createOtherSkill = formValues => {
+  return {
+    type: CREATE_OTHER_SKILL,
+    payload: formValues
+  };
+};
+
+export const updateOtherSkill = formValues => {
+  return {
+    type: UPDATE_OTHER_SKILL,
+    payload: formValues
+  };
+};
+
+export const removeOtherSkill = index => {
+  return {
+    type: REMOVE_OTHER_SKILL,
     payload: index
   };
 };
