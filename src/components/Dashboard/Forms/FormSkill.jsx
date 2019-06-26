@@ -10,6 +10,14 @@ import CustomInput from "../../coreRedux/CustomInput";
 import RemoveButton from "../../core/RemoveButton";
 import CustomTextarea from "../../coreRedux/CustomTextarea";
 import CustomCheckbox from "../../coreRedux/CustomCheckbox";
+import {
+  fetchLanguageSkillSelfAssessmentProperties,
+  fetchSelfAssessmentProperties
+} from "../../../actions/utilityActions";
+import {
+  retrieveAssessment,
+  retrieveLngAssessment
+} from "../../../utilities/utilityQueries";
 
 class FormSkill extends Component {
   state = {
@@ -27,10 +35,12 @@ class FormSkill extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      languageLevelSkillsValue: this.getLanguageLevelValues(),
-      generalSkillLevelValue: this.getGeneralSkillLevelValues()
-    });
+    // this.setState({
+    //   languageLevelSkillsValue: this.getLanguageLevelValues(),
+    //   generalSkillLevelValue: this.getGeneralSkillLevelValues()
+    // });
+    this.props.fetchLanguageSkillSelfAssessmentProperties();
+    this.props.fetchSelfAssessmentProperties();
   }
 
   handleClose = () => {
@@ -97,7 +107,7 @@ class FormSkill extends Component {
             </thead>
             <tbody>
               {fields.map((member, index) => (
-                <tr>
+                <tr key={index}>
                   <th>
                     <div style={{ marginTop: "10px" }}>
                       <Field
@@ -113,7 +123,7 @@ class FormSkill extends Component {
                       name={`${member}.lngReading`}
                       component={CustomDropdown}
                       label="Select level"
-                      data={this.state.languageLevelSkillsValue}
+                      data={this.props.lngAssessmentValues}
                     />
                   </td>
                   <td>
@@ -121,7 +131,7 @@ class FormSkill extends Component {
                       name={`${member}.lngWriting`}
                       component={CustomDropdown}
                       label="Select level"
-                      data={this.state.languageLevelSkillsValue}
+                      data={this.props.lngAssessmentValues}
                     />
                   </td>
                   <td>
@@ -129,7 +139,7 @@ class FormSkill extends Component {
                       name={`${member}.lngListening`}
                       component={CustomDropdown}
                       label="Select level"
-                      data={this.state.languageLevelSkillsValue}
+                      data={this.props.lngAssessmentValues}
                     />
                   </td>
                   <td>
@@ -137,7 +147,7 @@ class FormSkill extends Component {
                       name={`${member}.lngSpeakingInter`}
                       component={CustomDropdown}
                       label="Select level"
-                      data={this.state.languageLevelSkillsValue}
+                      data={this.props.lngAssessmentValues}
                     />
                   </td>
                   <td>
@@ -145,14 +155,13 @@ class FormSkill extends Component {
                       name={`${member}.lngSpeakingProd`}
                       component={CustomDropdown}
                       label="Select level"
-                      data={this.state.languageLevelSkillsValue}
+                      data={this.props.lngAssessmentValues}
                     />
                   </td>
                   <td>
                     <Field
                       name={`${member}.isMotherTongue`}
                       component={CustomCheckbox}
-                      label=""
                     />
                   </td>
                   <td style={{ display: "flex", justifyContent: "center" }}>
@@ -210,31 +219,31 @@ class FormSkill extends Component {
               name="informationProcessing"
               component={CustomDropdown}
               label="Information Processing Level"
-              data={this.state.generalSkillLevelValue}
+              data={this.props.assessmentValues}
             />
             <Field
               name="communication"
               component={CustomDropdown}
               label="Communication Level"
-              data={this.state.generalSkillLevelValue}
+              data={this.props.assessmentValues}
             />
             <Field
               name="contentCreation"
               component={CustomDropdown}
               label="Content Creation Level"
-              data={this.state.generalSkillLevelValue}
+              data={this.props.assessmentValues}
             />
             <Field
               name="safety"
               component={CustomDropdown}
               label="safety Level"
-              data={this.state.generalSkillLevelValue}
+              data={this.props.assessmentValues}
             />
             <Field
               name="problemSolving"
               component={CustomDropdown}
               label="Problem Solving Level"
-              data={this.state.generalSkillLevelValue}
+              data={this.props.assessmentValues}
             />
           </Col>
           <Col md={3}>
@@ -280,6 +289,10 @@ class FormSkill extends Component {
 
 const mapStateToProps = state => {
   return {
+    lngAssessmentValues: retrieveLngAssessment(
+      state.utility.languageSelfAssessmentValues
+    ),
+    assessmentValues: retrieveAssessment(state.utility.selfAssessmentValues),
     skills: Object.values(state.cv.skills),
     otherSkills: Object.values(state.cv.skills.OtherSkills)
   };
@@ -292,5 +305,5 @@ FormSkill = reduxForm({
 
 export default connect(
   mapStateToProps,
-  {}
+  { fetchLanguageSkillSelfAssessmentProperties, fetchSelfAssessmentProperties }
 )(FormSkill);

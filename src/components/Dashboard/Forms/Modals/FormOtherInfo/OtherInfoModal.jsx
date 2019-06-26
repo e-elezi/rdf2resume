@@ -4,24 +4,32 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomSelect from "../../../../core/CustomSelect";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherInfo } from "../../../../../actions";
+import {
+  fetchOtherCVInfoTypes
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveOtherTypes
+} from "../../../../../utilities/utilityQueries";
+
 
 class OtherInfoModal extends Component {
   state = {
     otherInfo: {
       otherInfoCategory: "",
       otherInfoDescription: ""
-    },
-    categoryValues: []
+    }
+    // categoryValues: []
   };
 
-  getCategoryValues() {
-    return ["Publication", "Seminar"];
-  }
+  // getCategoryValues() {
+  //   return ["Publication", "Seminar"];
+  // }
 
   componentWillMount() {
-    this.setState({
-      categoryValues: this.getCategoryValues()
-    });
+    // this.setState({
+    //   categoryValues: this.getCategoryValues()
+    // });
+    this.props.fetchOtherCVInfoTypes();
   }
 
   handleSelectChange = (e, id) => {
@@ -71,7 +79,7 @@ class OtherInfoModal extends Component {
             placeholder="Category"
             id="otherInfoCategory"
             value={otherInfoCategory}
-            items={this.state.categoryValues}
+            items={this.props.others}
             handleSelectChange={this.handleSelectChange}
           />
           <CustomTextarea
@@ -94,7 +102,13 @@ class OtherInfoModal extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    others: retrieveOtherTypes(state.utility.otherCVInfoValues)
+  };
+};
+
 export default connect(
-  null,
-  { createOtherInfo }
+  mapstateToProps,
+  { createOtherInfo, fetchOtherCVInfoTypes }
 )(OtherInfoModal);

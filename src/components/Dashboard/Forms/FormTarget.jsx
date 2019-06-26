@@ -6,6 +6,19 @@ import CustomDropdown from "../../coreRedux/CustomDropdown";
 import CustomMultiSelect from "../../coreRedux/CustomMultiSelect";
 import CustomTextarea from "../../coreRedux/CustomTextarea";
 import CustomCheckbox from "../../coreRedux/CustomCheckbox";
+import { connect } from "react-redux";
+import {
+  fetchCVJobModes,
+  fetchCVCareerLevels,
+  fetchCountries,
+  fetchCompanySizes
+} from "../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveCareerLevels,
+  retrieveJobModes,
+  retrieveCompanySizes
+} from "../../../utilities/utilityQueries";
 
 class FormTarget extends Component {
   state = {
@@ -19,44 +32,44 @@ class FormTarget extends Component {
     InstantMessagingCount: 1
   };
 
-  getJobModeValues = () => {
-    return ["Employee Full time", "Employee Part time", "Contractor", "Intern"];
-  };
+  // getJobModeValues = () => {
+  //   return ["Employee Full time", "Employee Part time", "Contractor", "Intern"];
+  // };
 
-  getJobCareerLevels = () => {
-    return [
-      "Student (high school)",
-      "Student (graduate/undergraduate)",
-      "Entry level (less than 2 years of experience)",
-      "Mid-career (2+ years of experience)",
-      "Management (manager/director of staff)",
-      "Executive (SVP, EVP, VP",
-      "Senior Executive (president / CEO)"
-    ];
-  };
+  // getJobCareerLevels = () => {
+  //   return [
+  //     "Student (high school)",
+  //     "Student (graduate/undergraduate)",
+  //     "Entry level (less than 2 years of experience)",
+  //     "Mid-career (2+ years of experience)",
+  //     "Management (manager/director of staff)",
+  //     "Executive (SVP, EVP, VP",
+  //     "Senior Executive (president / CEO)"
+  //   ];
+  // };
 
-  getCompanySizeValues = () => {
-    return ["Small", "Medium", "Large"];
-  };
+  // getCompanySizeValues = () => {
+  //   return ["Small", "Medium", "Large"];
+  // };
 
   getCompanyIndustryValues = () => {
     return ["Education", "Agriculture", "Computer Science", "Logistics"];
   };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
   getCurrencies = () => {
     return [
@@ -71,13 +84,17 @@ class FormTarget extends Component {
 
   componentWillMount() {
     this.setState({
-      jobModeValues: this.getJobModeValues(),
-      jobCareerLevelValues: this.getJobCareerLevels(),
-      targetCompanyCountryValues: this.getCountries(),
-      targetCompanySizeValues: this.getCompanySizeValues(),
+      // jobModeValues: this.getJobModeValues(),
+      // jobCareerLevelValues: this.getJobCareerLevels(),
+      // targetCompanyCountryValues: this.getCountries(),
+      // targetCompanySizeValues: this.getCompanySizeValues(),
       currencyValues: this.getCurrencies(),
       targetCompanyIndustryValues: this.getCompanyIndustryValues()
     });
+    this.props.fetchCVCareerLevels();
+    this.props.fetchCVJobModes();
+    this.props.fetchCompanySizes();
+    this.props.fetchCountries();
   }
 
   render() {
@@ -111,13 +128,13 @@ class FormTarget extends Component {
             name="targetJobMode"
             component={CustomDropdown}
             label="Job Mode"
-            data={this.state.jobModeValues}
+            data={this.props.jobModes}
           />
           <Field
             name="targetJobCareerLevel"
             component={CustomDropdown}
             label="Job Career Level"
-            data={this.state.jobCareerLevelValues}
+            data={this.props.careerLevels}
           />
           <Field
             name="targetSalaryRange"
@@ -160,7 +177,7 @@ class FormTarget extends Component {
             name="targetCompanySize"
             component={CustomDropdown}
             label="Company Size"
-            data={this.state.targetCompanySizeValues}
+            data={this.props.companySizes}
           />
           <Field
             name="targetCompanyIndustry"
@@ -178,7 +195,7 @@ class FormTarget extends Component {
             name="targetCompanyCountry"
             component={CustomMultiSelect}
             label="Company Country"
-            data={this.state.targetCompanyCountryValues}
+            data={this.props.countries}
           />
           <Field
             name="targetCompanyDescription"
@@ -192,9 +209,21 @@ class FormTarget extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues),
+    jobModes: retrieveJobModes(state.utility.jobModeValues),
+    careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
+    companySizes: retrieveCompanySizes(state.utility.companySizeValues)
+  };
+};
+
 FormTarget = reduxForm({
   form: "target",
   destroyOnUnmount: false
 })(FormTarget);
 
-export default FormTarget;
+export default connect(
+  mapstateToProps,
+  { fetchCVJobModes, fetchCVCareerLevels, fetchCountries, fetchCompanySizes }
+)(FormTarget);

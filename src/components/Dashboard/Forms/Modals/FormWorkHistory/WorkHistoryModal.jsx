@@ -6,6 +6,18 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { createWorkHistory } from "../../../../../actions";
+import {
+  fetchCVJobModes,
+  fetchCVCareerLevels,
+  fetchCountries,
+  fetchCompanySizes
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveCareerLevels,
+  retrieveJobModes,
+  retrieveCompanySizes
+} from "../../../../../utilities/utilityQueries";
 
 class WorkHistoryModal extends Component {
   state = {
@@ -31,58 +43,62 @@ class WorkHistoryModal extends Component {
         companyIndustry: ""
       }
     },
-    careerLevelValues: [],
-    jobModeValues: [],
-    CompanyIndustryValues: [],
-    CompanySizeValues: [],
-    CompanyCountryValues: []
+    // careerLevelValues: [],
+    // jobModeValues: [],
+    CompanyIndustryValues: []
+    // CompanySizeValues: [],
+    // CompanyCountryValues: []
   };
 
-  getJobModeValues = () => {
-    return ["Employee Full time", "Employee Part time", "Contractor", "Intern"];
-  };
+  // getJobModeValues = () => {
+  //   return ["Employee Full time", "Employee Part time", "Contractor", "Intern"];
+  // };
 
-  getJobCareerLevels = () => {
-    return [
-      "Student (high school)",
-      "Student (graduate/undergraduate)",
-      "Entry level (less than 2 years of experience)",
-      "Mid-career (2+ years of experience)",
-      "Management (manager/director of staff)",
-      "Executive (SVP, EVP, VP",
-      "Senior Executive (president / CEO)"
-    ];
-  };
+  // getJobCareerLevels = () => {
+  //   return [
+  //     "Student (high school)",
+  //     "Student (graduate/undergraduate)",
+  //     "Entry level (less than 2 years of experience)",
+  //     "Mid-career (2+ years of experience)",
+  //     "Management (manager/director of staff)",
+  //     "Executive (SVP, EVP, VP",
+  //     "Senior Executive (president / CEO)"
+  //   ];
+  // };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
-  getCompanySizeValues = () => {
-    return ["Small", "Medium", "Large"];
-  };
+  // getCompanySizeValues = () => {
+  //   return ["Small", "Medium", "Large"];
+  // };
 
   getCompanyIndustryValues = () => {
     return ["Education", "Agriculture", "Computer Science", "Logistics"];
   };
 
   componentWillMount() {
+    this.props.fetchCVCareerLevels();
+    this.props.fetchCVJobModes();
+    this.props.fetchCompanySizes();
+    this.props.fetchCountries();
     this.setState({
-      jobModeValues: this.getJobModeValues(),
-      careerLevelValues: this.getJobCareerLevels(),
-      CompanyCountryValues: this.getCountries(),
-      CompanySizeValues: this.getCompanySizeValues(),
+      // jobModeValues: this.getJobModeValues(),
+      // careerLevelValues: this.getJobCareerLevels(),
+      // CompanyCountryValues: this.getCountries(),
+      // CompanySizeValues: this.getCompanySizeValues(),
       CompanyIndustryValues: this.getCompanyIndustryValues()
     });
   }
@@ -264,7 +280,7 @@ class WorkHistoryModal extends Component {
                   placeholder="Company Country"
                   id="Company.organizationAddress.country"
                   value={Company.organizationAddress.country}
-                  items={this.state.CompanyCountryValues}
+                  items={this.props.countries}
                   handleSelectChange={this.handleSelectChange}
                 />
                 <CustomInput
@@ -300,14 +316,14 @@ class WorkHistoryModal extends Component {
                 placeholder="Job Mode"
                 id="jobMode"
                 value={jobMode}
-                items={this.state.jobModeValues}
+                items={this.props.jobModes}
                 handleSelectChange={this.handleSelectChange}
               />
               <CustomSelect
                 placeholder="Career Level"
                 id="careerLevel"
                 value={careerLevel}
-                items={this.state.careerLevelValues}
+                items={this.props.careerLevels}
                 handleSelectChange={this.handleSelectChange}
               />
               <CustomTextarea
@@ -332,7 +348,17 @@ class WorkHistoryModal extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues),
+    jobModes: retrieveJobModes(state.utility.jobModeValues),
+    careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
+    companySizes: retrieveCompanySizes(state.utility.companySizeValues)
+  };
+};
+
+
 export default connect(
-  null,
-  { createWorkHistory }
+  mapstateToProps,
+  { createWorkHistory, fetchCVJobModes, fetchCVCareerLevels, fetchCountries, fetchCompanySizes }
 )(WorkHistoryModal);

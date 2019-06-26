@@ -11,9 +11,15 @@ const CustomCheckbox = ({
   checked
 }) => {
   let classes = "form-check-input " + classnames;
+  let divClasses = "";
+  if (label === undefined) {
+    divClasses = "form-check no-label";
+  } else {
+    divClasses = "form-check";
+  }
   return (
     <Form.Group style={{ marginBottom: "0" }}>
-      <div className="form-check" style={{ marginBottom: "0" }}>
+      <div className={divClasses} style={{ marginBottom: "0" }}>
         <label
           title={label}
           type={type}

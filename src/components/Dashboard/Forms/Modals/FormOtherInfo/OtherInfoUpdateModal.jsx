@@ -4,6 +4,12 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomSelect from "../../../../core/CustomSelect";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { updateOtherInfo } from "../../../../../actions";
+import {
+  fetchOtherCVInfoTypes
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveOtherTypes
+} from "../../../../../utilities/utilityQueries";
 
 class OtherInfoUpdateModal extends Component {
   state = {
@@ -11,15 +17,16 @@ class OtherInfoUpdateModal extends Component {
       otherInfoCategory: "",
       otherInfoDescription: "",
       id: ''
-    },
-    categoryValues: []
+    }
+    // categoryValues: []
   };
 
-  getCategoryValues() {
-    return ["Publication", "Seminar"];
-  }
+  // getCategoryValues() {
+  //   return ["Publication", "Seminar"];
+  // }
 
   componentWillMount() {
+    this.props.fetchOtherCVInfoTypes();
     if (this.props.otherInfoObject !== null) {
       let inputRef = this.props.otherInfoObject;
       let otherInfo = { ...this.state.otherInfo };
@@ -30,9 +37,9 @@ class OtherInfoUpdateModal extends Component {
         otherInfo
       });
     }
-    this.setState({
-      categoryValues: this.getCategoryValues()
-    });
+    // this.setState({
+    //   categoryValues: this.getCategoryValues()
+    // });
   }
 
   handleSelectChange = (e, id) => {
@@ -80,7 +87,7 @@ class OtherInfoUpdateModal extends Component {
             placeholder="Category"
             id="otherInfoCategory"
             value={otherInfoCategory}
-            items={this.state.categoryValues}
+            items={this.props.others}
             handleSelectChange={this.handleSelectChange}
           />
           <CustomTextarea
@@ -105,11 +112,12 @@ class OtherInfoUpdateModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.otherInfo[ownProps.id]
+    initialValues: state.cv.otherInfo[ownProps.id],
+    others: retrieveOtherTypes(state.utility.otherCVInfoValues)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateOtherInfo }
+  { updateOtherInfo, fetchOtherCVInfoTypes }
 )(OtherInfoUpdateModal);

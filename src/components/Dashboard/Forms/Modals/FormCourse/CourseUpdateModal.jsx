@@ -6,6 +6,12 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { updateCourse } from "../../../../../actions";
+import {
+  fetchCountries
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues
+} from "../../../../../utilities/utilityQueries";
 
 class CourseUpdateModal extends Component {
   state = {
@@ -29,26 +35,27 @@ class CourseUpdateModal extends Component {
         organizationPhoneNumber: "",
         organizationWebsite: ""
       }
-    },
-    organizationCountryValues: []
+    }
+    // organizationCountryValues: []
   };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
   componentWillMount() {
+    this.props.fetchCountries();
     if (this.props.id !== null) {
       let inputRef = this.props.initialValues;
       let course = { ...this.state.course };
@@ -65,9 +72,9 @@ class CourseUpdateModal extends Component {
         course
       });
     }
-    this.setState({
-      organizationCountryValues: this.getCountries()
-    });
+    // this.setState({
+    //   organizationCountryValues: this.getCountries()
+    // });
   }
 
   handleCheckboxChange = e => {
@@ -243,7 +250,7 @@ class CourseUpdateModal extends Component {
                   placeholder="Organization Country"
                   id="Organization.organizationAddress.country"
                   value={Organization.organizationAddress.country}
-                  items={this.state.organizationCountryValues}
+                  items={this.props.countries}
                   handleSelectChange={this.handleSelectChange}
                 />
                 <CustomInput
@@ -299,11 +306,12 @@ class CourseUpdateModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.courses[ownProps.id]
+    initialValues: state.cv.courses[ownProps.id],
+    countries: retrieveCountryValues(state.utility.countryValues)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateCourse }
+  { updateCourse, fetchCountries }
 )(CourseUpdateModal);

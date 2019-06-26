@@ -4,6 +4,14 @@ import { Modal, Button, Row, Col } from "react-bootstrap";
 import CustomSelect from "../../../../core/CustomSelect";
 import CustomInput from "../../../../core/CustomInput";
 import { createReference } from "../../../../../actions";
+import {
+  fetchCountries,
+  fetchTitleProperties
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveTitleValues
+} from "../../../../../utilities/utilityQueries";
 
 class ReferenceModal extends Component {
   state = {
@@ -24,35 +32,37 @@ class ReferenceModal extends Component {
       hasTelephoneNumber: "",
       email: ""
     },
-    titleValues: [],
-    countryValues: [],
+    // titleValues: [],
+    // countryValues: [],
     typeValues: ["Personal", "Professional"]
   };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
-  getTitles = () => {
-    return ["Doctor", "Professor"];
-  };
+  // getTitles = () => {
+  //   return ["Doctor", "Professor"];
+  // };
 
   componentWillMount() {
-    this.setState({
-      countryValues: this.getCountries(),
-      titleValues: this.getTitles()
-    });
+    // this.setState({
+    //   countryValues: this.getCountries(),
+    //   titleValues: this.getTitles()
+    // });
+    this.props.fetchCountries();
+    this.props.fetchTitleProperties();
   }
 
   handleSelectChange = (e, id) => {
@@ -149,7 +159,7 @@ class ReferenceModal extends Component {
                 placeholder="Title"
                 id="title"
                 value={title}
-                items={this.state.titleValues}
+                items={this.props.titles}
                 handleSelectChange={this.handleSelectChange}
               />
             </Col>
@@ -215,7 +225,7 @@ class ReferenceModal extends Component {
               placeholder="Country"
               id="Address.country"
               value={Address.country}
-              items={this.state.countryValues}
+              items={this.props.countries}
               handleSelectChange={this.handleSelectChange}
             />
           </div>
@@ -247,7 +257,14 @@ class ReferenceModal extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues),
+    titles: retrieveTitleValues(state.utility.titleValues)
+  };
+};
+
 export default connect(
-  null,
-  { createReference }
+  mapstateToProps,
+  { createReference, fetchCountries, fetchTitleProperties }
 )(ReferenceModal);

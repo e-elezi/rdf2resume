@@ -8,7 +8,6 @@ import Topbar from "./components/Topbar";
 import Upload from "./components/Upload/Upload";
 import Main from "./components/Dashboard/Main";
 import About from "./components/About";
-// import { fetchCVURI } from "./actions";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -16,7 +15,7 @@ class App extends Component {
     showInitialPage: true,
     showDescription: false,
     topbar: [
-      { label: "Fill in form", link: "/d/about" },
+      { label: "Fill in form", link: "/d/" },
       { label: "Upload RDF", link: "/u/upload" },
       { label: "About", link: "/about/" }
     ],
@@ -35,10 +34,6 @@ class App extends Component {
       otherInfo: []
     }
   };
-
-  componentDidMount() {
-    //this.props.fetchCVURI("Enkeleda", "Elezi");
-  }
 
   handleInputChange = e => {
     let cv = { ...this.state.cv };
@@ -168,7 +163,5 @@ class App extends Component {
 
 export default connect(
   null,
-  {
-    
-  }
+  {}
 )(withRouter(App));

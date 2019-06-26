@@ -5,73 +5,66 @@ import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import RemoveButton from "../../core/RemoveButton";
 import CustomMultiSelect from "../../coreRedux/CustomMultiSelect";
-import CustomDropdown from '../../coreRedux/CustomDropdown';
+import CustomDropdown from "../../coreRedux/CustomDropdown";
+import { connect } from "react-redux";
+import {
+  fetchCountries,
+  fetchGenders,
+  fetchTitleProperties
+} from "../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveGenderValues,
+  retrieveTitleValues
+} from "../../../utilities/utilityQueries";
 
 class FormPersonal extends Component {
   state = {
-    label: "Person",
-    Person: {
-      name: "",
-      gender: "",
-      hasCitizenship: [],
-      hasNationality: [],
-      maritalStatus: "",
-      noOfChildren: 0,
-      driversLicence: "",
-      photo: "",
-      email: "",
-      dateOfBirth: "",
-      hasTelephoneNumber: [""],
-      website: "",
-      Address: null,
-      instantMessaging: []
-    },
-    genderStatus: [],
-    maritalStatus: [],
-    titleValues: [],
-    countries: [],
-    instantMessagingNameValues: []
+    
   };
 
-  getGenderStatus = () => {
-    return ["Female", "Male", "Not indicated"];
-  };
+  // getGenderStatus = () => {
+  //   return ["Female", "Male", "Not indicated"];
+  // };
 
-  getTitleValues = () => {
-    return ['Mr', 'Mrs', 'Dr.Mr', 'Dr.Mrs'];
-  }
+  // getTitleValues = () => {
+  //   return ["Mr", "Mrs", "Dr.Mr", "Dr.Mrs"];
+  // };
 
-  getMaritalStatus = () => {
-    return ["Single", "Widowed", "Married", "Divorced"];
-  };
+  // getMaritalStatus = () => {
+  //   return ["Single", "Widowed", "Married", "Divorced"];
+  // };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
-  getInstantMessagingNameValues() {
-    return ["Google", "Skype", "Yahoo"];
-  }
+  // getInstantMessagingNameValues() {
+  //   return ["Google", "Skype", "Yahoo"];
+  // }
 
   componentWillMount() {
-    this.setState({
-      genderStatus: this.getGenderStatus(),
-      maritalStatus: this.getGenderStatus(),
-      countries: this.getCountries(),
-      titleValues: this.getTitleValues(),
-      instantMessagingNameValues: this.getInstantMessagingNameValues()
-    });
+    this.props.fetchCountries();
+    this.props.fetchGenders();
+    this.props.fetchTitleProperties();
+    // this.setState({
+    //   genderStatus: this.getGenderStatus(),
+    //   maritalStatus: this.getGenderStatus(),
+    //   countries: this.getCountries(),
+    //   titleValues: this.getTitleValues(),
+    //   instantMessagingNameValues: this.getInstantMessagingNameValues()
+    // });
   }
 
   renderInstantMessaging = ({
@@ -167,7 +160,7 @@ class FormPersonal extends Component {
     return (
       <React.Fragment>
         {fields.map((member, index) => (
-          <React.Fragment>
+          <React.Fragment key={index}>
             <Field
               name={`${member}.street`}
               type="text"
@@ -196,7 +189,7 @@ class FormPersonal extends Component {
               name={`${member}.country`}
               component={CustomDropdown}
               label="Country"
-              data={this.state.countries}
+              data={this.props.countries}
             />
           </React.Fragment>
         ))}
@@ -242,7 +235,7 @@ class FormPersonal extends Component {
           </div>
           <div className="mb-3" />
           <div className="mb-3">
-            {this.state.genderStatus.map(gender => {
+            {this.props.genders.map(gender => {
               return (
                 <label className="label-radio" key={gender}>
                   <Field
@@ -259,12 +252,12 @@ class FormPersonal extends Component {
           </div>
         </Col>
         <Col md={4} className="pt-4">
-        <Field
-                name="title"
-                component={CustomDropdown}
-                label="Title"
-                data={this.state.titleValues}
-              />
+          <Field
+            name="title"
+            component={CustomDropdown}
+            label="Title"
+            data={this.props.titles}
+          />
           <div className="row">
             <div className="col col-sm-6">
               <Field
@@ -306,13 +299,13 @@ class FormPersonal extends Component {
             name="hasCitizenship"
             component={CustomMultiSelect}
             label="Citizenship"
-            data={this.state.countries}
+            data={this.props.countries}
           />
           <Field
             name="hasNationality"
             component={CustomMultiSelect}
             label="Nationality"
-            data={this.state.countries}
+            data={this.props.countries}
           />
           {/* <Row>
             <Col md={8} style={{ marginTop: "7px" }}>
@@ -355,9 +348,20 @@ class FormPersonal extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues),
+    genders: retrieveGenderValues(state.utility.genderValues),
+    titles: retrieveTitleValues(state.utility.titleValues)
+  };
+};
+
 FormPersonal = reduxForm({
   form: "aboutPerson",
   destroyOnUnmount: false
 })(FormPersonal);
 
-export default FormPersonal;
+export default connect(
+  mapstateToProps,
+  { fetchCountries, fetchGenders, fetchTitleProperties }
+)(FormPersonal);

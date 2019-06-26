@@ -163,7 +163,7 @@
 .dropdown-menu.show {
   width: 100% !important;
   max-height: 200px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .dropdown-menu.show input {
@@ -428,6 +428,11 @@ textarea:focus {
   height: 0;
   width: 0;
   left: 97%;
+}
+
+.no-label .checkmark{
+  top: 50%;
+  left: 46%;
 }
 
 /* Create a custom checkbox */

@@ -6,6 +6,16 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { updateEducation } from "../../../../../actions";
+import {
+  fetchCountries,
+  fetchCompanySizes,
+  fetchEduDegrees
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveCompanySizes,
+  retrieveDegreeValues
+} from "../../../../../utilities/utilityQueries";
 
 class EducationUpdateModal extends Component {
   state = {
@@ -29,36 +39,39 @@ class EducationUpdateModal extends Component {
         organizationPhoneNumber: "",
         organizationWebsite: ""
       }
-    },
-    degreeTypeValues: [],
-    organizationSizeValues: [],
-    organizationCountryValues: []
+    }
+    // degreeTypeValues: [],
+    // organizationSizeValues: [],
+    // organizationCountryValues: []
   };
 
-  getDegreeTypeValues = () => {
-    return ["Bachelor", "Masters"];
-  };
+  // getDegreeTypeValues = () => {
+  //   return ["Bachelor", "Masters"];
+  // };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
-  getOrganizationSizeValues = () => {
-    return ["Small", "Medium", "Large"];
-  };
+  // getOrganizationSizeValues = () => {
+  //   return ["Small", "Medium", "Large"];
+  // };
 
   componentWillMount() {
+    this.props.fetchCompanySizes();
+    this.props.fetchCountries();
+    this.props.fetchEduDegrees();
     if (this.props.id !== null) {
       let inputRef = this.props.initialValues;
       let education = { ...this.state.education };
@@ -75,11 +88,11 @@ class EducationUpdateModal extends Component {
         education
       });
     }
-    this.setState({
-      degreeTypeValues: this.getDegreeTypeValues(),
-      organizationSizeValues: this.getOrganizationSizeValues(),
-      organizationCountryValues: this.getCountries()
-    });
+    // this.setState({
+    //   degreeTypeValues: this.getDegreeTypeValues(),
+    //   organizationSizeValues: this.getOrganizationSizeValues(),
+    //   organizationCountryValues: this.getCountries()
+    // });
   }
 
   handleCheckboxChange = e => {
@@ -256,7 +269,7 @@ class EducationUpdateModal extends Component {
                   placeholder="Organization Country"
                   id="EducationalOrg.organizationAddress.country"
                   value={EducationalOrg.organizationAddress.country}
-                  items={this.state.organizationCountryValues}
+                  items={this.props.countries}
                   handleSelectChange={this.handleSelectChange}
                 />
                 <CustomInput
@@ -278,7 +291,7 @@ class EducationUpdateModal extends Component {
                 placeholder="Degree type"
                 id="degreeType"
                 value={degreeType}
-                items={this.state.degreeTypeValues}
+                items={this.props.eduDegrees}
                 handleSelectChange={this.handleSelectChange}
               />
               <CustomInput
@@ -319,11 +332,14 @@ class EducationUpdateModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.education[ownProps.id]
+    initialValues: state.cv.education[ownProps.id],
+    countries: retrieveCountryValues(state.utility.countryValues),
+    companySizes: retrieveCompanySizes(state.utility.companySizeValues),
+    eduDegrees: retrieveDegreeValues(state.utility.eduDegreeValues)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateEducation }
+  { updateEducation, fetchCountries, fetchCompanySizes, fetchEduDegrees }
 )(EducationUpdateModal);

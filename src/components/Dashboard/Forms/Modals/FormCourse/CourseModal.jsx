@@ -6,6 +6,12 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { createCourse } from "../../../../../actions";
+import {
+  fetchCountries
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues
+} from "../../../../../utilities/utilityQueries";
 
 class CourseModal extends Component {
   state = {
@@ -29,29 +35,30 @@ class CourseModal extends Component {
         organizationPhoneNumber: "",
         organizationWebsite: ""
       }
-    },
-    organizationCountryValues: []
+    }
+    // organizationCountryValues: []
   };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
   componentWillMount() {
-    this.setState({
-      organizationCountryValues: this.getCountries()
-    });
+    // this.setState({
+    //   organizationCountryValues: this.getCountries()
+    // });
+    this.props.fetchCountries();
   }
 
   handleCheckboxChange = e => {
@@ -230,7 +237,7 @@ class CourseModal extends Component {
                   placeholder="Organization Country"
                   id="Organization.organizationAddress.country"
                   value={Organization.organizationAddress.country}
-                  items={this.state.organizationCountryValues}
+                  items={this.props.countries}
                   handleSelectChange={this.handleSelectChange}
                 />
                 <CustomInput
@@ -284,7 +291,13 @@ class CourseModal extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues)
+  };
+};
+
 export default connect(
-  null,
-  { createCourse }
+  mapstateToProps,
+  { createCourse, fetchCountries }
 )(CourseModal);

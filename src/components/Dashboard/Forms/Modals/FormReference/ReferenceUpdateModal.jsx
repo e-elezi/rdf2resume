@@ -5,6 +5,14 @@ import CustomSelect from "../../../../core/CustomSelect";
 import CustomInput from "../../../../core/CustomInput";
 import Address from "../../Person/Address";
 import { updateReference } from "../../../../../actions";
+import {
+  fetchCountries,
+  fetchTitleProperties
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveTitleValues
+} from "../../../../../utilities/utilityQueries";
 
 class ReferenceUpdateModal extends Component {
   state = {
@@ -26,31 +34,33 @@ class ReferenceUpdateModal extends Component {
       hasTelephoneNumber: "",
       email: ""
     },
-    titleValues: [],
-    countryValues: [],
+    // titleValues: [],
+    // countryValues: [],
     typeValues: ["Personal", "Professional"]
   };
 
-  getCountries = () => {
-    return [
-      "United States of America",
-      "Albania",
-      "Germany",
-      "Italy",
-      "France",
-      "United Kingdom",
-      "Norway",
-      "Sweden",
-      "Spain",
-      "Portugal"
-    ];
-  };
+  // getCountries = () => {
+  //   return [
+  //     "United States of America",
+  //     "Albania",
+  //     "Germany",
+  //     "Italy",
+  //     "France",
+  //     "United Kingdom",
+  //     "Norway",
+  //     "Sweden",
+  //     "Spain",
+  //     "Portugal"
+  //   ];
+  // };
 
-  getTitles = () => {
-    return ["Doctor", "Professor"];
-  };
+  // getTitles = () => {
+  //   return ["Doctor", "Professor"];
+  // };
 
   componentWillMount() {
+    this.props.fetchCountries();
+    this.props.fetchTitleProperties();
     if (this.props.id !== null) {
       let inputRef = this.props.initialValues;
       let reference = { ...this.state.reference };
@@ -67,16 +77,26 @@ class ReferenceUpdateModal extends Component {
         reference
       });
     }
-    this.setState({
-      countryValues: this.getCountries(),
-      titleValues: this.getTitles()
-    });
+    // this.setState({
+    //   countryValues: this.getCountries(),
+    //   titleValues: this.getTitles()
+    // });
   }
 
   handleSelectChange = (e, id) => {
     let reference = { ...this.state.reference };
-    reference[id] = e.target.text.trim();
-    this.setState({ reference });
+    if (id.indexOf("Address") >= 0) {
+      let sublabel = id.substr(8);
+      let mybj = reference["Address"];
+      mybj[sublabel] = e.target.text.trim();
+      reference["Address"] = mybj;
+      this.setState({
+        reference
+      });
+    } else {
+      reference[id] = e.target.text.trim();
+      this.setState({ reference });
+    }
   };
 
   handleInputChange = e => {
@@ -86,6 +106,14 @@ class ReferenceUpdateModal extends Component {
       let mybj = reference[label];
       mybj["name"] = e.target.value;
       reference[label] = mybj;
+      this.setState({
+        reference
+      });
+    } else if (label.indexOf("Address") >= 0) {
+      let sublabel = label.substr(8);
+      let mybj = reference["Address"];
+      mybj[sublabel] = e.target.value;
+      reference["Address"] = mybj;
       this.setState({
         reference
       });
@@ -145,7 +173,7 @@ class ReferenceUpdateModal extends Component {
                 placeholder="Title"
                 id="title"
                 value={title}
-                items={this.state.titleValues}
+                items={this.props.titles}
                 handleSelectChange={this.handleSelectChange}
               />
             </Col>
@@ -179,10 +207,42 @@ class ReferenceUpdateModal extends Component {
               />
             </Col>
           </Row>
-          <Address
-            Address={this.state.reference.Address}
-            handleStateObjectUpdate={this.handleStateObjectUpdate}
-          />
+          <div>
+            <CustomInput
+              id="Address.street"
+              label="Street name + number"
+              type="text"
+              value={Address.street}
+              handleChange={this.handleInputChange}
+            />
+            <Row>
+              <Col md={6}>
+                <CustomInput
+                  id="Address.postalCode"
+                  label="Postal Code"
+                  type="text"
+                  value={Address.postalCode}
+                  handleChange={this.handleInputChange}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  id="Address.city"
+                  label="City"
+                  type="text"
+                  value={Address.city}
+                  handleChange={this.handleInputChange}
+                />
+              </Col>
+            </Row>
+            <CustomSelect
+              placeholder="Country"
+              id="Address.country"
+              value={Address.country}
+              items={this.props.countries}
+              handleSelectChange={this.handleSelectChange}
+            />
+          </div>
           <CustomInput
             id="hasTelephoneNumber"
             label="Telephone Number"
@@ -213,11 +273,13 @@ class ReferenceUpdateModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.references[ownProps.id]
+    initialValues: state.cv.references[ownProps.id],
+    countries: retrieveCountryValues(state.utility.countryValues),
+    titles: retrieveTitleValues(state.utility.titleValues)
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateReference }
+  { updateReference, fetchCountries, fetchTitleProperties }
 )(ReferenceUpdateModal);
