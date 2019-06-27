@@ -1,52 +1,3 @@
-// import endpoint from "../api/endpoint";
-// import {
-//   fetchCVQuery,
-//   fetchAboutCV,
-//   fetchAboutPerson
-// } from "../utilities/utilityQueries";
-// import {
-//   FETCH_CV,
-//   FETCH_ABOUT_CV,
-//   FETCH_ABOUT_PERSON
-//   //FETCH_COURSES,
-//   //FETCH_EDUCATION,
-//   //FETCH_OTHER_INFO,
-//   //FETCH_REFERENCES,
-//   //FETCH_SKILLS,
-//   //FETCH_TARGET,
-//   //FETCH_WORK_HISTORY
-// } from "./types";
-
-// export const fetchCVURI = (firstName, lastName) => async dispatch => {
-//   let queryUrl =
-//     "http://localhost:3030/resume/query" +
-//     "?query=" +
-//     encodeURIComponent(fetchCVQuery(firstName, lastName)) +
-//     "&format=json";
-//   let response = await endpoint.get(queryUrl);
-//   let cvURI = response.data.results.bindings[0].cv.value;
-//   dispatch({
-//     type: FETCH_CV,
-//     payload: cvURI
-//   });
-// };
-
-// export const fetchABoutCVInfo = () => async (dispatch, getState) => {
-//   const { cv } = getState().cv;
-//   console.log(getState().cv, cv);
-//   let queryUrl =
-//     "http://localhost:3030/resume/query" +
-//     "?query=" +
-//     encodeURIComponent(fetchAboutCV(cv)) +
-//     "&format=json";
-//   let response = await endpoint.get(queryUrl);
-//   console.log(response);
-//   dispatch({
-//     type: FETCH_ABOUT_CV,
-//     payload: response.data.results.bindings[0]
-//   });
-// };
-
 // export const fetchAboutPersonInfo = () => async (dispatch, getState) => {
 //   const { cv } = getState().cv;
 //   console.log(getState().cv, cv);
@@ -81,7 +32,22 @@ import {
   REMOVE_COURSE,
   CREATE_OTHER_SKILL,
   UPDATE_OTHER_SKILL,
-  REMOVE_OTHER_SKILL
+  REMOVE_OTHER_SKILL,
+  UPDATE_ABOUT_CV,
+  UPDATE_ABOUT_PERSON,
+  UPDATE_TARGET,
+  UPDATE_COMMUNICATION_SKILLS,
+  UPDATE_JOB_RELATED_SKILLS,
+  UPDATE_ORGANISATIONAL_SKILLS,
+  UPDATE_MOTHER_TONGUE,
+  UPDATE_OTHER_LANGUAGES_SKILL,
+  UPDATE_DS_CC,
+  UPDATE_DS_CERTIFICATE,
+  UPDATE_DS_CO,
+  UPDATE_DS_INFO_PROC,
+  UPDATE_DS_OTHER,
+  UPDATE_DS_PS,
+  UPDATE_DS_SAFETY
 } from "./types";
 
 export const createOtherInfo = formValues => {
@@ -209,3 +175,108 @@ export const removeOtherSkill = index => {
     payload: index
   };
 };
+
+export const updateAboutCV = formValues => {
+  return {
+    type: UPDATE_ABOUT_CV,
+    payload: formValues
+  }
+}
+
+export const updateAboutPerson = formValues => {
+  return {
+    type: UPDATE_ABOUT_PERSON,
+    payload: formValues
+  }
+}
+
+export const updateTarget = formValues => {
+  return {
+    type: UPDATE_TARGET,
+    payload: formValues
+  }
+}
+
+export const updateCommunicationSkills = formValues => {
+  return {
+    type: UPDATE_COMMUNICATION_SKILLS,
+    payload: formValues
+  }
+}
+
+export const updateJobRelatedSkills = formValues => {
+  return {
+    type: UPDATE_JOB_RELATED_SKILLS,
+    payload: formValues
+  }
+}
+
+export const updateOrganisationalSkills = formValues => {
+  return {
+    type: UPDATE_ORGANISATIONAL_SKILLS,
+    payload: formValues
+  }
+}
+
+export const updateOtherLangSkills = formValues => {
+  return {
+    type: UPDATE_OTHER_LANGUAGES_SKILL,
+    payload: formValues
+  }
+}
+
+export const updateMotherTongue = formValues => {
+  return {
+    type: UPDATE_MOTHER_TONGUE,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsCC = formValues => {
+  return {
+    type: UPDATE_DS_CC,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsCertificate = formValues => {
+  return {
+    type: UPDATE_DS_CERTIFICATE,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsCO = formValues => {
+  return {
+    type: UPDATE_DS_CO,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsInfoProc = formValues => {
+  return {
+    type: UPDATE_DS_INFO_PROC,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsOther = formValues => {
+  return {
+    type: UPDATE_DS_OTHER,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsSafety = formValues => {
+  return {
+    type: UPDATE_DS_SAFETY,
+    payload: formValues
+  }
+}
+
+export const updatedigSkillsPS = formValues => {
+  return {
+    type: UPDATE_DS_PS,
+    payload: formValues
+  }
+}

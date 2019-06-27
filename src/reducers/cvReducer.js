@@ -28,7 +28,22 @@ import {
   REMOVE_COURSE,
   CREATE_OTHER_SKILL,
   UPDATE_OTHER_SKILL,
-  REMOVE_OTHER_SKILL
+  REMOVE_OTHER_SKILL,
+  UPDATE_ABOUT_CV,
+  UPDATE_ABOUT_PERSON,
+  UPDATE_TARGET,
+  UPDATE_COMMUNICATION_SKILLS,
+  UPDATE_JOB_RELATED_SKILLS,
+  UPDATE_ORGANISATIONAL_SKILLS,
+  UPDATE_OTHER_LANGUAGES_SKILL,
+  UPDATE_MOTHER_TONGUE,
+  UPDATE_DS_CC,
+  UPDATE_DS_CERTIFICATE,
+  UPDATE_DS_CO,
+  UPDATE_DS_INFO_PROC,
+  UPDATE_DS_OTHER,
+  UPDATE_DS_PS,
+  UPDATE_DS_SAFETY
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -77,15 +92,8 @@ const INITIAL_STATE = {
       }
     },
     LanguageSkill: {
-      MotherTongue: {
-        skillName: "",
-        languageSkillLevelReading: "",
-        languageSkillLevelWriting: "",
-        languageSkillLevelListening: "",
-        languageSkillLevelSpokenInteraction: "",
-        languageSkillLevelSpokenProduction: ""
-      },
-      OtherLanguages: {}
+      MotherTongue: [],
+      OtherLanguages: []
     },
     OtherSkills: {
       // 1: {
@@ -231,6 +239,84 @@ export default (state = INITIAL_STATE, action) => {
       );
       myremoveskills.OtherSkills = myremoveotherskills;
       return { ...state, skills: myremoveskills };
+    case UPDATE_ABOUT_CV:
+      return { ...state, aboutCV: action.payload };
+    case UPDATE_ABOUT_PERSON:
+      return { ...state, aboutPerson: action.payload };
+    case UPDATE_TARGET:
+      return { ...state, target: action.payload };
+    case UPDATE_COMMUNICATION_SKILLS:
+      let mycoskills = {
+        ...state.skills
+      };
+      mycoskills.CommunicationSkills.description = action.payload;
+      return { ...state, skills: mycoskills };
+    case UPDATE_JOB_RELATED_SKILLS:
+      let myjoskills = {
+        ...state.skills
+      };
+      myjoskills.JobRelatedSkills.description = action.payload;
+      return { ...state, skills: myjoskills };
+    case UPDATE_ORGANISATIONAL_SKILLS:
+      let myoskills = {
+        ...state.skills
+      };
+      myoskills.OrganisationalSkills.description = action.payload;
+      return { ...state, skills: myoskills };
+    case UPDATE_OTHER_LANGUAGES_SKILL:
+      let myolskills = {
+        ...state.skills
+      };
+      myolskills.LanguageSkill.OtherLanguages = action.payload;
+      return { ...state, skills: myolskills };
+    case UPDATE_MOTHER_TONGUE:
+      let mymtskills = {
+        ...state.skills
+      };
+      mymtskills.LanguageSkill.MotherTongue = action.payload;
+      return { ...state, skills: mymtskills };
+    case UPDATE_DS_CC:
+      let myccskills = {
+        ...state.skills
+      };
+      myccskills.DigitalSkills.contentCreation = action.payload;
+      return { ...state, skills: myccskills };
+    case UPDATE_DS_CERTIFICATE:
+      let mycertskills = {
+        ...state.skills
+      };
+      mycertskills.DigitalSkills.hasICTCertificate = action.payload;
+      return { ...state, skills: mycertskills };
+    case UPDATE_DS_CO:
+      let myc0skills = {
+        ...state.skills
+      };
+      myc0skills.DigitalSkills.communication = action.payload;
+      return { ...state, skills: myc0skills };
+    case UPDATE_DS_INFO_PROC:
+      let myinfoprocskills = {
+        ...state.skills
+      };
+      myinfoprocskills.DigitalSkills.informationProcessing = action.payload;
+      return { ...state, skills: myinfoprocskills };
+    case UPDATE_DS_OTHER:
+      let myotherssskills = {
+        ...state.skills
+      };
+      myotherssskills.DigitalSkills.otherDigitalSkills = action.payload;
+      return { ...state, skills: myotherssskills };
+    case UPDATE_DS_PS:
+      let mypssskills = {
+        ...state.skills
+      };
+      mypssskills.DigitalSkills.problemSolving = action.payload;
+      return { ...state, skills: mypssskills };
+    case UPDATE_DS_SAFETY:
+      let mysafetyskills = {
+        ...state.skills
+      };
+      mysafetyskills.DigitalSkills.safety = action.payload;
+      return { ...state, skills: mysafetyskills };
     default:
       return state;
   }
