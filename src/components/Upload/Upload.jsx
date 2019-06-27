@@ -8,7 +8,7 @@ import "./Upload.css";
 class Upload extends Component {
   state = {
     sidebar: [
-      { label: "Upload RDF", link: "/u/upload" }
+      { label: "Upload RDF File", link: "/u/upload" }
     ]
   };
 
