@@ -47,7 +47,8 @@ import {
   UPDATE_DS_INFO_PROC,
   UPDATE_DS_OTHER,
   UPDATE_DS_PS,
-  UPDATE_DS_SAFETY
+  UPDATE_DS_SAFETY,
+  UPDATE_SKILLS
 } from "./types";
 
 export const createOtherInfo = formValues => {
@@ -186,6 +187,13 @@ export const updateAboutCV = formValues => {
 export const updateAboutPerson = formValues => {
   return {
     type: UPDATE_ABOUT_PERSON,
+    payload: formValues
+  }
+}
+
+export const updateSkills = formValues => {
+  return {
+    type: UPDATE_SKILLS,
     payload: formValues
   }
 }

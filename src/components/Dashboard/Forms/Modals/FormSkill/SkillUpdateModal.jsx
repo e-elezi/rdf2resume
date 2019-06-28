@@ -44,12 +44,6 @@ class SkillModal extends Component {
     });
   };
 
-  handleSelectChange = (e, id) => {
-    let otherSkill = { ...this.state.otherSkill };
-    otherSkill[id] = e.target.text.trim();
-    this.setState({ otherSkill });
-  };
-
   handleInputChange = e => {
     let label = e.target.id;
     let otherSkill = { ...this.state.otherSkill };

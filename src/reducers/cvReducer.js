@@ -43,14 +43,56 @@ import {
   UPDATE_DS_INFO_PROC,
   UPDATE_DS_OTHER,
   UPDATE_DS_PS,
-  UPDATE_DS_SAFETY
+  UPDATE_DS_SAFETY,
+  UPDATE_SKILLS
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  cv: {},
-  aboutCV: {},
-  aboutPerson: {},
-  target: {},
+  aboutCV: {
+    cvTitle: "",
+    cvNotes: "",
+    cvIsActive: true,
+    cvIsConfidential: false,
+    cvLastUpdated: "",
+    cvCopyright: ""
+  },
+  aboutPerson: {
+    firstName: "",
+    lastName: "",
+    photo: "",
+    hasCitizenship: [],
+    hasNationality: [],
+    website: "",
+    dateOfBirth: "",
+    gender: "",
+    driversLicence: "",
+    hasTelephoneNumber: [],
+    email: "",
+    title: "",
+    instantMessaging: [],
+    address: {
+      city: "",
+      country: "",
+      street: "",
+      postalCode: ""
+    }
+  },
+  target: {
+    targetCompanySize: "",
+    targetSalaryCurrency: "",
+    targetCompanyIndustry: [],
+    targetJobCareerLevel: "",
+    targetJobMode: "",
+    weeksNoticePeriod: "",
+    targetJobTitle: "",
+    conditionWillTravel: false,
+    conditionWillRelocate: false,
+    targetJobDescription: "",
+    targetCompanyDescription: "",
+    targetCompanyLocality: "",
+    targetCompanyCountry: [],
+    targetSalaryRange: ""
+  },
   education: {},
   courses: {},
   skills: {
@@ -91,21 +133,8 @@ const INITIAL_STATE = {
         value: ""
       }
     },
-    LanguageSkill: {
-      MotherTongue: [],
-      OtherLanguages: []
-    },
-    OtherSkills: {
-      // 1: {
-      //   skillName: "",
-      //   skillDescription: "",
-      //   skillLevel: "",
-      //   skillLastUsed: "",
-      //   skillYearsExperience: "",
-      //   skillHasCertificate: true,
-      //   id: 1
-      // }
-    }
+    LanguageSkills: [],
+    OtherSkills: {}
   },
   references: {},
   workHistory: {},
@@ -240,11 +269,31 @@ export default (state = INITIAL_STATE, action) => {
       myremoveskills.OtherSkills = myremoveotherskills;
       return { ...state, skills: myremoveskills };
     case UPDATE_ABOUT_CV:
-      return { ...state, aboutCV: action.payload };
+      let aboutcv = { ...state.aboutCV };
+      aboutcv[action.payload.id] = action.payload.value;
+      return { ...state, aboutCV: aboutcv };
     case UPDATE_ABOUT_PERSON:
-      return { ...state, aboutPerson: action.payload };
+      let aboutperson = { ...state.aboutPerson };
+      if (action.payload.super)
+        aboutperson[action.payload.super][action.payload.id] =
+          action.payload.value;
+      else aboutperson[action.payload.id] = action.payload.value;
+      return { ...state, aboutPerson: aboutperson };
+    case UPDATE_SKILLS:
+      let myownskills = { ...state.skills };
+      if (action.payload.oneLevelId && action.payload.twoLevelID)
+        myownskills[action.payload.twoLevelID][action.payload.oneLevelId][
+          action.payload.id
+        ] = action.payload.value;
+      else if (action.payload.oneLevelId)
+        myownskills[action.payload.oneLevelId][action.payload.id] =
+          action.payload.value;
+      else myownskills[action.payload.id] = action.payload.value;
+      return { ...state, skills: myownskills };
     case UPDATE_TARGET:
-      return { ...state, target: action.payload };
+      let mytarget = { ...state.target };
+      mytarget[action.payload.id] = action.payload.value;
+      return { ...state, target: mytarget };
     case UPDATE_COMMUNICATION_SKILLS:
       let mycoskills = {
         ...state.skills

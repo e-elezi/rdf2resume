@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { Link, Route, withRouter } from "react-router-dom";
 import "./App.css";
+import 'react-widgets/dist/css/react-widgets.css'
 import Topbar from "./components/Topbar";
 import Upload from "./components/Upload/Upload";
 import Main from "./components/Dashboard/Main";

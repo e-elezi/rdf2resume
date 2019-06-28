@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import CustomInput from "../../coreRedux/CustomInput";
 import { Row, Col } from "react-bootstrap";
-import { reduxForm, Field } from "redux-form";
-import CustomDropdown from "../../coreRedux/CustomDropdown";
-import CustomMultiSelect from "../../coreRedux/CustomMultiSelect";
-import CustomTextarea from "../../coreRedux/CustomTextarea";
-import CustomCheckbox from "../../coreRedux/CustomCheckbox";
+import CustomInput from "../../core/CustomInput";
+import CustomTextarea from "../../core/CustomTextarea";
+import CustomCheckbox from "../../core/CustomCheckbox";
+import { Combobox, Multiselect } from "react-widgets";
 import { connect } from "react-redux";
+import { updateTarget } from "../../../actions";
 import {
   fetchCVJobModes,
   fetchCVCareerLevels,
@@ -27,49 +26,12 @@ class FormTarget extends Component {
     targetCompanySizeValues: [],
     targetCompanyIndustryValues: [],
     jobCareerLevelValues: [],
-    currencyValues: [],
-    hasTelephoneNumberCount: 1,
-    InstantMessagingCount: 1
+    currencyValues: []
   };
-
-  // getJobModeValues = () => {
-  //   return ["Employee Full time", "Employee Part time", "Contractor", "Intern"];
-  // };
-
-  // getJobCareerLevels = () => {
-  //   return [
-  //     "Student (high school)",
-  //     "Student (graduate/undergraduate)",
-  //     "Entry level (less than 2 years of experience)",
-  //     "Mid-career (2+ years of experience)",
-  //     "Management (manager/director of staff)",
-  //     "Executive (SVP, EVP, VP",
-  //     "Senior Executive (president / CEO)"
-  //   ];
-  // };
-
-  // getCompanySizeValues = () => {
-  //   return ["Small", "Medium", "Large"];
-  // };
 
   getCompanyIndustryValues = () => {
     return ["Education", "Agriculture", "Computer Science", "Logistics"];
   };
-
-  // getCountries = () => {
-  //   return [
-  //     "United States of America",
-  //     "Albania",
-  //     "Germany",
-  //     "Italy",
-  //     "France",
-  //     "United Kingdom",
-  //     "Norway",
-  //     "Sweden",
-  //     "Spain",
-  //     "Portugal"
-  //   ];
-  // };
 
   getCurrencies = () => {
     return [
@@ -84,10 +46,6 @@ class FormTarget extends Component {
 
   componentWillMount() {
     this.setState({
-      // jobModeValues: this.getJobModeValues(),
-      // jobCareerLevelValues: this.getJobCareerLevels(),
-      // targetCompanyCountryValues: this.getCountries(),
-      // targetCompanySizeValues: this.getCompanySizeValues(),
       currencyValues: this.getCurrencies(),
       targetCompanyIndustryValues: this.getCompanyIndustryValues()
     });
@@ -97,110 +55,182 @@ class FormTarget extends Component {
     this.props.fetchCountries();
   }
 
+  handleInputChange = e => {
+    //e.target.id e.target.value
+    this.props.updateTarget({ id: e.target.id, value: e.target.value });
+  };
+
+  handleCheckboxChange = e => {
+    //e.target.id e.target.checked
+    this.props.updateTarget({ id: e.target.id, value: e.target.checked });
+  };
+
+  handleSelectChange = (name, value) => {
+    this.props.updateTarget({ id: name, value: value });
+  };
+
+  handleMultiSelectChange = (name, value) => {
+    this.props.updateTarget({ id: name, value: value });
+  };
+
   render() {
-    // let {
-    //   targetJobMode,
-    //   targetJobDescription,
-    //   targetJobCareerLevel,
-    //   targetSalary,
-    //   targetSalaryCurrency,
-    //   targetCompanyCountry,
-    //   targetCompanyLocality,
-    //   targetCompanyDescription,
-    //   targetCompanySize,
-    //   targetCompanyIndustry,
-    //   conditionWillRelocate,
-    //   conditionWillTravel,
-    //   weeksNoticePeriod
-    // } = this.state.Target;
+    let {
+      targetCompanySize,
+      targetSalaryCurrency,
+      targetCompanyIndustry,
+      targetJobCareerLevel,
+      targetJobMode,
+      weeksNoticePeriod,
+      targetJobTitle,
+      conditionWillTravel,
+      conditionWillRelocate,
+      targetJobDescription,
+      targetCompanyDescription,
+      targetCompanyLocality,
+      targetCompanyCountry,
+      targetSalaryRange
+    } = this.props.target;
 
     return (
       <Row className="main-content-row">
         <Col md={4}>
           <h4>Target Job</h4>
-          <Field
-            name="targetJobTitle"
-            component={CustomInput}
+          <CustomInput
+            id="targetJobTitle"
             label="Job Title"
             type="text"
+            value={targetJobTitle}
+            handleChange={this.handleInputChange}
           />
-          <Field
+          <label className="label-rw">Job Mode</label>
+          <Combobox
             name="targetJobMode"
-            component={CustomDropdown}
-            label="Job Mode"
+            placeholder="Select a job mode"
             data={this.props.jobModes}
+            value={targetJobMode}
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value => this.handleSelectChange("targetJobMode", value)}
           />
-          <Field
+          <label className="label-rw"> Job Career Level</label>
+          <Combobox
             name="targetJobCareerLevel"
-            component={CustomDropdown}
-            label="Job Career Level"
             data={this.props.careerLevels}
+            value={targetJobCareerLevel}
+            placeholder="Select a career level"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleSelectChange("targetJobCareerLevel", value)
+            }
           />
-          <Field
-            name="targetSalaryRange"
-            component={CustomInput}
+          <CustomInput
+            id="targetSalaryRange"
             label="Salary Range"
             type="text"
+            value={targetSalaryRange}
+            handleChange={this.handleInputChange}
           />
-          <Field
+          <label className="label-rw">Salary Currency</label>
+          <Combobox
             name="targetSalaryCurrency"
-            component={CustomDropdown}
-            label="Salary Currency"
             data={this.state.currencyValues}
+            value={targetSalaryCurrency}
+            placeholder="Select a currency"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleSelectChange("targetSalaryCurrency", value)
+            }
           />
-          <Field
-            name="weeksNoticePeriod"
-            component={CustomInput}
+          <CustomInput
+            id="weeksNoticePeriod"
             label="Weeks Notice Period"
             type="text"
+            value={weeksNoticePeriod}
+            handleChange={this.handleInputChange}
           />
           <div className="mb-3" />
-          <Field
-            name="conditionWillRelocate"
-            component={CustomCheckbox}
+          <CustomCheckbox
+            id="conditionWillRelocate"
+            type="checkbox"
             label="Willing to relocate?"
+            checked={conditionWillRelocate}
+            handleChange={this.handleCheckboxChange}
           />
-          <Field
-            name="conditionWillTravel"
-            component={CustomCheckbox}
-            label="Willing to travel?"
-          />
-          <Field
-            name="targetJobDescription"
-            component={CustomTextarea}
+          <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <CustomCheckbox
+              id="conditionWillTravel"
+              type="checkbox"
+              label="Willing to travel?"
+              checked={conditionWillTravel}
+              handleChange={this.handleCheckboxChange}
+            />
+          </div>
+          <CustomTextarea
+            id="targetJobDescription"
             label="Job Description"
+            value={targetJobDescription}
+            handleChange={this.handleInputChange}
           />
         </Col>
         <Col md={4}>
           <h4>Target Company</h4>
-          <Field
-            name="targetCompanySize"
-            component={CustomDropdown}
-            label="Company Size"
-            data={this.props.companySizes}
-          />
-          <Field
-            name="targetCompanyIndustry"
-            component={CustomMultiSelect}
-            label="Company Industry"
-            data={this.state.targetCompanyIndustryValues}
-          />
-          <Field
-            name="targetCompanyLocality"
-            component={CustomInput}
+          <CustomInput
+            id="targetCompanyLocality"
             label="Company Locality"
             type="text"
+            value={targetCompanyLocality}
+            handleChange={this.handleInputChange}
           />
-          <Field
+          <label className="label-rw">Company Country</label>
+          <Multiselect
             name="targetCompanyCountry"
-            component={CustomMultiSelect}
-            label="Company Country"
             data={this.props.countries}
+            value={targetCompanyCountry}
+            placeholder="Select a country"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleMultiSelectChange("targetCompanyCountry", value)
+            }
           />
-          <Field
-            name="targetCompanyDescription"
-            component={CustomTextarea}
+          <label className="label-rw">Company Size</label>
+          <Combobox
+            name="targetCompanySize"
+            data={this.props.companySizes}
+            value={targetCompanySize}
+            placeholder="Select a size"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleSelectChange("targetCompanySize", value)
+            }
+          />
+          <label className="label-rw">Company Industry</label>
+          <Multiselect
+            name="targetCompanyIndustry"
+            data={this.state.targetCompanyIndustryValues}
+            value={targetCompanyIndustry}
+            placeholder="Select an industry"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleMultiSelectChange("targetCompanyIndustry", value)
+            }
+          />
+          <div className="mb-3"></div>
+          <CustomTextarea
+            id="targetCompanyDescription"
             label="Company Description"
+            value={targetCompanyDescription}
+            handleChange={this.handleInputChange}
           />
         </Col>
         <Col md={4}> </Col>
@@ -214,16 +244,18 @@ const mapstateToProps = state => {
     countries: retrieveCountryValues(state.utility.countryValues),
     jobModes: retrieveJobModes(state.utility.jobModeValues),
     careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
-    companySizes: retrieveCompanySizes(state.utility.companySizeValues)
+    companySizes: retrieveCompanySizes(state.utility.companySizeValues),
+    target: state.cv.target
   };
 };
 
-FormTarget = reduxForm({
-  form: "target",
-  destroyOnUnmount: false
-})(FormTarget);
-
 export default connect(
   mapstateToProps,
-  { fetchCVJobModes, fetchCVCareerLevels, fetchCountries, fetchCompanySizes }
+  {
+    fetchCVJobModes,
+    fetchCVCareerLevels,
+    fetchCountries,
+    fetchCompanySizes,
+    updateTarget
+  }
 )(FormTarget);

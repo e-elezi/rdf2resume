@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { reduxForm, Field, FieldArray } from "redux-form";
 import { connect } from "react-redux";
 import SkillModal from "./Modals/FormSkill/SkillModal";
 import SkillView from "./Modals/FormSkill/SkillView";
 import AddButton from "../../core/AddButton";
-import CustomDropdown from "../../coreRedux/CustomDropdown";
-import CustomInput from "../../coreRedux/CustomInput";
+import { Combobox } from "react-widgets";
+import CustomInput from "../../core/CustomInput";
 import RemoveButton from "../../core/RemoveButton";
-import CustomTextarea from "../../coreRedux/CustomTextarea";
-import CustomCheckbox from "../../coreRedux/CustomCheckbox";
+import CustomTextarea from "../../core/CustomTextarea";
+import CustomCheckbox from "../../core/CustomCheckbox";
+import { updateSkills } from "../../../actions";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
   fetchSelfAssessmentProperties
@@ -26,19 +26,7 @@ class FormSkill extends Component {
     generalSkillLevelValue: []
   };
 
-  getLanguageLevelValues() {
-    return ["A1", "A2", "B1", "B2", "C1", "C2"];
-  }
-
-  getGeneralSkillLevelValues() {
-    return ["Basic User", "Independent User", "Profecient User"];
-  }
-
   componentWillMount() {
-    // this.setState({
-    //   languageLevelSkillsValue: this.getLanguageLevelValues(),
-    //   generalSkillLevelValue: this.getGeneralSkillLevelValues()
-    // });
     this.props.fetchLanguageSkillSelfAssessmentProperties();
     this.props.fetchSelfAssessmentProperties();
   }
@@ -51,163 +39,303 @@ class FormSkill extends Component {
     this.setState({ showModal: true });
   };
 
-  renderLanguageSkills = ({
-    fields,
-    meta: { touched, error, submitFailed }
-  }) => (
-    <div>
-      <Row>
-        <Col md={8}>
-          <h6 style={{ marginTop: "10px" }}>Language Skills</h6>
-        </Col>
-        <Col md={4} className="side-button-wrapper">
-          <Row>
-            <Col md={2}>
-              <AddButton
-                classnames="add-button"
-                handleClick={() => fields.push({})}
-              />
-            </Col>
-            <Col md={10} className="button-label">
-              <p>Add Language Skill</p>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      {(touched || submitFailed) && error && <span>{error}</span>}
+  handleInputChange = e => {
+    //e.target.id e.target.value
+    console.log(e.target.name, e.target.value, e.target.id);
 
-      <Row style={{ justifyContent: "left" }}>
-        <Col sm={10}>
-          <table className="table">
-            <thead className="thead-light">
-              <tr>
-                <th style={{ width: "150px" }} scope="col">
-                  Language
-                </th>
-                <th style={{ width: "150px" }} scope="col">
-                  Reading
-                </th>
-                <th style={{ width: "150px" }} scope="col">
-                  Writing
-                </th>
-                <th style={{ width: "150px" }} scope="col">
-                  Listening
-                </th>
-                <th style={{ width: "180px" }} scope="col">
-                  Spoken Interaction
-                </th>
-                <th style={{ width: "180px" }} scope="col">
-                  Spoken Production
-                </th>
-                <th style={{ width: "180px" }} scope="col">
-                  Is Mother Tongue?
-                </th>
-                <th scope="col">{` `}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fields.map((member, index) => (
-                <tr key={index}>
-                  <th>
-                    <div style={{ marginTop: "10px" }}>
-                      <Field
-                        name={`${member}.lngName`}
-                        type="text"
-                        component={CustomInput}
-                        label="Name"
-                      />
-                    </div>
-                  </th>
-                  <td>
-                    <Field
-                      name={`${member}.lngReading`}
-                      component={CustomDropdown}
-                      label="Select level"
-                      data={this.props.lngAssessmentValues}
-                    />
-                  </td>
-                  <td>
-                    <Field
-                      name={`${member}.lngWriting`}
-                      component={CustomDropdown}
-                      label="Select level"
-                      data={this.props.lngAssessmentValues}
-                    />
-                  </td>
-                  <td>
-                    <Field
-                      name={`${member}.lngListening`}
-                      component={CustomDropdown}
-                      label="Select level"
-                      data={this.props.lngAssessmentValues}
-                    />
-                  </td>
-                  <td>
-                    <Field
-                      name={`${member}.lngSpeakingInter`}
-                      component={CustomDropdown}
-                      label="Select level"
-                      data={this.props.lngAssessmentValues}
-                    />
-                  </td>
-                  <td>
-                    <Field
-                      name={`${member}.lngSpeakingProd`}
-                      component={CustomDropdown}
-                      label="Select level"
-                      data={this.props.lngAssessmentValues}
-                    />
-                  </td>
-                  <td>
-                    <Field
-                      name={`${member}.isMotherTongue`}
-                      component={CustomCheckbox}
-                    />
-                  </td>
-                  <td style={{ display: "flex", justifyContent: "center" }}>
-                    <RemoveButton
-                      classnames="shift-left"
-                      handleClick={() => fields.remove(index)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Col>
-        <Col sm={2} />
-      </Row>
-    </div>
-  );
+    this.props.updateSkills({
+      id: e.target.name,
+      value: e.target.value,
+      oneLevelId: e.target.id
+    });
+  };
+
+  handleCheckboxChange = e => {
+    //e.target.id e.target.checked
+    console.log(e.target.id, e.target.name, e.target.checked);
+    this.props.updateSkills({
+      id: e.target.id,
+      value: e.target.checked,
+      oneLevelId: e.target.name
+    });
+  };
+
+  handleSelectChange = (name, value, oneLevelId, twoLevelID) => {
+    this.props.updateSkills({
+      id: name,
+      value: value,
+      oneLevelId: oneLevelId,
+      twoLevelID: twoLevelID
+    });
+  };
+
+  handleMultiSelectChange = (name, value) => {
+    this.props.updateSkills({ id: name, value: value });
+  };
+
+  addLanguageSkill = id => {
+    let myarr = [
+      ...this.props.skills.LanguageSkills,
+      {
+        languageSkillLevelReading: "",
+        languageSkillLevelWriting: "",
+        languageSkillLevelListening: "",
+        languageSkillLevelSpokenInteraction: "",
+        languageSkillLevelSpokenProduction: "",
+        isMotherTongue: false,
+        skillName: ""
+      }
+    ];
+    this.props.updateSkills({ id: id, value: myarr });
+  };
+
+  updateLanguageSkill = (name, value, index, oneLevelId) => {
+    let myarr = [...this.props.skills.LanguageSkills];
+    myarr[index][name] = value;
+    this.props.updateSkills({ id: name, value: myarr, oneLevelId: oneLevelId });
+  };
+
+  removeLanguageSkill = (id, index, oneLevelId) => {
+    let myarr = this.props.skills.LanguageSkills.filter(
+      (item, ind) => ind !== index
+    );
+    this.props.updateSkills({ id: id, value: myarr, oneLevelId: oneLevelId });
+  };
 
   render() {
     let { showModal } = this.state;
+    let { skills } = this.props;
     return (
       <React.Fragment>
-        <FieldArray
-          name="otherLanguageSkill"
-          component={this.renderLanguageSkills}
-        />
+        <Row>
+          <Col md={8}>
+            <h6 style={{ marginTop: "10px" }}>Language Skills</h6>
+          </Col>
+          <Col md={4} className="side-button-wrapper">
+            <Row>
+              <Col md={2}>
+                <AddButton
+                  classnames="add-button"
+                  handleClick={() => this.addLanguageSkill("LanguageSkills")}
+                />
+              </Col>
+              <Col md={10} className="button-label">
+                <p>Add Language Skill</p>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row style={{ justifyContent: "left" }}>
+          <Col sm={10}>
+            <table className="table">
+              <thead className="thead-light">
+                <tr>
+                  <th style={{ width: "150px" }} scope="col">
+                    Language
+                  </th>
+                  <th style={{ width: "150px" }} scope="col">
+                    Reading
+                  </th>
+                  <th style={{ width: "150px" }} scope="col">
+                    Writing
+                  </th>
+                  <th style={{ width: "150px" }} scope="col">
+                    Listening
+                  </th>
+                  <th style={{ width: "180px" }} scope="col">
+                    Spoken Interaction
+                  </th>
+                  <th style={{ width: "180px" }} scope="col">
+                    Spoken Production
+                  </th>
+                  <th style={{ width: "180px" }} scope="col">
+                    Is Mother Tongue?
+                  </th>
+                  <th scope="col">{` `}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {skills.LanguageSkills.map((member, index) => (
+                  <tr key={index}>
+                    <th>
+                      <div style={{ marginTop: "10px" }}>
+                        <CustomInput
+                          id="skillName"
+                          label="Name"
+                          type="text"
+                          value={member.skillName}
+                          handleChange={e =>
+                            this.updateLanguageSkill(
+                              e.target.id,
+                              e.target.value,
+                              index,
+                              "LanguageSkills"
+                            )
+                          }
+                        />
+                      </div>
+                    </th>
+                    <td>
+                      <div style={{ marginTop: "15px" }}>
+                        <Combobox
+                          name="languageSkillLevelReading"
+                          data={this.props.lngAssessmentValues}
+                          value={member.languageSkillLevelReading}
+                          placeholder="Select level"
+                          caseSensitive={false}
+                          minLength={3}
+                          filter="contains"
+                          onChange={value =>
+                            this.updateLanguageSkill(
+                              "languageSkillLevelReading",
+                              value,
+                              index,
+                              "LanguageSkills"
+                            )
+                          }
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div style={{ marginTop: "15px" }}>
+                        <Combobox
+                          name="languageSkillLevelWriting"
+                          data={this.props.lngAssessmentValues}
+                          value={member.languageSkillLevelWriting}
+                          placeholder="Select level"
+                          caseSensitive={false}
+                          minLength={3}
+                          filter="contains"
+                          onChange={value =>
+                            this.updateLanguageSkill(
+                              "languageSkillLevelWriting",
+                              value,
+                              index,
+                              "LanguageSkills"
+                            )
+                          }
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div style={{ marginTop: "15px" }}>
+                        <Combobox
+                          name="languageSkillLevelListening"
+                          data={this.props.lngAssessmentValues}
+                          value={member.languageSkillLevelListening}
+                          placeholder="Select level"
+                          caseSensitive={false}
+                          minLength={3}
+                          filter="contains"
+                          onChange={value =>
+                            this.updateLanguageSkill(
+                              "languageSkillLevelListening",
+                              value,
+                              index,
+                              "LanguageSkills"
+                            )
+                          }
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div style={{ marginTop: "15px" }}>
+                        <Combobox
+                          name="languageSkillLevelSpokenInteraction"
+                          data={this.props.lngAssessmentValues}
+                          value={member.languageSkillLevelSpokenInteraction}
+                          placeholder="Select level"
+                          caseSensitive={false}
+                          minLength={3}
+                          filter="contains"
+                          onChange={value =>
+                            this.updateLanguageSkill(
+                              "languageSkillLevelSpokenInteraction",
+                              value,
+                              index,
+                              "LanguageSkills"
+                            )
+                          }
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div style={{ marginTop: "15px" }}>
+                        <Combobox
+                          name="languageSkillLevelSpokenProduction"
+                          data={this.props.lngAssessmentValues}
+                          value={member.languageSkillLevelSpokenProduction}
+                          placeholder="Select level"
+                          caseSensitive={false}
+                          minLength={3}
+                          filter="contains"
+                          onChange={value =>
+                            this.updateLanguageSkill(
+                              "languageSkillLevelSpokenProduction",
+                              value,
+                              index,
+                              "LanguageSkills"
+                            )
+                          }
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <CustomCheckbox
+                        id="isMotherTongue"
+                        type="checkbox"
+                        checked={member.isMotherTongue}
+                        handleChange={e =>
+                          this.updateLanguageSkill(
+                            e.target.id,
+                            e.target.checked,
+                            index,
+                            "LanguageSkills"
+                          )
+                        }
+                      />
+                    </td>
+                    <td style={{ display: "flex", justifyContent: "center" }}>
+                      <RemoveButton
+                        classnames="shift-left"
+                        handleClick={() =>
+                          this.removeLanguageSkill("LanguageSkills", index)
+                        }
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Col>
+          <Col sm={2} />
+        </Row>
         <Row>
           <Col md={3}>
-            <Field
-              name="osDecription"
-              component={CustomTextarea}
-              label="Organization Skills"
-            />
-          </Col>
-          <Col md={3}>
-            <Field
-              name="coDecription"
-              component={CustomTextarea}
+            <CustomTextarea
+              id="CommunicationSkills"
+              name="description"
               label="Communication Skills"
+              value={skills.CommunicationSkills.description}
+              handleChange={this.handleInputChange}
             />
           </Col>
           <Col md={3}>
-            <Field
-              name="jrDecription"
-              component={CustomTextarea}
+            <CustomTextarea
+              id="OrganisationalSkills"
+              name="description"
+              label="Organization Skills"
+              value={skills.OrganisationalSkills.description}
+              handleChange={this.handleInputChange}
+            />
+          </Col>
+          <Col md={3}>
+            <CustomTextarea
+              id="JobRelatedSkills"
+              name="description"
               label="Job Related Skills"
+              value={skills.JobRelatedSkills.description}
+              handleChange={this.handleInputChange}
             />
           </Col>
           <Col md={3} />
@@ -215,48 +343,116 @@ class FormSkill extends Component {
         <Row style={{ justifyContent: "left" }}>
           <Col md={3}>
             <h6>Digital Skills</h6>
-            <Field
+            <label className="label-rw">Information Processing Level</label>
+            <Combobox
               name="informationProcessing"
-              component={CustomDropdown}
-              label="Information Processing Level"
               data={this.props.assessmentValues}
+              value={skills.DigitalSkills.informationProcessing.value}
+              placeholder="Select level"
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(
+                  "value",
+                  value,
+                  "informationProcessing",
+                  "DigitalSkills"
+                )
+              }
             />
-            <Field
+            <label className="label-rw">Communication Level</label>
+            <Combobox
               name="communication"
-              component={CustomDropdown}
-              label="Communication Level"
               data={this.props.assessmentValues}
+              value={skills.DigitalSkills.communication.value}
+              placeholder="Select level"
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(
+                  "value",
+                  value,
+                  "communication",
+                  "DigitalSkills"
+                )
+              }
             />
-            <Field
+
+            <label className="label-rw">Content Creation Level</label>
+            <Combobox
               name="contentCreation"
-              component={CustomDropdown}
-              label="Content Creation Level"
               data={this.props.assessmentValues}
+              value={skills.DigitalSkills.contentCreation.value}
+              placeholder="Select level"
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(
+                  "value",
+                  value,
+                  "contentCreation",
+                  "DigitalSkills"
+                )
+              }
             />
-            <Field
+
+            <label className="label-rw">Safety Level</label>
+            <Combobox
               name="safety"
-              component={CustomDropdown}
-              label="safety Level"
               data={this.props.assessmentValues}
+              value={skills.DigitalSkills.safety.value}
+              placeholder="Select level"
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(
+                  "value",
+                  value,
+                  "safety",
+                  "DigitalSkills"
+                )
+              }
             />
-            <Field
+
+            <label className="label-rw">Problem Solving Level</label>
+            <Combobox
               name="problemSolving"
-              component={CustomDropdown}
-              label="Problem Solving Level"
               data={this.props.assessmentValues}
+              value={skills.DigitalSkills.problemSolving.value}
+              placeholder="Select level"
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(
+                  "value",
+                  value,
+                  "problemSolving",
+                  "DigitalSkills"
+                )
+              }
             />
           </Col>
           <Col md={3}>
             <h6> {` `}</h6>
-            <Field
-              name="isDigitalCertified"
-              component={CustomCheckbox}
+            <CustomCheckbox
+              name="DigitalSkills"
+              id="hasICTCertificate"
+              type="checkbox"
               label="Has Certification?"
+              checked={skills.DigitalSkills.hasICTCertificate}
+              handleChange={this.handleCheckboxChange}
             />
-            <Field
+            <CustomTextarea
               name="otherDigitalSkills"
-              component={CustomTextarea}
+              id="DigitalSkills"
               label="Other Digital Skills"
+              value={skills.DigitalSkills.otherDigitalSkills}
+              handleChange={this.handleInputChange}
             />
           </Col>
         </Row>
@@ -293,17 +489,16 @@ const mapStateToProps = state => {
       state.utility.languageSelfAssessmentValues
     ),
     assessmentValues: retrieveAssessment(state.utility.selfAssessmentValues),
-    skills: Object.values(state.cv.skills),
+    skills: state.cv.skills,
     otherSkills: Object.values(state.cv.skills.OtherSkills)
   };
 };
 
-FormSkill = reduxForm({
-  form: "skills",
-  destroyOnUnmount: false
-})(FormSkill);
-
 export default connect(
   mapStateToProps,
-  { fetchLanguageSkillSelfAssessmentProperties, fetchSelfAssessmentProperties }
+  {
+    fetchLanguageSkillSelfAssessmentProperties,
+    updateSkills,
+    fetchSelfAssessmentProperties
+  }
 )(FormSkill);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../../core/CustomSelect";
+import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -40,33 +40,7 @@ class EducationUpdateModal extends Component {
         organizationWebsite: ""
       }
     }
-    // degreeTypeValues: [],
-    // organizationSizeValues: [],
-    // organizationCountryValues: []
   };
-
-  // getDegreeTypeValues = () => {
-  //   return ["Bachelor", "Masters"];
-  // };
-
-  // getCountries = () => {
-  //   return [
-  //     "United States of America",
-  //     "Albania",
-  //     "Germany",
-  //     "Italy",
-  //     "France",
-  //     "United Kingdom",
-  //     "Norway",
-  //     "Sweden",
-  //     "Spain",
-  //     "Portugal"
-  //   ];
-  // };
-
-  // getOrganizationSizeValues = () => {
-  //   return ["Small", "Medium", "Large"];
-  // };
 
   componentWillMount() {
     this.props.fetchCompanySizes();
@@ -88,11 +62,6 @@ class EducationUpdateModal extends Component {
         education
       });
     }
-    // this.setState({
-    //   degreeTypeValues: this.getDegreeTypeValues(),
-    //   organizationSizeValues: this.getOrganizationSizeValues(),
-    //   organizationCountryValues: this.getCountries()
-    // });
   }
 
   handleCheckboxChange = e => {
@@ -132,7 +101,7 @@ class EducationUpdateModal extends Component {
     }
   };
 
-  handleSelectChange = (e, id) => {
+  handleSelectChange = (value, id) => {
     let education = { ...this.state.education };
     let label = id;
     if (label.indexOf("EducationalOrg") >= 0) {
@@ -140,21 +109,21 @@ class EducationUpdateModal extends Component {
       if (sublabel.indexOf("organizationAddress") >= 0) {
         let subsublabel = sublabel.substr(20);
         let mybj = education["EducationalOrg"]["organizationAddress"];
-        mybj[subsublabel] = e.target.text.trim();
+        mybj[subsublabel] = value.trim();
         education["EducationalOrg"]["organizationAddress"] = mybj;
         this.setState({
           education
         });
       } else {
         let mybj = education["EducationalOrg"];
-        mybj[sublabel] = e.target.text.trim();
+        mybj[sublabel] = value.trim();
         education["EducationalOrg"] = mybj;
         this.setState({
           education
         });
       }
     } else {
-      education[label] = e.target.text.trim();
+      education[label] = value.trim();
       this.setState({
         education
       });
@@ -188,7 +157,7 @@ class EducationUpdateModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={9}>Update Education</Col>
+              <Col md={9}>Add New Education</Col>
               <Col md={2}>
                 <CustomCheckbox
                   id="isEduCurrent"
@@ -265,35 +234,48 @@ class EducationUpdateModal extends Component {
                     />
                   </Col>
                 </Row>
-                <CustomSelect
-                  placeholder="Organization Country"
-                  id="EducationalOrg.organizationAddress.country"
-                  value={EducationalOrg.organizationAddress.country}
-                  items={this.props.countries}
-                  handleSelectChange={this.handleSelectChange}
-                />
+                <Row
+                  style={{
+                    width: "100%",
+                    justifyContent: "left",
+                    marginLeft: "0px",
+                    marginBottom: "8px"
+                  }}
+                >
+                  <label className="label-rw">Organization Country</label>
+                  <Combobox
+                    name="EducationalOrg.organizationAddress.country"
+                    placeholder="Select country"
+                    data={this.props.countries}
+                    value={EducationalOrg.organizationAddress.country}
+                    caseSensitive={false}
+                    minLength={3}
+                    filter="contains"
+                    onChange={value =>
+                      this.handleSelectChange(
+                        value,
+                        "EducationalOrg.organizationAddress.country"
+                      )
+                    }
+                  />
+                </Row>
                 <CustomInput
                   id="EducationalOrg.organizationPhoneNumber"
                   label="Organization Phone Number"
                   value={EducationalOrg.organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
-                <CustomTextarea
-                  id="EducationalOrg.organizationDescription"
-                  label="Organization Description"
-                  value={EducationalOrg.organizationDescription}
-                  handleChange={this.handleInputChange}
-                />
+                <div style={{ marginTop: "10px" }}>
+                  <CustomTextarea
+                    id="EducationalOrg.organizationDescription"
+                    label="Organization Description"
+                    value={EducationalOrg.organizationDescription}
+                    handleChange={this.handleInputChange}
+                  />
+                </div>
               </Row>
             </Col>
             <Col md={6}>
-              <CustomSelect
-                placeholder="Degree type"
-                id="degreeType"
-                value={degreeType}
-                items={this.props.eduDegrees}
-                handleSelectChange={this.handleSelectChange}
-              />
               <CustomInput
                 id="eduMajor"
                 label="Major"
@@ -308,12 +290,25 @@ class EducationUpdateModal extends Component {
                 value={eduMinor}
                 handleChange={this.handleInputChange}
               />
-              <CustomTextarea
-                id="eduDescription"
-                label="Education Description"
-                value={eduDescription}
-                handleChange={this.handleInputChange}
+              <label className="label-rw">Degree type</label>
+              <Combobox
+                name="degreeType"
+                placeholder="Select degree"
+                data={this.props.eduDegrees}
+                value={degreeType}
+                caseSensitive={false}
+                minLength={3}
+                filter="contains"
+                onChange={value => this.handleSelectChange(value, "degreeType")}
               />
+              <div style={{ marginTop: "10px" }}>
+                <CustomTextarea
+                  id="eduDescription"
+                  label="Education Description"
+                  value={eduDescription}
+                  handleChange={this.handleInputChange}
+                />
+              </div>
             </Col>
           </Row>
         </Modal.Body>

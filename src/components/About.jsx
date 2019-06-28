@@ -33,7 +33,7 @@ class About extends Component {
               <a
                 className="btn btn-primary btn-lg"
                 style={{ marginLeft: "0" }}
-                href="#"
+                href="#/"
               >
                 Read paper here &raquo;
               </a>

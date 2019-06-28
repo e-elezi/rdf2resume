@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { reduxForm, Field, FieldArray } from "redux-form";
-import CustomInput from "../../coreRedux/CustomInput";
 import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import RemoveButton from "../../core/RemoveButton";
-import CustomMultiSelect from "../../coreRedux/CustomMultiSelect";
-import CustomDropdown from "../../coreRedux/CustomDropdown";
+import CustomInput from "../../core/CustomInput";
+import CustomRadioGroup from "../../core/CustomRadioGroup";
+import { Combobox, Multiselect } from "react-widgets";
 import { connect } from "react-redux";
+import { updateAboutPerson } from "../../../actions";
 import {
   fetchCountries,
   fetchGenders,
@@ -23,33 +23,6 @@ class FormPersonal extends Component {
     instantMessagingNameValues: []
   };
 
-  // getGenderStatus = () => {
-  //   return ["Female", "Male", "Not indicated"];
-  // };
-
-  // getTitleValues = () => {
-  //   return ["Mr", "Mrs", "Dr.Mr", "Dr.Mrs"];
-  // };
-
-  // getMaritalStatus = () => {
-  //   return ["Single", "Widowed", "Married", "Divorced"];
-  // };
-
-  // getCountries = () => {
-  //   return [
-  //     "United States of America",
-  //     "Albania",
-  //     "Germany",
-  //     "Italy",
-  //     "France",
-  //     "United Kingdom",
-  //     "Norway",
-  //     "Sweden",
-  //     "Spain",
-  //     "Portugal"
-  //   ];
-  // };
-
   getInstantMessagingNameValues() {
     return ["Google", "Skype", "Yahoo"];
   }
@@ -59,161 +32,89 @@ class FormPersonal extends Component {
     this.props.fetchGenders();
     this.props.fetchTitleProperties();
     this.setState({
-      // genderStatus: this.getGenderStatus(),
-      // maritalStatus: this.getGenderStatus(),
-      // countries: this.getCountries(),
-      // titleValues: this.getTitleValues(),
       instantMessagingNameValues: this.getInstantMessagingNameValues()
     });
   }
 
-  renderInstantMessaging = ({
-    fields,
-    meta: { touched, error, submitFailed }
-  }) => (
-    <div>
-      <Row className="m-0">
-        <Col md={5} className="p-0">
-          <p className="mb-0">Instant Messaging</p>
-        </Col>
-        <Col md={5} className="p-0" />
-        <Col md={2} className="p-0 instant-add-wrapper">
-          <AddButton
-            classnames="add-button small-button"
-            handleClick={() => fields.push({})}
-          />
-        </Col>
-      </Row>
-      {(touched || submitFailed) && error && <span>{error}</span>}
+  handleInputChange = (e, secondName) => {
+    //e.target.id e.target.value
+    this.props.updateAboutPerson({
+      id: e.target.id,
+      value: e.target.value,
+      super: secondName
+    });
+  };
 
-      {fields.map((member, index) => (
-        <Row key={index}>
-          <Col md={6} className="pr-0">
-            <Field
-              name={`${member}.instantMessagingName`}
-              component={CustomDropdown}
-              label="IM Name"
-              data={this.state.instantMessagingNameValues}
-            />
-          </Col>
-          <Col md={5} style={{ marginTop: "7px" }}>
-            <Field
-              name={`${member}.instantMessagingUsername`}
-              type="text"
-              component={CustomInput}
-              label="Username"
-            />
-          </Col>
-          <Col md={1}>
-            <RemoveButton
-              classnames="shift-left"
-              handleClick={() => fields.remove(index)}
-            />
-          </Col>
-        </Row>
-      ))}
-    </div>
-  );
+  handleSelectChange = (name, value, secondName) => {
+    this.props.updateAboutPerson({ id: name, value: value, super: secondName });
+  };
 
-  renderTelephoneNumbers = ({
-    fields,
-    meta: { touched, error, submitFailed }
-  }) => (
-    <div>
-      <Row className="m-0">
-        <Col md={5} className="p-0">
-          <p className="mb-0">Telephone Numbers</p>
-        </Col>
-        <Col md={5} className="p-0" />
-        <Col md={2} className="p-0 instant-add-wrapper">
-          <AddButton
-            classnames="add-button small-button"
-            handleClick={() => fields.push({})}
-          />
-        </Col>
-      </Row>
-      {(touched || submitFailed) && error && <span>{error}</span>}
+  handleMultiSelectChange = (name, value) => {
+    this.props.updateAboutPerson({ id: name, value: value });
+  };
 
-      {fields.map((member, index) => (
-        <Row key={index}>
-          <Col md={11} className="pr-0">
-            <Field
-              name={`${member}.telephoneNumber`}
-              component={CustomInput}
-              label="Telephone number"
-              type="text"
-            />
-          </Col>
-          <Col md={1}>
-            <RemoveButton
-              classnames="shift-left"
-              handleClick={() => fields.remove(index)}
-            />
-          </Col>
-        </Row>
-      ))}
-    </div>
-  );
+  handleRadioChange = e => {
+    this.props.updateAboutPerson({ id: e.target.name, value: e.target.id });
+  };
 
-  renderAddress = ({ fields, meta: { touched, error, submitFailed } }) => {
-    if (fields.length === 0) fields.push({});
-    return (
-      <React.Fragment>
-        {fields.map((member, index) => (
-          <React.Fragment key={index}>
-            <Field
-              name={`${member}.street`}
-              type="text"
-              component={CustomInput}
-              label="Street name + number"
-            />
-            <Row>
-              <Col md={6}>
-                <Field
-                  name={`${member}.postalCode`}
-                  type="text"
-                  component={CustomInput}
-                  label="Postal Code"
-                />
-              </Col>
-              <Col md={6}>
-                <Field
-                  name={`${member}.city`}
-                  type="text"
-                  component={CustomInput}
-                  label="City"
-                />
-              </Col>
-            </Row>
-            <Field
-              name={`${member}.country`}
-              component={CustomDropdown}
-              label="Country"
-              data={this.props.countries}
-            />
-          </React.Fragment>
-        ))}
-      </React.Fragment>
+  addTelephoneNumber = id => {
+    let phones = [...this.props.aboutperson.hasTelephoneNumber, ""];
+    this.props.updateAboutPerson({ id: id, value: phones });
+  };
+
+  updateTelephoneNumber = (e, id, index) => {
+    let phones = [...this.props.aboutperson.hasTelephoneNumber];
+    phones[index] = e.target.value;
+    this.props.updateAboutPerson({ id: id, value: phones });
+  };
+
+  removeTelephoneNumber = (id, index) => {
+    let phones = this.props.aboutperson.hasTelephoneNumber.filter(
+      (item, ind) => ind !== index
     );
+    this.props.updateAboutPerson({ id: id, value: phones });
+  };
+
+  addInstantMessaging = id => {
+    let myarr = [
+      ...this.props.aboutperson.instantMessaging,
+      {
+        instantMessagingName: "",
+        instantMessagingUsername: ""
+      }
+    ];
+    this.props.updateAboutPerson({ id: id, value: myarr });
+  };
+
+  updateInstantMessaging = (name, value, id, index) => {
+    let myarr = [...this.props.aboutperson.instantMessaging];
+    myarr[index][name] = value;
+    this.props.updateAboutPerson({ id: id, value: myarr });
+  };
+
+  removeInstantMessaging = (id, index) => {
+    let myarr = this.props.aboutperson.instantMessaging.filter(
+      (item, ind) => ind !== index
+    );
+    this.props.updateAboutPerson({ id: id, value: myarr });
   };
 
   render() {
-    // let {
-    //   firstName,
-    //   lastName,
-    //   title,
-    //   photo,
-    //   gender,
-    //   dateOfBirth
-    //   hasCitizenship,
-    //   hasNationality,
-    //   driversLicence,
-    //   Address,
-    //   email,
-    //   hasTelephoneNumber,
-    //   hasWebsite,
-    //   InstantMessaging,
-    // } = this.state.Person;
+    let {
+      firstName,
+      lastName,
+      hasCitizenship,
+      hasNationality,
+      website,
+      dateOfBirth,
+      gender,
+      hasTelephoneNumber,
+      email,
+      title,
+      instantMessaging,
+      address,
+      driversLicence
+    } = this.props.aboutperson;
 
     return (
       <Row className="main-content-row">
@@ -233,114 +134,240 @@ class FormPersonal extends Component {
               <AddButton classnames="add-button" />
             </div>
           </div>
-          <div className="mb-3" />
-          <div className="mb-3">
-            {this.props.genders.map(gender => {
-              return (
-                <label className="label-radio" key={gender}>
-                  <Field
-                    name="gender"
-                    component="input"
-                    type="radio"
-                    value={gender}
-                  />
-                  <span className="checkmark" />
-                  {gender}
-                </label>
-              );
-            })}
-          </div>
+          <CustomRadioGroup
+            items={this.props.genders}
+            name="gender"
+            value={gender}
+            handleChange={this.handleRadioChange}
+          />
         </Col>
         <Col md={4} className="pt-4">
-          <Field
+          <label className="label-rw">Title</label>
+          <Combobox
             name="title"
-            component={CustomDropdown}
-            label="Title"
+            placeholder="Select a job mode"
             data={this.props.titles}
+            value={title}
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value => this.handleSelectChange("title", value)}
           />
           <div className="row">
             <div className="col col-sm-6">
-              <Field
-                name="firstName"
-                type="text"
-                component={CustomInput}
+              <CustomInput
+                id="firstName"
                 label="First name"
+                type="text"
+                value={firstName}
+                handleChange={this.handleInputChange}
               />
             </div>
             <div className="col col-sm-6">
-              <Field
-                name="lastName"
-                type="text"
-                component={CustomInput}
+              <CustomInput
+                id="lastName"
                 label="Last name"
+                type="text"
+                value={lastName}
+                handleChange={this.handleInputChange}
               />
             </div>
           </div>
-          <Field
-            name="email"
+          <CustomInput
+            id="email"
+            label="E-mail"
             type="email"
-            component={CustomInput}
-            label="Email"
+            value={email}
+            handleChange={this.handleInputChange}
           />
-          <Field
-            name="website"
-            type="text"
-            component={CustomInput}
+          <CustomInput
+            id="website"
             label="Website"
-          />
-          <FieldArray name="address" component={this.renderAddress} />
-          <Field
-            name="dateOfBirth"
-            type="date"
-            component={CustomInput}
-            label="Date of Birth"
-          />
-          <Field
-            name="hasCitizenship"
-            component={CustomMultiSelect}
-            label="Citizenship"
-            data={this.props.countries}
-          />
-          <Field
-            name="hasNationality"
-            component={CustomMultiSelect}
-            label="Nationality"
-            data={this.props.countries}
-          />
-          {/* <Row>
-            <Col md={8} style={{ marginTop: "7px" }}>
-              <Field
-                name="maritalStatus"
-                component={CustomDropdown}
-                label="Marital Status"
-                data={this.state.maritalStatus}
-              />
-            </Col>
-            <Col md={4} style={{ marginTop: "13px" }}>
-              <Field
-                name="noOfChildren"
-                type="number"
-                component={CustomInput}
-                label="No of Children"
-              />
-            </Col>
-          </Row> */}
-          <Field
-            name="driversLicence"
             type="text"
-            component={CustomInput}
+            value={website}
+            handleChange={this.handleInputChange}
+          />
+          <div>
+            <CustomInput
+              id="street"
+              label="Street name + number"
+              type="text"
+              value={address.street}
+              handleChange={e => this.handleInputChange(e, "address")}
+            />
+            <Row>
+              <Col md={6}>
+                <CustomInput
+                  id="postalCode"
+                  label="Postal Code"
+                  type="text"
+                  value={address.postalCode}
+                  handleChange={e => this.handleInputChange(e, "address")}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  id="city"
+                  label="City"
+                  type="text"
+                  value={address.city}
+                  handleChange={e => this.handleInputChange(e, "address")}
+                />
+              </Col>
+            </Row>
+            <label className="label-rw">Country</label>
+            <Combobox
+              name="country"
+              placeholder="Select a country"
+              data={this.props.countries}
+              value={address.country}
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange("country", value, "address")
+              }
+            />
+          </div>
+          <CustomInput
+            id="dateOfBirth"
+            label="Date of Birth"
+            type="date"
+            value={dateOfBirth}
+            handleChange={this.handleInputChange}
+          />
+          <label className="label-rw">Citizenship</label>
+          <Multiselect
+            name="hasCitizenship"
+            data={this.props.countries}
+            value={hasCitizenship}
+            placeholder="Select a country"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleMultiSelectChange("hasCitizenship", value)
+            }
+          />
+          <label className="label-rw">Nationality</label>
+          <Multiselect
+            name="hasNationality"
+            data={this.props.countries}
+            value={hasNationality}
+            placeholder="Select a country"
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleMultiSelectChange("hasNationality", value)
+            }
+          />
+          <CustomInput
+            id="driversLicence"
             label="Driver's License"
+            type="text"
+            value={driversLicence}
+            handleChange={this.handleInputChange}
           />
           <div className="mb-3" />
-          <FieldArray
-            name="hasTelephoneNumber"
-            component={this.renderTelephoneNumbers}
-          />
-          <br />
-          <FieldArray
-            name="instantMessaging"
-            component={this.renderInstantMessaging}
-          />
+          <Row className="m-0">
+            <Col md={5} className="p-0">
+              <p className="mb-0">Telephone Numbers</p>
+            </Col>
+            <Col md={5} className="p-0" />
+            <Col md={2} className="p-0 instant-add-wrapper">
+              <AddButton
+                classnames="add-button small-button"
+                handleClick={() =>
+                  this.addTelephoneNumber("hasTelephoneNumber")
+                }
+              />
+            </Col>
+          </Row>
+          {hasTelephoneNumber.map((member, index) => (
+            <Row key={index}>
+              <Col md={11} className="pr-0">
+                <CustomInput
+                  id="hasTelephoneNumber"
+                  label="Phone number"
+                  type="text"
+                  value={member}
+                  handleChange={e =>
+                    this.updateTelephoneNumber(e, "hasTelephoneNumber", index)
+                  }
+                />
+              </Col>
+              <Col md={1}>
+                <RemoveButton
+                  classnames="shift-left"
+                  handleClick={() =>
+                    this.removeTelephoneNumber("hasTelephoneNumber", index)
+                  }
+                />
+              </Col>
+            </Row>
+          ))}
+          <div className="mb-3"></div>
+          <Row className="m-0">
+            <Col md={5} className="p-0">
+              <p className="mb-0">Instant Messaging</p>
+            </Col>
+            <Col md={5} className="p-0" />
+            <Col md={2} className="p-0 instant-add-wrapper">
+              <AddButton
+                classnames="add-button small-button"
+                handleClick={() => this.addInstantMessaging("instantMessaging")}
+              />
+            </Col>
+          </Row>
+
+          {instantMessaging.map((member, index) => (
+            <Row key={index}>
+              <Col md={6} className="pr-0">
+                <div style={{marginTop: "22px"}}>
+                <Combobox
+                  name="instantMessagingName"
+                  data={this.state.instantMessagingNameValues}
+                  value={instantMessaging.instantMessagingName}
+                  placeholder="Select an IM Name"
+                  caseSensitive={false}
+                  minLength={3}
+                  filter="contains"
+                  onChange={value =>
+                    this.updateInstantMessaging(
+                      "instantMessagingName",
+                      value,
+                      "instantMessaging",
+                      index
+                    )
+                  }
+                />
+                </div>
+              </Col>
+              <Col md={5} style={{ marginTop: "7px" }}>
+                <CustomInput
+                  id="instantMessagingUsername"
+                  label="Username"
+                  type="text"
+                  value={member.instantMessagingUsername}
+                  handleChange={e =>
+                    this.updateInstantMessaging(
+                      "instantMessagingUsername",
+                      e.target.value,
+                      "instantMessaging",
+                      index
+                    )
+                  }
+                />
+              </Col>
+              <Col md={1}>
+                <RemoveButton
+                  classnames="shift-left"
+                  handleClick={() => this.removeInstantMessaging("instantMessaging", index)}
+                />
+              </Col>
+            </Row>
+          ))}
         </Col>
         <Col md={5}> </Col>
       </Row>
@@ -352,16 +379,12 @@ const mapstateToProps = state => {
   return {
     countries: retrieveCountryValues(state.utility.countryValues),
     genders: retrieveGenderValues(state.utility.genderValues),
-    titles: retrieveTitleValues(state.utility.titleValues)
+    titles: retrieveTitleValues(state.utility.titleValues),
+    aboutperson: state.cv.aboutPerson
   };
 };
 
-FormPersonal = reduxForm({
-  form: "aboutPerson",
-  destroyOnUnmount: false
-})(FormPersonal);
-
 export default connect(
   mapstateToProps,
-  { fetchCountries, fetchGenders, fetchTitleProperties }
+  { fetchCountries, updateAboutPerson, fetchGenders, fetchTitleProperties }
 )(FormPersonal);

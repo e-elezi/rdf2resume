@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Row, Col } from "react-bootstrap";
-import CustomSelect from "../../../../core/CustomSelect";
+import { Combobox } from "react-widgets";
 import CustomInput from "../../../../core/CustomInput";
 import { createReference } from "../../../../../actions";
 import {
@@ -32,51 +32,26 @@ class ReferenceModal extends Component {
       hasTelephoneNumber: "",
       email: ""
     },
-    // titleValues: [],
-    // countryValues: [],
     typeValues: ["Personal", "Professional"]
   };
 
-  // getCountries = () => {
-  //   return [
-  //     "United States of America",
-  //     "Albania",
-  //     "Germany",
-  //     "Italy",
-  //     "France",
-  //     "United Kingdom",
-  //     "Norway",
-  //     "Sweden",
-  //     "Spain",
-  //     "Portugal"
-  //   ];
-  // };
-
-  // getTitles = () => {
-  //   return ["Doctor", "Professor"];
-  // };
-
   componentWillMount() {
-    // this.setState({
-    //   countryValues: this.getCountries(),
-    //   titleValues: this.getTitles()
-    // });
     this.props.fetchCountries();
     this.props.fetchTitleProperties();
   }
 
-  handleSelectChange = (e, id) => {
+  handleSelectChange = (value, id) => {
     let reference = { ...this.state.reference };
     if (id.indexOf("Address") >= 0) {
       let sublabel = id.substr(8);
       let mybj = reference["Address"];
-      mybj[sublabel] = e.target.text.trim();
+      mybj[sublabel] = value.trim();
       reference["Address"] = mybj;
       this.setState({
         reference
       });
     } else {
-      reference[id] = e.target.text.trim();
+      reference[id] = value.trim();
       this.setState({ reference });
     }
   };
@@ -140,13 +115,26 @@ class ReferenceModal extends Component {
             <Row>
               <Col md={4}>Add New Reference</Col>
               <Col md={4}>
-                <CustomSelect
-                  placeholder="Type"
-                  id="type"
-                  value={type}
-                  items={this.state.typeValues}
-                  handleSelectChange={this.handleSelectChange}
-                />
+                <Row
+                  style={{
+                    width: "100%",
+                    justifyContent: "left",
+                    marginLeft: "0px",
+                    marginBottom: "8px"
+                  }}
+                >
+                  <label className="label-rw">Type</label>
+                  <Combobox
+                    name="type"
+                    placeholder="Select type"
+                    data={this.state.typeValues}
+                    value={type}
+                    caseSensitive={false}
+                    minLength={3}
+                    filter="contains"
+                    onChange={value => this.handleSelectChange(value, "type")}
+                  />
+                </Row>
               </Col>
               <Col md={4} />
             </Row>
@@ -155,13 +143,26 @@ class ReferenceModal extends Component {
         <Modal.Body>
           <Row>
             <Col md={4} style={{ marginTop: "7px" }}>
-              <CustomSelect
-                placeholder="Title"
-                id="title"
-                value={title}
-                items={this.props.titles}
-                handleSelectChange={this.handleSelectChange}
-              />
+              <Row
+                style={{
+                  width: "100%",
+                  justifyContent: "left",
+                  marginLeft: "0px",
+                  marginBottom: "8px"
+                }}
+              >
+                <label className="label-rw">Title</label>
+                <Combobox
+                  name="title"
+                  placeholder="Select title"
+                  data={this.props.titles}
+                  value={title}
+                  caseSensitive={false}
+                  minLength={3}
+                  filter="contains"
+                  onChange={value => this.handleSelectChange(value, "title")}
+                />
+              </Row>
             </Col>
             <Col md={8}>
               <CustomInput
@@ -221,13 +222,28 @@ class ReferenceModal extends Component {
                 />
               </Col>
             </Row>
-            <CustomSelect
-              placeholder="Country"
-              id="Address.country"
-              value={Address.country}
-              items={this.props.countries}
-              handleSelectChange={this.handleSelectChange}
-            />
+            <Row
+              style={{
+                width: "100%",
+                justifyContent: "left",
+                marginLeft: "0px",
+                marginBottom: "8px"
+              }}
+            >
+              <label className="label-rw">Country</label>
+              <Combobox
+                name="Address.country"
+                placeholder="Select country"
+                data={this.props.countries}
+                value={Address.country}
+                caseSensitive={false}
+                minLength={3}
+                filter="contains"
+                onChange={value =>
+                  this.handleSelectChange(value, "Address.country")
+                }
+              />
+            </Row>
           </div>
           <CustomInput
             id="hasTelephoneNumber"

@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../../core/CustomSelect";
+import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherInfo } from "../../../../../actions";
-import {
-  fetchOtherCVInfoTypes
-} from "../../../../../actions/utilityActions";
-import {
-  retrieveOtherTypes
-} from "../../../../../utilities/utilityQueries";
-
+import { fetchOtherCVInfoTypes } from "../../../../../actions/utilityActions";
+import { retrieveOtherTypes } from "../../../../../utilities/utilityQueries";
 
 class OtherInfoModal extends Component {
   state = {
@@ -18,23 +13,15 @@ class OtherInfoModal extends Component {
       otherInfoCategory: "",
       otherInfoDescription: ""
     }
-    // categoryValues: []
   };
 
-  // getCategoryValues() {
-  //   return ["Publication", "Seminar"];
-  // }
-
   componentWillMount() {
-    // this.setState({
-    //   categoryValues: this.getCategoryValues()
-    // });
     this.props.fetchOtherCVInfoTypes();
   }
 
-  handleSelectChange = (e, id) => {
+  handleSelectChange = (value, id) => {
     let otherInfo = { ...this.state.otherInfo };
-    otherInfo[id] = e.target.text.trim();
+    otherInfo[id] = value.trim();
     this.setState({ otherInfo });
   };
 
@@ -75,19 +62,36 @@ class OtherInfoModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CustomSelect
-            placeholder="Category"
-            id="otherInfoCategory"
-            value={otherInfoCategory}
-            items={this.props.others}
-            handleSelectChange={this.handleSelectChange}
-          />
-          <CustomTextarea
-            id="otherInfoDescription"
-            label="Description"
-            value={otherInfoDescription}
-            handleChange={this.handleInputChange}
-          />
+          <Row
+            style={{
+              width: "100%",
+              justifyContent: "left",
+              marginLeft: "0px",
+              marginBottom: "8px"
+            }}
+          >
+            <label className="label-rw">Category</label>
+            <Combobox
+              name="otherInfoCategory"
+              placeholder="Select category"
+              data={this.props.others}
+              value={otherInfoCategory}
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(value, "otherInfoCategory")
+              }
+            />
+          </Row>
+          <div style={{ marginTop: "10px" }}>
+            <CustomTextarea
+              id="otherInfoDescription"
+              label="Description"
+              value={otherInfoDescription}
+              handleChange={this.handleInputChange}
+            />
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={this.handleSave}>

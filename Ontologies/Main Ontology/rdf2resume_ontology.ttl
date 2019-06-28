@@ -762,11 +762,11 @@ my0:LanguageSkill
   rdfs:comment "Language skill. Contains 5 levels for skill: spoken interaction, spoken production, listening, writing, reading."@en ;
   rdfs:subClassOf my0:Skill .
 
-my0:MotherTongue
-  a owl:Class ;
-  rdfs:label "Mother Tongue"@en ;
-  rdfs:comment "Mother tongue language skill. All 5 levels are expected to be max valued."@en ;
-  rdfs:subClassOf my0:LanguageSkill .
+my0:isMotherTongue
+  a owl:DatatypeProperty ;
+  rdfs:label "Is Mother Tongue"@en ;
+  rdfs:domain my0:LanguageSkill ;
+  rdfs:range xsd:boolean .
 
 my0:languageSkillLevelReading
   a owl:ObjectProperty ;

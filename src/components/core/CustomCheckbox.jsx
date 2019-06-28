@@ -4,6 +4,7 @@ import "./Form.css";
 
 const CustomCheckbox = ({
   id,
+  name,
   type,
   label,
   classnames,
@@ -28,6 +29,7 @@ const CustomCheckbox = ({
         >
           {label}
           <input
+            name={name}
             type={type}
             id={id}
             className={classes}

@@ -1,67 +1,84 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import CustomTextarea from "../../coreRedux/CustomTextarea";
-import CustomInput from "../../coreRedux/CustomInput";
-import CustomCheckbox from "../../coreRedux/CustomCheckbox";
-// import { fetchABoutCVInfo, fetchAboutPersonInfo } from "../../../actions";
+import CustomTextarea from "../../core/CustomTextarea";
+import CustomInput from "../../core/CustomInput";
+import CustomCheckbox from "../../core/CustomCheckbox";
+import { updateAboutCV } from "../../../actions";
 
 class FormAboutCV extends Component {
   state = {};
 
-  componentDidMount() {
-    //this.props.fetchABoutCVInfo();
-    //this.props.fetchAboutPersonInfo();
-  }
+  handleInputChange = e => {
+    //e.target.id e.target.value
+    this.props.updateAboutCV({ id: e.target.id, value: e.target.value });
+  };
+
+  handleCheckboxChange = e => {
+    //e.target.id e.target.checked
+    this.props.updateAboutCV({ id: e.target.id, value: e.target.checked });
+  };
 
   render() {
-    // let {
-    //   cvTitle,
-    //   cvNotes,
-    //   cvIsActive,
-    //   cvIsConfidential,
-    //   cvLastUpdated,
-    //   handleInputChange,
-    //   handleCheckboxChange
-    // } = this.props;
+    let {
+      cvTitle,
+      cvNotes,
+      cvIsActive,
+      cvIsConfidential,
+      cvLastUpdated,
+      cvCopyright
+    } = this.props.aboutcv;
     return (
       <div className="row">
         <div className="col col-sm-5">
           <h4 style={{ marginTop: "10px" }}>About CV</h4>
-          <Field
-            name="cvTitle"
-            type="text"
-            component={CustomInput}
+          <CustomInput
+            id="cvTitle"
             label="CV Title"
-          />
-          <Field
-            name="cvCopyright"
             type="text"
-            component={CustomInput}
+            value={cvTitle}
+            handleChange={this.handleInputChange}
+          />
+          <CustomInput
+            id="cvCopyright"
             label="CV Copyright"
+            type="text"
+            value={cvCopyright}
+            handleChange={this.handleInputChange}
           />
-          <Field
-            name="cvNotes"
-            component={CustomTextarea}
+          <CustomTextarea
+            id="cvNotes"
             label="CV Notes"
+            value={cvNotes}
+            handleChange={this.handleInputChange}
           />
-          <Field
-            name="cvIsActive"
-            component={CustomCheckbox}
+          <CustomCheckbox
+            id="cvIsActive"
+            type="checkbox"
             label="Is CV Active?"
+            checked={cvIsActive}
+            handleChange={this.handleCheckboxChange}
           />
-          <Field
-            name="cvIsConfidential"
-            component={CustomCheckbox}
-            label="Is CV Confidential?"
-          />
-          <div className="row mr-0">
-            <div className=" col col-sm-3 form-label">
+          <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <CustomCheckbox
+              id="cvIsConfidential"
+              type="checkbox"
+              label="Is CV Confidential?"
+              checked={cvIsConfidential}
+              handleChange={this.handleCheckboxChange}
+            />
+          </div>
+          <div
+            className="row mr-0"
+            style={{ marginLeft: "0", justifyContent: "left" }}
+          >
+            <div
+              className=" col col-sm-9 form-label"
+              style={{ paddingLeft: "0" }}
+            >
               <p>CV Last Updated </p>
             </div>
-            <div className="col col-sm-7" />
-            <div className="col col-sm-2 muted-text">
-              <p>{"Now"}</p>
+            <div className="col col-sm-3 muted-text">
+              <p>{cvLastUpdated ? cvLastUpdated : "Now"}</p>
             </div>
           </div>
         </div>
@@ -71,12 +88,13 @@ class FormAboutCV extends Component {
   }
 }
 
-FormAboutCV = reduxForm({
-  form: "aboutCV",
-  destroyOnUnmount: false
-})(FormAboutCV);
+const mapstateToProps = state => {
+  return {
+    aboutcv: state.cv.aboutCV
+  };
+};
 
 export default connect(
-  null,
-  { }
+  mapstateToProps,
+  { updateAboutCV }
 )(FormAboutCV);

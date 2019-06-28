@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../../core/CustomSelect";
+// import CustomSelect from "../../../../core/CustomSelect";
+import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { updateCourse } from "../../../../../actions";
-import {
-  fetchCountries
-} from "../../../../../actions/utilityActions";
-import {
-  retrieveCountryValues
-} from "../../../../../utilities/utilityQueries";
+import { fetchCountries } from "../../../../../actions/utilityActions";
+import { retrieveCountryValues } from "../../../../../utilities/utilityQueries";
 
 class CourseUpdateModal extends Component {
   state = {
@@ -114,7 +111,7 @@ class CourseUpdateModal extends Component {
     }
   };
 
-  handleSelectChange = (e, id) => {
+  handleSelectChange = (value, id) => {
     let course = { ...this.state.course };
     let label = id;
     if (label.indexOf("Organization") >= 0) {
@@ -122,21 +119,21 @@ class CourseUpdateModal extends Component {
       if (sublabel.indexOf("organizationAddress") >= 0) {
         let subsublabel = sublabel.substr(20);
         let mybj = course["Organization"]["organizationAddress"];
-        mybj[subsublabel] = e.target.text.trim();
+        mybj[subsublabel] = value.trim();
         course["Organization"]["organizationAddress"] = mybj;
         this.setState({
           course
         });
       } else {
         let mybj = course["Organization"];
-        mybj[sublabel] = e.target.text.trim();
+        mybj[sublabel] = value.trim();
         course["Organization"] = mybj;
         this.setState({
           course
         });
       }
     } else {
-      course[label] = e.target.text.trim();
+      course[label] = value.trim();
       this.setState({
         course
       });
@@ -169,8 +166,8 @@ class CourseUpdateModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={9}>Update Course/Training</Col>
-              <Col md={2}>
+              <Col md={7}>Add New Course/Training</Col>
+              <Col md={5}>
                 <CustomCheckbox
                   id="hasCertification"
                   type="checkbox"
@@ -179,14 +176,13 @@ class CourseUpdateModal extends Component {
                   handleChange={this.handleCheckboxChange}
                 />
               </Col>
-              <Col md={1} />
             </Row>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Row style={{ alignItems: "flex-start" }}>
             <Col md={6} style={{ paddingRight: "25px" }}>
-              <Row>
+              <Row style={{ marginBottom: "8px" }}>
                 <Col md={6}>
                   <CustomInput
                     id="courseStartDate"
@@ -211,7 +207,8 @@ class CourseUpdateModal extends Component {
                   justifyContent: "flex-start",
                   alignItems: "flex-start",
                   display: "flex",
-                  marginLeft: "0px"
+                  marginLeft: "0px",
+                  marginBottom: "8px"
                 }}
               >
                 <CustomInput
@@ -228,7 +225,7 @@ class CourseUpdateModal extends Component {
                   value={Organization.organizationWebsite}
                   handleChange={this.handleInputChange}
                 />
-                <Row>
+                <Row style={{ marginBottom: "8px" }}>
                   <Col sm={6}>
                     <CustomInput
                       id="Organization.organizationAddress.postalCode"
@@ -246,25 +243,45 @@ class CourseUpdateModal extends Component {
                     />
                   </Col>
                 </Row>
-                <CustomSelect
-                  placeholder="Organization Country"
-                  id="Organization.organizationAddress.country"
-                  value={Organization.organizationAddress.country}
-                  items={this.props.countries}
-                  handleSelectChange={this.handleSelectChange}
-                />
+                <Row
+                  style={{
+                    width: "100%",
+                    justifyContent: "left",
+                    marginLeft: "0px",
+                    marginBottom: "8px"
+                  }}
+                >
+                  <label className="label-rw">Organization Country</label>
+                  <Combobox
+                    name="Organization.organizationAddress.country"
+                    placeholder="Select country"
+                    data={this.props.countries}
+                    value={Organization.organizationAddress.country}
+                    caseSensitive={false}
+                    minLength={3}
+                    filter="contains"
+                    onChange={value =>
+                      this.handleSelectChange(
+                        value,
+                        "Organization.organizationAddress.country"
+                      )
+                    }
+                  />
+                </Row>
                 <CustomInput
                   id="Organization.organizationPhoneNumber"
                   label="Organization Phone Number"
                   value={Organization.organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
-                <CustomTextarea
-                  id="Organization.organizationDescription"
-                  label="Organization Description"
-                  value={Organization.organizationDescription}
-                  handleChange={this.handleInputChange}
-                />
+                <div style={{ marginTop: "10px" }}>
+                  <CustomTextarea
+                    id="Organization.organizationDescription"
+                    label="Organization Description"
+                    value={Organization.organizationDescription}
+                    handleChange={this.handleInputChange}
+                  />
+                </div>
               </Row>
             </Col>
             <Col md={6}>
@@ -282,6 +299,7 @@ class CourseUpdateModal extends Component {
                 value={courseURL}
                 handleChange={this.handleInputChange}
               />
+              <div className="mb-3" />
               <CustomTextarea
                 id="courseDescription"
                 label="Course/Training Description"

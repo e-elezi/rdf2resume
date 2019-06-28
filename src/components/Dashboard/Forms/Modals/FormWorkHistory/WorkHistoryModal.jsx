@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import CustomSelect from "../../../../core/CustomSelect";
+import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -43,47 +43,8 @@ class WorkHistoryModal extends Component {
         companyIndustry: ""
       }
     },
-    // careerLevelValues: [],
-    // jobModeValues: [],
     CompanyIndustryValues: []
-    // CompanySizeValues: [],
-    // CompanyCountryValues: []
   };
-
-  // getJobModeValues = () => {
-  //   return ["Employee Full time", "Employee Part time", "Contractor", "Intern"];
-  // };
-
-  // getJobCareerLevels = () => {
-  //   return [
-  //     "Student (high school)",
-  //     "Student (graduate/undergraduate)",
-  //     "Entry level (less than 2 years of experience)",
-  //     "Mid-career (2+ years of experience)",
-  //     "Management (manager/director of staff)",
-  //     "Executive (SVP, EVP, VP",
-  //     "Senior Executive (president / CEO)"
-  //   ];
-  // };
-
-  // getCountries = () => {
-  //   return [
-  //     "United States of America",
-  //     "Albania",
-  //     "Germany",
-  //     "Italy",
-  //     "France",
-  //     "United Kingdom",
-  //     "Norway",
-  //     "Sweden",
-  //     "Spain",
-  //     "Portugal"
-  //   ];
-  // };
-
-  // getCompanySizeValues = () => {
-  //   return ["Small", "Medium", "Large"];
-  // };
 
   getCompanyIndustryValues = () => {
     return ["Education", "Agriculture", "Computer Science", "Logistics"];
@@ -95,10 +56,6 @@ class WorkHistoryModal extends Component {
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
     this.setState({
-      // jobModeValues: this.getJobModeValues(),
-      // careerLevelValues: this.getJobCareerLevels(),
-      // CompanyCountryValues: this.getCountries(),
-      // CompanySizeValues: this.getCompanySizeValues(),
       CompanyIndustryValues: this.getCompanyIndustryValues()
     });
   }
@@ -140,7 +97,7 @@ class WorkHistoryModal extends Component {
     }
   };
 
-  handleSelectChange = (e, id) => {
+  handleSelectChange = (value, id) => {
     let workHistory = { ...this.state.workHistory };
     let label = id;
     if (label.indexOf("Company") >= 0) {
@@ -148,21 +105,21 @@ class WorkHistoryModal extends Component {
       if (sublabel.indexOf("organizationAddress") >= 0) {
         let subsublabel = sublabel.substr(20);
         let mybj = workHistory["Company"]["organizationAddress"];
-        mybj[subsublabel] = e.target.text.trim();
+        mybj[subsublabel] = value.trim();
         workHistory["Company"]["organizationAddress"] = mybj;
         this.setState({
           workHistory
         });
       } else {
         let mybj = workHistory["Company"];
-        mybj[sublabel] = e.target.text.trim();
+        mybj[sublabel] = value.trim();
         workHistory["Company"] = mybj;
         this.setState({
           workHistory
         });
       }
     } else {
-      workHistory[label] = e.target.text.trim();
+      workHistory[label] = value.trim();
       this.setState({
         workHistory
       });
@@ -276,26 +233,62 @@ class WorkHistoryModal extends Component {
                     />
                   </Col>
                 </Row>
-                <CustomSelect
-                  placeholder="Company Country"
-                  id="Company.organizationAddress.country"
-                  value={Company.organizationAddress.country}
-                  items={this.props.countries}
-                  handleSelectChange={this.handleSelectChange}
-                />
+                <Row
+                  style={{
+                    width: "100%",
+                    justifyContent: "left",
+                    marginLeft: "0px",
+                    marginBottom: "8px"
+                  }}
+                >
+                  <label className="label-rw">Company Country</label>
+                  <Combobox
+                    name="Company.organizationAddress.country"
+                    placeholder="Select country"
+                    data={this.props.countries}
+                    value={Company.organizationAddress.country}
+                    caseSensitive={false}
+                    minLength={3}
+                    filter="contains"
+                    onChange={value =>
+                      this.handleSelectChange(
+                        value,
+                        "Company.organizationAddress.country"
+                      )
+                    }
+                  />
+                </Row>
                 <CustomInput
                   id="Company.organizationPhoneNumber"
                   label="Company Phone Number"
                   value={Company.organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
-                 <CustomSelect
-                  placeholder="Company Industry"
-                  id="Company.organizationIndustry"
-                  value={Company.organizationIndustry}
-                  items={this.state.CompanyIndustryValues}
-                  handleSelectChange={this.handleSelectChange}
-                />
+                <Row
+                  style={{
+                    width: "100%",
+                    justifyContent: "left",
+                    marginLeft: "0px",
+                    marginBottom: "8px"
+                  }}
+                >
+                  <label className="label-rw">Company Industry</label>
+                  <Combobox
+                    name="Company.organizationIndustry"
+                    placeholder="Select country"
+                    data={this.state.CompanyIndustryValues}
+                    value={Company.organizationIndustry}
+                    caseSensitive={false}
+                    minLength={3}
+                    filter="contains"
+                    onChange={value =>
+                      this.handleSelectChange(
+                        value,
+                        "Company.organizationIndustry"
+                      )
+                    }
+                  />
+                </Row>
                 <CustomTextarea
                   id="Company.organizationDescription"
                   label="Company Description"
@@ -312,20 +305,48 @@ class WorkHistoryModal extends Component {
                 value={jobTitle}
                 handleChange={this.handleInputChange}
               />
-              <CustomSelect
-                placeholder="Job Mode"
-                id="jobMode"
-                value={jobMode}
-                items={this.props.jobModes}
-                handleSelectChange={this.handleSelectChange}
-              />
-              <CustomSelect
-                placeholder="Career Level"
-                id="careerLevel"
-                value={careerLevel}
-                items={this.props.careerLevels}
-                handleSelectChange={this.handleSelectChange}
-              />
+              <Row
+                style={{
+                  width: "100%",
+                  justifyContent: "left",
+                  marginLeft: "0px",
+                  marginBottom: "8px"
+                }}
+              >
+                <label className="label-rw">Job Mode</label>
+                <Combobox
+                  name="jobMode"
+                  placeholder="Select job mode"
+                  data={this.props.jobModes}
+                  value={jobMode}
+                  caseSensitive={false}
+                  minLength={3}
+                  filter="contains"
+                  onChange={value => this.handleSelectChange(value, "jobMode")}
+                />
+              </Row>
+              <Row
+                style={{
+                  width: "100%",
+                  justifyContent: "left",
+                  marginLeft: "0px",
+                  marginBottom: "8px"
+                }}
+              >
+                <label className="label-rw">Career Level</label>
+                <Combobox
+                  name="careerLevel"
+                  placeholder="Select career level"
+                  data={this.props.careerLevels}
+                  value={careerLevel}
+                  caseSensitive={false}
+                  minLength={3}
+                  filter="contains"
+                  onChange={value =>
+                    this.handleSelectChange(value, "careerLevel")
+                  }
+                />
+              </Row>
               <CustomTextarea
                 id="jobDescription"
                 label="Job Description"
@@ -357,8 +378,13 @@ const mapstateToProps = state => {
   };
 };
 
-
 export default connect(
   mapstateToProps,
-  { createWorkHistory, fetchCVJobModes, fetchCVCareerLevels, fetchCountries, fetchCompanySizes }
+  {
+    createWorkHistory,
+    fetchCVJobModes,
+    fetchCVCareerLevels,
+    fetchCountries,
+    fetchCompanySizes
+  }
 )(WorkHistoryModal);
