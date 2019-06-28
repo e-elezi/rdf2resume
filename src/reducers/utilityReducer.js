@@ -8,7 +8,8 @@ import {
   FETCH_ALL_LANGUAGE_SELF_ASSESSMENT_PROPERTIES,
   FETCH_ALL_OTHER_CV_INFO_TYPES,
   FETCH_ALL_SELF_ASSESSMENT_PROPERTIES,
-  FETCH_ALL_TITLE_PROPERTIES
+  FETCH_ALL_TITLE_PROPERTIES,
+  TOGGLE_SPINNER
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -21,7 +22,8 @@ const INITIAL_STATE = {
   companySizeValues: [],
   otherCVInfoValues: [],
   titleValues: [],
-  eduDegreeValues: []
+  eduDegreeValues: [],
+  showSpinner: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -46,6 +48,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, selfAssessmentValues: action.payload };
     case FETCH_ALL_TITLE_PROPERTIES:
       return { ...state, titleValues: action.payload };
+    case TOGGLE_SPINNER:
+        return { ...state, showSpinner: action.payload };
     default:
       return state;
   }

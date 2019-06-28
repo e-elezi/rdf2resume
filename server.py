@@ -1,7 +1,9 @@
 import os
+import json
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 from flask_cors import CORS, cross_origin
+from writeJSONtoTTL import writeJSONtoTTL
 
 UPLOAD_FOLDER = 'build/static/files'
 
@@ -11,11 +13,20 @@ CORS(app, support_credentials=True)
 
 @app.route("/")
 def index():
+    writeJSONtoTTL('', 'kot.ttl')
     return render_template('index.html')
 
 @app.route('/get_categories', methods=['GET'])
 def get_categories():
     return jsonify({'categories': ['Leda', 'Kot']})
+
+@app.route('/submit_form', methods=['POST'])
+def submit_form():
+    content = request.json
+    with open('data.json', 'w', encoding='utf-8') as outfile:
+        json.dump(content, outfile, ensure_ascii=False, indent=2)
+    return jsonify({'success': ['Yes']})
+
 
 @app.route('/upload_file', methods=['POST'])
 @cross_origin(support_credentials=True)

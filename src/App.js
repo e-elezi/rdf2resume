@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-// import logo from './logo.svg';
 import { Link, Route, withRouter } from "react-router-dom";
 import "./App.css";
 import Topbar from "./components/Topbar";
@@ -36,132 +35,6 @@ class App extends Component {
       { label: "Upload RDF", link: "/u/upload" },
       { label: "About", link: "/about/" }
     ]
-  };
-
-  handleInputChange = e => {
-    let cv = { ...this.state.cv };
-    cv[e.target.id] = e.target.value;
-    this.setState({
-      cv
-    });
-  };
-
-  handleCheckboxChange = e => {
-    let cv = { ...this.state.cv };
-    cv[e.target.id] = e.target.checked;
-    this.setState({
-      cv
-    });
-  };
-
-  handleStateObjectUpdate = item => {
-    let cv = { ...this.state.cv };
-    cv[item.label] = item[item.label];
-    this.setState({
-      cv
-    });
-  };
-
-  handleFormSubmit = e => {
-    e.preventDefault();
-    console.log("Form submitted");
-    if (
-      this.props.formData.aboutCV !== undefined &&
-      this.props.formData.aboutCV.values !== undefined
-    ) {
-      this.props.updateAboutCV(this.props.formData.aboutCV.values);
-    }
-    if (
-      this.props.formData.aboutPerson !== undefined &&
-      this.props.formData.aboutPerson.values !== undefined
-    ) {
-      this.props.updateAboutPerson(this.props.formData.aboutPerson.values);
-    }
-    if (
-      this.props.formData.target !== undefined &&
-      this.props.formData.target.values !== undefined
-    ) {
-      this.props.updateTarget(this.props.formData.target.values);
-    }
-    if (
-      this.props.formData.skills !== undefined &&
-      this.props.formData.skills.values !== undefined
-    ) {
-      if (this.props.formData.skills.values.osDecription !== undefined)
-        this.props.updateOrganisationalSkills(
-          this.props.formData.skills.values.osDecription
-        );
-      if (this.props.formData.skills.values.coDecription !== undefined) {
-        this.props.updateCommunicationSkills(
-          this.props.formData.skills.values.coDecription
-        );
-      }
-      if (this.props.formData.skills.values.jrDecription !== undefined) {
-        this.props.updateJobRelatedSkills(
-          this.props.formData.skills.values.jrDecription
-        );
-      }
-      if (
-        this.props.formData.skills.values.informationProcessing !== undefined
-      ) {
-        this.props.updatedigSkillsInfoProc(
-          this.props.formData.skills.values.informationProcessing
-        );
-      }
-      if (this.props.formData.skills.values.communication !== undefined) {
-        this.props.updatedigSkillsCO(
-          this.props.formData.skills.values.communication
-        );
-      }
-      if (this.props.formData.skills.values.contentCreation !== undefined) {
-        this.props.updatedigSkillsCC(
-          this.props.formData.skills.values.contentCreation
-        );
-      }
-      if (this.props.formData.skills.values.safety !== undefined) {
-        this.props.updatedigSkillsSafety(
-          this.props.formData.skills.values.safety
-        );
-      }
-      if (this.props.formData.skills.values.problemSolving !== undefined) {
-        this.props.updatedigSkillsPS(
-          this.props.formData.skills.values.problemSolving
-        );
-      }
-      if (this.props.formData.skills.values.isDigitalCertified !== undefined) {
-        this.props.updatedigSkillsCertificate(
-          this.props.formData.skills.values.isDigitalCertified
-        );
-      }
-      if (this.props.formData.skills.values.otherDigitalSkills !== undefined) {
-        this.props.updatedigSkillsOther(
-          this.props.formData.skills.values.otherDigitalSkills
-        );
-      }
-      if (this.props.formData.skills.values.otherLanguageSkill !== undefined) {
-        let langArray = this.props.formData.skills.values.otherLanguageSkill;
-        let otherlangs = [];
-        let motherlangs = [];
-        langArray.map(lang => {
-          if (lang.isMotherTongue === true) {
-            motherlangs.push(lang);
-          } else {
-            otherlangs.push(lang);
-          }
-          return "";
-        });
-        this.props.updateMotherTongue(motherlangs);
-        this.props.updateOtherLangSkills(otherlangs);
-      }
-    }
-
-    setTimeout(
-      function() {
-        console.log(this.props.cvData);
-        console.log(this.props.formData);
-      }.bind(this),
-      3000
-    );
   };
 
   handleFirstPageButtonClick = e => [
@@ -217,14 +90,15 @@ class App extends Component {
               <Row>
                 <Col md={12}>
                   <p className="description-content">
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                    deserunt neque tempore recusandae animi soluta quasi?
+                    Asperiores rem dolore eaque vel, porro, soluta unde debitis
+                    aliquam laboriosam. Repellat explicabo, maiores! <br />
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Omnis optio neque consectetur consequatur magni in nisi,
+                    natus beatae quidem quam odit commodi ducimus totam eum,
+                    alias, adipisci nesciunt voluptate. Voluptatum.
                   </p>
                 </Col>
               </Row>
@@ -242,16 +116,7 @@ class App extends Component {
         )}
         <Route
           path="/d"
-          render={props => (
-            <Main
-              {...props}
-              cv={this.state.cv}
-              handleStateObjectUpdate={this.handleStateObjectUpdate}
-              handleFormSubmit={this.handleFormSubmit}
-              handleInputChange={this.handleInputChange}
-              handleCheckboxChange={this.handleCheckboxChange}
-            />
-          )}
+          render={props => <Main {...props} cv={this.state.cv} />}
         />
         <Route path="/u/" component={Upload} />
         <Route path="/about/" component={About} />
@@ -263,7 +128,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     formData: state.form,
-    cvData: state.cv
+    cvData: state.cv,
+    showSpinner: state.utility.showSpinner
   };
 };
 

@@ -21,7 +21,8 @@ import {
   FETCH_ALL_LANGUAGE_SELF_ASSESSMENT_PROPERTIES,
   FETCH_ALL_OTHER_CV_INFO_TYPES,
   FETCH_ALL_SELF_ASSESSMENT_PROPERTIES,
-  FETCH_ALL_TITLE_PROPERTIES
+  FETCH_ALL_TITLE_PROPERTIES,
+  TOGGLE_SPINNER
 } from "./types";
 
 export const fetchCountries = () => async dispatch => {
@@ -154,3 +155,10 @@ export const fetchOtherCVInfoTypes = () => async dispatch => {
     payload: response.data.results.bindings
   });
 };
+
+export const toggleSpinner = (showSpinnerBoolean) =>{
+  return {
+    type: TOGGLE_SPINNER,
+    payload: showSpinnerBoolean
+  }
+}

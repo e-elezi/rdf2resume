@@ -1,0 +1,212 @@
+{
+  "education": [
+    {
+      "eduMajor": "Computer Science",
+      "EducationalOrg": {
+        "organizationName": "University of Bonn",
+        "organizationAddress": {
+          "city": "Bonn",
+          "country": "Germany",
+          "street": "",
+          "postalCode": "123412"
+        },
+        "organizationPhoneNumber": "13312323123",
+        "organizationWebsite": "unibonn.de",
+        "organizationDescription": "Some organization description"
+      },
+      "eduDescription": "Some education description",
+      "degreeType": "Master's degree",
+      "eduGradDate": "2019-06-27",
+      "eduMinor": "",
+      "isEduCurrent": false,
+      "eduStartDate": "2019-05-26",
+      "id": 1561653096687
+    }
+  ],
+  "workHistory": [
+    {
+      "careerLevel": "Entry level (less than 2 years of experience)",
+      "isCurrent": false,
+      "jobTitle": "Student Assistant",
+      "Company": {
+        "organizationName": "Publicis.Sapient",
+        "organizationAddress": {
+          "city": "Koln",
+          "country": "Germany",
+          "street": "",
+          "postalCode": "53118"
+        },
+        "organizationPhoneNumber": "0142321323212",
+        "companyIndustry": "",
+        "organizationWebsite": "publicissapient.com",
+        "organizationIndustry": "Computer Science",
+        "organizationDescription": "Some Company description"
+      },
+      "endDate": "2019-06-27",
+      "startDate": "2019-05-26",
+      "jobMode": "Employee Full time",
+      "jobDescription": "Some Job description",
+      "id": 1561653013567
+    }
+  ],
+  "skills": {
+    "DigitalSkills": {
+      "safety": "ProficientUser",
+      "label": "Digital Skills",
+      "otherDigitalSkills": "",
+      "contentCreation": "ProficientUser",
+      "communication": "ProficientUser",
+      "problemSolving": "ProficientUser",
+      "hasICTCertificate": true,
+      "informationProcessing": "ProficientUser"
+    },
+    "OrganisationalSkills": {
+      "description": "I am very organized",
+      "label": "Organisational Skills"
+    },
+    "LanguageSkill": {
+      "MotherTongue": [
+        {
+          "isMotherTongue": true,
+          "lngSpeakingInter": "ProficientUserC2",
+          "lngListening": "ProficientUserC2",
+          "lngSpeakingProd": "ProficientUserC2",
+          "lngName": "Albanian",
+          "lngWriting": "ProficientUserC2",
+          "lngReading": "ProficientUserC2"
+        }
+      ],
+      "OtherLanguages": [
+        {
+          "lngSpeakingInter": "BasicUserA2",
+          "lngListening": "BasicUserA2",
+          "lngSpeakingProd": "BasicUserA2",
+          "lngName": "Germany",
+          "lngWriting": "BasicUserA2",
+          "lngReading": "BasicUserA2"
+        }
+      ]
+    },
+    "OtherSkills": [],
+    "CommunicationSkills": {
+      "description": "I have very good communication skills",
+      "label": "Communication Skills"
+    },
+    "JobRelatedSkills": {
+      "description": "I have very good job related skills",
+      "label": "Job Related Skills"
+    }
+  },
+  "references": [
+    {
+      "name": "Damien Graux",
+      "jobTitle": "Senior Researcher",
+      "type": "Professional",
+      "title": "DrMr",
+      "hasTelephoneNumber": "24322323232323",
+      "id": 1561653281408,
+      "email": "damien@kot.com",
+      "Address": {
+        "city": "Sankt Augustin",
+        "country": "Germany",
+        "street": "Schloss Birlinghover",
+        "postalCode": "53000"
+      },
+      "Organization": {
+        "name": "Fraunhofer"
+      }
+    }
+  ],
+  "courses": [
+    {
+      "courseURL": "udemyreact.com",
+      "hasQualification": "",
+      "hasCertification": true,
+      "courseTitle": "REACT",
+      "courseStartDate": "2019-05-26",
+      "id": 1561653155332,
+      "courseFinishDate": "2019-06-21",
+      "courseDescription": "Some react description",
+      "Organization": {
+        "organizationName": "Udemy",
+        "organizationAddress": {
+          "city": "",
+          "country": "United States",
+          "street": "",
+          "postalCode": ""
+        },
+        "organizationPhoneNumber": "",
+        "organizationWebsite": "udemy.com",
+        "organizationDescription": "Online Website"
+      }
+    }
+  ],
+  "aboutCV": {
+    "cvCopyright": "Enkeleda Elezi",
+    "cvIsActive": true,
+    "cvTitle": "Enkeleda Elezi",
+    "cvNotes": "Some CV Notes"
+  },
+  "otherInfo": [
+    {
+      "id": 1561653296838,
+      "otherInfoDescription": "My paper: kot.com",
+      "otherInfoCategory": "Publications"
+    }
+  ],
+  "cv": {},
+  "aboutPerson": {
+    "lastName": "Elezi",
+    "hasCitizenship": [
+      "Albania"
+    ],
+    "hasNationality": [
+      "Albania"
+    ],
+    "website": "kot.com",
+    "dateOfBirth": "1994-11-25",
+    "gender": "Female",
+    "hasTelephoneNumber": [
+      {
+        "telephoneNumber": "+49 1522 7589766"
+      }
+    ],
+    "firstName": "Enkeleda",
+    "email": "enkeleda.elezi@gmail.com",
+    "title": "Mrs",
+    "instantMessaging": [
+      {
+        "instantMessagingUsername": "enkeleda.elezi25",
+        "instantMessagingName": "Skype"
+      }
+    ],
+    "address": [
+      {
+        "city": "Bonn",
+        "country": "Germany",
+        "street": "Hirschberger Str 60",
+        "postalCode": "53119"
+      }
+    ]
+  },
+  "target": {
+    "targetCompanySize": "MediumCompany",
+    "targetSalaryCurrency": "Euro EUR",
+    "targetCompanyIndustry": [
+      "Computer Science"
+    ],
+    "targetJobCareerLevel": "Entry level (less than 2 years of experience)",
+    "targetJobMode": "Employee Full time",
+    "weeksNoticePeriod": "2",
+    "targetJobTitle": "Frontend Developer",
+    "conditionWillTravel": true,
+    "conditionWillRelocate": true,
+    "targetJobDescription": "Some job description",
+    "targetCompanyDescription": "Some company description",
+    "targetCompanyLocality": "Bonn",
+    "targetCompanyCountry": [
+      "Germany"
+    ],
+    "targetSalaryRange": "500000"
+  }
+}

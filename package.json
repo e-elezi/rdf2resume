@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.14",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
@@ -16,6 +17,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "react-select": "^2.4.3",
+    "react-spinners": "^0.5.4",
     "react-widgets": "^4.4.11",
     "redux": "^4.0.1",
     "redux-form": "^8.2.4",

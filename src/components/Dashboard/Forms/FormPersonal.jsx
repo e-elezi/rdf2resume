@@ -20,7 +20,7 @@ import {
 
 class FormPersonal extends Component {
   state = {
-    
+    instantMessagingNameValues: []
   };
 
   // getGenderStatus = () => {
@@ -50,21 +50,21 @@ class FormPersonal extends Component {
   //   ];
   // };
 
-  // getInstantMessagingNameValues() {
-  //   return ["Google", "Skype", "Yahoo"];
-  // }
+  getInstantMessagingNameValues() {
+    return ["Google", "Skype", "Yahoo"];
+  }
 
   componentWillMount() {
     this.props.fetchCountries();
     this.props.fetchGenders();
     this.props.fetchTitleProperties();
-    // this.setState({
-    //   genderStatus: this.getGenderStatus(),
-    //   maritalStatus: this.getGenderStatus(),
-    //   countries: this.getCountries(),
-    //   titleValues: this.getTitleValues(),
-    //   instantMessagingNameValues: this.getInstantMessagingNameValues()
-    // });
+    this.setState({
+      // genderStatus: this.getGenderStatus(),
+      // maritalStatus: this.getGenderStatus(),
+      // countries: this.getCountries(),
+      // titleValues: this.getTitleValues(),
+      instantMessagingNameValues: this.getInstantMessagingNameValues()
+    });
   }
 
   renderInstantMessaging = ({
