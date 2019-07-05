@@ -27,6 +27,34 @@
   border-color: #186426;
 }
 
+.btn-reset {
+  background-color: darkgray;
+  border-color: darkgray;
+}
+
+.btn-reset:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.btn-reset:not(:disabled):not(.disabled):active {
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem lightgray;
+}
+
+.btn-reset:not(:disabled):not(.disabled):active:focus {
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem lightgray;
+}
+
+.btn-reset:focus {
+  box-shadow: 0 0 0 0.2rem lightgray !important;
+}
+
 .info-button {
   background-color: #eee;
   border-color: #eee;
@@ -189,6 +217,10 @@
   margin-bottom: 5px;
   background-color: #4BB3CC;
   border: 1px solid #4BB3CC;
+}
+
+.rw-input-reset {
+  padding-left: 0 !important;
 }
 
 /*************************************************************************/
@@ -436,6 +468,30 @@ textarea:focus {
   margin: 0;
 }
 
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-info:focus, .btn-info.focus {
+  box-shadow: none;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-info.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+
 .btn-danger {
   background-color: red !important;
   border-color: red !important;
@@ -445,6 +501,13 @@ textarea:focus {
   background-color: darkred !important;
   border-color: darkred !important;
 }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #4BB3CC;
+  border-color: #4BB3CC;
+  box-shadow: 0 0 5px 0 #4BB3CC;
+}
+
 
 /*************************************************************************/
 /**************************** CARD ***************************************/

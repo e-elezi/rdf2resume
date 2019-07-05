@@ -123,7 +123,6 @@ export const fetchTitleProperties = () => async dispatch => {
     encodeURIComponent(fetchAllTitleProperties()) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
-  console.log(response);
   dispatch({
     type: FETCH_ALL_TITLE_PROPERTIES,
     payload: response.data.results.bindings

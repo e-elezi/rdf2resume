@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
 import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
 import AddButton from "../../core/AddButton";
@@ -10,9 +10,7 @@ class FormWorkHistory extends Component {
     showModal: false
   };
 
-  componentWillMount() {
-    
-  }
+  componentWillMount() {}
 
   handleClose = () => {
     this.setState({ showModal: false });
@@ -37,10 +35,7 @@ class FormWorkHistory extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <WorkHistoryModal
-                  show={showModal}
-                  onHide={this.handleClose}
-                />
+                <WorkHistoryModal show={showModal} onHide={this.handleClose} />
               </Col>
               <Col md={10} className="button-label">
                 <p>Add work history</p>
@@ -48,7 +43,10 @@ class FormWorkHistory extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.workHistories.map((workHistory) => (
+        {this.props.workHistories.length === 0
+          ? "No work histories have been added until now."
+          : ""}
+        {this.props.workHistories.map(workHistory => (
           <WorkHistoryView
             workHistory={workHistory}
             id={workHistory.id}
@@ -66,4 +64,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(FormWorkHistory);
+export default connect(
+  mapStateToProps,
+  {}
+)(FormWorkHistory);

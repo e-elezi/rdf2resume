@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import ReferenceCard from "./Modals/FormReference/ReferenceCard";
@@ -16,6 +16,32 @@ class FormReference extends Component {
 
   handleShow = () => {
     this.setState({ showModal: true });
+  };
+
+  renderNoTextPersonal = () => {
+    let noText = "No references have been added until now.";
+    this.props.references.map(reference => {
+      if (reference.type === "Personal") {
+        noText = "";
+      }
+      return '';
+    });
+    if (noText !== "") {
+      return noText;
+    }
+  };
+
+  renderNoTextProfessional = () => {
+    let noText = "No references have been added until now.";
+    this.props.references.map(reference => {
+      if (reference.type === "Professional") {
+        noText = "";
+      }
+      return '';
+    });
+    if (noText !== "") {
+      return noText;
+    }
   };
 
   render() {
@@ -36,16 +62,14 @@ class FormReference extends Component {
               </Col>
               <Col md={10} className="button-label">
                 <p>Add a reference</p>
-                <ReferenceModal
-                  show={showModal}
-                  onHide={this.handleClose}
-                />
+                <ReferenceModal show={showModal} onHide={this.handleClose} />
               </Col>
             </Row>
           </Col>
         </Row>
+        {this.renderNoTextProfessional()}
         <Row className="row-cards">
-          {this.props.references.map((reference) => {
+          {this.props.references.map(reference => {
             if (reference.type === "Professional")
               return (
                 <ReferenceCard
@@ -54,23 +78,26 @@ class FormReference extends Component {
                   id={reference.id}
                 />
               );
-              return '';
+            return "";
           })}
         </Row>
         <Row style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-          <h4 style={{ marginTop: "10px", marginLeft: '20px' }}>Personal References</h4>
+          <h4 style={{ marginTop: "10px", marginLeft: "20px" }}>
+            Personal References
+          </h4>
         </Row>
+        {this.renderNoTextPersonal()}
         <Row className="row-cards">
-          {this.props.references.map((reference) => {
+          {this.props.references.map(reference => {
             if (reference.type === "Personal")
               return (
                 <ReferenceCard
-                 referenceObj={reference}
+                  referenceObj={reference}
                   key={reference.id}
                   id={reference.id}
                 />
               );
-              return '';
+            return "";
           })}
         </Row>
       </React.Fragment>
@@ -84,4 +111,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(FormReference);
+export default connect(
+  mapStateToProps,
+  {}
+)(FormReference);

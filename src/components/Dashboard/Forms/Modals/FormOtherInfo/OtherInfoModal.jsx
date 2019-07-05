@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
-import { createOtherInfo } from "../../../../../actions";
+import { createOtherInfo, updateOtherInfo } from "../../../../../actions";
 import { fetchOtherCVInfoTypes } from "../../../../../actions/utilityActions";
 import { retrieveOtherTypes } from "../../../../../utilities/utilityQueries";
 
@@ -17,7 +17,35 @@ class OtherInfoModal extends Component {
 
   componentWillMount() {
     this.props.fetchOtherCVInfoTypes();
+    this.setInitialValues();
   }
+
+  setInitialValues = () => {
+    if (this.props.id !== null && this.props.isUpdate === true) {
+      let inputRef = this.props.otherInfoObject;
+      let otherInfo = { ...this.state.otherInfo };
+      otherInfo.otherInfoCategory = inputRef.otherInfoCategory;
+      otherInfo.otherInfoDescription = inputRef.otherInfoDescription;
+      otherInfo.id = inputRef.id;
+      this.setState({
+        otherInfo
+      });
+    }
+  };
+
+  clearForm = () => {
+    const hist = {
+      otherInfoCategory: "",
+      otherInfoDescription: ""
+    };
+    if (!this.props.isUpdate) {
+      this.setState({
+        otherInfo: hist
+      });
+    } else {
+      this.setInitialValues();
+    }
+  };
 
   handleSelectChange = (value, id) => {
     let otherInfo = { ...this.state.otherInfo };
@@ -42,12 +70,34 @@ class OtherInfoModal extends Component {
     });
   };
 
+  handleUpdate = e => {
+    e.preventDefault();
+    this.props.updateOtherInfo(this.state.otherInfo);
+  };
+
+  handleRenderingSubmitButton = () => {
+    if (!this.props.isUpdate) {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleSave}>
+          Save
+        </Button>
+      );
+    } else {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+          Update
+        </Button>
+      );
+    }
+  };
+
   render() {
     let { otherInfoDescription, otherInfoCategory } = this.state.otherInfo;
     let { onHide } = this.props;
     return (
       <Modal
-        {...this.props}
+        show={this.props.show}
+        onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         className="reference-modal"
@@ -56,7 +106,9 @@ class OtherInfoModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={4}>Add Other Information</Col>
+              <Col md={4}>
+                {this.props.isUpdate ? "Update" : "Add New"} Other Information
+              </Col>
               <Col md={8} />
             </Row>
           </Modal.Title>
@@ -94,8 +146,9 @@ class OtherInfoModal extends Component {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
-            Save
+          {this.handleRenderingSubmitButton()}
+          <Button className="btn-reset" onClick={this.clearForm}>
+            Reset
           </Button>
           <Button variant="danger" onClick={onHide}>
             Close
@@ -106,13 +159,14 @@ class OtherInfoModal extends Component {
   }
 }
 
-const mapstateToProps = state => {
+const mapstateToProps = (state, ownProps) => {
   return {
+    initialValues: state.cv.otherInfo[ownProps.id],
     others: retrieveOtherTypes(state.utility.otherCVInfoValues)
   };
 };
 
 export default connect(
   mapstateToProps,
-  { createOtherInfo, fetchOtherCVInfoTypes }
+  { createOtherInfo, fetchOtherCVInfoTypes, updateOtherInfo }
 )(OtherInfoModal);

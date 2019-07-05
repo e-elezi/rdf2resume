@@ -8,7 +8,7 @@ import {
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { removeCourse } from "../../../../../actions";
-import CourseUpdateModal from "./CourseUpdateModal";
+import CourseModal from "./CourseModal";
 
 class CourseView extends Component {
   state = {
@@ -109,8 +109,9 @@ class CourseView extends Component {
             />
           </Col>
         </Row>
-        <CourseUpdateModal
+        <CourseModal
           show={this.state.editMode}
+          isUpdate={true}
           id={this.props.id}
           onHide={this.handleCloseEdit}
         />

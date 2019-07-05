@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removeOtherSkill } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import SkillUpdateModal from "./SkillUpdateModal";
+import SkillModal from "./SkillModal";
 
 class SkillView extends Component {
   state = {
@@ -84,9 +84,10 @@ class SkillView extends Component {
             {skillObj.skillHasCertificate}
           </p>
         </Row>
-        <SkillUpdateModal
+        <SkillModal
           show={this.state.editMode}
           id={this.props.id}
+          isUpdate={true}
           onHide={this.handleCloseEdit}
           skillObj={this.props.skillObj}
         />

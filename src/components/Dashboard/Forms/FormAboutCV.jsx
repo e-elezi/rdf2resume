@@ -45,6 +45,7 @@ class FormAboutCV extends Component {
             value={cvCopyright}
             handleChange={this.handleInputChange}
           />
+          <div className="mb-3"/>
           <CustomTextarea
             id="cvNotes"
             label="CV Notes"

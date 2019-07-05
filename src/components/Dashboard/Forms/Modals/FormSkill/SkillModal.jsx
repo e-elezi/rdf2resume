@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
-import { createOtherSkill } from "../../../../../actions";
+import { createOtherSkill, updateOtherSkill } from "../../../../../actions";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 
@@ -15,6 +15,45 @@ class SkillModal extends Component {
       skillLastUsed: "",
       skillYearsExperience: "",
       skillHasCertificate: true
+    }
+  };
+
+  componentWillMount() {
+    this.setInitialValues();
+  }
+
+  setInitialValues = () => {
+    if (this.props.id !== null && this.props.isUpdate === true) {
+      let inputRef = this.props.initialValues;
+      let otherSkill = { ...this.state.otherSkill };
+      otherSkill.skillName = inputRef.skillName;
+      otherSkill.skillDescription = inputRef.skillDescription;
+      otherSkill.id = inputRef.id;
+      otherSkill.skillLevel = inputRef.skillLevel;
+      otherSkill.skillLastUsed = inputRef.skillLastUsed;
+      otherSkill.skillYearsExperience = inputRef.skillYearsExperience;
+      otherSkill.skillHasCertificate = inputRef.skillHasCertificate;
+      this.setState({
+        otherSkill
+      });
+    }
+  };
+
+  clearForm = () => {
+    const hist = {
+      skillName: "",
+      skillDescription: "",
+      skillLevel: "",
+      skillLastUsed: "",
+      skillYearsExperience: "",
+      skillHasCertificate: true
+    };
+    if (!this.props.isUpdate) {
+      this.setState({
+        otherSkill: hist
+      });
+    } else {
+      this.setInitialValues();
     }
   };
 
@@ -43,6 +82,27 @@ class SkillModal extends Component {
     });
   };
 
+  handleUpdate = e => {
+    e.preventDefault();
+    this.props.updateOtherSkill(this.state.otherSkill);
+  };
+
+  handleRenderingSubmitButton = () => {
+    if (!this.props.isUpdate) {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleSave}>
+          Save
+        </Button>
+      );
+    } else {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+          Update
+        </Button>
+      );
+    }
+  };
+
   render() {
     let {
       skillName,
@@ -55,7 +115,8 @@ class SkillModal extends Component {
     let { onHide } = this.props;
     return (
       <Modal
-        {...this.props}
+        show={this.props.show}
+        onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         className="reference-modal"
@@ -64,7 +125,9 @@ class SkillModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={4}>Add Other Skill</Col>
+              <Col md={4}>
+                {this.props.isUpdate ? "Update" : "Add"} Other Skill
+              </Col>
               <Col md={8} />
             </Row>
           </Modal.Title>
@@ -125,8 +188,9 @@ class SkillModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
-            Save
+          {this.handleRenderingSubmitButton()}
+          <Button className="btn-reset" onClick={this.clearForm}>
+            Reset
           </Button>
           <Button variant="danger" onClick={onHide}>
             Close
@@ -137,7 +201,13 @@ class SkillModal extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    initialValues: state.cv.skills.OtherSkills[ownProps.id]
+  };
+};
+
 export default connect(
-  null,
-  { createOtherSkill }
+  mapStateToProps,
+  { createOtherSkill, updateOtherSkill }
 )(SkillModal);

@@ -99,6 +99,10 @@ class FormPersonal extends Component {
     this.props.updateAboutPerson({ id: id, value: myarr });
   };
 
+  handleAddPhotoClick = () => {
+    console.log("Adding a photo");
+  };
+
   render() {
     let {
       firstName,
@@ -131,7 +135,10 @@ class FormPersonal extends Component {
               Photo
             </p>
             <div className="photo-div-button">
-              <AddButton classnames="add-button" />
+              <AddButton
+                handleClick={this.handleAddPhotoClick}
+                classnames="add-button"
+              />
             </div>
           </div>
           <CustomRadioGroup
@@ -307,7 +314,7 @@ class FormPersonal extends Component {
               </Col>
             </Row>
           ))}
-          <div className="mb-3"></div>
+          <div className="mb-3" />
           <Row className="m-0">
             <Col md={5} className="p-0">
               <p className="mb-0">Instant Messaging</p>
@@ -324,24 +331,24 @@ class FormPersonal extends Component {
           {instantMessaging.map((member, index) => (
             <Row key={index}>
               <Col md={6} className="pr-0">
-                <div style={{marginTop: "22px"}}>
-                <Combobox
-                  name="instantMessagingName"
-                  data={this.state.instantMessagingNameValues}
-                  value={instantMessaging.instantMessagingName}
-                  placeholder="Select an IM Name"
-                  caseSensitive={false}
-                  minLength={3}
-                  filter="contains"
-                  onChange={value =>
-                    this.updateInstantMessaging(
-                      "instantMessagingName",
-                      value,
-                      "instantMessaging",
-                      index
-                    )
-                  }
-                />
+                <div style={{ marginTop: "22px" }}>
+                  <Combobox
+                    name="instantMessagingName"
+                    data={this.state.instantMessagingNameValues}
+                    value={instantMessaging.instantMessagingName}
+                    placeholder="Select an IM Name"
+                    caseSensitive={false}
+                    minLength={3}
+                    filter="contains"
+                    onChange={value =>
+                      this.updateInstantMessaging(
+                        "instantMessagingName",
+                        value,
+                        "instantMessaging",
+                        index
+                      )
+                    }
+                  />
                 </div>
               </Col>
               <Col md={5} style={{ marginTop: "7px" }}>
@@ -363,7 +370,9 @@ class FormPersonal extends Component {
               <Col md={1}>
                 <RemoveButton
                   classnames="shift-left"
-                  handleClick={() => this.removeInstantMessaging("instantMessaging", index)}
+                  handleClick={() =>
+                    this.removeInstantMessaging("instantMessaging", index)
+                  }
                 />
               </Col>
             </Row>

@@ -5,7 +5,7 @@ import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
-import { createEducation } from "../../../../../actions";
+import { createEducation, updateEducation } from "../../../../../actions";
 import {
   fetchCountries,
   fetchCompanySizes,
@@ -46,7 +46,58 @@ class EducationModal extends Component {
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
     this.props.fetchEduDegrees();
+    this.setInitialValues();
   }
+
+  setInitialValues = () => {
+    if (this.props.id !== null && this.props.isUpdate === true) {
+      let inputRef = this.props.initialValues;
+      let education = { ...this.state.education };
+      education.id = inputRef.id;
+      education.eduStartDate = inputRef.eduStartDate;
+      education.eduGradDate = inputRef.eduGradDate;
+      education.degreeType = inputRef.degreeType;
+      education.eduMajor = inputRef.eduMajor;
+      education.eduMinor = inputRef.eduMinor;
+      education.eduDescription = inputRef.eduDescription;
+      education.isEduCurrent = inputRef.isEduCurrent;
+      education.EducationalOrg = inputRef.EducationalOrg;
+      this.setState({
+        education
+      });
+    }
+  };
+
+  clearForm = () => {
+    const hist = {
+      eduStartDate: "",
+      eduGradDate: "",
+      degreeType: "",
+      eduMajor: "",
+      eduMinor: "",
+      eduDescription: "",
+      isEduCurrent: false,
+      EducationalOrg: {
+        organizationName: "",
+        organizationAddress: {
+          street: "",
+          postalCode: "",
+          city: "",
+          country: ""
+        },
+        organizationDescription: "",
+        organizationPhoneNumber: "",
+        organizationWebsite: ""
+      }
+    };
+    if (!this.props.isUpdate) {
+      this.setState({
+        education: hist
+      });
+    } else {
+      this.setInitialValues();
+    }
+  };
 
   handleCheckboxChange = e => {
     let education = { ...this.state.education };
@@ -121,6 +172,26 @@ class EducationModal extends Component {
     });
   };
 
+  handleUpdate = () => {
+    this.props.updateEducation(this.state.education);
+  };
+
+  handleRenderingSubmitButton = () => {
+    if (!this.props.isUpdate) {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleSave}>
+          Save
+        </Button>
+      );
+    } else {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+          Update
+        </Button>
+      );
+    }
+  };
+
   render() {
     let {
       eduStartDate,
@@ -135,7 +206,8 @@ class EducationModal extends Component {
     let { onHide } = this.props;
     return (
       <Modal
-        {...this.props}
+        show={this.props.show}
+        onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         className="reference-modal"
@@ -144,7 +216,9 @@ class EducationModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={9}>Add New Education</Col>
+              <Col md={9}>
+                {this.props.isUpdate ? "Update" : "Add New"} Education
+              </Col>
               <Col md={2}>
                 <CustomCheckbox
                   id="isEduCurrent"
@@ -300,8 +374,9 @@ class EducationModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
-            Save
+          {this.handleRenderingSubmitButton()}
+          <Button className="btn-reset" onClick={this.clearForm}>
+            Reset
           </Button>
           <Button variant="danger" onClick={onHide}>
             Close
@@ -312,8 +387,9 @@ class EducationModal extends Component {
   }
 }
 
-const mapstateToProps = state => {
+const mapstateToProps = (state, ownProps) => {
   return {
+    initialValues: state.cv.education[ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     companySizes: retrieveCompanySizes(state.utility.companySizeValues),
     eduDegrees: retrieveDegreeValues(state.utility.eduDegreeValues)
@@ -322,5 +398,11 @@ const mapstateToProps = state => {
 
 export default connect(
   mapstateToProps,
-  { createEducation, fetchCountries, fetchCompanySizes, fetchEduDegrees }
+  {
+    createEducation,
+    fetchCountries,
+    fetchCompanySizes,
+    fetchEduDegrees,
+    updateEducation
+  }
 )(EducationModal);

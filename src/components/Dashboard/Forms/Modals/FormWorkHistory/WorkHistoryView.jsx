@@ -8,7 +8,7 @@ import {
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { removeWorkHistory } from "../../../../../actions";
-import WorkHistoryUpdateModal from "./WorkHistoryUpdateModal";
+import WorkHistoryModal from "./WorkHistoryModal";
 
 class WorkHistoryReview extends Component {
   state = {
@@ -100,9 +100,10 @@ class WorkHistoryReview extends Component {
             />
           </Col>
         </Row>
-        <WorkHistoryUpdateModal
+        <WorkHistoryModal
           show={this.state.editMode}
           id={this.props.id}
+          isUpdate={true}
           onHide={this.handleCloseEdit}
         />
       </React.Fragment>

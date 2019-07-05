@@ -45,6 +45,9 @@ class FormOtherInfo extends Component {
             </Row>
           </Col>
         </Row>
+        {this.props.otherInfos.length === 0
+          ? "No other infos have been added until now."
+          : ""}
         {this.props.otherInfos.map((otherinfo) => (
           <OtherInfoView
             otherInfoObject={otherinfo}

@@ -8,7 +8,7 @@ import {
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { removeEducation } from "../../../../../actions";
-import EducationUpdateModal from "./EducationUpdateModal";
+import EducationModal from "./EducationModal";
 
 class EducationView extends Component {
   state = {
@@ -75,7 +75,9 @@ class EducationView extends Component {
                   {educationObj.EducationalOrg.organizationName}
                 </a>{" "}
                 {` `}
-                {educationObj.EducationalOrg.organizationAddress.city} {` `}{" "}
+                {
+                  educationObj.EducationalOrg.organizationAddress.city
+                } {` `}{" "}
                 {educationObj.EducationalOrg.organizationAddress.country}
               </b>
             </Row>
@@ -100,8 +102,9 @@ class EducationView extends Component {
             />
           </Col>
         </Row>
-        <EducationUpdateModal
+        <EducationModal
           show={this.state.editMode}
+          isUpdate={true}
           id={this.props.id}
           onHide={this.handleCloseEdit}
         />

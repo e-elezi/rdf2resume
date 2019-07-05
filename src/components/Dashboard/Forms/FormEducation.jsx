@@ -43,6 +43,9 @@ class FormEducation extends Component {
             </Row>
           </Col>
         </Row>
+        {this.props.education.length === 0
+          ? "No education has been added until now."
+          : ""}
         {this.props.education.map(edu => (
           <EducationView
             educationObj={edu}

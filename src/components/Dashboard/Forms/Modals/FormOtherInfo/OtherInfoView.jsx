@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removeOtherInfo } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import OtherInfoUpdateModal from "./OtherInfoUpdateModal";
+import OtherInfoModal from "./OtherInfoModal";
 
 class OtherInfoView extends Component {
   state = {
@@ -67,13 +67,12 @@ class OtherInfoView extends Component {
             {otherInfoObject.otherInfoDescription}
           </p>
         </Row>
-        <OtherInfoUpdateModal
+        <OtherInfoModal
           show={this.state.editMode}
           id={this.props.id}
+          isUpdate={true}
           onHide={this.handleCloseEdit}
           otherInfoObject={this.props.otherInfoObject}
-          // handleUpdateOtherInfo={this.props.handleUpdateOtherInfo}
-          // handleStateObjectUpdate={this.props.handleStateObjectUpdate}
         />
       </React.Fragment>
     );

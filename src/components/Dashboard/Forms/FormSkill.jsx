@@ -475,6 +475,9 @@ class FormSkill extends Component {
             </Row>
           </Col>
         </Row>
+        {this.props.otherSkills.length === 0
+          ? "No other skills have been added until now."
+          : ""}
         {this.props.otherSkills.map(skill => (
           <SkillView skillObj={skill} id={skill.id} key={skill.id} />
         ))}

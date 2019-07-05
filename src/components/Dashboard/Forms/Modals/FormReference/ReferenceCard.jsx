@@ -8,7 +8,7 @@ import {
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
 import { removeReference } from "../../../../../actions";
-import ReferenceUpdateModal from './ReferenceUpdateModal';
+import ReferenceModal from './ReferenceModal';
 
 class ReferenceCard extends Component {
   state = {
@@ -64,8 +64,9 @@ class ReferenceCard extends Component {
             <Card.Link href="#">{this.props.referenceObj.email}</Card.Link>
           </Card.Text>
         </Card.Body>
-        <ReferenceUpdateModal
+        <ReferenceModal
           show={this.state.editMode}
+          isUpdate={true}
           id={this.props.id}
           onHide={this.handleCloseEdit}
         />

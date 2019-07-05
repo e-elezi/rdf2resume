@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomInput from "../../../../core/CustomInput";
-import { createReference } from "../../../../../actions";
+import { createReference, updateReference } from "../../../../../actions";
 import {
   fetchCountries,
   fetchTitleProperties
@@ -38,7 +38,54 @@ class ReferenceModal extends Component {
   componentWillMount() {
     this.props.fetchCountries();
     this.props.fetchTitleProperties();
+    this.setInitialValues();
   }
+
+  setInitialValues = () => {
+    if (this.props.id !== null && this.props.isUpdate === true) {
+      let inputRef = this.props.initialValues;
+      let reference = { ...this.state.reference };
+      reference.id = inputRef.id;
+      reference.title = inputRef.title;
+      reference.jobTitle = inputRef.jobTitle;
+      reference.name = inputRef.name;
+      reference.email = inputRef.email;
+      reference.hasTelephoneNumber = inputRef.hasTelephoneNumber;
+      reference.type = inputRef.type;
+      reference.Address = inputRef.Address;
+      reference.Organization = inputRef.Organization;
+      this.setState({
+        reference
+      });
+  };
+}
+
+  clearForm = () => {
+    const hist = {
+      type: "",
+      title: "",
+      name: "",
+      jobTitle: "",
+      Organization: {
+        name: ""
+      },
+      Address: {
+        street: "",
+        postalCode: "",
+        city: "",
+        country: ""
+      },
+      hasTelephoneNumber: "",
+      email: ""
+    };
+    if (!this.props.isUpdate) {
+      this.setState({
+        reference: hist
+      });
+    } else {
+      this.setInitialValues();
+    }
+  };
 
   handleSelectChange = (value, id) => {
     let reference = { ...this.state.reference };
@@ -89,6 +136,26 @@ class ReferenceModal extends Component {
     });
   };
 
+  handleUpdate = () => {
+    this.props.updateReference(this.state.reference);
+  };
+
+  handleRenderingSubmitButton = () => {
+    if (!this.props.isUpdate) {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleSave}>
+          Save
+        </Button>
+      );
+    } else {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+          Update
+        </Button>
+      );
+    }
+  }
+
   render() {
     let {
       type,
@@ -104,7 +171,8 @@ class ReferenceModal extends Component {
     const { onHide } = this.props;
     return (
       <Modal
-        {...this.props}
+      show={this.props.show}
+      onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         className="reference-modal"
@@ -113,7 +181,7 @@ class ReferenceModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={4}>Add New Reference</Col>
+              <Col md={4}>{this.props.isUpdate ? "Update" : "Add New"} Reference</Col>
               <Col md={4}>
                 <Row
                   style={{
@@ -261,9 +329,10 @@ class ReferenceModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
-            Save
-          </Button>
+        {this.handleRenderingSubmitButton()}
+            <Button className="btn-reset" onClick={this.clearForm}>
+              Reset
+            </Button>
           <Button variant="danger" onClick={onHide}>
             Close
           </Button>
@@ -273,8 +342,9 @@ class ReferenceModal extends Component {
   }
 }
 
-const mapstateToProps = state => {
+const mapstateToProps = (state, ownProps) => {
   return {
+    initialValues: state.cv.references[ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     titles: retrieveTitleValues(state.utility.titleValues)
   };
@@ -282,5 +352,5 @@ const mapstateToProps = state => {
 
 export default connect(
   mapstateToProps,
-  { createReference, fetchCountries, fetchTitleProperties }
+  { createReference, fetchCountries, fetchTitleProperties, updateReference }
 )(ReferenceModal);

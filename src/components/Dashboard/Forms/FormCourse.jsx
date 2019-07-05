@@ -43,6 +43,9 @@ class FormCourse extends Component {
             </Row>
           </Col>
         </Row>
+        {this.props.course.length === 0
+          ? "No courses have been added until now."
+          : ""}
         {this.props.course.map(co => (
           <CourseView
             courseObj={co}

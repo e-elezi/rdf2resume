@@ -12,19 +12,7 @@ import { connect } from "react-redux";
 import {
   updateAboutCV,
   updateAboutPerson,
-  updateTarget,
-  updateCommunicationSkills,
-  updateJobRelatedSkills,
-  updateOrganisationalSkills,
-  updateMotherTongue,
-  updateOtherLangSkills,
-  updatedigSkillsCC,
-  updatedigSkillsCO,
-  updatedigSkillsCertificate,
-  updatedigSkillsInfoProc,
-  updatedigSkillsOther,
-  updatedigSkillsPS,
-  updatedigSkillsSafety
+  updateTarget
 } from "./actions/index";
 
 class App extends Component {
@@ -139,18 +127,6 @@ export default connect(
   {
     updateAboutCV,
     updateAboutPerson,
-    updateTarget,
-    updateCommunicationSkills,
-    updateJobRelatedSkills,
-    updateOrganisationalSkills,
-    updateMotherTongue,
-    updateOtherLangSkills,
-    updatedigSkillsCC,
-    updatedigSkillsCO,
-    updatedigSkillsCertificate,
-    updatedigSkillsInfoProc,
-    updatedigSkillsOther,
-    updatedigSkillsPS,
-    updatedigSkillsSafety
+    updateTarget
   }
 )(withRouter(App));

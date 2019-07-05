@@ -5,7 +5,7 @@ import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
-import { createCourse } from "../../../../../actions";
+import { createCourse, updateCourse } from "../../../../../actions";
 import { fetchCountries } from "../../../../../actions/utilityActions";
 import { retrieveCountryValues } from "../../../../../utilities/utilityQueries";
 
@@ -36,7 +36,58 @@ class CourseModal extends Component {
 
   componentWillMount() {
     this.props.fetchCountries();
+    this.setInitialValues();
   }
+
+  setInitialValues = () => {
+    if (this.props.id !== null && this.props.isUpdate === true) {
+      let inputRef = this.props.initialValues;
+      let course = { ...this.state.course };
+      course.id = inputRef.id;
+      course.hasCertification = inputRef.hasCertification;
+      course.courseTitle = inputRef.courseTitle;
+      course.courseDescription = inputRef.courseDescription;
+      course.courseURL = inputRef.courseURL;
+      course.courseStartDate = inputRef.courseStartDate;
+      course.courseFinishDate = inputRef.courseFinishDate;
+      course.hasQualification = inputRef.hasQualification;
+      course.Organization = inputRef.Organization;
+      this.setState({
+        course
+      });
+    }
+  };
+
+  clearForm = () => {
+    const hist = {
+      hasCertification: true,
+      courseTitle: "",
+      courseDescription: "",
+      courseURL: "",
+      courseStartDate: "",
+      courseFinishDate: "",
+      hasQualification: "",
+      Organization: {
+        organizationName: "",
+        organizationAddress: {
+          street: "",
+          postalCode: "",
+          city: "",
+          country: ""
+        },
+        organizationDescription: "",
+        organizationPhoneNumber: "",
+        organizationWebsite: ""
+      }
+    };
+    if (!this.props.isUpdate) {
+      this.setState({
+        course: hist
+      });
+    } else {
+      this.setInitialValues();
+    }
+  };
 
   handleCheckboxChange = e => {
     let course = { ...this.state.course };
@@ -111,6 +162,26 @@ class CourseModal extends Component {
     });
   };
 
+  handleUpdate = () => {
+    this.props.updateCourse(this.state.course);
+  };
+
+  handleRenderingSubmitButton = () => {
+    if (!this.props.isUpdate) {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleSave}>
+          Save
+        </Button>
+      );
+    } else {
+      return (
+        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+          Update
+        </Button>
+      );
+    }
+  };
+
   render() {
     let {
       hasCertification,
@@ -124,7 +195,8 @@ class CourseModal extends Component {
     let { onHide } = this.props;
     return (
       <Modal
-        {...this.props}
+      show={this.props.show}
+      onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         className="reference-modal"
@@ -133,7 +205,7 @@ class CourseModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={7}>Add New Course/Training</Col>
+              <Col md={7}>{this.props.isUpdate ? "Update" : "Add New"} Course/Training</Col>
               <Col md={5}>
                 <CustomCheckbox
                   id="hasCertification"
@@ -277,9 +349,10 @@ class CourseModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={this.handleSave}>
-            Save
-          </Button>
+        {this.handleRenderingSubmitButton()}
+            <Button className="btn-reset" onClick={this.clearForm}>
+              Reset
+            </Button>
           <Button variant="danger" onClick={onHide}>
             Close
           </Button>
@@ -289,13 +362,14 @@ class CourseModal extends Component {
   }
 }
 
-const mapstateToProps = state => {
+const mapstateToProps = (state, ownProps) => {
   return {
+    initialValues: state.cv.courses[ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues)
   };
 };
 
 export default connect(
   mapstateToProps,
-  { createCourse, fetchCountries }
+  { createCourse, fetchCountries, updateCourse }
 )(CourseModal);

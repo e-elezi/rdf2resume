@@ -54,7 +54,7 @@ class About extends Component {
               </address>
               <address>
                 <abbr title="Email">E-mail:</abbr>
-                <a href="mailto:#">s6enelez@uni-bonn.de</a>
+                <a href="mailto:#"> s6enelez@uni-bonn.de</a>
               </address>
             </div>
             <div className="col-md-4 mb-5" />
