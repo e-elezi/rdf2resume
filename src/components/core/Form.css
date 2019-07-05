@@ -27,6 +27,34 @@
   border-color: #186426;
 }
 
+.btn-reset {
+  background-color: darkgray;
+  border-color: darkgray;
+}
+
+.btn-reset:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.btn-reset:not(:disabled):not(.disabled):active {
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem lightgray;
+}
+
+.btn-reset:not(:disabled):not(.disabled):active:focus {
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem lightgray;
+}
+
+.btn-reset:focus {
+  box-shadow: 0 0 0 0.2rem lightgray !important;
+}
+
 .info-button {
   background-color: #eee;
   border-color: #eee;
@@ -78,176 +106,121 @@
   margin-left: 0;
 }
 
+
 /*************************************************************************/
-/**************************** DROPDOWN ***********************************/
+/**************************** DROPDOWN REDUX *****************************/
 /*************************************************************************/
-.dropdown {
-  width: 100%;
-}
-
-.dropdown .title-toggle {
-  margin-bottom: 5px;
-  margin-right: 5px;
-  border: 1px solid #4bb3cc;
-  background-color: #4bb3cc;
-  color: white;
-}
-
-.dropdown .menu-title {
-  width: 100%;
-  margin-top: 10px;
-  border-bottom: 2px solid #4bb3cc;
-  cursor: pointer;
-}
-
-.dropdown .menu-title-hidden {
-  width: 100%;
-  margin-top: 0px;
-  border-bottom: 2px solid #4bb3cc;
-  cursor: pointer;
-}
-
-.dropdown .menu-title .menu-title-floating-hidden {
-  display: none;
-}
-
-.dropdown .menu-title .menu-title-floating,
-.dropdown .menu-title-hidden .menu-title-floating {
-  display: block;
-  text-transform: capitalize;
+.label-rw {
+  margin-bottom: 0;
   font-size: 0.8em;
 }
 
-.dropdown .menu-title a,
-.dropdown .menu-title-hidden a {
-  display: flex;
-  align-items: flex-start;
+.rw-widget-container {
+  margin-bottom: 5px;
 }
 
-.dropdown .menu-title a .title-value,
-.dropdown .menu-title-hidden a .title-value {
-  margin: 5px;
-  font-weight: 400;
-  text-transform: capitalize;
+.menu-title-floating {
+  font-size: 1rem !important;
 }
 
-.dropdown .menu-title a .title-toggle .title-value-remove,
-.dropdown .menu-title-hidden a .title-toggle .title-value-remove {
-  color: white;
-  padding: 5px;
-  font-weight: 600;
-  font-size: 0.7em;
-  text-align: center;
+.mb-2 {
+  margin-bottom: 0 !important;
 }
 
-.dropdown .menu-title a .title-toggle .title-value-remove:hover,
-.dropdown .menu-title-hidden a .title-toggle .title-value-remove:hover {
-  color: red;
+.rw-i-caret-down:before {
+  content: "\e803";
+  color: #4bb3cc;
 }
 
-.dropdown a {
-  color: black;
+.rw-btn-primary:hover {
+  background-color: transparent;
 }
 
-.dropdown a:hover {
-  text-decoration: none;
+.rw-widget-container {
+  background-color: #fff;
+  border: 0;
+  border-bottom: 2px solid #4bb3cc;
+  border-radius: 0px;
+  width: 100%;
 }
 
-.dropdown a input {
-  width: 100% !important;
+.rw-combobox.rw-widget {
+  width: 100%;
+}
+
+.rw-widget-container.rw-state-focus,
+.rw-state-focus > .rw-widget-container,
+.rw-widget-container.rw-state-focus:hover,
+.rw-state-focus > .rw-widget-container:hover {
+  background-color: #fff;
+  border-color: #4bb3cc;
+  box-shadow: none;
+}
+
+.rw-widget-picker {
+  height: inherit;
+}
+
+.rw-select-bordered {
+  cursor: pointer;
+  border: none;
+  border-left: 0;
+}
+.rw-select-bordered:hover,
+.rw-select-bordered:active {
+  background-color: white;
+}
+.rw-select-bordered:active {
+  box-shadow: none;
+}
+
+.rw-rtl .rw-select-bordered {
+  border-right: 0;
+  border-left: none;
+}
+
+.rw-input,
+.rw-dropdown-list-autofill,
+.rw-filter-input {
   padding: 0;
-  margin: 0 !important;
-  text-transform: capitalize;
 }
 
-.dropdown-menu.show {
-  width: 100% !important;
-  max-height: 200px;
-  overflow: scroll;
+.rw-widget-input,
+.rw-filter-input {
+  box-shadow: none;
+}
+.rw-widget-input.rw-state-focus {
+  box-shadow: none;
 }
 
-.dropdown-menu.show input {
-  width: 90% !important;
-  border: 1px solid #4bb3cc;
-  box-shadow: 0 0 5px 0 #4bb3cc;
-  padding: 5px;
-  text-transform: capitalize;
+.rw-list-option.rw-state-focus,
+.rw-list-option.rw-state-focus:hover {
+  background-color: #4bb3cc;
+  border-color: #4bb3cc;
+  color: white;
+}
+.rw-list-option:hover,
+.rw-list-option:hover.rw-state-focus {
+  background-color: #4bb3cc;
+  border-color: #4bb3cc;
+  color: white;
+}
+.rw-list-option.rw-state-selected,
+.rw-list-option.rw-state-selected:hover {
+  background-color: #4bb3cc;
+  border-color: #4bb3cc;
+  color: white;
 }
 
-.dropdown-item {
-  color: black !important;
+.rw-multiselect-tag {
+  color: white;
+  margin-bottom: 5px;
+  background-color: #4BB3CC;
+  border: 1px solid #4BB3CC;
 }
 
-.dropdown-item:hover {
-  background-color: #4bb3cc !important;
-  color: white !important;
-}
-
-.dropdown-item.active {
-  background-color: #4bb3cc !important;
-  color: white !important;
-}
-
-.css-bg1rzq-control {
-  border-radius: 0 !important;
-  border: 0 !important;
-  border-bottom: 2px solid #4bb3cc !important;
-}
-
-.css-1szy77t-control {
-  border: 0 !important;
-  border-bottom: 2px solid #4bb3cc !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-.css-es53b3-multiValue {
-  background-color: #4bb3cc !important;
-  color: white !important;
-}
-
-.css-12jo7m5 {
-  color: white !important;
-}
-
-.css-1szy77t-control:hover {
-  border: 0 !important;
-  border-bottom: 2px solid #4bb3cc !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-.css-1szy77t-control:active {
-  border: 0 !important;
-  border-bottom: 2px solid #4bb3cc !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-.css-1hwfws3 {
-  padding: 0 !important;
-  padding-bottom: 5px !important;
-}
-
-.css-bgvzuu-indicatorSeparator {
-  width: 0 !important;
-}
-
-.css-16pqwjk-indicatorContainer {
-  color: #4bb3cc !important;
-}
-
-.css-1thkkgx-indicatorContainer:hover {
-  color: #4bb3cc !important;
-}
-
-.css-kj6f9i-menu div div {
-  background-color: white !important;
-  color: black !important;
-}
-
-.css-kj6f9i-menu div div:hover {
-  background-color: #4bb3cc !important;
-  color: white !important;
+.rw-input-reset {
+  padding-left: 0 !important;
 }
 
 /*************************************************************************/
@@ -278,7 +251,6 @@
   border-bottom: 2px solid #4bb3cc;
   outline: none;
   box-shadow: none;
-  padding-left: 5px;
 }
 
 .form-control:placeholder-shown + .form-label {
@@ -334,21 +306,14 @@ textarea:focus {
   box-shadow: 0px 0px 5px 0px #4bb3cc !important;
 }
 
+.textarea-wrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /*************************************************************************/
 /**************************** CHECKBOX ***********************************/
 /*************************************************************************/
-/* .form-check-input {
-    margin-left: 97%;
-    border-color: #4BB3CC;
-}
-.form-check-input:active {
-    border-color: #4BB3CC;
-    background-color: #4BB3CC;
-}
-.form-check {
-    padding: 0;
-} */
-
 .form-check {
   padding-left: 0;
 }
@@ -374,6 +339,11 @@ textarea:focus {
   height: 0;
   width: 0;
   left: 97%;
+}
+
+.no-label .checkmark {
+  top: 50%;
+  left: 46%;
 }
 
 /* Create a custom checkbox */
@@ -428,13 +398,64 @@ textarea:focus {
   margin-top: 10px;
 }
 
-.custom-control-input {
-  box-shadow: 0 0 5px 0 lightgray;
+.label-radio {
+  position: relative;
+  padding-left: 30px;
+  margin-right: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #4bb3cc;
+.label-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.label-radio .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.label-radio:hover input ~ .checkmark {
+  background-color: lightgray;
+}
+
+/* When the radio button is checked, add a blue background */
+.label-radio input:checked ~ .checkmark {
   background-color: #4bb3cc;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.label-radio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.label-radio .checkmark:after {
+  top: 6px;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
 .custom-control-inline {
@@ -447,6 +468,30 @@ textarea:focus {
   margin: 0;
 }
 
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-info:focus, .btn-info.focus {
+  box-shadow: none;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-info.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+
 .btn-danger {
   background-color: red !important;
   border-color: red !important;
@@ -456,6 +501,13 @@ textarea:focus {
   background-color: darkred !important;
   border-color: darkred !important;
 }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #4BB3CC;
+  border-color: #4BB3CC;
+  box-shadow: 0 0 5px 0 #4BB3CC;
+}
+
 
 /*************************************************************************/
 /**************************** CARD ***************************************/
@@ -556,3 +608,10 @@ a.inline-link:hover {
   border-top: 0;
   padding-top: 0;
 }
+
+/*************************************************************************/
+/**************************** TABLE **************************************/
+/*************************************************************************/
+/* .table .thead-light th {
+  width: 200px !important;
+} */

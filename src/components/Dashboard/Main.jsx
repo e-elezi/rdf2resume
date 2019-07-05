@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import "./Main.css";
 import FormAboutCV from "./Forms/FormAboutCV";
 import FormEducation from "./Forms/FormEducation";
+import FormCourse from "./Forms/FormCourse";
 import FormOtherInfo from "./Forms/FormOtherInfo";
 import FormPersonal from "./Forms/FormPersonal";
 import FormSkill from "./Forms/FormSkill";
@@ -20,7 +21,8 @@ class Main extends Component {
       { label: "Personal Information", link: "/d/personal" },
       { label: "Target Job", link: "/d/target" },
       { label: "Work History", link: "/d/work" },
-      { label: "Education/Training", link: "/d/education" },
+      { label: "Education", link: "/d/education" },
+      { label: "Courses/Trainings", link: "/d/course" },
       { label: "Skills", link: "/d/skill" },
       { label: "Reference", link: "/d/reference" },
       { label: "Other Information", link: "/d/other" },
@@ -29,24 +31,24 @@ class Main extends Component {
   };
 
   render() {
-    let {
-      cvTitle,
-      cvDescription,
-      cvIsActive,
-      cvIsConfidential,
-      cvLastUpdated,
-      person,
-      target,
-      workHistory,
-      education,
-      references,
-      skills,
-      otherInfo
-    } = this.props.cv;
+    // let {
+    //   cvTitle,
+    //   cvDescription,
+    //   cvIsActive,
+    //   cvIsConfidential,
+    //   cvLastUpdated
+    //   // person,
+    //   // target,
+    //   // workHistory,
+    //   // education,
+    //   // references,
+    //   // skills,
+    //   // otherInfo
+    // } = this.props.cv;
 
     const {
-      handleInputChange,
-      handleCheckboxChange,
+      // handleInputChange,
+      // handleCheckboxChange,
       handleFormSubmit,
       handleStateObjectUpdate
     } = this.props;
@@ -58,21 +60,7 @@ class Main extends Component {
         </Col>
         <Col md={10} style={{ overflow: "scroll" }}>
           <Form>
-            <Route
-              path="/d/about"
-              render={props => (
-                <FormAboutCV
-                  {...props}
-                  cvTitle={cvTitle}
-                  cvDescription={cvDescription}
-                  cvIsActive={cvIsActive}
-                  cvIsConfidential={cvIsConfidential}
-                  cvLastUpdated={cvLastUpdated}
-                  handleInputChange={handleInputChange}
-                  handleCheckboxChange={handleCheckboxChange}
-                />
-              )}
-            />
+            <Route path="/d/about" component={FormAboutCV} />
             <Route
               path="/d/personal"
               render={props => (
@@ -85,6 +73,7 @@ class Main extends Component {
             <Route path="/d/target" component={FormTarget} />
             <Route path="/d/work" component={FormWorkHistory} />
             <Route path="/d/education" component={FormEducation} />
+            <Route path="/d/course" component={FormCourse} />
             <Route path="/d/skill" component={FormSkill} />
             <Route path="/d/reference" component={FormReference} />
             <Route path="/d/other" component={FormOtherInfo} />

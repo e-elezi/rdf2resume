@@ -1,38 +1,16 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import WorkHistoryModal from "./FormWorkHistory/WorkHistoryModal";
-import WorkHistoryView from "./FormWorkHistory/WorkHistoryView";
+import { connect } from "react-redux";
+import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
+import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
 import AddButton from "../../core/AddButton";
 
 class FormWorkHistory extends Component {
   state = {
-    label: "workHistories",
-    WorkHistories: [
-      {
-        startDate: "25 June",
-        endDate: "28 June",
-        jobTitle: "Web Developer",
-        jobDescription: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-        careerLevel: "Student",
-        jobMode: "Part time",
-        isCurrent: false,
-        Company: {
-          organizationName: "Publicis.Sapient",
-          organizationCountry: "Germany",
-          organizationLocality: "Koln",
-          organizationNotes: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-          organizationDescription: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-          organizationWebsite: "htpp://abc.com",
-          organizationIndustry: "Technology"
-        }
-      }
-    ],
     showModal: false
   };
 
-  componentWillMount() {
-    
-  }
+  componentWillMount() {}
 
   handleClose = () => {
     this.setState({ showModal: false });
@@ -40,28 +18,6 @@ class FormWorkHistory extends Component {
 
   handleShow = () => {
     this.setState({ showModal: true });
-  };
-
-  handleRemoveWorkHistory = idx => {
-    let workHistories = [...this.state.workHistories];
-    workHistories = workHistories.filter((s, sidx) => idx !== sidx);
-    this.setState({
-        workHistories
-    });
-  };
-
-  handleSaveWorkHistory = workHistory => {
-    let workHistories = [...this.state.workHistories];
-    workHistories.push(workHistory);
-    this.setState({
-        workHistories
-    });
-  };
-
-  handleUpdateWorkHistory = (workHistory, idx) => {
-    let workHistories = [...this.state.workHistories];
-    workHistories[idx] = workHistory;
-    this.setState({ workHistories });
   };
 
   render() {
@@ -79,12 +35,7 @@ class FormWorkHistory extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <WorkHistoryModal
-                  show={showModal}
-                  onHide={this.handleClose}
-                  handleSaveWorkHistory={this.handleSaveWorkHistory}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
-                />
+                <WorkHistoryModal show={showModal} onHide={this.handleClose} />
               </Col>
               <Col md={10} className="button-label">
                 <p>Add work history</p>
@@ -92,14 +43,14 @@ class FormWorkHistory extends Component {
             </Row>
           </Col>
         </Row>
-        {this.state.WorkHistories.map((workHistory, idx) => (
+        {this.props.workHistories.length === 0
+          ? "No work histories have been added until now."
+          : ""}
+        {this.props.workHistories.map(workHistory => (
           <WorkHistoryView
             workHistory={workHistory}
-            id={idx}
-            handleRemove={this.handleRemoveWorkHistory}
-            key={idx}
-            handleUpdateWorkHistory={this.handleUpdateWorkHistory}
-            handleStateObjectUpdate={this.handleStateObjectUpdate}
+            id={workHistory.id}
+            key={workHistory.id}
           />
         ))}
       </React.Fragment>
@@ -107,4 +58,13 @@ class FormWorkHistory extends Component {
   }
 }
 
-export default FormWorkHistory;
+const mapStateToProps = state => {
+  return {
+    workHistories: Object.values(state.cv.workHistory)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(FormWorkHistory);

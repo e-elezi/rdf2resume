@@ -23,7 +23,7 @@ export class CustomToggle extends React.Component {
         >
           {this.props.children}
         </span>
-        <a href="">{value !== "" ? value : this.props.children}</a>
+        <a href="/">{value !== "" ? value : this.props.children}</a>
       </div>
     );
   }
@@ -68,7 +68,7 @@ export class CustomToggleMulti extends React.Component {
         >
           {this.props.children}
         </span>
-        <a href="">
+        <a href="/">
           {value.length !== 0 ? valComponents : this.props.children}
         </a>
       </div>

@@ -1,0 +1,269 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+mybase0:SexProperty
+  rdfs:label "Sex Property"@en ;
+  a owl:Class .
+
+mybase0:Female
+  rdfs:label "Female"@en  ;
+  owl:disjointWith mybase0:Male;
+  owl:disjointWith mybase0:NotIndicated;
+  a mybase0:SexProperty .
+
+mybase0:Male
+  rdfs:label "Male"@en  ;
+  a mybase0:SexProperty .
+
+mybase0:NotIndicated
+  rdfs:label "Not Indicated"@en  ;
+  a mybase0:SexProperty .
+
+mybase0:SelfAssessmentProperty
+  rdfs:label "Self-Assessment Property"@en ;
+  a owl:Class .
+
+mybase0:BasicUser
+  rdfs:label "Basic User"@en  ;
+  rdfs:comment "I can look for information online using a search engine. I know not all online information is reliable. I can save or store files or content (e.g. text, pictures, music, videos, web pages) and retrieve them once saved or stored."@en ;
+  owl:disjointWith mybase0:IndependentUser;
+  owl:disjointWith mybase0:ProficientUser;
+  a mybase0:SelfAssessmentProperty .
+
+mybase0:IndependentUser
+  rdfs:label "Independent User"@en  ;
+  rdfs:comment "I can use different search engines to find information. I use some filters when searching (e.g. searching only images, videos, maps). I compare different sources to assess the reliability of the information I find. I classify the information in a methodical way using files and folders to locate these easier. I do backups of information or files I have stored."@en ;
+  a mybase0:SelfAssessmentProperty .
+
+mybase0:ProficientUser
+  rdfs:label "Proficient User"@en  ;
+  rdfs:comment "I can use advanced search strategies (e.g. using search operators) to find reliable information on the internet. I can use web feeds (like RSS) to be updated with content I am interested in. I can assess the validity and credibility of information using a range of criteria. I am aware of new advances in information search, storage and retrieval. Ι can save information found on the internet in different formats. I can use cloud information storage services."@en ;
+  a mybase0:SelfAssessmentProperty .
+
+mybase0:LanguageSkillSelfAssessmentProperty
+  rdfs:label "Language Skill Self-Assessment Property"@en ;
+  a owl:Class .
+
+mybase0:BasicUserA1
+  rdfs:label "Basic User A1"@en  ;
+  rdfs:comment "I can understand familiar words and very basic phrases concerning myself, my family and immediate concrete surroundings when people speak slowly and clearly."@en ;
+  owl:disjointWith mybase0:BasicUserA2;
+  owl:disjointWith mybase0:IndependentUserB1;
+  owl:disjointWith mybase0:IndependentUserB2;
+  owl:disjointWith mybase0:ProficientUserC1;
+  owl:disjointWith mybase0:ProficientUserC2;
+  a mybase0:LanguageSkillSelfAssessmentProperty .
+
+mybase0:BasicUserA2
+  rdfs:label "Basic User A2"@en  ;
+  rdfs:comment "I can understand phrases and the highest frequency vocabulary related to areas of most immediate personal relevance (e.g. very basic personal and family information, shopping, local area, employment). I can catch the main point in short, clear, simple messages and announcements."@en ;
+  a mybase0:LanguageSkillSelfAssessmentProperty .
+
+mybase0:IndependentUserB1
+  rdfs:label "Independent User B1"@en  ;
+  rdfs:comment "I can understand the main points of clear standard speech on familiar matters regularly encountered in work, school, leisure, etc. I can understand the main point of many radio or TV programmes on current affairs or topics of personal or professional interest when the delivery is relatively slow and clear."@en ;
+  a mybase0:LanguageSkillSelfAssessmentProperty .
+
+mybase0:IndependentUserB2
+  rdfs:label "Independent User B2"@en  ;
+  rdfs:comment "I can understand extended speech and lectures and follow even complex lines of argument provided the topic is reasonably familiar. I can understand most TV news and current affairs programmes. I can understand the majority of films in standard dialect."@en ;
+  a mybase0:LanguageSkillSelfAssessmentProperty .
+
+mybase0:ProficientUserC1
+  rdfs:label "Proficient User C1"@en  ;
+  rdfs:comment "I can understand extended speech even when it is not clearly structured and when relationships are only implied and not signalled explicitly. I can understand television programmes and films without too much effort."@en ;
+  a mybase0:LanguageSkillSelfAssessmentProperty .
+
+mybase0:ProficientUserC2
+  rdfs:label "Proficient User C2"@en  ;
+  rdfs:comment "I have no difficulty in understanding any kind of spoken language, whether live or broadcast, even when delivered at fast native speed, provided I have some time to get familiar with the accent."@en ;
+  a mybase0:LanguageSkillSelfAssessmentProperty .
+
+mybase0:TitleProperty
+  rdfs:label "Title Property"@en ;
+  a owl:Class .
+
+mybase0:Mr
+  rdfs:label "Mr"@en  ;
+  owl:disjointWith mybase0:Mrs;
+  owl:disjointWith mybase0:DrMrs;
+  owl:disjointWith mybase0:DrMr;
+  a mybase0:TitleProperty .
+
+mybase0:Mrs
+  rdfs:label "Mrs"@en  ;
+  a mybase0:TitleProperty .
+
+mybase0:DrMrs
+  rdfs:label "Dr.Mrs"@en  ;
+  a mybase0:TitleProperty .
+
+mybase0:DrMr
+  rdfs:label "Dr.Mr"@en  ;
+  a mybase0:TitleProperty .
+
+mybase0:CompanySize
+  rdfs:label "Company Size"@en ;
+  a owl:Class .
+
+mybase0:SmallCompany
+  rdfs:label "Small Company"@en  ;
+  a mybase0:CompanySize .
+
+mybase0:MediumCompany
+  rdfs:label "Medium Company"@en  ;
+  owl:disjointWith mybase0:SmallCompany;
+  owl:disjointWith mybase0:LargeCompany;
+  a mybase0:CompanySize .
+
+mybase0:LargeCompany
+  rdfs:label "Large Company"@en  ;
+  a mybase0:CompanySize .
+
+mybase0:CVJobMode
+  a owl:Class ;
+  rdfs:label "CV job mode (employee/contractor/intern)"@en  .
+
+mybase0:EmployeeFull
+  rdfs:label "Employee Full time"@en  ;
+  owl:disjointWith mybase0:EmployeePart;
+  owl:disjointWith mybase0:Contractor;
+  owl:disjointWith mybase0:Intern;
+  a mybase0:CVJobMode .
+
+mybase0:EmployeePart
+  rdfs:label "Employee Part time"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:Contractor
+  rdfs:label "Contractor"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:Intern
+  rdfs:label "Intern"@en  ;
+  a mybase0:CVJobMode .
+
+mybase0:CVCareerLevel
+  a owl:Class ;
+  rdfs:label "CV career level"@en  .
+
+mybase0:HighSchool
+  a mybase0:CVCareerLevel ;
+  owl:disjointWith mybase0:Student;
+  owl:disjointWith mybase0:EntryLvl;
+  owl:disjointWith mybase0:MidCareer;
+  owl:disjointWith mybase0:Executive;
+  owl:disjointWith mybase0:Management;
+  owl:disjointWith mybase0:SeniorExecutive;
+  rdfs:label "Student (high school)"@en  .
+
+mybase0:Student
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Student (graduate/undergraduate)"@en  .
+
+mybase0:EntryLvl
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Entry level (less than 2 years of experience)"@en  .
+
+mybase0:MidCareer
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Mid-career (2+ years of experience)"@en  .
+
+mybase0:Management
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Management (manager/director of staff)"@en  .
+
+mybase0:Executive
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Executive (SVP, EVP, VP)"@en  .
+
+mybase0:SeniorExecutive
+  a mybase0:CVCareerLevel ;
+  rdfs:label "Senior Executive (president / CEO)"@en  .
+
+mybase0:EduDegree
+  a owl:Class ;
+  rdfs:label "Degrees"@en  .
+
+mybase0:EduHighSchool
+  a mybase0:EduDegree ;
+  owl:disjointWith mybase0:EduVocational;
+  owl:disjointWith mybase0:EduCollegeCoursework;
+  owl:disjointWith mybase0:EduBachelor;
+  owl:disjointWith mybase0:EduMaster;
+  owl:disjointWith mybase0:EduDoctorate;
+  owl:disjointWith mybase0:EduAssociate;
+  owl:disjointWith mybase0:EduProfessional;
+  rdfs:label "High school or equivalent."@en  .
+
+mybase0:EduVocational
+  a mybase0:EduDegree ;
+  rdfs:label "Vocational"@en  .
+
+mybase0:EduCollegeCoursework
+  a mybase0:EduDegree ;
+  rdfs:label "Some college coursework completed."@en  .
+
+mybase0:EduBachelor
+  a mybase0:EduDegree ;
+  rdfs:label "Bachelor's degree"@en  .
+
+mybase0:EduMaster
+  a mybase0:EduDegree ;
+  rdfs:label "Master's degree"@en  .
+
+mybase0:EduDoctorate
+  a mybase0:EduDegree ;
+  rdfs:label "Doctorate"@en  .
+
+mybase0:EduAssociate
+  a mybase0:EduDegree ;
+  rdfs:label "Associate degree"@en  .
+
+mybase0:EduProfessional
+  a mybase0:EduDegree ;
+  rdfs:label "Professional"@en  .
+
+mybase0:OtherCVInfoType
+  a owl:Class ;
+  rdfs:label "Type of misc information added to a CV."@en  .
+
+mybase0:Interests
+  a mybase0:OtherCVInfoType ;
+  owl:disjointWith mybase0:OtherCVInfoType;
+  owl:disjointWith mybase0:Accomplishments;
+  owl:disjointWith mybase0:PointOfView;
+  owl:disjointWith mybase0:Membership;
+  owl:disjointWith mybase0:SocialActivities;
+  owl:disjointWith mybase0:Publications;
+  owl:disjointWith mybase0:Other;
+  rdfs:label "Interests"@en  .
+
+mybase0:Awards
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Awards"@en  .
+
+mybase0:Accomplishments
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Accomplishments"@en  .
+
+mybase0:PointOfView
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "PointOfView"@en  .
+
+mybase0:Membership
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Membership"@en  .
+
+mybase0:SocialActivities
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "SocialActivities"@en  .
+
+mybase0:Publications
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Publications"@en  .
+
+mybase0:Other
+  a mybase0:OtherCVInfoType ;
+  rdfs:label "Other"@en  .

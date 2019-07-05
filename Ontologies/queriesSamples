@@ -1,0 +1,485 @@
+###############################
+PREFIXES
+###############################
+
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix xsd: <https://www.w3.org/2001/XMLSchema#> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix ns0: <http://protege.stanford.edu/system#> 
+prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#> 
+prefix dc: <http://purl.org/dc/terms/> 
+prefix dbo: <http://dbpedia.org/resource/classes#> 
+prefix esco: <http://data.europa.eu/esco/model> 
+prefix my0: <http://example.com/rdf2resume_ontology.rdf#> 
+prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#> 
+
+###############################
+FETCHING CV OF A PERSON
+###############################
+
+SELECT DISTINCT 
+?cv 
+
+WHERE {
+  ?cv a my0:CV;
+      my0:aboutPerson ?person.
+  ?person my0:firstName "Enkeleda";
+          my0:lastName "Elezi".
+}
+
+
+###############################
+FETCHING ABOUT CV INFO
+###############################
+
+SELECT DISTINCT 
+?cvTitle
+?cvNotes
+?cvCopyright
+?cvIsConfidential
+?cvIsActive
+WHERE {
+  OPTIONAL { ?cv my0:cvTitle ?cvTitle}
+  OPTIONAL { ?cv my0:cvNotes ?cvNotes}
+  OPTIONAL { ?cv my0:cvCopyright ?cvCopyright}
+  OPTIONAL { ?cv my0:cvIsConfidential ?cvIsConfidential}
+  OPTIONAL { ?cv my0:cvIsActive ?cvIsActive}
+}
+
+
+###############################
+FETCHING PERSON INFO
+###############################
+
+SELECT DISTINCT 
+?person
+?firstName
+?lastName
+?titleLabel
+?genderLabel
+?photo
+?dateOfBirth
+?citizenshipNameCountry
+?nationalityNameCountry
+?driversLicence
+?email
+?Website
+?TelephoneNumber
+?address
+?street
+?postalCode
+?city
+?AddressNameCountry
+?InstantMessaging
+WHERE {
+  my0:CV_1 my0:aboutPerson ?person.
+  ?person my0:firstName ?firstName;
+          my0:lastName ?lastName.
+  OPTIONAL { ?person my0:title ?titleProperty.
+    		 ?titleProperty rdfs:label ?titleLabel.}
+  OPTIONAL { ?person my0:gender ?genderProperty.
+    		 ?genderProperty rdfs:label ?genderLabel.}
+  OPTIONAL { ?person my0:hasCitizenship ?citizenshipProperty.
+             ?citizenshipProperty country:referencesCountry ?country.
+  			 ?country country:nameEnglish ?citizenshipNameCountry. }
+  OPTIONAL { ?person my0:hasNationality ?citizenshipProperty.
+             ?citizenshipProperty country:referencesCountry ?country.
+  			 ?country country:nameEnglish ?nationalityNameCountry. }
+  OPTIONAL { ?person my0:photo ?photo.}
+  OPTIONAL { ?person my0:dateOfBirth ?dateOfBirth.}
+  OPTIONAL { ?person my0:email ?email.}
+  OPTIONAL { ?person my0:hasTelephoneNumber ?TelephoneNumber.}
+  OPTIONAL { ?person my0:hasWebsite ?Website.}
+  OPTIONAL { ?person my0:address ?address.
+             ?address my0:street ?street;
+                      my0:postalCode ?postalCode;
+                      my0:city ?city;
+                      my0:country ?countryAddress.
+             ?countryAddress country:referencesCountry ?countryAddressReferences.
+  			 ?countryAddressReferences country:nameEnglish ?AddressNameCountry.
+              }
+ OPTIONAL { ?person my0:hasInstantMessaging ?InstantMessaging.}
+}
+
+###############################
+FETCHING InstantMessaging
+###############################
+SELECT DISTINCT 
+?instantMessagingName
+?instantMessagingUsername
+
+WHERE {
+  my0:Person_1 my0:hasInstantMessaging ?instantMessaging.
+  ?instantMessaging my0:instantMessagingName ?instantMessagingName;
+                         my0:instantMessagingUsername ?instantMessagingUsername.
+}
+
+###############################
+FETCHING ALL Work Histories
+###############################
+SELECT DISTINCT 
+?WorkHistory
+?company
+?startDate
+?endDate
+?jobTitle
+?jobDescription
+?isCurrent
+?careerLevelLabel
+?jobModeLabel
+WHERE {
+  my0:CV_1 my0:hasWorkHistory ?WorkHistory.
+  OPTIONAL { ?WorkHistory my0:employedIn ?company.}
+  OPTIONAL { ?WorkHistory my0:startDate ?startDate.}
+  OPTIONAL { ?WorkHistory my0:endDate ?endDate.}
+  OPTIONAL { ?WorkHistory my0:jobTitle ?jobTitle.}
+  OPTIONAL { ?WorkHistory my0:jobDescription ?jobDescription.}
+  OPTIONAL { ?WorkHistory my0:isCurrent ?isCurrent.}
+  OPTIONAL { ?WorkHistory my0:careerLevel ?careerLevelProperty.
+             ?careerLevelProperty rdfs:label ?careerLevelLabel.}
+  OPTIONAL { ?WorkHistory my0:jobMode ?jobModeProperty.
+             ?jobModeProperty rdfs:label ?jobModeLabel.}
+}
+
+###############################
+FETCHING SPECIFIC company/ education org/ organization
+###############################
+SELECT DISTINCT 
+?companyIndustry
+?organizationName
+?organizationDescription
+?organizationPhoneNumber
+?organizationWebsite
+?organizationAddress
+?street
+?postalCode
+?city
+?country
+?AddressNameCountry
+WHERE {
+  OPTIONAL {  my0:EducationalOrg_1 my0:companyIndustry ?companyIndustry.}
+  OPTIONAL {  my0:EducationalOrg_1 my0:organizationName ?organizationName.}
+  OPTIONAL {  my0:EducationalOrg_1 my0:organizationDescription ?organizationDescription.}
+  OPTIONAL {  my0:EducationalOrg_1 my0:organizationWebsite ?organizationWebsite.}
+  OPTIONAL {  my0:EducationalOrg_1 my0:organizationPhoneNumber ?organizationPhoneNumber.}
+  OPTIONAL {  my0:EducationalOrg_1 my0:organizationAddress ?organizationAddress.
+    OPTIONAL { ?organizationAddress my0:street ?street. }
+    OPTIONAL { ?organizationAddress my0:city ?city. }
+    OPTIONAL { ?organizationAddress my0:postalCode ?postalCode. }
+    OPTIONAL { ?organizationAddress my0:country ?country. 
+               ?country country:referencesCountry ?countryAddressReferences.
+      ?countryAddressReferences country:nameEnglish ?AddressNameCountry.}  
+              }
+}
+
+
+###############################
+FETCHING ALL Educations
+###############################
+SELECT DISTINCT 
+?Education
+WHERE {
+  my0:CV_1 my0:hasEducation ?Education.
+}
+
+
+###############################
+FETCHING ALL References
+###############################
+SELECT DISTINCT
+?reference
+?classLabel
+?Person
+WHERE {
+  my0:CV_1 my0:hasReference ?reference.
+  ?reference rdf:type ?class;
+                              my0:referenceBy ?Person.
+  ?class rdfs:label ?classLabel.
+}
+
+###############################
+FETCHING SPECIFIC REFERENCE
+###############################
+SELECT DISTINCT 
+?classLabel
+?Person
+WHERE {
+  my0:ProfessionalReference_1 rdf:type ?class;
+                              my0:referenceBy ?Person.
+  ?class rdfs:label ?classLabel.
+}
+
+###############################
+FETCHING TARGET
+###############################
+SELECT DISTINCT 
+?Target
+?targetCompanyDescription
+?targetCompanyIndustry
+?targetJobTitle
+?targetJobDescription
+?targetSalaryCurrency
+?targetSalaryRange
+?targetWeeksNoticePeriod
+?targetConditionWillRelocate
+?targetConditionWillTravel
+?targetCareerLevelLabel
+?targetCompanySizeLabel
+?targetNameCountry
+?targetJobModeLabel
+WHERE {
+  my0:CV_1 my0:hasTarget ?Target.
+  OPTIONAL { ?Target my0:targetCompanyDescription ?targetCompanyDescription; }
+  OPTIONAL { ?Target my0:targetCompanyIndustry ?targetCompanyIndustry; }
+  OPTIONAL { ?Target my0:targetJobTitle ?targetJobTitle; }
+  OPTIONAL { ?Target my0:targetJobDescription ?targetJobDescription; }
+  OPTIONAL { ?Target my0:targetSalaryRange ?targetSalaryRange; }
+  OPTIONAL { ?Target my0:targetSalaryCurrency ?targetSalaryCurrency; }
+  OPTIONAL { ?Target my0:targetWeeksNoticePeriod ?targetWeeksNoticePeriod; }
+  OPTIONAL { ?Target my0:targetConditionWillRelocate ?targetConditionWillRelocate; }
+  OPTIONAL { ?Target my0:targetConditionWillTravel ?targetConditionWillTravel; }
+  OPTIONAL { ?Target my0:targetCareerLevel ?targetCareerLevelProperty.
+             ?targetCareerLevelProperty rdfs:label ?targetCareerLevelLabel.}
+  OPTIONAL { ?Target my0:targetCompanySize ?targetCompanySizeProperty.
+             ?targetCompanySizeProperty rdfs:label ?targetCompanySizeLabel.}
+  OPTIONAL { ?Target my0:targetCountry ?country.
+             ?country country:referencesCountry ?countryAddressReferences.
+      ?countryAddressReferences country:nameEnglish ?targetNameCountry.}  
+   OPTIONAL { ?Target my0:targetJobMode ?targetJobModeProperty.
+             ?targetJobModeProperty rdfs:label ?targetJobModeLabel.}
+}
+
+###################################
+FETCHING SKILLS
+##################################
+SELECT DISTINCT
+?skill
+?classLabel
+?classComment
+?skillName
+?skillDescription
+?skillLevel
+?skillHasCertificate
+?skillLastUsed
+?skillYearsExperience
+?ipLabel
+?cLabel
+?cCLabel
+?sLabel
+?psLabel
+?hasICTCertificate
+?otherComputerSkills
+?lslrLabel
+?lslwLabel
+?lsllLabel
+?lslsiLabel
+?lslspLabel
+WHERE {
+  my0:CV_1 my0:hasSkill ?skill.
+  ?skill rdf:type ?class.
+  ?class rdfs:label ?classLabel.
+  ?class rdfs:comment ?classComment.
+  OPTIONAL { ?skill my0:skillName ?skillName. }
+  OPTIONAL { ?skill my0:skillDescription ?skillDescription. }
+  OPTIONAL { ?skill my0:skillLevel ?skillLevel. }
+  OPTIONAL { ?skill my0:skillLastUsed ?skillLastUsed. }
+  OPTIONAL { ?skill my0:skillYearsExperience ?skillYearsExperience. }
+  OPTIONAL { ?skill my0:skillHasCertificate ?skillHasCertificate. }
+  OPTIONAL { ?skill my0:informationProcessing ?ipsal.
+             ?ipsal rdfs:label ?ipLabel.}
+  OPTIONAL { ?skill my0:communication ?csal.
+             ?csal rdfs:label ?cLabel.}
+  OPTIONAL { ?skill my0:contentCreation ?cCsal.
+             ?cCsal rdfs:label ?cCLabel.}
+  OPTIONAL { ?skill my0:safety ?ssal.
+             ?ssal rdfs:label ?sLabel.}
+  OPTIONAL { ?skill my0:problemSolving ?psal.
+             ?psal rdfs:label ?psLabel.}
+  OPTIONAL { ?skill my0:hasICTCertificate ?hasICTCertificate. }
+  OPTIONAL { ?skill my0:otherComputerSkills ?otherComputerSkills. }
+  OPTIONAL { ?skill my0:languageSkillLevelReading ?lslrsap.
+             ?lslrsap rdfs:label ?lslrLabel.}
+  OPTIONAL { ?skill my0:languageSkillLevelWriting ?lslwsap.
+             ?lslwsap rdfs:label ?lslwLabel.}
+  OPTIONAL { ?skill my0:languageSkillLevelListening ?lsllsap.
+             ?lsllsap rdfs:label ?lsllLabel.}
+  OPTIONAL { ?skill my0:languageSkillLevelSpokenInteraction ?lslsisap.
+             ?lslsisap rdfs:label ?lslsiLabel.}
+  OPTIONAL { ?skill my0:languageSkillLevelSpokenProduction ?lslspsap.
+             ?lslspsap rdfs:label ?lslspLabel.}
+}
+
+
+###################################
+FETCHING OTHER INFO
+##################################
+
+SELECT DISTINCT 
+?OtherInfo
+?otherInfoDescription
+?OtherInfoTypeLabel
+WHERE {
+  my0:CV_1 my0:hasOtherInfo ?OtherInfo.
+  ?OtherInfo my0:otherInfoType ?OtherInfoTypeProperty.
+  ?OtherInfoTypeProperty rdfs:label ?OtherInfoTypeLabel.
+  ?OtherInfo my0:otherInfoDescription ?otherInfoDescription.
+}
+
+###################################
+FETCHING COURSES / TRAININGS
+##################################
+SELECT DISTINCT
+?Course
+?classLabel
+?classComment
+?organization
+?hasCertification
+?hasQualification
+?courseTitle
+?courseDescription
+?courseURL
+?courseStartDate
+?courseFinishDate
+WHERE {
+  my0:CV_1 my0:hasCourse ?Course.
+  ?Course a ?class.
+  ?class rdfs:label ?classLabel;
+         rdfs:comment ?classComment.
+  OPTIONAL { ?Course my0:organizedBy ?organization. }
+  OPTIONAL { ?Course my0:hasCertification ?hasCertification. }
+  OPTIONAL { ?Course my0:hasQualification ?hasQualification. }
+  OPTIONAL { ?Course my0:courseTitle ?courseTitle. }
+  OPTIONAL { ?Course my0:courseDescription ?courseDescription. }
+  OPTIONAL { ?Course my0:courseURL ?courseURL. }
+  OPTIONAL { ?Course my0:courseStartDate ?courseStartDate. }
+  OPTIONAL { ?Course my0:courseFinishDate ?courseFinishDate. }
+}
+
+###############################
+FETCHING ALL COUNTRIES
+###############################
+
+SELECT DISTINCT
+?isoCountry
+?countryObject
+?nameCountry
+WHERE {
+  ?isoCountry a country:ISO3166DefinedCountry ;
+  country:referencesCountry ?countryObject .
+  ?countryObject country:nameEnglish ?nameCountry .
+}
+
+###############################
+FETCHING ALL GENDERS
+###############################
+
+SELECT DISTINCT
+?genderClass
+?genderLabel
+WHERE {
+  ?genderClass a mybase0:SexProperty  ;
+  rdfs:label ?genderLabel.
+}
+
+###############################
+FETCHING ALL SelfAssessmentProperty
+###############################
+
+SELECT DISTINCT
+?SelfAssessmentPropertyClass
+?SelfAssessmentPropertyLabel
+?SelfAssessmentPropertyComment
+WHERE {
+  ?SelfAssessmentPropertyClass a mybase0:SelfAssessmentProperty  ;
+  rdfs:label ?SelfAssessmentPropertyLabel;
+  rdfs:comment ?SelfAssessmentPropertyComment
+}
+
+###############################
+FETCHING ALL LanguageSkillSelfAssessmentProperty
+###############################
+
+SELECT DISTINCT
+?LanguageSkillSelfAssessmentPropertyClass
+?LanguageSkillSelfAssessmentPropertyLabel
+?LanguageSkillSelfAssessmentPropertyComment
+WHERE {
+  ?LanguageSkillSelfAssessmentPropertyClass a mybase0:LanguageSkillSelfAssessmentProperty  ;
+  rdfs:label ?LanguageSkillSelfAssessmentPropertyLabel;
+  rdfs:comment ?LanguageSkillSelfAssessmentPropertyComment
+}
+
+###############################
+FETCHING ALL TitleProperty
+###############################
+
+SELECT DISTINCT
+?TitlePropertyClass
+?TitlePropertyLabel
+?TitlePropertyComment
+WHERE {
+  ?TitlePropertyClass a mybase0:TitleProperty  ;
+  rdfs:label ?TitlePropertyLabel;
+  rdfs:comment ?TitlePropertyComment.
+}
+
+###############################
+FETCHING ALL CompanySize
+###############################
+
+SELECT DISTINCT
+?CompanySizeClass
+?CompanySizeLabel
+WHERE {
+  ?CompanySizeClass a mybase0:CompanySize  ;
+  rdfs:label ?CompanySizeLabel.
+}
+
+###############################
+FETCHING ALL CVJobMode
+###############################
+
+SELECT DISTINCT
+?CVJobModeClass
+?CVJobModeLabel
+WHERE {
+  ?CVJobModeClass a mybase0:CVJobMode  ;
+  rdfs:label ?CVJobModeLabel.
+}
+
+###############################
+FETCHING ALL CVCareerLevel
+###############################
+
+SELECT DISTINCT
+?CVCareerLevelClass
+?CVCareerLevelLabel
+WHERE {
+  ?CVCareerLevelClass a mybase0:CVCareerLevel  ;
+  rdfs:label ?CVCareerLevelLabel.
+}
+
+###############################
+FETCHING ALL EduDegree
+###############################
+
+SELECT DISTINCT
+?EduDegreeClass
+?EduDegreeLabel
+WHERE {
+  ?EduDegreeClass a mybase0:EduDegree  ;
+  rdfs:label ?EduDegreeLabel.
+}
+
+###############################
+FETCHING ALL OtherCVInfoType
+###############################
+
+SELECT DISTINCT
+?OtherCVInfoTypeClass
+?OtherCVInfoTypeLabel
+WHERE {
+  ?OtherCVInfoTypeClass a mybase0:OtherCVInfoType  ;
+  rdfs:label ?OtherCVInfoTypeLabel.
+}

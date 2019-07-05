@@ -1,66 +1,12 @@
 import React, { Component } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
-import ReferenceCard from "./FormReference/ReferenceCard";
-import ReferenceModal from "./FormReference/ReferenceModal";
-import ReferenceUpdateModal from "./FormReference/ReferenceUpdateModal";
+import ReferenceCard from "./Modals/FormReference/ReferenceCard";
+import ReferenceModal from "./Modals/FormReference/ReferenceModal";
 
 class FormReference extends Component {
   state = {
-    label: "references",
-    references: [
-      {
-        type: "Professional",
-        title: "Dr.",
-        name: "Enkeleda Elezi",
-        jobTitle: "Student",
-        Organization: {
-          name: "Fraunhofer"
-        },
-        Address: {
-          street: "Hirschberger Str",
-          postalCode: "53119",
-          city: "Bonn",
-          country: "Germany"
-        },
-        hasTelephoneNumber: ["+49 1522 7589766"],
-        email: "enkeleda.elezi@gmail.com"
-      },
-      {
-        type: "Personal",
-        title: "Dr.",
-        name: "Enkeleda Elezi",
-        jobTitle: "Student",
-        Organization: {
-          name: "Fraunhofer"
-        },
-        Address: {
-          street: "Hirschberger Str",
-          postalCode: "53119",
-          city: "Bonn",
-          country: "Germany"
-        },
-        hasTelephoneNumber: ["+49 1522 7589766"],
-        email: "enkeleda.elezi@gmail.com"
-      },
-      {
-        type: "Professional",
-        title: "Dr.",
-        name: "Enkeleda Elezi",
-        jobTitle: "Student",
-        Organization: {
-          name: "Fraunhofer"
-        },
-        Address: {
-          street: "Hirschberger Str",
-          postalCode: "53119",
-          city: "Bonn",
-          country: "Germany"
-        },
-        hasTelephoneNumber: ["+49 1522 7589766"],
-        email: "enkeleda.elezi@gmail.com"
-      }
-    ],
     showModal: false
   };
 
@@ -72,26 +18,30 @@ class FormReference extends Component {
     this.setState({ showModal: true });
   };
 
-  handleRemoveReferenceCard = idx => {
-    let references = [...this.state.references];
-    references = references.filter((s, sidx) => idx !== sidx);
-    this.setState({
-      references
+  renderNoTextPersonal = () => {
+    let noText = "No references have been added until now.";
+    this.props.references.map(reference => {
+      if (reference.type === "Personal") {
+        noText = "";
+      }
+      return '';
     });
+    if (noText !== "") {
+      return noText;
+    }
   };
 
-  handleSaveReferenceCard = reference => {
-    let references = [...this.state.references];
-    references.push(reference);
-    this.setState({
-      references
+  renderNoTextProfessional = () => {
+    let noText = "No references have been added until now.";
+    this.props.references.map(reference => {
+      if (reference.type === "Professional") {
+        noText = "";
+      }
+      return '';
     });
-  };
-
-  handleUpdateReferenceCard = (reference, idx) => {
-    let references = [...this.state.references];
-    references[idx] = reference;
-    this.setState({ references: references });
+    if (noText !== "") {
+      return noText;
+    }
   };
 
   render() {
@@ -112,47 +62,42 @@ class FormReference extends Component {
               </Col>
               <Col md={10} className="button-label">
                 <p>Add a reference</p>
-                <ReferenceModal
-                  show={showModal}
-                  onHide={this.handleClose}
-                  handleSaveReference={this.handleSaveReferenceCard}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
-                />
+                <ReferenceModal show={showModal} onHide={this.handleClose} />
               </Col>
             </Row>
           </Col>
         </Row>
+        {this.renderNoTextProfessional()}
         <Row className="row-cards">
-          {this.state.references.map((reference, idx) => {
+          {this.props.references.map(reference => {
             if (reference.type === "Professional")
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={idx}
-                  handleRemove={this.handleRemoveReferenceCard}
-                  handleUpdateReferenceCard={this.handleUpdateReferenceCard}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
-                  id={idx}
+                  key={reference.id}
+                  id={reference.id}
                 />
               );
+            return "";
           })}
         </Row>
         <Row style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-          <h4 style={{ marginTop: "10px", marginLeft: '20px' }}>Personal References</h4>
+          <h4 style={{ marginTop: "10px", marginLeft: "20px" }}>
+            Personal References
+          </h4>
         </Row>
+        {this.renderNoTextPersonal()}
         <Row className="row-cards">
-          {this.state.references.map((reference, idx) => {
+          {this.props.references.map(reference => {
             if (reference.type === "Personal")
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={idx}
-                  handleRemove={this.handleRemoveReferenceCard}
-                  handleUpdateReferenceCard={this.handleUpdateReferenceCard}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
-                  id={idx}
+                  key={reference.id}
+                  id={reference.id}
                 />
               );
+            return "";
           })}
         </Row>
       </React.Fragment>
@@ -160,4 +105,13 @@ class FormReference extends Component {
   }
 }
 
-export default FormReference;
+const mapStateToProps = state => {
+  return {
+    references: Object.values(state.cv.references)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(FormReference);

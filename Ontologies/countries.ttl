@@ -1,0 +1,3885 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ns0: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries>
+  a owl:Ontology ;
+  owl:versionInfo "Version 0.1" ;
+  rdfs:comment "Countries Ontology, Created by Jenz & Partner GmbH, Version 0.1, 28-FEB-2004" .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory> ;
+  rdfs:comment "No government body exists. The territory is not or cannot be claimed by an independent country. Example: Antarctica is unclaimed resp. unclaimable territory. An Antarctic Treaty was negotiated that neither denies nor gives recognition to existing territorial claims." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:maxCardinality "1"^^xsd:int ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameEnglishLong>
+  ], [
+    a owl:Restriction ;
+    owl:cardinality "1"^^xsd:int ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameEnglish>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameLocal> ;
+    owl:cardinality "1"^^xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameLocalLong> ;
+    owl:maxCardinality "1"^^xsd:int
+  ] ;
+  rdfs:comment "A political state or nation or its territory (see Merriam-Webster Dictionary)." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+  a owl:Class ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory> ;
+  rdfs:subClassOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> ;
+  rdfs:comment "Fully self-governing and sovereign. A portion of legislative power may be transfered voluntarily to some other political body (e.g. the European Union) at the government's discretion. Example: The Federal Republic of Germany enjoys sovereignty and is self-governing. It is part of the European Union. The European Parliament is given authority to produce laws in certain fields, which are considered binding by every member." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#dependentTerritoryOf> ;
+    owl:cardinality "1"^^xsd:int
+  ] ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory> ;
+  rdfs:comment "Self-governing to some limited degree; considered an integral part of an independent country. Example: Christmas Island is a territory of Australia; administered by the Australian Department of Transport and Regional Services. Christmas Island does not have the right to move to full independence by unilateral action." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>
+  a owl:Class ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory> ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:cardinality "1"^^xsd:int ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#annexedTerritoryOf>
+  ], <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> ;
+  rdfs:comment "No government body exists, or, if one exists, it is not given recognition by the annexing country. The territory has been unilaterally annexed by some independent country, usually as a result of occupation. The annexing country imposes its legislation on the annexed territory and considers it an integral part of its own territory. Example: The Western Sahara has been virtually annexed by Morocco." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#sovereigntyChallengedBy> ;
+    owl:minCardinality "1"^^xsd:int
+  ] ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory> ;
+  rdfs:comment "A disputed state is regarded as an independent state by its own population (or at least the majority of them) and has been recognized as independent by some international body (e.g. the U.N.) at some point in the past. However, a disputed territory's status of independence is questioned by some other independent country/countries. Example: The Republic of China (Taiwan) and the People's Republic of China hold differing views on the sovereignty of Taiwan." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>
+  a owl:Class ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory> ;
+  rdfs:comment "A virtual territory does not exist in reality. Example: France, Metropolitan, is limited to the European part of France, excluding overseas territories." ;
+  rdfs:subClassOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>
+  a owl:Class ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> ;
+  rdfs:comment "Self-governing in free association with some independent country. An assoiated state is neither occupied nor annexed, nor is its territory considered an integral part of the country it is associated with. Example: Cook Islands is fully responsible for internal affairs; New Zealand retains responsibility for external affairs and defense, in consultation with the Cook Islands. Cook Islands has the right at any time to move to full independence by unilateral action." ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:cardinality "1"^^xsd:int ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#associatedTerritoryOf>
+  ], <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>
+  a owl:Class ;
+  owl:disjointWith <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>, <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory> ;
+  rdfs:comment "An existing government body is only given limited recognition by the occupying country. The territory has been unilaterally (temporarily) occupied by some independent country, possibly as a result of war. The occupying country may impose its legislation on the occupied territory, and allow limited autonomy in the occupied territory. The occupied territory is not an integral part of the occupying country. Occupation may lead to formal annexation. Example: Dispute over Palestinian territory." ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:cardinality "1"^^xsd:int ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#territoryOccupiedBy>
+  ], <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#annexedTerritoryOf>
+  a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory> ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasAnnexedTerritory> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#territoryOccupiedBy>
+  a owl:FunctionalProperty, owl:ObjectProperty ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory> ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasOccupiedTerritory> ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+   )
+  ] .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#dependentTerritoryOf>
+  a owl:FunctionalProperty, owl:ObjectProperty ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasDependentTerritory> ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#sovereigntyChallengedBy>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState> ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#challengesSovereigntyOf> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryCodeUNNumeric3> ;
+    owl:cardinality "1"^^xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryCodeISO3166Alpha2> ;
+    owl:cardinality "1"^^xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryNameISO3166Short> ;
+    owl:cardinality "1"^^xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#referencesCountry> ;
+    owl:cardinality "1"^^xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryCodeISO3166Alpha3> ;
+    owl:cardinality "1"^^xsd:int
+  ] ;
+  rdfs:comment "The International Standards Organization (ISO) maintains a list of country codes since 1974. Other standards bodies have adopted the ISO 3166 code list." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryCodeUNNumeric3>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:range xsd:int ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> ;
+  rdfs:comment "UN Numeric Code" .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryCodeISO3166Alpha2>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:comment "ISO 3166 Alpha 2" ;
+  rdfs:range xsd:string ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryNameISO3166Short>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#referencesCountry>
+  a owl:FunctionalProperty, owl:ObjectProperty ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#referencedByISO3166> ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>
+   )
+  ] .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryCodeISO3166Alpha3>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ISO 3166 Alpha 3" ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#associatedTerritoryOf>
+  a owl:FunctionalProperty, owl:ObjectProperty ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState> ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasAssociatedTerritory> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameEnglishLong>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameEnglish>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:comment "The name of the country in the English language" ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> ;
+  rdfs:range xsd:string .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameLocal>
+  a owl:DatatypeProperty ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> ;
+  rdfs:comment "The name of the country in local language, using ISO-8859 characters." ;
+  rdfs:range xsd:string .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#nameLocalLong>
+  a owl:DatatypeProperty ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> ;
+  rdfs:range xsd:string .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#challengesSovereigntyOf>
+  a owl:ObjectProperty ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#sovereigntyChallengedBy> ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState> ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasOccupiedTerritory>
+  a owl:ObjectProperty ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+   )
+  ] ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#territoryOccupiedBy> ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasAnnexedTerritory>
+  a owl:ObjectProperty ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+   )
+  ] ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#annexedTerritoryOf> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasAssociatedTerritory>
+  a owl:ObjectProperty ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState> ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#associatedTerritoryOf> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+   )
+  ] .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#hasDependentTerritory>
+  a owl:ObjectProperty ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#dependentTerritoryOf> ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+   )
+  ] .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#modificationTimestamp>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:range xsd:dateTime .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#referencedByISO3166>
+  a owl:FunctionalProperty, owl:ObjectProperty ;
+  owl:inverseOf <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#referencesCountry> ;
+  rdfs:range <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Country> .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#deletionTimestamp>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:range xsd:dateTime .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#countryNameISO3166OfficialName>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:domain <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry> ;
+  rdfs:range xsd:string .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#creationTimestamp>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:range xsd:dateTime .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#effectiveFrom>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:comment "The date when an entry becomes effective." ;
+  rdfs:range xsd:date ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry>
+   )
+  ] .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#revocationEffective>
+  a owl:FunctionalProperty, owl:DatatypeProperty ;
+  rdfs:range xsd:date ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtuallyAnnexedTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#AssociatedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#FullyDependentTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependenceDisputedState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#OccupiedTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnclaimableTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#VirtualTerritory>
+     <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#ISO3166DefinedCountry>
+   )
+  ] ;
+  rdfs:comment "The date when a revocation of an entry becomes effective." .
+
+<http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#SaintKittsAndNevis>
+  a <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#IndependentState> ;
+  ns0:nameEnglishLong "Federation of Saint Kitts and Nevis" ;
+  ns0:nameLocal "Saint Kitts And Nevis" ;
+  ns0:nameLocalLong "Federation of Saint Kitts and Nevis" ;
+  ns0:nameEnglish "Saint Kitts And Nevis" .
+
+ns0:ISO3166.Bahrain
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "BAHRAIN" ;
+  ns0:countryCodeISO3166Alpha3 "BHR" ;
+  ns0:referencesCountry ns0:Bahrain ;
+  ns0:countryCodeUNNumeric3 "48" ;
+  ns0:countryCodeISO3166Alpha2 "BH" .
+
+ns0:Bahrain
+  a ns0:IndependentState ;
+  ns0:nameLocal "Al Bahrayn" ;
+  ns0:nameEnglish "Bahrain" ;
+  ns0:nameEnglishLong "Kingdom of Bahrain" ;
+  ns0:nameLocalLong "Mamlakat al Bahrayn" .
+
+ns0:Burma
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Burma" ;
+  ns0:nameEnglishLong "Union of Burma" ;
+  owl:sameAs ns0:Myanmar ;
+  ns0:nameLocalLong "Pyidaungzu Myanma Naingngandaw" ;
+  ns0:nameLocal "Myanma Naingngandaw" .
+
+ns0:Myanmar
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Myanmar" ;
+  ns0:nameLocalLong "Pyidaungzu Myanma Naingngandaw" ;
+  ns0:nameLocal "Myanma Naingngandaw" ;
+  owl:sameAs ns0:Burma .
+
+ns0:CentralAfricanRepublic
+  a ns0:IndependentState ;
+  ns0:nameLocal "Republique Centrafricaine" ;
+  ns0:nameEnglish "Central African Republic" .
+
+ns0:PapuaNewGuinea
+  a ns0:IndependentState ;
+  ns0:nameLocal "Papua New Guinea" ;
+  ns0:nameEnglishLong "Independent State of Papua New Guinea" ;
+  ns0:nameEnglish "Papua New Guinea" .
+
+ns0:ISO3166.Belgium
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "BELGIUM" ;
+  ns0:countryCodeUNNumeric3 "56" ;
+  ns0:referencesCountry ns0:Belgium ;
+  ns0:countryCodeISO3166Alpha3 "BEL" ;
+  ns0:countryCodeISO3166Alpha2 "BE" .
+
+ns0:Belgium
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Royaume de Belgique/Koninkrijk Belgie" ;
+  ns0:nameEnglish "Belgium" ;
+  ns0:nameEnglishLong "Kingdom of Belgium" ;
+  ns0:nameLocal "Belgique/Belgie" .
+
+ns0:ISO3166.Cuba
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "CUB" ;
+  ns0:countryNameISO3166Short "CUBA" ;
+  ns0:countryCodeISO3166Alpha2 "CU" ;
+  ns0:countryCodeUNNumeric3 "192" ;
+  ns0:referencesCountry ns0:Cuba .
+
+ns0:Cuba
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica de Cuba" ;
+  ns0:nameEnglish "Cuba" ;
+  ns0:nameEnglishLong "Republic of Cuba" ;
+  ns0:nameLocal "Cuba" .
+
+ns0:ISO3166.SaintVincentAndTheGrenadines
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "VCT" ;
+  ns0:countryCodeISO3166Alpha2 "VC" ;
+  ns0:referencesCountry ns0:SaintVincentAndTheGrenadines ;
+  ns0:countryCodeUNNumeric3 "670" ;
+  ns0:countryNameISO3166Short "SAINT VINCENT AND THE GRENADINES" .
+
+ns0:SaintVincentAndTheGrenadines
+  a ns0:IndependentState ;
+  ns0:nameLocal "Saint Vincent And The Grenadines" ;
+  ns0:nameEnglish "Saint Vincent And The Grenadines" .
+
+ns0:ISO3166.FalklandIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "FALKLAND ISLANDS (MALVINAS)" ;
+  ns0:countryCodeUNNumeric3 "238" ;
+  ns0:countryCodeISO3166Alpha2 "FK" ;
+  ns0:countryCodeISO3166Alpha3 "FLK" ;
+  ns0:referencesCountry ns0:FalklandIslands .
+
+ns0:FalklandIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameEnglish "Falkland Islands (Islas Malvinas)" ;
+  ns0:nameLocal "Falkland Islands (Islas Malvinas)" .
+
+ns0:UnitedKingdom
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "United Kingdom of Great Britain and Northern Ireland" ;
+  ns0:nameLocalLong "United Kingdom of Great Britain and Northern Ireland" ;
+  ns0:nameEnglish "United Kingdom" ;
+  ns0:nameLocal "United Kingdom" .
+
+ns0:ISO3166.Germany
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "DE" ;
+  ns0:countryCodeISO3166Alpha3 "DEU" ;
+  ns0:referencesCountry ns0:Germany ;
+  ns0:countryCodeUNNumeric3 "276" ;
+  ns0:countryNameISO3166Short "GERMANY" .
+
+ns0:Germany
+  a ns0:IndependentState ;
+  ns0:nameLocal "Deutschland" ;
+  ns0:nameEnglish "Germany" ;
+  ns0:nameEnglishLong "Federal Republic of Germany" ;
+  ns0:nameLocalLong "Bundesrepublik Deutschland" .
+
+ns0:ISO3166.Gambia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Gambia ;
+  ns0:countryCodeISO3166Alpha3 "GMB" ;
+  ns0:countryCodeUNNumeric3 "270" ;
+  ns0:countryNameISO3166Short "GAMBIA" ;
+  ns0:countryCodeISO3166Alpha2 "GM" .
+
+ns0:Gambia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of The Gambia" ;
+  ns0:nameLocal "Gambia" ;
+  ns0:nameEnglish "The Gambia" .
+
+ns0:Bahamas
+  a ns0:IndependentState ;
+  ns0:nameEnglish "The Bahamas" ;
+  ns0:nameLocalLong "Commonwealth of The Bahamas" ;
+  ns0:nameLocal "The Bahamas" ;
+  ns0:nameEnglishLong "Commonwealth of The Bahamas" .
+
+ns0:Fiji
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of the Fiji Islands" ;
+  ns0:nameEnglish "Fiji" ;
+  ns0:nameLocal "Fiji" .
+
+ns0:ISO3166.Namibia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "516" ;
+  ns0:referencesCountry ns0:Namibia ;
+  ns0:countryCodeISO3166Alpha3 "NAM" ;
+  ns0:countryNameISO3166Short "NAMIBIA" ;
+  ns0:countryCodeISO3166Alpha2 "NA" .
+
+ns0:Namibia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Namibia" ;
+  ns0:nameEnglish "Namibia" ;
+  ns0:nameLocal "Namibia" .
+
+ns0:ISO3166.Mayotte
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "YT" ;
+  ns0:referencesCountry ns0:Mayotte ;
+  ns0:countryCodeUNNumeric3 "175" ;
+  ns0:countryNameISO3166Short "MAYOTTE" ;
+  ns0:countryCodeISO3166Alpha3 "MYT" .
+
+ns0:Mayotte
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Mayotte" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameEnglish "Mayotte" ;
+  ns0:nameEnglishLong "Territorial Collectivity of Mayotte" .
+
+ns0:France
+  a ns0:IndependentState ;
+  ns0:nameEnglish "France" ;
+  ns0:nameLocalLong "Republique Francaise" ;
+  ns0:nameEnglishLong "French Republic" ;
+  ns0:nameLocal "France" ;
+  rdfs:comment "France" .
+
+ns0:ISO3166.MarshallIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:MarshallIslands ;
+  ns0:countryCodeISO3166Alpha3 "MHL" ;
+  ns0:countryCodeISO3166Alpha2 "MH" ;
+  ns0:countryNameISO3166Short "MARSHALL ISLANDS" ;
+  ns0:countryCodeUNNumeric3 "584" .
+
+ns0:MarshallIslands
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of the Marshall Islands" ;
+  ns0:nameLocal "Marshall Islands" ;
+  ns0:nameEnglish "Marshall Islands" .
+
+ns0:ISO3166.Botswana
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "BWA" ;
+  ns0:countryNameISO3166Short "BOTSWANA" ;
+  ns0:countryCodeISO3166Alpha2 "BW" ;
+  ns0:countryCodeUNNumeric3 "72" ;
+  ns0:referencesCountry ns0:Botswana .
+
+ns0:Botswana
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Botswana" ;
+  ns0:nameEnglish "Botswana" ;
+  ns0:nameLocal "Botswana" .
+
+ns0:ISO3166.Venezuela
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "VE" ;
+  ns0:referencesCountry ns0:Venezuela ;
+  ns0:countryNameISO3166Short "VENEZUELA" ;
+  ns0:countryCodeUNNumeric3 "862" ;
+  ns0:countryCodeISO3166Alpha3 "VEN" .
+
+ns0:Venezuela
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Venezuela" ;
+  ns0:nameLocal "Venezuela" ;
+  ns0:nameLocalLong "Republica Bolivariana de Venezuela" ;
+  ns0:nameEnglishLong "Bolivarian Republic of Venezuela" .
+
+ns0:ISO3166.Ireland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "IE" ;
+  ns0:countryNameISO3166Short "IRELAND" ;
+  ns0:countryCodeISO3166Alpha3 "IRL" ;
+  ns0:countryCodeUNNumeric3 "372" ;
+  ns0:referencesCountry ns0:Ireland .
+
+ns0:Ireland
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Ireland" ;
+  ns0:nameLocal "Ireland" .
+
+ns0:ISO3166.Chile
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "CL" ;
+  ns0:countryCodeISO3166Alpha3 "CHL" ;
+  ns0:referencesCountry ns0:Chile ;
+  ns0:countryNameISO3166Short "CHILE" ;
+  ns0:countryCodeUNNumeric3 "152" .
+
+ns0:Chile
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Chile" ;
+  ns0:nameLocalLong "Republica de Chile" ;
+  ns0:nameEnglish "Chile" ;
+  ns0:nameLocal "Chile" .
+
+ns0:Kyrgyzstan
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Kyrgyzstan" ;
+  ns0:nameLocal "Kyrgyz Respublikasy" ;
+  ns0:nameLocalLong "Kyrgyz Respublikasy" ;
+  ns0:nameEnglishLong "Kyrgyz Republic" .
+
+ns0:ISO3166.SaintKittsAndNevis
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "659" ;
+  ns0:countryNameISO3166Short "SAINT KITTS AND NEVIS" ;
+  ns0:countryCodeISO3166Alpha2 "KN" ;
+  ns0:countryCodeISO3166Alpha3 "KNA" ;
+  ns0:referencesCountry ns0:SaintKittsAndNevis .
+
+ns0:ISO3166.Pakistan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "PAK" ;
+  ns0:countryCodeISO3166Alpha2 "PK" ;
+  ns0:countryCodeUNNumeric3 "586" ;
+  ns0:referencesCountry ns0:Pakistan ;
+  ns0:countryNameISO3166Short "PAKISTAN" .
+
+ns0:Pakistan
+  a ns0:IndependentState ;
+  ns0:nameLocal "Pakistan" ;
+  ns0:nameEnglish "Pakistan" ;
+  ns0:nameEnglishLong "Islamic Republic of Pakistan" .
+
+ns0:ISO3166.Guyana
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Guyana ;
+  ns0:countryCodeUNNumeric3 "328" ;
+  ns0:countryNameISO3166Short "GUYANA" ;
+  ns0:countryCodeISO3166Alpha3 "GUY" ;
+  ns0:countryCodeISO3166Alpha2 "GY" .
+
+ns0:Guyana
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Co-operative Republic of Guyana" ;
+  ns0:nameLocal "Guyana" ;
+  ns0:nameEnglish "Guyana" .
+
+ns0:ISO3166.Bangladesh
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "BANGLADESH" ;
+  ns0:countryCodeISO3166Alpha3 "BGD" ;
+  ns0:referencesCountry ns0:Bangladesh ;
+  ns0:countryCodeUNNumeric3 "50" ;
+  ns0:countryCodeISO3166Alpha2 "BD" .
+
+ns0:Bangladesh
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Bangladesh" ;
+  ns0:nameLocalLong "People's Republic of Bangladesh" ;
+  ns0:nameEnglishLong "People's Republic of Bangladesh" ;
+  ns0:nameLocal "Bangladesh" .
+
+ns0:Georgia
+  a ns0:IndependentState ;
+  ns0:nameLocal "Sak'art'velo" ;
+  ns0:nameEnglish "Georgia" .
+
+ns0:China
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "People's Republic of China" ;
+  ns0:nameEnglish "China" ;
+  ns0:nameLocal "Zhong Guo" ;
+  ns0:nameLocalLong "Zhonghua Renmin Gongheguo" ;
+  ns0:challengesSovereigntyOf ns0:Taiwan .
+
+ns0:Taiwan
+  a ns0:IndependenceDisputedState ;
+  ns0:nameLocal "T'ai-wan" ;
+  ns0:nameEnglish "Taiwan" .
+
+ns0:Iceland
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Iceland" ;
+  ns0:nameLocalLong "Lydhveldidh Island" ;
+  ns0:nameLocal "Island" ;
+  ns0:nameEnglishLong "Republic of Iceland" .
+
+ns0:ISO3166.BritishIndianOceanTerritory
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:BritishIndianOceanTerritories ;
+  ns0:countryCodeISO3166Alpha2 "IO" ;
+  ns0:countryNameISO3166Short "BRITISH INDIAN OCEAN TERRITORY" ;
+  ns0:countryCodeISO3166Alpha3 "IOT" ;
+  ns0:countryCodeUNNumeric3 "86" .
+
+ns0:BritishIndianOceanTerritories
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "British Indian Ocean Territories" ;
+  ns0:nameLocalLong "British Indian Ocean Territory" ;
+  ns0:nameEnglishLong "British Indian Ocean Territory" ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameEnglish "British Indian Ocean Territories" .
+
+ns0:Iran
+  a ns0:IndependentState ;
+  ns0:nameLocal "Iran" ;
+  ns0:nameEnglishLong "Islamic Republic of Iran" ;
+  ns0:nameLocalLong "Jomhuri-ye Eslami-ye Iran" ;
+  ns0:nameEnglish "Iran" .
+
+ns0:Anguilla
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Anguilla" ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameEnglish "Anguilla" .
+
+ns0:Palau
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Palau" ;
+  ns0:nameEnglishLong "Republic of Palau" ;
+  ns0:nameLocalLong "Beluu er a Belau" ;
+  ns0:nameLocal "Belau" .
+
+ns0:Belarus
+  a ns0:IndependentState ;
+  ns0:nameLocal "Belarus" ;
+  ns0:nameEnglishLong "Republic of Belarus" ;
+  ns0:nameLocalLong "Respublika Byelarus'" ;
+  ns0:nameEnglish "Belarus" .
+
+ns0:ISO3166.TurksAndCaicosIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "TURKS AND CAICOS ISLANDS" ;
+  ns0:countryCodeUNNumeric3 "796" ;
+  ns0:referencesCountry ns0:TurksAndCaicosIslands ;
+  ns0:countryCodeISO3166Alpha3 "TCA" ;
+  ns0:countryCodeISO3166Alpha2 "TC" .
+
+ns0:TurksAndCaicosIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Turks And Caicos Islands" ;
+  ns0:nameEnglish "Turks And Caicos Islands" ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom .
+
+ns0:ISO3166.EquatorialGuinea
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "EQUATORIAL GUINEA" ;
+  ns0:countryCodeISO3166Alpha2 "GQ" ;
+  ns0:referencesCountry ns0:EquatorialGuinea ;
+  ns0:countryCodeISO3166Alpha3 "GNQ" ;
+  ns0:countryCodeUNNumeric3 "226" .
+
+ns0:EquatorialGuinea
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica de Guinea Ecuatorial" ;
+  ns0:nameEnglishLong "Republic of Equatorial Guinea" ;
+  ns0:nameLocal "Guinea Ecuatorial" ;
+  ns0:nameEnglish "Equatorial Guinea" .
+
+ns0:Mauritania
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Islamic Republic of Mauritania" ;
+  ns0:nameLocalLong "Al Jumhuriyah al Islamiyah al Muritaniyah" ;
+  ns0:nameEnglish "Mauritania" ;
+  ns0:nameLocal "Muritaniyah" .
+
+ns0:ISO3166.Guadeloupe
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "312" ;
+  ns0:countryNameISO3166Short "GUADELOUPE" ;
+  ns0:referencesCountry ns0:Guadeloupe ;
+  ns0:countryCodeISO3166Alpha3 "GLP" ;
+  ns0:countryCodeISO3166Alpha2 "GP" .
+
+ns0:Guadeloupe
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocalLong "Departement de la Guadeloupe" ;
+  ns0:nameLocal "Guadeloupe" ;
+  ns0:nameEnglishLong "Department of Guadeloupe" ;
+  ns0:nameEnglish "Guadeloupe" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  rdfs:comment "Guadeloupe is an island in the Carribean." .
+
+ns0:Lithuania
+  a ns0:IndependentState ;
+  ns0:nameLocal "Lietuva" ;
+  ns0:nameEnglishLong "Republic of Lithuania" ;
+  ns0:nameLocalLong "Lietuvos Respublika" ;
+  ns0:nameEnglish "Lithuania" .
+
+ns0:ISO3166.PalestinianTerritoryOccupied
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "275" ;
+  ns0:countryCodeISO3166Alpha2 "PS" ;
+  ns0:countryNameISO3166Short "PALESTINIAN TERRITORY, OCCUPIED" ;
+  ns0:countryCodeISO3166Alpha3 "PSE" ;
+  ns0:referencesCountry ns0:PalestinianTerritoryOccupied .
+
+ns0:PalestinianTerritoryOccupied
+  a ns0:OccupiedTerritory ;
+  ns0:territoryOccupiedBy ns0:Israel ;
+  ns0:nameEnglish "Palestinian Territory, Occupied" ;
+  ns0:nameLocal "Palestinian Territory, Occupied" .
+
+ns0:Israel
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Israel" ;
+  ns0:nameLocalLong "Medinat Yisra'el" ;
+  ns0:nameLocal "Yisra'el" ;
+  ns0:nameEnglishLong "State of Israel" .
+
+ns0:ISO3166.Japan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Japan ;
+  ns0:countryCodeISO3166Alpha2 "JP" ;
+  ns0:countryNameISO3166Short "JAPAN" ;
+  ns0:countryCodeISO3166Alpha3 "JPN" ;
+  ns0:countryCodeUNNumeric3 "392" .
+
+ns0:Japan
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Japan" ;
+  ns0:nameLocal "Japan" .
+
+ns0:ISO3166.Angola
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "AO" ;
+  ns0:countryCodeISO3166Alpha3 "AGO" ;
+  ns0:referencesCountry ns0:Angola ;
+  ns0:countryNameISO3166Short "ANGOLA" ;
+  ns0:countryCodeUNNumeric3 "24" .
+
+ns0:Angola
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Angola" ;
+  ns0:nameLocal "Angola" ;
+  ns0:nameLocalLong "Republica de Angola" ;
+  ns0:nameEnglishLong "Republic of Angola" .
+
+ns0:CapeVerde
+  a ns0:IndependentState ;
+  ns0:nameLocal "Cabo Verde" ;
+  ns0:nameLocalLong "Republica de Cabo Verde" ;
+  ns0:nameEnglish "Cape Verde" ;
+  ns0:nameEnglishLong "Republic of Cape Verde" .
+
+ns0:NorthernMarianaIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "Northern Mariana Islands" ;
+  ns0:nameEnglishLong "Commonwealth of the Northern Mariana Islands" ;
+  ns0:nameLocal "Northern Mariana Islands" ;
+  ns0:dependentTerritoryOf ns0:UnitedStates ;
+  ns0:nameLocalLong "Commonwealth of the Northern Mariana Islands" .
+
+ns0:UnitedStates
+  a ns0:IndependentState ;
+  ns0:nameEnglish "United States" ;
+  ns0:nameEnglishLong "United States of America" ;
+  ns0:nameLocalLong "United States of America" ;
+  ns0:nameLocal "United States" .
+
+ns0:Antarctica
+  a ns0:UnclaimableTerritory ;
+  ns0:nameEnglish "Antarctica" ;
+  ns0:nameLocal "Antarctica" .
+
+ns0:ISO3166.Cyprus
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "CYP" ;
+  ns0:countryCodeUNNumeric3 "196" ;
+  ns0:referencesCountry ns0:Cyprus ;
+  ns0:countryNameISO3166Short "CYPRUS" ;
+  ns0:countryCodeISO3166Alpha2 "CY" .
+
+ns0:Cyprus
+  a ns0:IndependentState ;
+  ns0:nameLocal "Cyprus" ;
+  ns0:nameEnglish "Cyprus" ;
+  ns0:nameEnglishLong "Republic of Cyprus" .
+
+ns0:Somalia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Somalia" ;
+  ns0:nameEnglishLong "Somali Republic" ;
+  ns0:nameLocal "Somalia" .
+
+ns0:Jordan
+  a ns0:IndependentState ;
+  ns0:nameLocal "Al Urdun" ;
+  ns0:nameEnglishLong "Hashemite Kingdom of Jordan" ;
+  ns0:nameEnglish "Jordan" ;
+  ns0:nameLocalLong "Al Mamlakah al Urduniyah al Hashimiyah" .
+
+ns0:Honduras
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Honduras" ;
+  ns0:nameLocalLong "Republica de Honduras" ;
+  ns0:nameLocal "Honduras" ;
+  ns0:nameEnglishLong "Republic of Honduras" .
+
+ns0:Libya
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Great Socialist People's Libyan Arab Jamahiriya" ;
+  ns0:nameEnglish "Libya" ;
+  ns0:nameLocalLong "Al Jumahiriyah al Arabiyah al Libiyah ash Shabiyah al Ishtirakiyah al Uzma" ;
+  ns0:nameLocal "Libya" .
+
+ns0:ISO3166.CostaRica
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "CR" ;
+  ns0:countryNameISO3166Short "COSTA RICA" ;
+  ns0:referencesCountry ns0:CostaRica ;
+  ns0:countryCodeISO3166Alpha3 "CRI" ;
+  ns0:countryCodeUNNumeric3 "188" .
+
+ns0:CostaRica
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Costa Rica" ;
+  ns0:nameEnglish "Costa Rica" ;
+  ns0:nameLocalLong "Republica de Costa Rica" ;
+  ns0:nameLocal "Costa Rica" .
+
+ns0:ISO3166.Austria
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "AUSTRIA" ;
+  ns0:referencesCountry ns0:Austria ;
+  ns0:countryCodeISO3166Alpha3 "AUT" ;
+  ns0:countryCodeISO3166Alpha2 "AT" ;
+  ns0:countryCodeUNNumeric3 "40" .
+
+ns0:Austria
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republik Oesterreich" ;
+  ns0:nameLocal "Oesterreich" ;
+  ns0:nameEnglishLong "Republic of Austria" ;
+  ns0:nameEnglish "Austria" .
+
+ns0:ISO3166.Nicaragua
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "558" ;
+  ns0:countryCodeISO3166Alpha3 "NIC" ;
+  ns0:countryNameISO3166Short "NICARAGUA" ;
+  ns0:referencesCountry ns0:Nicaragua ;
+  ns0:countryCodeISO3166Alpha2 "NI" .
+
+ns0:Nicaragua
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Nicaragua" ;
+  ns0:nameLocal "Nicaragua" ;
+  ns0:nameEnglish "Nicaragua" ;
+  ns0:nameLocalLong "Republica de Nicaragua" .
+
+ns0:NewZealand
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "New Zealand" ;
+  ns0:nameEnglishLong "New Zealand" ;
+  ns0:nameLocal "New Zealand" ;
+  ns0:nameEnglish "New Zealand" .
+
+ns0:TrinidadAndTobago
+  a ns0:IndependentState ;
+  ns0:nameLocal "Trinidad And Tobago" ;
+  ns0:nameEnglishLong "Republic of Trinidad and Tobago" ;
+  ns0:nameEnglish "Trinidad And Tobago" .
+
+ns0:CaymanIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameLocal "Cayman Islands" ;
+  ns0:nameEnglish "Cayman Islands" .
+
+ns0:ISO3166.Thailand
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TH" ;
+  ns0:countryCodeUNNumeric3 "764" ;
+  ns0:countryCodeISO3166Alpha3 "THA" ;
+  ns0:referencesCountry ns0:Thailand ;
+  ns0:countryNameISO3166Short "THAILAND" .
+
+ns0:Thailand
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Thailand" ;
+  ns0:nameLocal "Thailand" ;
+  ns0:nameEnglishLong "Kingdom of Thailand" .
+
+ns0:Hungary
+  a ns0:IndependentState ;
+  ns0:nameLocal "Magyarorszag" ;
+  ns0:nameEnglishLong "Republic of Hungary" ;
+  ns0:nameLocalLong "Magyar Koztarsasag" ;
+  ns0:nameEnglish "Hungary" .
+
+ns0:ISO3166.Somalia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "SOMALIA" ;
+  ns0:countryCodeISO3166Alpha3 "SOM" ;
+  ns0:countryCodeUNNumeric3 "706" ;
+  ns0:countryCodeISO3166Alpha2 "SO" ;
+  ns0:referencesCountry ns0:Somalia .
+
+ns0:ISO3166.Aruba
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ABW" ;
+  ns0:referencesCountry ns0:Aruba ;
+  ns0:countryCodeUNNumeric3 "533" ;
+  ns0:countryNameISO3166Short "ARUBA" ;
+  ns0:countryCodeISO3166Alpha2 "AW" .
+
+ns0:Aruba
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Aruba" ;
+  ns0:nameEnglish "Aruba" ;
+  ns0:dependentTerritoryOf ns0:Netherlands .
+
+ns0:Netherlands
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Kingdom of the Netherlands" ;
+  ns0:nameLocal "Nederland" ;
+  ns0:nameEnglish "Netherlands" ;
+  ns0:nameLocalLong "Koninkrijk der Nederlanden" .
+
+ns0:ISO3166.Turkey
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "TUR" ;
+  ns0:referencesCountry ns0:Turkey ;
+  ns0:countryNameISO3166Short "TURKEY" ;
+  ns0:countryCodeISO3166Alpha2 "TR" ;
+  ns0:countryCodeUNNumeric3 "792" .
+
+ns0:Turkey
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Turkiye Cumhuriyeti" ;
+  ns0:nameLocal "Turkiye" ;
+  ns0:nameEnglish "Turkey" ;
+  ns0:nameEnglishLong "Republic of Turkey" .
+
+ns0:ISO3166.Laos
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "LAO PEOPLE'S DEMOCRATIC REPUBLIC" ;
+  ns0:countryCodeISO3166Alpha3 "LAO" ;
+  ns0:countryCodeUNNumeric3 "418" ;
+  ns0:referencesCountry ns0:Laos ;
+  ns0:countryCodeISO3166Alpha2 "LA" .
+
+ns0:Laos
+  a ns0:IndependentState ;
+  ns0:nameLocal "Laos" ;
+  ns0:nameEnglish "Laos" ;
+  ns0:nameLocalLong "Sathalanalat Paxathipatai Paxaxon Lao" ;
+  ns0:nameEnglishLong "Lao People's Democratic Republic" .
+
+ns0:ISO3166.Greenland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "304" ;
+  ns0:referencesCountry ns0:Greenland ;
+  ns0:countryCodeISO3166Alpha3 "GRL" ;
+  ns0:countryCodeISO3166Alpha2 "GL" ;
+  ns0:countryNameISO3166Short "GREENLAND" .
+
+ns0:Greenland
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "Greenland" ;
+  ns0:dependentTerritoryOf ns0:Denmark ;
+  ns0:nameLocal "Kalaallit Nunaat" .
+
+ns0:Denmark
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Kongeriget Danmark" ;
+  ns0:nameLocal "Danmark" ;
+  ns0:nameEnglish "Denmark" ;
+  ns0:nameEnglishLong "Kingdom of Denmark" .
+
+ns0:ISO3166.Jordan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "400" ;
+  ns0:countryCodeISO3166Alpha2 "JO" ;
+  ns0:referencesCountry ns0:Jordan ;
+  ns0:countryCodeISO3166Alpha3 "JOR" ;
+  ns0:countryNameISO3166Short "JORDAN" .
+
+ns0:ISO3166.SriLanka
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:SriLanka ;
+  ns0:countryNameISO3166Short "SRI LANKA" ;
+  ns0:countryCodeISO3166Alpha3 "LKA" ;
+  ns0:countryCodeISO3166Alpha2 "LK" ;
+  ns0:countryCodeUNNumeric3 "144" .
+
+ns0:SriLanka
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Sri Lanka" ;
+  ns0:nameEnglishLong "Democratic Socialist Republic of Sri Lanka" ;
+  ns0:nameLocal "Sri Lanka" .
+
+ns0:Lebanon
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Al Jumhuriyah al Lubnaniyah" ;
+  ns0:nameLocal "Lubnan" ;
+  ns0:nameEnglish "Lebanon" ;
+  ns0:nameEnglishLong "Lebanese Republic" .
+
+ns0:ISO3166.Maldives
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "MV" ;
+  ns0:countryNameISO3166Short "MALDIVES" ;
+  ns0:countryCodeISO3166Alpha3 "MDV" ;
+  ns0:referencesCountry ns0:Maldives ;
+  ns0:countryCodeUNNumeric3 "462" .
+
+ns0:Maldives
+  a ns0:IndependentState ;
+  ns0:nameLocal "Dhivehi Raajje" ;
+  ns0:nameEnglishLong "Republic of Maldives" ;
+  ns0:nameEnglish "Maldives" ;
+  ns0:nameLocalLong "Dhivehi Raajjeyge Jumhooriyyaa" .
+
+ns0:ISO3166.CzechRepublic
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "CZ" ;
+  ns0:countryCodeUNNumeric3 "203" ;
+  ns0:countryCodeISO3166Alpha3 "CZE" ;
+  ns0:countryNameISO3166Short "CZECH REPUBLIC" ;
+  ns0:referencesCountry ns0:CzechRepublic .
+
+ns0:CzechRepublic
+  a ns0:IndependentState ;
+  ns0:nameLocal "Czech Republic" ;
+  ns0:nameLocalLong "Ceska Republika" ;
+  ns0:nameEnglish "Czech Republic" ;
+  ns0:nameEnglishLong "Ceska Republika" .
+
+ns0:CongoDemocraticRepublic
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republique Democratique du Congo" ;
+  owl:sameAs ns0:Zaire ;
+  ns0:nameEnglish "Congo" ;
+  ns0:nameLocal "Congo" ;
+  ns0:nameEnglishLong "Democratic Republic of the Congo" .
+
+ns0:Zaire
+  a ns0:IndependentState ;
+  owl:sameAs ns0:CongoDemocraticRepublic ;
+  ns0:nameEnglish "Zaire" ;
+  ns0:nameLocal "Zaire" .
+
+ns0:Malta
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Malta" ;
+  ns0:nameLocalLong "Repubblika ta' Malta" ;
+  ns0:nameEnglishLong "Republic of Malta" ;
+  ns0:nameLocal "Malta" .
+
+ns0:Monaco
+  a ns0:IndependentState ;
+  ns0:nameLocal "Monaco" ;
+  ns0:nameLocalLong "Principaute de Monaco" ;
+  ns0:nameEnglishLong "Principality of Monaco" ;
+  ns0:nameEnglish "Monaco" .
+
+ns0:ISO3166.UnitedStatesMinorOutlyingIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "UM" ;
+  ns0:referencesCountry ns0:UnitedStatesMinorOutlyingIslands ;
+  ns0:countryCodeUNNumeric3 "581" ;
+  ns0:countryNameISO3166Short "UNITED STATES MINOR OUTLYING ISLANDS" ;
+  ns0:countryCodeISO3166Alpha3 "UMI" .
+
+ns0:UnitedStatesMinorOutlyingIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedStates ;
+  ns0:nameLocal "United States Minor Outlying Islands" ;
+  ns0:nameEnglish "United States Minor Outlying Islands" .
+
+ns0:ISO3166.Niue
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Niue ;
+  ns0:countryCodeISO3166Alpha3 "NIU" ;
+  ns0:countryNameISO3166Short "NIUE" ;
+  ns0:countryCodeISO3166Alpha2 "NU" ;
+  ns0:countryCodeUNNumeric3 "570" .
+
+ns0:Niue
+  a ns0:AssociatedState ;
+  ns0:nameEnglishLong "Republic of Niue" ;
+  ns0:nameEnglish "Niue" ;
+  ns0:nameLocal "Niue" ;
+  ns0:associatedTerritoryOf ns0:NewZealand .
+
+ns0:ISO3166.Gibraltar
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "292" ;
+  ns0:countryCodeISO3166Alpha3 "GIB" ;
+  ns0:countryCodeISO3166Alpha2 "GI" ;
+  ns0:countryNameISO3166Short "GIBRALTAR" ;
+  ns0:referencesCountry ns0:Gibraltar .
+
+ns0:Gibraltar
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameLocal "Gibraltar" ;
+  ns0:nameEnglish "Gibraltar" .
+
+ns0:ISO3166.Argentina
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "32" ;
+  ns0:countryNameISO3166Short "ARGENTINA" ;
+  ns0:countryCodeISO3166Alpha3 "ARG" ;
+  ns0:referencesCountry ns0:Argentina ;
+  ns0:countryCodeISO3166Alpha2 "AR" .
+
+ns0:Argentina
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica Argentina" ;
+  ns0:nameEnglishLong "Argentine Republic" ;
+  ns0:nameEnglish "Argentine" ;
+  ns0:nameLocal "Argentina" .
+
+ns0:Estonia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Estonia" ;
+  ns0:nameEnglish "Estonia" ;
+  ns0:nameLocal "Eesti" ;
+  ns0:nameLocalLong "Eesti Vabariik" .
+
+ns0:Poland
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Poland" ;
+  ns0:nameEnglish "Poland" ;
+  ns0:nameLocalLong "Rzeczpospolita Polska" ;
+  ns0:nameLocal "Polska" .
+
+ns0:ISO3166.HolySee
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "HOLY SEE (VATICAN CITY STATE)" ;
+  ns0:countryCodeISO3166Alpha3 "VAT" ;
+  ns0:countryCodeUNNumeric3 "336" ;
+  ns0:countryCodeISO3166Alpha2 "VA" ;
+  ns0:referencesCountry ns0:HolySee .
+
+ns0:HolySee
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Santa Sede (Stato della Citta del Vaticano)" ;
+  ns0:nameEnglish "Holy See" ;
+  ns0:nameLocal "Santa Sede (Citta del Vaticano)" ;
+  ns0:nameEnglishLong "The Holy See" ;
+  owl:sameAs ns0:VaticanCityState .
+
+ns0:VaticanCityState
+  a ns0:IndependentState ;
+  owl:sameAs ns0:HolySee ;
+  ns0:nameEnglish "Vatican City State" ;
+  ns0:nameLocal "Vatican City State" .
+
+ns0:ISO3166.FaroeIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "FO" ;
+  ns0:countryNameISO3166Short "FAROE ISLANDS" ;
+  ns0:countryCodeUNNumeric3 "234" ;
+  ns0:countryCodeISO3166Alpha3 "FRO" ;
+  ns0:referencesCountry ns0:FaroeIslands .
+
+ns0:FaroeIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:Denmark ;
+  ns0:nameEnglish "Faroe Islands" ;
+  ns0:nameLocal "Foroyar" .
+
+ns0:Belize
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Belize" ;
+  ns0:nameLocal "Belize" .
+
+ns0:ISO3166.Kenya
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Kenya ;
+  ns0:countryNameISO3166Short "KENYA" ;
+  ns0:countryCodeISO3166Alpha2 "KE" ;
+  ns0:countryCodeISO3166Alpha3 "KEN" ;
+  ns0:countryCodeUNNumeric3 "404" .
+
+ns0:Kenya
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Kenya" ;
+  ns0:nameLocal "Kenya" ;
+  ns0:nameEnglish "Kenya" .
+
+ns0:ISO3166.Andorra
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "AD" ;
+  ns0:countryCodeISO3166Alpha3 "AND" ;
+  ns0:referencesCountry ns0:Andorra ;
+  ns0:countryCodeUNNumeric3 "20" ;
+  ns0:countryNameISO3166Short "ANDORRA" .
+
+ns0:Andorra
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Andorra" ;
+  ns0:nameEnglishLong "Principality of Andorra" ;
+  ns0:nameLocalLong "Principat d'Andorra" ;
+  ns0:nameLocal "Andorra" .
+
+ns0:AlandIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:Finland ;
+  ns0:nameEnglish "Aland Islands" ;
+  ns0:nameLocal "Ahvenanmaa" .
+
+ns0:Finland
+  a ns0:IndependentState ;
+  ns0:nameLocal "Suomi" ;
+  ns0:nameLocalLong "Suomen Tasavalta" ;
+  ns0:nameEnglish "Finland" ;
+  ns0:nameEnglishLong "Republic of Finland" .
+
+ns0:ISO3166.Niger
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Niger ;
+  ns0:countryCodeISO3166Alpha3 "NER" ;
+  ns0:countryCodeUNNumeric3 "562" ;
+  ns0:countryNameISO3166Short "NIGER" ;
+  ns0:countryCodeISO3166Alpha2 "NE" .
+
+ns0:Niger
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republique du Niger" ;
+  ns0:nameEnglish "Niger" ;
+  ns0:nameLocal "Niger" ;
+  ns0:nameEnglishLong "Republic of Niger" .
+
+ns0:ISO3166.VirginIslandsUS
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "VI" ;
+  ns0:countryCodeUNNumeric3 "850" ;
+  ns0:referencesCountry ns0:VirginIslandsUS ;
+  ns0:countryCodeISO3166Alpha3 "VIR" ;
+  ns0:countryNameISO3166Short "VIRGIN ISLANDS, U.S." .
+
+ns0:VirginIslandsUS
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Virgin Islands (U.S.)" ;
+  ns0:nameEnglishLong "United States Virgin Islands" ;
+  ns0:dependentTerritoryOf ns0:UnitedStates ;
+  ns0:nameEnglish "Virgin Islands (U.S.)" ;
+  ns0:nameLocalLong "United States Virgin Islands" .
+
+ns0:ISO3166.Malawi
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "MALAWI" ;
+  ns0:countryCodeUNNumeric3 "454" ;
+  ns0:countryCodeISO3166Alpha2 "MW" ;
+  ns0:referencesCountry ns0:Malawi ;
+  ns0:countryCodeISO3166Alpha3 "MWI" .
+
+ns0:Malawi
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Malawi" ;
+  ns0:nameLocal "Malawi" ;
+  ns0:nameEnglishLong "Republic of Malawi" .
+
+ns0:ISO3166.Iran
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Iran ;
+  ns0:countryCodeUNNumeric3 "364" ;
+  ns0:countryCodeISO3166Alpha3 "IRN" ;
+  ns0:countryNameISO3166Short "IRAN, ISLAMIC REPUBLIC OF" ;
+  ns0:countryCodeISO3166Alpha2 "IR" .
+
+ns0:ISO3166.Mauritania
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "MRT" ;
+  ns0:countryCodeISO3166Alpha2 "MR" ;
+  ns0:countryCodeUNNumeric3 "478" ;
+  ns0:referencesCountry ns0:Mauritania ;
+  ns0:countryNameISO3166Short "MAURITANIA" .
+
+ns0:ISO3166.Denmark
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "208" ;
+  ns0:referencesCountry ns0:Denmark ;
+  ns0:countryCodeISO3166Alpha2 "DK" ;
+  ns0:countryNameISO3166Short "DENMARK" ;
+  ns0:countryCodeISO3166Alpha3 "DNK" .
+
+ns0:Kazakhstan
+  a ns0:IndependentState ;
+  ns0:nameLocal "Qazaqstan Respublikasy" ;
+  ns0:nameEnglishLong "Republic of Kazakhstan" ;
+  ns0:nameEnglish "Kazakhstan" .
+
+ns0:PuertoRico
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocalLong "Commonwealth of Puerto Rico" ;
+  ns0:nameLocal "Puerto Rico" ;
+  ns0:nameEnglish "Puerto Rico" ;
+  ns0:dependentTerritoryOf ns0:UnitedStates ;
+  ns0:nameEnglishLong "Commonwealth of Puerto Rico" .
+
+ns0:ISO3166.Tajikistan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "TJK" ;
+  ns0:countryCodeISO3166Alpha2 "TJ" ;
+  ns0:countryCodeUNNumeric3 "762" ;
+  ns0:countryNameISO3166Short "TAJIKISTAN" ;
+  ns0:referencesCountry ns0:Tajikistan .
+
+ns0:Tajikistan
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Tajikistan" ;
+  ns0:nameLocalLong "Jumhurii Tojikiston" ;
+  ns0:nameLocal "Tojikiston" ;
+  ns0:nameEnglishLong "Republic of Tajikistan" .
+
+ns0:AmericanSamoa
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedStates ;
+  ns0:nameLocal "American Samoa" ;
+  ns0:nameEnglishLong "Territory of American Samoa" ;
+  ns0:nameLocalLong "Territory of American Samoa" ;
+  ns0:nameEnglish "American Samoa" .
+
+ns0:ISO3166.Turkmenistan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TK" ;
+  ns0:countryCodeUNNumeric3 "795" ;
+  ns0:countryCodeISO3166Alpha3 "TKM" ;
+  ns0:countryNameISO3166Short "TURKMENISTAN" ;
+  ns0:referencesCountry ns0:Turkmenistan .
+
+ns0:Turkmenistan
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Turkmenistan" ;
+  ns0:nameLocal "Turkmenistan" .
+
+ns0:ISO3166.AlandIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "248" ;
+  ns0:referencesCountry ns0:AlandIslands ;
+  ns0:countryCodeISO3166Alpha2 "AX" ;
+  ns0:countryNameISO3166Short "ÅLAND ISLANDS" ;
+  ns0:countryCodeISO3166Alpha3 "ALA" .
+
+ns0:ISO3166.NewCaledonia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "NEW CALEDONIA" ;
+  ns0:countryCodeUNNumeric3 "540" ;
+  ns0:countryCodeISO3166Alpha2 "NC" ;
+  ns0:referencesCountry ns0:NewCaledonia ;
+  ns0:countryCodeISO3166Alpha3 "NCL" .
+
+ns0:NewCaledonia
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Nouvelle-Caledonie" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameLocalLong "Territoire des Nouvelle-Caledonie et Dependances" ;
+  ns0:nameEnglish "New Caledonia" ;
+  ns0:nameEnglishLong "Territory of New Caledonia and Dependencies" .
+
+ns0:ISO3166.Portugal
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Portugal ;
+  ns0:countryCodeISO3166Alpha3 "PRT" ;
+  ns0:countryNameISO3166Short "PORTUGAL" ;
+  ns0:countryCodeUNNumeric3 "620" ;
+  ns0:countryCodeISO3166Alpha2 "PT" .
+
+ns0:Portugal
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica Portuguesa" ;
+  ns0:nameEnglish "Portugal" ;
+  ns0:nameLocal "Portugal" ;
+  ns0:nameEnglishLong "Portuguese Republic" .
+
+ns0:Greece
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Elliniki Dhimokratia" ;
+  ns0:nameEnglish "Greece" ;
+  ns0:nameEnglishLong "Hellenic Republic" ;
+  ns0:nameLocal "Ellas" .
+
+ns0:ISO3166.Malta
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "470" ;
+  ns0:countryCodeISO3166Alpha3 "MLT" ;
+  ns0:countryNameISO3166Short "MALTA" ;
+  ns0:referencesCountry ns0:Malta ;
+  ns0:countryCodeISO3166Alpha2 "MT" .
+
+ns0:ISO3166.Mozambique
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Mozambique ;
+  ns0:countryCodeISO3166Alpha3 "MOZ" ;
+  ns0:countryNameISO3166Short "MOZAMBIQUE" ;
+  ns0:countryCodeISO3166Alpha2 "MZ" ;
+  ns0:countryCodeUNNumeric3 "508" .
+
+ns0:Mozambique
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Mozambique" ;
+  ns0:nameLocalLong "Republica de Mocambique" ;
+  ns0:nameLocal "Mocambique" ;
+  ns0:nameEnglishLong "Republic of Mozambique" .
+
+ns0:ISO3166.Croatia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "HRV" ;
+  ns0:countryCodeUNNumeric3 "191" ;
+  ns0:referencesCountry ns0:Croatia ;
+  ns0:countryCodeISO3166Alpha2 "HR" ;
+  ns0:countryNameISO3166Short "CROATIA" .
+
+ns0:Croatia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Croatia" ;
+  ns0:nameEnglish "Croatia" ;
+  ns0:nameLocalLong "Republika Hrvatska" ;
+  ns0:nameLocal "Hrvatska" .
+
+ns0:ISO3166.Latvia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "LVA" ;
+  ns0:countryNameISO3166Short "LATVIA" ;
+  ns0:referencesCountry ns0:Latvia ;
+  ns0:countryCodeUNNumeric3 "428" ;
+  ns0:countryCodeISO3166Alpha2 "LV" .
+
+ns0:Latvia
+  a ns0:IndependentState ;
+  ns0:nameLocal "Latvija" ;
+  ns0:nameEnglishLong "Republic of Latvia" ;
+  ns0:nameEnglish "Latvia" ;
+  ns0:nameLocalLong "Latvijas Republika" .
+
+ns0:ISO3166.GuineaBissau
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "624" ;
+  ns0:countryCodeISO3166Alpha2 "GW" ;
+  ns0:referencesCountry ns0:GuineaBissau ;
+  ns0:countryNameISO3166Short "GUINEA-BISSAU" ;
+  ns0:countryCodeISO3166Alpha3 "GNB" .
+
+ns0:GuineaBissau
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Guinea-Bissau" ;
+  ns0:nameEnglishLong "Republic of Guinea-Bissau" ;
+  ns0:nameLocal "Guine-Bissau" ;
+  ns0:nameLocalLong "Republica da Guine-Bissau" .
+
+ns0:FranceMetropolitan
+  a ns0:VirtualTerritory ;
+  ns0:nameLocal "France Metropolitan" ;
+  ns0:revocationEffective "2002-11-22" ;
+  ns0:nameEnglish "France Metropolitan" ;
+  rdfs:comment "ISO limits to the European part of France, excluding French Guiana, French Polynesia, French Southern and Antarctic Lands, Guadeloupe, Martinique, Mayotte, New Caledonia, Reunion, Saint Pierre and Miquelon, Wallis and Futuna" .
+
+ns0:ISO3166.Finland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "246" ;
+  ns0:countryCodeISO3166Alpha2 "FI" ;
+  ns0:countryNameISO3166Short "FINLAND" ;
+  ns0:referencesCountry ns0:Finland ;
+  ns0:countryCodeISO3166Alpha3 "FIN" .
+
+ns0:Liberia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Liberia" ;
+  ns0:nameLocal "Liberia" ;
+  ns0:nameEnglish "Liberia" .
+
+ns0:SaintLucia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Saint Lucia" ;
+  ns0:nameLocal "Saint Lucia" .
+
+ns0:ISO3166.Syria
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "SYR" ;
+  ns0:countryNameISO3166Short "SYRIAN ARAB REPUBLIC" ;
+  ns0:countryCodeUNNumeric3 "760" ;
+  ns0:referencesCountry ns0:Syria ;
+  ns0:countryCodeISO3166Alpha2 "SY" .
+
+ns0:Syria
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Al Jumhuriyah al Arabiyah as Suriyah" ;
+  ns0:nameEnglish "Syria" ;
+  ns0:nameLocal "Suriyah" ;
+  ns0:nameEnglishLong "Syrian Arab Republic" .
+
+ns0:Swaziland
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Swaziland" ;
+  ns0:nameLocal "Swaziland" ;
+  ns0:nameEnglishLong "Kingdom of Swaziland" .
+
+ns0:ISO3166.SaoTomeAndPrincipe
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:SaoTomeAndPrincipe ;
+  ns0:countryNameISO3166Short "SAO TOME AND PRINCIPE" ;
+  ns0:countryCodeISO3166Alpha3 "STP" ;
+  ns0:countryCodeUNNumeric3 "678" ;
+  ns0:countryCodeISO3166Alpha2 "ST" .
+
+ns0:SaoTomeAndPrincipe
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica Democratica de Sao Tome e Principe" ;
+  ns0:nameEnglishLong "Democratic Republic of Sao Tome and Principe" ;
+  ns0:nameLocal "Sao Tome e Principe" ;
+  ns0:nameEnglish "Sao Tome And Principe" .
+
+ns0:UnitedArabEmirates
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Al Imarat al Arabiyah al Muttahidah" ;
+  ns0:nameEnglish "United Arab Emirates" ;
+  ns0:nameEnglishLong "United Arab Emirates" ;
+  ns0:nameLocal "Al Imarat al Arabiyah al Muttahidah" .
+
+ns0:ISO3166.Seychelles
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "SC" ;
+  ns0:countryCodeUNNumeric3 "690" ;
+  ns0:countryCodeISO3166Alpha3 "SYC" ;
+  ns0:referencesCountry ns0:Seychelles ;
+  ns0:countryNameISO3166Short "SEYCHELLES" .
+
+ns0:Seychelles
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Seychelles" ;
+  ns0:nameEnglish "Seychelles" ;
+  ns0:nameLocal "Seychelles" .
+
+ns0:Kuwait
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Kuwait" ;
+  ns0:nameLocal "Al Kuwayt" ;
+  ns0:nameLocalLong "Dawlat al Kuwayt" ;
+  ns0:nameEnglishLong "State of Kuwait" .
+
+ns0:ElSalvador
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of El Salvador" ;
+  ns0:nameEnglish "El Salvador" ;
+  ns0:nameLocalLong "Republica de El Salvador" ;
+  ns0:nameLocal "El Salvador" .
+
+ns0:ISO3166.Burundi
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "BI" ;
+  ns0:countryCodeISO3166Alpha3 "BDI" ;
+  ns0:countryCodeUNNumeric3 "108" ;
+  ns0:referencesCountry ns0:Burundi ;
+  ns0:countryNameISO3166Short "BURUNDI" .
+
+ns0:Burundi
+  a ns0:IndependentState ;
+  ns0:nameLocal "Burundi" ;
+  ns0:nameEnglish "Burundi" ;
+  ns0:nameEnglishLong "Republic of Burundi" ;
+  ns0:nameLocalLong "Republika y'u Burundi" .
+
+ns0:Indonesia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Indonesia" ;
+  ns0:nameLocal "Indonesia" ;
+  ns0:nameLocalLong "Republik Indonesia" ;
+  ns0:nameEnglish "Indonesia" .
+
+ns0:CocosIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglishLong "Territory of Cocos (Keeling) Islands" ;
+  ns0:nameLocalLong "Territory of Cocos (Keeling) Islands" ;
+  ns0:dependentTerritoryOf ns0:Australia ;
+  ns0:nameLocal "Cocos (Keeling) Islands" ;
+  ns0:nameEnglish "Cocos (Keeling) Islands" .
+
+ns0:Australia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Australia" ;
+  ns0:nameLocalLong "Commonwealth of Australia" ;
+  ns0:nameLocal "Australia" ;
+  ns0:nameEnglishLong "Commonwealth of Australia" .
+
+ns0:ISO3166.WesternSahara
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:WesternSahara ;
+  ns0:countryCodeISO3166Alpha2 "EH" ;
+  ns0:countryCodeUNNumeric3 "732" ;
+  ns0:countryCodeISO3166Alpha3 "ESH" ;
+  ns0:countryNameISO3166Short "WESTERN SAHARA" .
+
+ns0:WesternSahara
+  a ns0:VirtuallyAnnexedTerritory ;
+  ns0:nameEnglish "Western Sahara" ;
+  ns0:annexedTerritoryOf ns0:Morocco ;
+  ns0:nameLocal "Western Sahara" .
+
+ns0:Morocco
+  a ns0:IndependentState ;
+  ns0:nameLocal "Al Maghrib" ;
+  ns0:nameEnglish "Morocco" ;
+  ns0:nameLocalLong "Al Mamlakah al Maghribiyah" ;
+  ns0:nameEnglishLong "Kingdom of Morocco" .
+
+ns0:ISO3166.Algeria
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "DZA" ;
+  ns0:countryCodeUNNumeric3 "12" ;
+  ns0:countryCodeISO3166Alpha2 "DZ" ;
+  ns0:referencesCountry ns0:Algeria ;
+  ns0:countryNameISO3166Short "ALGERIA" .
+
+ns0:Algeria
+  a ns0:IndependentState ;
+  ns0:nameLocal "Al Jaza'ir" ;
+  ns0:nameEnglishLong "People's Democratic Republic of Algeria" ;
+  ns0:nameEnglish "Algeria" ;
+  ns0:nameLocalLong "Al Jumhuriyah al Jaza'iriyah ad Dimuqratiyah ash Sha'biyah" .
+
+ns0:Nepal
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Nepal" ;
+  ns0:nameLocal "Nepal" ;
+  ns0:nameEnglishLong "Kingdom of Nepal" .
+
+ns0:DominicanRepublic
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Dominican Republic" ;
+  ns0:nameLocalLong "Republica Dominicana" ;
+  ns0:nameLocal "Republica Dominicana" ;
+  ns0:nameEnglishLong "Dominican Republic" .
+
+ns0:Togo
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republique Togolaise" ;
+  ns0:nameLocal "Republique Togolaise" ;
+  ns0:nameEnglishLong "Togolese Republic" ;
+  ns0:nameEnglish "Togo" .
+
+ns0:Nigeria
+  a ns0:IndependentState ;
+  ns0:nameLocal "Nigeria" ;
+  ns0:nameEnglish "Nigeria" ;
+  ns0:nameEnglishLong "Federal Republic of Nigeria" .
+
+ns0:ISO3166.Montserrat
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "500" ;
+  ns0:referencesCountry ns0:Montserrat ;
+  ns0:countryCodeISO3166Alpha3 "MSR" ;
+  ns0:countryNameISO3166Short "MONTSERRAT" ;
+  ns0:countryCodeISO3166Alpha2 "MS" .
+
+ns0:Montserrat
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameEnglish "Montserrat" ;
+  ns0:nameLocal "Montserrat" .
+
+ns0:ISO3166.SaintPierreAndMiquelon
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "666" ;
+  ns0:countryCodeISO3166Alpha3 "SPM" ;
+  ns0:countryCodeISO3166Alpha2 "PM" ;
+  ns0:referencesCountry ns0:SaintPierreAndMiquelon ;
+  ns0:countryNameISO3166Short "SAINT PIERRE AND MIQUELON" .
+
+ns0:SaintPierreAndMiquelon
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Saint-Pierre et Miquelon" ;
+  ns0:nameLocalLong "Departement de Saint-Pierre et Miquelon" ;
+  ns0:nameEnglish "Saint Pierre And Miquelon" ;
+  ns0:nameEnglishLong "Territorial Collectivity of Saint Pierre and Miquelon" ;
+  ns0:dependentTerritoryOf ns0:France .
+
+ns0:ISO3166.Bahamas
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Bahamas ;
+  ns0:countryCodeISO3166Alpha3 "BHS" ;
+  ns0:countryCodeISO3166Alpha2 "BS" ;
+  ns0:countryCodeUNNumeric3 "44" ;
+  ns0:countryNameISO3166Short "BAHAMAS" .
+
+ns0:Italy
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Italian Republic" ;
+  ns0:nameEnglish "Italy" ;
+  ns0:nameLocal "Italia" ;
+  ns0:nameLocalLong "Repubblica Italiana" .
+
+ns0:Lesotho
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Kingdom of Lesotho" ;
+  ns0:nameLocal "Lesotho" ;
+  ns0:nameEnglish "Lesotho" .
+
+ns0:ISO3166.WallisAndFutuna
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "WLF" ;
+  ns0:countryCodeUNNumeric3 "876" ;
+  ns0:countryCodeISO3166Alpha2 "WF" ;
+  ns0:referencesCountry ns0:WallisAndFutunaIslands ;
+  ns0:countryNameISO3166Short "WALLIS AND FUTUNA" .
+
+ns0:WallisAndFutunaIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocalLong "Territoire des Iles Wallis et Futuna" ;
+  ns0:nameEnglishLong "Territory of the Wallis and Futuna Islands" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameEnglish "Wallis And Futuna Islands" ;
+  ns0:nameLocal "Wallis et Futuna" .
+
+ns0:BruneiDarussalam
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Negara Brunei Darussalam" ;
+  ns0:nameEnglishLong "Negara Brunei Darussalam" ;
+  ns0:nameLocal "Brunei" ;
+  ns0:nameEnglish "Brunei" .
+
+ns0:Panama
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica de Panama" ;
+  ns0:nameEnglishLong "Republic of Panama" ;
+  ns0:nameLocal "Panama" ;
+  ns0:nameEnglish "Panama" .
+
+ns0:PitcairnIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameEnglishLong "Pitcairn, Henderson, Ducie, and Oeno Islands" ;
+  ns0:nameEnglish "Pitcairn Islands" ;
+  ns0:nameLocal "Pitcairn Islands" ;
+  ns0:nameLocalLong "Pitcairn, Henderson, Ducie, and Oeno Islands" .
+
+ns0:ISO3166.Philippines
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "PH" ;
+  ns0:countryCodeUNNumeric3 "608" ;
+  ns0:countryCodeISO3166Alpha3 "PHL" ;
+  ns0:countryNameISO3166Short "PHILIPPINES" ;
+  ns0:referencesCountry ns0:Philippines .
+
+ns0:Philippines
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republika ng Pilipinas" ;
+  ns0:nameLocal "Pilipinas" ;
+  ns0:nameEnglish "Philippines" ;
+  ns0:nameEnglishLong "Republic of the Philippines" .
+
+ns0:Eritrea
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "State of Eritrea" ;
+  ns0:nameLocal "Ertra" ;
+  ns0:nameEnglish "Eritrea" ;
+  ns0:nameLocalLong "Hagere Ertra" .
+
+ns0:SanMarino
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of San Marino" ;
+  ns0:nameLocalLong "Repubblica di San Marino" ;
+  ns0:nameLocal "San Marino" ;
+  ns0:nameEnglish "San Marino" .
+
+ns0:ISO3166.Vanuatu
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Vanuatu ;
+  ns0:countryCodeISO3166Alpha3 "VUT" ;
+  ns0:countryCodeISO3166Alpha2 "VU" ;
+  ns0:countryNameISO3166Short "VANUATU" ;
+  ns0:countryCodeUNNumeric3 "548" .
+
+ns0:Vanuatu
+  a ns0:IndependentState ;
+  ns0:nameLocal "Vanuatu" ;
+  ns0:nameEnglishLong "Republic of Vanuatu" ;
+  ns0:nameEnglish "Vanuatu" .
+
+ns0:ISO3166.Azerbaijan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "AZ" ;
+  ns0:countryNameISO3166Short "AZERBAIJAN" ;
+  ns0:countryCodeUNNumeric3 "31" ;
+  ns0:countryCodeISO3166Alpha3 "AZE" ;
+  ns0:referencesCountry ns0:Azerbaijan .
+
+ns0:Azerbaijan
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Azarbaycan Respublikasi" ;
+  ns0:nameEnglish "Azerbaijan" ;
+  ns0:nameEnglishLong "Republic of Azerbaijan" ;
+  ns0:nameLocal "Azerbaijan" .
+
+ns0:ISO3166.Luxembourg
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Luxembourg ;
+  ns0:countryCodeISO3166Alpha3 "LUX" ;
+  ns0:countryNameISO3166Short "LUXEMBOURG" ;
+  ns0:countryCodeUNNumeric3 "442" ;
+  ns0:countryCodeISO3166Alpha2 "LU" .
+
+ns0:Luxembourg
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Grand Duchy of Luxembourg" ;
+  ns0:nameLocal "Luxembourg" ;
+  ns0:nameEnglish "Luxembourg" ;
+  ns0:nameLocalLong "Grand Duche de Luxembourg" .
+
+ns0:ISO3166.Senegal
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "SN" ;
+  ns0:countryNameISO3166Short "SENEGAL" ;
+  ns0:referencesCountry ns0:Senegal ;
+  ns0:countryCodeISO3166Alpha3 "SEN" ;
+  ns0:countryCodeUNNumeric3 "686" .
+
+ns0:Senegal
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Senegal" ;
+  ns0:nameEnglish "Senegal" ;
+  ns0:nameLocal "Senegal" ;
+  ns0:nameLocalLong "Republique du Senegal" .
+
+ns0:ISO3166.ChristmasIsland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "162" ;
+  ns0:countryCodeISO3166Alpha2 "CX" ;
+  ns0:referencesCountry ns0:ChristmasIsland ;
+  ns0:countryNameISO3166Short "CHRISTMAS ISLAND" ;
+  ns0:countryCodeISO3166Alpha3 "CXR" .
+
+ns0:ChristmasIsland
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:Australia ;
+  ns0:nameEnglish "Christmas Island" ;
+  ns0:nameLocal "Christmas Island" .
+
+ns0:ISO3166.Madagascar
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "450" ;
+  ns0:countryNameISO3166Short "MADAGASCAR" ;
+  ns0:countryCodeISO3166Alpha2 "MG" ;
+  ns0:countryCodeISO3166Alpha3 "MDG" ;
+  ns0:referencesCountry ns0:Madagascar .
+
+ns0:Madagascar
+  a ns0:IndependentState ;
+  ns0:nameLocal "Madagascar" ;
+  ns0:nameEnglish "Madagascar" ;
+  ns0:nameEnglishLong "Republic of Madagascar" ;
+  ns0:nameLocalLong "Republique de Madagascar" .
+
+ns0:ISO3166.PuertoRico
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "630" ;
+  ns0:countryCodeISO3166Alpha2 "PR" ;
+  ns0:countryCodeISO3166Alpha3 "PRI" ;
+  ns0:countryNameISO3166Short "PUERTO RICO" ;
+  ns0:referencesCountry ns0:PuertoRico .
+
+ns0:RussianFederation
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Russian" ;
+  ns0:nameLocal "Rossiya" ;
+  ns0:nameEnglishLong "Russian Federation" ;
+  ns0:nameLocalLong "Rossiyskaya Federatsiya" .
+
+ns0:ISO3166.NorthernMarianaIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "MP" ;
+  ns0:countryCodeISO3166Alpha3 "MNP" ;
+  ns0:countryCodeUNNumeric3 "580" ;
+  ns0:referencesCountry ns0:NorthernMarianaIslands ;
+  ns0:countryNameISO3166Short "NORTHERN MARIANA ISLANDS" .
+
+ns0:Benin
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Benin" ;
+  ns0:nameLocal "Benin" ;
+  ns0:nameLocalLong "Republique du Benin" ;
+  ns0:nameEnglishLong "Republic of Benin" .
+
+ns0:BosniaAndHerzegovina
+  a ns0:IndependentState ;
+  ns0:nameLocal "Bosna i Hercegovina" ;
+  ns0:nameEnglishLong "Republic of Bosnia and Herzegovina" ;
+  ns0:nameEnglish "Bosnia And Herzegovina" .
+
+ns0:ISO3166.Albania
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "AL" ;
+  ns0:referencesCountry ns0:Albania ;
+  ns0:countryNameISO3166Short "ALBANIA" ;
+  ns0:countryCodeISO3166Alpha3 "ALB" ;
+  ns0:countryCodeUNNumeric3 "8" .
+
+ns0:Albania
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Albania" ;
+  ns0:nameLocal "Shqiperia" ;
+  ns0:nameLocalLong "Republika e Shqiperise" ;
+  ns0:nameEnglishLong "Republic of Albania" .
+
+ns0:ISO3166.SerbiaAndMontenegro
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "SERBIA AND MONTENEGRO" ;
+  ns0:countryCodeISO3166Alpha2 "CS" ;
+  ns0:referencesCountry ns0:SerbiaAndMontenegro ;
+  ns0:countryCodeUNNumeric3 "891" ;
+  ns0:countryCodeISO3166Alpha3 "SCG" .
+
+ns0:SerbiaAndMontenegro
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Serbia And Montenegro" ;
+  ns0:nameLocal "Jugoslavija" ;
+  ns0:nameLocalLong "Savezna Republika Jugoslavija" .
+
+ns0:ISO3166.Mali
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Mali ;
+  ns0:countryCodeISO3166Alpha3 "MLI" ;
+  ns0:countryNameISO3166Short "MALI" ;
+  ns0:countryCodeISO3166Alpha2 "ML" ;
+  ns0:countryCodeUNNumeric3 "466" .
+
+ns0:Mali
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Mali" ;
+  ns0:nameLocalLong "Republique de Mali" ;
+  ns0:nameEnglish "Mali" ;
+  ns0:nameLocal "Mali" .
+
+ns0:Malaysia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Malaysia" ;
+  ns0:nameLocal "Malaysia" .
+
+ns0:ISO3166.Panama
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "591" ;
+  ns0:referencesCountry ns0:Panama ;
+  ns0:countryNameISO3166Short "PANAMA" ;
+  ns0:countryCodeISO3166Alpha2 "PA" ;
+  ns0:countryCodeISO3166Alpha3 "PAN" .
+
+ns0:ISO3166.Nepal
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "524" ;
+  ns0:referencesCountry ns0:Nepal ;
+  ns0:countryCodeISO3166Alpha3 "NPL" ;
+  ns0:countryNameISO3166Short "NEPAL" ;
+  ns0:countryCodeISO3166Alpha2 "NP" .
+
+ns0:Comoros
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Union of the Comoros" ;
+  ns0:nameEnglish "Comoros" ;
+  ns0:nameLocal "Comores" ;
+  ns0:nameLocalLong "Union des Comores" .
+
+ns0:Slovenia
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republika Slovenija" ;
+  ns0:nameLocal "Slovenija" ;
+  ns0:nameEnglishLong "Republic of Slovenia" ;
+  ns0:nameEnglish "Slovenia" .
+
+ns0:SouthGeorgiaAndTheSouthSandwichIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameLocal "South Georgia and the South Sandwich Islands" ;
+  ns0:nameEnglish "South Georgia and the South Sandwich Islands" .
+
+ns0:Brazil
+  a ns0:IndependentState ;
+  ns0:nameLocal "Brasil" ;
+  ns0:nameEnglish "Brazil" ;
+  ns0:nameLocalLong "Republica Federativa do Brasil" ;
+  ns0:nameEnglishLong "Federative Republic of Brazil" .
+
+ns0:Sweden
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Sweden" ;
+  ns0:nameLocalLong "Konungariket Sverige" ;
+  ns0:nameEnglishLong "Kingdom of Sweden" ;
+  ns0:nameLocal "Sverige" .
+
+ns0:ISO3166.DominicanRepublic
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:DominicanRepublic ;
+  ns0:countryCodeISO3166Alpha3 "DOM" ;
+  ns0:countryCodeISO3166Alpha2 "DO" ;
+  ns0:countryNameISO3166Short "DOMINICAN REPUBLIC" ;
+  ns0:countryCodeUNNumeric3 "214" .
+
+ns0:Ecuador
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Ecuador" ;
+  ns0:nameLocal "Ecuador" ;
+  ns0:nameEnglishLong "Republic of Ecuador" ;
+  ns0:nameLocalLong "Republica del Ecuador" .
+
+ns0:ISO3166.Sweden
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Sweden ;
+  ns0:countryCodeUNNumeric3 "752" ;
+  ns0:countryNameISO3166Short "SWEDEN" ;
+  ns0:countryCodeISO3166Alpha2 "SE" ;
+  ns0:countryCodeISO3166Alpha3 "SWE" .
+
+ns0:ISO3166.Myanmar
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "MM" ;
+  ns0:countryCodeISO3166Alpha3 "MMR" ;
+  ns0:countryNameISO3166Short "MYANMAR" ;
+  ns0:referencesCountry ns0:Myanmar ;
+  ns0:countryCodeUNNumeric3 "104" .
+
+ns0:ISO3166.PapuaNewGuinea
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "598" ;
+  ns0:countryCodeISO3166Alpha2 "PG" ;
+  ns0:countryCodeISO3166Alpha3 "PNG" ;
+  ns0:referencesCountry ns0:PapuaNewGuinea ;
+  ns0:countryNameISO3166Short "PAPUA NEW GUINEA" .
+
+ns0:ISO3166.BouvetIsland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "BV" ;
+  ns0:countryCodeISO3166Alpha3 "BVT" ;
+  ns0:countryCodeUNNumeric3 "74" ;
+  ns0:countryNameISO3166Short "BOUVET ISLAND" ;
+  ns0:referencesCountry ns0:BouvetIsland .
+
+ns0:BouvetIsland
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Bouvet Island" ;
+  ns0:nameEnglish "Bouvet Island" ;
+  ns0:dependentTerritoryOf ns0:Norway .
+
+ns0:Norway
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Norway" ;
+  ns0:nameLocal "Norge" ;
+  ns0:nameLocalLong "Kongeriket Norge" ;
+  ns0:nameEnglishLong "Kingdom of Norway" .
+
+ns0:ISO3166.HongKong
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "344" ;
+  ns0:countryCodeISO3166Alpha2 "HK" ;
+  ns0:countryNameISO3166Short "HONG KONG" ;
+  ns0:referencesCountry ns0:HongKong ;
+  ns0:countryCodeISO3166Alpha3 "HKG" .
+
+ns0:HongKong
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Hong Kong" ;
+  ns0:nameEnglishLong "Hong Kong Special Administrative Region of China" ;
+  ns0:dependentTerritoryOf ns0:China ;
+  ns0:nameEnglish "Hong Kong" .
+
+ns0:ISO3166.Djibouti
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "262" ;
+  ns0:countryCodeISO3166Alpha2 "DJ" ;
+  ns0:countryNameISO3166Short "DJIBOUTI" ;
+  ns0:referencesCountry ns0:Djibouti ;
+  ns0:countryCodeISO3166Alpha3 "DJI" .
+
+ns0:Djibouti
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Djibouti" ;
+  ns0:nameEnglish "Djibouti" ;
+  ns0:nameLocal "Djibouti" .
+
+ns0:ISO3166.NewZealand
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "NEW ZEALAND" ;
+  ns0:countryCodeISO3166Alpha2 "NZ" ;
+  ns0:referencesCountry ns0:NewZealand ;
+  ns0:countryCodeISO3166Alpha3 "NZL" ;
+  ns0:countryCodeUNNumeric3 "554" .
+
+ns0:ISO3166.Fiji
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "FJI" ;
+  ns0:countryCodeUNNumeric3 "242" ;
+  ns0:referencesCountry ns0:Fiji ;
+  ns0:countryCodeISO3166Alpha2 "FJ" ;
+  ns0:countryNameISO3166Short "FIJI" .
+
+ns0:ISO3166.FranceMetropolitan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "249" ;
+  ns0:countryNameISO3166Short "FRANCE, METROPOLITAN" ;
+  ns0:countryCodeISO3166Alpha2 "FX" ;
+  ns0:countryCodeISO3166Alpha3 "FXX" ;
+  ns0:revocationEffective "2002-11-22" ;
+  ns0:referencesCountry ns0:FranceMetropolitan .
+
+ns0:Spain
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Spain" ;
+  ns0:nameLocal "Espana" ;
+  ns0:nameEnglishLong "Kingdom of Spain" .
+
+ns0:ISO3166.Norway
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "578" ;
+  ns0:referencesCountry ns0:Norway ;
+  ns0:countryNameISO3166Short "NORWAY" ;
+  ns0:countryCodeISO3166Alpha3 "NOR" ;
+  ns0:countryCodeISO3166Alpha2 "NO" .
+
+ns0:SaudiArabia
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Al Mamlakah al Arabiyah as Suudiyah" ;
+  ns0:nameEnglish "Saudi Arabia" ;
+  ns0:nameEnglishLong "Kingdom of Saudi Arabia" ;
+  ns0:nameLocal "Al Arabiyah as Suudiyah" .
+
+ns0:ISO3166.China
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "156" ;
+  ns0:referencesCountry ns0:China ;
+  ns0:countryCodeISO3166Alpha3 "CHN" ;
+  ns0:countryCodeISO3166Alpha2 "CN" ;
+  ns0:countryNameISO3166Short "CHINA" .
+
+ns0:CoteDIvoire
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Cote d'Ivoire" ;
+  ns0:nameLocalLong "Republique de Cote d'Ivoire" ;
+  ns0:nameLocal "Cote D' Ivoire" ;
+  ns0:nameEnglish "Cote D' Ivoire" .
+
+ns0:ISO3166.Benin
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Benin ;
+  ns0:countryCodeISO3166Alpha2 "BJ" ;
+  ns0:countryCodeISO3166Alpha3 "BEN" ;
+  ns0:countryNameISO3166Short "BENIN" ;
+  ns0:countryCodeUNNumeric3 "204" .
+
+ns0:Congo
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of the Congo" ;
+  ns0:nameLocal "Congo" ;
+  ns0:nameLocalLong "Republique du Congo" ;
+  ns0:nameEnglish "Congo" .
+
+ns0:Paraguay
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Paraguay" ;
+  ns0:nameEnglish "Paraguay" ;
+  ns0:nameLocalLong "Republica del Paraguay" ;
+  ns0:nameLocal "Paraguay" .
+
+ns0:SierraLeone
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Sierra Leone" ;
+  ns0:nameEnglishLong "Republic of Sierra Leone" ;
+  ns0:nameLocal "Sierra Leone" .
+
+ns0:ISO3166.Hungary
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "348" ;
+  ns0:countryCodeISO3166Alpha3 "HUN" ;
+  ns0:countryCodeISO3166Alpha2 "HU" ;
+  ns0:referencesCountry ns0:Hungary ;
+  ns0:countryNameISO3166Short "HUNGARY" .
+
+ns0:ISO3166.Taiwan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "158" ;
+  ns0:countryNameISO3166Short "TAIWAN, PROVINCE OF CHINA" ;
+  ns0:countryCodeISO3166Alpha2 "TW" ;
+  ns0:countryCodeISO3166Alpha3 "TWN" ;
+  ns0:referencesCountry ns0:Taiwan .
+
+ns0:ISO3166.Lithuania
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "LITHUANIA" ;
+  ns0:countryCodeISO3166Alpha3 "LTU" ;
+  ns0:countryCodeUNNumeric3 "440" ;
+  ns0:referencesCountry ns0:Lithuania ;
+  ns0:countryCodeISO3166Alpha2 "LT" .
+
+ns0:VirginIslandsBritish
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "British Virgin Islands" ;
+  ns0:nameEnglish "British Virgin Islands" ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom .
+
+ns0:Oman
+  a ns0:IndependentState ;
+  ns0:nameLocal "Uman" ;
+  ns0:nameEnglish "Oman" ;
+  ns0:nameEnglishLong "Sultanate of Oman" ;
+  ns0:nameLocalLong "Saltanat Uman" .
+
+ns0:ISO3166.Mexico
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "MEXICO" ;
+  ns0:countryCodeUNNumeric3 "484" ;
+  ns0:countryCodeISO3166Alpha3 "MEX" ;
+  ns0:countryCodeISO3166Alpha2 "MX" ;
+  ns0:referencesCountry ns0:Mexico .
+
+ns0:Mexico
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Mexico" ;
+  ns0:nameLocalLong "Estados Unidos Mexicanos" ;
+  ns0:nameLocal "Mexico" ;
+  ns0:nameEnglishLong "United Mexican States" .
+
+ns0:Haiti
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Haiti" ;
+  ns0:nameLocal "Haiti" ;
+  ns0:nameEnglishLong "Republic of Haiti" ;
+  ns0:nameLocalLong "Republique d'Haiti" .
+
+ns0:ISO3166.Suriname
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Suriname ;
+  ns0:countryCodeISO3166Alpha2 "SR" ;
+  ns0:countryNameISO3166Short "SURINAME" ;
+  ns0:countryCodeISO3166Alpha3 "SUR" ;
+  ns0:countryCodeUNNumeric3 "740" .
+
+ns0:Suriname
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Suriname" ;
+  ns0:nameLocal "Suriname" ;
+  ns0:nameLocalLong "Republiek Suriname" ;
+  ns0:nameEnglishLong "Republic of Suriname" .
+
+ns0:ISO3166.CocosIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "CCK" ;
+  ns0:countryCodeISO3166Alpha2 "CC" ;
+  ns0:countryNameISO3166Short "COCOS (KEELING) ISLANDS" ;
+  ns0:referencesCountry ns0:CocosIslands ;
+  ns0:countryCodeUNNumeric3 "166" .
+
+ns0:ISO3166.Indonesia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "IDN" ;
+  ns0:countryCodeISO3166Alpha2 "ID" ;
+  ns0:countryNameISO3166Short "INDONESIA" ;
+  ns0:countryCodeUNNumeric3 "360" ;
+  ns0:referencesCountry ns0:Indonesia .
+
+ns0:Guatemala
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Guatemala" ;
+  ns0:nameEnglishLong "Republic of Guatemala" ;
+  ns0:nameLocalLong "Republica de Guatemala" ;
+  ns0:nameLocal "Guatemala" .
+
+ns0:ISO3166.Liberia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Liberia ;
+  ns0:countryCodeISO3166Alpha2 "LB" ;
+  ns0:countryCodeUNNumeric3 "430" ;
+  ns0:countryCodeISO3166Alpha3 "LBR" ;
+  ns0:countryNameISO3166Short "LIBERIA" .
+
+ns0:ISO3166.Canada
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Canada ;
+  ns0:countryCodeISO3166Alpha3 "CAN" ;
+  ns0:countryCodeUNNumeric3 "124" ;
+  ns0:countryNameISO3166Short "CANADA" ;
+  ns0:countryCodeISO3166Alpha2 "CA" .
+
+ns0:Canada
+  a ns0:IndependentState ;
+  ns0:nameLocal "Canada" ;
+  ns0:nameEnglish "Canada" .
+
+ns0:ISO3166.ElSalvador
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "SLV" ;
+  ns0:countryCodeISO3166Alpha2 "SV" ;
+  ns0:countryCodeUNNumeric3 "222" ;
+  ns0:referencesCountry ns0:ElSalvador ;
+  ns0:countryNameISO3166Short "EL SALVADOR" .
+
+ns0:Uzbekistan
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Ozbekiston Respublikasi" ;
+  ns0:nameLocal "Ozbekiston" ;
+  ns0:nameEnglish "Uzbekistan" ;
+  ns0:nameEnglishLong "Republic of Uzbekistan" .
+
+ns0:Egypt
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Jumhuriyat Misr al-Arabiyah" ;
+  ns0:nameEnglish "Egypt" ;
+  ns0:nameLocal "Misr" ;
+  ns0:nameEnglishLong "Arab Republic of Egypt" .
+
+ns0:ISO3166.Pitcairn
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "612" ;
+  ns0:countryCodeISO3166Alpha2 "PC" ;
+  ns0:countryCodeISO3166Alpha3 "PCN" ;
+  ns0:referencesCountry ns0:PitcairnIslands ;
+  ns0:countryNameISO3166Short "PITCAIRN" .
+
+ns0:ISO3166.Morocco
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "504" ;
+  ns0:countryNameISO3166Short "MOROCCO" ;
+  ns0:countryCodeISO3166Alpha2 "MA" ;
+  ns0:countryCodeISO3166Alpha3 "MAR" ;
+  ns0:referencesCountry ns0:Morocco .
+
+ns0:Uganda
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Uganda" ;
+  ns0:nameLocal "Uganda" ;
+  ns0:nameEnglishLong "Republic of Uganda" .
+
+ns0:ISO3166.Tonga
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TO" ;
+  ns0:countryCodeUNNumeric3 "776" ;
+  ns0:countryNameISO3166Short "TONGA" ;
+  ns0:countryCodeISO3166Alpha3 "TON" ;
+  ns0:referencesCountry ns0:Tonga .
+
+ns0:Tonga
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Tonga" ;
+  ns0:nameLocal "Tonga" ;
+  ns0:nameEnglishLong "Kingdom of Tonga" .
+
+ns0:ISO3166.Iceland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Iceland ;
+  ns0:countryCodeISO3166Alpha3 "ISL" ;
+  ns0:countryCodeISO3166Alpha2 "IS" ;
+  ns0:countryNameISO3166Short "ICELAND" ;
+  ns0:countryCodeUNNumeric3 "352" .
+
+ns0:SouthAfrica
+  a ns0:IndependentState ;
+  ns0:nameLocal "South Africa" ;
+  ns0:nameLocalLong "Republic of South Africa" ;
+  ns0:nameEnglishLong "Republic of South Africa" ;
+  ns0:nameEnglish "South Africa" .
+
+ns0:ISO3166.France
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:France ;
+  ns0:countryNameISO3166Short "FRANCE" ;
+  ns0:countryCodeISO3166Alpha3 "FRA" ;
+  ns0:countryCodeISO3166Alpha2 "FR" ;
+  ns0:countryCodeUNNumeric3 "250" .
+
+ns0:BurkinaFaso
+  a ns0:IndependentState ;
+  ns0:nameLocal "Burkina Faso" ;
+  ns0:nameEnglish "Burkina Faso" .
+
+ns0:ISO3166.HeardIslandsAndMcDonaldIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "HM" ;
+  ns0:countryCodeUNNumeric3 "334" ;
+  ns0:referencesCountry ns0:HeardIslandAndMcDonaldIslands ;
+  ns0:countryCodeISO3166Alpha3 "HMD" ;
+  ns0:countryNameISO3166Short "HEARD ISLAND AND MCDONALD ISLANDS" .
+
+ns0:HeardIslandAndMcDonaldIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocalLong "Territory of Heard Island and McDonald Islands" ;
+  ns0:nameEnglish "Heard Island And McDonald Islands" ;
+  ns0:nameEnglishLong "Territory of Heard Island and McDonald Islands" ;
+  ns0:dependentTerritoryOf ns0:Australia ;
+  ns0:nameLocal "Heard Island And McDonald Islands" .
+
+ns0:ISO3166.Sudan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "736" ;
+  ns0:countryCodeISO3166Alpha2 "SD" ;
+  ns0:countryNameISO3166Short "SUDAN" ;
+  ns0:countryCodeISO3166Alpha3 "SDN" ;
+  ns0:referencesCountry ns0:Sudan .
+
+ns0:Sudan
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Sudan" ;
+  ns0:nameEnglishLong "Republic of the Sudan" ;
+  ns0:nameLocalLong "Jumhuriyat as-Sudan" ;
+  ns0:nameLocal "As-Sudan" .
+
+ns0:Tunisia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Tunisia" ;
+  ns0:nameLocal "Tunis" ;
+  ns0:nameLocalLong "Al Jumhuriyah at Tunisiyah" ;
+  ns0:nameEnglishLong "Tunisian Republic" .
+
+ns0:ISO3166.Gabon
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "GABON" ;
+  ns0:countryCodeISO3166Alpha2 "GA" ;
+  ns0:countryCodeUNNumeric3 "266" ;
+  ns0:countryCodeISO3166Alpha3 "GAB" ;
+  ns0:referencesCountry ns0:Gabon .
+
+ns0:Gabon
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Gabonese Republic" ;
+  ns0:nameLocal "Gabon" ;
+  ns0:nameLocalLong "Republique Gabonaise" ;
+  ns0:nameEnglish "Gabon" .
+
+ns0:ISO3166.Martinique
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "474" ;
+  ns0:referencesCountry ns0:Martinique ;
+  ns0:countryCodeISO3166Alpha3 "MTQ" ;
+  ns0:countryCodeISO3166Alpha2 "MQ" ;
+  ns0:countryNameISO3166Short "MARTINIQUE" .
+
+ns0:Martinique
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameEnglish "Martinique" ;
+  ns0:nameEnglishLong "Department of Martinique" ;
+  ns0:nameLocal "Martinique" ;
+  ns0:nameLocalLong "Departement de la Martinique" .
+
+ns0:ISO3166.SanMarino
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:SanMarino ;
+  ns0:countryCodeISO3166Alpha3 "SMR" ;
+  ns0:countryCodeUNNumeric3 "674" ;
+  ns0:countryCodeISO3166Alpha2 "SM" ;
+  ns0:countryNameISO3166Short "SAN MARINO" .
+
+ns0:ISO3166.Palau
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "PLW" ;
+  ns0:countryCodeISO3166Alpha2 "PW" ;
+  ns0:countryCodeUNNumeric3 "585" ;
+  ns0:referencesCountry ns0:Palau ;
+  ns0:countryNameISO3166Short "PALAU" .
+
+ns0:ISO3166.CentralAfricanRepublic
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "CF" ;
+  ns0:countryCodeISO3166Alpha3 "CAF" ;
+  ns0:countryCodeUNNumeric3 "140" ;
+  ns0:countryNameISO3166Short "CENTRAL AFRICAN REPUBLIC" ;
+  ns0:referencesCountry ns0:CentralAfricanRepublic .
+
+ns0:Macau
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "Macau" ;
+  ns0:nameEnglishLong "Macao Special Administrative Region of China" ;
+  ns0:dependentTerritoryOf ns0:China ;
+  ns0:nameLocal "Aomen" ;
+  ns0:nameLocalLong "Aomen Tebie Xingzhengqu" .
+
+ns0:ISO3166.Guam
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "316" ;
+  ns0:countryCodeISO3166Alpha2 "GU" ;
+  ns0:countryNameISO3166Short "GUAM" ;
+  ns0:countryCodeISO3166Alpha3 "GUM" ;
+  ns0:referencesCountry ns0:Guam .
+
+ns0:Guam
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "Guam" ;
+  ns0:dependentTerritoryOf ns0:UnitedStates ;
+  ns0:nameEnglishLong "Territory of Guam" ;
+  ns0:nameLocal "Guam" ;
+  ns0:nameLocalLong "Guahan" .
+
+ns0:Kiribati
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Kiribati" ;
+  ns0:nameEnglish "Kiribati" ;
+  ns0:nameLocal "Kiribati" .
+
+ns0:Vietnam
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Vietnam" ;
+  ns0:nameLocal "Viet Nam" ;
+  ns0:nameEnglishLong "Socialist Republic of Vietnam" ;
+  ns0:nameLocalLong "Cong Hoa Xa Hoi Chu Nghia Viet Nam" .
+
+ns0:ISO3166.Brazil
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "BRA" ;
+  ns0:countryNameISO3166Short "BRAZIL" ;
+  ns0:countryCodeISO3166Alpha2 "BR" ;
+  ns0:countryCodeUNNumeric3 "76" ;
+  ns0:referencesCountry ns0:Brazil .
+
+ns0:Tanzania
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "United Republic of Tanzania" ;
+  ns0:nameLocal "Tanzania" ;
+  ns0:nameEnglish "Tanzania" .
+
+ns0:Uruguay
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republica Oriental del Uruguay" ;
+  ns0:nameEnglishLong "Oriental Republic of Uruguay" ;
+  ns0:nameLocal "Uruguay" ;
+  ns0:nameEnglish "Uruguay" .
+
+ns0:ISO3166.Egypt
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "EGYPT" ;
+  ns0:countryCodeUNNumeric3 "818" ;
+  ns0:countryCodeISO3166Alpha2 "EG" ;
+  ns0:countryCodeISO3166Alpha3 "EGY" ;
+  ns0:referencesCountry ns0:Egypt .
+
+ns0:ISO3166.Belarus
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "BLR" ;
+  ns0:countryCodeUNNumeric3 "112" ;
+  ns0:countryCodeISO3166Alpha2 "BY" ;
+  ns0:countryNameISO3166Short "BELARUS" ;
+  ns0:referencesCountry ns0:Belarus .
+
+ns0:ISO3166.Micronesia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "FSM" ;
+  ns0:countryCodeUNNumeric3 "583" ;
+  ns0:countryCodeISO3166Alpha2 "FM" ;
+  ns0:referencesCountry ns0:Micronesia ;
+  ns0:countryNameISO3166Short "MICRONESIA, FEDERATED STATES OF" .
+
+ns0:Micronesia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Federated States of Micronesia" ;
+  ns0:nameLocal "Federated States of Micronesia" ;
+  ns0:nameEnglish "Federated States of Micronesia" .
+
+ns0:FrenchPolynesia
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "French Polynesia" ;
+  ns0:nameLocal "Polynesie Francaise" ;
+  ns0:nameLocalLong "Territoire de la Polynesie Francaise" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameEnglishLong "Territory of French Polynesia" .
+
+ns0:ISO3166.Ukraine
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "UA" ;
+  ns0:countryCodeISO3166Alpha3 "UKR" ;
+  ns0:countryCodeUNNumeric3 "804" ;
+  ns0:referencesCountry ns0:Ukraine ;
+  ns0:countryNameISO3166Short "UKRAINE" .
+
+ns0:Ukraine
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Ukraine" ;
+  ns0:nameLocal "Ukrayina" .
+
+ns0:Rwanda
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republika y'u Rwanda" ;
+  ns0:nameEnglish "Rwanda" ;
+  ns0:nameLocal "Rwanda" ;
+  ns0:nameEnglishLong "Rwandese Republic" .
+
+ns0:ISO3166.Kiribati
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "KIR" ;
+  ns0:countryCodeUNNumeric3 "296" ;
+  ns0:countryCodeISO3166Alpha2 "KI" ;
+  ns0:referencesCountry ns0:Kiribati ;
+  ns0:countryNameISO3166Short "KIRIBATI" .
+
+ns0:ISO3166.Qatar
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "QATAR" ;
+  ns0:countryCodeISO3166Alpha3 "QAT" ;
+  ns0:countryCodeUNNumeric3 "634" ;
+  ns0:countryCodeISO3166Alpha2 "QA" ;
+  ns0:referencesCountry ns0:Qatar .
+
+ns0:Qatar
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Dawlat Qatar" ;
+  ns0:nameEnglishLong "State of Qatar" ;
+  ns0:nameLocal "Qatar" ;
+  ns0:nameEnglish "Qatar" .
+
+ns0:ISO3166.BurkinaFaso
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "854" ;
+  ns0:countryNameISO3166Short "BURKINA FASO" ;
+  ns0:countryCodeISO3166Alpha3 "BFA" ;
+  ns0:countryCodeISO3166Alpha2 "BF" ;
+  ns0:referencesCountry ns0:BurkinaFaso .
+
+ns0:ISO3166.VirginIslandsBritish
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "92" ;
+  ns0:countryCodeISO3166Alpha3 "VGB" ;
+  ns0:referencesCountry ns0:VirginIslandsBritish ;
+  ns0:countryNameISO3166Short "VIRGIN ISLANDS, BRITISH" ;
+  ns0:countryCodeISO3166Alpha2 "VG" .
+
+ns0:Samoa
+  a ns0:IndependentState ;
+  ns0:nameLocal "Samoa" ;
+  ns0:nameEnglish "Samoa" ;
+  ns0:nameLocalLong "Independent State of Samoa" ;
+  ns0:nameEnglishLong "Independent State of Samoa" .
+
+ns0:ISO3166.Tuvalu
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TV" ;
+  ns0:countryCodeUNNumeric3 "798" ;
+  ns0:countryCodeISO3166Alpha3 "TUV" ;
+  ns0:referencesCountry ns0:Tuvalu ;
+  ns0:countryNameISO3166Short "TUVALU" .
+
+ns0:Tuvalu
+  a ns0:IndependentState ;
+  ns0:nameLocal "Tuvalu" ;
+  ns0:nameEnglish "Tuvalu" .
+
+ns0:NetherlandsAntilles
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "Netherlands Antilles" ;
+  ns0:nameLocal "Nederlandse Antillen" ;
+  ns0:dependentTerritoryOf ns0:Netherlands .
+
+ns0:ISO3166.FrenchGuiana
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:FrenchGuiana ;
+  ns0:countryCodeISO3166Alpha2 "GF" ;
+  ns0:countryNameISO3166Short "FRENCH GUIANA" ;
+  ns0:countryCodeUNNumeric3 "254" ;
+  ns0:countryCodeISO3166Alpha3 "GUF" .
+
+ns0:FrenchGuiana
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Guyane" ;
+  ns0:nameEnglish "French Guiana" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameEnglishLong "Department of Guiana" .
+
+ns0:ISO3166.Zambia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ZMB" ;
+  ns0:referencesCountry ns0:Zambia ;
+  ns0:countryCodeISO3166Alpha2 "ZM" ;
+  ns0:countryCodeUNNumeric3 "894" ;
+  ns0:countryNameISO3166Short "ZAMBIA" .
+
+ns0:Zambia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Zambia" ;
+  ns0:nameEnglish "Zambia" ;
+  ns0:nameLocal "Zambia" .
+
+ns0:ISO3166.Bermuda
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "60" ;
+  ns0:referencesCountry ns0:Bermuda ;
+  ns0:countryCodeISO3166Alpha2 "BM" ;
+  ns0:countryNameISO3166Short "BERMUDA" ;
+  ns0:countryCodeISO3166Alpha3 "BMU" .
+
+ns0:Bermuda
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "Bermuda" ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameLocal "Bermuda" .
+
+ns0:ISO3166.Macedonia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "MKD" ;
+  ns0:referencesCountry ns0:Macedonia ;
+  ns0:countryCodeUNNumeric3 "807" ;
+  ns0:countryNameISO3166Short "MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF" ;
+  ns0:countryCodeISO3166Alpha2 "MK" .
+
+ns0:Macedonia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Macedonia" ;
+  ns0:nameLocal "Makedonija" ;
+  ns0:nameLocalLong "Republika Makedonija" .
+
+ns0:ISO3166.Oman
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "OMN" ;
+  ns0:countryCodeUNNumeric3 "512" ;
+  ns0:countryCodeISO3166Alpha2 "OM" ;
+  ns0:countryNameISO3166Short "OMAN" ;
+  ns0:referencesCountry ns0:Oman .
+
+ns0:ISO3166.RussianFederation
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "RUSSIAN FEDERATION" ;
+  ns0:countryCodeISO3166Alpha3 "RUS" ;
+  ns0:countryCodeISO3166Alpha2 "RU" ;
+  ns0:referencesCountry ns0:RussianFederation ;
+  ns0:countryCodeUNNumeric3 "643" .
+
+ns0:ISO3166.CapeVerde
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "132" ;
+  ns0:referencesCountry ns0:CapeVerde ;
+  ns0:countryCodeISO3166Alpha3 "CPV" ;
+  ns0:countryCodeISO3166Alpha2 "CV" ;
+  ns0:countryNameISO3166Short "CAPE VERDE" .
+
+ns0:ISO3166.Armenia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "51" ;
+  ns0:countryCodeISO3166Alpha3 "ARM" ;
+  ns0:referencesCountry ns0:Armenia ;
+  ns0:countryNameISO3166Short "ARMENIA" ;
+  ns0:countryCodeISO3166Alpha2 "AM" .
+
+ns0:Armenia
+  a ns0:IndependentState ;
+  ns0:nameLocal "Hayastan" ;
+  ns0:nameLocalLong "Hayastani Hanrapetut'yun" ;
+  ns0:nameEnglish "Armenia" ;
+  ns0:nameEnglishLong "Republic of Armenia" .
+
+ns0:Bulgaria
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Bulgaria" ;
+  ns0:nameLocal "Bulgaria" ;
+  ns0:nameEnglishLong "Republic of Bulgaria" .
+
+ns0:ISO3166.Italy
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "ITALY" ;
+  ns0:referencesCountry ns0:Italy ;
+  ns0:countryCodeISO3166Alpha2 "IT" ;
+  ns0:countryCodeISO3166Alpha3 "ITA" ;
+  ns0:countryCodeUNNumeric3 "380" .
+
+ns0:ISO3166.TrinidadAndTobago
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "TTO" ;
+  ns0:referencesCountry ns0:TrinidadAndTobago ;
+  ns0:countryCodeISO3166Alpha2 "TT" ;
+  ns0:countryNameISO3166Short "TRINIDAD AND TOBAGO" ;
+  ns0:countryCodeUNNumeric3 "780" .
+
+ns0:ISO3166.SaintHelena
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:SaintHelena ;
+  ns0:countryCodeISO3166Alpha3 "SHN" ;
+  ns0:countryNameISO3166Short "SAINT HELENA" ;
+  ns0:countryCodeUNNumeric3 "654" ;
+  ns0:countryCodeISO3166Alpha2 "SH" .
+
+ns0:SaintHelena
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Saint Helena" ;
+  ns0:dependentTerritoryOf ns0:UnitedKingdom ;
+  ns0:nameEnglish "Saint Helena" .
+
+ns0:ISO3166.CookIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "COK" ;
+  ns0:countryCodeUNNumeric3 "184" ;
+  ns0:countryNameISO3166Short "COOK ISLANDS" ;
+  ns0:referencesCountry ns0:CookIslands ;
+  ns0:countryCodeISO3166Alpha2 "CK" .
+
+ns0:CookIslands
+  a ns0:AssociatedState ;
+  ns0:nameLocal "Cook Islands" ;
+  ns0:associatedTerritoryOf ns0:NewZealand ;
+  ns0:nameEnglish "Cook Islands" .
+
+ns0:ISO3166.Anguilla
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "AI" ;
+  ns0:countryNameISO3166Short "ANGUILLA" ;
+  ns0:countryCodeUNNumeric3 "660" ;
+  ns0:countryCodeISO3166Alpha3 "AIA" ;
+  ns0:referencesCountry ns0:Anguilla .
+
+ns0:Ethiopia
+  a ns0:IndependentState ;
+  ns0:nameLocal "Ityop'iya" ;
+  ns0:nameEnglishLong "Federal Democratic Republic of Ethiopia" ;
+  ns0:nameEnglish "Ethiopia" ;
+  ns0:nameLocalLong "Ityop'iya Federalawi Demokrasiyawi Ripeblik" .
+
+ns0:AntiguaAndBarbuda
+  a ns0:IndependentState ;
+  ns0:nameLocal "Antigua And Barbuda" ;
+  ns0:nameEnglish "Antigua And Barbuda" .
+
+ns0:ISO3166.CoteDIvoire
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "CIV" ;
+  ns0:countryCodeISO3166Alpha2 "CI" ;
+  ns0:referencesCountry ns0:CoteDIvoire ;
+  ns0:countryNameISO3166Short "CÔTE D'IVOIRE" ;
+  ns0:countryCodeUNNumeric3 "384" .
+
+ns0:ISO3166.Comoros
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "COMOROS" ;
+  ns0:countryCodeISO3166Alpha2 "KM" ;
+  ns0:countryCodeISO3166Alpha3 "COM" ;
+  ns0:countryCodeUNNumeric3 "174" ;
+  ns0:referencesCountry ns0:Comoros .
+
+ns0:Slovakia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Slovak Republic" ;
+  ns0:nameLocal "Slovensko" ;
+  ns0:nameLocalLong "Slovenska Republika" ;
+  ns0:nameEnglish "Slovakia" .
+
+ns0:ISO3166.Bhutan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "BHUTAN" ;
+  ns0:countryCodeUNNumeric3 "64" ;
+  ns0:countryCodeISO3166Alpha2 "BT" ;
+  ns0:referencesCountry ns0:Bhutan ;
+  ns0:countryCodeISO3166Alpha3 "BTN" .
+
+ns0:Bhutan
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Bhutan" ;
+  ns0:nameEnglishLong "Kingdom of Bhutan" ;
+  ns0:nameLocal "Bhutan" .
+
+ns0:ISO3166.Jamaica
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "JM" ;
+  ns0:countryCodeUNNumeric3 "388" ;
+  ns0:countryCodeISO3166Alpha3 "JAM" ;
+  ns0:countryNameISO3166Short "JAMAICA" ;
+  ns0:referencesCountry ns0:Jamaica .
+
+ns0:Jamaica
+  a ns0:IndependentState ;
+  ns0:nameLocal "Jamaica" ;
+  ns0:nameEnglish "Jamaica" .
+
+ns0:ISO3166.SolomonIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "SLB" ;
+  ns0:countryNameISO3166Short "SOLOMON ISLANDS" ;
+  ns0:referencesCountry ns0:SolomonIslands ;
+  ns0:countryCodeUNNumeric3 "90" ;
+  ns0:countryCodeISO3166Alpha2 "SB" .
+
+ns0:SolomonIslands
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Solomon Islands" ;
+  ns0:nameLocal "Solomon Islands" .
+
+ns0:Peru
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Peru" ;
+  ns0:nameEnglishLong "Republic of Peru" ;
+  ns0:nameLocalLong "Republica del Peru" ;
+  ns0:nameLocal "Peru" .
+
+ns0:ISO3166.Estonia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "EST" ;
+  ns0:referencesCountry ns0:Estonia ;
+  ns0:countryCodeUNNumeric3 "233" ;
+  ns0:countryNameISO3166Short "ESTONIA" ;
+  ns0:countryCodeISO3166Alpha2 "EE" .
+
+ns0:ISO3166.Liechtenstein
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Liechtenstein ;
+  ns0:countryCodeUNNumeric3 "438" ;
+  ns0:countryCodeISO3166Alpha2 "LI" ;
+  ns0:countryNameISO3166Short "LIECHTENSTEIN" ;
+  ns0:countryCodeISO3166Alpha3 "LIE" .
+
+ns0:Liechtenstein
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Fuerstentum Liechtenstein" ;
+  ns0:nameLocal "Liechtenstein" ;
+  ns0:nameEnglish "Liechtenstein" ;
+  ns0:nameEnglishLong "Principality of Liechtenstein" .
+
+ns0:ISO3166.Uganda
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "UG" ;
+  ns0:referencesCountry ns0:Uganda ;
+  ns0:countryCodeUNNumeric3 "800" ;
+  ns0:countryNameISO3166Short "UGANDA" ;
+  ns0:countryCodeISO3166Alpha3 "UGA" .
+
+ns0:ISO3166.UnitedArabEmirates
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ARE" ;
+  ns0:referencesCountry ns0:UnitedArabEmirates ;
+  ns0:countryCodeISO3166Alpha2 "AE" ;
+  ns0:countryCodeUNNumeric3 "784" ;
+  ns0:countryNameISO3166Short "UNITED ARAB EMIRATES" .
+
+ns0:ISO3166.Colombia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "COLOMBIA" ;
+  ns0:countryCodeUNNumeric3 "170" ;
+  ns0:countryCodeISO3166Alpha3 "COL" ;
+  ns0:countryCodeISO3166Alpha2 "CO" ;
+  ns0:referencesCountry ns0:Colombia .
+
+ns0:Colombia
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Colombia" ;
+  ns0:nameEnglishLong "Republic of Colombia" ;
+  ns0:nameLocal "Colombia" ;
+  ns0:nameLocalLong "Republica de Colombia" .
+
+ns0:ISO3166.Iraq
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Iraq ;
+  ns0:countryCodeUNNumeric3 "368" ;
+  ns0:countryNameISO3166Short "IRAQ" ;
+  ns0:countryCodeISO3166Alpha2 "IQ" ;
+  ns0:countryCodeISO3166Alpha3 "IRQ" .
+
+ns0:Iraq
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Iraq" ;
+  ns0:nameEnglishLong "Republic of Iraq" ;
+  ns0:nameLocal "Al Iraq" ;
+  ns0:nameLocalLong "Al Jumhuriyah al Iraqiyah" .
+
+ns0:ISO3166.CongoDemocraticRepublic
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "180" ;
+  ns0:countryCodeISO3166Alpha2 "CD" ;
+  owl:sameAs ns0:Zaire ;
+  ns0:countryCodeISO3166Alpha3 "COD" ;
+  ns0:countryNameISO3166Short "CONGO, THE DEMOCRATIC REPUBLIC OF THE" ;
+  ns0:referencesCountry ns0:CongoDemocraticRepublic .
+
+ns0:Switzerland
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Switzerland" ;
+  ns0:nameLocal "Schweiz" ;
+  ns0:nameLocalLong "Schweizerische Eidgenossenschaft" ;
+  ns0:nameEnglishLong "Swiss Confederation" .
+
+ns0:India
+  a ns0:IndependentState ;
+  ns0:nameEnglish "India" ;
+  ns0:nameEnglishLong "Republic of India" ;
+  ns0:nameLocal "India" .
+
+ns0:ISO3166.Reunion
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "RE" ;
+  ns0:countryNameISO3166Short "RÉUNION" ;
+  ns0:countryCodeUNNumeric3 "638" ;
+  ns0:referencesCountry ns0:Reunion ;
+  ns0:countryCodeISO3166Alpha3 "REU" .
+
+ns0:Reunion
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameLocal "Ile de la Reunion" ;
+  ns0:nameEnglish "Reunion" ;
+  ns0:nameEnglishLong "Department of Reunion" .
+
+ns0:ISO3166.BruneiDarussalam
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "BRUNEI DARUSSALAM" ;
+  ns0:referencesCountry ns0:BruneiDarussalam ;
+  ns0:countryCodeUNNumeric3 "96" ;
+  ns0:countryCodeISO3166Alpha3 "BRN" ;
+  ns0:countryCodeISO3166Alpha2 "BN" .
+
+ns0:ISO3166.Barbados
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "BRB" ;
+  ns0:referencesCountry ns0:Barbados ;
+  ns0:countryCodeISO3166Alpha2 "BB" ;
+  ns0:countryNameISO3166Short "BARBADOS" ;
+  ns0:countryCodeUNNumeric3 "52" .
+
+ns0:Barbados
+  a ns0:IndependentState ;
+  ns0:nameLocal "Barbados" ;
+  ns0:nameEnglish "Barbados" .
+
+ns0:ISO3166.Switzerland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "SWITZERLAND" ;
+  ns0:referencesCountry ns0:Switzerland ;
+  ns0:countryCodeISO3166Alpha2 "CH" ;
+  ns0:countryCodeUNNumeric3 "756" ;
+  ns0:countryCodeISO3166Alpha3 "CHE" .
+
+ns0:ISO3166.Macau
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "MACAU" ;
+  ns0:countryCodeISO3166Alpha2 "MO" ;
+  ns0:countryCodeISO3166Alpha3 "MAC" ;
+  ns0:referencesCountry ns0:Macau ;
+  ns0:countryCodeUNNumeric3 "446" .
+
+ns0:ISO3166.NorfolkIsland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:NorfolkIsland ;
+  ns0:countryNameISO3166Short "NORFOLK ISLAND" ;
+  ns0:countryCodeISO3166Alpha2 "NF" ;
+  ns0:countryCodeUNNumeric3 "574" ;
+  ns0:countryCodeISO3166Alpha3 "NFK" .
+
+ns0:NorfolkIsland
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:Australia ;
+  ns0:nameEnglishLong "Territory of Norfolk Island" ;
+  ns0:nameLocalLong "Territory of Norfolk Island" ;
+  ns0:nameLocal "Norfolk Island" ;
+  ns0:nameEnglish "Norfolk Island" .
+
+ns0:ISO3166.Romania
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "RO" ;
+  ns0:countryNameISO3166Short "ROMANIA" ;
+  ns0:referencesCountry ns0:Romania ;
+  ns0:countryCodeISO3166Alpha3 "ROU" ;
+  ns0:countryCodeUNNumeric3 "642" .
+
+ns0:Romania
+  a ns0:IndependentState ;
+  ns0:nameLocal "Romania" ;
+  ns0:nameEnglish "Romania" .
+
+ns0:Singapore
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Singapore" ;
+  ns0:nameEnglishLong "Republic of Singapore" ;
+  ns0:nameLocal "Singapore" .
+
+ns0:ISO3166.Ghana
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Ghana ;
+  ns0:countryCodeISO3166Alpha2 "GH" ;
+  ns0:countryCodeISO3166Alpha3 "GHA" ;
+  ns0:countryCodeUNNumeric3 "288" ;
+  ns0:countryNameISO3166Short "GHANA" .
+
+ns0:Ghana
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Ghana" ;
+  ns0:nameLocal "Ghana" ;
+  ns0:nameEnglish "Ghana" .
+
+ns0:ISO3166.EastTimor
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TL" ;
+  ns0:referencesCountry ns0:EastTimor ;
+  ns0:countryCodeUNNumeric3 "626" ;
+  ns0:countryCodeISO3166Alpha3 "TLS" ;
+  ns0:countryNameISO3166Short "TIMOR-LESTE" .
+
+ns0:EastTimor
+  a ns0:IndependentState ;
+  ns0:nameLocal "Timor Lorosa'e" ;
+  ns0:nameEnglish "East Timor" ;
+  ns0:nameLocalLong "Republika Demokratika Timor Lorosa'e" ;
+  ns0:nameEnglishLong "Democratic Republic of Timor-Leste" .
+
+ns0:Chad
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Republique du Tchad" ;
+  ns0:nameLocal "Tchad" ;
+  ns0:nameEnglish "Chad" ;
+  ns0:nameEnglishLong "Republic of Chad" .
+
+ns0:ISO3166.SouthAfrica
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "710" ;
+  ns0:countryNameISO3166Short "SOUTH AFRICA" ;
+  ns0:countryCodeISO3166Alpha3 "ZAF" ;
+  ns0:referencesCountry ns0:SouthAfrica ;
+  ns0:countryCodeISO3166Alpha2 "ZA" .
+
+ns0:Yemen
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Al Jumhuriyah al Yamaniyah" ;
+  ns0:nameEnglishLong "Republic of Yemen" ;
+  ns0:nameLocal "Al Yaman" ;
+  ns0:nameEnglish "Yemen" .
+
+ns0:ISO3166.Peru
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "PERU" ;
+  ns0:referencesCountry ns0:Peru ;
+  ns0:countryCodeISO3166Alpha3 "PER" ;
+  ns0:countryCodeISO3166Alpha2 "PE" ;
+  ns0:countryCodeUNNumeric3 "604" .
+
+ns0:ISO3166.KoreaNorth
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:KoreaNorth ;
+  ns0:countryCodeISO3166Alpha2 "KP" ;
+  ns0:countryCodeUNNumeric3 "408" ;
+  ns0:countryCodeISO3166Alpha3 "PRK" ;
+  ns0:countryNameISO3166Short "KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF" .
+
+ns0:KoreaNorth
+  a ns0:IndependentState ;
+  ns0:nameLocal "Choson" ;
+  ns0:nameLocalLong "Choson-minjujuui-inmin-konghwaguk" ;
+  ns0:nameEnglish "North Korea" ;
+  ns0:nameEnglishLong "Democratic People's Republic of Korea" .
+
+ns0:ISO3166.Chad
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "TCD" ;
+  ns0:referencesCountry ns0:Chad ;
+  ns0:countryCodeUNNumeric3 "148" ;
+  ns0:countryCodeISO3166Alpha2 "TD" ;
+  ns0:countryNameISO3166Short "CHAD" .
+
+ns0:ISO3166.Nigeria
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "NG" ;
+  ns0:countryCodeUNNumeric3 "566" ;
+  ns0:referencesCountry ns0:Nigeria ;
+  ns0:countryCodeISO3166Alpha3 "NGA" ;
+  ns0:countryNameISO3166Short "NIGERIA" .
+
+ns0:ISO3166.Bulgaria
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Bulgaria ;
+  ns0:countryCodeUNNumeric3 "100" ;
+  ns0:countryCodeISO3166Alpha3 "BGR" ;
+  ns0:countryCodeISO3166Alpha2 "BG" ;
+  ns0:countryNameISO3166Short "BULGARIA" .
+
+ns0:ISO3166.Uzbekistan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "UZ" ;
+  ns0:countryCodeUNNumeric3 "860" ;
+  ns0:countryCodeISO3166Alpha3 "UZB" ;
+  ns0:referencesCountry ns0:Uzbekistan ;
+  ns0:countryNameISO3166Short "UZBEKISTAN" .
+
+ns0:Bolivia
+  a ns0:IndependentState ;
+  ns0:nameEnglishLong "Republic of Bolivia" ;
+  ns0:nameLocal "Bolivia" ;
+  ns0:nameLocalLong "Republica de Bolivia" ;
+  ns0:nameEnglish "Bolivia" .
+
+ns0:ISO3166.Lesotho
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "LSO" ;
+  ns0:countryCodeUNNumeric3 "426" ;
+  ns0:countryCodeISO3166Alpha2 "LS" ;
+  ns0:countryNameISO3166Short "LESOTHO" ;
+  ns0:referencesCountry ns0:Lesotho .
+
+ns0:ISO3166.SaintLucia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "662" ;
+  ns0:referencesCountry ns0:SaintLucia ;
+  ns0:countryCodeISO3166Alpha2 "LC" ;
+  ns0:countryCodeISO3166Alpha3 "LCA" ;
+  ns0:countryNameISO3166Short "SAINT LUCIA" .
+
+ns0:ISO3166.Georgia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Georgia ;
+  ns0:countryCodeUNNumeric3 "268" ;
+  ns0:countryCodeISO3166Alpha2 "GE" ;
+  ns0:countryNameISO3166Short "GEORGIA" ;
+  ns0:countryCodeISO3166Alpha3 "GEO" .
+
+ns0:ISO3166.Paraguay
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Paraguay ;
+  ns0:countryNameISO3166Short "PARAGUAY" ;
+  ns0:countryCodeISO3166Alpha3 "PRY" ;
+  ns0:countryCodeUNNumeric3 "600" ;
+  ns0:countryCodeISO3166Alpha2 "PY" .
+
+ns0:ISO3166.AmericanSamoa
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "16" ;
+  ns0:countryCodeISO3166Alpha2 "AS" ;
+  ns0:countryNameISO3166Short "AMERICAN SAMOA" ;
+  ns0:referencesCountry ns0:AmericanSamoa ;
+  ns0:countryCodeISO3166Alpha3 "ASM" .
+
+ns0:ISO3166.Slovakia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "SK" ;
+  ns0:countryNameISO3166Short "SLOVAKIA" ;
+  ns0:countryCodeUNNumeric3 "703" ;
+  ns0:referencesCountry ns0:Slovakia ;
+  ns0:countryCodeISO3166Alpha3 "SVK" .
+
+ns0:ISO3166.FrenchSouthernTerritories
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ATF" ;
+  ns0:countryCodeUNNumeric3 "260" ;
+  ns0:countryCodeISO3166Alpha2 "TF" ;
+  ns0:referencesCountry ns0:FrenchSouthernTerritories ;
+  ns0:countryNameISO3166Short "FRENCH SOUTHERN TERRITORIES" .
+
+ns0:FrenchSouthernTerritories
+  a ns0:FullyDependentTerritory ;
+  ns0:nameEnglish "French Southern Territories" ;
+  ns0:dependentTerritoryOf ns0:France ;
+  ns0:nameLocal "Terres Australes et Antarctiques Francaises" ;
+  ns0:nameEnglishLong "Territory of the French Southern and Antarctic Lands" ;
+  ns0:nameLocalLong "Territoire des Terres Australes et Antarctiques Francaises" .
+
+ns0:ISO3166.Greece
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "300" ;
+  ns0:countryCodeISO3166Alpha2 "GR" ;
+  ns0:countryNameISO3166Short "GREECE" ;
+  ns0:referencesCountry ns0:Greece ;
+  ns0:countryCodeISO3166Alpha3 "GRC" .
+
+ns0:ISO3166.Guinea
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "GN" ;
+  ns0:countryNameISO3166Short "GUINEA" ;
+  ns0:countryCodeISO3166Alpha3 "GIN" ;
+  ns0:countryCodeUNNumeric3 "324" ;
+  ns0:referencesCountry ns0:Guinea .
+
+ns0:Guinea
+  a ns0:IndependentState ;
+  ns0:nameLocal "Guinee" ;
+  ns0:nameEnglish "Guinea" ;
+  ns0:nameLocalLong "Republique de Guinee" ;
+  ns0:nameEnglishLong "Republic of Guinea" .
+
+ns0:ISO3166.Samoa
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Samoa ;
+  ns0:countryCodeUNNumeric3 "882" ;
+  ns0:countryCodeISO3166Alpha2 "WS" ;
+  ns0:countryNameISO3166Short "SAMOA" ;
+  ns0:countryCodeISO3166Alpha3 "WSM" .
+
+ns0:ISO3166.Haiti
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "332" ;
+  ns0:countryNameISO3166Short "HAITI" ;
+  ns0:referencesCountry ns0:Haiti ;
+  ns0:countryCodeISO3166Alpha2 "HT" ;
+  ns0:countryCodeISO3166Alpha3 "HTI" .
+
+ns0:ISO3166.Zimbabwe
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ZWE" ;
+  ns0:referencesCountry ns0:Zimbabwe ;
+  ns0:countryCodeISO3166Alpha2 "ZW" ;
+  ns0:countryCodeUNNumeric3 "716" ;
+  ns0:countryNameISO3166Short "ZIMBABWE" .
+
+ns0:Zimbabwe
+  a ns0:IndependentState ;
+  ns0:nameLocal "Zimbabwe" ;
+  ns0:nameEnglish "Zimbabwe" ;
+  ns0:nameEnglishLong "Republic of Zimbabwe" .
+
+ns0:ISO3166.Congo
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "178" ;
+  ns0:countryCodeISO3166Alpha3 "COG" ;
+  ns0:referencesCountry ns0:Congo ;
+  ns0:countryCodeISO3166Alpha2 "CG" ;
+  ns0:countryNameISO3166Short "CONGO" .
+
+ns0:Mongolia
+  a ns0:IndependentState ;
+  ns0:nameLocal "Mongol Uls" ;
+  ns0:nameEnglish "Mongolia" .
+
+ns0:Cameroon
+  a ns0:IndependentState ;
+  ns0:nameLocal "Cameroon" ;
+  ns0:nameEnglish "Cameroon" ;
+  ns0:nameEnglishLong "Republic of Cameroon" .
+
+ns0:ISO3166.BosniaAndHerzegovina
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "BOSNIA AND HERZEGOVINA" ;
+  ns0:countryCodeUNNumeric3 "70" ;
+  ns0:countryCodeISO3166Alpha2 "BA" ;
+  ns0:countryCodeISO3166Alpha3 "BIH" ;
+  ns0:referencesCountry ns0:BosniaAndHerzegovina .
+
+ns0:ISO3166.SvalbardAndJanMayen
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:SvalbardAndJanMayenIslands ;
+  ns0:countryCodeUNNumeric3 "744" ;
+  ns0:countryNameISO3166Short "SVALBARD AND JAN MAYEN" ;
+  ns0:countryCodeISO3166Alpha3 "SJM" ;
+  ns0:countryCodeISO3166Alpha2 "SJ" .
+
+ns0:SvalbardAndJanMayenIslands
+  a ns0:FullyDependentTerritory ;
+  ns0:nameLocal "Svalbard And Jan Mayen Islands" ;
+  ns0:dependentTerritoryOf ns0:Norway ;
+  ns0:nameEnglish "Svalbard And Jan Mayen Islands" .
+
+ns0:ISO3166.Honduras
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "HONDURAS" ;
+  ns0:countryCodeISO3166Alpha2 "HN" ;
+  ns0:countryCodeISO3166Alpha3 "HND" ;
+  ns0:countryCodeUNNumeric3 "340" ;
+  ns0:referencesCountry ns0:Honduras .
+
+ns0:Cambodia
+  a ns0:IndependentState ;
+  ns0:nameLocalLong "Preahreacheanachakr Kampuchea" ;
+  ns0:nameEnglishLong "Kingdom of Cambodia" ;
+  ns0:nameEnglish "Cambodia" ;
+  ns0:nameLocal "Kampuchea" .
+
+ns0:ISO3166.Kuwait
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "KUWAIT" ;
+  ns0:referencesCountry ns0:Kuwait ;
+  ns0:countryCodeISO3166Alpha2 "KW" ;
+  ns0:countryCodeUNNumeric3 "414" ;
+  ns0:countryCodeISO3166Alpha3 "KWT" .
+
+ns0:ISO3166.Tunisia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "788" ;
+  ns0:countryNameISO3166Short "TUNISIA" ;
+  ns0:referencesCountry ns0:Tunisia ;
+  ns0:countryCodeISO3166Alpha3 "TUN" ;
+  ns0:countryCodeISO3166Alpha2 "TN" .
+
+ns0:ISO3166.Afghanistan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Afghanistan ;
+  ns0:countryCodeISO3166Alpha2 "AF" ;
+  ns0:countryCodeISO3166Alpha3 "AFG" ;
+  ns0:countryNameISO3166Short "AFGHANISTAN" ;
+  ns0:countryCodeUNNumeric3 "4" .
+
+ns0:Afghanistan
+  a ns0:IndependentState ;
+  ns0:nameLocal "Afghanestan" ;
+  ns0:nameLocalLong "Dowlat-e Eslami-ye Afghanestan" ;
+  ns0:nameEnglish "Afghanistan" ;
+  ns0:nameEnglishLong "Islamic State of Afghanistan" .
+
+ns0:ISO3166.Yemen
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "YEMEN" ;
+  ns0:countryCodeUNNumeric3 "887" ;
+  ns0:countryCodeISO3166Alpha3 "YEM" ;
+  ns0:countryCodeISO3166Alpha2 "YE" ;
+  ns0:referencesCountry ns0:Yemen .
+
+ns0:ISO3166.NetherlandsAntilles
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "NETHERLANDS ANTILLES" ;
+  ns0:countryCodeISO3166Alpha2 "AN" ;
+  ns0:countryCodeISO3166Alpha3 "ANT" ;
+  ns0:countryCodeUNNumeric3 "530" ;
+  ns0:referencesCountry ns0:NetherlandsAntilles .
+
+ns0:Dominica
+  a ns0:IndependentState ;
+  ns0:nameLocal "Dominica" ;
+  ns0:nameEnglish "Dominica" ;
+  ns0:nameEnglishLong "Commonwealth of Dominica" .
+
+ns0:ISO3166.Cameroon
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Cameroon ;
+  ns0:countryCodeISO3166Alpha2 "CM" ;
+  ns0:countryCodeISO3166Alpha3 "CMR" ;
+  ns0:countryNameISO3166Short "CAMEROON" ;
+  ns0:countryCodeUNNumeric3 "120" .
+
+ns0:ISO3166.Cambodia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "KHM" ;
+  ns0:referencesCountry ns0:Cambodia ;
+  ns0:countryNameISO3166Short "CAMBODIA" ;
+  ns0:countryCodeISO3166Alpha2 "KH" ;
+  ns0:countryCodeUNNumeric3 "116" .
+
+ns0:ISO3166.Spain
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "ES" ;
+  ns0:countryCodeUNNumeric3 "724" ;
+  ns0:referencesCountry ns0:Spain ;
+  ns0:countryCodeISO3166Alpha3 "ESP" ;
+  ns0:countryNameISO3166Short "SPAIN" .
+
+ns0:ISO3166.Rwanda
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "RWANDA" ;
+  ns0:countryCodeUNNumeric3 "646" ;
+  ns0:countryCodeISO3166Alpha3 "RWA" ;
+  ns0:referencesCountry ns0:Rwanda ;
+  ns0:countryCodeISO3166Alpha2 "RW" .
+
+ns0:ISO3166.Ecuador
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "EC" ;
+  ns0:countryNameISO3166Short "ECUADOR" ;
+  ns0:countryCodeISO3166Alpha3 "ECU" ;
+  ns0:countryCodeUNNumeric3 "218" ;
+  ns0:referencesCountry ns0:Ecuador .
+
+ns0:ISO3166.SouthGeorgiaAndTheSouthSandwichIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:SouthGeorgiaAndTheSouthSandwichIslands ;
+  ns0:countryNameISO3166Short "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS" ;
+  ns0:countryCodeISO3166Alpha2 "GS" ;
+  ns0:countryCodeISO3166Alpha3 "SGS" ;
+  ns0:countryCodeUNNumeric3 "239" .
+
+ns0:ISO3166.Eritrea
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Eritrea ;
+  ns0:countryCodeISO3166Alpha3 "ERI" ;
+  ns0:countryNameISO3166Short "ERITREA" ;
+  ns0:countryCodeISO3166Alpha2 "ER" ;
+  ns0:countryCodeUNNumeric3 "232" .
+
+ns0:Mauritius
+  a ns0:IndependentState ;
+  ns0:nameLocal "Mauritius" ;
+  ns0:nameEnglish "Mauritius" ;
+  ns0:nameEnglishLong "Republic of Mauritius" .
+
+ns0:ISO3166.Mauritius
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "MUS" ;
+  ns0:countryCodeUNNumeric3 "480" ;
+  ns0:countryNameISO3166Short "MAURITIUS" ;
+  ns0:referencesCountry ns0:Mauritius ;
+  ns0:countryCodeISO3166Alpha2 "MU" .
+
+ns0:ISO3166.AntiguaAndBarbuda
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ATG" ;
+  ns0:referencesCountry ns0:AntiguaAndBarbuda ;
+  ns0:countryNameISO3166Short "ANTIGUA AND BARBUDA" ;
+  ns0:countryCodeISO3166Alpha2 "AG" ;
+  ns0:countryCodeUNNumeric3 "28" .
+
+ns0:ISO3166.Moldova
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "MOLDOVA, REPUBLIC OF" ;
+  ns0:countryCodeISO3166Alpha2 "MD" ;
+  ns0:referencesCountry ns0:Moldova ;
+  ns0:countryCodeISO3166Alpha3 "MDA" ;
+  ns0:countryCodeUNNumeric3 "498" .
+
+ns0:Moldova
+  a ns0:IndependentState ;
+  ns0:nameLocal "Republica Moldova" ;
+  ns0:nameEnglish "Moldova" ;
+  ns0:nameLocalLong "Republica Moldova" ;
+  ns0:nameEnglishLong "Republic of Moldova" .
+
+ns0:ISO3166.Slovenia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "SI" ;
+  ns0:countryCodeISO3166Alpha3 "SVN" ;
+  ns0:referencesCountry ns0:Slovenia ;
+  ns0:countryNameISO3166Short "SLOVENIA" ;
+  ns0:countryCodeUNNumeric3 "705" .
+
+ns0:ISO3166.Antarctica
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ATA" ;
+  ns0:countryCodeISO3166Alpha2 "AQ" ;
+  ns0:countryCodeUNNumeric3 "10" ;
+  ns0:referencesCountry ns0:Antarctica ;
+  ns0:countryNameISO3166Short "ANTARCTICA" .
+
+ns0:KoreaSouth
+  a ns0:IndependentState ;
+  ns0:nameEnglish "South Korea" ;
+  ns0:nameLocalLong "Taehan-min'guk" ;
+  ns0:nameEnglishLong "Republic of Korea" ;
+  ns0:nameLocal "Han'guk" .
+
+ns0:ISO3166.Swaziland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "SZ" ;
+  ns0:countryNameISO3166Short "SWAZILAND" ;
+  ns0:referencesCountry ns0:Swaziland ;
+  ns0:countryCodeISO3166Alpha3 "SWZ" ;
+  ns0:countryCodeUNNumeric3 "748" .
+
+ns0:ISO3166.Nauru
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "NAURU" ;
+  ns0:countryCodeISO3166Alpha2 "NR" ;
+  ns0:countryCodeUNNumeric3 "520" ;
+  ns0:referencesCountry ns0:Nauru ;
+  ns0:countryCodeISO3166Alpha3 "NRU" .
+
+ns0:Nauru
+  a ns0:IndependentState ;
+  ns0:nameLocal "Nauru" ;
+  ns0:nameEnglish "Nauru" ;
+  ns0:nameEnglishLong "Republic of Nauru" .
+
+ns0:ISO3166.Tanzania
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TZ" ;
+  ns0:countryCodeUNNumeric3 "834" ;
+  ns0:countryCodeISO3166Alpha3 "TZA" ;
+  ns0:countryNameISO3166Short "TANZANIA, UNITED REPUBLIC OF" ;
+  ns0:referencesCountry ns0:Tanzania .
+
+ns0:ISO3166.Libya
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "LIBYAN ARAB JAMAHIRIYA" ;
+  ns0:countryCodeISO3166Alpha2 "LY" ;
+  ns0:countryCodeISO3166Alpha3 "LBY" ;
+  ns0:referencesCountry ns0:Libya ;
+  ns0:countryCodeUNNumeric3 "434" .
+
+ns0:ISO3166.Uruguay
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Uruguay ;
+  ns0:countryCodeISO3166Alpha3 "URY" ;
+  ns0:countryCodeISO3166Alpha2 "UY" ;
+  ns0:countryCodeUNNumeric3 "858" ;
+  ns0:countryNameISO3166Short "URUGUAY" .
+
+ns0:ISO3166.Lebanon
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "LEBANON" ;
+  ns0:countryCodeUNNumeric3 "422" ;
+  ns0:referencesCountry ns0:Lebanon ;
+  ns0:countryCodeISO3166Alpha2 "LB" ;
+  ns0:countryCodeISO3166Alpha3 "LBN" .
+
+ns0:ISO3166.Australia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "AU" ;
+  ns0:referencesCountry ns0:Australia ;
+  ns0:countryNameISO3166Short "AUSTRALIA" ;
+  ns0:countryCodeUNNumeric3 "36" ;
+  ns0:countryCodeISO3166Alpha3 "AUS" .
+
+ns0:Grenada
+  a ns0:IndependentState ;
+  ns0:nameLocal "Grenada" ;
+  ns0:nameEnglish "Grenada" .
+
+ns0:ISO3166.Israel
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "376" ;
+  ns0:countryCodeISO3166Alpha2 "IL" ;
+  ns0:countryCodeISO3166Alpha3 "ISR" ;
+  ns0:referencesCountry ns0:Israel ;
+  ns0:countryNameISO3166Short "ISRAEL" .
+
+ns0:ISO3166.Kazakhstan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "398" ;
+  ns0:countryNameISO3166Short "KAZAKHSTAN" ;
+  ns0:countryCodeISO3166Alpha2 "KZ" ;
+  ns0:referencesCountry ns0:Kazakhstan ;
+  ns0:countryCodeISO3166Alpha3 "KAZ" .
+
+ns0:ISO3166.CaymanIslands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:CaymanIslands ;
+  ns0:countryCodeUNNumeric3 "136" ;
+  ns0:countryCodeISO3166Alpha3 "CYM" ;
+  ns0:countryNameISO3166Short "CAYMAN ISLANDS" ;
+  ns0:countryCodeISO3166Alpha2 "KY" .
+
+ns0:ISO3166.Dominica
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "DMA" ;
+  ns0:referencesCountry ns0:Dominica ;
+  ns0:countryNameISO3166Short "DOMINICA" ;
+  ns0:countryCodeISO3166Alpha2 "DM" ;
+  ns0:countryCodeUNNumeric3 "212" .
+
+ns0:ISO3166.Belize
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "84" ;
+  ns0:countryNameISO3166Short "BELIZE" ;
+  ns0:referencesCountry ns0:Belize ;
+  ns0:countryCodeISO3166Alpha3 "BLZ" ;
+  ns0:countryCodeISO3166Alpha2 "BZ" .
+
+ns0:ISO3166.India
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "IND" ;
+  ns0:countryNameISO3166Short "INDIA" ;
+  ns0:countryCodeUNNumeric3 "356" ;
+  ns0:referencesCountry ns0:India ;
+  ns0:countryCodeISO3166Alpha2 "IN" .
+
+ns0:ISO3166.Netherlands
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "NETHERLANDS" ;
+  ns0:referencesCountry ns0:Netherlands ;
+  ns0:countryCodeISO3166Alpha3 "NLD" ;
+  ns0:countryCodeUNNumeric3 "528" ;
+  ns0:countryCodeISO3166Alpha2 "NL" .
+
+ns0:ISO3166.Vietnam
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Vietnam ;
+  ns0:countryCodeUNNumeric3 "704" ;
+  ns0:countryNameISO3166Short "VIET NAM" ;
+  ns0:countryCodeISO3166Alpha3 "VNM" ;
+  ns0:countryCodeISO3166Alpha2 "VN" .
+
+ns0:ISO3166.Tokelau
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TK" ;
+  ns0:referencesCountry ns0:Tokelau ;
+  ns0:countryNameISO3166Short "TOKELAU" ;
+  ns0:countryCodeISO3166Alpha3 "TKL" ;
+  ns0:countryCodeUNNumeric3 "772" .
+
+ns0:Tokelau
+  a ns0:FullyDependentTerritory ;
+  ns0:dependentTerritoryOf ns0:NewZealand ;
+  ns0:nameLocal "Tokelau" ;
+  ns0:nameEnglish "Tokelau" .
+
+ns0:ISO3166.KoreaSouth
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:KoreaSouth ;
+  ns0:countryCodeUNNumeric3 "410" ;
+  ns0:countryCodeISO3166Alpha3 "KOR" ;
+  ns0:countryCodeISO3166Alpha2 "KR" ;
+  ns0:countryNameISO3166Short "KOREA, REPUBLIC OF" .
+
+ns0:ISO3166.SaudiArabia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "SAUDI ARABIA" ;
+  ns0:referencesCountry ns0:SaudiArabia ;
+  ns0:countryCodeISO3166Alpha2 "SA" ;
+  ns0:countryCodeUNNumeric3 "682" ;
+  ns0:countryCodeISO3166Alpha3 "SAU" .
+
+ns0:ISO3166.SierraLeone
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "SIERRA LEONE" ;
+  ns0:countryCodeUNNumeric3 "694" ;
+  ns0:referencesCountry ns0:SierraLeone ;
+  ns0:countryCodeISO3166Alpha3 "SLE" ;
+  ns0:countryCodeISO3166Alpha2 "SL" .
+
+ns0:ISO3166.Bolivia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Bolivia ;
+  ns0:countryCodeISO3166Alpha3 "BOL" ;
+  ns0:countryCodeUNNumeric3 "68" ;
+  ns0:countryCodeISO3166Alpha2 "BO" ;
+  ns0:countryNameISO3166Short "BOLIVIA" .
+
+ns0:ISO3166.Kyrgyzstan
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "417" ;
+  ns0:countryCodeISO3166Alpha3 "KGZ" ;
+  ns0:countryNameISO3166Short "KYRGYZSTAN" ;
+  ns0:countryCodeISO3166Alpha2 "KG" ;
+  ns0:referencesCountry ns0:Kyrgyzstan .
+
+ns0:ISO3166.Togo
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "TG" ;
+  ns0:referencesCountry ns0:Togo ;
+  ns0:countryNameISO3166Short "TOGO" ;
+  ns0:countryCodeUNNumeric3 "768" ;
+  ns0:countryCodeISO3166Alpha3 "TGO" .
+
+ns0:ISO3166.Mongolia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "496" ;
+  ns0:countryNameISO3166Short "MONGOLIA" ;
+  ns0:countryCodeISO3166Alpha3 "MNG" ;
+  ns0:countryCodeISO3166Alpha2 "MN" ;
+  ns0:referencesCountry ns0:Mongolia .
+
+ns0:ISO3166.Singapore
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "SG" ;
+  ns0:countryCodeUNNumeric3 "702" ;
+  ns0:countryCodeISO3166Alpha3 "SGP" ;
+  ns0:referencesCountry ns0:Singapore ;
+  ns0:countryNameISO3166Short "SINGAPORE" .
+
+ns0:ISO3166.Poland
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "POL" ;
+  ns0:countryCodeUNNumeric3 "616" ;
+  ns0:referencesCountry ns0:Poland ;
+  ns0:countryNameISO3166Short "POLAND" ;
+  ns0:countryCodeISO3166Alpha2 "PL" .
+
+ns0:ISO3166.FrenchPolynesia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "PF" ;
+  ns0:referencesCountry ns0:FrenchPolynesia ;
+  ns0:countryCodeISO3166Alpha3 "PYF" ;
+  ns0:countryNameISO3166Short "FRENCH POLYNESIA" ;
+  ns0:countryCodeUNNumeric3 "258" .
+
+ns0:ISO3166.Monaco
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:Monaco ;
+  ns0:countryCodeISO3166Alpha2 "Mc" ;
+  ns0:countryNameISO3166Short "MONACO" ;
+  ns0:countryCodeISO3166Alpha3 "MCO" ;
+  ns0:countryCodeUNNumeric3 "492" .
+
+ns0:ISO3166.Ethiopia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "ETH" ;
+  ns0:countryNameISO3166Short "ETHIOPIA" ;
+  ns0:referencesCountry ns0:Ethiopia ;
+  ns0:countryCodeISO3166Alpha2 "ET" ;
+  ns0:countryCodeUNNumeric3 "210" .
+
+ns0:ISO3166.UnitedStates
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha3 "USA" ;
+  ns0:countryNameISO3166Short "UNITED STATES" ;
+  ns0:countryCodeISO3166Alpha2 "US" ;
+  ns0:referencesCountry ns0:UnitedStates ;
+  ns0:countryCodeUNNumeric3 "840" .
+
+ns0:ISO3166.Guatemala
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "GUATEMALA" ;
+  ns0:countryCodeISO3166Alpha3 "GTM" ;
+  ns0:countryCodeISO3166Alpha2 "GT" ;
+  ns0:countryCodeUNNumeric3 "320" ;
+  ns0:referencesCountry ns0:Guatemala .
+
+ns0:ISO3166.Malaysia
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeUNNumeric3 "458" ;
+  ns0:countryNameISO3166Short "MALAYSIA" ;
+  ns0:referencesCountry ns0:Malaysia ;
+  ns0:countryCodeISO3166Alpha3 "MYS" ;
+  ns0:countryCodeISO3166Alpha2 "My" .
+
+ns0:ISO3166.UnitedKingdom
+  a ns0:ISO3166DefinedCountry ;
+  ns0:referencesCountry ns0:UnitedKingdom ;
+  ns0:countryCodeISO3166Alpha3 "GBR" ;
+  ns0:countryNameISO3166Short "UNITED KINGDOM" ;
+  ns0:countryCodeUNNumeric3 "826" ;
+  ns0:countryCodeISO3166Alpha2 "GB" .
+
+ns0:ISO3166.Grenada
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryCodeISO3166Alpha2 "GD" ;
+  ns0:countryCodeUNNumeric3 "308" ;
+  ns0:referencesCountry ns0:Grenada ;
+  ns0:countryNameISO3166Short "GRENADA" ;
+  ns0:countryCodeISO3166Alpha3 "GRD" .

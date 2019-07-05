@@ -1,68 +1,30 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-// import logo from './logo.svg';
 import { Link, Route, withRouter } from "react-router-dom";
 import "./App.css";
+import 'react-widgets/dist/css/react-widgets.css'
 import Topbar from "./components/Topbar";
 import Upload from "./components/Upload/Upload";
 import Main from "./components/Dashboard/Main";
 import About from "./components/About";
+import { connect } from "react-redux";
+import {
+  updateAboutCV,
+  updateAboutPerson,
+  updateTarget
+} from "./actions/index";
 
 class App extends Component {
   state = {
     showInitialPage: true,
     showDescription: false,
     topbar: [
-      { label: "Fill in form", link: "/d/about" },
+      { label: "Fill in form", link: "/d/" },
       { label: "Upload RDF", link: "/u/upload" },
       { label: "About", link: "/about/" }
-    ],
-    cv: {
-      cvTitle: "",
-      cvDescription: "",
-      cvIsActive: true,
-      cvIsConfidential: false,
-      cvLastUpdated: "Now",
-      person: {},
-      target: {},
-      workHistory: [],
-      education: [],
-      references: [],
-      skills: [],
-      otherInfo: []
-    }
+    ]
   };
-
-  handleInputChange = e => {
-    let cv ={...this.state.cv};
-    cv[e.target.id] = e.target.value;
-    this.setState({
-      cv
-    })
-  };
-
-  handleCheckboxChange = e => {
-    let cv ={...this.state.cv};
-    cv[e.target.id] = e.target.checked;
-    this.setState({
-      cv
-    })
-  };
-
-  handleStateObjectUpdate = item => {
-    let cv ={...this.state.cv};
-    cv[item.label]=item[item.label];
-    this.setState({
-      cv
-    })
-  }
-
-  handleFormSubmit = e => {
-    e.preventDefault();
-    console.log('Form submitted');
-    console.log(this.state.cv);
-  }
 
   handleFirstPageButtonClick = e => [
     this.setState({
@@ -117,14 +79,15 @@ class App extends Component {
               <Row>
                 <Col md={12}>
                   <p className="description-content">
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                    Lorem Ipsum Lorem Ipsum
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                    deserunt neque tempore recusandae animi soluta quasi?
+                    Asperiores rem dolore eaque vel, porro, soluta unde debitis
+                    aliquam laboriosam. Repellat explicabo, maiores! <br />
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Omnis optio neque consectetur consequatur magni in nisi,
+                    natus beatae quidem quam odit commodi ducimus totam eum,
+                    alias, adipisci nesciunt voluptate. Voluptatum.
                   </p>
                 </Col>
               </Row>
@@ -142,7 +105,7 @@ class App extends Component {
         )}
         <Route
           path="/d"
-          render={props => <Main {...props} cv={this.state.cv} handleStateObjectUpdate={this.handleStateObjectUpdate} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleCheckboxChange={this.handleCheckboxChange} />}
+          render={props => <Main {...props} cv={this.state.cv} />}
         />
         <Route path="/u/" component={Upload} />
         <Route path="/about/" component={About} />
@@ -151,4 +114,19 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapStateToProps = state => {
+  return {
+    formData: state.form,
+    cvData: state.cv,
+    showSpinner: state.utility.showSpinner
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    updateAboutCV,
+    updateAboutPerson,
+    updateTarget
+  }
+)(withRouter(App));

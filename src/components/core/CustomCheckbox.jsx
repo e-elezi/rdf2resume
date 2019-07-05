@@ -4,6 +4,7 @@ import "./Form.css";
 
 const CustomCheckbox = ({
   id,
+  name,
   type,
   label,
   classnames,
@@ -11,9 +12,15 @@ const CustomCheckbox = ({
   checked
 }) => {
   let classes = "form-check-input " + classnames;
+  let divClasses = "";
+  if (label === undefined) {
+    divClasses = "form-check no-label";
+  } else {
+    divClasses = "form-check";
+  }
   return (
     <Form.Group style={{ marginBottom: "0" }}>
-      <div className="form-check" style={{ marginBottom: "0" }}>
+      <div className={divClasses} style={{ marginBottom: "0" }}>
         <label
           title={label}
           type={type}
@@ -22,6 +29,7 @@ const CustomCheckbox = ({
         >
           {label}
           <input
+            name={name}
             type={type}
             id={id}
             className={classes}

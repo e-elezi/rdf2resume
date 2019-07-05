@@ -1,20 +1,13 @@
 import React, { Component } from "react";
-import CustomInput from "../../core/CustomInput";
-import { Form, Row, Col } from "react-bootstrap";
+import { connect } from 'react-redux';
+import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
-import OtherInfoView from "./FormOtherInfo/OtherInfoView";
-import OtherInfoModal from "./FormOtherInfo/OtherInfoModal";
+import OtherInfoView from "./Modals/FormOtherInfo/OtherInfoView";
+import OtherInfoModal from "./Modals/FormOtherInfo/OtherInfoModal";
+
 
 class FormOtherInfo extends Component {
   state = {
-    label: "otherInfos",
-    otherInfos: [
-      {
-        otherInfoCategory: "Publication",
-        otherInfoDescription:
-          "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
-      }
-    ],
     showModal: false
   };
 
@@ -24,28 +17,6 @@ class FormOtherInfo extends Component {
 
   handleShow = () => {
     this.setState({ showModal: true });
-  };
-
-  handleRemoveOtherInfo = idx => {
-    let otherInfos = [...this.state.otherInfos];
-    otherInfos = otherInfos.filter((s, sidx) => idx !== sidx);
-    this.setState({
-      otherInfos
-    });
-  };
-
-  handleSaveOtherInfo = otherInfo => {
-    let otherInfos = [...this.state.otherInfos];
-    otherInfos.push(otherInfo);
-    this.setState({
-      otherInfos
-    });
-  };
-
-  handleUpdateOtherInfo = (otherInfo, idx) => {
-    let otherInfos = [...this.state.otherInfos];
-    otherInfos[idx] = otherInfo;
-    this.setState({ otherInfos });
   };
 
   render() {
@@ -66,8 +37,6 @@ class FormOtherInfo extends Component {
                 <OtherInfoModal
                   show={showModal}
                   onHide={this.handleClose}
-                  handleSaveOtherInfo={this.handleSaveOtherInfo}
-                  handleStateObjectUpdate={this.handleStateObjectUpdate}
                 />
               </Col>
               <Col md={10} className="button-label">
@@ -76,14 +45,14 @@ class FormOtherInfo extends Component {
             </Row>
           </Col>
         </Row>
-        {this.state.otherInfos.map((otherinfo, idx) => (
+        {this.props.otherInfos.length === 0
+          ? "No other infos have been added until now."
+          : ""}
+        {this.props.otherInfos.map((otherinfo) => (
           <OtherInfoView
             otherInfoObject={otherinfo}
-            id={idx}
-            handleRemove={this.handleRemoveOtherInfo}
-            key={idx}
-            handleUpdateOtherInfo={this.handleUpdateOtherInfo}
-            handleStateObjectUpdate={this.handleStateObjectUpdate}
+            id={otherinfo.id}
+            key={otherinfo.id}
           />
         ))}
       </React.Fragment>
@@ -91,4 +60,10 @@ class FormOtherInfo extends Component {
   }
 }
 
-export default FormOtherInfo;
+const mapStateToProps = state => {
+  return {
+    otherInfos: Object.values(state.cv.otherInfo)
+  };
+};
+
+export default connect(mapStateToProps, {})(FormOtherInfo);

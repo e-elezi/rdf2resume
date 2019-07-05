@@ -1,70 +1,101 @@
 import React, { Component } from "react";
-import CustomInput from "../../core/CustomInput";
+import { connect } from "react-redux";
 import CustomTextarea from "../../core/CustomTextarea";
+import CustomInput from "../../core/CustomInput";
 import CustomCheckbox from "../../core/CustomCheckbox";
-import { Form, Row, Col } from "react-bootstrap";
+import { updateAboutCV } from "../../../actions";
 
 class FormAboutCV extends Component {
   state = {};
 
+  handleInputChange = e => {
+    //e.target.id e.target.value
+    this.props.updateAboutCV({ id: e.target.id, value: e.target.value });
+  };
+
+  handleCheckboxChange = e => {
+    //e.target.id e.target.checked
+    this.props.updateAboutCV({ id: e.target.id, value: e.target.checked });
+  };
+
   render() {
     let {
       cvTitle,
-      cvDescription,
+      cvNotes,
       cvIsActive,
       cvIsConfidential,
       cvLastUpdated,
-      handleInputChange,
-      handleCheckboxChange
-    } = this.props;
-
+      cvCopyright
+    } = this.props.aboutcv;
     return (
-      <Row>
-        <Col md={5}>
+      <div className="row">
+        <div className="col col-sm-5">
           <h4 style={{ marginTop: "10px" }}>About CV</h4>
-          <Form.Group controlId="cvTitle" className="floating-label mb-2">
-            <CustomInput
-              id="cvTitle"
-              label="CV Title"
-              type="text"
-              value={cvTitle}
-              handleChange={handleInputChange}
-            />
-          </Form.Group>
+          <CustomInput
+            id="cvTitle"
+            label="CV Title"
+            type="text"
+            value={cvTitle}
+            handleChange={this.handleInputChange}
+          />
+          <CustomInput
+            id="cvCopyright"
+            label="CV Copyright"
+            type="text"
+            value={cvCopyright}
+            handleChange={this.handleInputChange}
+          />
+          <div className="mb-3"/>
           <CustomTextarea
-            id="cvDescription"
-            label="CV Description"
-            value={cvDescription}
-            handleChange={handleInputChange}
+            id="cvNotes"
+            label="CV Notes"
+            value={cvNotes}
+            handleChange={this.handleInputChange}
           />
           <CustomCheckbox
             id="cvIsActive"
             type="checkbox"
             label="Is CV Active?"
             checked={cvIsActive}
-            handleChange={handleCheckboxChange}
+            handleChange={this.handleCheckboxChange}
           />
-          <CustomCheckbox
-            id="cvIsConfidential"
-            type="checkbox"
-            label="Is CV Confidential?"
-            checked={cvIsConfidential}
-            handleChange={handleCheckboxChange}
-          />
-          <Row className="mr-0">
-            <Col md={3} className="form-label">
+          <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <CustomCheckbox
+              id="cvIsConfidential"
+              type="checkbox"
+              label="Is CV Confidential?"
+              checked={cvIsConfidential}
+              handleChange={this.handleCheckboxChange}
+            />
+          </div>
+          <div
+            className="row mr-0"
+            style={{ marginLeft: "0", justifyContent: "left" }}
+          >
+            <div
+              className=" col col-sm-9 form-label"
+              style={{ paddingLeft: "0" }}
+            >
               <p>CV Last Updated </p>
-            </Col>
-            <Col md={7} />
-            <Col md={2} className="muted-text">
-              <p>{cvLastUpdated}</p>
-            </Col>
-          </Row>
-        </Col>
-        <Col md={7} />
-      </Row>
+            </div>
+            <div className="col col-sm-3 muted-text">
+              <p>{cvLastUpdated ? cvLastUpdated : "Now"}</p>
+            </div>
+          </div>
+        </div>
+        <div className="col col-sm-7" />
+      </div>
     );
   }
 }
 
-export default FormAboutCV;
+const mapstateToProps = state => {
+  return {
+    aboutcv: state.cv.aboutCV
+  };
+};
+
+export default connect(
+  mapstateToProps,
+  { updateAboutCV }
+)(FormAboutCV);
