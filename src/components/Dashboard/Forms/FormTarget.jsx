@@ -56,12 +56,10 @@ class FormTarget extends Component {
   }
 
   handleInputChange = e => {
-    //e.target.id e.target.value
     this.props.updateTarget({ id: e.target.id, value: e.target.value });
   };
 
   handleCheckboxChange = e => {
-    //e.target.id e.target.checked
     this.props.updateTarget({ id: e.target.id, value: e.target.checked });
   };
 
@@ -75,20 +73,20 @@ class FormTarget extends Component {
 
   render() {
     let {
-      targetCompanySize,
-      targetSalaryCurrency,
-      targetCompanyIndustry,
-      targetJobCareerLevel,
-      targetJobMode,
-      weeksNoticePeriod,
-      targetJobTitle,
-      conditionWillTravel,
-      conditionWillRelocate,
-      targetJobDescription,
-      targetCompanyDescription,
-      targetCompanyLocality,
-      targetCompanyCountry,
-      targetSalaryRange
+      "my0:targetCompanySize" : targetCompanySize,
+      "my0:targetSalaryCurrency" : targetSalaryCurrency,
+      "my0:targetCompanyIndustry" : targetCompanyIndustry,
+      "my0:targetJobCareerLevel" : targetJobCareerLevel,
+      "my0:targetJobMode" : targetJobMode,
+      "my0:weeksNoticePeriod" : weeksNoticePeriod,
+      "my0:targetJobTitle" : targetJobTitle,
+      "my0:conditionWillTravel" : conditionWillTravel,
+      "my0:conditionWillRelocate" : conditionWillRelocate,
+      "my0:targetJobDescription" : targetJobDescription,
+      "my0:targetCompanyDescription" : targetCompanyDescription,
+      "my0:targetCompanyLocality" : targetCompanyLocality,
+      "my0:targetCompanyCountry" : targetCompanyCountry,
+      "my0:targetSalaryRange" : targetSalaryRange
     } = this.props.target;
 
     return (
@@ -107,6 +105,8 @@ class FormTarget extends Component {
             name="targetJobMode"
             placeholder="Select a job mode"
             data={this.props.jobModes}
+            textField="value"
+            valueField="@type"
             value={targetJobMode}
             caseSensitive={false}
             minLength={3}
@@ -117,6 +117,8 @@ class FormTarget extends Component {
           <Combobox
             name="targetJobCareerLevel"
             data={this.props.careerLevels}
+            textField="value"
+            valueField="@type"
             value={targetJobCareerLevel}
             placeholder="Select a career level"
             caseSensitive={false}
@@ -190,6 +192,8 @@ class FormTarget extends Component {
           <Multiselect
             name="targetCompanyCountry"
             data={this.props.countries}
+            textField="value"
+            valueField="@type"
             value={targetCompanyCountry}
             placeholder="Select a country"
             caseSensitive={false}
@@ -204,6 +208,8 @@ class FormTarget extends Component {
             name="targetCompanySize"
             data={this.props.companySizes}
             value={targetCompanySize}
+            textField="value"
+            valueField="@type"
             placeholder="Select a size"
             caseSensitive={false}
             minLength={3}
@@ -217,6 +223,8 @@ class FormTarget extends Component {
             name="targetCompanyIndustry"
             data={this.state.targetCompanyIndustryValues}
             value={targetCompanyIndustry}
+            textField="value"
+            valueField="@type"
             placeholder="Select an industry"
             caseSensitive={false}
             minLength={3}
@@ -245,7 +253,7 @@ const mapstateToProps = state => {
     jobModes: retrieveJobModes(state.utility.jobModeValues),
     careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
     companySizes: retrieveCompanySizes(state.utility.companySizeValues),
-    target: state.cv.target
+    target: state.cv["my0:target"]
   };
 };
 

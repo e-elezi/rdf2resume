@@ -36,97 +36,87 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  aboutCV: {
-    cvTitle: "",
-    cvNotes: "",
-    cvIsActive: true,
-    cvIsConfidential: false,
-    cvLastUpdated: "",
-    cvCopyright: ""
+  "@context": {
+    "my0" : "http://example.com/rdf2resume_ontology.rdf#",
+    "mybase0" : "http://example.com/rdf2resume_base_ontology.rdf#",
+    "country" : "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#"
   },
-  aboutPerson: {
-    firstName: "",
-    lastName: "",
-    photo: "",
-    hasCitizenship: [],
-    hasNationality: [],
-    website: "",
-    dateOfBirth: "",
-    gender: "",
-    driversLicence: "",
-    hasTelephoneNumber: [],
-    email: "",
-    title: "",
-    instantMessaging: [],
-    address: {
-      city: "",
-      country: "",
-      street: "",
-      postalCode: ""
+  "@type" : "my0:CV",
+  "my0:cvTitle" : "",
+  "my0:cvNotes" : "",
+  "my0:cvIsActive" : true,
+  "my0:cvIsConfidential" : false,
+  "my0:cvLastUpdated" : "",
+  "my0:cvCopyright" : "",
+  "my0:aboutPerson" : {
+    "@type": "my0:Person",
+    "my0:firstName" : "",
+    "my0:lastName" : "",
+    "my0:photo" : "",
+    "my0:hasCitizenship" : [],
+    "my0:hasNationality" : [],
+    "my0:website" : "",
+    "my0:dateOfBirth" : "",
+    "my0:gender" : "",
+    "my0:driversLicence" : "",
+    "my0:hasTelephoneNumber" : [],
+    "my0:email" : "",
+    "my0:title" : "",
+    "my0:hasInstantMessaging" : [],
+    "my0:address" : {
+      "@type": "my0:Address",
+      "my0:city" : "",
+      "my0:country" : "",
+      "my0:street" : "",
+      "my0:postalCode" : ""
     }
   },
-  target: {
-    targetCompanySize: "",
-    targetSalaryCurrency: "",
-    targetCompanyIndustry: [],
-    targetJobCareerLevel: "",
-    targetJobMode: "",
-    weeksNoticePeriod: "",
-    targetJobTitle: "",
-    conditionWillTravel: false,
-    conditionWillRelocate: false,
-    targetJobDescription: "",
-    targetCompanyDescription: "",
-    targetCompanyLocality: "",
-    targetCompanyCountry: [],
-    targetSalaryRange: ""
+  "my0:target": {
+    "@type" : "my0:Target",
+    "my0:targetCompanySize" : "",
+    "my0:targetSalaryCurrency" : "",
+    "my0:targetCompanyIndustry" : [],
+    "my0:targetJobCareerLevel" : "",
+    "my0:targetJobMode" : "",
+    "my0:weeksNoticePeriod" : "",
+    "my0:targetJobTitle" : "",
+    "my0:conditionWillTravel" : false,
+    "my0:conditionWillRelocate" : false,
+    "my0:targetJobDescription" : "",
+    "my0:targetCompanyDescription" : "",
+    "my0:targetCompanyLocality" : "",
+    "my0:targetCompanyCountry" : [],
+    "my0:targetSalaryRange" : ""
   },
-  education: {},
-  courses: {},
-  skills: {
-    CommunicationSkills: {
-      label: "Communication Skills",
-      description: ""
+  "my0:hasOtherInfo": {},
+  "my0:hasReference": {},
+  "my0:hasEducation": {},
+  "my0:hasCourse" : {},
+  "my0:hasWorkHistory": {},
+  "my0:hasSkill" : [
+    {
+      "@type": "my0:CommunicationSkills",
+      "my0:skillDescription": ""
     },
-    OrganisationalSkills: {
-      label: "Organisational Skills",
-      description: ""
+    {
+      "@type": "my0:OrganisationalSkills",
+      "my0:skillDescription": ""
     },
-    JobRelatedSkills: {
-      label: "Job Related Skills",
-      description: ""
+    {
+      "@type": "my0:JobRelatedSkills",
+      "my0:skillDescription": ""
     },
-    DigitalSkills: {
-      label: "Digital Skills",
-      hasICTCertificate: "",
-      otherDigitalSkills: "",
-      informationProcessing: {
-        label: "Information Processing",
-        value: ""
-      },
-      communication: {
-        label: "Communication",
-        value: ""
-      },
-      contentCreation: {
-        label: "Content Creation",
-        value: ""
-      },
-      safety: {
-        label: "Safety",
-        value: ""
-      },
-      problemSolving: {
-        label: "Problem Solving",
-        value: ""
-      }
+    {
+      "@type": "my0:DigitalSkills",
+      "my0:hasICTCertificate": false,
+      "my0:otherDigitalSkills": "",
+      "my0:informationProcessing": "",
+      "my0:communication": "",
+      "my0:contentCreation": "",
+      "my0:safety": "",
+      "my0:problemSolving": ""
     },
-    LanguageSkills: [],
-    OtherSkills: {}
-  },
-  references: {},
-  workHistory: {},
-  otherInfo: {}
+  ]
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -150,138 +140,113 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_REFERENCES:
       return { ...state, references: action.payload };
     case FETCH_OTHER_INFO:
-      return { ...state.otherInfo, ..._.mapKeys(action.payload, "id") };
+      return { ...state["my0:hasOtherInfo"], ..._.mapKeys(action.payload, "id") };
     case CREATE_OTHER_INFO:
       let otherInfos = {
-        ...state.otherInfo,
+        ...state["my0:hasOtherInfo"],
         [action.payload.id]: action.payload
       };
-      return { ...state, otherInfo: otherInfos };
+      return { ...state, "my0:hasOtherInfo": otherInfos };
     case UPDATE_OTHER_INFO:
       otherInfos = {
-        ...state.otherInfo,
+        ...state["my0:hasOtherInfo"],
         [action.payload.id]: action.payload
       };
-      return { ...state, otherInfo: otherInfos };
+      return { ...state, "my0:hasOtherInfo": otherInfos };
     case REMOVE_OTHER_INFO:
-      let kot = _.omit(state.otherInfo, action.payload);
-      return { ...state, otherInfo: kot };
+      let kot = _.omit(state["my0:hasOtherInfo"], action.payload);
+      return { ...state, "my0:hasOtherInfo": kot };
     case CREATE_REFERENCE:
       let myreferences = {
-        ...state.references,
+        ...state["my0:hasReference"],
         [action.payload.id]: action.payload
       };
-      return { ...state, references: myreferences };
+      return { ...state, "my0:hasReference": myreferences };
     case UPDATE_REFERENCE:
       let myupdatereferences = {
-        ...state.references,
+        ...state["my0:hasReference"],
         [action.payload.id]: action.payload
       };
-      return { ...state, references: myupdatereferences };
+      return { ...state, "my0:hasReference": myupdatereferences };
     case REMOVE_REFERENCE:
-      let removedreferences = _.omit(state.references, action.payload);
-      return { ...state, references: removedreferences };
+      let removedreferences = _.omit(state["my0:hasReference"], action.payload);
+      return { ...state, "my0:hasReference": removedreferences };
     case CREATE_WORK_HISTORY:
       let myworks = {
-        ...state.workHistory,
+        ...state["my0:hasWorkHistory"],
         [action.payload.id]: action.payload
       };
-      return { ...state, workHistory: myworks };
+      return { ...state, "my0:hasWorkHistory": myworks };
     case UPDATE_WORK_HISTORY:
       let updateworks = {
-        ...state.workHistory,
+        ...state["my0:hasWorkHistory"],
         [action.payload.id]: action.payload
       };
-      return { ...state, workHistory: updateworks };
+      return { ...state, "my0:hasWorkHistory": updateworks };
     case REMOVE_WORK_HISTORY:
-      let removedwork = _.omit(state.workHistory, action.payload);
-      return { ...state, workHistory: removedwork };
+      let removedwork = _.omit(state["my0:hasWorkHistory"], action.payload);
+      return { ...state, "my0:hasWorkHistory": removedwork };
     case CREATE_EDUCATION:
       let myedu = {
-        ...state.education,
+        ...state["my0:hasEducation"],
         [action.payload.id]: action.payload
       };
-      return { ...state, education: myedu };
+      return { ...state, "my0:hasEducation": myedu };
     case UPDATE_EDUCATION:
       let updateedu = {
-        ...state.education,
+        ...state["my0:hasEducation"],
         [action.payload.id]: action.payload
       };
-      return { ...state, education: updateedu };
+      return { ...state, "my0:hasEducation": updateedu };
     case REMOVE_EDUCATION:
-      let removededu = _.omit(state.education, action.payload);
-      return { ...state, education: removededu };
+      let removededu = _.omit(state["my0:hasEducation"], action.payload);
+      return { ...state, "my0:hasEducation": removededu };
     case CREATE_COURSE:
       let mycourse = {
-        ...state.courses,
+        ...state["my0:hasCourse"],
         [action.payload.id]: action.payload
       };
-      return { ...state, courses: mycourse };
+      return { ...state, "my0:hasCourse": mycourse };
     case UPDATE_COURSE:
       let updatecourse = {
-        ...state.courses,
+        ...state["my0:hasCourse"],
         [action.payload.id]: action.payload
       };
-      return { ...state, courses: updatecourse };
+      return { ...state, "my0:hasCourse": updatecourse };
     case REMOVE_COURSE:
-      let removecourse = _.omit(state.courses, action.payload);
-      return { ...state, courses: removecourse };
+      let removecourse = _.omit(state["my0:hasCourse"], action.payload);
+      return { ...state, "my0:hasCourse": removecourse };
     case CREATE_OTHER_SKILL:
-      let myskills = {
-        ...state.skills
-      };
-      let myotherskills = {
-        ...myskills.OtherSkills,
-        [action.payload.id]: action.payload
-      };
-      myskills.OtherSkills = myotherskills;
-      return { ...state, skills: myskills };
+      let myskills = [
+        ...state["my0:hasSkill"], action.payload.value
+      ];
+      return { ...state, "my0:hasSkill": myskills };
     case UPDATE_OTHER_SKILL:
-      let myupdateskills = {
-        ...state.skills
-      };
-      let myupdateotherskills = {
-        ...myupdateskills.OtherSkills,
-        [action.payload.id]: action.payload
-      };
-      myupdateskills.OtherSkills = myupdateotherskills;
-      return { ...state, skills: myupdateskills };
+      let myupdateskills = [
+        ...state["my0:hasSkill"]
+      ];
+      myupdateskills[action.payload.i] = action.payload.skill;
+      return { ...state, "my0:hasSkill": myupdateskills };
     case REMOVE_OTHER_SKILL:
-      let myremoveskills = {
-        ...state.skills
-      };
-      let myremoveotherskills = _.omit(
-        myremoveskills.OtherSkills,
-        action.payload
-      );
-      myremoveskills.OtherSkills = myremoveotherskills;
-      return { ...state, skills: myremoveskills };
+      let myremoveotherskills = _.filter(state["my0:hasSkill"], function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasSkill": myremoveotherskills };
     case UPDATE_ABOUT_CV:
-      let aboutcv = { ...state.aboutCV };
-      aboutcv[action.payload.id] = action.payload.value;
-      return { ...state, aboutCV: aboutcv };
+      let cv = { ...state };
+      cv["my0:" + action.payload.id] = action.payload.value;
+      return cv;
     case UPDATE_ABOUT_PERSON:
-      let aboutperson = { ...state.aboutPerson };
+      let aboutperson = { ...state["my0:aboutPerson"]};
       if (action.payload.super)
-        aboutperson[action.payload.super][action.payload.id] =
+        aboutperson["my0:" + action.payload.super]["my0:" + action.payload.id] =
           action.payload.value;
-      else aboutperson[action.payload.id] = action.payload.value;
-      return { ...state, aboutPerson: aboutperson };
+      else aboutperson["my0:" + action.payload.id] = action.payload.value;
+      return { ...state, "my0:aboutPerson": aboutperson };
     case UPDATE_SKILLS:
-      let myownskills = { ...state.skills };
-      if (action.payload.oneLevelId && action.payload.twoLevelID)
-        myownskills[action.payload.twoLevelID][action.payload.oneLevelId][
-          action.payload.id
-        ] = action.payload.value;
-      else if (action.payload.oneLevelId)
-        myownskills[action.payload.oneLevelId][action.payload.id] =
-          action.payload.value;
-      else myownskills[action.payload.id] = action.payload.value;
-      return { ...state, skills: myownskills };
+      return { ...state, "my0:hasSkill": action.payload.value };
     case UPDATE_TARGET:
-      let mytarget = { ...state.target };
-      mytarget[action.payload.id] = action.payload.value;
-      return { ...state, target: mytarget };
+      let mytarget = { ...state["my0:target"] };
+      mytarget["my0:" + action.payload.id] = action.payload.value;
+      return { ...state, "my0:target":mytarget};
     default:
       return state;
   }

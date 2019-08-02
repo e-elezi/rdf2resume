@@ -10,8 +10,9 @@ import { retrieveOtherTypes } from "../../../../../utilities/utilityQueries";
 class OtherInfoModal extends Component {
   state = {
     otherInfo: {
-      otherInfoCategory: "",
-      otherInfoDescription: ""
+      "@type": "my0:OtherInfo",
+      "my0:otherInfoType": "",
+      "my0:otherInfoDescription": ""
     }
   };
 
@@ -24,8 +25,8 @@ class OtherInfoModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.otherInfoObject;
       let otherInfo = { ...this.state.otherInfo };
-      otherInfo.otherInfoCategory = inputRef.otherInfoCategory;
-      otherInfo.otherInfoDescription = inputRef.otherInfoDescription;
+      otherInfo["my0:otherInfoType"] = inputRef["my0:otherInfoType"];
+      otherInfo["my0:otherInfoDescription"] = inputRef["my0:otherInfoDescription"];
       otherInfo.id = inputRef.id;
       this.setState({
         otherInfo
@@ -35,8 +36,8 @@ class OtherInfoModal extends Component {
 
   clearForm = () => {
     const hist = {
-      otherInfoCategory: "",
-      otherInfoDescription: ""
+      "my0:otherInfoType": "",
+      "my0:otherInfoDescription": ""
     };
     if (!this.props.isUpdate) {
       this.setState({
@@ -49,7 +50,7 @@ class OtherInfoModal extends Component {
 
   handleSelectChange = (value, id) => {
     let otherInfo = { ...this.state.otherInfo };
-    otherInfo[id] = value.trim();
+    otherInfo[id] = value;
     this.setState({ otherInfo });
   };
 
@@ -92,7 +93,7 @@ class OtherInfoModal extends Component {
   };
 
   render() {
-    let { otherInfoDescription, otherInfoCategory } = this.state.otherInfo;
+    let { "my0:otherInfoDescription" : otherInfoDescription,   "my0:otherInfoType" : otherInfoCategory } = this.state.otherInfo;
     let { onHide } = this.props;
     return (
       <Modal
@@ -127,18 +128,20 @@ class OtherInfoModal extends Component {
               name="otherInfoCategory"
               placeholder="Select category"
               data={this.props.others}
+              textField="value"
+              valueField="@type"
               value={otherInfoCategory}
               caseSensitive={false}
               minLength={3}
               filter="contains"
               onChange={value =>
-                this.handleSelectChange(value, "otherInfoCategory")
+                this.handleSelectChange(value, "my0:otherInfoType")
               }
             />
           </Row>
           <div style={{ marginTop: "10px" }}>
             <CustomTextarea
-              id="otherInfoDescription"
+              id="my0:otherInfoDescription"
               label="Description"
               value={otherInfoDescription}
               handleChange={this.handleInputChange}
@@ -161,7 +164,7 @@ class OtherInfoModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.otherInfo[ownProps.id],
+    initialValues: state.cv["my0:hasOtherInfo"][ownProps.id],
     others: retrieveOtherTypes(state.utility.otherCVInfoValues)
   };
 };

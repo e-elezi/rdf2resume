@@ -813,17 +813,11 @@ my0:Reference
   rdfs:label "Reference"@en ;
   rdfs:subClassOf my0:CV_Entry .
 
-my0:ProfessionalReference
-  a owl:Class ;
-  rdfs:comment "Professional reference"@en ;
-  rdfs:label "Professional Reference"@en ;
-  rdfs:subClassOf my0:Reference .
-
-my0:PersonalReference
-  a owl:Class ;
-  rdfs:comment "Personal reference"@en ;
-  rdfs:label "Personal Reference"@en ;
-  rdfs:subClassOf my0:Reference .
+my0:referenceType
+  a owl:DatatypeProperty ;
+  rdfs:label "Reference Type"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain my0:Reference .
 
 my0:referenceBy
   a owl:ObjectProperty ;

@@ -15,8 +15,8 @@ my0:CV_1 rdf:type owl:NamedIndividual , my0:CV ;
          my0:cvTitle "Enkeleda Elezi"@en;
          my0:cvNotes "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "@en;
          my0:cvCopyright "Enkeleda Elezi"@en;
-         my0:cvIsConfidential false;
-         my0:cvIsActive true;
+         my0:cvIsConfidential "false"^^xsd:boolean;
+         my0:cvIsActive "true"^^xsd:boolean;;
          my0:aboutPerson my0:Person_1;
          my0:hasWorkHistory my0:WorkHistory_1;
          my0:hasWorkHistory my0:WorkHistory_2;
@@ -85,15 +85,15 @@ my0:Target_1 rdf:type owl:NamedIndividual , my0:Target ;
              my0:targetCompanyDescription "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "@en;
              my0:targetCompanyIndustry "Technology"@en;
              my0:targetCompanySize mybase0:MediumCompany;
-             my0:targetCountry country:ISO3166.Germany;
+             my0:targetCountry country:Germany;
              my0:targetJobTitle "Frontend Developer"@en;
              my0:targetJobDescription "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "@en;
              my0:targetJobMode mybase0:EmployeeFull;
              my0:targetSalaryRange "60 000-100 000";
              my0:targetSalaryCurrency "Euro"@en;
              my0:targetWeeksNoticePeriod 2;
-             my0:targetConditionWillRelocate true;
-             my0:targetConditionWillTravel true.
+             my0:targetConditionWillRelocate "true"^^xsd:boolean;
+             my0:targetConditionWillTravel "true"^^xsd:boolean.
 
 my0:OtherInfo_1 rdf:type owl:NamedIndividual , my0:OtherInfo ;
                 my0:otherInfoType mybase0:Publications;
@@ -111,34 +111,34 @@ my0:Address_1 rdf:type owl:NamedIndividual , my0:Address ;
               my0:street "Hirschberger Str 60";
               my0:postalCode "53119";
               my0:city "Bonn"@en;
-              my0:country country:ISO3166.Germany.
+              my0:country country:Germany.
 
 my0:Address_2 rdf:type owl:NamedIndividual , my0:Address ;
               my0:street "Schloss Birlinghoven";
               my0:postalCode "53757";
               my0:city "Sankt Augustin"@en;
-              my0:country country:ISO3166.Germany.
+              my0:country country:Germany.
 
 my0:Address_3 rdf:type owl:NamedIndividual , my0:Address ;
               my0:street "Kaiser-Wilhelm-Ring 17";
               my0:postalCode "50672";
               my0:city "Cologne"@en;
-              my0:country country:ISO3166.Germany. 
+              my0:country country:Germany. 
 
 my0:Address_4 rdf:type owl:NamedIndividual , my0:Address ;
               my0:street "Boulevard Zogu I";
               my0:city "Tirana"@en;
-              my0:country country:ISO3166.Albania.
+              my0:country country:Albania.
 
 my0:Address_5 rdf:type owl:NamedIndividual , my0:Address ;
               my0:street "Regina-Pacis-Weg 3";
               my0:postalCode "53113";
               my0:city "Bonn"@en;
-              my0:country country:ISO3166.Germany.
+              my0:country country:Germany.
 
 my0:Address_5 rdf:type owl:NamedIndividual , my0:Address ;
               my0:city "San Francisco, California"@en;
-              my0:country country:ISO3166.UnitedStates.
+              my0:country country:UnitedStates.
 
 my0:InstantMessaging_1 rdf:type owl:NamedIndividual , my0:InstantMessaging ;
                        my0:instantMessagingName "Skype";
@@ -148,15 +148,14 @@ my0:InstantMessaging_2 rdf:type owl:NamedIndividual , my0:InstantMessaging ;
                        my0:instantMessagingName "Instagram";
                        my0:instantMessagingUsername "enkeleda.elezi".
 
-
 my0:Person_1 rdf:type owl:NamedIndividual , my0:Person ;
              my0:firstName "Enkeleda";
              my0:lastName "Elezi";
              my0:title mybase0:Mrs;
              my0:photo "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "@en;
              my0:gender mybase0:Female;
-             my0:hasCitizenship country:ISO3166.Albania;
-             my0:hasNationality country:ISO3166.Albania;
+             my0:hasCitizenship country:Albania;
+             my0:hasNationality country:Albania;
              my0:driversLicence "None";
              my0:address my0:Address_1;
              my0:email "enkeleda.elezi@gmail.com";
@@ -219,7 +218,7 @@ my0:WorkHistory_1 rdf:type owl:NamedIndividual , my0:WorkHistory;
                   my0:jobDescription "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "@en;
                   my0:careerLevel mybase0:Student;
                   my0:jobMode mybase0:Contractor;
-                  my0:isCurrent false.
+                  my0:isCurrent "false"^^xsd:boolean.
 
 my0:WorkHistory_2 rdf:type owl:NamedIndividual , my0:WorkHistory;
                   my0:employedIn my0:Company_2;
@@ -228,7 +227,7 @@ my0:WorkHistory_2 rdf:type owl:NamedIndividual , my0:WorkHistory;
                   my0:jobDescription "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "@en;
                   my0:careerLevel mybase0:Student;
                   my0:jobMode mybase0:Contractor;
-                  my0:isCurrent true.
+                  my0:isCurrent "true"^^xsd:boolean.
 
 my0:Education_1 rdf:type owl:NamedIndividual , my0:Education;
                 my0:studiedIn my0:EducationalOrg_1;
@@ -248,7 +247,7 @@ my0:Education_2 rdf:type owl:NamedIndividual , my0:Education;
 
 my0:Course_1 rdf:type owl:NamedIndividual , my0:Course;
              my0:organizedBy my0:Organization_1;
-             my0:hasCertification true;
+             my0:hasCertification "true"^^xsd:boolean;
              my0:courseTitle "Modern React with Redux"@en;
              my0:courseDescription "Congratulations!  You've found the most popular, most complete, and most up-to-date resource online for learning React and Redux! Thousands of other engineers have learned React and Redux, and you can too.  This course uses a time-tested, battle-proven method to make sure you understand exactly how React and Redux work, and will get you a new job working as a software engineer or help you build that app you've always been dreaming about. The difference between this course and all the others: you will understand the design patterns used by top companies to build massively popular web apps.React is the most popular Javascript library of the last five years, and the job market is still hotter than ever.  Companies large and small can't hire engineers who understand React and Redux fast enough, and salaries for engineers are at an all time high.  It's a great time to learn React!"@en;
              my0:courseURL "https://www.udemy.com/react-redux/";

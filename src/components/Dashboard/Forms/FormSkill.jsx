@@ -9,7 +9,7 @@ import CustomInput from "../../core/CustomInput";
 import RemoveButton from "../../core/RemoveButton";
 import CustomTextarea from "../../core/CustomTextarea";
 import CustomCheckbox from "../../core/CustomCheckbox";
-import { updateSkills } from "../../../actions";
+import { updateSkills, createOtherSkill } from "../../../actions";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
   fetchSelfAssessmentProperties
@@ -39,67 +39,59 @@ class FormSkill extends Component {
     this.setState({ showModal: true });
   };
 
-  handleInputChange = e => {
-    //e.target.id e.target.value
-    console.log(e.target.name, e.target.value, e.target.id);
+  handleInputChange = (e, index) => {
 
+    let myarr = [...this.props.skills];
+    myarr[index][e.target.name] = e.target.value;
     this.props.updateSkills({
-      id: e.target.name,
-      value: e.target.value,
-      oneLevelId: e.target.id
+      value: myarr
     });
   };
 
-  handleCheckboxChange = e => {
-    //e.target.id e.target.checked
-    console.log(e.target.id, e.target.name, e.target.checked);
+  handleCheckboxChange = (e, index) => {
+
+    let myarr = [...this.props.skills];
+    myarr[index][e.target.name] = e.target.checked;
     this.props.updateSkills({
-      id: e.target.id,
-      value: e.target.checked,
-      oneLevelId: e.target.name
+      value: myarr
     });
   };
 
-  handleSelectChange = (name, value, oneLevelId, twoLevelID) => {
-    this.props.updateSkills({
-      id: name,
-      value: value,
-      oneLevelId: oneLevelId,
-      twoLevelID: twoLevelID
-    });
-  };
-
-  handleMultiSelectChange = (name, value) => {
-    this.props.updateSkills({ id: name, value: value });
-  };
-
-  addLanguageSkill = id => {
-    let myarr = [
-      ...this.props.skills.LanguageSkills,
-      {
-        languageSkillLevelReading: "",
-        languageSkillLevelWriting: "",
-        languageSkillLevelListening: "",
-        languageSkillLevelSpokenInteraction: "",
-        languageSkillLevelSpokenProduction: "",
-        isMotherTongue: false,
-        skillName: ""
-      }
-    ];
-    this.props.updateSkills({ id: id, value: myarr });
-  };
-
-  updateLanguageSkill = (name, value, index, oneLevelId) => {
-    let myarr = [...this.props.skills.LanguageSkills];
+  handleSelectChange = (name, value, oneLevelId, index) => {
+    let myarr = [...this.props.skills];
     myarr[index][name] = value;
-    this.props.updateSkills({ id: name, value: myarr, oneLevelId: oneLevelId });
+    this.props.updateSkills({
+      value: myarr
+    });
   };
 
-  removeLanguageSkill = (id, index, oneLevelId) => {
-    let myarr = this.props.skills.LanguageSkills.filter(
+  addLanguageSkill = () => {
+    let myarr = 
+      {
+        "@type": "my0:LanguageSkill",
+        "my0:languageSkillLevelReading": "",
+        "my0:languageSkillLevelWriting": "",
+        "my0:languageSkillLevelListening": "",
+        "my0:languageSkillLevelSpokenInteraction": "",
+        "my0:languageSkillLevelSpokenProduction": "",
+        "my0:isMotherTongue": false,
+        "my0:skillName": ""
+      };
+  
+    this.props.createOtherSkill({ value: myarr });
+  };
+
+  updateLanguageSkill = (name, value, index) => {
+    let myarr = [...this.props.skills];
+    myarr[index][name] = value;
+    this.props.updateSkills({ value: myarr });
+  };
+
+  removeLanguageSkill = (index) => {
+    let myarr = this.props.skills.filter(
       (item, ind) => ind !== index
     );
-    this.props.updateSkills({ id: id, value: myarr, oneLevelId: oneLevelId });
+    this.props.updateSkills({  value: myarr});
   };
 
   render() {
@@ -116,7 +108,7 @@ class FormSkill extends Component {
               <Col md={2}>
                 <AddButton
                   classnames="add-button"
-                  handleClick={() => this.addLanguageSkill("LanguageSkills")}
+                  handleClick={() => this.addLanguageSkill()}
                 />
               </Col>
               <Col md={10} className="button-label">
@@ -155,12 +147,13 @@ class FormSkill extends Component {
                 </tr>
               </thead>
               <tbody>
-                {skills.LanguageSkills.map((member, index) => (
+                {this.props.skills.map((member, index) => (
+                  member['@type']==="my0:LanguageSkill" ? 
                   <tr key={index}>
                     <th>
                       <div style={{ marginTop: "10px" }}>
                         <CustomInput
-                          id="skillName"
+                          id="my0:skillName"
                           label="Name"
                           type="text"
                           value={member.skillName}
@@ -168,8 +161,7 @@ class FormSkill extends Component {
                             this.updateLanguageSkill(
                               e.target.id,
                               e.target.value,
-                              index,
-                              "LanguageSkills"
+                              index
                             )
                           }
                         />
@@ -178,8 +170,10 @@ class FormSkill extends Component {
                     <td>
                       <div style={{ marginTop: "15px" }}>
                         <Combobox
-                          name="languageSkillLevelReading"
+                          name="my0:languageSkillLevelReading"
                           data={this.props.lngAssessmentValues}
+                          textField="value"
+                          valueField="@type"
                           value={member.languageSkillLevelReading}
                           placeholder="Select level"
                           caseSensitive={false}
@@ -187,10 +181,9 @@ class FormSkill extends Component {
                           filter="contains"
                           onChange={value =>
                             this.updateLanguageSkill(
-                              "languageSkillLevelReading",
+                              "my0:languageSkillLevelReading",
                               value,
-                              index,
-                              "LanguageSkills"
+                              index
                             )
                           }
                         />
@@ -199,8 +192,10 @@ class FormSkill extends Component {
                     <td>
                       <div style={{ marginTop: "15px" }}>
                         <Combobox
-                          name="languageSkillLevelWriting"
+                          name="my0:languageSkillLevelWriting"
                           data={this.props.lngAssessmentValues}
+                          textField="value"
+                          valueField="@type"
                           value={member.languageSkillLevelWriting}
                           placeholder="Select level"
                           caseSensitive={false}
@@ -208,10 +203,9 @@ class FormSkill extends Component {
                           filter="contains"
                           onChange={value =>
                             this.updateLanguageSkill(
-                              "languageSkillLevelWriting",
+                              "my0:languageSkillLevelWriting",
                               value,
-                              index,
-                              "LanguageSkills"
+                              index
                             )
                           }
                         />
@@ -220,8 +214,10 @@ class FormSkill extends Component {
                     <td>
                       <div style={{ marginTop: "15px" }}>
                         <Combobox
-                          name="languageSkillLevelListening"
+                          name="my0:languageSkillLevelListening"
                           data={this.props.lngAssessmentValues}
+                          textField="value"
+                          valueField="@type"
                           value={member.languageSkillLevelListening}
                           placeholder="Select level"
                           caseSensitive={false}
@@ -229,10 +225,9 @@ class FormSkill extends Component {
                           filter="contains"
                           onChange={value =>
                             this.updateLanguageSkill(
-                              "languageSkillLevelListening",
+                              "my0:languageSkillLevelListening",
                               value,
-                              index,
-                              "LanguageSkills"
+                              index
                             )
                           }
                         />
@@ -241,8 +236,10 @@ class FormSkill extends Component {
                     <td>
                       <div style={{ marginTop: "15px" }}>
                         <Combobox
-                          name="languageSkillLevelSpokenInteraction"
+                          name="my0:languageSkillLevelSpokenInteraction"
                           data={this.props.lngAssessmentValues}
+                          textField="value"
+                          valueField="@type"
                           value={member.languageSkillLevelSpokenInteraction}
                           placeholder="Select level"
                           caseSensitive={false}
@@ -250,10 +247,9 @@ class FormSkill extends Component {
                           filter="contains"
                           onChange={value =>
                             this.updateLanguageSkill(
-                              "languageSkillLevelSpokenInteraction",
+                              "my0:languageSkillLevelSpokenInteraction",
                               value,
-                              index,
-                              "LanguageSkills"
+                              index
                             )
                           }
                         />
@@ -262,8 +258,10 @@ class FormSkill extends Component {
                     <td>
                       <div style={{ marginTop: "15px" }}>
                         <Combobox
-                          name="languageSkillLevelSpokenProduction"
+                          name="my0:languageSkillLevelSpokenProduction"
                           data={this.props.lngAssessmentValues}
+                          textField="value"
+                          valueField="@type"
                           value={member.languageSkillLevelSpokenProduction}
                           placeholder="Select level"
                           caseSensitive={false}
@@ -271,10 +269,9 @@ class FormSkill extends Component {
                           filter="contains"
                           onChange={value =>
                             this.updateLanguageSkill(
-                              "languageSkillLevelSpokenProduction",
+                              "my0:languageSkillLevelSpokenProduction",
                               value,
-                              index,
-                              "LanguageSkills"
+                              index
                             )
                           }
                         />
@@ -282,15 +279,14 @@ class FormSkill extends Component {
                     </td>
                     <td>
                       <CustomCheckbox
-                        id="isMotherTongue"
+                        id="my0:isMotherTongue"
                         type="checkbox"
                         checked={member.isMotherTongue}
                         handleChange={e =>
                           this.updateLanguageSkill(
                             e.target.id,
                             e.target.checked,
-                            index,
-                            "LanguageSkills"
+                            index
                           )
                         }
                       />
@@ -299,11 +295,11 @@ class FormSkill extends Component {
                       <RemoveButton
                         classnames="shift-left"
                         handleClick={() =>
-                          this.removeLanguageSkill("LanguageSkills", index)
+                          this.removeLanguageSkill(index)
                         }
                       />
                     </td>
-                  </tr>
+                  </tr> : ''
                 ))}
               </tbody>
             </table>
@@ -311,53 +307,69 @@ class FormSkill extends Component {
           <Col sm={2} />
         </Row>
         <Row>
+        {this.props.skills.map( (skill,index) => (
+          skill['@type']==="my0:CommunicationSkills" ?  
           <Col md={3}>
-            <CustomTextarea
-              id="CommunicationSkills"
-              name="description"
-              label="Communication Skills"
-              value={skills.CommunicationSkills.description}
-              handleChange={this.handleInputChange}
-            />
-          </Col>
+          <CustomTextarea
+            id="my0:CommunicationSkills"
+            name="my0:skillDescription"
+            label="Communication Skills"
+            value={skill["my0:skillDescription"]}
+            handleChange={(e)=>this.handleInputChange(e, index)}
+          />
+        </Col> 
+        : ''))}
+
+        {this.props.skills.map((skill,index) => (
+        skill['@type']==="my0:OrganisationalSkills" ?  
           <Col md={3}>
-            <CustomTextarea
-              id="OrganisationalSkills"
-              name="description"
+          <CustomTextarea
+              id="my0:OrganisationalSkills"
+              name="my0:skillDescription"
               label="Organization Skills"
-              value={skills.OrganisationalSkills.description}
-              handleChange={this.handleInputChange}
+              value={skill["my0:skillDescription"]}
+              handleChange={(e)=>this.handleInputChange(e, index)}
             />
-          </Col>
+        </Col> 
+        : ''))}
+
+        {this.props.skills.map((skill,index) => (
+        skill['@type']==="my0:JobRelatedSkills" ?  
           <Col md={3}>
-            <CustomTextarea
-              id="JobRelatedSkills"
-              name="description"
+          <CustomTextarea
+              id="my0:JobRelatedSkills"
+              name="my0:skillDescription"
               label="Job Related Skills"
-              value={skills.JobRelatedSkills.description}
-              handleChange={this.handleInputChange}
+              value={skill["my0:skillDescription"]}
+              handleChange={(e)=>this.handleInputChange(e, index)}
             />
-          </Col>
+        </Col> 
+        : ''))}
           <Col md={3} />
         </Row>
         <Row style={{ justifyContent: "left" }}>
-          <Col md={3}>
+        {this.props.skills.map((skill,index) => (
+        skill['@type']==="my0:DigitalSkills" ?  
+        <React.Fragment>
+        <Col md={3}>
             <h6>Digital Skills</h6>
             <label className="label-rw">Information Processing Level</label>
             <Combobox
               name="informationProcessing"
               data={this.props.assessmentValues}
-              value={skills.DigitalSkills.informationProcessing.value}
+              textField="value"
+              valueField="@type"
+              value={skill["my0:informationProcessing"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
               filter="contains"
               onChange={value =>
                 this.handleSelectChange(
-                  "value",
+                  "my0:informationProcessing",
                   value,
-                  "informationProcessing",
-                  "DigitalSkills"
+                  "my0:DigitalSkills",
+                  index
                 )
               }
             />
@@ -365,17 +377,19 @@ class FormSkill extends Component {
             <Combobox
               name="communication"
               data={this.props.assessmentValues}
-              value={skills.DigitalSkills.communication.value}
+              textField="value"
+              valueField="@type"
+              value={skill["my0:communication"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
               filter="contains"
               onChange={value =>
                 this.handleSelectChange(
-                  "value",
+                  "my0:communication",
                   value,
-                  "communication",
-                  "DigitalSkills"
+                  "my0:DigitalSkills",
+                  index
                 )
               }
             />
@@ -384,17 +398,19 @@ class FormSkill extends Component {
             <Combobox
               name="contentCreation"
               data={this.props.assessmentValues}
-              value={skills.DigitalSkills.contentCreation.value}
+              textField="value"
+              valueField="@type"
+              value={skill["my0:contentCreation"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
               filter="contains"
               onChange={value =>
                 this.handleSelectChange(
-                  "value",
+                  "my0:contentCreation",
                   value,
-                  "contentCreation",
-                  "DigitalSkills"
+                  "my0:DigitalSkills",
+                  index
                 )
               }
             />
@@ -403,17 +419,19 @@ class FormSkill extends Component {
             <Combobox
               name="safety"
               data={this.props.assessmentValues}
-              value={skills.DigitalSkills.safety.value}
+              textField="value"
+              valueField="@type"
+              value={skill["my0:safety"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
               filter="contains"
               onChange={value =>
                 this.handleSelectChange(
-                  "value",
+                  "my0:safety",
                   value,
-                  "safety",
-                  "DigitalSkills"
+                  "my0:DigitalSkills",
+                  index
                 )
               }
             />
@@ -422,17 +440,19 @@ class FormSkill extends Component {
             <Combobox
               name="problemSolving"
               data={this.props.assessmentValues}
-              value={skills.DigitalSkills.problemSolving.value}
+              textField="value"
+              valueField="@type"
+              value={skill["my0:problemSolving"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
               filter="contains"
               onChange={value =>
                 this.handleSelectChange(
-                  "value",
+                  "my0:problemSolving",
                   value,
-                  "problemSolving",
-                  "DigitalSkills"
+                  "my0:DigitalSkills",
+                  index
                 )
               }
             />
@@ -440,23 +460,25 @@ class FormSkill extends Component {
           <Col md={3}>
             <h6> {` `}</h6>
             <CustomCheckbox
-              name="DigitalSkills"
-              id="hasICTCertificate"
+              name="my0:hasICTCertificate"
+              id="my0:hasICTCertificate"
               type="checkbox"
               label="Has Certification?"
-              checked={skills.DigitalSkills.hasICTCertificate}
-              handleChange={this.handleCheckboxChange}
+              checked={skill["my0:hasICTCertificate"]}
+              handleChange={(e)=>this.handleCheckboxChange(e, index)}
             />
             <CustomTextarea
-              name="otherDigitalSkills"
-              id="DigitalSkills"
+              name="my0:otherDigitalSkills"
+              id="my0:DigitalSkills"
               label="Other Digital Skills"
-              value={skills.DigitalSkills.otherDigitalSkills}
-              handleChange={this.handleInputChange}
+              value={skill["my0:otherDigitalSkills"]}
+              handleChange={(e)=>this.handleInputChange(e,index)}
             />
           </Col>
+          </React.Fragment>
+        : ''))}
         </Row>
-        <Row>
+        <Row> 
           <Col md={8}>
             <h6 style={{ marginTop: "10px" }}>Other Skills</h6>
           </Col>
@@ -475,12 +497,14 @@ class FormSkill extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.otherSkills.length === 0
-          ? "No other skills have been added until now."
-          : ""}
-        {this.props.otherSkills.map(skill => (
-          <SkillView skillObj={skill} id={skill.id} key={skill.id} />
-        ))}
+          {/* {this.props.otherSkills.length === 0
+           ? "No other skills have been added until now."
+           : ""} */}
+         {this.props.skills.map( (skill, index) => (
+           skill['@type']==="my0:Skill" ? 
+           <SkillView skillObj={skill} id={index} key={index} />
+           : ''
+         ))} 
       </React.Fragment>
     );
   }
@@ -492,8 +516,8 @@ const mapStateToProps = state => {
       state.utility.languageSelfAssessmentValues
     ),
     assessmentValues: retrieveAssessment(state.utility.selfAssessmentValues),
-    skills: state.cv.skills,
-    otherSkills: Object.values(state.cv.skills.OtherSkills)
+    skills: state.cv["my0:hasSkill"]
+    // otherSkills: Object.values(state.cv.skills.OtherSkills)
   };
 };
 
@@ -502,6 +526,7 @@ export default connect(
   {
     fetchLanguageSkillSelfAssessmentProperties,
     updateSkills,
+    createOtherSkill,
     fetchSelfAssessmentProperties
   }
 )(FormSkill);

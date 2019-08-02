@@ -30,6 +30,23 @@ class ReferenceCard extends Component {
   }
 
   render() {
+
+    let { 
+      "my0:title" : title,
+      "my0:firstName" : firstName,
+      "my0:lastName" : lastName,
+      "my0:address" : address,
+      "my0:email" : email,
+      "my0:hasTelephoneNumber" : hasTelephoneNumber,
+   } = this.props.referenceObj['my0:referenceBy'];
+
+   let { 
+      "my0:jobTitle" : jobTitle,
+  } = this.props.referenceObj['my0:referenceBy']['my0:currentJob'];
+
+  let {  "my0:organizatioName" : organizatioName } = this.props.referenceObj['my0:referenceBy']['my0:currentJob']['my0:employedIn'];
+
+
     return (
       <Card style={{ width: "18rem" }}>
         <Card.Header>
@@ -47,21 +64,21 @@ class ReferenceCard extends Component {
         </div>
         <Card.Body>
           <Card.Title>
-            {this.props.referenceObj.title} {this.props.referenceObj.name}
+            {title.value} {firstName} {lastName}
           </Card.Title>
           <Card.Text>
-            {this.props.referenceObj.jobTitle} |{" "}
-            {this.props.referenceObj.Organization.name}
+            {jobTitle} |{" "}
+            {organizatioName}
           </Card.Text>
           <Card.Text>
-            {this.props.referenceObj.Address.street}{" "}
-            {this.props.referenceObj.Address.city}{" "}
-            {this.props.referenceObj.Address.postalCode}{" "}
-            {this.props.referenceObj.Address.country}
+            {address["my0:street"]}{" "}
+            {address["my0:city"]}{" "}
+            {address["my0:postalCode"]}{" "}
+            {address["my0:country"].value}
           </Card.Text>
-          <Card.Text>{this.props.referenceObj.hasTelephoneNumber}</Card.Text>
+          <Card.Text>{hasTelephoneNumber}</Card.Text>
           <Card.Text>
-            <Card.Link href="#">{this.props.referenceObj.email}</Card.Link>
+            <Card.Link href="#">{email}</Card.Link>
           </Card.Text>
         </Card.Body>
         <ReferenceModal

@@ -9,12 +9,13 @@ import CustomCheckbox from "../../../../core/CustomCheckbox";
 class SkillModal extends Component {
   state = {
     otherSkill: {
-      skillName: "",
-      skillDescription: "",
-      skillLevel: "",
-      skillLastUsed: "",
-      skillYearsExperience: "",
-      skillHasCertificate: true
+      "@type": "my0:Skill",
+      "my0:skillName": "",
+      "my0:skillDescription": "",
+      "my0:skillLevel": "",
+      "my0:skillLastUsed": "",
+      "my0:skillYearsExperience": "",
+      "my0:skillHasCertificate": true
     }
   };
 
@@ -26,13 +27,15 @@ class SkillModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.initialValues;
       let otherSkill = { ...this.state.otherSkill };
-      otherSkill.skillName = inputRef.skillName;
-      otherSkill.skillDescription = inputRef.skillDescription;
-      otherSkill.id = inputRef.id;
-      otherSkill.skillLevel = inputRef.skillLevel;
-      otherSkill.skillLastUsed = inputRef.skillLastUsed;
-      otherSkill.skillYearsExperience = inputRef.skillYearsExperience;
-      otherSkill.skillHasCertificate = inputRef.skillHasCertificate;
+      otherSkill["my0:skillName"] = inputRef["my0:skillName"];
+      otherSkill["my0:skillDescription"] = inputRef["my0:skillDescription"];
+      otherSkill["my0:id"] = inputRef["my0:id"];
+      otherSkill["my0:skillLevel"] = inputRef["my0:skillLevel"];
+      otherSkill["my0:skillLastUsed"] = inputRef["my0:skillLastUsed"];
+      otherSkill["my0:skillYearsExperience"] =
+        inputRef["my0:skillYearsExperience"];
+      otherSkill["my0:skillHasCertificate"] =
+        inputRef["my0:skillHasCertificate"];
       this.setState({
         otherSkill
       });
@@ -41,12 +44,13 @@ class SkillModal extends Component {
 
   clearForm = () => {
     const hist = {
-      skillName: "",
-      skillDescription: "",
-      skillLevel: "",
-      skillLastUsed: "",
-      skillYearsExperience: "",
-      skillHasCertificate: true
+      "@type": "my0:Skill",
+      "my0:skillName": "",
+      "my0:skillDescription": "",
+      "my0:skillLevel": "",
+      "my0:skillLastUsed": "",
+      "my0:skillYearsExperience": "",
+      "my0:skillHasCertificate": true
     };
     if (!this.props.isUpdate) {
       this.setState({
@@ -77,14 +81,15 @@ class SkillModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherSkill({
-      ...this.state.otherSkill,
-      id: Math.round(Date.now() + Math.random())
+      value: {
+        ...this.state.otherSkill
+      }
     });
   };
 
-  handleUpdate = e => {
+  handleUpdate = (e, index) => {
     e.preventDefault();
-    this.props.updateOtherSkill(this.state.otherSkill);
+    this.props.updateOtherSkill( {skill: this.state.otherSkill, i: index});
   };
 
   handleRenderingSubmitButton = () => {
@@ -96,7 +101,7 @@ class SkillModal extends Component {
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button type="submit" variant="primary" onClick={(e)=>this.handleUpdate(e, this.props.id)}>
           Update
         </Button>
       );
@@ -105,12 +110,12 @@ class SkillModal extends Component {
 
   render() {
     let {
-      skillName,
-      skillDescription,
-      skillHasCertificate,
-      skillLastUsed,
-      skillLevel,
-      skillYearsExperience
+      "my0:skillName": skillName,
+      "my0:skillDescription": skillDescription,
+      "my0:skillHasCertificate": skillHasCertificate,
+      "my0:skillLastUsed": skillLastUsed,
+      "my0:skillLevel": skillLevel,
+      "my0:skillYearsExperience": skillYearsExperience
     } = this.state.otherSkill;
     let { onHide } = this.props;
     return (
@@ -136,7 +141,7 @@ class SkillModal extends Component {
           <Row>
             <Col md={8}>
               <CustomInput
-                id="skillName"
+                id="my0:skillName"
                 label="Skill Name"
                 type="text"
                 value={skillName}
@@ -145,7 +150,7 @@ class SkillModal extends Component {
             </Col>
             <Col md={4}>
               <CustomInput
-                id="skillLevel"
+                id="my0:skillLevel"
                 label="Skill Level"
                 type="number"
                 value={skillLevel}
@@ -156,7 +161,7 @@ class SkillModal extends Component {
           <Row>
             <Col md={6}>
               <CustomInput
-                id="skillLastUsed"
+                id="my0:skillLastUsed"
                 label="Skill Last Used"
                 type="date"
                 value={skillLastUsed}
@@ -165,7 +170,7 @@ class SkillModal extends Component {
             </Col>
             <Col md={6}>
               <CustomInput
-                id="skillYearsExperience"
+                id="my0:skillYearsExperience"
                 label="Years of Experience"
                 type="date"
                 value={skillYearsExperience}
@@ -174,13 +179,13 @@ class SkillModal extends Component {
             </Col>
           </Row>
           <CustomTextarea
-            id="skillDescription"
+            id="my0:skillDescription"
             label="Description of skill"
             value={skillDescription}
             handleChange={this.handleInputChange}
           />
           <CustomCheckbox
-            id="skillHasCertificate"
+            id="my0:skillHasCertificate"
             type="checkbox"
             label="Does skill have a certificate?"
             checked={skillHasCertificate}
@@ -203,7 +208,7 @@ class SkillModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.skills.OtherSkills[ownProps.id]
+    initialValues: state.cv["my0:hasSkill"][ownProps.id]
   };
 };
 

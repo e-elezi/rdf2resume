@@ -70,7 +70,7 @@ class FormReference extends Component {
         {this.renderNoTextProfessional()}
         <Row className="row-cards">
           {this.props.references.map(reference => {
-            if (reference.type === "Professional")
+            if (reference["my0:referenceType"] === "Professional")
               return (
                 <ReferenceCard
                   referenceObj={reference}
@@ -89,7 +89,7 @@ class FormReference extends Component {
         {this.renderNoTextPersonal()}
         <Row className="row-cards">
           {this.props.references.map(reference => {
-            if (reference.type === "Personal")
+            if (reference["my0:referenceType"] === "Personal")
               return (
                 <ReferenceCard
                   referenceObj={reference}
@@ -107,7 +107,7 @@ class FormReference extends Component {
 
 const mapStateToProps = state => {
   return {
-    references: Object.values(state.cv.references)
+    references: Object.values(state.cv["my0:hasReference"])
   };
 };
 

@@ -62,7 +62,7 @@ class FormOtherInfo extends Component {
 
 const mapStateToProps = state => {
   return {
-    otherInfos: Object.values(state.cv.otherInfo)
+    otherInfos: Object.values(state.cv["my0:hasOtherInfo"])
   };
 };
 

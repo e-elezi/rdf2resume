@@ -26,7 +26,15 @@ class SkillView extends Component {
   };
 
   render() {
-    let { skillObj } = this.props;
+    let {
+      "my0:skillName": skillName,
+      "my0:skillDescription": skillDescription,
+      "my0:skillHasCertificate": skillHasCertificate,
+      "my0:skillLastUsed": skillLastUsed,
+      "my0:skillLevel": skillLevel,
+      "my0:skillYearsExperience": skillYearsExperience
+    } = this.props.skillObj;
+
     return (
       <React.Fragment>
         <Row
@@ -38,7 +46,7 @@ class SkillView extends Component {
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              {skillObj.skillName} | {skillObj.skillLevel}
+              {skillName} | {skillLevel}
             </h4>
           </Col>
           <Col md={4}>
@@ -64,7 +72,7 @@ class SkillView extends Component {
               width: "80%"
             }}
           >
-            {skillObj.skillDescription}
+            {skillDescription}
           </p>
         </Row>
         <Row
@@ -79,9 +87,9 @@ class SkillView extends Component {
               width: "80%"
             }}
           >
-            {skillObj.skillLastUsed}
-            {skillObj.skillYearsExperience}
-            {skillObj.skillHasCertificate}
+            {skillLastUsed}
+            {skillYearsExperience}
+            {skillHasCertificate}
           </p>
         </Row>
         <SkillModal

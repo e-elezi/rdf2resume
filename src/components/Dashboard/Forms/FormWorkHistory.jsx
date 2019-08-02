@@ -60,7 +60,7 @@ class FormWorkHistory extends Component {
 
 const mapStateToProps = state => {
   return {
-    workHistories: Object.values(state.cv.workHistory)
+    workHistories: Object.values(state.cv["my0:hasWorkHistory"])
   };
 };
 

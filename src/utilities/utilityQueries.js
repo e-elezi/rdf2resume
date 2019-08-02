@@ -47,7 +47,7 @@ export const fetchAllOtherCVInfoTypes = () => {
 export const retrieveCountryValues = countriesObject => {
   let countryNames = [];
   countriesObject.map(obj => {
-    countryNames.push(obj.nameCountry.value);
+    countryNames.push( { "@type": obj.countryObject.value, value: obj.nameCountry.value });
     return "";
   });
   return countryNames;
@@ -56,7 +56,8 @@ export const retrieveCountryValues = countriesObject => {
 export const retrieveGenderValues = gendersObject => {
   let genderNames = [];
   gendersObject.map(obj => {
-    genderNames.push(obj.genderLabel.value);
+    // genderNames.push(obj.genderLabel.value);
+    genderNames.push({ "@type": obj.genderClass.value, value: obj.genderLabel.value })
     return "";
   });
   return genderNames;
@@ -65,7 +66,8 @@ export const retrieveGenderValues = gendersObject => {
 export const retrieveTitleValues = titlesObject => {
   let titleNames = [];
   titlesObject.map(obj => {
-    titleNames.push(obj.TitlePropertyLabel.value);
+    // titleNames.push(obj.TitlePropertyLabel.value);
+    titleNames.push({ "@type": obj.TitlePropertyClass.value, value: obj.TitlePropertyLabel.value });
     return "";
   });
   return titleNames;
@@ -74,7 +76,8 @@ export const retrieveTitleValues = titlesObject => {
 export const retrieveJobModes = modesObject => {
   let jobModeValues = [];
   modesObject.map(obj => {
-    jobModeValues.push(obj.CVJobModeLabel.value);
+    // jobModeValues.push(obj.CVJobModeLabel.value);
+    jobModeValues.push({ "@type": obj.CVJobModeClass.value, value: obj.CVJobModeLabel.value });
     return "";
   });
   return jobModeValues;
@@ -83,7 +86,8 @@ export const retrieveJobModes = modesObject => {
 export const retrieveCareerLevels = careerLevelsObject => {
   let careerValues = [];
   careerLevelsObject.map(obj => {
-    careerValues.push(obj.CVCareerLevelLabel.value);
+    // careerValues.push(obj.CVCareerLevelLabel.value);
+    careerValues.push({ "@type": obj.CVCareerLevelClass.value, value: obj.CVCareerLevelLabel.value });
     return "";
   });
   return careerValues;
@@ -92,7 +96,8 @@ export const retrieveCareerLevels = careerLevelsObject => {
 export const retrieveCompanySizes = companySizesObj => {
   let companySizesValue = [];
   companySizesObj.map(obj => {
-    companySizesValue.push(obj.CompanySizeLabel.value);
+    // companySizesValue.push(obj.CompanySizeLabel.value);
+    companySizesValue.push({ "@type": obj.CompanySizeClass.value, value: obj.CompanySizeLabel.value });
     return "";
   });
   return companySizesValue;
@@ -101,9 +106,10 @@ export const retrieveCompanySizes = companySizesObj => {
 export const retrieveLngAssessment = lngAssessmentObj => {
   let lngAssessmentValues = [];
   lngAssessmentObj.map(obj => {
-    lngAssessmentValues.push(
-      obj.LanguageSkillSelfAssessmentPropertyLabel.value
-    );
+    // lngAssessmentValues.push(
+    //   obj.LanguageSkillSelfAssessmentPropertyLabel.value
+    // );
+    lngAssessmentValues.push({ "@type": obj.LanguageSkillSelfAssessmentPropertyClass.value, value: obj.LanguageSkillSelfAssessmentPropertyLabel.value })
     return "";
   });
   return lngAssessmentValues;
@@ -112,7 +118,8 @@ export const retrieveLngAssessment = lngAssessmentObj => {
 export const retrieveAssessment = AssessmentObj => {
   let assessmentValues = [];
   AssessmentObj.map(obj => {
-    assessmentValues.push(obj.SelfAssessmentPropertyLabel.value);
+    //assessmentValues.push(obj.SelfAssessmentPropertyLabel.value);
+    assessmentValues.push({ "@type": obj.SelfAssessmentPropertyClass.value, value: obj.SelfAssessmentPropertyLabel.value })
     return "";
   });
   return assessmentValues;
@@ -121,7 +128,8 @@ export const retrieveAssessment = AssessmentObj => {
 export const retrieveDegreeValues = DegreesObj => {
   let degreesValues = [];
   DegreesObj.map(obj => {
-    degreesValues.push(obj.EduDegreeLabel.value);
+    //degreesValues.push(obj.EduDegreeLabel.value);
+    degreesValues.push({ "@type": obj.EduDegreeClass.value, value: obj.EduDegreeLabel.value })
     return "";
   });
   return degreesValues;
@@ -130,7 +138,8 @@ export const retrieveDegreeValues = DegreesObj => {
 export const retrieveOtherTypes = OthersObjs => {
   let typesNames = [];
   OthersObjs.map(obj => {
-    typesNames.push(obj.OtherCVInfoTypeLabel.value);
+    // typesNames.push(obj.OtherCVInfoTypeLabel.value);
+    typesNames.push({ "@type": obj.OtherCVInfoTypeClass.value, value: obj.OtherCVInfoTypeLabel.value });
     return "";
   });
   return typesNames;

@@ -7,14 +7,14 @@ const CustomRadioGroup = ({ items, name, value, handleChange }) => {
       {items.map(item => {
         return (
           <Form.Check
-            key={item}
+            key={item["@type"]}
             custom
             inline
             type="radio"
-            label={item}
-            checked={item === value ? true : false}
+            label={item.value}
+            checked={item["@type"] === value ? true : false}
             name={name}
-            id={item}
+            id={item["@type"]}
             onChange={e => handleChange(e)}
           />
         );

@@ -16,21 +16,31 @@ import {
 class ReferenceModal extends Component {
   state = {
     reference: {
-      type: "",
-      title: "",
-      name: "",
-      jobTitle: "",
-      Organization: {
-        name: ""
-      },
-      Address: {
-        street: "",
-        postalCode: "",
-        city: "",
-        country: ""
-      },
-      hasTelephoneNumber: "",
-      email: ""
+      "@type": "my0:Reference",
+      "my0:referenceType": "",
+      "my0:referenceBy": {
+        "@type": "my0:Person",
+        "my0:title": "",
+        "my0:firstName" : "",
+        "my0:lastName" : "",
+        "my0:address" : {
+          "@type": "my0:Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
+        },
+        "my0:hasTelephoneNumber" : "",
+        "my0:email" : "",
+        "my0:currentJob": {
+          "@type": "my0:WorkHistory",
+          "my0:jobTitle": "",
+          "my0:employedIn": {
+            "@type": "my0:Company",
+            "my0:organizationName": ""
+          }
+        }
+      }
     },
     typeValues: ["Personal", "Professional"]
   };
@@ -46,14 +56,8 @@ class ReferenceModal extends Component {
       let inputRef = this.props.initialValues;
       let reference = { ...this.state.reference };
       reference.id = inputRef.id;
-      reference.title = inputRef.title;
-      reference.jobTitle = inputRef.jobTitle;
-      reference.name = inputRef.name;
-      reference.email = inputRef.email;
-      reference.hasTelephoneNumber = inputRef.hasTelephoneNumber;
-      reference.type = inputRef.type;
-      reference.Address = inputRef.Address;
-      reference.Organization = inputRef.Organization;
+      reference["my0:referenceBy"] = inputRef["my0:referenceBy"];
+      reference["my0:referenceType"] = inputRef["my0:referenceType"];
       this.setState({
         reference
       });
@@ -62,21 +66,31 @@ class ReferenceModal extends Component {
 
   clearForm = () => {
     const hist = {
-      type: "",
-      title: "",
-      name: "",
-      jobTitle: "",
-      Organization: {
-        name: ""
-      },
-      Address: {
-        street: "",
-        postalCode: "",
-        city: "",
-        country: ""
-      },
-      hasTelephoneNumber: "",
-      email: ""
+      "@type": "my0:Reference",
+      "my0:referenceType": "",
+      "my0:referenceBy": {
+        "@type": "my0:Person",
+        "my0:title": "",
+        "my0:firstName" : "",
+        "my0:lastName" : "",
+        "my0:address" : {
+          "@type": "my0:Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
+        },
+        "my0:hasTelephoneNumber" : "",
+        "my0:email" : "",
+        "my0:currentJob": {
+          "@type": "my0:WorkHistory",
+          "my0:jobTitle": "",
+          "my0:employedIn": {
+            "@type": "my0:Company",
+            "my0:organizationName": ""
+          }
+        }
+      }
     };
     if (!this.props.isUpdate) {
       this.setState({
@@ -89,40 +103,55 @@ class ReferenceModal extends Component {
 
   handleSelectChange = (value, id) => {
     let reference = { ...this.state.reference };
-    if (id.indexOf("Address") >= 0) {
+    if (id.indexOf("address") >= 0) {
       let sublabel = id.substr(8);
-      let mybj = reference["Address"];
-      mybj[sublabel] = value.trim();
-      reference["Address"] = mybj;
+      let mybj = reference['my0:referenceBy']["my0:address"];
+      mybj[sublabel] = value;
+      reference['my0:referenceBy']["my0:address"] = mybj;
       this.setState({
         reference
       });
     } else {
-      reference[id] = value.trim();
+      reference['my0:referenceBy'][id] = value;
       this.setState({ reference });
     }
+  };
+
+  handleOneSelectChange = (value, id) => {
+    let reference = { ...this.state.reference };
+    reference[id] = value;
+    this.setState({ reference });
   };
 
   handleInputChange = e => {
     let label = e.target.id;
     let reference = { ...this.state.reference };
-    if (label === "Organization") {
-      let mybj = reference[label];
-      mybj["name"] = e.target.value;
-      reference[label] = mybj;
+    if (label.indexOf("employedIn")>=0) {
+      let sublabel = label.substr(11);
+      let mybj = reference['my0:referenceBy']['my0:currentJob']["my0:employedIn"];
+      mybj[sublabel] = e.target.value;
+      reference['my0:referenceBy']['my0:currentJob']["my0:employedIn"] = mybj;
       this.setState({
         reference
       });
-    } else if (label.indexOf("Address") >= 0) {
-      let sublabel = label.substr(8);
-      let mybj = reference["Address"];
+    } else if (label.indexOf("currentJob") >= 0) {
+      let sublabel = label.substr(11);
+      let mybj = reference['my0:referenceBy']["my0:currentJob"];
       mybj[sublabel] = e.target.value;
-      reference["Address"] = mybj;
+      reference['my0:referenceBy']["my0:currentJob"] = mybj;
+      this.setState({
+        reference
+      });
+    } else if (label.indexOf("address") >= 0) {
+      let sublabel = label.substr(8);
+      let mybj = reference['my0:referenceBy']["my0:address"];
+      mybj[sublabel] = e.target.value;
+      reference['my0:referenceBy']["my0:address"] = mybj;
       this.setState({
         reference
       });
     } else {
-      reference[label] = e.target.value;
+      reference['my0:referenceBy'][label] = e.target.value;
       this.setState({
         reference
       });
@@ -157,16 +186,21 @@ class ReferenceModal extends Component {
   }
 
   render() {
-    let {
-      type,
-      title,
-      name,
-      email,
-      hasTelephoneNumber,
-      jobTitle,
-      Address
-    } = this.state.reference;
-    let { name: OrganizatioName } = this.state.reference.Organization;
+    let { 
+      "my0:title" : title,
+      "my0:firstName" : firstName,
+      "my0:lastName" : lastName,
+      "my0:address" : address,
+      "my0:email" : email,
+      "my0:hasTelephoneNumber" : hasTelephoneNumber,
+   } = this.state.reference['my0:referenceBy'];
+
+   let { 
+      "my0:jobTitle" : jobTitle,
+  } = this.state.reference['my0:referenceBy']['my0:currentJob'];
+
+
+    let {  "my0:organizationName" : organizationName } = this.state.reference['my0:referenceBy']['my0:currentJob']['my0:employedIn'];
 
     const { onHide } = this.props;
     return (
@@ -196,11 +230,11 @@ class ReferenceModal extends Component {
                     name="type"
                     placeholder="Select type"
                     data={this.state.typeValues}
-                    value={type}
+                    value={this.state.reference['my0:referenceType']}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
-                    onChange={value => this.handleSelectChange(value, "type")}
+                    onChange={value => this.handleOneSelectChange(value, "my0:referenceType")}
                   />
                 </Row>
               </Col>
@@ -224,20 +258,29 @@ class ReferenceModal extends Component {
                   name="title"
                   placeholder="Select title"
                   data={this.props.titles}
+                  textField="value"
+                  valueField="@type"
                   value={title}
                   caseSensitive={false}
                   minLength={3}
                   filter="contains"
-                  onChange={value => this.handleSelectChange(value, "title")}
+                  onChange={value => this.handleSelectChange(value, "my0:title")}
                 />
               </Row>
             </Col>
             <Col md={8}>
               <CustomInput
-                id="name"
-                label="Name"
+                id="my0:firstName"
+                label="First name"
                 type="text"
-                value={name}
+                value={firstName}
+                handleChange={this.handleInputChange}
+              />
+              <CustomInput
+                id="my0:lastName"
+                label="Last name"
+                type="text"
+                value={lastName}
                 handleChange={this.handleInputChange}
               />
             </Col>
@@ -245,7 +288,7 @@ class ReferenceModal extends Component {
           <Row>
             <Col md={6}>
               <CustomInput
-                id="jobTitle"
+                id="currentJob.my0:jobTitle"
                 label="Job Title"
                 type="text"
                 value={jobTitle}
@@ -254,38 +297,38 @@ class ReferenceModal extends Component {
             </Col>
             <Col md={6}>
               <CustomInput
-                id="Organization"
+                id="employedIn.my0:organizationName"
                 label="Organization Name"
                 type="text"
-                value={OrganizatioName}
+                value={organizationName}
                 handleChange={this.handleInputChange}
               />
             </Col>
           </Row>
           <div>
             <CustomInput
-              id="Address.street"
+              id="address.my0:street"
               label="Street name + number"
               type="text"
-              value={Address.street}
+              value={address["my0:street"]}
               handleChange={this.handleInputChange}
             />
             <Row>
               <Col md={6}>
                 <CustomInput
-                  id="Address.postalCode"
+                  id="address.my0:postalCode"
                   label="Postal Code"
                   type="text"
-                  value={Address.postalCode}
+                  value={address["my0:postalCode"]}
                   handleChange={this.handleInputChange}
                 />
               </Col>
               <Col md={6}>
                 <CustomInput
-                  id="Address.city"
+                  id="address.my0:city"
                   label="City"
                   type="text"
-                  value={Address.city}
+                  value={address["my0:city"]}
                   handleChange={this.handleInputChange}
                 />
               </Col>
@@ -300,28 +343,30 @@ class ReferenceModal extends Component {
             >
               <label className="label-rw">Country</label>
               <Combobox
-                name="Address.country"
+                name="address.my0:country"
                 placeholder="Select country"
                 data={this.props.countries}
-                value={Address.country}
+                textField="value"
+                valueField="@type"
+                value={address["my0:country"]}
                 caseSensitive={false}
                 minLength={3}
                 filter="contains"
                 onChange={value =>
-                  this.handleSelectChange(value, "Address.country")
+                  this.handleSelectChange(value, "address.my0:country")
                 }
               />
             </Row>
           </div>
           <CustomInput
-            id="hasTelephoneNumber"
+            id="my0:hasTelephoneNumber"
             label="Telephone Number"
             type="text"
             value={hasTelephoneNumber}
             handleChange={this.handleInputChange}
           />
           <CustomInput
-            id="email"
+            id="my0:email"
             label="E-mail"
             type="email"
             value={email}
@@ -344,7 +389,7 @@ class ReferenceModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.references[ownProps.id],
+    initialValues: state.cv["my0:hasReference"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     titles: retrieveTitleValues(state.utility.titleValues)
   };

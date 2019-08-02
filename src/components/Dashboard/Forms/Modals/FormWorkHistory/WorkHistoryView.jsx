@@ -30,7 +30,25 @@ class WorkHistoryReview extends Component {
   };
 
   render() {
-    let { workHistory } = this.props;
+    let {
+      "my0:startDate" : startDate,
+      "my0:endDate" : endDate,
+      "my0:jobTitle" : jobTitle,
+      "my0:jobMode" : jobMode,
+      "my0:careerLevel" : careerLevel,
+      "my0:jobDescription" : jobDescription,
+      "my0:isCurrent" : isCurrent
+    } = this.props.workHistory;
+
+    let {
+      "my0:organizationName" : organizationName,
+      "my0:organizationAddress" : organizationAddress,
+      "my0:organizationWebsite" : organizationWebsite,
+      "my0:organizationDescription" : organizationDescription,
+      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+      "my0:companyIndustry" : companyIndustry,
+    } = this.props.workHistory['my0:employedIn'];
+
     return (
       <React.Fragment>
         <Row
@@ -42,7 +60,7 @@ class WorkHistoryReview extends Component {
         >
           <Col md={2}>
             <p>
-              {workHistory.startDate} - {workHistory.endDate}
+              {startDate} - {endDate}
             </p>
           </Col>
           <Col md={6}>
@@ -54,7 +72,7 @@ class WorkHistoryReview extends Component {
               }}
             >
               <b>
-                {workHistory.jobTitle} | {workHistory.jobMode}
+                {jobTitle} | {jobMode.value}
               </b>
             </Row>
             <Row
@@ -68,15 +86,15 @@ class WorkHistoryReview extends Component {
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
                 <a
-                  href={workHistory.Company.organizationWebsite}
+                  href={organizationWebsite}
                   className="inline-link"
                   target=" blank"
                 >
-                  {workHistory.Company.organizationName}
+                  {organizationName}
                 </a>{" "}
                 {` `}
-                {workHistory.Company.organizationLocality} {` `}{" "}
-                {workHistory.Company.organizationCountry}
+                {organizationAddress["my0:city"]} {` `}{" "}
+                {organizationAddress["my0:country"].value}
               </b>
             </Row>
             <Row
@@ -86,7 +104,7 @@ class WorkHistoryReview extends Component {
                 display: "flex"
               }}
             >
-              {workHistory.jobDescription}
+              {jobDescription}
             </Row>
           </Col>
           <Col md={4}>

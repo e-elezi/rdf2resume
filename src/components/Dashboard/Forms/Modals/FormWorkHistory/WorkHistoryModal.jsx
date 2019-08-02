@@ -22,25 +22,28 @@ import {
 class WorkHistoryModal extends Component {
   state = {
     workHistory: {
-      startDate: "",
-      endDate: "",
-      jobTitle: "",
-      jobDescription: "",
-      careerLevel: "",
-      jobMode: "",
-      isCurrent: false,
-      Company: {
-        organizationName: "",
-        organizationAddress: {
-          street: "",
-          postalCode: "",
-          city: "",
-          country: ""
+      "@type": "my0:WorkHistory",
+      "my0:startDate": "",
+      "my0:endDate": "",
+      "my0:jobTitle": "",
+      "my0:jobDescription": "",
+      "my0:careerLevel": "",
+      "my0:jobMode": "",
+      "my0:isCurrent": false,
+      "my0:employedIn": {
+        "@type": "my0:Company",
+        "my0:organizationName": "",
+        "my0:organizationAddress": {
+          "@type": "Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
         },
-        organizationDescription: "",
-        organizationPhoneNumber: "",
-        organizationWebsite: "",
-        companyIndustry: ""
+        "my0:organizationDescription": "",
+        "my0:organizationPhoneNumber": "",
+        "my0:organizationWebsite": "",
+        "my0:companyIndustry": ""
       }
     },
     CompanyIndustryValues: []
@@ -55,6 +58,9 @@ class WorkHistoryModal extends Component {
     this.props.fetchCVJobModes();
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
+    this.setState({
+      CompanyIndustryValues: this.getCompanyIndustryValues()
+    })
     this.setInitialValues();
   }
 
@@ -63,14 +69,14 @@ class WorkHistoryModal extends Component {
       let inputRef = this.props.initialValues;
       let workHistory = { ...this.state.workHistories };
       workHistory.id = inputRef.id;
-      workHistory.startDate = inputRef.startDate;
-      workHistory.endDate = inputRef.endDate;
-      workHistory.jobTitle = inputRef.jobTitle;
-      workHistory.jobDescription = inputRef.jobDescription;
-      workHistory.jobMode = inputRef.jobMode;
-      workHistory.careerLevel = inputRef.careerLevel;
-      workHistory.isCurrent = inputRef.isCurrent;
-      workHistory.Company = inputRef.Company;
+      workHistory["my0:startDate"] = inputRef["my0:startDate"];
+      workHistory["my0:endDate"] = inputRef["my0:endDate"];
+      workHistory["my0:jobTitle"] = inputRef["my0:jobTitle"];
+      workHistory["my0:jobDescription"] = inputRef["my0:jobDescription"];
+      workHistory["my0:jobMode"] = inputRef["my0:jobMode"];
+      workHistory["my0:careerLevel"] = inputRef["my0:careerLevel"];
+      workHistory["my0:isCurrent"] = inputRef["my0:isCurrent"];
+      workHistory["my0:employedIn"] = inputRef["my0:employedIn"];
       this.setState({
         workHistory
       });
@@ -79,25 +85,28 @@ class WorkHistoryModal extends Component {
 
   clearForm = () => {
     const hist = {
-      startDate: "",
-      endDate: "",
-      jobTitle: "",
-      jobDescription: "",
-      careerLevel: "",
-      jobMode: "",
-      isCurrent: false,
-      Company: {
-        organizationName: "",
-        organizationAddress: {
-          street: "",
-          postalCode: "",
-          city: "",
-          country: ""
+      "@type": "my0:WorkHistory",
+      "my0:startDate": "",
+      "my0:endDate": "",
+      "my0:jobTitle": "",
+      "my0:jobDescription": "",
+      "my0:careerLevel": "",
+      "my0:jobMode": "",
+      "my0:isCurrent": false,
+      "my0:employedIn": {
+        "@type": "my0:Company",
+        "my0:organizationName": "",
+        "my0:organizationAddress": {
+          "@type": "Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
         },
-        organizationDescription: "",
-        organizationPhoneNumber: "",
-        organizationWebsite: "",
-        companyIndustry: ""
+        "my0:organizationDescription": "",
+        "my0:organizationPhoneNumber": "",
+        "my0:organizationWebsite": "",
+        "my0:companyIndustry": ""
       }
     };
     if (!this.props.isUpdate) {
@@ -120,59 +129,55 @@ class WorkHistoryModal extends Component {
   handleInputChange = e => {
     let workHistory = { ...this.state.workHistory };
     let label = e.target.id;
-    if (label.indexOf("Company") >= 0) {
-      let sublabel = label.substr(8);
-      if (sublabel.indexOf("organizationAddress") >= 0) {
-        let subsublabel = sublabel.substr(20);
-        let mybj = workHistory["Company"]["organizationAddress"];
-        mybj[subsublabel] = e.target.value;
-        workHistory["Company"]["organizationAddress"] = mybj;
-        this.setState({
-          workHistory
-        });
-      } else {
-        let mybj = workHistory["Company"];
-        mybj[sublabel] = e.target.value;
-        workHistory["Company"] = mybj;
-        this.setState({
-          workHistory
-        });
-      }
-    } else {
-      workHistory[label] = e.target.value;
+    if (label.indexOf("employedIn") >= 0) {
+      let sublabel = label.substr(11);
+      let mybj = workHistory["my0:employedIn"];
+      mybj[sublabel] = e.target.value;
+      workHistory["my0:employedIn"] = mybj;
       this.setState({
         workHistory
       });
-    }
+    } else if (label.indexOf("organizationAddress") >= 0) {
+      let sublabel = label.substr(20);
+      let mybj = workHistory["my0:employedIn"]["my0:organizationAddress"];
+      mybj[sublabel] = e.target.value;
+      workHistory["my0:employedIn"]["my0:organizationAddress"] = mybj;
+      this.setState({
+        workHistory
+      });
+    } else {
+      workHistory[label] = e.target.value;
+    this.setState({
+      workHistory
+    });
+  }
   };
 
   handleSelectChange = (value, id) => {
     let workHistory = { ...this.state.workHistory };
     let label = id;
-    if (label.indexOf("Company") >= 0) {
-      let sublabel = label.substr(8);
-      if (sublabel.indexOf("organizationAddress") >= 0) {
-        let subsublabel = sublabel.substr(20);
-        let mybj = workHistory["Company"]["organizationAddress"];
-        mybj[subsublabel] = value.trim();
-        workHistory["Company"]["organizationAddress"] = mybj;
-        this.setState({
-          workHistory
-        });
-      } else {
-        let mybj = workHistory["Company"];
-        mybj[sublabel] = value.trim();
-        workHistory["Company"] = mybj;
-        this.setState({
-          workHistory
-        });
-      }
-    } else {
-      workHistory[label] = value.trim();
+    if (label.indexOf("employedIn") >= 0) {
+      let sublabel = label.substr(11);
+      let mybj = workHistory["my0:employedIn"];
+      mybj[sublabel] = value;
+      workHistory["my0:employedIn"] = mybj;
       this.setState({
         workHistory
       });
-    }
+  } else  if (label.indexOf("organizationAddress") >= 0) {
+    let sublabel = label.substr(20);
+      let mybj = workHistory["my0:employedIn"]["my0:organizationAddress"];
+      mybj[sublabel] = value;
+      workHistory["my0:employedIn"]["my0:organizationAddress"] = mybj;
+      this.setState({
+        workHistory
+      });
+  } else {
+    workHistory[label] = value;
+    this.setState({
+      workHistory
+    });
+  }
   };
 
   handleSave = e => {
@@ -206,15 +211,24 @@ class WorkHistoryModal extends Component {
 
   render() {
     let {
-      startDate,
-      endDate,
-      jobTitle,
-      jobMode,
-      careerLevel,
-      jobDescription,
-      isCurrent,
-      Company
+      "my0:startDate" : startDate,
+      "my0:endDate" : endDate,
+      "my0:jobTitle" : jobTitle,
+      "my0:jobMode" : jobMode,
+      "my0:careerLevel" : careerLevel,
+      "my0:jobDescription" : jobDescription,
+      "my0:isCurrent" : isCurrent
     } = this.state.workHistory;
+
+    let {
+      "my0:organizationName" : organizationName,
+      "my0:organizationAddress" : organizationAddress,
+      "my0:organizationWebsite" : organizationWebsite,
+      "my0:organizationDescription" : organizationDescription,
+      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+      "my0:companyIndustry" : companyIndustry,
+    } = this.state.workHistory['my0:employedIn'];
+
     let { onHide } = this.props;
     return (
       <Modal
@@ -234,7 +248,7 @@ class WorkHistoryModal extends Component {
                 </Col>
                 <Col md={2}>
                   <CustomCheckbox
-                    id="isCurrent"
+                    id="my0:isCurrent"
                     type="checkbox"
                     label="Current?"
                     checked={isCurrent}
@@ -251,7 +265,7 @@ class WorkHistoryModal extends Component {
                 <Row>
                   <Col md={6}>
                     <CustomInput
-                      id="startDate"
+                      id="my0:startDate"
                       label="From"
                       type="date"
                       value={startDate}
@@ -260,7 +274,7 @@ class WorkHistoryModal extends Component {
                   </Col>
                   <Col md={6} style={{ paddingRight: "0" }}>
                     <CustomInput
-                      id="endDate"
+                      id="my0:endDate"
                       label="To"
                       type="date"
                       value={endDate}
@@ -278,42 +292,42 @@ class WorkHistoryModal extends Component {
                 >
                   <div style={{ marginTop: "5px", width: "100%" }}>
                     <CustomInput
-                      id="Company.organizationName"
+                      id="employedIn.my0:organizationName"
                       label="Company Name"
                       type="text"
-                      value={Company.organizationName}
+                      value={organizationName}
                       handleChange={this.handleInputChange}
                     />
                   </div>
                   <div style={{ marginTop: "5px", width: "100%" }}>
                     <CustomInput
-                      id="Company.organizationWebsite"
+                      id="employedIn.my0:organizationWebsite"
                       label="Company Website"
                       type="text"
-                      value={Company.organizationWebsite}
+                      value={organizationWebsite}
                       handleChange={this.handleInputChange}
                     />
                   </div>
                   <CustomInput
-                    id="Company.organizationPhoneNumber"
+                    id="employedIn.my0:organizationPhoneNumber"
                     label="Company Phone Number"
-                    value={Company.organizationPhoneNumber}
+                    value={organizationPhoneNumber}
                     handleChange={this.handleInputChange}
                   />
                   <Row>
                     <Col sm={6}>
                       <CustomInput
-                        id="Company.organizationAddress.postalCode"
+                        id="organizationAddress.my0:postalCode"
                         label="Company Postal Code"
-                        value={Company.organizationAddress.postalCode}
+                        value={organizationAddress["my0:postalCode"]}
                         handleChange={this.handleInputChange}
                       />
                     </Col>
                     <Col sm={6}>
                       <CustomInput
-                        id="Company.organizationAddress.city"
+                        id="organizationAddress.my0:city"
                         label="Company City"
-                        value={Company.organizationAddress.city}
+                        value={organizationAddress["my0:city"]}
                         handleChange={this.handleInputChange}
                       />
                     </Col>
@@ -328,17 +342,19 @@ class WorkHistoryModal extends Component {
                   >
                     <label className="label-rw">Company Country</label>
                     <Combobox
-                      name="Company.organizationAddress.country"
+                      name="organizationAddress.my0:country"
                       placeholder="Select country"
                       data={this.props.countries}
-                      value={Company.organizationAddress.country}
+                      textField="value"
+                      valueField="@type"
+                      value={organizationAddress["my0:country"]}
                       caseSensitive={false}
                       minLength={3}
                       filter="contains"
                       onChange={value =>
                         this.handleSelectChange(
                           value,
-                          "Company.organizationAddress.country"
+                          "organizationAddress.my0:country"
                         )
                       }
                     />
@@ -353,26 +369,26 @@ class WorkHistoryModal extends Component {
                   >
                     <label className="label-rw">Company Industry</label>
                     <Combobox
-                      name="Company.organizationIndustry"
+                      name="employedIn.my0:companyIndustry"
                       placeholder="Select country"
                       data={this.state.CompanyIndustryValues}
-                      value={Company.organizationIndustry}
+                      value={companyIndustry}
                       caseSensitive={false}
                       minLength={3}
                       filter="contains"
                       onChange={value =>
                         this.handleSelectChange(
                           value,
-                          "Company.organizationIndustry"
+                          "employedIn.my0:companyIndustry"
                         )
                       }
                     />
                   </Row>
                   <div style={{ width: "100%" }}>
                     <CustomTextarea
-                      id="Company.organizationDescription"
+                      id="employedIn.my0:organizationDescription"
                       label="Company Description"
-                      value={Company.organizationDescription}
+                      value={organizationDescription}
                       handleChange={this.handleInputChange}
                     />
                   </div>
@@ -380,7 +396,7 @@ class WorkHistoryModal extends Component {
               </Col>
               <Col md={6}>
                 <CustomInput
-                  id="jobTitle"
+                  id="my0:jobTitle"
                   label="Occupation or Title held"
                   type="text"
                   value={jobTitle}
@@ -396,15 +412,17 @@ class WorkHistoryModal extends Component {
                 >
                   <label className="label-rw">Job Mode</label>
                   <Combobox
-                    name="jobMode"
+                    name="my0:jobMode"
                     placeholder="Select job mode"
                     data={this.props.jobmodes}
+                    textField="value"
+                    valueField="@type"
                     value={jobMode}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
-                      this.handleSelectChange(value, "jobMode")
+                      this.handleSelectChange(value, "my0:jobMode")
                     }
                   />
                 </Row>
@@ -418,20 +436,22 @@ class WorkHistoryModal extends Component {
                 >
                   <label className="label-rw">Career Level</label>
                   <Combobox
-                    name="careerLevel"
+                    name="my0:careerLevel"
                     placeholder="Select career level"
                     data={this.props.careerlevels}
+                    textField="value"
+                    valueField="@type"
                     value={careerLevel}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
-                      this.handleSelectChange(value, "careerLevel")
+                      this.handleSelectChange(value, "my0:careerLevel")
                     }
                   />
                 </Row>
                 <CustomTextarea
-                  id="jobDescription"
+                  id="my0:jobDescription"
                   label="Job Description"
                   value={jobDescription}
                   handleChange={this.handleInputChange}
@@ -456,7 +476,7 @@ class WorkHistoryModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.workHistory[ownProps.id],
+    initialValues: state.cv["my0:hasWorkHistory"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     jobmodes: retrieveJobModes(state.utility.jobModeValues),
     careerlevels: retrieveCareerLevels(state.utility.careerLevelValues),

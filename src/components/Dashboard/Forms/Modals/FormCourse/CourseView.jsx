@@ -31,6 +31,26 @@ class CourseView extends Component {
 
   render() {
     let { courseObj } = this.props;
+
+    let {
+      "my0:hasCertification" : hasCertification,
+      "my0:courseTitle" : courseTitle,
+      "my0:courseDescription" : courseDescription,
+      "my0:courseURL" : courseURL,
+      "my0:courseStartDate" : courseStartDate,
+      "my0:courseFinishDate" : courseFinishDate
+    } = this.props.courseObj;
+
+    let {
+      "my0:organizationName" : organizationName,
+      "my0:organizationAddress" : organizationAddress,
+      "my0:organizationWebsite" : organizationWebsite,
+      "my0:organizationDescription" : organizationDescription,
+      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+    } = this.props.courseObj['my0:organizedBy'];
+
+
+
     return (
       <React.Fragment>
         <Row
@@ -42,7 +62,7 @@ class CourseView extends Component {
         >
           <Col md={2}>
             <p>
-              {courseObj.courseStartDate} - {courseObj.courseFinishDate}
+              {courseStartDate} - {courseFinishDate}
             </p>
           </Col>
           <Col md={6}>
@@ -54,7 +74,7 @@ class CourseView extends Component {
               }}
             >
               <b>
-                {courseObj.courseTitle}
+                {courseTitle}
               </b>
             </Row>
             <Row
@@ -68,15 +88,15 @@ class CourseView extends Component {
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
                 <a
-                  href={courseObj.Organization.organizationWebsite}
+                  href={organizationWebsite}
                   className="inline-link"
                   target=" blank"
                 >
-                  {courseObj.Organization.organizationName}
+                  {organizationName}
                 </a>{" "}
                 {` `}
-                {courseObj.Organization.organizationAddress.city} {` `}{" "}
-                {courseObj.Organization.organizationAddress.country}
+                {organizationAddress["my0:city"]} {` `}{" "}
+                {organizationAddress["my0:country"].value}
               </b>
             </Row>
             <Row
@@ -86,7 +106,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              {courseObj.courseDescription}
+              {courseDescription}
             </Row>
             <Row
               style={{
@@ -95,7 +115,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-            Is Course certified? {courseObj.hasCertification}
+            Is Course certified? {hasCertification}
             </Row>
           </Col>
           <Col md={4}>

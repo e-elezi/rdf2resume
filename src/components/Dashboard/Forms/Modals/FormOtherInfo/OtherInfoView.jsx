@@ -38,7 +38,7 @@ class OtherInfoView extends Component {
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              <u>Category:</u> {otherInfoObject.otherInfoCategory}
+              <u>Category:</u> {otherInfoObject["my0:otherInfoType"].value}
             </h4>
           </Col>
           <Col md={4}>
@@ -64,7 +64,7 @@ class OtherInfoView extends Component {
               width: "80%"
             }}
           >
-            {otherInfoObject.otherInfoDescription}
+            {otherInfoObject["my0:otherInfoDescription"]}
           </p>
         </Row>
         <OtherInfoModal

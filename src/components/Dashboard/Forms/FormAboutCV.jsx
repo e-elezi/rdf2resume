@@ -9,24 +9,22 @@ class FormAboutCV extends Component {
   state = {};
 
   handleInputChange = e => {
-    //e.target.id e.target.value
     this.props.updateAboutCV({ id: e.target.id, value: e.target.value });
   };
 
   handleCheckboxChange = e => {
-    //e.target.id e.target.checked
     this.props.updateAboutCV({ id: e.target.id, value: e.target.checked });
   };
 
   render() {
     let {
-      cvTitle,
-      cvNotes,
-      cvIsActive,
-      cvIsConfidential,
-      cvLastUpdated,
-      cvCopyright
-    } = this.props.aboutcv;
+      "my0:cvTitle" : cvTitle,
+      "my0:cvNotes" : cvNotes,
+      "my0:cvIsActive" : cvIsActive,
+      "my0:cvIsConfidential" : cvIsConfidential,
+      "my0:cvLastUpdated" : cvLastUpdated,
+      "my0:cvCopyright" : cvCopyright
+    } = this.props.cv;
     return (
       <div className="row">
         <div className="col col-sm-5">
@@ -91,7 +89,7 @@ class FormAboutCV extends Component {
 
 const mapstateToProps = state => {
   return {
-    aboutcv: state.cv.aboutCV
+    cv: state.cv
   };
 };
 

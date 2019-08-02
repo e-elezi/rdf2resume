@@ -31,24 +31,8 @@ class Main extends Component {
   };
 
   render() {
-    // let {
-    //   cvTitle,
-    //   cvDescription,
-    //   cvIsActive,
-    //   cvIsConfidential,
-    //   cvLastUpdated
-    //   // person,
-    //   // target,
-    //   // workHistory,
-    //   // education,
-    //   // references,
-    //   // skills,
-    //   // otherInfo
-    // } = this.props.cv;
 
     const {
-      // handleInputChange,
-      // handleCheckboxChange,
       handleFormSubmit,
       handleStateObjectUpdate
     } = this.props;

@@ -37,7 +37,6 @@ class FormPersonal extends Component {
   }
 
   handleInputChange = (e, secondName) => {
-    //e.target.id e.target.value
     this.props.updateAboutPerson({
       id: e.target.id,
       value: e.target.value,
@@ -58,18 +57,18 @@ class FormPersonal extends Component {
   };
 
   addTelephoneNumber = id => {
-    let phones = [...this.props.aboutperson.hasTelephoneNumber, ""];
+    let phones = [...this.props.aboutperson["my0:hasTelephoneNumber"], ""];
     this.props.updateAboutPerson({ id: id, value: phones });
   };
 
   updateTelephoneNumber = (e, id, index) => {
-    let phones = [...this.props.aboutperson.hasTelephoneNumber];
+    let phones = [...this.props.aboutperson["my0:hasTelephoneNumber"]];
     phones[index] = e.target.value;
     this.props.updateAboutPerson({ id: id, value: phones });
   };
 
   removeTelephoneNumber = (id, index) => {
-    let phones = this.props.aboutperson.hasTelephoneNumber.filter(
+    let phones = this.props.aboutperson["my0:hasTelephoneNumber"].filter(
       (item, ind) => ind !== index
     );
     this.props.updateAboutPerson({ id: id, value: phones });
@@ -77,23 +76,24 @@ class FormPersonal extends Component {
 
   addInstantMessaging = id => {
     let myarr = [
-      ...this.props.aboutperson.instantMessaging,
+      ...this.props.aboutperson["my0:hasInstantMessaging"],
       {
-        instantMessagingName: "",
-        instantMessagingUsername: ""
+        "@type": "my0:InstantMessaging",
+        "my0:instantMessagingName": "",
+        "my0:instantMessagingUsername": ""
       }
     ];
     this.props.updateAboutPerson({ id: id, value: myarr });
   };
 
   updateInstantMessaging = (name, value, id, index) => {
-    let myarr = [...this.props.aboutperson.instantMessaging];
+    let myarr = [...this.props.aboutperson["my0:hasInstantMessaging"]];
     myarr[index][name] = value;
     this.props.updateAboutPerson({ id: id, value: myarr });
   };
 
   removeInstantMessaging = (id, index) => {
-    let myarr = this.props.aboutperson.instantMessaging.filter(
+    let myarr = this.props.aboutperson["my0:hasInstantMessaging"].filter(
       (item, ind) => ind !== index
     );
     this.props.updateAboutPerson({ id: id, value: myarr });
@@ -105,19 +105,19 @@ class FormPersonal extends Component {
 
   render() {
     let {
-      firstName,
-      lastName,
-      hasCitizenship,
-      hasNationality,
-      website,
-      dateOfBirth,
-      gender,
-      hasTelephoneNumber,
-      email,
-      title,
-      instantMessaging,
-      address,
-      driversLicence
+      "my0:firstName" : firstName,
+      "my0:lastName" : lastName,
+      "my0:hasCitizenship" : hasCitizenship ,
+      "my0:hasNationality" : hasNationality,
+      "my0:website" : website,
+      "my0:dateOfBirth" : dateOfBirth,
+      "my0:gender" : gender,
+      "my0:hasTelephoneNumber" : hasTelephoneNumber,
+      "my0:email" : email,
+      "my0:title" : title,
+      "my0:hasInstantMessaging" : instantMessaging,
+      "my0:address" : address,
+      "my0:driversLicence" : driversLicence
     } = this.props.aboutperson;
 
     return (
@@ -154,6 +154,8 @@ class FormPersonal extends Component {
             name="title"
             placeholder="Select a job mode"
             data={this.props.titles}
+            textField="value"
+            valueField="@type"
             value={title}
             caseSensitive={false}
             minLength={3}
@@ -227,6 +229,8 @@ class FormPersonal extends Component {
               name="country"
               placeholder="Select a country"
               data={this.props.countries}
+              textField="value"
+              valueField="@type"
               value={address.country}
               caseSensitive={false}
               minLength={3}
@@ -247,6 +251,8 @@ class FormPersonal extends Component {
           <Multiselect
             name="hasCitizenship"
             data={this.props.countries}
+            textField="value"
+            valueField="@type"
             value={hasCitizenship}
             placeholder="Select a country"
             caseSensitive={false}
@@ -260,6 +266,8 @@ class FormPersonal extends Component {
           <Multiselect
             name="hasNationality"
             data={this.props.countries}
+            textField="value"
+            valueField="@type"
             value={hasNationality}
             placeholder="Select a country"
             caseSensitive={false}
@@ -323,7 +331,7 @@ class FormPersonal extends Component {
             <Col md={2} className="p-0 instant-add-wrapper">
               <AddButton
                 classnames="add-button small-button"
-                handleClick={() => this.addInstantMessaging("instantMessaging")}
+                handleClick={() => this.addInstantMessaging("hasInstantMessaging")}
               />
             </Col>
           </Row>
@@ -335,16 +343,16 @@ class FormPersonal extends Component {
                   <Combobox
                     name="instantMessagingName"
                     data={this.state.instantMessagingNameValues}
-                    value={instantMessaging.instantMessagingName}
+                    value={member["my0:instantMessagingName"]}
                     placeholder="Select an IM Name"
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
                       this.updateInstantMessaging(
-                        "instantMessagingName",
+                        "my0:instantMessagingName",
                         value,
-                        "instantMessaging",
+                        "hasInstantMessaging",
                         index
                       )
                     }
@@ -353,15 +361,15 @@ class FormPersonal extends Component {
               </Col>
               <Col md={5} style={{ marginTop: "7px" }}>
                 <CustomInput
-                  id="instantMessagingUsername"
+                  id="my0:instantMessagingUsername"
                   label="Username"
                   type="text"
-                  value={member.instantMessagingUsername}
+                  value={member["my0:instantMessagingUsername"]}
                   handleChange={e =>
                     this.updateInstantMessaging(
-                      "instantMessagingUsername",
+                      "my0:instantMessagingUsername",
                       e.target.value,
-                      "instantMessaging",
+                      "hasInstantMessaging",
                       index
                     )
                   }
@@ -371,7 +379,7 @@ class FormPersonal extends Component {
                 <RemoveButton
                   classnames="shift-left"
                   handleClick={() =>
-                    this.removeInstantMessaging("instantMessaging", index)
+                    this.removeInstantMessaging("hasInstantMessaging", index)
                   }
                 />
               </Col>
@@ -389,7 +397,7 @@ const mapstateToProps = state => {
     countries: retrieveCountryValues(state.utility.countryValues),
     genders: retrieveGenderValues(state.utility.genderValues),
     titles: retrieveTitleValues(state.utility.titleValues),
-    aboutperson: state.cv.aboutPerson
+    aboutperson: state.cv["my0:aboutPerson"]
   };
 };
 

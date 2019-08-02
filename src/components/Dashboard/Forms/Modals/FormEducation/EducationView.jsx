@@ -30,7 +30,26 @@ class EducationView extends Component {
   };
 
   render() {
-    let { educationObj } = this.props;
+
+    let {
+      "my0:eduStartDate" : eduStartDate,
+      "my0:eduGradDate" : eduGradDate,
+      "my0:degreeType" : degreeType,
+      "my0:eduMajor" : eduMajor,
+      "my0:eduMinor" : eduMinor,
+      "my0:eduDescription" : eduDescription,
+      "my0:isEduCurrent" : isEduCurrent
+    } = this.props.educationObj;
+
+    let {
+      "my0:organizationName" : organizationName,
+      "my0:organizationAddress" : organizationAddress,
+      "my0:organizationWebsite" : organizationWebsite,
+      "my0:organizationDescription" : organizationDescription,
+      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+    } = this.props.educationObj['my0:studiedIn'];
+
+
     return (
       <React.Fragment>
         <Row
@@ -42,7 +61,7 @@ class EducationView extends Component {
         >
           <Col md={2}>
             <p>
-              {educationObj.eduStartDate} - {educationObj.eduGradDate}
+              {eduStartDate} - {eduGradDate}
             </p>
           </Col>
           <Col md={6}>
@@ -54,7 +73,7 @@ class EducationView extends Component {
               }}
             >
               <b>
-                {educationObj.degreeType} | {educationObj.eduMajor}
+                {degreeType.value} | {eduMajor}
               </b>
             </Row>
             <Row
@@ -68,17 +87,17 @@ class EducationView extends Component {
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
                 <a
-                  href={educationObj.EducationalOrg.organizationWebsite}
+                  href={organizationWebsite}
                   className="inline-link"
                   target=" blank"
                 >
-                  {educationObj.EducationalOrg.organizationName}
+                  {organizationName}
                 </a>{" "}
                 {` `}
                 {
-                  educationObj.EducationalOrg.organizationAddress.city
+                  organizationAddress["my0:city"]
                 } {` `}{" "}
-                {educationObj.EducationalOrg.organizationAddress.country}
+                {organizationAddress["my0:country"].value}
               </b>
             </Row>
             <Row
@@ -88,7 +107,7 @@ class EducationView extends Component {
                 display: "flex"
               }}
             >
-              {educationObj.eduDescription}
+              {eduDescription}
             </Row>
           </Col>
           <Col md={4}>

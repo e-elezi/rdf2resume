@@ -60,7 +60,7 @@ class FormEducation extends Component {
 
 const mapStateToProps = state => {
   return {
-    education: Object.values(state.cv.education)
+    education: Object.values(state.cv["my0:hasEducation"])
   };
 };
 

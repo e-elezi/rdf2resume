@@ -12,24 +12,27 @@ import { retrieveCountryValues } from "../../../../../utilities/utilityQueries";
 class CourseModal extends Component {
   state = {
     course: {
-      hasCertification: true,
-      courseTitle: "",
-      courseDescription: "",
-      courseURL: "",
-      courseStartDate: "",
-      courseFinishDate: "",
-      hasQualification: "",
-      Organization: {
-        organizationName: "",
-        organizationAddress: {
-          street: "",
-          postalCode: "",
-          city: "",
-          country: ""
+      "@type": "my0:Course",
+      "my0:hasCertification": true,
+      "my0:courseTitle": "",
+      "my0:courseDescription": "",
+      "my0:courseURL": "",
+      "my0:courseStartDate": "",
+      "my0:courseFinishDate": "",
+      "my0:hasQualification": "",
+      "my0:organizedBy": {
+        "@type": "my0:Organization",
+        "my0:organizationName": "",
+        "my0:organizationAddress": {
+          "@type": "Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
         },
-        organizationDescription: "",
-        organizationPhoneNumber: "",
-        organizationWebsite: ""
+        "my0:organizationDescription": "",
+        "my0:organizationPhoneNumber": "",
+        "my0:organizationWebsite": ""
       }
     }
   };
@@ -44,14 +47,14 @@ class CourseModal extends Component {
       let inputRef = this.props.initialValues;
       let course = { ...this.state.course };
       course.id = inputRef.id;
-      course.hasCertification = inputRef.hasCertification;
-      course.courseTitle = inputRef.courseTitle;
-      course.courseDescription = inputRef.courseDescription;
-      course.courseURL = inputRef.courseURL;
-      course.courseStartDate = inputRef.courseStartDate;
-      course.courseFinishDate = inputRef.courseFinishDate;
-      course.hasQualification = inputRef.hasQualification;
-      course.Organization = inputRef.Organization;
+      course["my0:hasCertification"] = inputRef["my0:hasCertification"];
+      course["my0:courseTitle"] = inputRef["my0:courseTitle"];
+      course["my0:courseDescription"] = inputRef["my0:courseDescription"];
+      course["my0:courseURL"] = inputRef["my0:courseURL"];
+      course["my0:courseStartDate"] = inputRef["my0:courseStartDate"];
+      course["my0:courseFinishDate"] = inputRef["my0:courseFinishDate"];
+      course["my0:hasQualification"] = inputRef["my0:hasQualification"];
+      course["my0:organizedBy"] = inputRef["my0:organizedBy"];
       this.setState({
         course
       });
@@ -60,24 +63,27 @@ class CourseModal extends Component {
 
   clearForm = () => {
     const hist = {
-      hasCertification: true,
-      courseTitle: "",
-      courseDescription: "",
-      courseURL: "",
-      courseStartDate: "",
-      courseFinishDate: "",
-      hasQualification: "",
-      Organization: {
-        organizationName: "",
-        organizationAddress: {
-          street: "",
-          postalCode: "",
-          city: "",
-          country: ""
+      "@type": "my0:Course",
+      "my0:hasCertification": true,
+      "my0:courseTitle": "",
+      "my0:courseDescription": "",
+      "my0:courseURL": "",
+      "my0:courseStartDate": "",
+      "my0:courseFinishDate": "",
+      "my0:hasQualification": "",
+      "my0:organizedBy": {
+        "@type": "my0:Organization",
+        "my0:organizationName": "",
+        "my0:organizationAddress": {
+          "@type": "Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
         },
-        organizationDescription: "",
-        organizationPhoneNumber: "",
-        organizationWebsite: ""
+        "my0:organizationDescription": "",
+        "my0:organizationPhoneNumber": "",
+        "my0:organizationWebsite": ""
       }
     };
     if (!this.props.isUpdate) {
@@ -100,59 +106,55 @@ class CourseModal extends Component {
   handleInputChange = e => {
     let course = { ...this.state.course };
     let label = e.target.id;
-    if (label.indexOf("Organization") >= 0) {
-      let sublabel = label.substr(13);
-      if (sublabel.indexOf("organizationAddress") >= 0) {
-        let subsublabel = sublabel.substr(20);
-        let mybj = course["Organization"]["organizationAddress"];
-        mybj[subsublabel] = e.target.value;
-        course["Organization"]["organizationAddress"] = mybj;
-        this.setState({
-          course
-        });
-      } else {
-        let mybj = course["Organization"];
-        mybj[sublabel] = e.target.value;
-        course["Organization"] = mybj;
-        this.setState({
-          course
-        });
-      }
-    } else {
-      course[label] = e.target.value;
+    if (label.indexOf("organizedBy") >= 0) {
+      let sublabel = label.substr(12);
+      let mybj = course["my0:organizedBy"];
+      mybj[sublabel] = e.target.value;
+      course["my0:organizedBy"] = mybj;
       this.setState({
         course
       });
-    }
+    } else if (label.indexOf("organizationAddress") >= 0) {
+      let sublabel = label.substr(20);
+      let mybj = course["my0:organizedBy"]["my0:organizationAddress"];
+      mybj[sublabel] = e.target.value;
+      course["my0:organizedBy"]["my0:organizationAddress"] = mybj;
+      this.setState({
+        course
+      });
+    } else {
+      course[label] = e.target.value;
+    this.setState({
+      course
+    });
+  }
   };
 
   handleSelectChange = (value, id) => {
     let course = { ...this.state.course };
     let label = id;
-    if (label.indexOf("Organization") >= 0) {
-      let sublabel = label.substr(13);
-      if (sublabel.indexOf("organizationAddress") >= 0) {
-        let subsublabel = sublabel.substr(20);
-        let mybj = course["Organization"]["organizationAddress"];
-        mybj[subsublabel] = value.trim();
-        course["Organization"]["organizationAddress"] = mybj;
-        this.setState({
-          course
-        });
-      } else {
-        let mybj = course["Organization"];
-        mybj[sublabel] = value.trim();
-        course["Organization"] = mybj;
-        this.setState({
-          course
-        });
-      }
-    } else {
-      course[label] = value.trim();
+    if (label.indexOf("organizedBy") >= 0) {
+      let sublabel = label.substr(12);
+      let mybj = course["my0:organizedBy"];
+      mybj[sublabel] = value;
+      course["my0:organizedBy"] = mybj;
       this.setState({
         course
       });
-    }
+  } else  if (label.indexOf("organizationAddress") >= 0) {
+    let sublabel = label.substr(20);
+      let mybj = course["my0:organizedBy"]["my0:organizationAddress"];
+      mybj[sublabel] = value;
+      course["my0:organizedBy"]["my0:organizationAddress"] = mybj;
+      this.setState({
+        course
+      });
+  } else {
+    course[label] = value;
+    this.setState({
+      course
+    });
+  }
   };
 
   handleSave = () => {
@@ -184,14 +186,22 @@ class CourseModal extends Component {
 
   render() {
     let {
-      hasCertification,
-      courseTitle,
-      courseDescription,
-      courseURL,
-      courseStartDate,
-      courseFinishDate,
-      Organization
+      "my0:hasCertification" : hasCertification,
+      "my0:courseTitle" : courseTitle,
+      "my0:courseDescription" : courseDescription,
+      "my0:courseURL" : courseURL,
+      "my0:courseStartDate" : courseStartDate,
+      "my0:courseFinishDate" : courseFinishDate
     } = this.state.course;
+
+    let {
+      "my0:organizationName" : organizationName,
+      "my0:organizationAddress" : organizationAddress,
+      "my0:organizationWebsite" : organizationWebsite,
+      "my0:organizationDescription" : organizationDescription,
+      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+    } = this.state.course['my0:organizedBy'];
+
     let { onHide } = this.props;
     return (
       <Modal
@@ -208,7 +218,7 @@ class CourseModal extends Component {
               <Col md={7}>{this.props.isUpdate ? "Update" : "Add New"} Course/Training</Col>
               <Col md={5}>
                 <CustomCheckbox
-                  id="hasCertification"
+                  id="my0:hasCertification"
                   type="checkbox"
                   label="Does it provide certification?"
                   checked={hasCertification}
@@ -224,7 +234,7 @@ class CourseModal extends Component {
               <Row style={{ marginBottom: "8px" }}>
                 <Col md={6}>
                   <CustomInput
-                    id="courseStartDate"
+                    id="my0:courseStartDate"
                     label="From"
                     type="date"
                     value={courseStartDate}
@@ -233,7 +243,7 @@ class CourseModal extends Component {
                 </Col>
                 <Col md={6}>
                   <CustomInput
-                    id="courseFinishDate"
+                    id="my0:courseFinishDate"
                     label="To"
                     type="date"
                     value={courseFinishDate}
@@ -251,33 +261,33 @@ class CourseModal extends Component {
                 }}
               >
                 <CustomInput
-                  id="Organization.organizationName"
+                  id="organizedBy.my0:organizationName"
                   label="Organization Name"
                   type="text"
-                  value={Organization.organizationName}
+                  value={organizationName}
                   handleChange={this.handleInputChange}
                 />
                 <CustomInput
-                  id="Organization.organizationWebsite"
+                  id="organizedBy.my0:organizationWebsite"
                   label="Organization Website"
                   type="text"
-                  value={Organization.organizationWebsite}
+                  value={organizationWebsite}
                   handleChange={this.handleInputChange}
                 />
                 <Row style={{ marginBottom: "8px" }}>
                   <Col sm={6}>
                     <CustomInput
-                      id="Organization.organizationAddress.postalCode"
+                      id="organizationAddress.my0:postalCode"
                       label="Postal Code"
-                      value={Organization.organizationAddress.postalCode}
+                      value={organizationAddress["my0:postalCode"]}
                       handleChange={this.handleInputChange}
                     />
                   </Col>
                   <Col sm={6}>
                     <CustomInput
-                      id="Organization.organizationAddress.city"
+                      id="organizationAddress.my0:city"
                       label="City"
-                      value={Organization.organizationAddress.city}
+                      value={organizationAddress["my0:city"]}
                       handleChange={this.handleInputChange}
                     />
                   </Col>
@@ -292,32 +302,34 @@ class CourseModal extends Component {
                 >
                   <label className="label-rw">Organization Country</label>
                   <Combobox
-                    name="Organization.organizationAddress.country"
+                    name="organizationAddress.my0:country"
                     placeholder="Select country"
                     data={this.props.countries}
-                    value={Organization.organizationAddress.country}
+                    textField="value"
+                    valueField="@type"
+                    value={organizationAddress["my0:country"]}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
                       this.handleSelectChange(
                         value,
-                        "Organization.organizationAddress.country"
+                        "organizationAddress.my0:country"
                       )
                     }
                   />
                 </Row>
                 <CustomInput
-                  id="Organization.organizationPhoneNumber"
+                  id="organizedBy.my0:organizationPhoneNumber"
                   label="Organization Phone Number"
-                  value={Organization.organizationPhoneNumber}
+                  value={organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
                 <div style={{ marginTop: "10px" }}>
                   <CustomTextarea
-                    id="Organization.organizationDescription"
+                    id="organizedBy.my0:organizationDescription"
                     label="Organization Description"
-                    value={Organization.organizationDescription}
+                    value={organizationDescription}
                     handleChange={this.handleInputChange}
                   />
                 </div>
@@ -325,14 +337,14 @@ class CourseModal extends Component {
             </Col>
             <Col md={6}>
               <CustomInput
-                id="courseTitle"
+                id="my0:courseTitle"
                 label="Course/Training Title"
                 type="text"
                 value={courseTitle}
                 handleChange={this.handleInputChange}
               />
               <CustomInput
-                id="courseURL"
+                id="my0:courseURL"
                 label="Course/Training Website"
                 type="text"
                 value={courseURL}
@@ -340,7 +352,7 @@ class CourseModal extends Component {
               />
               <div className="mb-3" />
               <CustomTextarea
-                id="courseDescription"
+                id="my0:courseDescription"
                 label="Course/Training Description"
                 value={courseDescription}
                 handleChange={this.handleInputChange}
@@ -364,7 +376,7 @@ class CourseModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv.courses[ownProps.id],
+    initialValues: state.cv["my0:hasCourse"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues)
   };
 };
