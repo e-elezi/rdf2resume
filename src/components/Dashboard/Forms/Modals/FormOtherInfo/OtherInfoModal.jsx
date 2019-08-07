@@ -65,15 +65,14 @@ class OtherInfoModal extends Component {
 
   handleSave = e => {
     e.preventDefault();
-    this.props.createOtherInfo({
-      ...this.state.otherInfo,
-      id: Math.round(Date.now() + Math.random())
-    });
+    this.props.createOtherInfo(
+      this.state.otherInfo
+    );
   };
 
   handleUpdate = e => {
     e.preventDefault();
-    this.props.updateOtherInfo(this.state.otherInfo);
+    this.props.updateOtherInfo({ other:this.state.otherInfo, i:this.props.id});
   };
 
   handleRenderingSubmitButton = () => {

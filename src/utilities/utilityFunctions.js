@@ -16,17 +16,17 @@ export const handleUpload = async data => {
 };
 
 export const processDataBeforeSubmit = cvData => {
-  let education = Object.values(cvData.education);
-  cvData.education = education;
-  let courses = Object.values(cvData.courses);
-  cvData.courses = courses;
-  let workHistory = Object.values(cvData.workHistory);
-  cvData.workHistory = workHistory;
-  let references = Object.values(cvData.references);
-  cvData.references = references;
-  let otherInfo = Object.values(cvData.otherInfo);
-  cvData.otherInfo = otherInfo;
-  let OtherSkills = Object.values(cvData.skills.OtherSkills);
-  cvData.skills.OtherSkills = OtherSkills;
-  //console.log(handleUpload(cvData));
+  // let education = Object.values(cvData.education);
+  // cvData.education = education;
+  // let courses = Object.values(cvData.courses);
+  // cvData.courses = courses;
+  // let workHistory = Object.values(cvData.workHistory);
+  // cvData.workHistory = workHistory;
+  // let references = Object.values(cvData.references);
+  // cvData.references = references;
+  // let otherInfo = Object.values(cvData.otherInfo);
+  // cvData.otherInfo = otherInfo;
+  // let OtherSkills = Object.values(cvData.skills.OtherSkills);
+  // cvData.skills.OtherSkills = OtherSkills;
+  console.log(handleUpload(cvData));
 };

@@ -46,11 +46,11 @@ class FormCourse extends Component {
         {this.props.course.length === 0
           ? "No courses have been added until now."
           : ""}
-        {this.props.course.map(co => (
+        {this.props.course.map((co, index) => (
           <CourseView
             courseObj={co}
-            id={co.id}
-            key={co.id}
+            id={index}
+            key={index}
           />
         ))}
       </React.Fragment>
@@ -60,7 +60,7 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: Object.values(state.cv["my0:hasCourse"])
+    course: state.cv["my0:hasCourse"]
   };
 };
 

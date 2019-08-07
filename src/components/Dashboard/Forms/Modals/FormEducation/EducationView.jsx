@@ -36,17 +36,17 @@ class EducationView extends Component {
       "my0:eduGradDate" : eduGradDate,
       "my0:degreeType" : degreeType,
       "my0:eduMajor" : eduMajor,
-      "my0:eduMinor" : eduMinor,
+      // "my0:eduMinor" : eduMinor,
       "my0:eduDescription" : eduDescription,
-      "my0:isEduCurrent" : isEduCurrent
+      // "my0:isEduCurrent" : isEduCurrent
     } = this.props.educationObj;
 
     let {
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-      "my0:organizationDescription" : organizationDescription,
-      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+      // "my0:organizationDescription" : organizationDescription,
+      // "my0:organizationPhoneNumber" : organizationPhoneNumber,
     } = this.props.educationObj['my0:studiedIn'];
 
 

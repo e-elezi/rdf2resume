@@ -30,13 +30,11 @@ class CourseView extends Component {
   };
 
   render() {
-    let { courseObj } = this.props;
-
     let {
       "my0:hasCertification" : hasCertification,
       "my0:courseTitle" : courseTitle,
       "my0:courseDescription" : courseDescription,
-      "my0:courseURL" : courseURL,
+      // "my0:courseURL" : courseURL,
       "my0:courseStartDate" : courseStartDate,
       "my0:courseFinishDate" : courseFinishDate
     } = this.props.courseObj;
@@ -45,8 +43,8 @@ class CourseView extends Component {
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-      "my0:organizationDescription" : organizationDescription,
-      "my0:organizationPhoneNumber" : organizationPhoneNumber,
+      // "my0:organizationDescription" : organizationDescription,
+      // "my0:organizationPhoneNumber" : organizationPhoneNumber,
     } = this.props.courseObj['my0:organizedBy'];
 
 

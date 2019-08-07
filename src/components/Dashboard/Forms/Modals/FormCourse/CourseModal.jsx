@@ -158,14 +158,13 @@ class CourseModal extends Component {
   };
 
   handleSave = () => {
-    this.props.createCourse({
-      ...this.state.course,
-      id: Math.round(Date.now() + Math.random())
-    });
+    this.props.createCourse(
+      this.state.course
+    );
   };
 
   handleUpdate = () => {
-    this.props.updateCourse(this.state.course);
+    this.props.updateCourse({ course:this.state.course, i: this.props.id});
   };
 
   handleRenderingSubmitButton = () => {

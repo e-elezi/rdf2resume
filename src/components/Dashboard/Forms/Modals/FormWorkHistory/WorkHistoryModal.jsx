@@ -182,15 +182,14 @@ class WorkHistoryModal extends Component {
 
   handleSave = e => {
     e.preventDefault();
-    this.props.createWorkHistory({
-      ...this.state.workHistory,
-      id: Math.round(Date.now() + Math.random())
-    });
+    this.props.createWorkHistory(
+      this.state.workHistory
+    );
   };
 
   handleUpdate = e => {
     e.preventDefault();
-    this.props.updateWorkHistory(this.state.workHistory);
+    this.props.updateWorkHistory({work:this.state.workHistory, i:this.props.id});
   };
 
   handleRenderingSubmitButton = () => {

@@ -35,18 +35,18 @@ class WorkHistoryReview extends Component {
       "my0:endDate" : endDate,
       "my0:jobTitle" : jobTitle,
       "my0:jobMode" : jobMode,
-      "my0:careerLevel" : careerLevel,
+      // "my0:careerLevel" : careerLevel,
       "my0:jobDescription" : jobDescription,
-      "my0:isCurrent" : isCurrent
+      // "my0:isCurrent" : isCurrent
     } = this.props.workHistory;
 
     let {
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-      "my0:organizationDescription" : organizationDescription,
-      "my0:organizationPhoneNumber" : organizationPhoneNumber,
-      "my0:companyIndustry" : companyIndustry,
+      // "my0:organizationDescription" : organizationDescription,
+      // "my0:organizationPhoneNumber" : organizationPhoneNumber,
+      // "my0:companyIndustry" : companyIndustry,
     } = this.props.workHistory['my0:employedIn'];
 
     return (

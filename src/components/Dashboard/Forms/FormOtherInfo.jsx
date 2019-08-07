@@ -48,11 +48,11 @@ class FormOtherInfo extends Component {
         {this.props.otherInfos.length === 0
           ? "No other infos have been added until now."
           : ""}
-        {this.props.otherInfos.map((otherinfo) => (
+        {this.props.otherInfos.map((otherinfo, index) => (
           <OtherInfoView
             otherInfoObject={otherinfo}
-            id={otherinfo.id}
-            key={otherinfo.id}
+            id={index}
+            key={index}
           />
         ))}
       </React.Fragment>
@@ -62,7 +62,7 @@ class FormOtherInfo extends Component {
 
 const mapStateToProps = state => {
   return {
-    otherInfos: Object.values(state.cv["my0:hasOtherInfo"])
+    otherInfos: state.cv["my0:hasOtherInfo"]
   };
 };
 

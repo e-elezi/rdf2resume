@@ -46,11 +46,11 @@ class FormEducation extends Component {
         {this.props.education.length === 0
           ? "No education has been added until now."
           : ""}
-        {this.props.education.map(edu => (
+        {this.props.education.map((edu, index) => (
           <EducationView
             educationObj={edu}
-            id={edu.id}
-            key={edu.id}
+            id={index}
+            key={index}
           />
         ))}
       </React.Fragment>
@@ -60,7 +60,7 @@ class FormEducation extends Component {
 
 const mapStateToProps = state => {
   return {
-    education: Object.values(state.cv["my0:hasEducation"])
+    education: state.cv["my0:hasEducation"]
   };
 };
 

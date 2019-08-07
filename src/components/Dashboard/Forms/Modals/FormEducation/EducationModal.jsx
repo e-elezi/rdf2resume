@@ -168,14 +168,13 @@ class EducationModal extends Component {
   };
 
   handleSave = () => {
-    this.props.createEducation({
-      ...this.state.education,
-      id: Math.round(Date.now() + Math.random())
-    });
+    this.props.createEducation(
+      this.state.education
+    );
   };
 
   handleUpdate = () => {
-    this.props.updateEducation(this.state.education);
+    this.props.updateEducation( { edu: this.state.education, i: this.props.id });
   };
 
   handleRenderingSubmitButton = () => {

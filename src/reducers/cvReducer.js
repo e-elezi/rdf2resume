@@ -88,11 +88,11 @@ const INITIAL_STATE = {
     "my0:targetCompanyCountry" : [],
     "my0:targetSalaryRange" : ""
   },
-  "my0:hasOtherInfo": {},
-  "my0:hasReference": {},
-  "my0:hasEducation": {},
-  "my0:hasCourse" : {},
-  "my0:hasWorkHistory": {},
+  "my0:hasOtherInfo": [],
+  "my0:hasReference": [],
+  "my0:hasEducation": [],
+  "my0:hasCourse" : [],
+  "my0:hasWorkHistory": [],
   "my0:hasSkill" : [
     {
       "@type": "my0:CommunicationSkills",
@@ -142,79 +142,79 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_OTHER_INFO:
       return { ...state["my0:hasOtherInfo"], ..._.mapKeys(action.payload, "id") };
     case CREATE_OTHER_INFO:
-      let otherInfos = {
+      let otherInfos = [
         ...state["my0:hasOtherInfo"],
-        [action.payload.id]: action.payload
-      };
+        action.payload
+      ];
       return { ...state, "my0:hasOtherInfo": otherInfos };
     case UPDATE_OTHER_INFO:
-      otherInfos = {
-        ...state["my0:hasOtherInfo"],
-        [action.payload.id]: action.payload
-      };
+      otherInfos = [
+        ...state["my0:hasOtherInfo"]
+      ];
+      otherInfos[action.payload.i] = action.payload.other;
       return { ...state, "my0:hasOtherInfo": otherInfos };
     case REMOVE_OTHER_INFO:
-      let kot = _.omit(state["my0:hasOtherInfo"], action.payload);
+      let kot = _.filter(state["my0:hasOtherInfo"], function(item, index) { return index !== action.payload; });
       return { ...state, "my0:hasOtherInfo": kot };
     case CREATE_REFERENCE:
-      let myreferences = {
+      let myreferences = [
         ...state["my0:hasReference"],
-        [action.payload.id]: action.payload
-      };
+        action.payload
+      ];
       return { ...state, "my0:hasReference": myreferences };
     case UPDATE_REFERENCE:
-      let myupdatereferences = {
-        ...state["my0:hasReference"],
-        [action.payload.id]: action.payload
-      };
+      let myupdatereferences = [
+        ...state["my0:hasReference"]
+      ];
+      myupdatereferences[action.payload.i] = action.payload.reference;
       return { ...state, "my0:hasReference": myupdatereferences };
     case REMOVE_REFERENCE:
-      let removedreferences = _.omit(state["my0:hasReference"], action.payload);
+      let removedreferences = _.filter(state["my0:hasReference"], function(item, index) { return index !== action.payload; });
       return { ...state, "my0:hasReference": removedreferences };
     case CREATE_WORK_HISTORY:
-      let myworks = {
+      let myworks = [
         ...state["my0:hasWorkHistory"],
-        [action.payload.id]: action.payload
-      };
+        action.payload
+      ];
       return { ...state, "my0:hasWorkHistory": myworks };
     case UPDATE_WORK_HISTORY:
-      let updateworks = {
-        ...state["my0:hasWorkHistory"],
-        [action.payload.id]: action.payload
-      };
+      let updateworks = [
+        ...state["my0:hasWorkHistory"]
+      ];
+      updateworks[action.payload.i] = action.payload.work;
       return { ...state, "my0:hasWorkHistory": updateworks };
     case REMOVE_WORK_HISTORY:
-      let removedwork = _.omit(state["my0:hasWorkHistory"], action.payload);
+      let removedwork = _.filter(state["my0:hasWorkHistory"], function(item, index) { return index !== action.payload; });
       return { ...state, "my0:hasWorkHistory": removedwork };
     case CREATE_EDUCATION:
-      let myedu = {
+      let myedu = [
         ...state["my0:hasEducation"],
-        [action.payload.id]: action.payload
-      };
+        action.payload
+      ];
       return { ...state, "my0:hasEducation": myedu };
     case UPDATE_EDUCATION:
-      let updateedu = {
-        ...state["my0:hasEducation"],
-        [action.payload.id]: action.payload
-      };
+      let updateedu = [
+        ...state["my0:hasEducation"]
+      ];
+      updateedu[action.payload.i] = action.payload.edu;
       return { ...state, "my0:hasEducation": updateedu };
     case REMOVE_EDUCATION:
-      let removededu = _.omit(state["my0:hasEducation"], action.payload);
+      let removededu = _.filter(state["my0:hasEducation"], function(item, index) { return index !== action.payload; });
       return { ...state, "my0:hasEducation": removededu };
     case CREATE_COURSE:
-      let mycourse = {
+      let mycourse = [
         ...state["my0:hasCourse"],
-        [action.payload.id]: action.payload
-      };
+        action.payload
+      ];
       return { ...state, "my0:hasCourse": mycourse };
     case UPDATE_COURSE:
-      let updatecourse = {
-        ...state["my0:hasCourse"],
-        [action.payload.id]: action.payload
-      };
+      let updatecourse = [
+        ...state["my0:hasCourse"]
+      ];
+      updatecourse[action.payload.i] = action.payload.course;
       return { ...state, "my0:hasCourse": updatecourse };
     case REMOVE_COURSE:
-      let removecourse = _.omit(state["my0:hasCourse"], action.payload);
+      let removecourse = _.filter(state["my0:hasCourse"], function(item, index) { return index !== action.payload; });
       return { ...state, "my0:hasCourse": removecourse };
     case CREATE_OTHER_SKILL:
       let myskills = [

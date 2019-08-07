@@ -96,7 +96,6 @@ class FormSkill extends Component {
 
   render() {
     let { showModal } = this.state;
-    let { skills } = this.props;
     return (
       <React.Fragment>
         <Row>
@@ -156,7 +155,7 @@ class FormSkill extends Component {
                           id="my0:skillName"
                           label="Name"
                           type="text"
-                          value={member.skillName}
+                          value={member["my0:skillName"]}
                           handleChange={e =>
                             this.updateLanguageSkill(
                               e.target.id,
@@ -174,7 +173,7 @@ class FormSkill extends Component {
                           data={this.props.lngAssessmentValues}
                           textField="value"
                           valueField="@type"
-                          value={member.languageSkillLevelReading}
+                          value={member["my0:languageSkillLevelReading"]}
                           placeholder="Select level"
                           caseSensitive={false}
                           minLength={3}
@@ -196,7 +195,7 @@ class FormSkill extends Component {
                           data={this.props.lngAssessmentValues}
                           textField="value"
                           valueField="@type"
-                          value={member.languageSkillLevelWriting}
+                          value={member["my0:languageSkillLevelWriting"]}
                           placeholder="Select level"
                           caseSensitive={false}
                           minLength={3}
@@ -218,7 +217,7 @@ class FormSkill extends Component {
                           data={this.props.lngAssessmentValues}
                           textField="value"
                           valueField="@type"
-                          value={member.languageSkillLevelListening}
+                          value={member["my0:languageSkillLevelListening"]}
                           placeholder="Select level"
                           caseSensitive={false}
                           minLength={3}
@@ -240,7 +239,7 @@ class FormSkill extends Component {
                           data={this.props.lngAssessmentValues}
                           textField="value"
                           valueField="@type"
-                          value={member.languageSkillLevelSpokenInteraction}
+                          value={member["my0:languageSkillLevelSpokenInteraction"]}
                           placeholder="Select level"
                           caseSensitive={false}
                           minLength={3}
@@ -262,7 +261,7 @@ class FormSkill extends Component {
                           data={this.props.lngAssessmentValues}
                           textField="value"
                           valueField="@type"
-                          value={member.languageSkillLevelSpokenProduction}
+                          value={member["my0:languageSkillLevelSpokenProduction"]}
                           placeholder="Select level"
                           caseSensitive={false}
                           minLength={3}
@@ -281,7 +280,7 @@ class FormSkill extends Component {
                       <CustomCheckbox
                         id="my0:isMotherTongue"
                         type="checkbox"
-                        checked={member.isMotherTongue}
+                        checked={member["my0:isMotherTongue"]}
                         handleChange={e =>
                           this.updateLanguageSkill(
                             e.target.id,

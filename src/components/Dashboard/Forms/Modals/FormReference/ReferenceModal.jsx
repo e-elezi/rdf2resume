@@ -159,14 +159,13 @@ class ReferenceModal extends Component {
   };
 
   handleSave = () => {
-    this.props.createReference({
-      ...this.state.reference,
-      id: Math.round(Date.now() + Math.random())
-    });
+    this.props.createReference(
+      this.state.reference
+    );
   };
 
   handleUpdate = () => {
-    this.props.updateReference(this.state.reference);
+    this.props.updateReference( { reference:this.state.reference, i:this.props.id});
   };
 
   handleRenderingSubmitButton = () => {

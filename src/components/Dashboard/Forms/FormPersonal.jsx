@@ -152,7 +152,7 @@ class FormPersonal extends Component {
           <label className="label-rw">Title</label>
           <Combobox
             name="title"
-            placeholder="Select a job mode"
+            placeholder="Select title"
             data={this.props.titles}
             textField="value"
             valueField="@type"
@@ -201,7 +201,7 @@ class FormPersonal extends Component {
               id="street"
               label="Street name + number"
               type="text"
-              value={address.street}
+              value={address["my0:street"]}
               handleChange={e => this.handleInputChange(e, "address")}
             />
             <Row>
@@ -210,7 +210,7 @@ class FormPersonal extends Component {
                   id="postalCode"
                   label="Postal Code"
                   type="text"
-                  value={address.postalCode}
+                  value={address["my0:postalCode"]}
                   handleChange={e => this.handleInputChange(e, "address")}
                 />
               </Col>
@@ -219,7 +219,7 @@ class FormPersonal extends Component {
                   id="city"
                   label="City"
                   type="text"
-                  value={address.city}
+                  value={address["my0:city"]}
                   handleChange={e => this.handleInputChange(e, "address")}
                 />
               </Col>
@@ -231,7 +231,7 @@ class FormPersonal extends Component {
               data={this.props.countries}
               textField="value"
               valueField="@type"
-              value={address.country}
+              value={address["my0:country"]}
               caseSensitive={false}
               minLength={3}
               filter="contains"

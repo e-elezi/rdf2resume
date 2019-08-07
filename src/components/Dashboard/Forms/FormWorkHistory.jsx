@@ -46,11 +46,11 @@ class FormWorkHistory extends Component {
         {this.props.workHistories.length === 0
           ? "No work histories have been added until now."
           : ""}
-        {this.props.workHistories.map(workHistory => (
+        {this.props.workHistories.map((workHistory, index) => (
           <WorkHistoryView
             workHistory={workHistory}
-            id={workHistory.id}
-            key={workHistory.id}
+            id={index}
+            key={index}
           />
         ))}
       </React.Fragment>
@@ -60,7 +60,7 @@ class FormWorkHistory extends Component {
 
 const mapStateToProps = state => {
   return {
-    workHistories: Object.values(state.cv["my0:hasWorkHistory"])
+    workHistories: state.cv["my0:hasWorkHistory"]
   };
 };
 
