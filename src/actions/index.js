@@ -36,7 +36,8 @@ import {
   UPDATE_ABOUT_CV,
   UPDATE_ABOUT_PERSON,
   UPDATE_TARGET,
-  UPDATE_SKILLS
+  UPDATE_SKILLS,
+  UPDATE_CV
 } from "./types";
 
 export const createOtherInfo = formValues => {
@@ -190,5 +191,13 @@ export const updateTarget = formValues => {
   return {
     type: UPDATE_TARGET,
     payload: formValues
+  }
+}
+
+export const updateCV = value => {
+  console.log('Testing');
+  return {
+    type: UPDATE_CV,
+    payload: value
   }
 }

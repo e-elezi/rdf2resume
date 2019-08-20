@@ -32,7 +32,8 @@ import {
   UPDATE_ABOUT_CV,
   UPDATE_ABOUT_PERSON,
   UPDATE_TARGET,
-  UPDATE_SKILLS
+  UPDATE_SKILLS,
+  UPDATE_CV
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -247,6 +248,8 @@ export default (state = INITIAL_STATE, action) => {
       let mytarget = { ...state["my0:target"] };
       mytarget["my0:" + action.payload.id] = action.payload.value;
       return { ...state, "my0:target":mytarget};
+    case UPDATE_CV:
+      return { ...action.payload};
     default:
       return state;
   }

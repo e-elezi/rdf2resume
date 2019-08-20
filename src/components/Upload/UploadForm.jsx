@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Combobox } from "react-widgets";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateCV } from "../../actions";
 
 class UploadForm extends Component {
   state = {
@@ -17,19 +19,37 @@ class UploadForm extends Component {
   onChange = e => {
     let file = e.target.files[0];
     var formData = new FormData();
-    formData.append("rdf_file", file);
-    formData.append("rdf_standard", this.state.rdfValueSelected);
-    axios.post("/upload", formData, {
+    var kot =  encodeURI("@prefix : <http://example.org/#> . :a :b :c .");
+    formData.append("file", file);
+    axios.post("/upload?standard="+ this.state.rdfValueSelected, formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
     }).then(resp=>{
       console.log(resp);
+      this.props.updateCV(resp.data);
     })  
     .catch(error=>{
       console.log(error);
     });
     console.log(formData);
+
+    // axios.post("http://rdf-translator.appspot.com/convert/n3/json-ld/content", {
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     "cache-control": "no-cache",
+    //     "Postman-Token": "0151ac71-70bc-4ea7-a638-0979f49711f6"
+    //   },
+    //   data: {
+    //     "content": "@prefix : <http://example.org/#> . :a :b :c ."
+    //   }
+    // }).then(resp=>{
+    //   console.log(resp);
+    // })  
+    // .catch(error=>{
+    //   console.log(error);
+    // });
+
   };
   render() {
     return (
@@ -44,6 +64,7 @@ class UploadForm extends Component {
           <div style={{ maxWidth: "250px" }}>
             <Combobox
               name="rdfStandard"
+              id="rdfStandard"
               placeholder="Select RDF Standard"
               data={this.state.rdfValues}
               value={this.state.rdfValueSelected}
@@ -62,4 +83,9 @@ class UploadForm extends Component {
   }
 }
 
-export default UploadForm;
+export default connect(
+  null,
+  {
+    updateCV
+  }
+)(UploadForm);

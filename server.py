@@ -1,5 +1,7 @@
 import os
+import requests
 import json
+import urllib.parse
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 from flask_cors import CORS, cross_origin
@@ -26,22 +28,19 @@ def submit_form():
 
 
 @app.route('/upload', methods=['POST'])
-# @cross_origin(support_credentials=True)
+@cross_origin()
 def process_upload_file():
-    #directory = os.path.join(app.config['UPLOAD_FOLDER'])
-    #if not os.path.exists(directory):
-    #    os.mkdir(directory)
-    f = request.files['rdf_file']
-    filename = f.filename
-    rdf_standard = request.files['rdf_standard']
-    #filename = filename
-    #exists = os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-    #path = os.path.join(app.config['UPLOAD_FOLDER'],filename)
-    #f.save(path)
-    #return path
-    print(f)
-    print(filename)
-    print(rdf_standard)
-
+    if request.method == 'POST':
+      f = request.files['file']
+      file_content = f.read()
+      url = "http://rdf-translator.appspot.com/convert/"+ request.args['standard'] +"/json-ld/content"
+      payload = "content=" +  urllib.parse.quote(file_content)
+      headers = {
+        'Content-Type': "application/x-www-form-urlencoded",
+        'cache-control': "no-cache"
+      }
+      response = requests.request("POST", url, data=payload, headers=headers)
+      return(response.text)
+    
 if __name__ == "__main__":
     app.run()
