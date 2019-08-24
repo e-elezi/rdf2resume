@@ -4,20 +4,23 @@ import { connect } from "react-redux";
 import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
 import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
 import AddButton from "../../core/AddButton";
+import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormWorkHistory extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    key: 0
   };
 
-  componentWillMount() {}
-
   handleClose = () => {
-    this.setState({ showModal: false });
+    let key = this.state.key;
+    this.setState({ showModal: false,
+    key: ++key });
   };
 
   handleShow = () => {
-    this.setState({ showModal: true });
+    let key = this.state.key;
+    this.setState({ showModal: true, key: ++key  });
   };
 
   render() {
@@ -35,7 +38,7 @@ class FormWorkHistory extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <WorkHistoryModal show={showModal} onHide={this.handleClose} />
+                <WorkHistoryModal key={this.state.key} show={showModal} onHide={this.handleClose} />
               </Col>
               <Col md={10} className="button-label">
                 <p>Add work history</p>
@@ -49,7 +52,7 @@ class FormWorkHistory extends Component {
         {this.props.workHistories.map((workHistory, index) => (
           <WorkHistoryView
             workHistory={workHistory}
-            id={index}
+            id={workHistory['@id']}
             key={index}
           />
         ))}
@@ -60,7 +63,7 @@ class FormWorkHistory extends Component {
 
 const mapStateToProps = state => {
   return {
-    workHistories: state.cv["my0:hasWorkHistory"]
+    workHistories: getDataArrayOfType(state.cv, 'my0:WorkHistory' )
   };
 };
 

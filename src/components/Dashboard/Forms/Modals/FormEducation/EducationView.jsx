@@ -9,18 +9,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeEducation } from "../../../../../actions";
 import EducationModal from "./EducationModal";
+import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class EducationView extends Component {
   state = {
-    editMode: false
+    editMode: false,
+    key: 0
   };
 
   handleCloseEdit = () => {
-    this.setState({ editMode: false });
+    let key = this.state.key
+    this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    this.setState({ editMode: true });
+    let key = this.state.key
+    this.setState({ editMode: true, key: ++key });
   };
 
   handleUpdateClick = () => {
@@ -42,12 +46,19 @@ class EducationView extends Component {
     } = this.props.educationObj;
 
     let {
+      "@id": organizationID,
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-      // "my0:organizationDescription" : organizationDescription,
-      // "my0:organizationPhoneNumber" : organizationPhoneNumber,
-    } = this.props.educationObj['my0:studiedIn'];
+    } = getDataOfId(this.props.cv, this.props.educationObj['my0:studiedIn']['@id']);
+
+    let {
+      "@id": addressId,
+      "my0:city" : city,
+      "my0:country" : country
+      // "my0:street" : street,
+      // "my0:postalCode" : postalCode,
+    } = getDataOfId(this.props.cv, organizationAddress['@id']);
 
 
     return (
@@ -95,9 +106,9 @@ class EducationView extends Component {
                 </a>{" "}
                 {` `}
                 {
-                  organizationAddress["my0:city"]
+                  city
                 } {` `}{" "}
-                {organizationAddress["my0:country"].value}
+                {country}
               </b>
             </Row>
             <Row
@@ -117,7 +128,11 @@ class EducationView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeEducation(this.props.id)}
+              onClick={() => this.props.removeEducation({
+                education:this.props.id,
+                organization: organizationID,
+                address: addressId
+              } )}
             />
           </Col>
         </Row>
@@ -126,13 +141,20 @@ class EducationView extends Component {
           isUpdate={true}
           id={this.props.id}
           onHide={this.handleCloseEdit}
+          key={this.state.key}
         />
       </React.Fragment>
     );
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    cv: state.cv
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removeEducation }
 )(EducationView);

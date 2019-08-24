@@ -5,18 +5,22 @@ import { removeOtherSkill } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import SkillModal from "./SkillModal";
+import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class SkillView extends Component {
   state = {
-    editMode: false
+    editMode: false,
+    key: 0
   };
 
   handleCloseEdit = () => {
-    this.setState({ editMode: false });
+    let key = this.state.key
+    this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    this.setState({ editMode: true });
+    let key = this.state.key
+    this.setState({ editMode: true, key: ++key });
   };
 
   handleUpdateClick = () => {
@@ -98,6 +102,7 @@ class SkillView extends Component {
           isUpdate={true}
           onHide={this.handleCloseEdit}
           skillObj={this.props.skillObj}
+          key={this.state.key}
         />
       </React.Fragment>
     );

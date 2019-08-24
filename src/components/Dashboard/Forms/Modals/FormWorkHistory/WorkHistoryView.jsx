@@ -9,18 +9,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeWorkHistory } from "../../../../../actions";
 import WorkHistoryModal from "./WorkHistoryModal";
+import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class WorkHistoryReview extends Component {
   state = {
-    editMode: false
+    editMode: false,
+    key: 0
   };
 
   handleCloseEdit = () => {
-    this.setState({ editMode: false });
+    let key = this.state.key
+    this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    this.setState({ editMode: true });
+    let key = this.state.key
+    this.setState({ editMode: true, key: ++key });
   };
 
   handleUpdateClick = () => {
@@ -41,13 +45,20 @@ class WorkHistoryReview extends Component {
     } = this.props.workHistory;
 
     let {
+      "@id": organizationID,
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-      // "my0:organizationDescription" : organizationDescription,
-      // "my0:organizationPhoneNumber" : organizationPhoneNumber,
-      // "my0:companyIndustry" : companyIndustry,
-    } = this.props.workHistory['my0:employedIn'];
+    } = getDataOfId(this.props.cv, this.props.workHistory['my0:employedIn']['@id']);
+
+    let {
+      "@id": addressId,
+      "my0:city" : city,
+      "my0:country" : country
+      // "my0:street" : street,
+      // "my0:postalCode" : postalCode,
+    } = getDataOfId(this.props.cv, organizationAddress['@id']);
+
 
     return (
       <React.Fragment>
@@ -93,8 +104,8 @@ class WorkHistoryReview extends Component {
                   {organizationName}
                 </a>{" "}
                 {` `}
-                {organizationAddress["my0:city"]} {` `}{" "}
-                {organizationAddress["my0:country"].value}
+                {city} {` `}{" "}
+                {country}
               </b>
             </Row>
             <Row
@@ -114,7 +125,13 @@ class WorkHistoryReview extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeWorkHistory(this.props.id)}
+              onClick={() => this.props.removeWorkHistory(
+                {
+                  workHistory:this.props.id,
+                  organization: organizationID,
+                  address: addressId
+                }
+              )}
             />
           </Col>
         </Row>
@@ -123,13 +140,20 @@ class WorkHistoryReview extends Component {
           id={this.props.id}
           isUpdate={true}
           onHide={this.handleCloseEdit}
+          key={this.state.key}
         />
       </React.Fragment>
     );
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    cv: state.cv
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removeWorkHistory }
 )(WorkHistoryReview);

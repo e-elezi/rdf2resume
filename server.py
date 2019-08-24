@@ -26,7 +26,6 @@ def submit_form():
         json.dump(content, outfile, ensure_ascii=False, indent=2)
     return jsonify({'success': ['Yes']})
 
-
 @app.route('/upload', methods=['POST'])
 @cross_origin()
 def process_upload_file():

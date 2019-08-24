@@ -4,20 +4,23 @@ import { connect } from "react-redux";
 import CourseModal from "./Modals/FormCourse/CourseModal";
 import CourseView from "./Modals/FormCourse/CourseView";
 import AddButton from "../../core/AddButton";
+import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormCourse extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    key: 0
   };
 
-  componentWillMount() {}
-
   handleClose = () => {
-    this.setState({ showModal: false });
+    let key = this.state.key;
+    this.setState({ showModal: false,
+    key: ++key });
   };
 
   handleShow = () => {
-    this.setState({ showModal: true });
+    let key = this.state.key;
+    this.setState({ showModal: true, key: ++key  });
   };
 
   render() {
@@ -35,7 +38,7 @@ class FormCourse extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <CourseModal show={showModal} onHide={this.handleClose} />
+                <CourseModal show={showModal} onHide={this.handleClose} key={this.state.key} />
               </Col>
               <Col md={10} className="button-label">
                 <p>Add course / training</p>
@@ -49,7 +52,7 @@ class FormCourse extends Component {
         {this.props.course.map((co, index) => (
           <CourseView
             courseObj={co}
-            id={index}
+            id={co['@id']}
             key={index}
           />
         ))}
@@ -60,7 +63,7 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: state.cv["my0:hasCourse"]
+    course: getDataArrayOfType(state.cv, 'my0:Course' )
   };
 };
 

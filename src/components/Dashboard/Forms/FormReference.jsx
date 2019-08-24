@@ -4,24 +4,29 @@ import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import ReferenceCard from "./Modals/FormReference/ReferenceCard";
 import ReferenceModal from "./Modals/FormReference/ReferenceModal";
+import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormReference extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    key: 0
   };
 
   handleClose = () => {
-    this.setState({ showModal: false });
+    let key = this.state.key;
+    this.setState({ showModal: false,
+    key: ++key });
   };
 
   handleShow = () => {
-    this.setState({ showModal: true });
+    let key = this.state.key;
+    this.setState({ showModal: true, key: ++key  });
   };
 
   renderNoTextPersonal = () => {
     let noText = "No references have been added until now.";
     this.props.references.map(reference => {
-      if (reference.type === "Personal") {
+      if (reference["my0:referenceType"] === "Personal") {
         noText = "";
       }
       return '';
@@ -34,7 +39,7 @@ class FormReference extends Component {
   renderNoTextProfessional = () => {
     let noText = "No references have been added until now.";
     this.props.references.map(reference => {
-      if (reference.type === "Professional") {
+      if (reference["my0:referenceType"] === "Professional") {
         noText = "";
       }
       return '';
@@ -62,7 +67,7 @@ class FormReference extends Component {
               </Col>
               <Col md={10} className="button-label">
                 <p>Add a reference</p>
-                <ReferenceModal show={showModal} onHide={this.handleClose} />
+                <ReferenceModal show={showModal} onHide={this.handleClose} key={this.state.key} />
               </Col>
             </Row>
           </Col>
@@ -74,8 +79,8 @@ class FormReference extends Component {
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={index}
-                  id={index}
+                  key={reference['@id']}
+                  id={reference['@id']}
                 />
               );
             return "";
@@ -93,8 +98,8 @@ class FormReference extends Component {
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={index}
-                  id={index}
+                  key={reference['@id']}
+                  id={reference['@id']}
                 />
               );
             return "";
@@ -107,7 +112,7 @@ class FormReference extends Component {
 
 const mapStateToProps = state => {
   return {
-    references: state.cv["my0:hasReference"]
+    references: getDataArrayOfType(state.cv, 'my0:Reference' )
   };
 };
 

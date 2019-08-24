@@ -5,10 +5,13 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherSkill, updateOtherSkill } from "../../../../../actions";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
+import { generateUUID } from "../../../../../reducers/cvReducer";
+import { getDataOfId } from '../../../../../utilities/utilityFunctions';
 
 class SkillModal extends Component {
   state = {
     otherSkill: {
+      "@id": "",
       "@type": "my0:Skill",
       "my0:skillName": "",
       "my0:skillDescription": "",
@@ -29,7 +32,8 @@ class SkillModal extends Component {
       let otherSkill = { ...this.state.otherSkill };
       otherSkill["my0:skillName"] = inputRef["my0:skillName"];
       otherSkill["my0:skillDescription"] = inputRef["my0:skillDescription"];
-      otherSkill["my0:id"] = inputRef["my0:id"];
+      otherSkill["@id"] = inputRef["@id"];
+      otherSkill["@type"] = "my0:Skill";
       otherSkill["my0:skillLevel"] = inputRef["my0:skillLevel"];
       otherSkill["my0:skillLastUsed"] = inputRef["my0:skillLastUsed"];
       otherSkill["my0:skillYearsExperience"] =
@@ -43,18 +47,18 @@ class SkillModal extends Component {
   };
 
   clearForm = () => {
-    const hist = {
-      "@type": "my0:Skill",
-      "my0:skillName": "",
-      "my0:skillDescription": "",
-      "my0:skillLevel": "",
-      "my0:skillLastUsed": "",
-      "my0:skillYearsExperience": "",
-      "my0:skillHasCertificate": true
-    };
     if (!this.props.isUpdate) {
       this.setState({
-        otherSkill: hist
+        otherSkill: {
+          "@id": "",
+          "@type": "my0:Skill",
+          "my0:skillName": "",
+          "my0:skillDescription": "",
+          "my0:skillLevel": "",
+          "my0:skillLastUsed": "",
+          "my0:skillYearsExperience": "",
+          "my0:skillHasCertificate": true
+        }
       });
     } else {
       this.setInitialValues();
@@ -81,15 +85,13 @@ class SkillModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherSkill({
-      value: {
-        ...this.state.otherSkill
-      }
+        ...this.state.otherSkill,
+        "@id": "_:" + generateUUID()
     });
   };
 
   handleUpdate = (e, index) => {
-    e.preventDefault();
-    this.props.updateOtherSkill( {skill: this.state.otherSkill, i: index});
+    this.props.updateOtherSkill( this.state.otherSkill );
   };
 
   handleRenderingSubmitButton = () => {
@@ -208,7 +210,7 @@ class SkillModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv["my0:hasSkill"][ownProps.id]
+    initialValues: getDataOfId(state.cv, ownProps.id)
   };
 };
 

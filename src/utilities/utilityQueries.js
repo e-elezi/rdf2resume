@@ -4,50 +4,53 @@
 /*******************************************************************************************************************/
 /*******************************************************************************************************************/
 
+const prefixes = "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n ";
+
 export const fetchAllCountries = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?isoCountry\n?countryObject\n?nameCountry\nWHERE {\n?isoCountry a country:ISO3166DefinedCountry;\n country:referencesCountry ?countryObject.\n?countryObject country:nameEnglish ?nameCountry.\n}";
+  return prefixes + "SELECT DISTINCT\n?isoCountry\n?objectURI\n?label\nWHERE {\n?isoCountry a country:ISO3166DefinedCountry;\n country:referencesCountry ?objectURI.\n?objectURI country:nameEnglish ?label.\n}";
 };
 
 export const fetchAllGenders = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?genderClass\n?genderLabel\nWHERE {\n?genderClass a mybase0:SexProperty;\nrdfs:label ?genderLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\nWHERE {\n?objectURI a mybase0:SexProperty;\nrdfs:label ?label.\n}";
 };
 
 export const fetchAllSelfAssessmentProperties = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?SelfAssessmentPropertyClass\n?SelfAssessmentPropertyLabel\n?SelfAssessmentPropertyComment\nWHERE {\n ?SelfAssessmentPropertyClass a mybase0:SelfAssessmentProperty  ;\n rdfs:label ?SelfAssessmentPropertyLabel;\n rdfs:comment ?SelfAssessmentPropertyComment\n }";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\n?comment\nWHERE {\n ?objectURI a mybase0:SelfAssessmentProperty  ;\n rdfs:label ?label;\n rdfs:comment ?comment\n }";
 };
 
 export const fetchAllLanguageSkillSelfAssessmentProperties = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?LanguageSkillSelfAssessmentPropertyClass\n?LanguageSkillSelfAssessmentPropertyLabel\n?LanguageSkillSelfAssessmentPropertyComment\nWHERE {\n?LanguageSkillSelfAssessmentPropertyClass a mybase0:LanguageSkillSelfAssessmentProperty  ;\nrdfs:label ?LanguageSkillSelfAssessmentPropertyLabel;\nrdfs:comment ?LanguageSkillSelfAssessmentPropertyComment\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\n?comment\nWHERE {\n?objectURI a mybase0:LanguageSkillSelfAssessmentProperty  ;\nrdfs:label ?label;\nrdfs:comment ?comment\n}";
 };
 
 export const fetchAllTitleProperties = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?TitlePropertyClass\n?TitlePropertyLabel\nWHERE {\n?TitlePropertyClass a mybase0:TitleProperty  ;\nrdfs:label ?TitlePropertyLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\nWHERE {\n?objectURI a mybase0:TitleProperty  ;\nrdfs:label ?label.\n}";
 };
 
 export const fetchAllCompanySizes = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?CompanySizeClass\n?CompanySizeLabel\nWHERE {\n?CompanySizeClass a mybase0:CompanySize  ;\nrdfs:label ?CompanySizeLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\nWHERE {\n?objectURI a mybase0:CompanySize  ;\nrdfs:label ?label.\n}";
 };
 
 export const fetchAllCVJobModes = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?CVJobModeClass\n?CVJobModeLabel\n WHERE {\n?CVJobModeClass a mybase0:CVJobMode;\nrdfs:label ?CVJobModeLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\n WHERE {\n?objectURI a mybase0:CVJobMode;\nrdfs:label ?label.\n}";
 };
 
 export const fetchAllCVCareerLevels = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?CVCareerLevelClass\n?CVCareerLevelLabel\nWHERE {\n?CVCareerLevelClass a mybase0:CVCareerLevel  ;\nrdfs:label ?CVCareerLevelLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\nWHERE {\n?objectURI a mybase0:CVCareerLevel  ;\nrdfs:label ?label.\n}";
 };
 
 export const fetchAllEduDegrees = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?EduDegreeClass\n?EduDegreeLabel\nWHERE {\n?EduDegreeClass a mybase0:EduDegree  ;\nrdfs:label ?EduDegreeLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\nWHERE {\n?objectURI a mybase0:EduDegree  ;\nrdfs:label ?label.\n}";
 };
 
 export const fetchAllOtherCVInfoTypes = () => {
-  return "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n prefix xsd: <https://www.w3.org/2001/XMLSchema#>\n prefix owl: <http://www.w3.org/2002/07/owl#>\n prefix ns0: <http://protege.stanford.edu/system#>\n prefix country: <http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#>\n prefix dc: <http://purl.org/dc/terms/>\n prefix dbo: <http://dbpedia.org/resource/classes#>\n prefix esco: <http://data.europa.eu/esco/model>\n  prefix my0: <http://example.com/rdf2resume_ontology.rdf#>\n prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#>\n SELECT DISTINCT\n?OtherCVInfoTypeClass\n?OtherCVInfoTypeLabel\nWHERE {\n?OtherCVInfoTypeClass a mybase0:OtherCVInfoType  ;\n rdfs:label ?OtherCVInfoTypeLabel.\n}";
+  return prefixes + "SELECT DISTINCT\n?objectURI\n?label\nWHERE {\n?objectURI a mybase0:OtherCVInfoType  ;\n rdfs:label ?label.\n}";
 };
 
 export const retrieveCountryValues = countriesObject => {
   let countryNames = [];
   countriesObject.map(obj => {
-    countryNames.push( { "@type": obj.countryObject.value, value: obj.nameCountry.value });
+    countryNames.push( { "@type": obj.objectURI.value, value: obj.label.value });
+    //countryNames.push( obj.label.value);
     return "";
   });
   return countryNames;
@@ -56,8 +59,7 @@ export const retrieveCountryValues = countriesObject => {
 export const retrieveGenderValues = gendersObject => {
   let genderNames = [];
   gendersObject.map(obj => {
-    // genderNames.push(obj.genderLabel.value);
-    genderNames.push({ "@type": obj.genderClass.value, value: obj.genderLabel.value })
+    genderNames.push({ "@type": obj.objectURI.value, value: obj.label.value })
     return "";
   });
   return genderNames;
@@ -66,8 +68,7 @@ export const retrieveGenderValues = gendersObject => {
 export const retrieveTitleValues = titlesObject => {
   let titleNames = [];
   titlesObject.map(obj => {
-    // titleNames.push(obj.TitlePropertyLabel.value);
-    titleNames.push({ "@type": obj.TitlePropertyClass.value, value: obj.TitlePropertyLabel.value });
+    titleNames.push({ "@type": obj.objectURI.value, value: obj.label.value });
     return "";
   });
   return titleNames;
@@ -76,8 +77,7 @@ export const retrieveTitleValues = titlesObject => {
 export const retrieveJobModes = modesObject => {
   let jobModeValues = [];
   modesObject.map(obj => {
-    // jobModeValues.push(obj.CVJobModeLabel.value);
-    jobModeValues.push({ "@type": obj.CVJobModeClass.value, value: obj.CVJobModeLabel.value });
+    jobModeValues.push({ "@type": obj.objectURI.value, value: obj.label.value });
     return "";
   });
   return jobModeValues;
@@ -86,8 +86,7 @@ export const retrieveJobModes = modesObject => {
 export const retrieveCareerLevels = careerLevelsObject => {
   let careerValues = [];
   careerLevelsObject.map(obj => {
-    // careerValues.push(obj.CVCareerLevelLabel.value);
-    careerValues.push({ "@type": obj.CVCareerLevelClass.value, value: obj.CVCareerLevelLabel.value });
+    careerValues.push({ "@type": obj.objectURI.value, value: obj.label.value });
     return "";
   });
   return careerValues;
@@ -96,8 +95,7 @@ export const retrieveCareerLevels = careerLevelsObject => {
 export const retrieveCompanySizes = companySizesObj => {
   let companySizesValue = [];
   companySizesObj.map(obj => {
-    // companySizesValue.push(obj.CompanySizeLabel.value);
-    companySizesValue.push({ "@type": obj.CompanySizeClass.value, value: obj.CompanySizeLabel.value });
+    companySizesValue.push({ "@type": obj.objectURI.value, value: obj.label.value });
     return "";
   });
   return companySizesValue;
@@ -106,10 +104,7 @@ export const retrieveCompanySizes = companySizesObj => {
 export const retrieveLngAssessment = lngAssessmentObj => {
   let lngAssessmentValues = [];
   lngAssessmentObj.map(obj => {
-    // lngAssessmentValues.push(
-    //   obj.LanguageSkillSelfAssessmentPropertyLabel.value
-    // );
-    lngAssessmentValues.push({ "@type": obj.LanguageSkillSelfAssessmentPropertyClass.value, value: obj.LanguageSkillSelfAssessmentPropertyLabel.value })
+    lngAssessmentValues.push({ "@type": obj.objectURI.value, value: obj.label.value })
     return "";
   });
   return lngAssessmentValues;
@@ -118,8 +113,7 @@ export const retrieveLngAssessment = lngAssessmentObj => {
 export const retrieveAssessment = AssessmentObj => {
   let assessmentValues = [];
   AssessmentObj.map(obj => {
-    //assessmentValues.push(obj.SelfAssessmentPropertyLabel.value);
-    assessmentValues.push({ "@type": obj.SelfAssessmentPropertyClass.value, value: obj.SelfAssessmentPropertyLabel.value })
+    assessmentValues.push({ "@type": obj.objectURI.value, value: obj.label.value })
     return "";
   });
   return assessmentValues;
@@ -128,8 +122,7 @@ export const retrieveAssessment = AssessmentObj => {
 export const retrieveDegreeValues = DegreesObj => {
   let degreesValues = [];
   DegreesObj.map(obj => {
-    //degreesValues.push(obj.EduDegreeLabel.value);
-    degreesValues.push({ "@type": obj.EduDegreeClass.value, value: obj.EduDegreeLabel.value })
+    degreesValues.push({ "@type": obj.objectURI.value, value: obj.label.value })
     return "";
   });
   return degreesValues;
@@ -138,8 +131,7 @@ export const retrieveDegreeValues = DegreesObj => {
 export const retrieveOtherTypes = OthersObjs => {
   let typesNames = [];
   OthersObjs.map(obj => {
-    // typesNames.push(obj.OtherCVInfoTypeLabel.value);
-    typesNames.push({ "@type": obj.OtherCVInfoTypeClass.value, value: obj.OtherCVInfoTypeLabel.value });
+    typesNames.push({ "@type": obj.objectURI.value, value: obj.label.value });
     return "";
   });
   return typesNames;

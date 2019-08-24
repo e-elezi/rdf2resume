@@ -8,15 +8,18 @@ import OtherInfoModal from "./OtherInfoModal";
 
 class OtherInfoView extends Component {
   state = {
-    editMode: false
+    editMode: false,
+    key: 0
   };
 
   handleCloseEdit = () => {
-    this.setState({ editMode: false });
+    let key = this.state.key
+    this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    this.setState({ editMode: true });
+    let key = this.state.key
+    this.setState({ editMode: true, key: ++key });
   };
 
   handleUpdateClick = () => {
@@ -38,7 +41,7 @@ class OtherInfoView extends Component {
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              <u>Category:</u> {otherInfoObject["my0:otherInfoType"].value}
+              <u>Category:</u> {otherInfoObject["my0:otherInfoType"]}
             </h4>
           </Col>
           <Col md={4}>
@@ -73,6 +76,7 @@ class OtherInfoView extends Component {
           isUpdate={true}
           onHide={this.handleCloseEdit}
           otherInfoObject={this.props.otherInfoObject}
+          key={this.state.key}
         />
       </React.Fragment>
     );

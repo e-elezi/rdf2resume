@@ -18,6 +18,9 @@ import {
   CREATE_OTHER_INFO,
   UPDATE_OTHER_INFO,
   REMOVE_OTHER_INFO,
+  CREATE_IM,
+  UPDATE_IM,
+  REMOVE_IM,
   CREATE_REFERENCE,
   UPDATE_REFERENCE,
   REMOVE_REFERENCE,
@@ -57,6 +60,27 @@ export const updateOtherInfo = formValues => {
 export const removeOtherInfo = index => {
   return {
     type: REMOVE_OTHER_INFO,
+    payload: index
+  };
+};
+
+export const createIM = formValues => {
+  return {
+    type: CREATE_IM,
+    payload: formValues
+  };
+};
+
+export const updateIM = formValues => {
+  return {
+    type: UPDATE_IM,
+    payload: formValues
+  };
+};
+
+export const removeIM = index => {
+  return {
+    type: REMOVE_IM,
     payload: index
   };
 };
@@ -195,7 +219,6 @@ export const updateTarget = formValues => {
 }
 
 export const updateCV = value => {
-  console.log('Testing');
   return {
     type: UPDATE_CV,
     payload: value

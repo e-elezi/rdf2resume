@@ -4,20 +4,23 @@ import { connect } from "react-redux";
 import EducationModal from "./Modals/FormEducation/EducationModal";
 import EducationView from "./Modals/FormEducation/EducationView";
 import AddButton from "../../core/AddButton";
+import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormEducation extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    key: 0
   };
 
-  componentWillMount() {}
-
   handleClose = () => {
-    this.setState({ showModal: false });
+    let key = this.state.key;
+    this.setState({ showModal: false,
+    key: ++key });
   };
 
   handleShow = () => {
-    this.setState({ showModal: true });
+    let key = this.state.key;
+    this.setState({ showModal: true, key: ++key  });
   };
 
   render() {
@@ -49,7 +52,7 @@ class FormEducation extends Component {
         {this.props.education.map((edu, index) => (
           <EducationView
             educationObj={edu}
-            id={index}
+            id={edu['@id']}
             key={index}
           />
         ))}
@@ -60,7 +63,7 @@ class FormEducation extends Component {
 
 const mapStateToProps = state => {
   return {
-    education: state.cv["my0:hasEducation"]
+    education: getDataArrayOfType(state.cv, 'my0:Education' )
   };
 };
 

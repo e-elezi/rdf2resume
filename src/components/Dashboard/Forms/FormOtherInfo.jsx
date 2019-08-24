@@ -4,19 +4,23 @@ import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import OtherInfoView from "./Modals/FormOtherInfo/OtherInfoView";
 import OtherInfoModal from "./Modals/FormOtherInfo/OtherInfoModal";
-
+import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormOtherInfo extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    key: 0
   };
 
   handleClose = () => {
-    this.setState({ showModal: false });
+    let key = this.state.key;
+    this.setState({ showModal: false,
+    key: ++key });
   };
 
   handleShow = () => {
-    this.setState({ showModal: true });
+    let key = this.state.key;
+    this.setState({ showModal: true, key: ++key  });
   };
 
   render() {
@@ -35,6 +39,7 @@ class FormOtherInfo extends Component {
                   handleClick={this.handleShow}
                 />
                 <OtherInfoModal
+                  key={this.state.key}
                   show={showModal}
                   onHide={this.handleClose}
                 />
@@ -51,7 +56,7 @@ class FormOtherInfo extends Component {
         {this.props.otherInfos.map((otherinfo, index) => (
           <OtherInfoView
             otherInfoObject={otherinfo}
-            id={index}
+            id={otherinfo['@id']}
             key={index}
           />
         ))}
@@ -62,7 +67,7 @@ class FormOtherInfo extends Component {
 
 const mapStateToProps = state => {
   return {
-    otherInfos: state.cv["my0:hasOtherInfo"]
+    otherInfos: getDataArrayOfType(state.cv, 'my0:OtherInfo' )
   };
 };
 

@@ -12,6 +12,8 @@ import {
   retrieveCountryValues,
   retrieveTitleValues
 } from "../../../../../utilities/utilityQueries";
+import { generateUUID } from "../../../../../reducers/cvReducer";
+import { getDataOfId } from '../../../../../utilities/utilityFunctions';
 
 class ReferenceModal extends Component {
   state = {
@@ -19,30 +21,52 @@ class ReferenceModal extends Component {
       "@type": "my0:Reference",
       "my0:referenceType": "",
       "my0:referenceBy": {
-        "@type": "my0:Person",
-        "my0:title": "",
-        "my0:firstName" : "",
-        "my0:lastName" : "",
-        "my0:address" : {
-          "@type": "my0:Address",
-          "my0:city" : "",
-          "my0:country" : "",
-          "my0:street" : "",
-          "my0:postalCode" : ""
-        },
-        "my0:hasTelephoneNumber" : "",
-        "my0:email" : "",
-        "my0:currentJob": {
-          "@type": "my0:WorkHistory",
-          "my0:jobTitle": "",
-          "my0:employedIn": {
-            "@type": "my0:Company",
-            "my0:organizationName": ""
-          }
-        }
+        "@id": ""
       }
     },
-    typeValues: ["Personal", "Professional"]
+    person: {
+      "@id": "",
+      "@type": "my0:Person",
+      "my0:title": "",
+      "my0:firstName" : "",
+      "my0:lastName" : "",
+      "my0:address" : {
+        "@id": "",
+        },
+      "my0:hasTelephoneNumber" : "",
+      "my0:email" : "",
+      "my0:currentJob": {
+        "@id": "",
+      }
+    },
+    organization: {
+      "@id": "",
+      "@type": "my0:Company",
+      "my0:organizationName": ""
+    },
+    address: {
+      "@id": "",
+      "@type": "my0:Address",
+      "my0:city" : "",
+      "my0:country" : "",
+      "my0:street" : "",
+      "my0:postalCode" : ""
+    },
+    workHistory: {
+      "@id": "",
+      "@type": "my0:WorkHistory",
+      "my0:jobTitle": "",
+      "my0:employedIn": {
+        "@id": "",
+      }
+    },
+    typeValues: [ {
+      "@type": "Personal",
+      "value": "Personal"
+      }, {
+        "@type": "Professional",
+        "value": "Professional"
+      }]
   };
 
   componentWillMount() {
@@ -55,117 +79,162 @@ class ReferenceModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.initialValues;
       let reference = { ...this.state.reference };
-      reference.id = inputRef.id;
+      reference["@id"] = inputRef["@id"];
       reference["my0:referenceBy"] = inputRef["my0:referenceBy"];
       reference["my0:referenceType"] = inputRef["my0:referenceType"];
       this.setState({
         reference
       });
+      let personref = getDataOfId(this.props.cv, reference["my0:referenceBy"]['@id']);
+      let person = { ...this.state.person };
+      person = personref; 
+      this.setState({
+        person
+      });
+      let addressref = getDataOfId(this.props.cv, person["my0:address"]['@id']);
+      let address = { ...this.state.address };
+      address = addressref; 
+      this.setState({
+        address
+      });
+      let workref = getDataOfId(this.props.cv, person["my0:currentJob"]['@id']);
+      let workHistory = { ...this.state.workHistory };
+      workHistory = workref; 
+      this.setState({
+        workHistory
+      });
+      let organization = { ...this.state.organization };
+      let orgref = getDataOfId(this.props.cv, workHistory['my0:employedIn']['@id']);
+      organization = orgref;
+      this.setState({
+        organization
+      });
   };
 }
 
   clearForm = () => {
-    const hist = {
-      "@type": "my0:Reference",
-      "my0:referenceType": "",
-      "my0:referenceBy": {
-        "@type": "my0:Person",
-        "my0:title": "",
-        "my0:firstName" : "",
-        "my0:lastName" : "",
-        "my0:address" : {
+    if (!this.props.isUpdate) {
+      this.setState({
+        reference: {
+          "@type": "my0:Reference",
+          "my0:referenceType": "",
+          "my0:referenceBy": {
+            "@id": ""
+          }
+        },
+        person: {
+          "@id": "",
+          "@type": "my0:Person",
+          "my0:title": "",
+          "my0:firstName" : "",
+          "my0:lastName" : "",
+          "my0:address" : {
+            "@id": "",
+            },
+          "my0:hasTelephoneNumber" : "",
+          "my0:email" : "",
+          "my0:currentJob": {
+            "@id": "",
+          }
+        },
+        organization: {
+          "@id": "",
+          "@type": "my0:Company",
+          "my0:organizationName": ""
+        },
+        address: {
+          "@id": "",
           "@type": "my0:Address",
           "my0:city" : "",
           "my0:country" : "",
           "my0:street" : "",
           "my0:postalCode" : ""
         },
-        "my0:hasTelephoneNumber" : "",
-        "my0:email" : "",
-        "my0:currentJob": {
+        workHistory: {
+          "@id": "",
           "@type": "my0:WorkHistory",
           "my0:jobTitle": "",
           "my0:employedIn": {
-            "@type": "my0:Company",
-            "my0:organizationName": ""
+            "@id": "",
           }
         }
-      }
-    };
-    if (!this.props.isUpdate) {
-      this.setState({
-        reference: hist
       });
     } else {
       this.setInitialValues();
     }
   };
 
-  handleSelectChange = (value, id) => {
-    let reference = { ...this.state.reference };
-    if (id.indexOf("address") >= 0) {
-      let sublabel = id.substr(8);
-      let mybj = reference['my0:referenceBy']["my0:address"];
-      mybj[sublabel] = value;
-      reference['my0:referenceBy']["my0:address"] = mybj;
-      this.setState({
-        reference
-      });
-    } else {
-      reference['my0:referenceBy'][id] = value;
-      this.setState({ reference });
-    }
-  };
-
-  handleOneSelectChange = (value, id) => {
-    let reference = { ...this.state.reference };
-    reference[id] = value;
-    this.setState({ reference });
+  handleSelectChange = (value, id, name) => {
+    let obj = {...this.state[name]};
+    let label = id;
+    obj[label] = value['@type'];
+    this.setState({
+      [name]: obj 
+    })
   };
 
   handleInputChange = e => {
+    let obj = {...this.state[e.target.name]};
     let label = e.target.id;
-    let reference = { ...this.state.reference };
-    if (label.indexOf("employedIn")>=0) {
-      let sublabel = label.substr(11);
-      let mybj = reference['my0:referenceBy']['my0:currentJob']["my0:employedIn"];
-      mybj[sublabel] = e.target.value;
-      reference['my0:referenceBy']['my0:currentJob']["my0:employedIn"] = mybj;
-      this.setState({
-        reference
-      });
-    } else if (label.indexOf("currentJob") >= 0) {
-      let sublabel = label.substr(11);
-      let mybj = reference['my0:referenceBy']["my0:currentJob"];
-      mybj[sublabel] = e.target.value;
-      reference['my0:referenceBy']["my0:currentJob"] = mybj;
-      this.setState({
-        reference
-      });
-    } else if (label.indexOf("address") >= 0) {
-      let sublabel = label.substr(8);
-      let mybj = reference['my0:referenceBy']["my0:address"];
-      mybj[sublabel] = e.target.value;
-      reference['my0:referenceBy']["my0:address"] = mybj;
-      this.setState({
-        reference
-      });
-    } else {
-      reference['my0:referenceBy'][label] = e.target.value;
-      this.setState({
-        reference
-      });
-    }
+    obj[label] = e.target.value;
+    let kot = e.target.name;
+    this.setState({
+      [kot]: obj
+    })
   };
 
   handleSave = () => {
+    var referenceID = generateUUID();
+    var personID = generateUUID();
+    var personAddressID = generateUUID();
+    var organizationID = generateUUID();
+    var workHistoryID = generateUUID();
     this.props.createReference(
-      this.state.reference
+      {
+        reference: {
+         ...this.state.reference,
+         "@id": "_:" + referenceID,
+         "my0:referenceBy": {
+           "@id": "_:" + personID
+         }
+        },
+         person: {
+          ...this.state.person,
+          "@id": "_:" + personID,
+          "my0:address": {
+            "@id": "_:" + personAddressID
+          },
+          "my0:currentJob": {
+            "@id": "_:" + workHistoryID
+          }
+         },
+         address: {
+          ...this.state.address,
+          "@id": "_:" + personAddressID
+         },
+         workHistory: {
+          ...this.state.workHistory,
+          "@id": "_:" + workHistoryID,
+          "my0:employedIn": {
+            "@id": "_:" + organizationID
+          }
+          },
+        organization: {
+            ...this.state.organization,
+            "@id": "_:" + organizationID
+          }
+        }
     );
   };
 
   handleUpdate = () => {
-    this.props.updateReference( { reference:this.state.reference, i:this.props.id});
+    this.props.updateReference( { 
+      reference: this.state.reference,
+      person: this.state.person,
+      address: this.state.address,
+      workHistory: this.state.workHistory,
+      organization: this.state.organization
+     } );
   };
 
   handleRenderingSubmitButton = () => {
@@ -189,17 +258,17 @@ class ReferenceModal extends Component {
       "my0:title" : title,
       "my0:firstName" : firstName,
       "my0:lastName" : lastName,
-      "my0:address" : address,
       "my0:email" : email,
       "my0:hasTelephoneNumber" : hasTelephoneNumber,
-   } = this.state.reference['my0:referenceBy'];
+   } = this.state.person;
+
+   let address = this.state.address;
 
    let { 
       "my0:jobTitle" : jobTitle,
-  } = this.state.reference['my0:referenceBy']['my0:currentJob'];
+    } = this.state.workHistory;
 
-
-    let {  "my0:organizationName" : organizationName } = this.state.reference['my0:referenceBy']['my0:currentJob']['my0:employedIn'];
+    let {  "my0:organizationName" : organizationName } = this.state.organization;
 
     const { onHide } = this.props;
     return (
@@ -228,12 +297,14 @@ class ReferenceModal extends Component {
                   <Combobox
                     name="type"
                     placeholder="Select type"
+                    textField="value"
+                    valueField="@type"
                     data={this.state.typeValues}
                     value={this.state.reference['my0:referenceType']}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
-                    onChange={value => this.handleOneSelectChange(value, "my0:referenceType")}
+                    onChange={value => this.handleSelectChange(value, "my0:referenceType", "reference")}
                   />
                 </Row>
               </Col>
@@ -263,13 +334,14 @@ class ReferenceModal extends Component {
                   caseSensitive={false}
                   minLength={3}
                   filter="contains"
-                  onChange={value => this.handleSelectChange(value, "my0:title")}
+                  onChange={value => this.handleSelectChange(value, "my0:title", "person")}
                 />
               </Row>
             </Col>
             <Col md={8}>
               <CustomInput
                 id="my0:firstName"
+                name="person"
                 label="First name"
                 type="text"
                 value={firstName}
@@ -278,6 +350,7 @@ class ReferenceModal extends Component {
               <CustomInput
                 id="my0:lastName"
                 label="Last name"
+                name="person"
                 type="text"
                 value={lastName}
                 handleChange={this.handleInputChange}
@@ -287,7 +360,8 @@ class ReferenceModal extends Component {
           <Row>
             <Col md={6}>
               <CustomInput
-                id="currentJob.my0:jobTitle"
+                id="my0:jobTitle"
+                name="workHistory"
                 label="Job Title"
                 type="text"
                 value={jobTitle}
@@ -296,7 +370,8 @@ class ReferenceModal extends Component {
             </Col>
             <Col md={6}>
               <CustomInput
-                id="employedIn.my0:organizationName"
+                id="my0:organizationName"
+                name="organization"
                 label="Organization Name"
                 type="text"
                 value={organizationName}
@@ -306,7 +381,8 @@ class ReferenceModal extends Component {
           </Row>
           <div>
             <CustomInput
-              id="address.my0:street"
+              id="my0:street"
+              name="address"
               label="Street name + number"
               type="text"
               value={address["my0:street"]}
@@ -315,8 +391,9 @@ class ReferenceModal extends Component {
             <Row>
               <Col md={6}>
                 <CustomInput
-                  id="address.my0:postalCode"
+                  id="my0:postalCode"
                   label="Postal Code"
+                  name="address"
                   type="text"
                   value={address["my0:postalCode"]}
                   handleChange={this.handleInputChange}
@@ -324,7 +401,8 @@ class ReferenceModal extends Component {
               </Col>
               <Col md={6}>
                 <CustomInput
-                  id="address.my0:city"
+                  id="my0:city"
+                  name="address"
                   label="City"
                   type="text"
                   value={address["my0:city"]}
@@ -342,7 +420,7 @@ class ReferenceModal extends Component {
             >
               <label className="label-rw">Country</label>
               <Combobox
-                name="address.my0:country"
+                name="my0:country"
                 placeholder="Select country"
                 data={this.props.countries}
                 textField="value"
@@ -352,13 +430,14 @@ class ReferenceModal extends Component {
                 minLength={3}
                 filter="contains"
                 onChange={value =>
-                  this.handleSelectChange(value, "address.my0:country")
+                  this.handleSelectChange(value, "my0:country", "address")
                 }
               />
             </Row>
           </div>
           <CustomInput
             id="my0:hasTelephoneNumber"
+            name="person"
             label="Telephone Number"
             type="text"
             value={hasTelephoneNumber}
@@ -367,6 +446,7 @@ class ReferenceModal extends Component {
           <CustomInput
             id="my0:email"
             label="E-mail"
+            name="person"
             type="email"
             value={email}
             handleChange={this.handleInputChange}
@@ -388,7 +468,8 @@ class ReferenceModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv["my0:hasReference"][ownProps.id],
+    initialValues: getDataOfId(state.cv, ownProps.id),
+    cv: state.cv,
     countries: retrieveCountryValues(state.utility.countryValues),
     titles: retrieveTitleValues(state.utility.titleValues)
   };

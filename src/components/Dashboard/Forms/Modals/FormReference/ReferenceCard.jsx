@@ -9,43 +9,58 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeReference } from "../../../../../actions";
 import ReferenceModal from './ReferenceModal';
+import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class ReferenceCard extends Component {
   state = {
-      editMode: false
+    editMode: false,
+    key: 0
   };
 
   handleCloseEdit = () => {
-    this.setState({ editMode: false });
+    let key = this.state.key
+    this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    this.setState({ editMode: true });
+    let key = this.state.key
+    this.setState({ editMode: true, key: ++key });
   };
 
   handleUpdateClick = () => {
     this.setState({
-        editMode: true
-    })
-  }
+      editMode: true
+    });
+  };
 
   render() {
 
-    let { 
+    let {
+      "@id": personId,
       "my0:title" : title,
       "my0:firstName" : firstName,
       "my0:lastName" : lastName,
       "my0:address" : address,
+      "my0:currentJob": currentJob,
       "my0:email" : email,
       "my0:hasTelephoneNumber" : hasTelephoneNumber,
-   } = this.props.referenceObj['my0:referenceBy'];
+    } = getDataOfId(this.props.cv, this.props.referenceObj['my0:referenceBy']['@id']);
 
-   let { 
+    let {
+      "@id": addressId,
+      "my0:city" : city,
+      "my0:country" : country,
+      "my0:street" : street,
+      "my0:postalCode" : postalCode,
+    } = getDataOfId(this.props.cv, address['@id']);
+
+    let { 
+      "@id": workId,
       "my0:jobTitle" : jobTitle,
-  } = this.props.referenceObj['my0:referenceBy']['my0:currentJob'];
+      "my0:employedIn": employedIn
+    } = getDataOfId(this.props.cv, currentJob['@id']);
 
-  let {  "my0:organizatioName" : organizatioName } = this.props.referenceObj['my0:referenceBy']['my0:currentJob']['my0:employedIn'];
-
+    let {  "my0:organizatioName" : organizatioName, "@id": orgId } = getDataOfId(this.props.cv, employedIn['@id']);
 
     return (
       <Card style={{ width: "18rem" }}>
@@ -56,7 +71,13 @@ class ReferenceCard extends Component {
           />
           <FontAwesomeIcon
             icon={faTrash}
-            onClick={() => this.props.removeReference(this.props.id)}
+            onClick={() => this.props.removeReference({
+              reference: this.props.id,
+              person: personId,
+              address: addressId,
+              workHistory: workId,
+              organization: orgId
+            })}
           />
         </Card.Header>
         <div className="card-icon">
@@ -71,10 +92,10 @@ class ReferenceCard extends Component {
             {organizatioName}
           </Card.Text>
           <Card.Text>
-            {address["my0:street"]}{" "}
-            {address["my0:city"]}{" "}
-            {address["my0:postalCode"]}{" "}
-            {address["my0:country"].value}
+            {street}{" "}
+            {city}{" "}
+            {postalCode}{" "}
+            {country}
           </Card.Text>
           <Card.Text>{hasTelephoneNumber}</Card.Text>
           <Card.Text>
@@ -86,14 +107,21 @@ class ReferenceCard extends Component {
           isUpdate={true}
           id={this.props.id}
           onHide={this.handleCloseEdit}
+          key={this.state.key}
         />
       </Card>
     );
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    cv: state.cv
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removeReference }
 )(ReferenceCard);
 

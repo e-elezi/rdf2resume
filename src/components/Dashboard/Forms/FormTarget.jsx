@@ -18,6 +18,14 @@ import {
   retrieveJobModes,
   retrieveCompanySizes
 } from "../../../utilities/utilityQueries";
+import { getDataOfId, getDataOfType } from '../../../utilities/utilityFunctions'
+
+function getTarget(data){
+  let obj = getDataOfType(data, 'my0:CV');
+  let id = obj['my0:target']['@id'];
+  let info = getDataOfId(data, id);
+  return info;
+}
 
 class FormTarget extends Component {
   state = {
@@ -30,17 +38,51 @@ class FormTarget extends Component {
   };
 
   getCompanyIndustryValues = () => {
-    return ["Education", "Agriculture", "Computer Science", "Logistics"];
+    return [
+      {
+        "@type": "Education",
+        "value": "Education"
+      },
+      {
+        "@type": "Agriculture",
+        "value": "Agriculture"
+      },
+      {
+        "@type": "Computer Science",
+        "value": "Computer Science"
+      },
+      {
+        "@type": "Logistics",
+        "value": "Logistics"
+      }];
   };
 
   getCurrencies = () => {
     return [
-      "American Dollar",
-      "Albanian LEK",
-      "Euro EUR",
-      "YEN",
-      "POUND",
-      "Lira"
+      {
+        "@type": "American Dollar",
+        "value": "American Dollar"
+      },
+      {
+        "@type": "Albanian LEK",
+        "value": "Albanian LEK"
+      },
+      {
+        "@type": "Euro EUR",
+        "value": "Euro EUR"
+      },
+      {
+        "@type": "YEN",
+        "value": "YEN"
+      },
+      {
+        "@type": "POUND",
+        "value": "POUND"
+      },
+      {
+        "@type": "Lira",
+        "value": "Lira"
+      }
     ];
   };
 
@@ -64,11 +106,16 @@ class FormTarget extends Component {
   };
 
   handleSelectChange = (name, value) => {
-    this.props.updateTarget({ id: name, value: value });
+    this.props.updateTarget({ id: name, value: value, isURI: true });
   };
 
   handleMultiSelectChange = (name, value) => {
-    this.props.updateTarget({ id: name, value: value });
+    let myarr = [];
+    let length = value.length;
+    for(let i=0; i<length; i++) {
+      myarr.push(value[i]["@type"]);
+    }
+    this.props.updateTarget({ id: name, value: myarr });
   };
 
   render() {
@@ -141,6 +188,8 @@ class FormTarget extends Component {
             data={this.state.currencyValues}
             value={targetSalaryCurrency}
             placeholder="Select a currency"
+            textField="value"
+            valueField="@type"
             caseSensitive={false}
             minLength={3}
             filter="contains"
@@ -253,7 +302,7 @@ const mapstateToProps = state => {
     jobModes: retrieveJobModes(state.utility.jobModeValues),
     careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
     companySizes: retrieveCompanySizes(state.utility.companySizeValues),
-    target: state.cv["my0:target"]
+    target: getTarget(state.cv)
   };
 };
 

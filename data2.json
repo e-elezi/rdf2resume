@@ -1,0 +1,397 @@
+{
+  "@graph": [
+    {
+      "my0:hasReference": [
+        {
+          "@id": "_:N9a17a88586e474c8e12abf3a5f57dbd"
+        }
+      ],
+      "my0:hasWorkHistory": [
+        {
+          "@id": "_:Ne1a53c99a5f4d56ad6f6dc460ec601d"
+        }
+      ],
+      "my0:cvLastUpdated": "",
+      "my0:cvIsConfidential": false,
+      "my0:cvCopyright": "Enkeleda Elezi",
+      "my0:cvNotes": "",
+      "@id": "_:N44d3a942aaa477d9ed08e66d47cebc6",
+      "my0:hasCourse": [
+        {
+          "@id": "_:N9a793f0451941d7a399d79298b9b243"
+        }
+      ],
+      "my0:aboutPerson": {
+        "@id": "_:Nad8fdfcff94448f9846f8891d2cdbc6"
+      },
+      "my0:hasSkill": [
+        {
+          "@id": "_:Nf3c775765b84286a89823bb03f1fcf5"
+        },
+        {
+          "@id": "_:Nd9cd27192f14e15b99c69b8191c628c"
+        },
+        {
+          "@id": "_:N1168507438e4b708db8e4a95684df3a"
+        },
+        {
+          "@id": "_:N208c636dfcc4a6daa1f4ccc2b0eb06e"
+        }
+      ],
+      "@type": "my0:CV",
+      "my0:target": {
+        "@id": "_:Nb57e00eeab04ccca006b3721723330d"
+      },
+      "my0:hasOtherInfo": [
+        {
+          "@id": "_:N40f0d7c4eb94d72a33426a2ee08c795"
+        }
+      ],
+      "my0:cvTitle": "Enkeleda Elezi",
+      "my0:hasEducation": [
+        {
+          "@id": "_:N933a0e6ff7346d9a2b4abe994e19634"
+        },
+        {
+          "@id": "_:N042f6441ad5406c997ef89334ab463d"
+        }
+      ],
+      "my0:cvIsActive": true
+    },
+    {
+      "my0:hasNationality": [
+        "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
+      ],
+      "my0:lastName": "Elezi",
+      "my0:hasInstantMessaging": [
+        {
+          "@id": "_:N53d0fbbf6ae48b090927c41354f9d79"
+        }
+      ],
+      "my0:dateOfBirth": "1994-11-25",
+      "@type": "my0:Person",
+      "my0:email": "enkeleda.elezi@gmail.com",
+      "@id": "_:Nad8fdfcff94448f9846f8891d2cdbc6",
+      "my0:photo": "",
+      "my0:title": "http://example.com/rdf2resume_base_ontology.rdf#Mrs",
+      "my0:firstName": "Enkeleda",
+      "my0:driversLicence": "B",
+      "my0:website": "https://www.linkedin.com/in/enkeleda-elezi-928532a0/",
+      "my0:hasCitizenship": [
+        "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
+      ],
+      "my0:address": {
+        "@id": "_:N7740d071d9e4d279c59413a93afc914"
+      },
+      "my0:hasTelephoneNumber": [
+        "+4915227589766"
+      ],
+      "my0:gender": "http://example.com/rdf2resume_base_ontology.rdf#Female"
+    },
+    {
+      "@type": "my0:Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+      "my0:postalCode": "53119",
+      "@id": "_:N7740d071d9e4d279c59413a93afc914",
+      "my0:street": "Hirschberger Str",
+      "my0:city": "Bonn"
+    },
+    {
+      "my0:targetJobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "my0:targetJobTitle": "Frontend Developer",
+      "my0:targetCompanyIndustry": [
+        "Computer Science"
+      ],
+      "my0:targetSalaryCurrency": "Euro EUR",
+      "my0:weeksNoticePeriod": "2",
+      "my0:targetCompanyCountry": [
+        "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany"
+      ],
+      "my0:conditionWillTravel": true,
+      "my0:targetJobMode": "http://example.com/rdf2resume_base_ontology.rdf#EmployeeFull",
+      "@id": "_:Nb57e00eeab04ccca006b3721723330d",
+      "my0:conditionWillRelocate": true,
+      "my0:targetSalaryRange": "50000 - 80000",
+      "my0:targetCompanySize": "http://example.com/rdf2resume_base_ontology.rdf#MediumCompany",
+      "@type": "my0:Target",
+      "my0:targetJobCareerLevel": "http://example.com/rdf2resume_base_ontology.rdf#EntryLvl",
+      "my0:targetCompanyLocality": "NRW",
+      "my0:targetCompanyDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "@type": "my0:CommunicationSkills",
+      "@id": "_:Nf3c775765b84286a89823bb03f1fcf5",
+      "my0:skillDescription": "Cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Tristique senectus et netus et malesuada. Tortor at auctor urna nunc id cursus metus aliquam. Nulla posuere sollicitudin aliquam ultrices. Viverra mauris in aliquam sem fringilla."
+    },
+    {
+      "@type": "my0:OrganisationalSkills",
+      "@id": "_:N208c636dfcc4a6daa1f4ccc2b0eb06e",
+      "my0:skillDescription": "Cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Tristique senectus et netus et malesuada. Tortor at auctor urna nunc id cursus metus aliquam. Nulla posuere sollicitudin aliquam ultrices. Viverra mauris in aliquam sem fringilla."
+    },
+    {
+      "@type": "my0:JobRelatedSkills",
+      "@id": "_:N1168507438e4b708db8e4a95684df3a",
+      "my0:skillDescription": "Cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Tristique senectus et netus et malesuada. Tortor at auctor urna nunc id cursus metus aliquam. Nulla posuere sollicitudin aliquam ultrices. Viverra mauris in aliquam sem fringilla."
+    },
+    {
+      "my0:otherDigitalSkills": "",
+      "@type": "my0:DigitalSkills",
+      "my0:informationProcessing": "http://example.com/rdf2resume_base_ontology.rdf#ProficientUser",
+      "my0:problemSolving": "http://example.com/rdf2resume_base_ontology.rdf#ProficientUser",
+      "my0:hasICTCertificate": false,
+      "@id": "_:Nd9cd27192f14e15b99c69b8191c628c",
+      "my0:safety": "http://example.com/rdf2resume_base_ontology.rdf#ProficientUser",
+      "my0:contentCreation": "http://example.com/rdf2resume_base_ontology.rdf#ProficientUser",
+      "my0:communication": "http://example.com/rdf2resume_base_ontology.rdf#ProficientUser"
+    },
+    {
+      "@type": "my0:InstantMessaging",
+      "my0:instantMessagingUsername": "enkeleda.elezi25",
+      "@id": "_:N53d0fbbf6ae48b090927c41354f9d79",
+      "my0:instantMessagingName": "Skype"
+    },
+    {
+      "my0:startDate": "2018-06-15",
+      "@type": "my0:WorkHistory",
+      "@id": "_:Ne1a53c99a5f4d56ad6f6dc460ec601d",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:employedIn": {
+        "@id": "_:N24f535131474e338034fa75f6eae39f"
+      },
+      "my0:isCurrent": false,
+      "my0:jobTitle": "Frontend Developer",
+      "my0:endDate": "2019-03-29",
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Contractor",
+      "my0:jobDescription": "Pretium viverra suspendisse potenti nullam ac tortor vitae purus faucibus. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Ac tincidunt vitae semper quis lectus nulla. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Suscipit tellus mauris a diam maecenas sed."
+    },
+    {
+      "my0:organizationDescription": "Business management consultant in Cologne, North Rhine-Westphalia",
+      "my0:organizationAddress": {
+        "@id": "_:Nb782f61a0fa42689e1a597233846396"
+      },
+      "my0:companyIndustry": "Computer Science",
+      "my0:organizationWebsite": "https://www.publicissapient.com/",
+      "@type": "my0:Company",
+      "@id": "_:N24f535131474e338034fa75f6eae39f",
+      "my0:organizationName": "Publicis Sapient",
+      "my0:organizationPhoneNumber": "0221 65027100"
+    },
+    {
+      "@type": "Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+      "my0:postalCode": "50672",
+      "@id": "_:Nb782f61a0fa42689e1a597233846396",
+      "my0:street": "",
+      "my0:city": "Köln"
+    },
+    {
+      "@type": "my0:Education",
+      "my0:studiedIn": {
+        "@id": "_:N8c35d2b27d34748b784303430744f3f"
+      },
+      "my0:eduStartDate": "2013-10-07",
+      "my0:eduGradDate": "2016-07-15",
+      "my0:eduMinor": "",
+      "my0:eduMajor": "Informatics",
+      "my0:isEduCurrent": false,
+      "my0:degreeType": "http://example.com/rdf2resume_base_ontology.rdf#EduBachelor",
+      "@id": "_:N933a0e6ff7346d9a2b4abe994e19634",
+      "my0:eduDescription": "Et ultrices neque ornare aenean euismod elementum nisi. Fermentum et sollicitudin ac orci phasellus. Morbi tristique senectus et netus et. Duis tristique sollicitudin nibh sit amet commodo nulla. Sed adipiscing diam donec adipiscing tristique risus nec feugiat."
+    },
+    {
+      "@type": "my0:EducationalOrg",
+      "my0:organizationAddress": {
+        "@id": "_:N3e44815002d4dd6acb98f954b024cb2"
+      },
+      "my0:organizationWebsite": "http://www.fshn.edu.al/",
+      "my0:organizationDescription": "Public university in Tirana, Albania",
+      "@id": "_:N8c35d2b27d34748b784303430744f3f",
+      "my0:organizationName": "Faculty of Natural Sciences",
+      "my0:organizationPhoneNumber": " +355 4 255 6987"
+    },
+    {
+      "@type": "Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+      "my0:postalCode": "",
+      "@id": "_:N3e44815002d4dd6acb98f954b024cb2",
+      "my0:street": "",
+      "my0:city": "Tirana"
+    },
+    {
+      "@type": "my0:Education",
+      "my0:studiedIn": {
+        "@id": "_:N78d968daf1c415da16af71a75100d05"
+      },
+      "my0:eduStartDate": "2017-10-02",
+      "my0:eduGradDate": "",
+      "my0:eduMinor": "",
+      "my0:eduMajor": "Computer Science",
+      "my0:isEduCurrent": true,
+      "my0:degreeType": "http://example.com/rdf2resume_base_ontology.rdf#EduMaster",
+      "@id": "_:N042f6441ad5406c997ef89334ab463d",
+      "my0:eduDescription": "Vestibulum rhoncus est pellentesque elit ullamcorper. Purus sit amet luctus venenatis lectus magna fringilla. Pretium vulputate sapien nec sagittis. Eget gravida cum sociis natoque penatibus et. Condimentum lacinia quis vel eros. "
+    },
+    {
+      "@type": "my0:EducationalOrg",
+      "my0:organizationAddress": {
+        "@id": "_:Nebbd0aa352e461abf8df39d70c7947f"
+      },
+      "my0:organizationWebsite": "https://www.uni-bonn.de/",
+      "my0:organizationDescription": "Public university in Bonn, North Rhine-Westphalia",
+      "@id": "_:N78d968daf1c415da16af71a75100d05",
+      "my0:organizationName": "University of Bonn",
+      "my0:organizationPhoneNumber": ""
+    },
+    {
+      "@type": "Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+      "my0:postalCode": "53113",
+      "@id": "_:Nebbd0aa352e461abf8df39d70c7947f",
+      "my0:street": "",
+      "my0:city": "Bonn"
+    },
+    {
+      "@type": "my0:Course",
+      "my0:courseURL": "https://www.udemy.com/react-redux/",
+      "my0:courseFinishDate": "2019-06-28",
+      "my0:courseStartDate": "2019-05-01",
+      "my0:courseDescription": "Facilisis mauris sit amet massa. Consequat semper viverra nam libero justo laoreet sit amet. Ante in nibh mauris cursus mattis molestie a iaculis at. Sodales ut eu sem integer vitae. Odio morbi quis commodo odio aenean.",
+      "my0:courseTitle": "Modern React with Redux ",
+      "my0:hasQualification": "",
+      "@id": "_:N9a793f0451941d7a399d79298b9b243",
+      "my0:hasCertification": true,
+      "my0:organizedBy": {
+        "@id": "_:N0a87cea208e4ea8b109690c06e65eb0"
+      }
+    },
+    {
+      "my0:organizationDescription": "Udemy.com is the world's biggest online learning platform. It is aimed at professional adults and students. Udemy have more than 30 million students who have access to over 30 million minutes of content on Udemy. ",
+      "my0:organizationAddress": {
+        "@id": "_:N8d432d9c78e4f3a820c278b4c0acc2a"
+      },
+      "my0:organizationWebsite": "https://www.udemy.com/",
+      "@type": "my0:Organization",
+      "@id": "_:N0a87cea208e4ea8b109690c06e65eb0",
+      "my0:organizationName": "Udemy Inc",
+      "my0:organizationPhoneNumber": ""
+    },
+    {
+      "@type": "Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnitedStates",
+      "my0:postalCode": "",
+      "@id": "_:N8d432d9c78e4f3a820c278b4c0acc2a",
+      "my0:street": "",
+      "my0:city": "San Fransisco"
+    },
+    {
+      "@type": "my0:LanguageSkill",
+      "my0:languageSkillLevelListening": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+      "my0:isMotherTongue": true,
+      "my0:languageSkillLevelReading": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+      "my0:languageSkillLevelSpokenProduction": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+      "@id": "N5656ee9519540eb93cca8d629b67433",
+      "my0:languageSkillLevelWriting": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+      "my0:skillName": "Albanian",
+      "my0:languageSkillLevelSpokenInteraction": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1"
+    },
+    {
+      "@type": "my0:LanguageSkill",
+      "my0:languageSkillLevelListening": "http://example.com/rdf2resume_base_ontology.rdf#BasicUserA2",
+      "my0:isMotherTongue": false,
+      "my0:languageSkillLevelReading": "http://example.com/rdf2resume_base_ontology.rdf#BasicUserA2",
+      "my0:languageSkillLevelSpokenProduction": "http://example.com/rdf2resume_base_ontology.rdf#BasicUserA2",
+      "@id": "N984bce272314bf49ba44a5d31ccb5df",
+      "my0:languageSkillLevelWriting": "http://example.com/rdf2resume_base_ontology.rdf#BasicUserA2",
+      "my0:skillName": "German",
+      "my0:languageSkillLevelSpokenInteraction": "http://example.com/rdf2resume_base_ontology.rdf#BasicUserA2"
+    },
+    {
+      "@type": "my0:Skill",
+      "my0:skillHasCertificate": true,
+      "my0:skillDescription": "Tellus integer feugiat scelerisque varius morbi enim nunc faucibus a. Vitae ultricies leo integer malesuada nunc vel. Dictum varius duis at consectetur lorem donec massa sapien. ",
+      "my0:skillLevel": "5",
+      "@id": "_:N6e65f7fe70542889b40a6d1d1525186",
+      "my0:skillLastUsed": "2019-08-23",
+      "my0:skillName": "Javascript",
+      "my0:skillYearsExperience": ""
+    },
+    {
+      "@type": "my0:Skill",
+      "my0:skillHasCertificate": true,
+      "my0:skillDescription": "",
+      "my0:skillLevel": "2",
+      "@id": "_:N39b114a6af647e8adce675ab2e3a793",
+      "my0:skillLastUsed": "2017-08-09",
+      "my0:skillName": "Java",
+      "my0:skillYearsExperience": ""
+    },
+    {
+      "@type": "my0:Skill",
+      "my0:skillHasCertificate": true,
+      "my0:skillDescription": "Cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Tristique senectus et netus et malesuada. ",
+      "my0:skillLevel": "3",
+      "@id": "_:Nb9b25d7535c4527987cb97fbecc0811",
+      "my0:skillLastUsed": "2019-08-23",
+      "my0:skillName": "React",
+      "my0:skillYearsExperience": ""
+    },
+    {
+      "@type": "my0:Reference",
+      "my0:referenceType": "Professional",
+      "@id": "_:N9a17a88586e474c8e12abf3a5f57dbd",
+      "my0:referenceBy": {
+        "@id": "_:N9413f9b3e64402ea8641603fb3518c7"
+      }
+    },
+    {
+      "@type": "my0:Person",
+      "my0:email": "damien.graux@fraunhofer.de",
+      "my0:lastName": "Graux",
+      "my0:hasTelephoneNumber": "+49121212121",
+      "my0:title": "http://example.com/rdf2resume_base_ontology.rdf#DrMr",
+      "my0:firstName": "Damien",
+      "my0:address": {
+        "@id": "_:Nb35407da2174008bf2a4698cdd245b3"
+      },
+      "@id": "_:N9413f9b3e64402ea8641603fb3518c7",
+      "my0:currentJob": {
+        "@id": "_:N734d9e89a8f4b7e897e010960082509"
+      }
+    },
+    {
+      "@type": "my0:Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+      "my0:postalCode": "",
+      "@id": "_:Nb35407da2174008bf2a4698cdd245b3",
+      "my0:street": "Schloss Birlinghoven",
+      "my0:city": "Sankt Augustin"
+    },
+    {
+      "@type": "my0:WorkHistory",
+      "my0:jobTitle": "Senior Researcher",
+      "@id": "_:N734d9e89a8f4b7e897e010960082509",
+      "my0:employedIn": {
+        "@id": "_:N71d8cfebab14d52b006185bc7205ab1"
+      }
+    },
+    {
+      "@type": "my0:Company",
+      "@id": "_:N71d8cfebab14d52b006185bc7205ab1",
+      "my0:organizationName": "Fraunhofer"
+    },
+    {
+      "@type": "my0:OtherInfo",
+      "@id": "_:N40f0d7c4eb94d72a33426a2ee08c795",
+      "my0:otherInfoDescription": "Quis hendrerit dolor magna eget est lorem ipsum dolor. Justo nec ultrices dui sapien.",
+      "my0:otherInfoType": "http://example.com/rdf2resume_base_ontology.rdf#Publications"
+    }
+  ],
+  "@context": {
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
+    "my0": "http://example.com/rdf2resume_ontology.rdf#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
+  }
+}

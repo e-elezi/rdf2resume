@@ -6,13 +6,16 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherInfo, updateOtherInfo } from "../../../../../actions";
 import { fetchOtherCVInfoTypes } from "../../../../../actions/utilityActions";
 import { retrieveOtherTypes } from "../../../../../utilities/utilityQueries";
+import { generateUUID } from '../../../../../reducers/cvReducer';
+import { getDataOfId  } from '../../../../../utilities/utilityFunctions';
 
 class OtherInfoModal extends Component {
   state = {
     otherInfo: {
       "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
-      "my0:otherInfoDescription": ""
+      "my0:otherInfoDescription": "",
+      "@id": ""
     }
   };
 
@@ -27,7 +30,7 @@ class OtherInfoModal extends Component {
       let otherInfo = { ...this.state.otherInfo };
       otherInfo["my0:otherInfoType"] = inputRef["my0:otherInfoType"];
       otherInfo["my0:otherInfoDescription"] = inputRef["my0:otherInfoDescription"];
-      otherInfo.id = inputRef.id;
+      otherInfo["@id"] = inputRef["@id"];
       this.setState({
         otherInfo
       });
@@ -36,8 +39,10 @@ class OtherInfoModal extends Component {
 
   clearForm = () => {
     const hist = {
+      "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
-      "my0:otherInfoDescription": ""
+      "my0:otherInfoDescription": "",
+      "@id": ""
     };
     if (!this.props.isUpdate) {
       this.setState({
@@ -50,7 +55,7 @@ class OtherInfoModal extends Component {
 
   handleSelectChange = (value, id) => {
     let otherInfo = { ...this.state.otherInfo };
-    otherInfo[id] = value;
+    otherInfo[id] = value['@type'];
     this.setState({ otherInfo });
   };
 
@@ -66,13 +71,16 @@ class OtherInfoModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherInfo(
-      this.state.otherInfo
+      { 
+        ...this.state.otherInfo,
+        '@id': "_:" + generateUUID()
+      }
     );
   };
 
   handleUpdate = e => {
     e.preventDefault();
-    this.props.updateOtherInfo({ other:this.state.otherInfo, i:this.props.id});
+    this.props.updateOtherInfo(this.state.otherInfo);
   };
 
   handleRenderingSubmitButton = () => {
@@ -163,7 +171,7 @@ class OtherInfoModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: state.cv["my0:hasOtherInfo"][ownProps.id],
+    initialValues: getDataOfId(state.cv, ownProps.id),
     others: retrieveOtherTypes(state.utility.otherCVInfoValues)
   };
 };

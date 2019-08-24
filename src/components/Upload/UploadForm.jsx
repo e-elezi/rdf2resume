@@ -19,7 +19,7 @@ class UploadForm extends Component {
   onChange = e => {
     let file = e.target.files[0];
     var formData = new FormData();
-    var kot =  encodeURI("@prefix : <http://example.org/#> . :a :b :c .");
+    // var kot =  encodeURI("@prefix : <http://example.org/#> . :a :b :c .");
     formData.append("file", file);
     axios.post("/upload?standard="+ this.state.rdfValueSelected, formData, {
       headers: {

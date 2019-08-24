@@ -1,5 +1,4 @@
 {
-  "cv": {
     "@context": {
       "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
       "my0": "http://example.com/rdf2resume_ontology.rdf#",
@@ -625,5 +624,4 @@
         "my0:organizationWebsite": "https://www.udemy.com"
       }
     ]
-  }
 }

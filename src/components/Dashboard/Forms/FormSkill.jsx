@@ -9,7 +9,7 @@ import CustomInput from "../../core/CustomInput";
 import RemoveButton from "../../core/RemoveButton";
 import CustomTextarea from "../../core/CustomTextarea";
 import CustomCheckbox from "../../core/CustomCheckbox";
-import { updateSkills, createOtherSkill } from "../../../actions";
+import { updateSkills, createOtherSkill, removeOtherSkill } from "../../../actions";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
   fetchSelfAssessmentProperties
@@ -18,12 +18,15 @@ import {
   retrieveAssessment,
   retrieveLngAssessment
 } from "../../../utilities/utilityQueries";
+import { getDataArrayOfType, getDataOfType } from '../../../utilities/utilityFunctions'
+import { generateUUID } from '../../../reducers/cvReducer';
 
 class FormSkill extends Component {
   state = {
     showModal: false,
     languageLevelSkillsValue: [],
-    generalSkillLevelValue: []
+    generalSkillLevelValue: [],
+    key: 0
   };
 
   componentWillMount() {
@@ -32,42 +35,43 @@ class FormSkill extends Component {
   }
 
   handleClose = () => {
-    this.setState({ showModal: false });
-  };
+    let key = this.state.key;
+    this.setState({ showModal: false,
+    key: ++key });  };
 
   handleShow = () => {
-    this.setState({ showModal: true });
+    let key = this.state.key;
+    this.setState({ showModal: true, key: ++key  });
   };
 
-  handleInputChange = (e, index) => {
-
-    let myarr = [...this.props.skills];
-    myarr[index][e.target.name] = e.target.value;
+  handleInputChange = (property, value, id) => {
     this.props.updateSkills({
-      value: myarr
+      property,
+      value,
+      id
     });
   };
 
-  handleCheckboxChange = (e, index) => {
-
-    let myarr = [...this.props.skills];
-    myarr[index][e.target.name] = e.target.checked;
+  handleCheckboxChange = (property, value, id) => {
     this.props.updateSkills({
-      value: myarr
+      property,
+      value,
+      id
     });
   };
 
-  handleSelectChange = (name, value, oneLevelId, index) => {
-    let myarr = [...this.props.skills];
-    myarr[index][name] = value;
+  handleSelectChange = (property, value, id) => {
     this.props.updateSkills({
-      value: myarr
+      property,
+      value: value["@type"],
+      id
     });
   };
 
   addLanguageSkill = () => {
     let myarr = 
       {
+        "@id": generateUUID(),
         "@type": "my0:LanguageSkill",
         "my0:languageSkillLevelReading": "",
         "my0:languageSkillLevelWriting": "",
@@ -78,20 +82,19 @@ class FormSkill extends Component {
         "my0:skillName": ""
       };
   
-    this.props.createOtherSkill({ value: myarr });
+    this.props.createOtherSkill(myarr);
   };
 
-  updateLanguageSkill = (name, value, index) => {
-    let myarr = [...this.props.skills];
-    myarr[index][name] = value;
-    this.props.updateSkills({ value: myarr });
+  updateLanguageSkill = (property, value, id) => {
+    this.props.updateSkills({
+      property,
+      value,
+      id
+    });
   };
 
-  removeLanguageSkill = (index) => {
-    let myarr = this.props.skills.filter(
-      (item, ind) => ind !== index
-    );
-    this.props.updateSkills({  value: myarr});
+  removeLanguageSkill = (id) => {
+    this.props.removeOtherSkill(id);
   };
 
   render() {
@@ -146,8 +149,7 @@ class FormSkill extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.props.skills.map((member, index) => (
-                  member['@type']==="my0:LanguageSkill" ? 
+                {this.props.languageskills.map((member, index) => (
                   <tr key={index}>
                     <th>
                       <div style={{ marginTop: "10px" }}>
@@ -160,7 +162,7 @@ class FormSkill extends Component {
                             this.updateLanguageSkill(
                               e.target.id,
                               e.target.value,
-                              index
+                              member["@id"]
                             )
                           }
                         />
@@ -181,8 +183,8 @@ class FormSkill extends Component {
                           onChange={value =>
                             this.updateLanguageSkill(
                               "my0:languageSkillLevelReading",
-                              value,
-                              index
+                              value["@type"],
+                              member["@id"]
                             )
                           }
                         />
@@ -203,8 +205,8 @@ class FormSkill extends Component {
                           onChange={value =>
                             this.updateLanguageSkill(
                               "my0:languageSkillLevelWriting",
-                              value,
-                              index
+                              value["@type"],
+                              member["@id"]
                             )
                           }
                         />
@@ -225,8 +227,8 @@ class FormSkill extends Component {
                           onChange={value =>
                             this.updateLanguageSkill(
                               "my0:languageSkillLevelListening",
-                              value,
-                              index
+                              value["@type"],
+                              member["@id"]
                             )
                           }
                         />
@@ -247,8 +249,8 @@ class FormSkill extends Component {
                           onChange={value =>
                             this.updateLanguageSkill(
                               "my0:languageSkillLevelSpokenInteraction",
-                              value,
-                              index
+                              value["@type"],
+                              member["@id"]
                             )
                           }
                         />
@@ -269,8 +271,8 @@ class FormSkill extends Component {
                           onChange={value =>
                             this.updateLanguageSkill(
                               "my0:languageSkillLevelSpokenProduction",
-                              value,
-                              index
+                              value["@type"],
+                              member["@id"]
                             )
                           }
                         />
@@ -285,7 +287,7 @@ class FormSkill extends Component {
                           this.updateLanguageSkill(
                             e.target.id,
                             e.target.checked,
-                            index
+                            member["@id"]
                           )
                         }
                       />
@@ -294,11 +296,11 @@ class FormSkill extends Component {
                       <RemoveButton
                         classnames="shift-left"
                         handleClick={() =>
-                          this.removeLanguageSkill(index)
+                          this.removeLanguageSkill(member["@id"])
                         }
                       />
                     </td>
-                  </tr> : ''
+                  </tr> 
                 ))}
               </tbody>
             </table>
@@ -306,49 +308,36 @@ class FormSkill extends Component {
           <Col sm={2} />
         </Row>
         <Row>
-        {this.props.skills.map( (skill,index) => (
-          skill['@type']==="my0:CommunicationSkills" ?  
           <Col md={3}>
           <CustomTextarea
             id="my0:CommunicationSkills"
             name="my0:skillDescription"
             label="Communication Skills"
-            value={skill["my0:skillDescription"]}
-            handleChange={(e)=>this.handleInputChange(e, index)}
+            value={this.props.communicationskill["my0:skillDescription"]}
+            handleChange={(e)=>this.handleInputChange(e.target.name, e.target.value, this.props.communicationskill["@id"])}
           />
         </Col> 
-        : ''))}
-
-        {this.props.skills.map((skill,index) => (
-        skill['@type']==="my0:OrganisationalSkills" ?  
           <Col md={3}>
           <CustomTextarea
               id="my0:OrganisationalSkills"
               name="my0:skillDescription"
               label="Organization Skills"
-              value={skill["my0:skillDescription"]}
-              handleChange={(e)=>this.handleInputChange(e, index)}
+              value={this.props.organizationalskill["my0:skillDescription"]}
+              handleChange={(e)=>this.handleInputChange(e.target.name, e.target.value, this.props.organizationalskill["@id"])}
             />
         </Col> 
-        : ''))}
-
-        {this.props.skills.map((skill,index) => (
-        skill['@type']==="my0:JobRelatedSkills" ?  
           <Col md={3}>
           <CustomTextarea
               id="my0:JobRelatedSkills"
               name="my0:skillDescription"
               label="Job Related Skills"
-              value={skill["my0:skillDescription"]}
-              handleChange={(e)=>this.handleInputChange(e, index)}
+              value={this.props.jobrelatedskill["my0:skillDescription"]}
+              handleChange={(e)=>this.handleInputChange(e.target.name, e.target.value, this.props.jobrelatedskill["@id"])}
             />
         </Col> 
-        : ''))}
           <Col md={3} />
         </Row>
         <Row style={{ justifyContent: "left" }}>
-        {this.props.skills.map((skill,index) => (
-        skill['@type']==="my0:DigitalSkills" ?  
         <React.Fragment>
         <Col md={3}>
             <h6>Digital Skills</h6>
@@ -358,7 +347,7 @@ class FormSkill extends Component {
               data={this.props.assessmentValues}
               textField="value"
               valueField="@type"
-              value={skill["my0:informationProcessing"]}
+              value={this.props.digitalskill["my0:informationProcessing"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
@@ -367,8 +356,7 @@ class FormSkill extends Component {
                 this.handleSelectChange(
                   "my0:informationProcessing",
                   value,
-                  "my0:DigitalSkills",
-                  index
+                  this.props.digitalskill["@id"]
                 )
               }
             />
@@ -378,7 +366,7 @@ class FormSkill extends Component {
               data={this.props.assessmentValues}
               textField="value"
               valueField="@type"
-              value={skill["my0:communication"]}
+              value={this.props.digitalskill["my0:communication"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
@@ -387,8 +375,7 @@ class FormSkill extends Component {
                 this.handleSelectChange(
                   "my0:communication",
                   value,
-                  "my0:DigitalSkills",
-                  index
+                  this.props.digitalskill["@id"]
                 )
               }
             />
@@ -399,7 +386,7 @@ class FormSkill extends Component {
               data={this.props.assessmentValues}
               textField="value"
               valueField="@type"
-              value={skill["my0:contentCreation"]}
+              value={this.props.digitalskill["my0:contentCreation"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
@@ -408,8 +395,7 @@ class FormSkill extends Component {
                 this.handleSelectChange(
                   "my0:contentCreation",
                   value,
-                  "my0:DigitalSkills",
-                  index
+                  this.props.digitalskill["@id"]
                 )
               }
             />
@@ -420,7 +406,7 @@ class FormSkill extends Component {
               data={this.props.assessmentValues}
               textField="value"
               valueField="@type"
-              value={skill["my0:safety"]}
+              value={this.props.digitalskill["my0:safety"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
@@ -429,8 +415,7 @@ class FormSkill extends Component {
                 this.handleSelectChange(
                   "my0:safety",
                   value,
-                  "my0:DigitalSkills",
-                  index
+                  this.props.digitalskill["@id"]
                 )
               }
             />
@@ -441,7 +426,7 @@ class FormSkill extends Component {
               data={this.props.assessmentValues}
               textField="value"
               valueField="@type"
-              value={skill["my0:problemSolving"]}
+              value={this.props.digitalskill["my0:problemSolving"]}
               placeholder="Select level"
               caseSensitive={false}
               minLength={3}
@@ -450,8 +435,7 @@ class FormSkill extends Component {
                 this.handleSelectChange(
                   "my0:problemSolving",
                   value,
-                  "my0:DigitalSkills",
-                  index
+                  this.props.digitalskill["@id"]
                 )
               }
             />
@@ -463,19 +447,18 @@ class FormSkill extends Component {
               id="my0:hasICTCertificate"
               type="checkbox"
               label="Has Certification?"
-              checked={skill["my0:hasICTCertificate"]}
-              handleChange={(e)=>this.handleCheckboxChange(e, index)}
+              checked={this.props.digitalskill["my0:hasICTCertificate"]}
+              handleChange={(e)=>this.handleCheckboxChange(e.target.name,e.target.checked, this.props.digitalskill["@id"])}
             />
             <CustomTextarea
               name="my0:otherDigitalSkills"
               id="my0:DigitalSkills"
               label="Other Digital Skills"
-              value={skill["my0:otherDigitalSkills"]}
-              handleChange={(e)=>this.handleInputChange(e,index)}
+              value={this.props.digitalskill["my0:otherDigitalSkills"]}
+              handleChange={(e)=>this.handleInputChange(e.target.name, e.target.value,this.props.digitalskill["@id"])}
             />
           </Col>
           </React.Fragment>
-        : ''))}
         </Row>
         <Row> 
           <Col md={8}>
@@ -488,7 +471,7 @@ class FormSkill extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <SkillModal show={showModal} onHide={this.handleClose} />
+                <SkillModal show={showModal} key={this.state.key} onHide={this.handleClose} />
               </Col>
               <Col md={10} className="button-label">
                 <p>Add Other Skill</p>
@@ -499,10 +482,8 @@ class FormSkill extends Component {
           {/* {this.props.otherSkills.length === 0
            ? "No other skills have been added until now."
            : ""} */}
-         {this.props.skills.map( (skill, index) => (
-           skill['@type']==="my0:Skill" ? 
-           <SkillView skillObj={skill} id={index} key={index} />
-           : ''
+         {this.props.otherSkills.map( (skill, index) => (
+           <SkillView skillObj={skill} id={skill["@id"]} key={index} />
          ))} 
       </React.Fragment>
     );
@@ -511,12 +492,16 @@ class FormSkill extends Component {
 
 const mapStateToProps = state => {
   return {
+    organizationalskill : getDataOfType(state.cv, 'my0:OrganisationalSkills'),
+    digitalskill : getDataOfType(state.cv, 'my0:DigitalSkills'),
+    communicationskill : getDataOfType(state.cv, 'my0:CommunicationSkills'),
+    jobrelatedskill : getDataOfType(state.cv, 'my0:JobRelatedSkills'),
     lngAssessmentValues: retrieveLngAssessment(
       state.utility.languageSelfAssessmentValues
     ),
     assessmentValues: retrieveAssessment(state.utility.selfAssessmentValues),
-    skills: state.cv["my0:hasSkill"]
-    // otherSkills: Object.values(state.cv.skills.OtherSkills)
+    languageskills:getDataArrayOfType(state.cv, 'my0:LanguageSkill'),
+    otherSkills: getDataArrayOfType(state.cv, 'my0:Skill')
   };
 };
 
@@ -525,6 +510,7 @@ export default connect(
   {
     fetchLanguageSkillSelfAssessmentProperties,
     updateSkills,
+    removeOtherSkill,
     createOtherSkill,
     fetchSelfAssessmentProperties
   }

@@ -4,6 +4,7 @@ import CustomTextarea from "../../core/CustomTextarea";
 import CustomInput from "../../core/CustomInput";
 import CustomCheckbox from "../../core/CustomCheckbox";
 import { updateAboutCV } from "../../../actions";
+import { getDataOfType } from '../../../utilities/utilityFunctions'
 
 class FormAboutCV extends Component {
   state = {};
@@ -89,7 +90,7 @@ class FormAboutCV extends Component {
 
 const mapstateToProps = state => {
   return {
-    cv: state.cv
+    cv: getDataOfType(state.cv, 'my0:CV')
   };
 };
 
