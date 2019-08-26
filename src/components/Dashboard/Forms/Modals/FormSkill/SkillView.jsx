@@ -5,7 +5,6 @@ import { removeOtherSkill } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import SkillModal from "./SkillModal";
-import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class SkillView extends Component {
   state = {

@@ -4,7 +4,6 @@ import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import ReferenceCard from "./Modals/FormReference/ReferenceCard";
 import ReferenceModal from "./Modals/FormReference/ReferenceModal";
-import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormReference extends Component {
   state = {
@@ -79,8 +78,8 @@ class FormReference extends Component {
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={reference['@id']}
-                  id={reference['@id']}
+                  key={index}
+                  id={index}
                 />
               );
             return "";
@@ -98,8 +97,8 @@ class FormReference extends Component {
               return (
                 <ReferenceCard
                   referenceObj={reference}
-                  key={reference['@id']}
-                  id={reference['@id']}
+                  key={index}
+                  id={index}
                 />
               );
             return "";
@@ -112,7 +111,7 @@ class FormReference extends Component {
 
 const mapStateToProps = state => {
   return {
-    references: getDataArrayOfType(state.cv, 'my0:Reference' )
+    references: state.cv["my0:hasReference"]
   };
 };
 

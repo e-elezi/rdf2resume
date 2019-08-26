@@ -3,6 +3,7 @@ import { Combobox } from "react-widgets";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateCV } from "../../actions";
+import { parseJSONLDTOJSON } from '../../utilities/utilityFunctions';
 
 class UploadForm extends Component {
   state = {
@@ -27,7 +28,7 @@ class UploadForm extends Component {
       }
     }).then(resp=>{
       console.log(resp);
-      this.props.updateCV(resp.data);
+      this.props.updateCV(parseJSONLDTOJSON(resp.data));
     })  
     .catch(error=>{
       console.log(error);

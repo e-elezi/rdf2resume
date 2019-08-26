@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeReference } from "../../../../../actions";
 import ReferenceModal from './ReferenceModal';
-import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class ReferenceCard extends Component {
   state = {
@@ -36,7 +35,6 @@ class ReferenceCard extends Component {
   render() {
 
     let {
-      "@id": personId,
       "my0:title" : title,
       "my0:firstName" : firstName,
       "my0:lastName" : lastName,
@@ -44,23 +42,21 @@ class ReferenceCard extends Component {
       "my0:currentJob": currentJob,
       "my0:email" : email,
       "my0:hasTelephoneNumber" : hasTelephoneNumber,
-    } = getDataOfId(this.props.cv, this.props.referenceObj['my0:referenceBy']['@id']);
+    } = this.props.referenceObj['my0:referenceBy'];
 
     let {
-      "@id": addressId,
       "my0:city" : city,
       "my0:country" : country,
       "my0:street" : street,
       "my0:postalCode" : postalCode,
-    } = getDataOfId(this.props.cv, address['@id']);
+    } = address;
 
     let { 
-      "@id": workId,
       "my0:jobTitle" : jobTitle,
       "my0:employedIn": employedIn
-    } = getDataOfId(this.props.cv, currentJob['@id']);
+    } = currentJob;
 
-    let {  "my0:organizatioName" : organizatioName, "@id": orgId } = getDataOfId(this.props.cv, employedIn['@id']);
+    let {  "my0:organizatioName" : organizatioName } = employedIn;
 
     return (
       <Card style={{ width: "18rem" }}>
@@ -71,13 +67,9 @@ class ReferenceCard extends Component {
           />
           <FontAwesomeIcon
             icon={faTrash}
-            onClick={() => this.props.removeReference({
-              reference: this.props.id,
-              person: personId,
-              address: addressId,
-              workHistory: workId,
-              organization: orgId
-            })}
+            onClick={() => this.props.removeReference(
+              this.props.id
+            )}
           />
         </Card.Header>
         <div className="card-icon">
@@ -114,14 +106,8 @@ class ReferenceCard extends Component {
   }
 }
 
-const mapstateToProps = (state, ownProps) => {
-  return {
-    cv: state.cv
-  };
-};
-
 export default connect(
-  mapstateToProps,
+  null,
   { removeReference }
 )(ReferenceCard);
 

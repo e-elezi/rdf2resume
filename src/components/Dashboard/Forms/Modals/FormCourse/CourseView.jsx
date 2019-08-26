@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeCourse } from "../../../../../actions";
 import CourseModal from "./CourseModal";
-import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class CourseView extends Component {
   state = {
@@ -40,23 +39,22 @@ class CourseView extends Component {
       "my0:courseDescription" : courseDescription,
       // "my0:courseURL" : courseURL,
       "my0:courseStartDate" : courseStartDate,
-      "my0:courseFinishDate" : courseFinishDate
+      "my0:courseFinishDate" : courseFinishDate,
+      "my0:organizedBy" : organizedBy
     } = this.props.courseObj;
 
     let {
-      "@id": organizationID,
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-    } = getDataOfId(this.props.cv, this.props.courseObj['my0:organizedBy']['@id']);
+    } = organizedBy;
 
     let {
-      "@id": addressId,
       "my0:city" : city,
       "my0:country" : country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
-    } = getDataOfId(this.props.cv, organizationAddress['@id']);
+    } = organizationAddress;
 
     return (
       <React.Fragment>
@@ -132,11 +130,9 @@ class CourseView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeCourse( {
-                course:this.props.id,
-                organization: organizationID,
-                address: addressId
-              } )}
+              onClick={() => this.props.removeCourse(
+                this.props.id
+               )}
             />
           </Col>
         </Row>
@@ -152,13 +148,7 @@ class CourseView extends Component {
   }
 }
 
-const mapstateToProps = (state, ownProps) => {
-  return {
-    cv: state.cv
-  };
-};
-
 export default connect(
-  mapstateToProps,
+  null,
   { removeCourse }
 )(CourseView);

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
 import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
 import AddButton from "../../core/AddButton";
-import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormWorkHistory extends Component {
   state = {
@@ -52,7 +51,7 @@ class FormWorkHistory extends Component {
         {this.props.workHistories.map((workHistory, index) => (
           <WorkHistoryView
             workHistory={workHistory}
-            id={workHistory['@id']}
+            id={index}
             key={index}
           />
         ))}
@@ -63,7 +62,7 @@ class FormWorkHistory extends Component {
 
 const mapStateToProps = state => {
   return {
-    workHistories: getDataArrayOfType(state.cv, 'my0:WorkHistory' )
+    workHistories: state.cv["my0:hasWorkHistory"]
   };
 };
 

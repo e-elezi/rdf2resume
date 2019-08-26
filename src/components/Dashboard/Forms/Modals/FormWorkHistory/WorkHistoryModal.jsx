@@ -24,7 +24,6 @@ import { getDataOfId } from '../../../../../utilities/utilityFunctions';
 class WorkHistoryModal extends Component {
   state = {
     workHistory: {
-      "@id": "",
       "@type": "my0:WorkHistory",
       "my0:startDate": "",
       "my0:endDate": "",
@@ -34,28 +33,20 @@ class WorkHistoryModal extends Component {
       "my0:jobMode": "",
       "my0:isCurrent": false,
       "my0:employedIn": {
-        "@id": "",
+        "@type": "my0:Company",
+        "my0:organizationName": "",
+        "my0:organizationAddress": {
+          "@type": "Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
+        },
+        "my0:organizationDescription": "",
+        "my0:organizationPhoneNumber": "",
+        "my0:organizationWebsite": "",
+        "my0:companyIndustry": ""
       }
-    },
-    organization: {
-      "@id": "",
-      "@type": "my0:Company",
-      "my0:organizationName": "",
-      "my0:organizationAddress": {
-        "@id": "",
-      },
-      "my0:organizationDescription": "",
-      "my0:organizationPhoneNumber": "",
-      "my0:organizationWebsite": "",
-      "my0:companyIndustry": ""
-    },
-    address: {
-      "@id": "",
-      "@type": "Address",
-      "my0:city" : "",
-      "my0:country" : "",
-      "my0:street" : "",
-      "my0:postalCode" : ""
     },
     CompanyIndustryValues: []
   };
@@ -95,7 +86,6 @@ class WorkHistoryModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.initialValues;
       let workHistory = { ...this.state.workHistories };
-      workHistory["@id"] = inputRef["@id"];
       workHistory["@type"] = "my0:WorkHistory";
       workHistory["my0:startDate"] = inputRef["my0:startDate"];
       workHistory["my0:endDate"] = inputRef["my0:endDate"];
@@ -108,18 +98,6 @@ class WorkHistoryModal extends Component {
       this.setState({
         workHistory
       });
-      let orgref = getDataOfId(this.props.cv, workHistory["my0:employedIn"]['@id']);
-      let organization = { ...this.state.organization };
-      organization = orgref; 
-      this.setState({
-        organization
-      });
-      let address = { ...this.state.address };
-      let orgadref = getDataOfId(this.props.cv, orgref['my0:organizationAddress']['@id']);
-      address = orgadref;
-      this.setState({
-        address
-      });
     }
   };
 
@@ -127,7 +105,6 @@ class WorkHistoryModal extends Component {
     if (!this.props.isUpdate) {
       this.setState({
         workHistory: {
-          "@id": "",
           "@type": "my0:WorkHistory",
           "my0:startDate": "",
           "my0:endDate": "",
@@ -137,28 +114,20 @@ class WorkHistoryModal extends Component {
           "my0:jobMode": "",
           "my0:isCurrent": false,
           "my0:employedIn": {
-            "@id": "",
+            "@type": "my0:Company",
+            "my0:organizationName": "",
+            "my0:organizationAddress": {
+              "@type": "Address",
+              "my0:city" : "",
+              "my0:country" : "",
+              "my0:street" : "",
+              "my0:postalCode" : ""
+            },
+            "my0:organizationDescription": "",
+            "my0:organizationPhoneNumber": "",
+            "my0:organizationWebsite": "",
+            "my0:companyIndustry": ""
           }
-        },
-        organization: {
-          "@id": "",
-          "@type": "my0:Company",
-          "my0:organizationName": "",
-          "my0:organizationAddress": {
-            "@id": "",
-          },
-          "my0:organizationDescription": "",
-          "my0:organizationPhoneNumber": "",
-          "my0:organizationWebsite": "",
-          "my0:companyIndustry": ""
-        },
-        address: {
-          "@id": "",
-          "@type": "Address",
-          "my0:city" : "",
-          "my0:country" : "",
-          "my0:street" : "",
-          "my0:postalCode" : ""
         }
       });
     } else {
@@ -175,50 +144,40 @@ class WorkHistoryModal extends Component {
   };
 
   handleInputChange = e => {
-    let obj = {...this.state[e.target.name]};
+    let obj = {...this.state.workHistory};
     let label = e.target.id;
-    obj[label] = e.target.value;
-    let kot = e.target.name;
+    if(e.target.name === "organization") {
+      obj['my0:employedIn'][label] = e.target.value;
+    } else if(e.target.name === "address") {
+      obj['my0:employedIn']['my0:organizationAddress'][label] = e.target.value;
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
-      [kot]: obj
+      workHistory: obj
     })
   };
 
   handleSelectChange = (value, id, name) => {
-    let obj = {...this.state[name]};
+    let obj = {...this.state.workHistory};
     let label = id;
-    obj[label] = value['@type'];
+    if(name === "organization") {
+      obj['my0:employedIn'][label] = value['@type'];
+    } else if(name === "address") {
+      obj['my0:employedIn']['my0:organizationAddress'][label] = value['@type'];
+    } else {
+      obj[label] = value['@type'];
+    }
     this.setState({
-      [name]: obj 
+      workHistory: obj
     })
+
   };
 
   handleSave = e => {
     e.preventDefault();
-    var workID = generateUUID();
-    var organization_id = generateUUID();
-    var organizationAddress_id = generateUUID();
     this.props.createWorkHistory(
-      {
-        workHistory: {
-         ...this.state.workHistory,
-         "@id": "_:" + workID,
-         "my0:employedIn": {
-           "@id": "_:" + organization_id
-         }
-        },
-         organization: {
-          ...this.state.organization,
-          "@id": "_:" + organization_id,
-          "my0:organizationAddress": {
-            "@id": "_:" + organizationAddress_id
-          }
-         },
-         address: {
-          ...this.state.address,
-          "@id": "_:" + organizationAddress_id
-         }
-      }
+        this.state.workHistory
     );
   };
 
@@ -226,9 +185,8 @@ class WorkHistoryModal extends Component {
     e.preventDefault();
     this.props.updateWorkHistory(
       {
-         workHistory: this.state.workHistory,
-         organization: this.state.organization,
-         address: this.state.address
+         object: this.state.workHistory,
+         index: this.props.id
       }
     );
   };
@@ -257,7 +215,8 @@ class WorkHistoryModal extends Component {
       "my0:jobMode" : jobMode,
       "my0:careerLevel" : careerLevel,
       "my0:jobDescription" : jobDescription,
-      "my0:isCurrent" : isCurrent
+      "my0:isCurrent" : isCurrent,
+      "my0:employedIn" : employedIn
     } = this.state.workHistory;
 
     let {
@@ -266,9 +225,8 @@ class WorkHistoryModal extends Component {
       "my0:organizationWebsite" : organizationWebsite,
       "my0:organizationDescription" : organizationDescription,
       "my0:organizationPhoneNumber" : organizationPhoneNumber,
-    } = this.state.organization;
-
-    let address = this.state.address;
+      "my0:organizationAddress" : address
+    } = employedIn;
 
     let { onHide } = this.props;
     return (
@@ -531,8 +489,7 @@ class WorkHistoryModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: getDataOfId(state.cv, ownProps.id),
-    cv: state.cv,
+    initialValues: state.cv["my0:hasWorkHistory"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     jobmodes: retrieveJobModes(state.utility.jobModeValues),
     careerlevels: retrieveCareerLevels(state.utility.careerLevelValues),

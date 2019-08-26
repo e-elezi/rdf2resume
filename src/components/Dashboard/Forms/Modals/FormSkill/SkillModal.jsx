@@ -5,13 +5,10 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherSkill, updateOtherSkill } from "../../../../../actions";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
-import { generateUUID } from "../../../../../reducers/cvReducer";
-import { getDataOfId } from '../../../../../utilities/utilityFunctions';
 
 class SkillModal extends Component {
   state = {
     otherSkill: {
-      "@id": "",
       "@type": "my0:Skill",
       "my0:skillName": "",
       "my0:skillDescription": "",
@@ -32,8 +29,6 @@ class SkillModal extends Component {
       let otherSkill = { ...this.state.otherSkill };
       otherSkill["my0:skillName"] = inputRef["my0:skillName"];
       otherSkill["my0:skillDescription"] = inputRef["my0:skillDescription"];
-      otherSkill["@id"] = inputRef["@id"];
-      otherSkill["@type"] = "my0:Skill";
       otherSkill["my0:skillLevel"] = inputRef["my0:skillLevel"];
       otherSkill["my0:skillLastUsed"] = inputRef["my0:skillLastUsed"];
       otherSkill["my0:skillYearsExperience"] =
@@ -50,7 +45,6 @@ class SkillModal extends Component {
     if (!this.props.isUpdate) {
       this.setState({
         otherSkill: {
-          "@id": "",
           "@type": "my0:Skill",
           "my0:skillName": "",
           "my0:skillDescription": "",
@@ -84,14 +78,16 @@ class SkillModal extends Component {
 
   handleSave = e => {
     e.preventDefault();
-    this.props.createOtherSkill({
-        ...this.state.otherSkill,
-        "@id": "_:" + generateUUID()
-    });
+    this.props.createOtherSkill(
+      this.state.otherSkill
+    );
   };
 
-  handleUpdate = (e, index) => {
-    this.props.updateOtherSkill( this.state.otherSkill );
+  handleUpdate = (e) => {
+    this.props.updateOtherSkill( {
+      object: this.state.otherSkill,
+      index: this.props.id
+    });
   };
 
   handleRenderingSubmitButton = () => {
@@ -210,7 +206,7 @@ class SkillModal extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    initialValues: getDataOfId(state.cv, ownProps.id)
+    initialValues: state.cv["my0:hasSkill"][ownProps.id]
   };
 };
 

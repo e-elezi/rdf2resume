@@ -6,29 +6,12 @@ export const getLabelFromURI = uri => {
   return uri.substring(uriIndex);
 };
 
-// export const processInitialEndpointData = (head, results) => {
-//   let varNames = head.vars;
-//   results = results.bindings;
-// };
-
 export const handleUpload = async data => {
   const response = await axios.post("/submit_form", data);
   return response;
 };
 
 export const processDataBeforeSubmit = cvData => {
-  // let education = Object.values(cvData.education);
-  // cvData.education = education;
-  // let courses = Object.values(cvData.courses);
-  // cvData.courses = courses;
-  // let workHistory = Object.values(cvData.workHistory);
-  // cvData.workHistory = workHistory;
-  // let references = Object.values(cvData.references);
-  // cvData.references = references;
-  // let otherInfo = Object.values(cvData.otherInfo);
-  // cvData.otherInfo = otherInfo;
-  // let OtherSkills = Object.values(cvData.skills.OtherSkills);
-  // cvData.skills.OtherSkills = OtherSkills;
   console.log(handleUpload(cvData));
 };
 
@@ -125,4 +108,146 @@ export function removeObjInGraph(data, property ,id) {
   }
   kot['@graph'] = myremoveotherinfo;
   return kot;
+}
+
+var eligibleArrayProperties = [
+  "my0:hasInstantMessaging",
+  "my0:hasCitizenship",
+  "my0:hasNationality",
+  "my0:hasTelephoneNumber",
+  "my0:hasCourse",
+  "my0:hasEducation",
+  "my0:hasSkill",
+  "my0:hasOtherInfo",
+  "my0:hasReference",
+  "my0:hasWorkHistory",
+  "my0:targetCompanyIndustry",
+  "my0:targetCompanyCountry"
+];
+
+function checkIfPropertyIsArray(property){
+let length = eligibleArrayProperties.length;
+for(let i =0; i<length; i++) {
+    if(property === eligibleArrayProperties[i]){
+        return true;
+    }
+}
+}
+
+export function parseJSONLDTOJSON ( data ) {
+  var obj = {};
+  obj["@context"] = data["@context"];
+  let cv = getDataOfType(data, 'my0:CV');
+  // all cv properties
+  for (let x in cv) {
+      if(x !== '@id'){
+          if(cv[x]["@id"]) {
+              let newobj = getDataOfId(data, cv[x]["@id"]);
+              obj[x] = {};
+              for(let y in newobj) {
+                  if(y !== '@id'){
+                      if(newobj[y]["@id"] && Object.keys(newobj[y]).length === 1) {
+                          let subnewobj = getDataOfId(data, newobj[y]["@id"]);
+                          obj[x][y] = {};
+                          for (let z in subnewobj) {
+                              if(z !== '@id'){
+                                  if(subnewobj[z]["@id"]) {
+                                      let subsubnewobj = getDataOfId(data, subnewobj[z]["@id"]);
+                                      obj[x][y][z] = {};
+                                      for (let d in subsubnewobj) {
+                                          if(d !== '@id'){
+                                              if(subsubnewobj[d]["@id"]) {
+                                                  let subsubsubnewobj = getDataOfId(data, subsubnewobj[d]["@id"]);
+                                                  obj[x][y][z][d] = {};
+                                                  for(let e in subsubsubnewobj) {
+                                                      if(e !== "@id") {
+                                                          obj[x][y][z][d][e] = subsubsubnewobj[e];
+                                                      }
+                                                  }
+
+                                              } else {
+                                                  obj[x][y][z][d] = subsubnewobj[d];
+                                              }
+                                          }
+                                      }
+
+                                  } else {
+                                      obj[x][y][z] = subnewobj[z];
+                                  }
+                              }
+                          }
+                      } else if(checkIfPropertyIsArray(y)){
+                          obj[x][y] = [];
+                          obj[x][y].push(newobj[y]);
+
+                      } else {
+                          obj[x][y] = newobj[y];
+                      }
+                  }
+              }
+          } else if(Array.isArray(cv[x])) { //if property is pointing to an array
+              let length = cv[x].length;
+              obj[x] = [];
+              for(let i = 0; i < length; i++ ) {
+                  if(cv[x][i]["@id"]) {
+                      let newobj = getDataOfId(data, cv[x][i]["@id"]);
+                      obj[x].push({});
+                      for(let y in newobj) {
+                          if(y !== '@id'){
+                              if(newobj[y]["@id"]) {
+                                  let subnewobj = getDataOfId(data, newobj[y]["@id"]);
+                                  obj[x][i][y] = {};
+                                  for (let z in subnewobj) {
+                                      if(z !== '@id'){
+                                          if(subnewobj[z]["@id"]) {
+                                              let subsubnewobj = getDataOfId(data, subnewobj[z]["@id"]);
+                                              obj[x][i][y][z] = {};
+                                              for (let d in subsubnewobj) {
+                                                  if(d !== '@id'){
+                                                      if(subsubnewobj[d]["@id"]) {
+                                                          let subsubsubnewobj = getDataOfId(data, subsubnewobj[d]["@id"]);
+                                                          obj[x][i][y][z][d] = {};
+                                                          for(let e in subsubsubnewobj) {
+                                                              if(e !== "@id") {
+                                                                  obj[x][i][y][z][d][e] = subsubsubnewobj[e];
+                                                              }
+                                                          }
+
+                                                      } else {
+                                                          obj[x][i][y][z][d] = subsubnewobj[d];
+                                                      }
+                                                  }
+                                              }
+
+                                          } else {
+                                              obj[x][i][y][z] = subnewobj[z];
+                                          }
+                                      }
+                                  }
+                              } else {
+                                  obj[x][i][y] = newobj[y];
+                              }
+                          }
+                      }
+                  }
+              }
+
+          } else {
+              obj[x] = cv[x];
+          }
+      }
+    }
+  for(let x in obj) {
+      if(obj[x]['my0:hasInstantMessaging']) {
+          let kot = obj[x]['my0:hasInstantMessaging'];
+          obj[x]['my0:hasInstantMessaging'] = [];
+          obj[x]['my0:hasInstantMessaging'].push(kot);
+      }
+      if(checkIfPropertyIsArray(x) && !Array.isArray(obj[x])){
+          let value = obj[x];
+          obj[x] = [];
+          obj[x].push(value);
+      }
+  }
+  return  obj;
 }

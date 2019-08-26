@@ -18,14 +18,6 @@ import {
   retrieveJobModes,
   retrieveCompanySizes
 } from "../../../utilities/utilityQueries";
-import { getDataOfId, getDataOfType } from '../../../utilities/utilityFunctions'
-
-function getTarget(data){
-  let obj = getDataOfType(data, 'my0:CV');
-  let id = obj['my0:target']['@id'];
-  let info = getDataOfId(data, id);
-  return info;
-}
 
 class FormTarget extends Component {
   state = {
@@ -106,7 +98,7 @@ class FormTarget extends Component {
   };
 
   handleSelectChange = (name, value) => {
-    this.props.updateTarget({ id: name, value: value, isURI: true });
+    this.props.updateTarget({ id: name, value: value });
   };
 
   handleMultiSelectChange = (name, value) => {
@@ -302,7 +294,7 @@ const mapstateToProps = state => {
     jobModes: retrieveJobModes(state.utility.jobModeValues),
     careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
     companySizes: retrieveCompanySizes(state.utility.companySizeValues),
-    target: getTarget(state.cv)
+    target: state.cv['my0:target']
   };
 };
 

@@ -22,11 +22,21 @@ import { getDataOfId } from '../../../../../utilities/utilityFunctions';
 class EducationModal extends Component {
   state = {
     education: {
-      "@id": "",
       "@type": "my0:Education",
       "my0:studiedIn": {
-        "@id": ""
-        },
+        "@type": "my0:EducationalOrg",
+        "my0:organizationName": "",
+        "my0:organizationDescription": "",
+        "my0:organizationPhoneNumber": "",
+        "my0:organizationWebsite": "",
+        "my0:organizationAddress": {
+          "@type": "Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
+        }
+      },
       "my0:isEduCurrent": false,
       "my0:eduStartDate": "",
       "my0:eduGradDate": "",
@@ -34,25 +44,6 @@ class EducationModal extends Component {
       "my0:eduMajor": "",
       "my0:eduMinor": "",
       "my0:eduDescription": ""
-    },
-    organization: {
-      "@id": "",
-      "@type": "my0:EducationalOrg",
-        "my0:organizationName": "",
-        "my0:organizationDescription": "",
-        "my0:organizationPhoneNumber": "",
-        "my0:organizationWebsite": "",
-        "my0:organizationAddress": {
-          "@id": ""
-        }
-    },
-    address: {
-      "@id": "",
-      "@type": "Address",
-      "my0:city" : "",
-      "my0:country" : "",
-      "my0:street" : "",
-      "my0:postalCode" : ""
     }
   };
 
@@ -67,7 +58,6 @@ class EducationModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.initialValues;
       let education = { ...this.state.education };
-      education["@id"] = inputRef["@id"];
       education["my0:eduStartDate"] = inputRef["my0:eduStartDate"];
       education["my0:eduGradDate"] = inputRef["my0:eduGradDate"];
       education["my0:degreeType"] = inputRef["my0:degreeType"];
@@ -79,18 +69,6 @@ class EducationModal extends Component {
       this.setState({
         education
       });
-      let orgref = getDataOfId(this.props.cv, education["my0:studiedIn"]['@id']);
-      let organization = { ...this.state.organization };
-      organization = orgref; 
-      this.setState({
-        organization
-      });
-      let address = { ...this.state.address };
-      let orgadref = getDataOfId(this.props.cv, orgref['my0:organizationAddress']['@id']);
-      address = orgadref;
-      this.setState({
-        address
-      });
     }
   };
 
@@ -98,11 +76,21 @@ class EducationModal extends Component {
     if (!this.props.isUpdate) {
       this.setState({
         education: {
-          "@id": "",
           "@type": "my0:Education",
           "my0:studiedIn": {
-            "@id": ""
-            },
+            "@type": "my0:EducationalOrg",
+            "my0:organizationName": "",
+            "my0:organizationDescription": "",
+            "my0:organizationPhoneNumber": "",
+            "my0:organizationWebsite": "",
+            "my0:organizationAddress": {
+              "@type": "Address",
+              "my0:city" : "",
+              "my0:country" : "",
+              "my0:street" : "",
+              "my0:postalCode" : ""
+            }
+          },
           "my0:isEduCurrent": false,
           "my0:eduStartDate": "",
           "my0:eduGradDate": "",
@@ -110,25 +98,6 @@ class EducationModal extends Component {
           "my0:eduMajor": "",
           "my0:eduMinor": "",
           "my0:eduDescription": ""
-        },
-        organization: {
-          "@id": "",
-          "@type": "my0:EducationalOrg",
-            "my0:organizationName": "",
-            "my0:organizationDescription": "",
-            "my0:organizationPhoneNumber": "",
-            "my0:organizationWebsite": "",
-            "my0:organizationAddress": {
-              "@id": ""
-            }
-        },
-        address: {
-          "@id": "",
-          "@type": "Address",
-          "my0:city" : "",
-          "my0:country" : "",
-          "my0:street" : "",
-          "my0:postalCode" : ""
         }
       });
     } else {
@@ -145,58 +114,46 @@ class EducationModal extends Component {
   };
 
   handleInputChange = e => {
-    let obj = {...this.state[e.target.name]};
+    let obj = {...this.state.education};
     let label = e.target.id;
-    obj[label] = e.target.value;
-    let kot = e.target.name;
+    if(e.target.name === "organization") {
+      obj['my0:studiedIn'][label] = e.target.value;
+    } else if(e.target.name === "address") {
+      obj['my0:studiedIn']['my0:organizationAddress'][label] = e.target.value;
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
-      [kot]: obj
+      education: obj
     })
   };
 
   handleSelectChange = (value, id, name) => {
-    let obj = {...this.state[name]};
+    let obj = {...this.state.education};
     let label = id;
-    obj[label] = value['@type'];
+    if(name === "organization") {
+      obj['my0:studiedIn'][label] = value['@type'];
+    } else if(name === "address") {
+      obj['my0:studiedIn']['my0:organizationAddress'][label] = value['@type'];
+    } else {
+      obj[label] = value['@type'];
+    }
     this.setState({
-      [name]: obj 
+      education: obj
     })
   };
 
   handleSave = () => {
-    var course_id = generateUUID();
-    var organization_id = generateUUID();
-    var organizationAddress_id = generateUUID();
     this.props.createEducation(
-      {
-        education: {
-         ...this.state.education,
-         "@id": "_:" + course_id,
-         "my0:studiedIn": {
-           "@id": "_:" + organization_id
-         }
-        },
-         organization: {
-          ...this.state.organization,
-          "@id": "_:" + organization_id,
-          "my0:organizationAddress": {
-            "@id": "_:" + organizationAddress_id
-          }
-         },
-         address: {
-          ...this.state.address,
-          "@id": "_:" + organizationAddress_id
-         }
-      }
+      this.state.education
     );
   };
 
   handleUpdate = () => {
     this.props.updateEducation(
       {
-         education: this.state.education,
-         organization: this.state.organization,
-         address: this.state.address
+         object: this.state.education,
+         index: this.props.id
       }
     );
   };
@@ -225,7 +182,8 @@ class EducationModal extends Component {
       "my0:eduMajor" : eduMajor,
       "my0:eduMinor" : eduMinor,
       "my0:eduDescription" : eduDescription,
-      "my0:isEduCurrent" : isEduCurrent
+      "my0:isEduCurrent" : isEduCurrent,
+      "my0:studiedIn" : studiedIn
     } = this.state.education;
 
     let {
@@ -233,9 +191,8 @@ class EducationModal extends Component {
       "my0:organizationWebsite" : organizationWebsite,
       "my0:organizationDescription" : organizationDescription,
       "my0:organizationPhoneNumber" : organizationPhoneNumber,
-    } = this.state.organization;
-
-    let address = this.state.address;
+      "my0:organizationAddress" : address
+    } = studiedIn;
 
     let { onHide } = this.props;
     return (
@@ -439,8 +396,7 @@ class EducationModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: getDataOfId(state.cv, ownProps.id),
-    cv: state.cv,
+    initialValues: state.cv["my0:hasEducation"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     companySizes: retrieveCompanySizes(state.utility.companySizeValues),
     eduDegrees: retrieveDegreeValues(state.utility.eduDegreeValues)

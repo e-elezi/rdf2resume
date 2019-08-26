@@ -12,8 +12,6 @@ import {
   retrieveCountryValues,
   retrieveTitleValues
 } from "../../../../../utilities/utilityQueries";
-import { generateUUID } from "../../../../../reducers/cvReducer";
-import { getDataOfId } from '../../../../../utilities/utilityFunctions';
 
 class ReferenceModal extends Component {
   state = {
@@ -21,43 +19,27 @@ class ReferenceModal extends Component {
       "@type": "my0:Reference",
       "my0:referenceType": "",
       "my0:referenceBy": {
-        "@id": ""
-      }
-    },
-    person: {
-      "@id": "",
-      "@type": "my0:Person",
-      "my0:title": "",
-      "my0:firstName" : "",
-      "my0:lastName" : "",
-      "my0:address" : {
-        "@id": "",
-        },
-      "my0:hasTelephoneNumber" : "",
-      "my0:email" : "",
-      "my0:currentJob": {
-        "@id": "",
-      }
-    },
-    organization: {
-      "@id": "",
-      "@type": "my0:Company",
-      "my0:organizationName": ""
-    },
-    address: {
-      "@id": "",
-      "@type": "my0:Address",
-      "my0:city" : "",
-      "my0:country" : "",
-      "my0:street" : "",
-      "my0:postalCode" : ""
-    },
-    workHistory: {
-      "@id": "",
-      "@type": "my0:WorkHistory",
-      "my0:jobTitle": "",
-      "my0:employedIn": {
-        "@id": "",
+        "@type": "my0:Person",
+        "my0:title": "",
+        "my0:firstName" : "",
+        "my0:lastName" : "",
+        "my0:address" : {
+          "@type": "my0:Address",
+          "my0:city" : "",
+          "my0:country" : "",
+          "my0:street" : "",
+          "my0:postalCode" : ""
+          },
+        "my0:hasTelephoneNumber" : "",
+        "my0:email" : "",
+        "my0:currentJob": {
+          "@type": "my0:WorkHistory",
+          "my0:jobTitle": "",
+          "my0:employedIn": {
+            "@type": "my0:Company",
+            "my0:organizationName": ""
+          }
+        }
       }
     },
     typeValues: [ {
@@ -79,35 +61,10 @@ class ReferenceModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.initialValues;
       let reference = { ...this.state.reference };
-      reference["@id"] = inputRef["@id"];
       reference["my0:referenceBy"] = inputRef["my0:referenceBy"];
       reference["my0:referenceType"] = inputRef["my0:referenceType"];
       this.setState({
         reference
-      });
-      let personref = getDataOfId(this.props.cv, reference["my0:referenceBy"]['@id']);
-      let person = { ...this.state.person };
-      person = personref; 
-      this.setState({
-        person
-      });
-      let addressref = getDataOfId(this.props.cv, person["my0:address"]['@id']);
-      let address = { ...this.state.address };
-      address = addressref; 
-      this.setState({
-        address
-      });
-      let workref = getDataOfId(this.props.cv, person["my0:currentJob"]['@id']);
-      let workHistory = { ...this.state.workHistory };
-      workHistory = workref; 
-      this.setState({
-        workHistory
-      });
-      let organization = { ...this.state.organization };
-      let orgref = getDataOfId(this.props.cv, workHistory['my0:employedIn']['@id']);
-      organization = orgref;
-      this.setState({
-        organization
       });
   };
 }
@@ -119,43 +76,27 @@ class ReferenceModal extends Component {
           "@type": "my0:Reference",
           "my0:referenceType": "",
           "my0:referenceBy": {
-            "@id": ""
-          }
-        },
-        person: {
-          "@id": "",
-          "@type": "my0:Person",
-          "my0:title": "",
-          "my0:firstName" : "",
-          "my0:lastName" : "",
-          "my0:address" : {
-            "@id": "",
-            },
-          "my0:hasTelephoneNumber" : "",
-          "my0:email" : "",
-          "my0:currentJob": {
-            "@id": "",
-          }
-        },
-        organization: {
-          "@id": "",
-          "@type": "my0:Company",
-          "my0:organizationName": ""
-        },
-        address: {
-          "@id": "",
-          "@type": "my0:Address",
-          "my0:city" : "",
-          "my0:country" : "",
-          "my0:street" : "",
-          "my0:postalCode" : ""
-        },
-        workHistory: {
-          "@id": "",
-          "@type": "my0:WorkHistory",
-          "my0:jobTitle": "",
-          "my0:employedIn": {
-            "@id": "",
+            "@type": "my0:Person",
+            "my0:title": "",
+            "my0:firstName" : "",
+            "my0:lastName" : "",
+            "my0:address" : {
+              "@type": "my0:Address",
+              "my0:city" : "",
+              "my0:country" : "",
+              "my0:street" : "",
+              "my0:postalCode" : ""
+              },
+            "my0:hasTelephoneNumber" : "",
+            "my0:email" : "",
+            "my0:currentJob": {
+              "@type": "my0:WorkHistory",
+              "my0:jobTitle": "",
+              "my0:employedIn": {
+                "@type": "my0:Company",
+                "my0:organizationName": ""
+              }
+            }
           }
         }
       });
@@ -165,75 +106,54 @@ class ReferenceModal extends Component {
   };
 
   handleSelectChange = (value, id, name) => {
-    let obj = {...this.state[name]};
+    console.log(value);
+    let obj = {...this.state.reference};
     let label = id;
-    obj[label] = value['@type'];
+    if(name === "person") {
+      obj['my0:referenceBy'][label] = value['@type'];
+    } else if(name === "address") {
+      obj['my0:referenceBy']['my0:address'][label] = value['@type'];
+    } else if (name === "workHistory") {
+      obj['my0:referenceBy']['my0:currentJob'][label] = value['@type'];
+    } else if (name === "organization") {
+      obj['my0:referenceBy']['my0:currentJob']["my0:employedIn"][label] = value['@type'];
+    } else {
+      obj[label] = value['@type'];
+    }
     this.setState({
-      [name]: obj 
+      reference: obj
     })
   };
 
   handleInputChange = e => {
-    let obj = {...this.state[e.target.name]};
+    let obj = {...this.state.reference};
     let label = e.target.id;
-    obj[label] = e.target.value;
-    let kot = e.target.name;
+    if(e.target.name === "person") {
+      obj['my0:referenceBy'][label] = e.target.value;
+    } else if(e.target.name === "address") {
+      obj['my0:referenceBy']['my0:address'][label] = e.target.value;
+    } else if (e.target.name === "workHistory") {
+      obj['my0:referenceBy']['my0:currentJob'][label] = e.target.value;
+    } else if (e.target.name === "organization") {
+      obj['my0:referenceBy']['my0:currentJob']["my0:employedIn"][label] = e.target.value;
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
-      [kot]: obj
+      reference: obj
     })
   };
 
   handleSave = () => {
-    var referenceID = generateUUID();
-    var personID = generateUUID();
-    var personAddressID = generateUUID();
-    var organizationID = generateUUID();
-    var workHistoryID = generateUUID();
     this.props.createReference(
-      {
-        reference: {
-         ...this.state.reference,
-         "@id": "_:" + referenceID,
-         "my0:referenceBy": {
-           "@id": "_:" + personID
-         }
-        },
-         person: {
-          ...this.state.person,
-          "@id": "_:" + personID,
-          "my0:address": {
-            "@id": "_:" + personAddressID
-          },
-          "my0:currentJob": {
-            "@id": "_:" + workHistoryID
-          }
-         },
-         address: {
-          ...this.state.address,
-          "@id": "_:" + personAddressID
-         },
-         workHistory: {
-          ...this.state.workHistory,
-          "@id": "_:" + workHistoryID,
-          "my0:employedIn": {
-            "@id": "_:" + organizationID
-          }
-          },
-        organization: {
-            ...this.state.organization,
-            "@id": "_:" + organizationID
-          }
-        }
+     this.state.reference
     );
   };
 
   handleUpdate = () => {
     this.props.updateReference( { 
-      reference: this.state.reference,
-      person: this.state.person,
-      address: this.state.address,
-      workHistory: this.state.workHistory,
-      organization: this.state.organization
+      object: this.state.reference,
+      index: this.props.id
      } );
   };
 
@@ -260,15 +180,16 @@ class ReferenceModal extends Component {
       "my0:lastName" : lastName,
       "my0:email" : email,
       "my0:hasTelephoneNumber" : hasTelephoneNumber,
-   } = this.state.person;
-
-   let address = this.state.address;
+      "my0:currentJob" : currentJob,
+      "my0:address" : address
+   } = this.state.reference['my0:referenceBy'];
 
    let { 
       "my0:jobTitle" : jobTitle,
-    } = this.state.workHistory;
+      "my0:employedIn" : employedIn
+    } = currentJob;
 
-    let {  "my0:organizationName" : organizationName } = this.state.organization;
+    let {  "my0:organizationName" : organizationName } = employedIn;
 
     const { onHide } = this.props;
     return (
@@ -468,8 +389,7 @@ class ReferenceModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: getDataOfId(state.cv, ownProps.id),
-    cv: state.cv,
+    initialValues: state.cv["my0:hasReference"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
     titles: retrieveTitleValues(state.utility.titleValues)
   };

@@ -4,7 +4,6 @@ import { Row, Col } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import OtherInfoView from "./Modals/FormOtherInfo/OtherInfoView";
 import OtherInfoModal from "./Modals/FormOtherInfo/OtherInfoModal";
-import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormOtherInfo extends Component {
   state = {
@@ -56,7 +55,7 @@ class FormOtherInfo extends Component {
         {this.props.otherInfos.map((otherinfo, index) => (
           <OtherInfoView
             otherInfoObject={otherinfo}
-            id={otherinfo['@id']}
+            id={index}
             key={index}
           />
         ))}
@@ -67,7 +66,7 @@ class FormOtherInfo extends Component {
 
 const mapStateToProps = state => {
   return {
-    otherInfos: getDataArrayOfType(state.cv, 'my0:OtherInfo' )
+    otherInfos: state.cv["my0:hasOtherInfo"]
   };
 };
 

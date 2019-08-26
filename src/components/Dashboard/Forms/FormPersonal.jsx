@@ -44,34 +44,16 @@ class FormPersonal extends Component {
     });
   }
 
-  handleInputChange = (e, secondName) => {
+  handleInputChange = (e, secondLevel) => {
     this.props.updateAboutPerson({
       id: e.target.id,
       value: e.target.value,
-      super: secondName
-    });
+      secondLevel
+    })
   };
 
-  findURIByValue(data, value) {
-    let length = data.length;
-    for(let i=0; i<length; i++) {
-      if(data[i].value===value){
-        return data[i]["@type"];
-      }
-    }
-  }
-
-  findValueByURI(data, uri) {
-    let length = data.length;
-    for(let i=0; i<length; i++) {
-      if(data[i]["@type"]===uri){
-        return data[i]["value"];
-      }
-    }
-  }
-
-  handleSelectChange = (name, value, secondName) => {
-    this.props.updateAboutPerson({ id: name, value: value, super: secondName, isURI: true });
+  handleSelectChange = (name, value, secondLevel) => {
+    this.props.updateAboutPerson({ id: name, value: value["@type"], secondLevel });
   };
 
   handleMultiSelectChange = (name, value) => {
@@ -109,27 +91,17 @@ class FormPersonal extends Component {
     this.props.createIM();
   };
 
-  updateInstantMessaging = (name, value, id, index) => {
-    console.log(name, value, id);
-    this.props.updateIM({ id:id, name: name, value: value });
+  updateInstantMessaging = (name, value, index) => {
+    this.props.updateIM({ id:index, name: name, value: value });
   };
 
-  removeInstantMessaging = (id, index) => {
-    this.props.removeIM(id)
+  removeInstantMessaging = (index) => {
+    this.props.removeIM(index)
   };
 
   handleAddPhotoClick = () => {
     console.log("Adding a photo");
   };
-
-  handleCreatingIMArray(data) {
-    let arr = [];
-    let length = data.length;
-    for(let i=0; i <length; i++) {
-      arr.push(getDataOfId(this.props.cv, data[i]['@id']));
-    }
-    return arr;
-  }
 
   render() {
     let {
@@ -143,12 +115,11 @@ class FormPersonal extends Component {
       "my0:hasTelephoneNumber" : hasTelephoneNumber,
       "my0:email" : email,
       "my0:title" : title,
-      "my0:driversLicence" : driversLicence
+      "my0:driversLicence" : driversLicence,
+      "my0:address" : address
     } = this.props.aboutperson;
 
-    let address  =  this.props.address;
-
-    let instantMessaging = this.handleCreatingIMArray(this.props.aboutperson['my0:hasInstantMessaging']);
+    let instantMessaging = this.props.aboutperson['my0:hasInstantMessaging'];
 
     return (
       <Row className="main-content-row">
@@ -186,7 +157,7 @@ class FormPersonal extends Component {
             data={this.props.titles}
             textField="value"
             valueField="@type"
-            value={this.findValueByURI(this.props.titles, title)}
+            value={title}
             caseSensitive={false}
             minLength={3}
             filter="contains"
@@ -382,7 +353,6 @@ class FormPersonal extends Component {
                       this.updateInstantMessaging(
                         "my0:instantMessagingName",
                         value,
-                        member['@id'],
                         index
                       )
                     }
@@ -399,7 +369,6 @@ class FormPersonal extends Component {
                     this.updateInstantMessaging(
                       "my0:instantMessagingUsername",
                       e.target.value,
-                      member['@id'],
                       index
                     )
                   }
@@ -409,7 +378,7 @@ class FormPersonal extends Component {
                 <RemoveButton
                   classnames="shift-left"
                   handleClick={() =>
-                    this.removeInstantMessaging( member['@id'], index)
+                    this.removeInstantMessaging(index)
                   }
                 />
               </Col>
@@ -427,9 +396,7 @@ const mapstateToProps = state => {
     countries: retrieveCountryValues(state.utility.countryValues),
     genders: retrieveGenderValues(state.utility.genderValues),
     titles: retrieveTitleValues(state.utility.titleValues),
-    aboutperson:  getAboutPerson(state.cv),
-    cv: state.cv,
-    address: getDataOfId(state.cv, getAboutPerson(state.cv)['my0:address']['@id'])
+    aboutperson:  state.cv['my0:aboutPerson']
   };
 };
 

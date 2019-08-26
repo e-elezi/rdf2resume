@@ -14,8 +14,7 @@ class OtherInfoModal extends Component {
     otherInfo: {
       "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
-      "my0:otherInfoDescription": "",
-      "@id": ""
+      "my0:otherInfoDescription": ""
     }
   };
 
@@ -30,7 +29,6 @@ class OtherInfoModal extends Component {
       let otherInfo = { ...this.state.otherInfo };
       otherInfo["my0:otherInfoType"] = inputRef["my0:otherInfoType"];
       otherInfo["my0:otherInfoDescription"] = inputRef["my0:otherInfoDescription"];
-      otherInfo["@id"] = inputRef["@id"];
       this.setState({
         otherInfo
       });
@@ -41,8 +39,7 @@ class OtherInfoModal extends Component {
     const hist = {
       "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
-      "my0:otherInfoDescription": "",
-      "@id": ""
+      "my0:otherInfoDescription": ""
     };
     if (!this.props.isUpdate) {
       this.setState({
@@ -71,16 +68,15 @@ class OtherInfoModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherInfo(
-      { 
-        ...this.state.otherInfo,
-        '@id': "_:" + generateUUID()
-      }
+      this.state.otherInfo
     );
   };
 
   handleUpdate = e => {
-    e.preventDefault();
-    this.props.updateOtherInfo(this.state.otherInfo);
+    this.props.updateOtherInfo( {
+      object: this.state.otherInfo,
+      index: this.props.id
+    } );
   };
 
   handleRenderingSubmitButton = () => {
@@ -171,7 +167,7 @@ class OtherInfoModal extends Component {
 
 const mapstateToProps = (state, ownProps) => {
   return {
-    initialValues: getDataOfId(state.cv, ownProps.id),
+    initialValues: state.cv["my0:hasOtherInfo"][ownProps.id],
     others: retrieveOtherTypes(state.utility.otherCVInfoValues)
   };
 };

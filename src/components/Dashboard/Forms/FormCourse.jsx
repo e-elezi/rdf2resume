@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import CourseModal from "./Modals/FormCourse/CourseModal";
 import CourseView from "./Modals/FormCourse/CourseView";
 import AddButton from "../../core/AddButton";
-import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormCourse extends Component {
   state = {
@@ -52,7 +51,7 @@ class FormCourse extends Component {
         {this.props.course.map((co, index) => (
           <CourseView
             courseObj={co}
-            id={co['@id']}
+            id={index}
             key={index}
           />
         ))}
@@ -63,7 +62,7 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: getDataArrayOfType(state.cv, 'my0:Course' )
+    course: state.cv["my0:hasCourse"]
   };
 };
 

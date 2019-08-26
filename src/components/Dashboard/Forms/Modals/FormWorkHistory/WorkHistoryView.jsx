@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeWorkHistory } from "../../../../../actions";
 import WorkHistoryModal from "./WorkHistoryModal";
-import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class WorkHistoryReview extends Component {
   state = {
@@ -45,19 +44,17 @@ class WorkHistoryReview extends Component {
     } = this.props.workHistory;
 
     let {
-      "@id": organizationID,
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-    } = getDataOfId(this.props.cv, this.props.workHistory['my0:employedIn']['@id']);
+    } = this.props.workHistory['my0:employedIn'];
 
     let {
-      "@id": addressId,
       "my0:city" : city,
       "my0:country" : country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
-    } = getDataOfId(this.props.cv, organizationAddress['@id']);
+    } = organizationAddress;
 
 
     return (
@@ -125,12 +122,7 @@ class WorkHistoryReview extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeWorkHistory(
-                {
-                  workHistory:this.props.id,
-                  organization: organizationID,
-                  address: addressId
-                }
+              onClick={() => this.props.removeWorkHistory(this.props.id
               )}
             />
           </Col>
@@ -147,13 +139,7 @@ class WorkHistoryReview extends Component {
   }
 }
 
-const mapstateToProps = (state, ownProps) => {
-  return {
-    cv: state.cv
-  };
-};
-
 export default connect(
-  mapstateToProps,
+  null,
   { removeWorkHistory }
 )(WorkHistoryReview);

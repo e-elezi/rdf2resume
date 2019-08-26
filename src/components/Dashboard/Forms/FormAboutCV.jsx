@@ -90,7 +90,7 @@ class FormAboutCV extends Component {
 
 const mapstateToProps = state => {
   return {
-    cv: getDataOfType(state.cv, 'my0:CV')
+    cv: state.cv
   };
 };
 

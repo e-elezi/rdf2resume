@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import EducationModal from "./Modals/FormEducation/EducationModal";
 import EducationView from "./Modals/FormEducation/EducationView";
 import AddButton from "../../core/AddButton";
-import { getDataArrayOfType } from '../../../utilities/utilityFunctions'
 
 class FormEducation extends Component {
   state = {
@@ -52,7 +51,7 @@ class FormEducation extends Component {
         {this.props.education.map((edu, index) => (
           <EducationView
             educationObj={edu}
-            id={edu['@id']}
+            id={index}
             key={index}
           />
         ))}
@@ -63,7 +62,7 @@ class FormEducation extends Component {
 
 const mapStateToProps = state => {
   return {
-    education: getDataArrayOfType(state.cv, 'my0:Education' )
+    education: state.cv["my0:hasEducation"]
   };
 };
 

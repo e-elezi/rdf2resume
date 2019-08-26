@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeEducation } from "../../../../../actions";
 import EducationModal from "./EducationModal";
-import { getDataOfId } from "../../../../../utilities/utilityFunctions";
 
 class EducationView extends Component {
   state = {
@@ -43,22 +42,21 @@ class EducationView extends Component {
       // "my0:eduMinor" : eduMinor,
       "my0:eduDescription" : eduDescription,
       // "my0:isEduCurrent" : isEduCurrent
+      "my0:studiedIn" : studiedIn
     } = this.props.educationObj;
 
     let {
-      "@id": organizationID,
       "my0:organizationName" : organizationName,
       "my0:organizationAddress" : organizationAddress,
       "my0:organizationWebsite" : organizationWebsite,
-    } = getDataOfId(this.props.cv, this.props.educationObj['my0:studiedIn']['@id']);
+    } = studiedIn;
 
     let {
-      "@id": addressId,
       "my0:city" : city,
       "my0:country" : country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
-    } = getDataOfId(this.props.cv, organizationAddress['@id']);
+    } = organizationAddress;
 
 
     return (
@@ -128,11 +126,7 @@ class EducationView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeEducation({
-                education:this.props.id,
-                organization: organizationID,
-                address: addressId
-              } )}
+              onClick={() => this.props.removeEducation(this.props.id )}
             />
           </Col>
         </Row>
@@ -148,13 +142,7 @@ class EducationView extends Component {
   }
 }
 
-const mapstateToProps = (state, ownProps) => {
-  return {
-    cv: state.cv
-  };
-};
-
 export default connect(
-  mapstateToProps,
+  null,
   { removeEducation }
 )(EducationView);

@@ -63,133 +63,99 @@ export function generateUUID() { // Public Domain/MIT
   });
 }
 
-var id_CV = generateUUID();
-var id_aboutPerson = generateUUID();
-var id_personAddress = generateUUID();
-var id_target = generateUUID();
-var id_CommunicationSkills = generateUUID();
-var id_OrganisationalSkills = generateUUID();
-var id_JobRelatedSkills = generateUUID();
-var id_DigitalSkills = generateUUID();
+// var id_CV = generateUUID();
+// var id_aboutPerson = generateUUID();
+// var id_personAddress = generateUUID();
+// var id_target = generateUUID();
+// var id_CommunicationSkills = generateUUID();
+// var id_OrganisationalSkills = generateUUID();
+// var id_JobRelatedSkills = generateUUID();
+// var id_DigitalSkills = generateUUID();
 
 const INITIAL_STATE = {
-  "@context": {
-    "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
-    "my0": "http://example.com/rdf2resume_ontology.rdf#",
-    "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
-  },
-  "@graph": [
-    {
-      "@id": "_:" + id_CV,
-      "@type" : "my0:CV",
-      "my0:cvTitle" : "",
-      "my0:cvNotes" : "",
-      "my0:cvIsActive" : true,
-      "my0:cvIsConfidential" : false,
-      "my0:cvLastUpdated" : "",
-      "my0:cvCopyright" : "",
-      "my0:aboutPerson" : {
-        "@id" : "_:" + id_aboutPerson
-      },
-      "my0:hasCourse": [],
-      "my0:hasEducation": [],
-      "my0:hasOtherInfo": [],
-      "my0:hasReference": [],
-      "my0:hasSkill": [
-        {
-          "@id": "_:" + id_CommunicationSkills
-        },
-        {
-          "@id": "_:" + id_DigitalSkills
-        },
-        {
-          "@id": "_:" + id_JobRelatedSkills
-        },
-        {
-          "@id": "_:" + id_OrganisationalSkills
-        }
-      ],
-      "my0:hasWorkHistory": [],
-      "my0:target": {
-        "@id": "_:" + id_target
-      }
-    },
-    {
-      "@id" : "_:" + id_aboutPerson,
-      "@type": "my0:Person",
-      "my0:firstName" : "",
-      "my0:lastName" : "",
-      "my0:photo" : "",
-      "my0:hasCitizenship" : [],
-      "my0:hasNationality" : [],
-      "my0:website" : "",
-      "my0:dateOfBirth" : "",
-      "my0:gender" : "",
-      "my0:driversLicence" : "",
-      "my0:hasTelephoneNumber" : [],
-      "my0:email" : "",
-      "my0:title" : "",
-      "my0:hasInstantMessaging" : [],
-      "my0:address" : {
-        "@id" : "_:" + id_personAddress
-      }
-    },
-    {
-      "@id" : "_:" + id_personAddress,
+  "my0:hasReference": [],
+  "my0:hasWorkHistory": [],
+  "my0:cvLastUpdated": "",
+  "my0:cvIsConfidential": false,
+  "my0:cvCopyright": "",
+  "my0:cvNotes": "",
+  "my0:hasCourse": [],
+  "my0:aboutPerson": {
+    "my0:hasNationality": [],
+    "my0:firstName": "",
+    "my0:lastName": "",
+    "my0:hasInstantMessaging": [],
+    "my0:dateOfBirth": "",
+    "@type": "my0:Person",
+    "my0:email": "",
+    "my0:photo": "",
+    "my0:title": "",
+    "my0:driversLicence": "",
+    "my0:website": "",
+    "my0:hasCitizenship": [],
+    "my0:address": {
       "@type": "my0:Address",
-        "my0:city" : "",
-        "my0:country" : "",
-        "my0:street" : "",
-        "my0:postalCode" : ""
+      "my0:country": "",
+      "my0:postalCode": "",
+      "my0:street": "",
+      "my0:city": ""
     },
-    {
-      "@id": "_:" + id_target,
-      "@type": "my0:Target",
-      "my0:conditionWillRelocate": true,
-      "my0:conditionWillTravel": true,
-      "my0:targetCompanyCountry": [],
-      "my0:targetCompanyDescription": "",
-      "my0:targetCompanyIndustry": [],
-      "my0:targetCompanyLocality": "",
-      "my0:targetCompanySize": "",
-      "my0:targetJobCareerLevel": "",
-      "my0:targetJobDescription": "",
-      "my0:targetJobMode": "",
-      "my0:targetJobTitle": "",
-      "my0:targetSalaryCurrency": "",
-      "my0:targetSalaryRange": "",
-      "my0:weeksNoticePeriod": ""
+    "my0:hasTelephoneNumber": [],
+    "my0:gender": ""
+  },
+  "my0:hasSkill": [
+  {
+    "@type": "my0:CommunicationSkills",
+    "my0:skillDescription": ""
+  },
+  {
+    "@type": "my0:OrganisationalSkills",
+    "my0:skillDescription": ""
+  },
+  {
+    "@type": "my0:JobRelatedSkills",
+    "my0:skillDescription": ""
+  },
+  {
+    "my0:otherDigitalSkills": "",
+    "@type": "my0:DigitalSkills",
+    "my0:informationProcessing": "",
+    "my0:problemSolving": "",
+    "my0:hasICTCertificate": false,
+    "my0:safety": "",
+    "my0:contentCreation": "",
+    "my0:communication": ""
+  }],
+  "@type": "my0:CV",
+  "my0:target": {
+    "my0:targetJobDescription": "",
+    "my0:targetJobTitle": "",
+    "my0:targetCompanyIndustry": [],
+    "my0:targetSalaryCurrency": "",
+    "my0:weeksNoticePeriod": "",
+    "my0:targetCompanyCountry": [],
+    "my0:conditionWillTravel": true,
+    "my0:targetJobMode": "",
+    "my0:conditionWillRelocate": true,
+    "my0:targetSalaryRange": "",
+    "my0:targetCompanySize": "",
+    "@type": "my0:Target",
+    "my0:targetJobCareerLevel": "",
+    "my0:targetCompanyLocality": "",
+    "my0:targetCompanyDescription": ""
     },
-    {
-      "@id": "_:" + id_CommunicationSkills,
-      "@type": "my0:CommunicationSkills",
-      "my0:skillDescription": "kot"
-    },
-    {
-      "@id": "_:" + id_OrganisationalSkills,
-      "@type": "my0:OrganisationalSkills",
-      "my0:skillDescription": ""
-    },
-    {
-      "@id": "_:" + id_JobRelatedSkills,
-      "@type": "my0:JobRelatedSkills",
-      "my0:skillDescription": ""
-    },
-    {
-      "@id": "_:" + id_DigitalSkills,
-      "@type": "my0:DigitalSkills",
-      "my0:hasICTCertificate": false,
-      "my0:otherDigitalSkills": "",
-      "my0:informationProcessing": "",
-      "my0:communication": "",
-      "my0:contentCreation": "",
-      "my0:safety": "",
-      "my0:problemSolving": ""
+    "my0:hasOtherInfo": [],
+    "my0:cvTitle": "",
+    "my0:hasEducation": [],
+    "my0:cvIsActive": true,
+    "@context": {
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
+      "my0": "http://example.com/rdf2resume_ontology.rdf#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
     }
-  ]
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -215,219 +181,118 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_OTHER_INFO:
       return { ...state["my0:hasOtherInfo"], ..._.mapKeys(action.payload, "id") };
     case CREATE_OTHER_INFO:
-      return createObjInGraph({...state}, 'my0:hasOtherInfo', action.payload) ;
+      let otherinfos = {...state};
+      otherinfos['my0:hasOtherInfo'].push(action.payload);
+      return otherinfos;
     case UPDATE_OTHER_INFO:
-      return updateObjInGraph({...state}, action.payload);
+      let updateotherinfos = {...state};
+      updateotherinfos['my0:hasOtherInfo'][action.payload.index] = action.payload.object;
+      return updateotherinfos;
     case REMOVE_OTHER_INFO:
-        return removeObjInGraph({...state}, 'my0:hasOtherInfo', action.payload);
+      let removedotherinfo = {...state}['my0:hasOtherInfo'];
+      let removedotherinfos = _.filter(removedotherinfo, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasOtherInfo": removedotherinfos };
     case CREATE_REFERENCE:
-      let referencegraphs =  createObjInGraph({...state}, 'my0:hasReference', action.payload.reference);
-      referencegraphs['@graph'].push(action.payload.person);
-      referencegraphs['@graph'].push(action.payload.address);
-      referencegraphs['@graph'].push(action.payload.workHistory);
-      referencegraphs['@graph'].push(action.payload.organization);
-      return referencegraphs;
+      let references = {...state};
+      references['my0:hasReference'].push(action.payload);
+      return references;
     case UPDATE_REFERENCE:
-      let referenceUpdate = updateObjInGraph({...state}, action.payload.reference);
-      referenceUpdate = updateObjInGraph({...referenceUpdate}, action.payload.person);
-      referenceUpdate = updateObjInGraph({...referenceUpdate}, action.payload.address);
-      referenceUpdate = updateObjInGraph({...referenceUpdate}, action.payload.workHistory);
-      referenceUpdate = updateObjInGraph({...referenceUpdate}, action.payload.organization);
-      return referenceUpdate;
+      let updatereferences = {...state};
+      updatereferences['my0:hasReference'][action.payload.index] = action.payload.object;
+      return updatereferences;
     case REMOVE_REFERENCE:
-      //first remove address
-      let removedreferences = removeObjInGraph({...state}, 'my0:hasReference', action.payload.reference);
-      //then remove organization
-      removedreferences = removeObjInGraph({...removedreferences}, 'my0:hasReference', action.payload.person);
-      //finally remove course
-      removedreferences = removeObjInGraph({...removedreferences}, 'my0:hasReference', action.payload.address);
-      removedreferences = removeObjInGraph({...removedreferences}, 'my0:hasReference', action.payload.workHistory);
-      removedreferences = removeObjInGraph({...removedreferences}, 'my0:hasReference', action.payload.organization);
-      return removedreferences;
+      let removereference = {...state}['my0:hasReference'];
+      let removereferences = _.filter(removereference, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasReference": removereferences };
     case CREATE_WORK_HISTORY:
-      let workgraphs =  createObjInGraph({...state}, 'my0:hasWorkHistory', action.payload.workHistory);
-      workgraphs['@graph'].push(action.payload.organization);
-      workgraphs['@graph'].push(action.payload.address);
-      return workgraphs;
+      let workhistories = {...state};
+      workhistories['my0:hasWorkHistory'].push(action.payload);
+      return workhistories;
     case UPDATE_WORK_HISTORY:
-      let workgraphUpdate = updateObjInGraph({...state}, action.payload.workHistory);
-      workgraphUpdate = updateObjInGraph({...workgraphUpdate}, action.payload.organization);
-      workgraphUpdate = updateObjInGraph({...workgraphUpdate}, action.payload.address);
-      return workgraphUpdate;
+      let updateworkhistories = {...state};
+      updateworkhistories['my0:hasWorkHistory'][action.payload.index] = action.payload.object;
+      return updateworkhistories;
     case REMOVE_WORK_HISTORY:
-      //first remove address
-      let removedGraphs = removeObjInGraph({...state}, 'my0:hasWorkHistory', action.payload.address);
-      //then remove organization
-      removedGraphs = removeObjInGraph({...removedGraphs}, 'my0:hasWorkHistory', action.payload.organization);
-      //finally remove course
-      removedGraphs = removeObjInGraph({...removedGraphs}, 'my0:hasWorkHistory', action.payload.workHistory);
-      return removedGraphs;
+      let removeworkhistory = {...state}['my0:hasWorkHistory'];
+      let removeworkhistorys = _.filter(removeworkhistory, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasWorkHistory": removeworkhistorys };
     case CREATE_EDUCATION:
-      let educationsgraphs =  createObjInGraph({...state}, 'my0:hasEducation', action.payload.education);
-      educationsgraphs['@graph'].push(action.payload.organization);
-      educationsgraphs['@graph'].push(action.payload.address);
-      return educationsgraphs;
+      let educations = {...state};
+      educations['my0:hasEducation'].push(action.payload);
+      return educations;
     case UPDATE_EDUCATION:
-      let edugraphsUpdate = updateObjInGraph({...state}, action.payload.education);
-      edugraphsUpdate = updateObjInGraph({...edugraphsUpdate}, action.payload.organization);
-      edugraphsUpdate = updateObjInGraph({...edugraphsUpdate}, action.payload.address);
-      return edugraphsUpdate;
+      let updateeducations = {...state};
+      updateeducations['my0:hasEducation'][action.payload.index] = action.payload.object;
+      return updateeducations;
     case REMOVE_EDUCATION:
-      //first remove address
-      let removedEdus = removeObjInGraph({...state}, 'my0:hasEducation', action.payload.address);
-      //then remove organization
-      removedEdus = removeObjInGraph({...removedEdus}, 'my0:hasEducation', action.payload.organization);
-      //finally remove course
-      removedEdus = removeObjInGraph({...removedEdus}, 'my0:hasEducation', action.payload.education);
-      return removedEdus;
+      let removeeducation = {...state}['my0:hasEducation'];
+      let removeeducations = _.filter(removeeducation, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasEducation": removeeducations };
     case CREATE_COURSE:
-      let coursesgraphs =  createObjInGraph({...state}, 'my0:hasCourse', action.payload.course);
-      coursesgraphs['@graph'].push(action.payload.organization);
-      coursesgraphs['@graph'].push(action.payload.organizationAddress);
-      return coursesgraphs;
+      let courses = {...state};
+      courses['my0:hasCourse'].push(action.payload);
+      return courses;
     case UPDATE_COURSE:
-      let coursegraphsUpdate = updateObjInGraph({...state}, action.payload.course);
-      coursegraphsUpdate = updateObjInGraph({...coursegraphsUpdate}, action.payload.organization);
-      coursegraphsUpdate = updateObjInGraph({...coursegraphsUpdate}, action.payload.organizationAddress);
-      return coursegraphsUpdate;
+      let updatecourses = {...state};
+      updatecourses['my0:hasCourse'][action.payload.index] = action.payload.object;
+      return updatecourses;
     case REMOVE_COURSE:
-      //first remove address
-      let removedCourses = removeObjInGraph({...state}, 'my0:hasCourse', action.payload.address);
-      //then remove organization
-      removedCourses = removeObjInGraph({...removedCourses}, 'my0:hasCourse', action.payload.organization);
-      //finally remove course
-      removedCourses = removeObjInGraph({...removedCourses}, 'my0:hasCourse', action.payload.course);
-      return removedCourses;
+      let removecourses = {...state}['my0:hasCourse'];
+      let removecoursess = _.filter(removecourses, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasCourse": removecoursess };
     case CREATE_OTHER_SKILL:
       let otherskills = {...state};
-      otherskills["@graph"].push(action.payload);
+      otherskills['my0:hasSkill'].push(action.payload);
       return otherskills;
     case UPDATE_OTHER_SKILL:
-        let updateSkills = updateObjInGraph({...state}, action.payload);
-        return updateSkills;
+      let updatedskill = {...state};
+      updatedskill['my0:hasSkill'][action.payload.index] = action.payload.object;
+      return updatedskill;
     case REMOVE_OTHER_SKILL:
-      //first remove address
-      let removedskills = removeObjInGraph({...state}, 'my0:hasSkill', action.payload);
-      return removedskills;
+      let removedskills = {...state}['my0:hasSkill'];
+      let removedskillss = _.filter(removedskills, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasSkill": removedskillss };
     case UPDATE_ABOUT_CV:
       let aboutcv = { ...state};
-      let graphs = aboutcv['@graph'];
-      let length = graphs.length;
-      for(let i=0; i < length; i++){
-        if(graphs[i]['@type']==='my0:CV'){
-          graphs[i]["my0:" + action.payload.id] = action.payload.value;
-        }
-      }
-      return { ...state, "@graph": graphs };
+      aboutcv["my0:" + action.payload.id] = action.payload.value;
+      return aboutcv;
     case UPDATE_ABOUT_PERSON:
       let aboutperson = { ...state};
-      let obj = getDataOfType(aboutperson, 'my0:CV');
-      let id = obj['my0:aboutPerson']['@id'];
-      let kgraphs = aboutperson['@graph'];
-      let klength = kgraphs.length;
-      for(let i=0; i < klength; i++){
-        if(kgraphs[i]['@id']===id){
-          if(action.payload.super) {
-            let idAddress = kgraphs[i]['my0:address']['@id'];
-            for(let j=0; j < klength; j++){
-              if(kgraphs[j]['@id']===idAddress){
-                if(action.payload.isURI) 
-                kgraphs[j]['my0:' + action.payload.id] = action.payload.value["@type"];
-                else
-                kgraphs[j]['my0:' + action.payload.id] = action.payload.value;
-                break;
-              }
-            }
-          }
-          else if(action.payload.isURI) 
-          kgraphs[i]['my0:' + action.payload.id] = action.payload.value["@type"];
-          else
-          kgraphs[i]['my0:' + action.payload.id] = action.payload.value;
-          break;
-        }
+      if(action.payload.secondLevel && action.payload.secondLevel !== undefined){
+        aboutperson['my0:aboutPerson']["my0:" + action.payload.secondLevel]["my0:" + action.payload.id] = action.payload.value;
+      } else {
+        aboutperson['my0:aboutPerson']["my0:" + action.payload.id] = action.payload.value;
       }
-      return { ...state, "@graph": kgraphs };
+      return aboutperson;
     case UPDATE_SKILLS:
       let updatedSkills = {...state};
-      let skillsgraphs = updatedSkills['@graph'];
-      let skillslength = skillsgraphs.length;
-      for(let i=0; i < skillslength; i++){
-        if(skillsgraphs[i]['@id']===action.payload.id){
-          skillsgraphs[i][action.payload.property] = action.payload.value;
-          break;
-        }
-      }
-      updatedSkills["@graph"] = skillsgraphs; 
+      updatedSkills['my0:hasSkill'] = action.payload; 
       return updatedSkills;
     case UPDATE_TARGET:
-        let targies = { ...state};
-        let objs = getDataOfType(targies, 'my0:CV');
-        let idtarget = objs['my0:target']['@id'];
-        let targetgraphs = targies['@graph'];
-        let targetlength = targetgraphs.length;
-        for(let i=0; i < targetlength; i++){
-          if(targetgraphs[i]['@id']===idtarget){
-            // console.log(action.payload);
-            if(action.payload.isURI) 
-            targetgraphs[i]['my0:' + action.payload.id] = action.payload.value["@type"];
-            else
-            targetgraphs[i]['my0:' + action.payload.id] = action.payload.value;
-            break;
-          }
-        }
-        // console.log(targetgraphs);
-        return { ...state, "@graph": targetgraphs };
+        let updatetarget = { ...state};
+        updatetarget['my0:target']["my0:" + action.payload.id] = action.payload.value;
+        return updatetarget;
     case UPDATE_CV:
       return { ...action.payload};
     case CREATE_IM:
-      //step 1 add new id to aboutPerson
-      let newimID = generateUUID();
       let ap = { ...state};
-      let k = getDataOfType(ap, 'my0:CV');
-      let nid = k['my0:aboutPerson']['@id'];
-      let imgraphs = ap['@graph'];
-      let nlength = imgraphs.length;
-      for(let i=0; i < nlength; i++){
-        if(imgraphs[i]['@id']===nid){
-          imgraphs[i]['my0:hasInstantMessaging'].push({ '@id': "_:" + newimID });
+      ap['my0:aboutPerson']['my0:hasInstantMessaging'].push(
+        {
+          "@type": "my0:InstantMessaging",
+          "my0:instantMessagingName": "",
+          "my0:instantMessagingUsername": ""
         }
-      }
-       //step 2 create this object with this new id in graph
-      imgraphs.push({
-        "@id":  "_:" + newimID,
-        "@type": "my0:InstantMessaging",
-        "my0:instantMessagingName": "",
-        "my0:instantMessagingUsername": ""
-      });
-      return { ...state, "@graph": imgraphs };
+      );
+      return ap;
     case UPDATE_IM:
       let uap = { ...state};
-      let uimgraphs = uap['@graph'];
-      let uength = uimgraphs.length;
-      for(let i=0; i < uength; i++){
-        if(uimgraphs[i]['@id']===action.payload.id){
-          uimgraphs[i][action.payload.name] = action.payload.value;
-          break;
-        }
-      }
-      return { ...state, "@graph": uimgraphs };
+      uap['my0:aboutPerson']['my0:hasInstantMessaging'][action.payload.id][action.payload.name] = action.payload.value;
+      return uap;
     case REMOVE_IM:
-      let kobj = getDataOfType(state, 'my0:CV');
-      let knid = kobj['my0:aboutPerson']['@id'];
-      //remove instant messaging obj with that id
-      let rap = { ...state};
-      let rimgraphs = rap['@graph'];
-      let myremoveotherim = _.filter(rimgraphs, function(item, index) { return item['@id'] !== action.payload; });
-
-      //remove from aboutPerson
-      let rlength = myremoveotherim.length;
-      for(let i=0; i<rlength; i++){
-        if(myremoveotherim[i]['@id']===knid){
-          let removeem = _.filter(myremoveotherim[i]['my0:hasInstantMessaging'], function(item, index) { return item['@id'] !== action.payload; });
-          myremoveotherim[i]['my0:hasInstantMessaging'] = removeem;
-        }
-      }
-      return { ...state, "@graph": myremoveotherim };
+      let removedim = {...state}['my0:aboutPerson'];
+      let removedims = _.filter(removedim['my0:hasInstantMessaging'], function(item, index) { return index !== action.payload; });
+      removedim['my0:hasInstantMessaging'] = removedims;
+      return { ...state, "my0:aboutPerson": removedim };
     default:
       return state;
   }
