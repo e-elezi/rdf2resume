@@ -87,22 +87,16 @@
   background-color: #4bb3cc;
   border-color: #4bb3cc;
   outline: none;
-  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus {
   background-color: #4bb3cc;
   border-color: #4bb3cc;
   outline: none;
-  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
-}
-
-.btn:focus {
-  /* box-shadow: 0 0 0 0.2rem #4bb3cc; */
 }
 
 .final-submit {
-  min-width: 150px;
+  min-width: 350px;
   margin-left: 0;
 }
 
@@ -609,9 +603,39 @@ a.inline-link:hover {
   padding-top: 0;
 }
 
+.submit-modal > .modal-content {
+  background-color: rgba(0, 0, 0 , 0.5);
+  border-color: rgba(0, 0, 0 , 0.3);
+  color: white;
+  min-width: 400px;
+}
+
+.submit-modal > .modal-content > .modal-header {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.submit-modal > .modal-content > .modal-body > .carousel > .carousel-inner >.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 /*************************************************************************/
 /**************************** TABLE **************************************/
 /*************************************************************************/
 /* .table .thead-light th {
   width: 200px !important;
 } */
+
+.thumbs-wrapper.axis-vertical {
+  display: none;
+}
+.slider > .slide.selected {
+  background-color: transparent;
+}
+
+.control-dots {
+  padding-left: 0px;
+}

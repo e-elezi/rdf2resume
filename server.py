@@ -5,7 +5,7 @@ import urllib.parse
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 from flask_cors import CORS, cross_origin
-from writeJSONtoTTL import writeJSONtoTTL
+from writeJSONtoTEX import writeJSONtoTEX
 
 app = Flask(__name__,template_folder="build", static_folder="build/static")
 CORS(app, support_credentials=True)
@@ -24,6 +24,12 @@ def submit_form():
     content = request.json
     with open('data2.json', 'w', encoding='utf-8') as outfile:
         json.dump(content, outfile, ensure_ascii=False, indent=2)
+    return jsonify({'success': ['Yes']})
+
+@app.route('/generate_pdf', methods=['POST'])
+def generate_pdf():
+    content = request.json
+    writeJSONtoTEX(content, "kot.tex")
     return jsonify({'success': ['Yes']})
 
 @app.route('/upload', methods=['POST'])
