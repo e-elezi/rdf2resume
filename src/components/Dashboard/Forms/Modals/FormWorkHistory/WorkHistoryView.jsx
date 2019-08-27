@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeWorkHistory } from "../../../../../actions";
 import WorkHistoryModal from "./WorkHistoryModal";
+import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
 class WorkHistoryReview extends Component {
   state = {
@@ -80,7 +81,7 @@ class WorkHistoryReview extends Component {
               }}
             >
               <b>
-                {jobTitle} | {jobMode.value}
+                {jobTitle} | { getNameFromURI(jobMode)}
               </b>
             </Row>
             <Row
@@ -102,7 +103,7 @@ class WorkHistoryReview extends Component {
                 </a>{" "}
                 {` `}
                 {city} {` `}{" "}
-                {country}
+                {getNameFromURI(country)}
               </b>
             </Row>
             <Row

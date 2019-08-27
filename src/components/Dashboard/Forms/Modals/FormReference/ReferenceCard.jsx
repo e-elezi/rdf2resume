@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeReference } from "../../../../../actions";
 import ReferenceModal from './ReferenceModal';
+import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
 class ReferenceCard extends Component {
   state = {
@@ -77,7 +78,7 @@ class ReferenceCard extends Component {
         </div>
         <Card.Body>
           <Card.Title>
-            {title.value} {firstName} {lastName}
+            {getNameFromURI(title)} {firstName} {lastName}
           </Card.Title>
           <Card.Text>
             {jobTitle} |{" "}
@@ -87,7 +88,7 @@ class ReferenceCard extends Component {
             {street}{" "}
             {city}{" "}
             {postalCode}{" "}
-            {country}
+            {getNameFromURI(country)}
           </Card.Text>
           <Card.Text>{hasTelephoneNumber}</Card.Text>
           <Card.Text>

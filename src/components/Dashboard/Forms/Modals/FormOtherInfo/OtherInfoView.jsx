@@ -5,6 +5,7 @@ import { removeOtherInfo } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import OtherInfoModal from "./OtherInfoModal";
+import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
 class OtherInfoView extends Component {
   state = {
@@ -41,7 +42,7 @@ class OtherInfoView extends Component {
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              <u>Category:</u> {otherInfoObject["my0:otherInfoType"]}
+              <u>Category:</u> { getNameFromURI(otherInfoObject["my0:otherInfoType"])}
             </h4>
           </Col>
           <Col md={4}>

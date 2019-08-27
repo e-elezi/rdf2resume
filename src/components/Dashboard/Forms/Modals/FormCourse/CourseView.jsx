@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeCourse } from "../../../../../actions";
 import CourseModal from "./CourseModal";
+import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
 class CourseView extends Component {
   state = {
@@ -101,7 +102,7 @@ class CourseView extends Component {
                 </a>{" "}
                 {` `}
                 {city} {` `}{" "}
-                {country}
+                {getNameFromURI(country)}
               </b>
             </Row>
             <Row

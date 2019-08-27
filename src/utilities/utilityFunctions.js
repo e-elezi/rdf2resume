@@ -251,3 +251,13 @@ export function parseJSONLDTOJSON ( data ) {
   }
   return  obj;
 }
+
+export function getNameFromURI(uri){
+  let ind = uri.lastIndexOf("/"); 
+  let ind2 = uri.lastIndexOf("#");
+  if(ind2 > ind){
+    return uri.substr(ind2+1); 
+  } else {
+    return uri.substr(ind+1); 
+  }
+}

@@ -17,14 +17,6 @@ import {
   retrieveGenderValues,
   retrieveTitleValues
 } from "../../../utilities/utilityQueries";
-import { getDataOfId, getDataOfType } from '../../../utilities/utilityFunctions'
-
-function getAboutPerson(data){
-  let obj = getDataOfType(data, 'my0:CV');
-  let id = obj['my0:aboutPerson']['@id'];
-  let info = getDataOfId(data, id);
-  return info;
-}
 
 class FormPersonal extends Component {
   state = {
