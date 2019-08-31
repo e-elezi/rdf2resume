@@ -1,4 +1,5 @@
 import os
+import base64
 import requests
 import json
 import urllib.parse
@@ -9,10 +10,10 @@ from writeJSONtoTEX import writeJSONtoTEX
 
 app = Flask(__name__,template_folder="build", static_folder="build/static")
 CORS(app, support_credentials=True)
+app.config['UPLOAD_FOLDER'] = "build/static/media/pdf"
 
 @app.route("/")
 def index():
-    #writeJSONtoTTL('', 'kot.ttl')
     return render_template('index.html')
 
 @app.route('/get_categories', methods=['GET'])
@@ -29,8 +30,10 @@ def submit_form():
 @app.route('/generate_pdf', methods=['POST'])
 def generate_pdf():
     content = request.json
-    writeJSONtoTEX(content, "kot.tex")
-    return jsonify({'success': ['Yes']})
+    if not os.path.exists('build/static/media/pdf'):
+      os.mkdir('build/static/media/pdf')
+    writeJSONtoTEX(content, "rdf2resume")
+    return "static/media/pdf/rdf2resume.pdf"
 
 @app.route('/upload', methods=['POST'])
 @cross_origin()

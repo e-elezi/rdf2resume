@@ -6,12 +6,14 @@ import { toggleSpinner } from "../../../actions/utilityActions";
 import { processDataBeforeSubmit } from "../../../utilities/utilityFunctions";
 import Spinner from "../../../components/core/Spinner";
 import { connect } from "react-redux";
+import axios from "axios";
 
 class FormSubmit extends Component {
   state = {
     showModal: false,
     key: 0,
-    showPDF: false
+    showPDF: false,
+    pdfPath: ""
   };
 
   handleClose = () => {
@@ -46,13 +48,25 @@ class FormSubmit extends Component {
     alert("Will handle PDF generation with Interlinking");
   };
 
-  handleShowPDF = filename =>
+  handleShowPDF = async filename =>
   {
-    console.log(filename);
+    const response = await axios.post("/generate_pdf",  this.props.cvData
+    );
+    this.setState({
+      pdfPath: "../../" + response.data
+    })
     this.setState({
       showModal: false,
       showPDF: true
     })
+  }
+
+  renderPDF = () => {
+    if(this.state.showPDF) {
+      return <embed style={{border: '3px solid #4bb3cc', borderRadius: '5px'}} src={this.state.pdfPath} width="800px" height="900px" /> 
+    } else {
+      return ''
+    }
   }
 
   render() {
@@ -87,7 +101,7 @@ class FormSubmit extends Component {
           </Col>
           <Col md={8}>
             {
-              this.state.showPDF ? <embed style={{border: '3px solid #4bb3cc', borderRadius: '5px'}} src={require('../../../myfile.pdf')} width="800px" height="900px" /> : ''
+              this.renderPDF()
             }
           </Col>
         </Row>

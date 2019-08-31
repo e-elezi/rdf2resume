@@ -61,71 +61,93 @@ header = r'''\documentclass[letterpaper,11pt]{article}
 footer = r'''\end{document}
 '''
 
+def getnameURI(uri):
+	index = 0
+	length = len(uri)
+	for i in range(length):
+		if(uri[i]=='/' or uri[i]=='#'):
+			index = i
+	return uri[index:length]
+
 def writeJSONtoTEX(data, filename):
-    name = "Enkeleda Elezi"
-    email = "enkeleda.elezi@gmail.com"
-    address = "Hirschberger Str 60 Bonn Germany"
+  main = r''''''
+  space =  r''' '''
+  comma = r''', '''
 
+  if (data['my0:aboutPerson']):
+    item = data['my0:aboutPerson']
+    #write personal information about the user
     main = r'''\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-    \textbf{\Large '''+ name +r'''} & \textbf{\today} \\
-    '''+ email +r''' \\
-    '''+ address +r''' \\
+    \textbf{\Large '''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''} & \textbf{\today} \\
+    '''+ item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + item['my0:address']['my0:city'] + comma +  getnameURI(item['my0:address']['my0:country']) +r''' & ''' + item['my0:website'] + r'''\\
     \end{tabular*}
-    \\
+    \\'''
 
-
+  if (data['my0:hasWorkHistory']):
+    main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \resheading{Work History}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \resheading{Education}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{itemize}
+    \begin{itemize}'''
+    for item in (data['my0:hasWorkHistory']):
+      main = main +  r'''
+      \item \ressubheading{''' + item['my0:employedIn']['my0:organizationName'] + r'''}{''' + item['my0:employedIn']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:employedIn']['my0:organizationAddress']['my0:country']) + r'''}{''' + item['my0:jobTitle'] + comma + getnameURI(item['my0:endDate'])+ r'''}{''' + item['my0:startDate'] + r''' - ''' + item['my0:endDate'] + r'''}\\
+      \begin{itemize}
+      \item[]{''' + item['my0:jobDescription'] + r'''}
+      \end{itemize}'''
 
-    \item \ressubheading{University Name}{City, Country}{BSc, MSc, PhD, or something else}{2009 - 2013}
+  main = main + r'''\end{itemize}'''
 
-    \begin{itemize}
-        \resitem{Additional description nr 1}
-        \resitem{Additional description nr 2}
-    \end{itemize}
+  if (data['my0:hasEducation']):
+	  main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \resheading{Education}
+	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \begin{itemize}'''
+	  for item in (data['my0:hasEducation']):
+		  main = main +  r'''
+		  \item \ressubheading{''' + item['my0:studiedIn']['my0:organizationName'] + r'''}{''' + item['my0:studiedIn']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:studiedIn']['my0:organizationAddress']['my0:country']) + r'''}{''' + getnameURI(item['my0:degreeType']) + comma + item['my0:eduMajor']+ r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + r'''}\\
+		  \begin{itemize}
+		  \item[]{''' + item['my0:eduDescription'] + r'''}
+		  \end{itemize}'''
 
-    \item \ressubheading{Other University Name}{City, Country}{BSc, MSc, PhD, or something else}{2004 - 2009}
+  main = main + r'''\end{itemize}'''
 
-    \end{itemize}
+  if (data['my0:hasCourse']):
+	  main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \resheading{Courses/Trainings}
+	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \begin{itemize}'''
+	  for item in (data['my0:hasCourse']):
+		  main = main +  r'''
+		  \item \ressubheading{''' + item['my0:organizedBy']['my0:organizationName'] + r'''}{''' + item['my0:organizedBy']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:organizedBy']['my0:organizationAddress']['my0:country']) + r'''}{''' + item['my0:courseTitle'] + comma + item['my0:courseURL']+ r'''}{''' + item['my0:courseStartDate'] + r''' - ''' + item['my0:courseFinishDate'] + r'''}\\
+		  \begin{itemize}
+		  \item[]{''' + item['my0:courseDescription'] + r'''}
+		  \end{itemize}'''
+  
+  if (data['my0:hasOtherInfo']):
+	  main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \resheading{Other information}
+	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \begin{itemize}'''
+	  for item in (data['my0:hasOtherInfo']):
+		  main = main +  r'''
+		  \item[] \ressubheading{''' + getnameURI(item['my0:otherInfoType']) + r'''}{}{}{}
+		  \begin{itemize}
+		  \item{''' + item['my0:otherInfoDescription'] + r'''}
+		  \end{itemize}'''
 
+  main = main + r'''\end{itemize}'''
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \resheading{Some important section}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  content = header + main + footer
 
-    \begin{enumerate}
-    \item First item
-    \item Second item
-    \end{enumerate}
+  completeName = os.path.join('build/static/media/pdf', filename)
+  with open(completeName + '.tex','w') as f:
+    f.write(content)
 
-    \begin{itemize}
-    \item First item
-    \item Second item
-    \end{itemize}
+  cmd = ['pdflatex', '-interaction', 'nonstopmode', completeName + '.tex']
+  proc = subprocess.Popen(cmd)
+  proc.communicate()
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \resheading{Awards, Grants \& Honours}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        \vspace{-2pt}
-        \begin{center}\begin{tabular*}{6.6in}{l@{\extracolsep{\fill}}r}
-            \multicolumn{2}{c}{Nobel Prize \cftdotfill{\cftdotsep} 2013}\\
-            \multicolumn{2}{c}{Big grant \cftdotfill{\cftdotsep} 2010-2013}\\
-            \vphantom{E}
-    \end{tabular*}
-    \end{center}\vspace*{-16pt}
-    '''
-
-    content = header + main + footer
-
-    with open(filename,'w') as f:
-        f.write(content)
-
-    cmd = ['pdflatex', '-interaction', 'nonstopmode', filename]
-    proc = subprocess.Popen(cmd)
-    proc.communicate()
-
-    os.unlink('myfile.aux')
-    os.unlink('myfile.log')
-    os.unlink('myfile.tex')
+  os.unlink( filename + '.aux')
+  os.unlink( filename + '.log')
+  os.system("mv " + filename + ".pdf build/static/media/pdf")
+  return f
