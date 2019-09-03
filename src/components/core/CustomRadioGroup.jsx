@@ -9,7 +9,6 @@ const CustomRadioGroup = ({ items, name, value, handleChange }) => {
           <Form.Check
             key={item["@type"]}
             custom
-            inline
             type="radio"
             label={item.value}
             checked={item["@type"] === value ? true : false}

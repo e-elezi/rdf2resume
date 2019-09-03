@@ -182,13 +182,31 @@
 }
 
 .photo-div {
+  width: 250px;
   height: 300px;
-  width: 300px;
   border: 2px solid #4bb3cc;
   box-shadow: 0 0 5px 0 lightgray;
   background-color: white;
   padding: 70px;
   border-radius: 5px;
+}
+
+.photo-div-container > img {
+  width: 250px;
+  height: 300px;
+  border: 2px solid #4bb3cc;
+  box-shadow: 0 0 5px 0 lightgray;
+  border-radius: 5px;
+}
+
+.photo-div-container > svg {
+  position: absolute;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  right: 32%;
+  margin: 6px;
+  cursor: pointer;
 }
 
 .photo-div-button {

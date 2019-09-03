@@ -1,12 +1,19 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import RemoveButton from "../../core/RemoveButton";
 import CustomInput from "../../core/CustomInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import CustomRadioGroup from "../../core/CustomRadioGroup";
 import { Combobox, Multiselect } from "react-widgets";
 import { connect } from "react-redux";
-import { updateAboutPerson, createIM, updateIM, removeIM } from "../../../actions";
+import {
+  updateAboutPerson,
+  createIM,
+  updateIM,
+  removeIM
+} from "../../../actions";
 import {
   fetchCountries,
   fetchGenders,
@@ -20,9 +27,14 @@ import {
 import axios from "axios";
 
 class FormPersonal extends Component {
-  state = {
-    instantMessagingNameValues: []
-  };
+  constructor(props) {
+    super(props);
+    // Create the ref
+    this.inputHiddenRef = React.createRef();
+    this.state = {
+      instantMessagingNameValues: []
+    };
+  }
 
   getInstantMessagingNameValues() {
     return ["Google", "Skype", "Yahoo"];
@@ -42,17 +54,21 @@ class FormPersonal extends Component {
       id: e.target.id,
       value: e.target.value,
       secondLevel
-    })
+    });
   };
 
   handleSelectChange = (name, value, secondLevel) => {
-    this.props.updateAboutPerson({ id: name, value: value["@type"], secondLevel });
+    this.props.updateAboutPerson({
+      id: name,
+      value: value["@type"],
+      secondLevel
+    });
   };
 
   handleMultiSelectChange = (name, value) => {
     let myarr = [];
     let length = value.length;
-    for(let i=0; i<length; i++) {
+    for (let i = 0; i < length; i++) {
       myarr.push(value[i]["@type"]);
     }
     this.props.updateAboutPerson({ id: name, value: myarr });
@@ -85,68 +101,119 @@ class FormPersonal extends Component {
   };
 
   updateInstantMessaging = (name, value, index) => {
-    this.props.updateIM({ id:index, name: name, value: value });
+    this.props.updateIM({ id: index, name: name, value: value });
   };
 
-  removeInstantMessaging = (index) => {
-    this.props.removeIM(index)
+  removeInstantMessaging = index => {
+    this.props.removeIM(index);
   };
 
   handleAddPhotoClick = () => {
-    console.log("Adding a photo");
+    this.inputHiddenRef.click();
   };
 
-  handleUploadPhoto = async filename =>
-  {
-    const response = await axios.post("/upload_photo",  this.props.cvData
-    );
-    this.setState({
-      pdfPath: "../../" + response.data
-    })
-    this.setState({
-      showModal: false,
-      showPDF: true
-    })
-  }
+  onChangePhotoUpload = async e => {
+    let file = e.target.files[0];
+    var formData = new FormData();
+    formData.append("file", file);
+    axios
+      .post("/upload_photo", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(resp => {
+        this.props.updateAboutPerson({
+          id: "photo",
+          value: resp.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  clearPhotoUpload = () => {
+    this.props.updateAboutPerson({
+      id: "photo",
+      value: ""
+    });
+  };
 
   render() {
     let {
-      "my0:firstName" : firstName,
-      "my0:lastName" : lastName,
-      "my0:hasCitizenship" : hasCitizenship ,
-      "my0:hasNationality" : hasNationality,
-      "my0:website" : website,
-      "my0:dateOfBirth" : dateOfBirth,
-      "my0:gender" : gender,
-      "my0:hasTelephoneNumber" : hasTelephoneNumber,
-      "my0:email" : email,
-      "my0:title" : title,
-      "my0:driversLicence" : driversLicence,
-      "my0:address" : address
+      "my0:firstName": firstName,
+      "my0:lastName": lastName,
+      "my0:hasCitizenship": hasCitizenship,
+      "my0:hasNationality": hasNationality,
+      "my0:website": website,
+      "my0:dateOfBirth": dateOfBirth,
+      "my0:gender": gender,
+      "my0:hasTelephoneNumber": hasTelephoneNumber,
+      "my0:email": email,
+      "my0:title": title,
+      "my0:driversLicence": driversLicence,
+      "my0:address": address,
+      "my0:photo": photo
     } = this.props.aboutperson;
 
-    let instantMessaging = this.props.aboutperson['my0:hasInstantMessaging'];
+    let instantMessaging = this.props.aboutperson["my0:hasInstantMessaging"];
 
     return (
       <Row className="main-content-row">
         <Col md={3}>
           <h4 style={{ marginTop: "10px" }}>Personal Information</h4>
-          <div className="photo-div">
-            <p
-              style={{
-                textAlign: "center",
-                marginTop: "10px",
-                marginBottom: "0"
-              }}
-            >
-              Photo
-            </p>
-            <div className="photo-div-button">
-              <AddButton
-                handleClick={this.handleAddPhotoClick}
-                classnames="add-button"
-              />
-            </div>
+          <div className="photo-div-container" width="250px"
+                  height="300px">
+            {photo ? (
+              <React.Fragment>
+                <FontAwesomeIcon
+                  icon={faTimesCircle}
+                  onClick={this.clearPhotoUpload}
+                />
+                <img
+                  src={"../../static/media/photos/" + photo}
+                  width="250px"
+                  height="300px"
+                  alt="Person's Photo"
+                ></img>
+              </React.Fragment>
+            ) : (
+              <div className="photo-div">
+                <p
+                  style={{
+                    textAlign: "center",
+                    marginTop: "10px",
+                    marginBottom: "0"
+                  }}
+                >
+                  Photo
+                </p>
+                <div className="photo-div-button">
+                  <AddButton
+                    handleClick={this.handleAddPhotoClick}
+                    classnames="add-button"
+                  />
+                  <input
+                    onChange={this.onChangePhotoUpload}
+                    ref={inputHiddenRef =>
+                      (this.inputHiddenRef = inputHiddenRef)
+                    }
+                    type="file"
+                    hidden
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+          <div
+            class="alert alert-warning"
+            style={{ margin: 0, padding: '10px', fontSize: '14px', marginTop: '15px', maxWidth: '250px' }}
+            role="alert"
+          >
+             Accepted formats: PNG, JPG.
+             <br/>
+             Max. size: 1MB. 
           </div>
           <CustomRadioGroup
             items={this.props.genders}
@@ -167,7 +234,7 @@ class FormPersonal extends Component {
             caseSensitive={false}
             minLength={3}
             filter="contains"
-            onChange={value => this.handleSelectChange( "title", value)}
+            onChange={value => this.handleSelectChange("title", value)}
           />
           <div className="row">
             <div className="col col-sm-6">
@@ -338,12 +405,14 @@ class FormPersonal extends Component {
             <Col md={2} className="p-0 instant-add-wrapper">
               <AddButton
                 classnames="add-button small-button"
-                handleClick={() => this.addInstantMessaging("hasInstantMessaging")}
+                handleClick={() =>
+                  this.addInstantMessaging("hasInstantMessaging")
+                }
               />
             </Col>
           </Row>
 
-          {instantMessaging.map((member, index) =>  (
+          {instantMessaging.map((member, index) => (
             <Row key={index}>
               <Col md={6} className="pr-0">
                 <div style={{ marginTop: "22px" }}>
@@ -383,13 +452,11 @@ class FormPersonal extends Component {
               <Col md={1}>
                 <RemoveButton
                   classnames="shift-left"
-                  handleClick={() =>
-                    this.removeInstantMessaging(index)
-                  }
+                  handleClick={() => this.removeInstantMessaging(index)}
                 />
               </Col>
             </Row>
-          ) )}
+          ))}
         </Col>
         <Col md={5}> </Col>
       </Row>
@@ -402,11 +469,19 @@ const mapstateToProps = state => {
     countries: retrieveCountryValues(state.utility.countryValues),
     genders: retrieveGenderValues(state.utility.genderValues),
     titles: retrieveTitleValues(state.utility.titleValues),
-    aboutperson:  state.cv['my0:aboutPerson']
+    aboutperson: state.cv["my0:aboutPerson"]
   };
 };
 
 export default connect(
   mapstateToProps,
-  { fetchCountries, updateAboutPerson, fetchGenders, fetchTitleProperties, createIM, updateIM, removeIM }
+  {
+    fetchCountries,
+    updateAboutPerson,
+    fetchGenders,
+    fetchTitleProperties,
+    createIM,
+    updateIM,
+    removeIM
+  }
 )(FormPersonal);
