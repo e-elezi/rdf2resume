@@ -10,6 +10,11 @@ header = r'''\documentclass[letterpaper,11pt]{article}
 \usepackage{framed}
 \usepackage{tocloft}
 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[]{babel}
+
 
 %-----------------------------------------------------------
 %Edit these values as you see fit

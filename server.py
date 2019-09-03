@@ -49,6 +49,16 @@ def process_upload_file():
       }
       response = requests.request("POST", url, data=payload, headers=headers)
       return(response.text)
+
+@app.route('/upload_photo', methods=['POST'])
+@cross_origin()
+def process_upload_photo():
+    if request.method == 'POST':
+      f = request.files['file']
+      if not os.path.exists('build/static/media/photos'):
+        os.mkdir('build/static/media/photos')
+      f.save(os.path.join('build/static/media/photos', f.filename))
+      return(f.filename)
     
 if __name__ == "__main__":
     app.run()

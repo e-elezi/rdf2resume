@@ -17,6 +17,7 @@ import {
   retrieveGenderValues,
   retrieveTitleValues
 } from "../../../utilities/utilityQueries";
+import axios from "axios";
 
 class FormPersonal extends Component {
   state = {
@@ -94,6 +95,19 @@ class FormPersonal extends Component {
   handleAddPhotoClick = () => {
     console.log("Adding a photo");
   };
+
+  handleUploadPhoto = async filename =>
+  {
+    const response = await axios.post("/upload_photo",  this.props.cvData
+    );
+    this.setState({
+      pdfPath: "../../" + response.data
+    })
+    this.setState({
+      showModal: false,
+      showPDF: true
+    })
+  }
 
   render() {
     let {

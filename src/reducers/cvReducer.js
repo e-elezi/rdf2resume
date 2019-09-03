@@ -117,6 +117,26 @@ const INITIAL_STATE = {
     "my0:skillDescription": ""
   },
   {
+    "@type": "my0:LanguageSkill",
+    "my0:languageSkillLevelListening": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:isMotherTongue": true,
+    "my0:languageSkillLevelReading": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:languageSkillLevelSpokenProduction": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:languageSkillLevelWriting": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:skillName": "Albanian",
+    "my0:languageSkillLevelSpokenInteraction": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1"
+  },
+  {
+    "@type": "my0:LanguageSkill",
+    "my0:languageSkillLevelListening": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:isMotherTongue": false,
+    "my0:languageSkillLevelReading": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:languageSkillLevelSpokenProduction": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:languageSkillLevelWriting": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1",
+    "my0:skillName": "Albanian",
+    "my0:languageSkillLevelSpokenInteraction": "http://example.com/rdf2resume_base_ontology.rdf#IndependentUserB1"
+  },
+  {
     "my0:otherDigitalSkills": "",
     "@type": "my0:DigitalSkills",
     "my0:informationProcessing": "",

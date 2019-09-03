@@ -3,6 +3,7 @@ import { Combobox } from "react-widgets";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateCV } from "../../actions";
+import Swal from 'sweetalert2';
 import { parseJSONLDTOJSON } from '../../utilities/utilityFunctions';
 
 class UploadForm extends Component {
@@ -20,38 +21,38 @@ class UploadForm extends Component {
   onChange = e => {
     let file = e.target.files[0];
     var formData = new FormData();
-    // var kot =  encodeURI("@prefix : <http://example.org/#> . :a :b :c .");
     formData.append("file", file);
     axios.post("/upload?standard="+ this.state.rdfValueSelected, formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
     }).then(resp=>{
-      console.log(resp);
       this.props.updateCV(parseJSONLDTOJSON(resp.data));
+      Swal.fire({
+        title: 'Success!',
+        text: 'Do you want to continue to forms?',
+        type: 'success',
+        confirmButtonColor: '#4bb3cc',
+        heightAuto: false,
+        confirmButtonText: 'Okay'
+      }).then((result) => {
+        if (result.value) {
+          this.props.history.push('/d/about');
+        }
+      })
     })  
     .catch(error=>{
       console.log(error);
+      Swal.fire({
+        title: 'Error!',
+        text: error,
+        type: 'error',
+        heightAuto: false,
+        confirmButtonText: 'Okay'
+      })
     });
-    console.log(formData);
-
-    // axios.post("http://rdf-translator.appspot.com/convert/n3/json-ld/content", {
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //     "cache-control": "no-cache",
-    //     "Postman-Token": "0151ac71-70bc-4ea7-a638-0979f49711f6"
-    //   },
-    //   data: {
-    //     "content": "@prefix : <http://example.org/#> . :a :b :c ."
-    //   }
-    // }).then(resp=>{
-    //   console.log(resp);
-    // })  
-    // .catch(error=>{
-    //   console.log(error);
-    // });
-
   };
+
   render() {
     return (
       <React.Fragment>
