@@ -134,6 +134,89 @@ for(let i =0; i<length; i++) {
 }
 }
 
+function replaceEmptyProperties(data) {
+  let hasCourse = false;
+  let hasEducation = false;
+  let hasWork = false;
+  let hasReference = false;
+  let hasOtherInfo = false;
+  let hasNationality = false;
+  let hasInstantMessaging = false;
+  let hasCitizenship = false;
+  let hasTelephoneNumber = false;
+  let targetCompanyIndustry = false;
+  let targetCompanyCountry = false;
+  for (let x in data) {
+    //check if it has course
+    if(x === 'my0:hasCourse'){
+      hasCourse = true;
+    } else if(x === 'my0:hasEducation'){
+      hasEducation = true;
+    } else if(x === 'my0:hasReference'){
+      hasReference = true;
+    } else if(x === 'my0:hasWorkHistory'){
+      hasWork = true;
+    } else if(x === 'my0:hasOtherInfo'){
+      hasOtherInfo = true;
+    } else if(x === 'my0:target'){
+      for (let y in data[x]) {
+        if(y === 'my0:targetCompanyIndustry') {
+          targetCompanyIndustry = true;
+        } else if(y === 'my0:targetCompanyCountry') {
+          targetCompanyCountry = true;
+        }
+      }
+    } else if(x === 'my0:aboutPerson'){
+      for (let y in data[x]) {
+        if(y === 'my0:hasNationality') {
+          hasNationality = true;
+        } else if(y === 'my0:hasCitizenship') {
+          hasCitizenship = true;
+        } else if(y === 'my0:hasInstantMessaging') {
+          hasInstantMessaging = true;
+        } else if(y === 'my0:hasTelephoneNumber') {
+          hasTelephoneNumber = true;
+        } 
+      }
+    }
+   
+  }
+  if(!hasCourse) {
+    data['my0:hasCourse'] = [];
+  }
+  if(!hasEducation) {
+    data['my0:hasEducation'] = [];
+  }
+  if(!hasWork) {
+    data['my0:hasWorkHistory'] = [];
+  }
+  if(!hasReference) {
+    data['my0:hasReference'] = [];
+  }
+  if(!hasOtherInfo) {
+    data['my0:hasOtherInfo'] = [];
+  }
+  if(!hasTelephoneNumber) {
+    data['my0:aboutPerson']['my0:hasTelephoneNumber'] = [];
+  }
+  if(!hasInstantMessaging) {
+    data['my0:aboutPerson']['my0:hasInstantMessaging'] = [];
+  }
+  if(!hasCitizenship) {
+    data['my0:aboutPerson']['my0:hasCitizenship'] = [];
+  }
+  if(!hasNationality) {
+    data['my0:aboutPerson']['my0:hasNationality'] = [];
+  }
+  if(!targetCompanyIndustry) {
+    data['my0:target']['my0:targetCompanyIndustry'] = [];
+  }
+  if(!targetCompanyCountry) {
+    data['my0:target']['my0:targetCompanyCountry'] = [];
+  }
+  return data;
+}
+
 export function parseJSONLDTOJSON ( data ) {
   var obj = {};
   obj["@context"] = data["@context"];
@@ -249,6 +332,8 @@ export function parseJSONLDTOJSON ( data ) {
           obj[x].push(value);
       }
   }
+  //checking if some empty properties are removed after converting
+  obj = replaceEmptyProperties(obj);
   return  obj;
 }
 

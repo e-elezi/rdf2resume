@@ -48,7 +48,7 @@ class App extends Component {
               <h1>Logo</h1>
             </Row>
             <Row>
-              <h1>Welcome to Appname</h1>
+              <h1>Welcome to RDF2Résumé</h1>
               <Button
                 className="info-button"
                 variant="light"

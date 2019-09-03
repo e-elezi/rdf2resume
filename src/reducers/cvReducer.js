@@ -176,7 +176,7 @@ const INITIAL_STATE = {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
     }
-};
+}
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
