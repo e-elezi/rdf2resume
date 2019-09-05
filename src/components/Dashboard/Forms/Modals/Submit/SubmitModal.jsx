@@ -22,7 +22,7 @@ class SubmitModal extends Component {
   }
 
   handleConverting = () => {
-    this.props.showPdf('kot');
+    this.props.showPdf(this.state.design);
   }
 
   render() {

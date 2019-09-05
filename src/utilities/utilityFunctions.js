@@ -1,20 +1,9 @@
-import axios from "axios";
 import _ from "lodash";
 
 export const getLabelFromURI = uri => {
   let uriIndex = uri.lastIndexOf("#");
   return uri.substring(uriIndex);
 };
-
-export const handleUpload = async data => {
-  const response = await axios.post("/submit_form", data);
-  return response;
-};
-
-export const processDataBeforeSubmit = cvData => {
-  console.log(handleUpload(cvData));
-};
-
 
 export function getDataOfType(data, type) {
   let graphs = data['@graph'];

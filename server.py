@@ -2,6 +2,7 @@ import os
 import base64
 import requests
 import json
+from datetime import datetime
 import urllib.parse
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
@@ -41,11 +42,15 @@ def submit_form():
 
 @app.route('/generate_pdf', methods=['POST'])
 def generate_pdf():
-    content = request.json
+    req_data = request.get_json()
+    content = req_data['data']['cv']
+    designNumber = req_data['data']['designNumber']
+    now = datetime.now()
+    dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
     if not os.path.exists('build/static/media/pdf'):
       os.mkdir('build/static/media/pdf')
-    writeJSONtoTEX(content, "rdf2resume")
-    return "static/media/pdf/rdf2resume.pdf"
+    writeJSONtoTEX(content, "rdf2resume" + dt_string, designNumber )
+    return "static/media/pdf/rdf2resume" + dt_string
 
 @app.route('/upload', methods=['POST'])
 @cross_origin()

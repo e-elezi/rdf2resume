@@ -3,7 +3,6 @@ import { Row, Col } from "react-bootstrap";
 import CustomButton from "../../core/CustomButton";
 import SubmitModal from "./Modals/Submit/SubmitModal";
 import { toggleSpinner } from "../../../actions/utilityActions";
-import { processDataBeforeSubmit } from "../../../utilities/utilityFunctions";
 import Spinner from "../../../components/core/Spinner";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -57,8 +56,13 @@ class FormSubmit extends Component {
     alert("Will handle PDF generation with Interlinking");
   };
 
-  handleShowPDF = async filename => {
-    const response = await axios.post("/generate_pdf", this.props.cvData);
+  handleShowPDF = async designNumber => {
+    const response = await axios.post("/generate_pdf", {
+      data: {
+        cv: this.props.cvData,
+        designNumber: designNumber
+      }
+    });
     this.setState({
       pdfPath: "../../" + response.data
     });
@@ -68,12 +72,14 @@ class FormSubmit extends Component {
     });
   };
 
+  handleDownloadingTex = () => {};
+
   renderPDF = () => {
     if (this.state.showPDF) {
       return (
         <embed
           style={{ border: "3px solid #4bb3cc", borderRadius: "5px" }}
-          src={this.state.pdfPath}
+          src={this.state.pdfPath + '.pdf'}
           width="800px"
           height="900px"
         />
@@ -92,12 +98,14 @@ class FormSubmit extends Component {
             <h4 style={{ marginTop: "10px" }}>Submit the form</h4>
             <Row style={{ justifyContent: "left", marginLeft: 0 }}>
               <CustomButton
-                label="Download as RDF"
+                label="Download as JSON-LD"
                 classnames="final-submit"
                 handleClick={this.handleFormSubmit}
               />
               <a
-                ref={anchorHiddenRef => (this.anchorHiddenRef = anchorHiddenRef)}
+                ref={anchorHiddenRef =>
+                  (this.anchorHiddenRef = anchorHiddenRef)
+                }
                 href={this.state.jsonPath}
                 target="_blank"
                 download
@@ -123,6 +131,19 @@ class FormSubmit extends Component {
                 classnames="final-submit"
                 handleClick={this.handlePDFgenerationWithInterlinking}
               />
+            </Row>
+            <Row style={{ justifyContent: "left", marginLeft: 0 }}>
+              {this.state.showPDF ? (
+                <a
+                  className="final-submit btn btn-primary"
+                  style={{marginTop: '150px'}}
+                  href={this.state.pdfPath + ".tex"}
+                  target="_blank"
+                  download
+                >Download .Tex file</a>
+              ) : (
+                ""
+              )}
             </Row>
           </Col>
           <Col md={8}>{this.renderPDF()}</Col>
