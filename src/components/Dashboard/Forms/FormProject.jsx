@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import CourseModal from "./Modals/FormCourse/CourseModal";
-import CourseView from "./Modals/FormCourse/CourseView";
+import ProjectModal from "./Modals/FormProject/ProjectModal";
+import ProjectView from "./Modals/FormProject/ProjectView";
 import AddButton from "../../core/AddButton";
 
 class FormCourse extends Component {
@@ -28,24 +28,24 @@ class FormCourse extends Component {
     let lang = this.props.language;
 
     let titlePage = {
-      en: "Course/Training",
-      fr: "Cours/Training",
-      de: "Kurs/Training",
-      it: "Corso/Training"
+      en: "Project",
+      fr: "Le projet",
+      de: "Projekt",
+      it: "Il progetto"
     };
 
     let titlesub = {
-      en: "Add course / training",
-      fr: "Ajouter cours / training",
-      de: "Kurs / Training hinzufügen",
-      it: "Aggiungi corso / training",
+      en: "Add project",
+      fr: "Ajouter un projet",
+      de: "Projekt hinzufügen",
+      it: "Aggiungi progetto",
     }
 
     let nocourse = {
-      en: "No courses have been added until now.",
-      fr: "Aucun cours n'a été ajouté jusqu'à présent.",
-      de: "Es wurden bisher keine Kurse hinzugefügt.",
-      it: "Non sono stati aggiunti corsi fino ad ora.",
+      en: "No projects have been added until now.",
+      fr: "Aucun projet n'a été ajouté jusqu'à présent.",
+      de: "Bislang wurden keine Projekte hinzugefügt.",
+      it: "Finora non è stato aggiunto alcun progetto.",
     }
 
     return (
@@ -61,7 +61,7 @@ class FormCourse extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <CourseModal show={showModal} onHide={this.handleClose} key={this.state.key} />
+                <ProjectModal show={showModal} onHide={this.handleClose} key={this.state.key} />
               </Col>
               <Col md={10} className="button-label">
                 <p>{titlesub[lang]}</p>
@@ -69,12 +69,12 @@ class FormCourse extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.course.length === 0
+        {this.props.projects.length === 0
           ? nocourse[lang]
           : ""}
-        {this.props.course.map((co, index) => (
-          <CourseView
-            courseObj={co}
+        {this.props.projects.map((co, index) => (
+          <ProjectView
+            projectObj={co}
             id={index}
             key={index}
           />
@@ -86,7 +86,7 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: state.cv["my0:hasCourse"],
+    projects: state.cv["my0:hasProject"],
     language: state.utility.language
   };
 };

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import CourseModal from "./Modals/FormCourse/CourseModal";
-import CourseView from "./Modals/FormCourse/CourseView";
+import HonorModal from "./Modals/FormHonor/HonorModal";
+import HonorView from "./Modals/FormHonor/HonorView";
 import AddButton from "../../core/AddButton";
 
-class FormCourse extends Component {
+class FormHonor extends Component {
   state = {
     showModal: false,
     key: 0
@@ -28,24 +28,24 @@ class FormCourse extends Component {
     let lang = this.props.language;
 
     let titlePage = {
-      en: "Course/Training",
-      fr: "Cours/Training",
-      de: "Kurs/Training",
-      it: "Corso/Training"
+      en: "Honor & Award",
+      fr: "Prix et distinctions",
+      de: "Ehrungen & Auszeichnungen",
+      it: "Premi e riconoscimenti"
     };
 
     let titlesub = {
-      en: "Add course / training",
-      fr: "Ajouter cours / training",
-      de: "Kurs / Training hinzufügen",
-      it: "Aggiungi corso / training",
+      en: "Add honor/award",
+      fr: "Ajouter distinctions/prix",
+      de: "Ehre/Award hinzufügen",
+      it: "Aggiungi premi/riconoscimento",
     }
 
     let nocourse = {
-      en: "No courses have been added until now.",
-      fr: "Aucun cours n'a été ajouté jusqu'à présent.",
-      de: "Es wurden bisher keine Kurse hinzugefügt.",
-      it: "Non sono stati aggiunti corsi fino ad ora.",
+      en: "No honors or awards have been added until now.",
+      fr: "Aucun prix ou distinction n'a été ajouté jusqu'à présent.",
+      de: "Bis jetzt wurden keine Ehrungen oder Auszeichnungen hinzugefügt.",
+      it: "Non sono stati aggiunti riconoscimenti o premi fino ad ora.",
     }
 
     return (
@@ -61,7 +61,7 @@ class FormCourse extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <CourseModal show={showModal} onHide={this.handleClose} key={this.state.key} />
+                <HonorModal show={showModal} onHide={this.handleClose} key={this.state.key} />
               </Col>
               <Col md={10} className="button-label">
                 <p>{titlesub[lang]}</p>
@@ -69,12 +69,12 @@ class FormCourse extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.course.length === 0
+        {this.props.honors.length === 0
           ? nocourse[lang]
           : ""}
-        {this.props.course.map((co, index) => (
-          <CourseView
-            courseObj={co}
+        {this.props.honors.map((co, index) => (
+          <HonorView
+            honorObj={co}
             id={index}
             key={index}
           />
@@ -86,7 +86,7 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: state.cv["my0:hasCourse"],
+    honors: state.cv["my0:hasHonorAward"],
     language: state.utility.language
   };
 };
@@ -94,4 +94,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {}
-)(FormCourse);
+)(FormHonor);

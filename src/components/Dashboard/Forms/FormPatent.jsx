@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import CourseModal from "./Modals/FormCourse/CourseModal";
-import CourseView from "./Modals/FormCourse/CourseView";
+import PatentModal from "./Modals/FormPatent/PatentModal";
+import PatentView from "./Modals/FormPatent/PatentView";
 import AddButton from "../../core/AddButton";
 
-class FormCourse extends Component {
+class FormPatent extends Component {
   state = {
     showModal: false,
     key: 0
@@ -13,13 +13,12 @@ class FormCourse extends Component {
 
   handleClose = () => {
     let key = this.state.key;
-    this.setState({ showModal: false,
-    key: ++key });
+    this.setState({ showModal: false, key: ++key });
   };
 
   handleShow = () => {
     let key = this.state.key;
-    this.setState({ showModal: true, key: ++key  });
+    this.setState({ showModal: true, key: ++key });
   };
 
   render() {
@@ -28,25 +27,25 @@ class FormCourse extends Component {
     let lang = this.props.language;
 
     let titlePage = {
-      en: "Course/Training",
-      fr: "Cours/Training",
-      de: "Kurs/Training",
-      it: "Corso/Training"
+      en: "Patent",
+      fr: "Brevet",
+      de: "Patent",
+      it: "Brevetto"
     };
 
     let titlesub = {
-      en: "Add course / training",
-      fr: "Ajouter cours / training",
-      de: "Kurs / Training hinzufügen",
-      it: "Aggiungi corso / training",
-    }
+      en: "Add patent",
+      fr: "Ajouter un brevet",
+      de: "Patent hinzufügen",
+      it: "Aggiungere un brevetto"
+    };
 
     let nocourse = {
-      en: "No courses have been added until now.",
-      fr: "Aucun cours n'a été ajouté jusqu'à présent.",
-      de: "Es wurden bisher keine Kurse hinzugefügt.",
-      it: "Non sono stati aggiunti corsi fino ad ora.",
-    }
+      en: "No patents have been added until now.",
+      fr: "Aucun brevet n'a été ajouté jusqu'à présent.",
+      de: "Bislang wurden keine Patente hinzugefügt.",
+      it: "Finora non sono stati aggiunti brevetti."
+    };
 
     return (
       <React.Fragment>
@@ -61,7 +60,11 @@ class FormCourse extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <CourseModal show={showModal} onHide={this.handleClose} key={this.state.key} />
+                <PatentModal
+                  show={showModal}
+                  onHide={this.handleClose}
+                  key={this.state.key}
+                />
               </Col>
               <Col md={10} className="button-label">
                 <p>{titlesub[lang]}</p>
@@ -69,15 +72,9 @@ class FormCourse extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.course.length === 0
-          ? nocourse[lang]
-          : ""}
-        {this.props.course.map((co, index) => (
-          <CourseView
-            courseObj={co}
-            id={index}
-            key={index}
-          />
+        {this.props.patents.length === 0 ? nocourse[lang] : ""}
+        {this.props.patents.map((co, index) => (
+          <PatentView patentObj={co} id={index} key={index} />
         ))}
       </React.Fragment>
     );
@@ -86,7 +83,7 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: state.cv["my0:hasCourse"],
+    patents: state.cv["my0:hasPatent"],
     language: state.utility.language
   };
 };
@@ -94,4 +91,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {}
-)(FormCourse);
+)(FormPatent);

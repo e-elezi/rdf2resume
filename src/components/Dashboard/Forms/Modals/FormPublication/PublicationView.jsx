@@ -10,7 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removePublication } from "../../../../../actions";
 import PublicationModal from "./PublicationModal";
-import { getNameFromURI } from "../../../../../utilities/utilityFunctions";
 
 class PublicationView extends Component {
   state = {

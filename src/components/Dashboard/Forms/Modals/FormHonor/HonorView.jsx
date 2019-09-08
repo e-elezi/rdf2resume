@@ -7,11 +7,11 @@ import {
   faTrash,
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
-import { removeCourse } from "../../../../../actions";
-import CourseModal from "./CourseModal";
+import { removeHonor } from "../../../../../actions";
+import HonorModal from "./HonorModal";
 import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
-class CourseView extends Component {
+class HonorView extends Component {
   state = {
     editMode: false,
     key: 0
@@ -35,27 +35,11 @@ class CourseView extends Component {
 
   render() {
     let {
-      "my0:hasCertification" : hasCertification,
-      "my0:courseTitle" : courseTitle,
-      "my0:courseDescription" : courseDescription,
-      // "my0:courseURL" : courseURL,
-      "my0:courseStartDate" : courseStartDate,
-      "my0:courseFinishDate" : courseFinishDate,
-      "my0:organizedBy" : organizedBy
-    } = this.props.courseObj;
-
-    let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationAddress" : organizationAddress,
-      "my0:organizationWebsite" : organizationWebsite,
-    } = organizedBy;
-
-    let {
-      "my0:city" : city,
-      "my0:country" : country
-      // "my0:street" : street,
-      // "my0:postalCode" : postalCode,
-    } = organizationAddress;
+      "my0:honortitle" : honortitle,
+      "my0:honorIssuedDate" : honorIssuedDate,
+      "my0:honorIssuer" : honorIssuer,
+      "my0:honorDescription" : honorDescription
+    } = this.props.honorObj;
 
     return (
       <React.Fragment>
@@ -68,7 +52,7 @@ class CourseView extends Component {
         >
           <Col md={2}>
             <p>
-              {courseStartDate} - {courseFinishDate}
+              {honorIssuedDate}
             </p>
           </Col>
           <Col md={6}>
@@ -80,7 +64,7 @@ class CourseView extends Component {
               }}
             >
               <b>
-                {courseTitle}
+                {honortitle}
               </b>
             </Row>
             <Row
@@ -93,16 +77,7 @@ class CourseView extends Component {
               <b>
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
-                <a
-                  href={organizationWebsite}
-                  className="inline-link"
-                  target=" blank"
-                >
-                  {organizationName}
-                </a>{" "}
-                {` `}
-                {city} {` `}{" "}
-                {getNameFromURI(country)}
+                  {honorIssuer}
               </b>
             </Row>
             <Row
@@ -112,16 +87,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              {courseDescription}
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-            Is Course certified? {hasCertification}
+              {honorDescription}
             </Row>
           </Col>
           <Col md={4}>
@@ -131,13 +97,13 @@ class CourseView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeCourse(
+              onClick={() => this.props.removeHonor(
                 this.props.id
                )}
             />
           </Col>
         </Row>
-        <CourseModal
+        <HonorModal
           show={this.state.editMode}
           isUpdate={true}
           id={this.props.id}
@@ -151,5 +117,5 @@ class CourseView extends Component {
 
 export default connect(
   null,
-  { removeCourse }
-)(CourseView);
+  { removeHonor }
+)(HonorView);

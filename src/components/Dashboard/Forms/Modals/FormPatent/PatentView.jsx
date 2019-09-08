@@ -5,25 +5,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
-  faMapMarkerAlt
+  faBookOpen,
+  faCopyright
 } from "@fortawesome/free-solid-svg-icons";
-import { removeCourse } from "../../../../../actions";
-import CourseModal from "./CourseModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
+import { removePatent } from "../../../../../actions";
+import PatentModal from "./PatentModal";
+import { getNameFromURI } from "../../../../../utilities/utilityFunctions";
 
-class CourseView extends Component {
+class PatentView extends Component {
   state = {
     editMode: false,
     key: 0
   };
 
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -35,27 +36,15 @@ class CourseView extends Component {
 
   render() {
     let {
-      "my0:hasCertification" : hasCertification,
-      "my0:courseTitle" : courseTitle,
-      "my0:courseDescription" : courseDescription,
-      // "my0:courseURL" : courseURL,
-      "my0:courseStartDate" : courseStartDate,
-      "my0:courseFinishDate" : courseFinishDate,
-      "my0:organizedBy" : organizedBy
-    } = this.props.courseObj;
-
-    let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationAddress" : organizationAddress,
-      "my0:organizationWebsite" : organizationWebsite,
-    } = organizedBy;
-
-    let {
-      "my0:city" : city,
-      "my0:country" : country
-      // "my0:street" : street,
-      // "my0:postalCode" : postalCode,
-    } = organizationAddress;
+      "my0:patentTitle": patentTitle,
+      "my0:patentOffice": patentOffice,
+      "my0:patentNumber": patentNumber,
+      "my0:patentInventor": patentInventor,
+      "my0:patentURL": patentURL,
+      "my0:patentIssuedDate": patentIssuedDate,
+      "my0:patentStatus": patentStatus,
+      "my0:patentDescription": patentDescription
+    } = this.props.patentObj;
 
     return (
       <React.Fragment>
@@ -67,9 +56,8 @@ class CourseView extends Component {
           }}
         >
           <Col md={2}>
-            <p>
-              {courseStartDate} - {courseFinishDate}
-            </p>
+            {getNameFromURI(patentStatus)}
+            <p>{patentIssuedDate}</p>
           </Col>
           <Col md={6}>
             <Row
@@ -79,9 +67,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              <b>
-                {courseTitle}
-              </b>
+              <b>{patentTitle}</b> - {patentNumber}
             </Row>
             <Row
               style={{
@@ -91,18 +77,11 @@ class CourseView extends Component {
               }}
             >
               <b>
-                <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
+                <FontAwesomeIcon icon={faBookOpen} />
                 {` `}
-                <a
-                  href={organizationWebsite}
-                  className="inline-link"
-                  target=" blank"
-                >
-                  {organizationName}
+                <a href={patentURL} className="inline-link" target=" blank">
+                  {patentOffice}
                 </a>{" "}
-                {` `}
-                {city} {` `}{" "}
-                {getNameFromURI(country)}
               </b>
             </Row>
             <Row
@@ -112,7 +91,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              {courseDescription}
+              {patentDescription}
             </Row>
             <Row
               style={{
@@ -121,7 +100,9 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-            Is Course certified? {hasCertification}
+              <FontAwesomeIcon icon={faCopyright} />
+              {` `}
+              {patentInventor}
             </Row>
           </Col>
           <Col md={4}>
@@ -131,13 +112,11 @@ class CourseView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeCourse(
-                this.props.id
-               )}
+              onClick={() => this.props.removePatent(this.props.id)}
             />
           </Col>
         </Row>
-        <CourseModal
+        <PatentModal
           show={this.state.editMode}
           isUpdate={true}
           id={this.props.id}
@@ -151,5 +130,5 @@ class CourseView extends Component {
 
 export default connect(
   null,
-  { removeCourse }
-)(CourseView);
+  { removePatent }
+)(PatentView);

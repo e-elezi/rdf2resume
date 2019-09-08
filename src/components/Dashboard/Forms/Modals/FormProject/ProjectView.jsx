@@ -7,23 +7,23 @@ import {
   faTrash,
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
-import { removeCourse } from "../../../../../actions";
-import CourseModal from "./CourseModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
+import { removeProject } from "../../../../../actions";
+import ProjectModal from "./ProjectModal";
+import { getNameFromURI } from "../../../../../utilities/utilityFunctions";
 
-class CourseView extends Component {
+class ProjectView extends Component {
   state = {
     editMode: false,
     key: 0
   };
 
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -35,27 +35,14 @@ class CourseView extends Component {
 
   render() {
     let {
-      "my0:hasCertification" : hasCertification,
-      "my0:courseTitle" : courseTitle,
-      "my0:courseDescription" : courseDescription,
-      // "my0:courseURL" : courseURL,
-      "my0:courseStartDate" : courseStartDate,
-      "my0:courseFinishDate" : courseFinishDate,
-      "my0:organizedBy" : organizedBy
-    } = this.props.courseObj;
-
-    let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationAddress" : organizationAddress,
-      "my0:organizationWebsite" : organizationWebsite,
-    } = organizedBy;
-
-    let {
-      "my0:city" : city,
-      "my0:country" : country
-      // "my0:street" : street,
-      // "my0:postalCode" : postalCode,
-    } = organizationAddress;
+      "my0:projectName": projectName,
+      "my0:projectIsCurrent": projectIsCurrent,
+      "my0:projectStartDate": projectStartDate,
+      "my0:projectEndDate": projectEndDate,
+      "my0:projectCreator": projectCreator,
+      "my0:projectDescription": projectDescription,
+      "my0:projectURL": projectURL
+    } = this.props.projectObj;
 
     return (
       <React.Fragment>
@@ -68,7 +55,7 @@ class CourseView extends Component {
         >
           <Col md={2}>
             <p>
-              {courseStartDate} - {courseFinishDate}
+              {projectStartDate} - {projectEndDate}
             </p>
           </Col>
           <Col md={6}>
@@ -79,9 +66,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              <b>
-                {courseTitle}
-              </b>
+              <b>{projectName}</b>
             </Row>
             <Row
               style={{
@@ -93,16 +78,9 @@ class CourseView extends Component {
               <b>
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
-                <a
-                  href={organizationWebsite}
-                  className="inline-link"
-                  target=" blank"
-                >
-                  {organizationName}
-                </a>{" "}
-                {` `}
-                {city} {` `}{" "}
-                {getNameFromURI(country)}
+                <a href={projectURL} className="inline-link" target=" blank">
+                  {projectCreator}
+                </a>
               </b>
             </Row>
             <Row
@@ -112,16 +90,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              {courseDescription}
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-            Is Course certified? {hasCertification}
+              {projectDescription}
             </Row>
           </Col>
           <Col md={4}>
@@ -131,13 +100,11 @@ class CourseView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeCourse(
-                this.props.id
-               )}
+              onClick={() => this.props.removeCourse(this.props.id)}
             />
           </Col>
         </Row>
-        <CourseModal
+        <ProjectModal
           show={this.state.editMode}
           isUpdate={true}
           id={this.props.id}
@@ -151,5 +118,5 @@ class CourseView extends Component {
 
 export default connect(
   null,
-  { removeCourse }
-)(CourseView);
+  { removeProject }
+)(ProjectView);

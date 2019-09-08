@@ -8,6 +8,9 @@ import FormEducation from "./Forms/FormEducation";
 import FormCourse from "./Forms/FormCourse";
 import FormOtherInfo from "./Forms/FormOtherInfo";
 import FormPersonal from "./Forms/FormPersonal";
+import FormPatent from "./Forms/FormPatent";
+import FormProject from "./Forms/FormProject";
+import FormHonor from "./Forms/FormHonor";
 // import FormSkill from "./Forms/FormSkill";
 import FormTarget from "./Forms/FormTarget";
 import FormReference from "./Forms/FormReference";
@@ -152,6 +155,9 @@ class Main extends Component {
             <Route path="/d/reference" component={FormReference} />
             <Route path="/d/other" component={FormOtherInfo} />
             <Route path="/d/publication" component={FormPublication} />
+            <Route path="/d/patent" component={FormPatent} />
+            <Route path="/d/project" component={FormProject} />
+            <Route path="/d/honor" component={FormHonor} />
             <Route
               path="/d/submit"
               render={props => (
