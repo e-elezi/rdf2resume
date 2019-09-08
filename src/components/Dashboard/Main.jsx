@@ -13,6 +13,7 @@ import FormTarget from "./Forms/FormTarget";
 import FormReference from "./Forms/FormReference";
 import FormSubmit from "./Forms/FormSubmit";
 import FormWorkHistory from "./Forms/FormWorkHistory";
+import FormPublication from "./Forms/FormPublication";
 
 class Main extends Component {
   state = {
@@ -150,6 +151,7 @@ class Main extends Component {
             {/* <Route path="/d/skill" component={FormSkill} /> */}
             <Route path="/d/reference" component={FormReference} />
             <Route path="/d/other" component={FormOtherInfo} />
+            <Route path="/d/publication" component={FormPublication} />
             <Route
               path="/d/submit"
               render={props => (

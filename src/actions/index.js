@@ -21,6 +21,18 @@ import {
   CREATE_IM,
   UPDATE_IM,
   REMOVE_IM,
+  CREATE_HONOR,
+  UPDATE_HONOR,
+  REMOVE_HONOR,
+  CREATE_PATENT,
+  UPDATE_PATENT,
+  REMOVE_PATENT,
+  CREATE_PROJECT,
+  UPDATE_PROJECT,
+  REMOVE_PROJECT,
+  CREATE_PUBLICATION,
+  UPDATE_PUBLICATION,
+  REMOVE_PUBLICATION,
   CREATE_WEBSITE,
   UPDATE_WEBSITE,
   REMOVE_WEBSITE,
@@ -105,6 +117,90 @@ export const updateIM = formValues => {
 export const removeIM = index => {
   return {
     type: REMOVE_IM,
+    payload: index
+  };
+};
+
+export const createPublication = formValues => {
+  return {
+    type: CREATE_PUBLICATION,
+    payload: formValues
+  };
+};
+
+export const updatePublication = formValues => {
+  return {
+    type: UPDATE_PUBLICATION,
+    payload: formValues
+  };
+};
+
+export const removePublication = index => {
+  return {
+    type: REMOVE_PUBLICATION,
+    payload: index
+  };
+};
+
+export const createPatent = formValues => {
+  return {
+    type: CREATE_PATENT,
+    payload: formValues
+  };
+};
+
+export const updatePatent = formValues => {
+  return {
+    type: UPDATE_PATENT,
+    payload: formValues
+  };
+};
+
+export const removePatent = index => {
+  return {
+    type: REMOVE_PATENT,
+    payload: index
+  };
+};
+
+export const createProject = formValues => {
+  return {
+    type: CREATE_PROJECT,
+    payload: formValues
+  };
+};
+
+export const updateProject = formValues => {
+  return {
+    type: UPDATE_PROJECT,
+    payload: formValues
+  };
+};
+
+export const removeProject = index => {
+  return {
+    type: REMOVE_PROJECT,
+    payload: index
+  };
+};
+
+export const createHonor = formValues => {
+  return {
+    type: CREATE_HONOR,
+    payload: formValues
+  };
+};
+
+export const updateHonor = formValues => {
+  return {
+    type: UPDATE_HONOR,
+    payload: formValues
+  };
+};
+
+export const removeHonor = index => {
+  return {
+    type: REMOVE_HONOR,
     payload: index
   };
 };

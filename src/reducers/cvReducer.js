@@ -16,6 +16,18 @@ import {
   CREATE_IM,
   UPDATE_IM,
   REMOVE_IM,
+  CREATE_HONOR,
+  UPDATE_HONOR,
+  REMOVE_HONOR,
+  CREATE_PATENT,
+  UPDATE_PATENT,
+  REMOVE_PATENT,
+  CREATE_PROJECT,
+  UPDATE_PROJECT,
+  REMOVE_PROJECT,
+  CREATE_PUBLICATION,
+  UPDATE_PUBLICATION,
+  REMOVE_PUBLICATION,
   CREATE_WEBSITE,
   UPDATE_WEBSITE,
   REMOVE_WEBSITE,
@@ -159,6 +171,54 @@ export default (state = INITIAL_STATE, action) => {
       let removedotherinfo = {...state}['my0:hasOtherInfo'];
       let removedotherinfos = _.filter(removedotherinfo, function(item, index) { return index !== action.payload; });
       return { ...state, "my0:hasOtherInfo": removedotherinfos };
+    case CREATE_PUBLICATION:
+      let pubs = {...state};
+      pubs['my0:hasPublication'].push(action.payload);
+      return pubs;
+    case UPDATE_PUBLICATION:
+      let updatedpubs = {...state};
+      updatedpubs['my0:hasPublication'][action.payload.index] = action.payload.object;
+      return updatedpubs;
+    case REMOVE_PUBLICATION:
+      let removepub = {...state}['my0:hasPublication'];
+      let removedpubss = _.filter(removepub, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasPublication": removedpubss };
+    case CREATE_PATENT:
+      let pats = {...state};
+      pats['my0:hasPatent'].push(action.payload);
+      return pats;
+    case UPDATE_PATENT:
+      let updatedpats = {...state};
+      updatedpats['my0:hasPatent'][action.payload.index] = action.payload.object;
+      return updatedpats;
+    case REMOVE_PATENT:
+      let removepat = {...state}['my0:hasPatent'];
+      let removedpatss = _.filter(removepat, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasPatent": removedpatss };
+    case CREATE_PROJECT:
+      let pros = {...state};
+      pros['my0:hasProject'].push(action.payload);
+      return pros;
+    case UPDATE_PROJECT:
+      let updatedpros = {...state};
+      updatedpros['my0:hasProject'][action.payload.index] = action.payload.object;
+      return updatedpros;
+    case REMOVE_PROJECT:
+      let removepros = {...state}['my0:hasProject'];
+      let removeprosss = _.filter(removepros, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasProject": removeprosss };
+    case CREATE_HONOR:
+      let hons = {...state};
+      hons['my0:hasHonorAward'].push(action.payload);
+      return hons;
+    case UPDATE_HONOR:
+      let updateshons = {...state};
+      updateshons['my0:hasHonorAward'][action.payload.index] = action.payload.object;
+      return updateshons;
+    case REMOVE_HONOR:
+      let removehons = {...state}['my0:hasHonorAward'];
+      let removehonss = _.filter(removehons, function(item, index) { return index !== action.payload; });
+      return { ...state, "my0:hasHonorAward": removehonss };
     case CREATE_REFERENCE:
       let references = {...state};
       references['my0:hasReference'].push(action.payload);
