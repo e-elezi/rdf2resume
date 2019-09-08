@@ -12,9 +12,12 @@
 
 my0:
   a owl:Ontology ;
-  rdfs:label "Curriculum Vitae Ontology"@en ;
-  dc:issued "2019-05-15"^^xsd:date ;
-  dc:modified "2019-06-13"^^xsd:date . 
+  rdfs:label "Curriculum Vitae Ontology"@en, 
+  "Lebenslauf Ontologie"@de,
+  "Curriculum Vitae Ontologie"@fr,
+  "Curriculum Vitae Ontologia"@it;
+  dc:issued "2019-09-07"^^xsd:date ;
+  dc:modified "2019-09-07"^^xsd:date . 
 
 my0:CV
   a owl:Class ;
@@ -30,102 +33,493 @@ my0:CV
                     owl:cardinality "1"^^xsd:nonNegativeInteger ;
                     ];
   rdfs:comment "Curriculum Vitae (CV) Class"@en ;
-  rdfs:label "CV"@en .
+  rdfs:label "CV"@en,
+  "CV"@de,
+  "CV"@fr,
+  "CV"@it .
 
 my0:cvLastUpdate
   a owl:DatatypeProperty ;
   rdfs:comment "Date when the information in CV was last updated."@en ;
-  rdfs:label "Last Update"@en ;
+  rdfs:label "Last Update"@en,
+  "Letztes Update"@de,
+  "Dernière mise à jour"@fr,
+  "Ultimo aggiornamento"@it ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:date .
-
-my0:cvTitle
-  a owl:DatatypeProperty ;
-  rdfs:label "CV Title"@en ;
-  rdfs:domain my0:CV ;
-  rdfs:range xsd:string .
 
 my0:cvNotes
   a owl:DatatypeProperty ;
   rdfs:comment "Notes about specific things the person wants to have known"@en ;
-  rdfs:label "CV Notes"@en ;
+  rdfs:label "CV Notes"@en,
+  "CV-Hinweise"@de,
+  "Notes de CV"@fr,
+  "Note CV"@it ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:string .
 
 my0:cvCopyright
   a owl:DatatypeProperty ;
   rdfs:comment "Copyright notice - who owns rights to CV, how may it be used, other legal info."@en ;
-  rdfs:label "CV Copyright"@en ;
+  rdfs:label "CV Copyright"@en,
+  "Lebenslauf Urheberrechte"@de,
+  "Droit d'auteur du CV"@fr,
+  "Copyright del CV"@it ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:string .
 
 my0:cvIsConfidential
   a owl:DatatypeProperty ;
   rdfs:comment "If the CV is confidential and may be used by receiving party only."@en ;
-  rdfs:label "Is CV Confidential"@en ;
+  rdfs:label "Is CV Confidential?"@en,
+  "Ist der Lebenslauf vertraulich?"@de,
+  "Le CV est-il confidentiel?"@fr,
+  "Il CV è confidenziale?"@it ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:boolean .
 
 my0:cvIsActive
   a owl:DatatypeProperty ;
   rdfs:comment "If the CV is active and the person is actively looking for job opportunities."@en ;
-  rdfs:label "IS CV Active"@en ;
+  rdfs:label "Is CV Active?"@en,
+  "Ist der CV aktiv?"@de,
+  "Le CV est-il actif?"@fr,
+  "Il CV è attivo?"@it ;
   rdfs:domain my0:CV ;
   rdfs:range xsd:boolean .
 
 my0:aboutPerson
   a owl:ObjectProperty ;
-  rdfs:label "About Person"@en ;
+  rdfs:label "About Person"@en,
+  "Über die Person"@de,
+  "À propos de la personne"@fr,
+  "Informazioni sulla persona"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:Person .
 
 my0:CV_Entry
   a owl:Class ;
-  rdfs:label "CV Entry"@en ;
+  rdfs:label "CV Entry"@en,
+  "CV-Eintrag"@de,
+  "Saisie du CV"@fr,
+  "Registrazione CV"@it ;
   rdfs:comment "Single entry of CV information. Type of CV information specified in subclasses"@en ;
   rdfs:subClassOf rdfs:Resource .
 
 my0:hasWorkHistory
   a owl:ObjectProperty ;
-  rdfs:label "has Work History"@en ;
+  rdfs:label "Work Experience"@en,
+  "Berufserfahrung"@de,
+  "Expérience de travail"@fr,
+  "Esperienza di lavoro"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:WorkHistory .
 
 my0:hasEducation
   a owl:ObjectProperty ;
-  rdfs:label "has Education"@en ;
+  rdfs:label "Education"@en,
+  "Ausbildung"@de,
+  "L'éducation"@fr,
+  "Educazione"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:Education .
 
 my0:hasCourse
   a owl:ObjectProperty ;
-  rdfs:label "has Course"@en ;
+  rdfs:label "Course/Training"@en,
+  "Kurs/Training"@de,
+  "Cours/Training"@fr,
+  "Corso/Training"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:Course .
 
 my0:hasSkill
   a owl:ObjectProperty ;
-  rdfs:label "has Skill"@en ;
+  rdfs:label "Skill"@en,
+  "Fähigkeit"@de,
+  "Compétence"@fr,
+  "Competenza"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:Skill .
 
 my0:hasReference
   a owl:ObjectProperty ;
-  rdfs:label "has Reference"@en ;
+  rdfs:label "Reference"@en,
+  "Referenz"@de,
+  "Référence"@fr,
+  "Riferimento"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:Reference .
 
 my0:hasTarget
   a owl:ObjectProperty ;
-  rdfs:label "has Target"@en ;
+  rdfs:label "Target Job"@en,
+  "Zielauftrag"@de,
+  "Emploi cible"@fr,
+  "Obiettivo di lavoro"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:Target .
 
 my0:hasOtherInfo
   a owl:ObjectProperty ;
-  rdfs:label "has Other Info"@en ;
+  rdfs:label "Other Information"@en,
+  "Sonstige Informationen"@de,
+  "Autres informations"@fr,
+  "Altre informazioni"@it ;
   rdfs:domain my0:CV ;
   rdfs:range my0:OtherInfo .
+
+my0:hasPublication
+  a owl:ObjectProperty ;
+  rdfs:label "Publications"@en,
+  "Veröffentlichungen"@de,
+  "Publications"@fr,
+  "Pubblicazioni"@it ;
+  rdfs:domain my0:CV ;
+  rdfs:range my0:Publication .
+
+my0:hasPatent
+  a owl:ObjectProperty ;
+  rdfs:label "Patents"@en,
+  "Patente"@de,
+  "Brevets"@fr,
+  "Brevetti"@it ;
+  rdfs:domain my0:CV ;
+  rdfs:range my0:Patent .
+
+my0:hasProject
+  a owl:ObjectProperty ;
+  rdfs:label "Projects"@en,
+  "Projekte"@de,
+  "Projets"@fr,
+  "Progetti"@it ;
+  rdfs:domain my0:CV ;
+  rdfs:range my0:Project .
+
+my0:hasHonorAward
+  a owl:ObjectProperty ;
+  rdfs:label "Honors & Awards"@en,
+  "Ehrungen & Auszeichnungen"@de,
+  "Prix et distinctions"@fr,
+  "Premi e riconoscimenti"@it ;
+  rdfs:domain my0:CV ;
+  rdfs:range my0:HonorAward .
+
+my0:Publication
+  a owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty my0:publiciationTitle ;
+                    owl:onProperty my0:publicationDescription ;
+                    owl:onProperty my0:publicationURL ;
+                    owl:onProperty my0:publiciationDate ;
+                    owl:onProperty my0:publiciationPublisher ;
+                    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+                  ];
+  rdfs:comment "Publication Class that defines neccessary information about a specific publication"@en ;
+  rdfs:label "Publication"@en,
+  "Veröffentlichung"@de,
+  "Publication"@fr,
+  "Pubblicazione"@it .
+
+my0:publiciationTitle
+  a owl:DatatypeProperty ;
+  rdfs:label "Title"@en,
+  "Titel"@de,
+  "Titre"@fr,
+  "Titolo"@it ;
+  rdfs:comment "Indicates the title of the publication"@en ;
+  rdfs:domain my0:Publication ;
+  rdfs:range xsd:string .
+
+my0:publiciationPublisher
+  a owl:DatatypeProperty ;
+  rdfs:label "Publisher"@en,
+  "Herausgeber"@de,
+  "Éditeur"@fr,
+  "Editore"@it ;
+  rdfs:comment "Indicates the publisher of the publication"@en ;
+  rdfs:domain my0:Publication ;
+  rdfs:range xsd:string .
+
+my0:publiciationDate
+  a owl:DatatypeProperty ;
+  rdfs:label "Publication date"@en,
+  "Veröffentlichungsdatum"@de,
+  "Date de publication"@fr,
+  "Data di pubblicazione"@it ;
+  rdfs:comment "Indicates the publishing date of the publication"@en ;
+  rdfs:domain my0:Publication ;
+  rdfs:range xsd:date .
+
+my0:publicationAuthor
+  a owl:DatatypeProperty ;
+  rdfs:label "Author"@en,
+  "Autor"@de,
+  "Auteur"@fr,
+  "Autore"@it ;
+  rdfs:comment "Indicates the authors of the publication"@en ;
+  rdfs:domain my0:Publication ;
+  rdfs:range xsd:string .
+
+my0:publicationURL
+  a owl:DatatypeProperty ;
+  rdfs:label "Publication URL"@en,
+  "URL der Veröffentlichung"@de,
+  "URL de la publication"@fr,
+  "URL di pubblicazione"@it ;
+  rdfs:comment "Indicates the url of the publication"@en ;
+  rdfs:domain my0:Publication ;
+  rdfs:range xsd:string .
+
+my0:publicationDescription
+  a owl:DatatypeProperty ;
+  rdfs:label "Publication Description"@en,
+  "Beschreibung der Veröffentlichung"@de,
+  "Description de la publication"@fr,
+  "Descrizione della pubblicazione"@it ;
+  rdfs:comment "Indicates the description of the publication"@en ;
+  rdfs:domain my0:Publication ;
+  rdfs:range xsd:string .
+
+  my0:Patent
+  a owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty my0:patentDescription ;
+                    owl:onProperty my0:patentIssuedDate ;
+                    owl:onProperty my0:patentNumber ;
+                    owl:onProperty my0:patentStatus ;
+                    owl:onProperty my0:patentOffice ;
+                    owl:onProperty my0:patentURL ;
+                    owl:onProperty my0:patentTitle ;
+                    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+                  ];
+  rdfs:comment "Patent Class that defines neccessary information about a specific patent"@en ;
+  rdfs:label "Patent"@en,
+  "Patent"@de,
+  "Brevet"@fr,
+  "Brevetto"@it .
+
+my0:patentTitle
+  a owl:DatatypeProperty ;
+  rdfs:label "Title"@en,
+  "Titel"@de,
+  "Titre"@fr,
+  "Titolo"@it ;
+  rdfs:comment "Indicates the title of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:string .
+
+my0:patentOffice
+  a owl:DatatypeProperty ;
+  rdfs:label "Patent Office"@en,
+  "Patentamt"@de,
+  "Office des brevets"@fr,
+  "Ufficio Brevetti"@it ;
+  rdfs:comment "Indicates the patent office of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:string .
+
+my0:patentNumber
+  a owl:DatatypeProperty ;
+  rdfs:label "Patent or application number"@en,
+  "Patent- oder Anmeldenummer"@de,
+  "Numéro du brevet ou de la demande"@fr,
+  "Numero di brevetto o di domanda"@it ;
+  rdfs:comment "Indicates the number of the patent or the application"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:date .
+
+my0:patentInventor
+  a owl:DatatypeProperty ;
+  rdfs:label "Inventor"@en,
+  "Erfinder"@de,
+  "Inventeur"@fr,
+  "Inventore"@it ;
+  rdfs:comment "Indicates the inventor of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:string .
+
+my0:patentURL
+  a owl:DatatypeProperty ;
+  rdfs:label "Patent URL"@en,
+  "Patent-URL"@de,
+  "URL du brevet"@fr,
+  "URL del brevetto"@it ;
+  rdfs:comment "Indicates the url of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:string .
+
+my0:patentDescription
+  a owl:DatatypeProperty ;
+  rdfs:label "Patent Description"@en,
+  "Patentbeschreibung"@de,
+  "Description du brevet"@fr,
+  "Descrizione del brevetto"@it ;
+  rdfs:comment "Indicates the description of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:string .
+
+my0:patentIssuedDate
+  a owl:DatatypeProperty ;
+  rdfs:label "Issued date"@en,
+  "Ausgabedatum"@de,
+  "Date d'émission"@fr,
+  "Data di emissione"@it ;
+  rdfs:comment "Indicates the issued date of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range xsd:date .
+
+my0:patentStatus
+  a owl:DatatypeProperty ;
+  rdfs:label "Status"@en,
+  "Status"@de,
+  "Statut"@fr,
+  "Stato"@it ;
+  rdfs:comment "Indicates the status of the patent"@en ;
+  rdfs:domain my0:Patent ;
+  rdfs:range mybase0:StatusProperty .
+
+my0:Project
+  a owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty my0:projectDescription ;
+                    owl:onProperty my0:projectEndDate;
+                    owl:onProperty my0:projectName ;
+                    owl:onProperty my0:projectStartDate ;
+                    owl:onProperty my0:projectURL;
+                    owl:onProperty my0:projectIsCurrent ;
+                    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+                  ];
+  rdfs:comment "Project Class that defines neccessary information about a specific project"@en ;
+  rdfs:label "Project"@en,
+  "Projekt"@de,
+  "Le projet"@fr,
+  "Progetto"@it .
+
+my0:projectName
+  a owl:DatatypeProperty ;
+  rdfs:label "Project Name"@en,
+  "Projektname"@de,
+  "Nom du projet"@fr,
+  "Nome del progetto"@it ;
+  rdfs:comment "Indicates the name of the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:string .
+
+my0:projectIsCurrent
+  a owl:DatatypeProperty ;
+  rdfs:label "I am currently working on this project"@en,
+  "Ich arbeite derzeit an diesem Projekt."@de,
+  "Je travaille actuellement sur ce projet"@fr,
+  "Attualmente sto lavorando a questo progetto"@it ;
+  rdfs:comment "Indicates the person is currently working on this project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:boolean .
+
+
+my0:projectStartDate
+  a owl:DatatypeProperty ;
+  rdfs:label "Start date"@en,
+  "Startdatum"@de,
+  "Date de début"@fr,
+  "Data d'inizio"@it ;
+  rdfs:comment "Indicates the start date of the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:date .
+
+my0:projectEndDate
+  a owl:DatatypeProperty ;
+  rdfs:label "End date"@en,
+  "Enddatum"@de,
+  "Date de fin"@fr,
+  "Data di fine"@it ;
+  rdfs:comment "Indicates the end date of the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:date .
+
+my0:projectCreator
+  a owl:DatatypeProperty ;
+  rdfs:label "Creator"@en,
+  "Schöpfer"@de,
+  "Créateur"@fr,
+  "Creatore"@it ;
+  rdfs:comment "Indicates the creators of the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:string .
+
+my0:projectURL
+  a owl:DatatypeProperty ;
+  rdfs:label "Project URL"@en,
+  "Projekt-URL"@de,
+  "URL du projet"@fr,
+  "URL del progetto"@it ;
+  rdfs:comment "Indicates the url of the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:string .
+
+my0:projectDescription
+  a owl:DatatypeProperty ;
+  rdfs:label "Project Description"@en,
+  "Projektbeschreibung"@de,
+  "Description du projet"@fr,
+  "Descrizione del progetto"@it ;
+  rdfs:comment "Indicates the description of the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:string .
+
+my0:HonorAward
+  a owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty my0:honorIssuedDate ;
+                    owl:onProperty my0:honorDescription ;
+                    owl:onProperty my0:honortitle ;
+                    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+                  ];
+  rdfs:comment "Honors & Awards Class that defines neccessary information about a specific honor/award"@en ;
+  rdfs:label "Honors & Awards"@en,
+  "Ehrungen & Auszeichnungen"@de,
+  "Prix et distinctions"@fr,
+  "Premi e riconoscimenti"@it .
+
+my0:honortitle
+  a owl:DatatypeProperty ;
+  rdfs:label "Title"@en,
+  "Titel"@de,
+  "Titre"@fr,
+  "Titolo"@it ;
+  rdfs:comment "Indicates the title of the HonorAward"@en ;
+  rdfs:domain my0:HonorAward ;
+  rdfs:range xsd:string .
+
+my0:honorIssuedDate
+  a owl:DatatypeProperty ;
+  rdfs:label "Issued Date"@en,
+  "Ausgegebenes Datum"@de,
+  "Date d'émission"@fr,
+  "Data di emissione"@it ;
+  rdfs:comment "Indicates the issued date of the honor/award"@en ;
+  rdfs:domain my0:HonorAward ;
+  rdfs:range xsd:date .
+
+my0:honorIssuer
+  a owl:DatatypeProperty ;
+  rdfs:label "Issuer"@en,
+  "Emittent"@de,
+  "Émetteur"@fr,
+  "Emittente"@it ;
+  rdfs:comment "Indicates the issuer of the honor/award"@en ;
+  rdfs:domain my0:HonorAward ;
+  rdfs:range xsd:string .
+
+my0:honorDescription
+  a owl:DatatypeProperty ;
+  rdfs:label "Description"@en,
+  "Beschreibung"@de,
+  "Description"@fr,
+  "Descrizione"@it ;
+  rdfs:comment "Indicates the description of the honor/award"@en ;
+  rdfs:domain my0:HonorAward ;
+  rdfs:range xsd:string .
 
 my0:Person
   a owl:Class ;
@@ -147,47 +541,68 @@ my0:Person
                     owl:maxCardinality "2"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "Person Class that defines neccessary information about the specific person's curriculum vitae"@en ;
-  rdfs:label "Person"@en ;
+  rdfs:label "Person"@en,
+  "Person"@de,
+  "Personne"@fr,
+  "Persona"@it ;
   rdfs:subClassOf dbo:Person .
 
 my0:firstName
   a owl:DatatypeProperty ;
-  rdfs:label "first name"@en ;
+  rdfs:label "First Name"@en,
+  "Vorname"@de,
+  "Prénom"@fr,
+  "Nome"@it ;
   rdfs:comment "Indicates the first name of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:lastName
   a owl:DatatypeProperty ;
-  rdfs:label "last name"@en ;
+  rdfs:label "Last Name"@en,
+  "Nachname"@de,
+  "Nom de famille"@fr,
+  "Cognome"@it ;
   rdfs:comment "Indicates the last name of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:title
   a owl:ObjectProperty ;
-  rdfs:label "title"@en ;
+  rdfs:label "Title"@en,
+  "Titel"@de,
+  "Titre"@fr,
+  "Titolo"@it ;
   rdfs:comment "Indicates the title of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range mybase0:TitleProperty .
 
 my0:photo
   a owl:DatatypeProperty ;
-  rdfs:label "photo"@en ;
+  rdfs:label "Photo"@en,
+  "Foto"@de,
+  "Photo"@fr,
+  "Foto"@it ;
   rdfs:comment "Indicates the person's photo path"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:gender
   a owl:ObjectProperty ;
-  rdfs:label "gender"@en;
+  rdfs:label "Gender"@en,
+  "Geschlecht"@de,
+  "Sexe"@fr,
+  "Sesso"@it ;
   rdfs:comment "Gender property (man/woman/not indicated)"@en ;
   rdfs:domain my0:Person ;
-  rdfs:range mybase0:SexProperty .
+  rdfs:range mybase0:GenderProperty .
 
 my0:hasCitizenship
   a owl:ObjectProperty ;
-  rdfs:label "has Citizenship"@en ;
+  rdfs:label "Citizenship"@en,
+  "Staatsbürgerschaft"@de,
+  "Citoyenneté"@fr,
+  "Cittadinanza"@it ;
   rdfs:comment "Person's citizenship."@en ;
   rdfs:domain my0:Person ;
   rdfs:range country:ISO3166DefinedCountry .
@@ -195,20 +610,29 @@ my0:hasCitizenship
 my0:hasNationality
   a owl:ObjectProperty ;
   rdfs:comment "Person's nationality."@en ;
-  rdfs:label "has Nationality"@en ;
+  rdfs:label "Nationality"@en,
+  "Nationalität"@de,
+  "Nationalité"@fr,
+  "Nazionalità"@it ;
   rdfs:domain my0:Person ;
   rdfs:range country:ISO3166DefinedCountry .
 
 my0:driversLicence
   a owl:DatatypeProperty ;
-  rdfs:label "drivers Licence"@en ;
+  rdfs:label "Driver's Licence"@en,
+  "Führerschein"@de,
+  "Permis de conduire"@fr,
+  "Patente di guida"@it ;
   rdfs:comment "Indicates the person's drivers license."@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:address
   a owl:ObjectProperty ;
-  rdfs:label "address"@en ;
+  rdfs:label "Address"@en,
+  "Adresse"@de,
+  "Adresse"@fr,
+  "Indirizzo di residenza"@it ;
   rdfs:comment "Property that points towards the address of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range my0:Address .
@@ -222,61 +646,131 @@ my0:Address
                     owl:onProperty my0:country ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
-  rdfs:label "Address"@en ;
+  rdfs:label "Address"@en,
+  "Adresse"@de,
+  "Adresse"@fr,
+  "Indirizzo di residenza"@it ;
   rdfs:comment "Indicates the full address object"@en .
 
 my0:street
   a owl:DatatypeProperty ;
-  rdfs:label "street"@en ;
+  rdfs:label "Street"@en,
+  "Straße"@de,
+  "Rue"@fr,
+  "Via"@it ;
   rdfs:comment "Indicates the street (name+code) in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
 my0:postalCode
   a owl:DatatypeProperty ;
-  rdfs:label "postal Code"@en ;
+  rdfs:label "Postal Code"@en,
+  "Postleitzahl"@de,
+  "Code Postal"@fr,
+  "Codice postale"@it ;
   rdfs:comment "Indicates the postal code in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
 my0:country
   a owl:ObjectProperty ;
-  rdfs:label "country"@en ;
+  rdfs:label "Country"@en,
+  "Land"@de,
+  "Pays"@fr,
+  "Paese"@it ;
   rdfs:comment "Indicates the country in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range country:ISO3166DefinedCountry .
 
 my0:city
   a owl:DatatypeProperty ;
-  rdfs:label "city"@en ;
+  rdfs:label "City"@en,
+  "Stadt"@de,
+  "Ville"@fr,
+  "Città"@it ;
   rdfs:comment "Indicates the city in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
 my0:email
   a owl:DatatypeProperty ;
-  rdfs:label "email"@en ;
+  rdfs:label "E-mail"@en,
+  "E-Mail"@de,
+  "E-Mail"@fr,
+  "E-Mail"@it ;
   rdfs:comment "Indicates the person's e-mail"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
-my0:hasPhoneNumber
+my0:personDescription
   a owl:DatatypeProperty ;
-  rdfs:label "phone Number"@en ;
+  rdfs:label "Description / Notes about me"@en,
+  "Beschreibung / Notizen über mich"@de,
+  "Description / Notes sur moi"@fr,
+  "Descrizione / Note su di me"@it ;
+  rdfs:comment "Indicates the person's description about themselves"@en ;
+  rdfs:domain my0:Person ;
+  rdfs:range xsd:string .
+
+my0:phoneNumber
+  a owl:DatatypeProperty ;
+  rdfs:label "Phone Number"@en,
+  "Telefonnummer"@de,
+  "Numéro de téléphone"@fr,
+  "Numero di telefono"@it ;
   rdfs:comment "Indicates a telephone number of the person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
 my0:hasWebsite
   a owl:DatatypeProperty ;
-  rdfs:label "website"@en ;
+  rdfs:label "Website"@en,
+  "Website"@de,
+  "Site web"@fr,
+  "Sito web"@it ;
   rdfs:comment "Indicates the url of a person's website, blog or linkedin"@en ;
   rdfs:domain my0:Person ;
+  rdfs:range my0:Website .
+
+my0:Website
+  a owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty my0:websiteURL ;
+                    owl:onProperty my0:websiteType ;
+                    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+                  ];
+  rdfs:label "Website"@en,
+  "Website"@de,
+  "Site web"@fr,
+  "Sito web"@it ;
+  rdfs:comment "Indicates the url and type of the website of the person"@en .
+
+my0:websiteURL
+  a owl:DatatypeProperty ;
+  rdfs:label "URL"@en,
+  "URL"@de,
+  "URL"@fr,
+  "URL"@it ;
+  rdfs:comment "Indicates the URL of the website"@en ;
+  rdfs:domain my0:Website ;
   rdfs:range xsd:string .
+
+my0:websiteType
+  a owl:DatatypeProperty ;
+  rdfs:label "Type"@en,
+  "Typ"@de,
+  "Type"@fr,
+  "Tipo"@it ;
+  rdfs:comment "Indicates the type of the website"@en ;
+  rdfs:domain my0:Website ;
+  rdfs:range mybase0:WebsiteTypeProperty .
 
 my0:hasInstantMessaging
   a owl:ObjectProperty ;
-  rdfs:label "has Instant Messaging"@en ;
+  rdfs:label "Instant Messaging"@en,
+  "Sofortnachricht"@de,
+  "Message instantané"@fr,
+  "Messaggio istantaneo"@it ;
   rdfs:comment "Property that points towards the instant messaging of a person"@en ;
   rdfs:domain my0:Person ;
   rdfs:range my0:InstantMessaging .
@@ -288,26 +782,38 @@ my0:InstantMessaging
                     owl:onProperty my0:instantMessagingUsername ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
-  rdfs:label "Instant Messaging"@en ;
+  rdfs:label "Instant Messaging"@en,
+  "Sofortnachricht"@de,
+  "Message instantané"@fr,
+  "Messaggio istantaneo"@it ;
   rdfs:comment "Indicates the type and username of the instant messaging options of a person"@en .
 
 my0:instantMessagingName
   a owl:DatatypeProperty ;
-  rdfs:label "instant Messaging Name"@en ;
+  rdfs:label "App Name"@en,
+  "App-Name"@de,
+  "Nom de l'application"@fr,
+  "Nome dell'applicazione"@it ;
   rdfs:comment "Indicates the instant messaging app name"@en ;
   rdfs:domain my0:InstantMessaging ;
-  rdfs:range xsd:string .
+  rdfs:range mybase0:InstantMessagingTypeProperty .
 
 my0:instantMessagingUsername
   a owl:DatatypeProperty ;
-  rdfs:label "instant Messaging Username"@en ;
+  rdfs:label "Username"@en,
+  "Benutzername"@de,
+  "Nom d'utilisateur"@fr,
+  "Nome utente"@it ;
   rdfs:comment "Indicates the instant messaging username"@en ;
   rdfs:domain my0:InstantMessaging ;
   rdfs:range xsd:string .
 
 my0:dateOfBirth
   a owl:DatatypeProperty ;
-  rdfs:label "date of birth"@en ;
+  rdfs:label "Date of Birth"@en,
+  "Geburtsdatum"@de,
+  "Date de naissance"@fr,
+  "Data di nascita"@it ;
   rdfs:comment "Indicates the person's date of birth"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:date .
@@ -323,67 +829,97 @@ my0:Organization
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "General class for organizations"@en ;
-  rdfs:label "Organization"@en ;
+  rdfs:label "Organization"@en,
+  "Unternehmen"@de,
+  "L'organisation"@fr,
+  "Organizzazione"@it ;
   rdfs:subClassOf rdfs:Resource .
 
 my0:Company
   a owl:Class ;
   rdfs:comment "The object that holds a company's information."@en ;
-  rdfs:label "Company"@en ;
+  rdfs:label "Company"@en,
+  "Unternehmen"@de,
+  "Société"@fr,
+  "Azienda"@it ;
   rdfs:subClassOf my0:Organization .
 
-my0:companyIndustry
+my0:organizationField
   a owl:DatatypeProperty ;
-  rdfs:comment "Industry/Sector of the company"@en ;
-  rdfs:label "company Industry"@en ;
-  rdfs:domain my0:Company ;
+  rdfs:comment "Field/Sector of the organization"@en ;
+  rdfs:label "Organization Field/Sector"@en,
+  "Organisationsfeld / Sektor"@de,
+  "Domaine ou secteur de l'organisation"@fr,
+  "Settore/Organizzazione"@it ;
+  rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:EducationalOrg
   a owl:Class ;
   rdfs:comment "The object that holds an educational organization's (university, ...) information"@en ;
-  rdfs:label "Educational Organization"@en ;
+  rdfs:label "Educational Organization"@en,
+  "Bildungsunternehmen"@de,
+  "Organisation éducative"@fr,
+  "Organizzazione educativa"@it ;
   rdfs:subClassOf my0:Organization .
 
 my0:organizationName
   a owl:DatatypeProperty ;
   rdfs:comment "Name of the organization"@en ;
-  rdfs:label "organization Name"@en ;
+  rdfs:label "Organization Name"@en,
+  "Name des Unternehmens"@de,
+  "Nom de l'organisation"@fr,
+  "Nome dell'organizzazione"@it ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:organizationSize
   a owl:DatatypeProperty ;
   rdfs:comment "Size of the organization"@en ;
-  rdfs:label "company Size"@en ;
+  rdfs:label "Organization Size"@en,
+  "Unternehmensgröße"@de,
+  "Taille de l'organisation"@fr,
+  "Dimensione dell'organizzazione"@it ;
   rdfs:domain my0:Organization ;
   rdfs:range mybase0:CompanySize.
 
 my0:organizationAddress
   a owl:ObjectProperty ;
   rdfs:comment "Address of the organization. Not all properties of the address are required"@en ;
-  rdfs:label "organization Address"@en ;
+  rdfs:label "Organization Address"@en,
+  "Unternehmensadresse"@de,
+  "Adresse de l'organisation"@fr,
+  "Indirizzo dell'organizzazione"@it ;
   rdfs:domain my0:Organization ;
   rdfs:range my0:Address .
 
 my0:organizationDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description about the organization."@en ;
-  rdfs:label "organization Description"@en ;
+  rdfs:label "Organization Description"@en,
+  "Unternehmensbeschreibung"@de,
+  "Description de l'organisation"@fr,
+  "Descrizione dell'organizzazione"@it ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:organizationPhoneNumber
   a owl:DatatypeProperty ;
   rdfs:comment "Organization phone number"@en ;
-  rdfs:label "organization Phone Number"@en ;
+  rdfs:label "Organization Phone Number"@en,
+  "Telefonnummer des Unternehmens"@de,
+  "Numéro de téléphone de l'organisation"@fr,
+  "Numero di telefono dell'organizzazione"@it ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
 my0:organizationWebsite
   a owl:DatatypeProperty ;
   rdfs:comment "Organization home page"@en ;
-  rdfs:label "organization Website"@en ;
+  rdfs:label "Organization Website"@en,
+  "Website des Unternehmens"@de,
+  "Site Web de l'organisation"@fr,
+  "Sito web dell'organizzazione"@it ;
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
@@ -401,26 +937,38 @@ my0:WorkHistory
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "CV entry for work history"@en ;
-  rdfs:label "Work History"@en ;
+  rdfs:label "Work History"@en,
+  "Arbeitsablauf"@de,
+  "Antécédents de travail"@fr,
+  "Storia del lavoro"@it ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:employedIn
   a owl:ObjectProperty ;
   rdfs:comment "The company where the person is/was employed."@en;
-  rdfs:label "employed In"@en ;
+  rdfs:label "employed in"@en,
+  "angestellt in"@de,
+  "employé dans"@fr,
+  "impiegato in"@it ;
   rdfs:range my0:Company ;
   rdfs:domain my0:WorkHistory .
 
 my0:startDate
   a owl:DatatypeProperty ;
-  rdfs:label "start Date"@en ;
+  rdfs:label "Start Date"@en,
+  "Anfangsdatum"@de,
+  "Date de début"@fr,
+  "Data d'inizio"@it ;
   rdfs:comment "Start date of employment.Format: YYYY-MM-DD May contain only year or year and month."@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:date .
 
 my0:endDate
   a owl:DatatypeProperty ;
-  rdfs:label "end Date"@en ;
+  rdfs:label "End Date"@en,
+  "Enddatum"@de,
+  "Date de fin"@fr,
+  "Data di fine"@it ;
   rdfs:comment "End date of employment.Format: YYYY-MM-DD May contain only year or year and month."@en;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:date .
@@ -428,35 +976,50 @@ my0:endDate
 my0:jobTitle
   a owl:DatatypeProperty ;
   rdfs:comment "Occupation or position held"@en ;
-  rdfs:label "job Title"@en ;
+  rdfs:label "Job Title"@en,
+  "Berufsbezeichnung"@de,
+  "Titre du poste"@fr,
+  "Titolo della posizione"@it ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:string .
 
 my0:jobDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description of the main activities and responsibilities in the held position."@en ;
-  rdfs:label "job Description"@en ;
+  rdfs:label "Job Description"@en,
+  "Stellenbeschreibung"@de,
+  "Description du poste"@fr,
+  "Descrizione del lavoro"@it ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:string .
 
 my0:careerLevel
   a owl:ObjectProperty ;
   rdfs:comment "Career level for the position in company."@en;
-  rdfs:label "career Level"@en ;
+  rdfs:label "Career Level"@en,
+  "Karrierestufe"@de,
+  "Niveau de carrière"@fr,
+  "Livello di carriera"@it ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range mybase0:CVCareerLevel .
 
 my0:jobMode
   a owl:ObjectProperty ;
   rdfs:comment "Type of the job: employee / contractor / intern"@en ;
-  rdfs:label "job Mode"@en ;
+  rdfs:label "Job Mode"@en,
+  "Auftragsmodus"@de,
+  "Mode de travail"@fr,
+  "Modalità di lavoro"@it ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range mybase0:CVJobMode .
 
 my0:isCurrent
   a owl:DatatypeProperty ;
   rdfs:comment "Indicates if this is a current workplace."@en ;
-  rdfs:label "is Current"@en ;
+  rdfs:label "Is Current?"@en,
+  "Ist es aktuell?"@de,
+  "Est-elle actuelle ?"@fr,
+  "È corrente?"@it ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:boolean .
 
@@ -473,62 +1036,79 @@ my0:Education
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "CV entry for education"@en ;
-  rdfs:label "Education"@en ;
+  rdfs:label "Education"@en,
+  "Ausbildung"@de,
+  "L'éducation"@fr,
+  "Educazione"@it ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:studiedIn
   a owl:ObjectProperty ;
   rdfs:comment "Educational organization where person studied."@en ;
-  rdfs:label "studied In"@en ;
+  rdfs:label "studied in"@en,
+  "studiert in"@de,
+  "étudié dans"@fr,
+  "studiato in"@it ;
   rdfs:domain my0:Education ;
   rdfs:range my0:EducationalOrg .
 
 my0:isEduCurrent
   a owl:DatatypeProperty ;
   rdfs:comment "Indicates if this is a current education."@en ;
-  rdfs:label "is Current"@en ;
+  rdfs:label "Is Current?"@en,
+  "Ist es aktuell?"@de,
+  "Est-elle actuelle ?"@fr,
+  "È corrente?"@it ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:boolean .
 
 my0:eduStartDate
   a owl:DatatypeProperty ;
-  rdfs:label "education Start Date"@en ;
+  rdfs:label "Education Start Date"@en,
+  "Startdatum der Ausbildung"@de,
+  "Date de début de l'éducation"@fr,
+  "Data di inizio della educazione"@it ;
   rdfs:comment "Education start date (YYYY-MM-DD)May contain only year or year and month."@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:date .
 
 my0:eduGradDate
   a owl:DatatypeProperty ;
-  rdfs:label "education Graduation Date"@en ;
+  rdfs:label "Graduation Date"@en,
+  "Abschlussdatum"@de,
+  "Date d'obtention du diplôme"@fr,
+  "Data di laurea"@it ;
   rdfs:comment "Education end (graduation) date (YYYY-MM-DD)May contain only year or year and month."@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:date .
 
 my0:degreeType
   a owl:ObjectProperty ;
-  rdfs:label "degree Type"@en ;
+  rdfs:label "Degree Type"@en,
+  "Studiengangsart"@de,
+  "Type de diplôme"@fr,
+  "Tipo di laurea"@it ;
   rdfs:comment "Title of qualification awarded"@en ;
   rdfs:domain my0:Education ;
   rdfs:range mybase0:EduDegree .
 
-my0:eduMajor
+my0:degree
   a owl:DatatypeProperty ;
-  rdfs:comment "Major speciality graduated."@en ;
-  rdfs:label "edu Major"@en ;
-  rdfs:domain my0:Education ;
-  rdfs:range xsd:string .
-
-my0:eduMinor
-  a owl:DatatypeProperty ;
-  rdfs:comment "Minor speciality(-ies) graduated."@en ;
-  rdfs:label "edu Minor"@en ;
+  rdfs:comment "Name of degree graduated"@en ;
+  rdfs:label "Degree name"@en,
+  "Name des Abschlusses"@de,
+  "Nom du diplôme"@fr,
+  "Nome della laurea"@it ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:string .
 
 my0:eduDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description of the main subjects / occupational skills covered."@en ;
-  rdfs:label "edu Description"@en ;
+  rdfs:label "Education Description"@en,
+  "Beschreibung der Ausbildung"@de,
+  "Description de l'éducation"@fr,
+  "Descrizione della educazione"@it ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:string .
 
@@ -544,18 +1124,27 @@ my0:Course
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "CV entry for courses taken"@en ;
-  rdfs:label "Course"@en ;
+  rdfs:label "Course"@en,
+  "Kurs"@de,
+  "Cours"@fr,
+  "Corso"@it ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:Training
   a owl:Class ;
   rdfs:comment "Training entry for trainings taken"@en ;
-  rdfs:label "Training"@en ;
+  rdfs:label "Training"@en,
+  "Training"@de,
+  "Training"@fr,
+  "Training"@it ;
   rdfs:subClassOf my0:Course .
 
 my0:organizedBy
   a owl:ObjectProperty ;
-  rdfs:label "organized By"@en ;
+  rdfs:label "Organized By"@en,
+  "Organisiert von"@de,
+  "Organisé par"@fr,
+  "Organizzato da"@it ;
   rdfs:comment "Organization that organized courses and/or provided certification."@en ;
   rdfs:domain my0:Course ;
   rdfs:range my0:Organization .
@@ -563,33 +1152,48 @@ my0:organizedBy
 my0:hasCertification
   a owl:DatatypeProperty ;
   rdfs:comment "Does this course entry include certification?"@en ;
-  rdfs:label "has Certification"@en ;
+  rdfs:label "Has Certification?"@en,
+  "Hat die Zertifizierung?"@de,
+  "A-t-il la certification?"@fr,
+  "Ha la certificazione?"@it ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:boolean .
 
 my0:hasQualification
   a owl:ObjectProperty ;
-  rdfs:label "has Qualification"@en ;
+  rdfs:label "Has Qualification?"@en,
+  "Hat die Qualifikation?"@de,
+  "A la qualification?"@fr,
+  "Ha la qualifica?"@it ;
   rdfs:domain my0:Course ;
   rdfs:range esco:Qualification .
 
 my0:courseTitle
   a owl:DatatypeProperty ;
   rdfs:comment "Title of the course taken or certification acquired."@en ;
-  rdfs:label "course Title"@en ;
+  rdfs:label "Course Title"@en,
+  "Kurstitel"@de,
+  "Titre du cours"@fr,
+  "Titolo del corso"@it ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:string .
 
 my0:courseDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description of the course / certification."@en ;
-  rdfs:label "course Description"@en ;
+  rdfs:label "Course Description"@en,
+  "Kursbeschreibung"@de,
+  "Description du cours"@fr,
+  "Descrizione del corso"@it ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:string .
 
 my0:courseURL
   a owl:DatatypeProperty ;
-  rdfs:label "course URL"@en ;
+  rdfs:label "Course URL"@en,
+  "Kurs-URL"@de,
+  "URL du cours"@fr,
+  "URL del corso"@it ;
   rdfs:comment "Web page of the courses taken / certification acquired. May be pointer to certification transcript."@en ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:string .
@@ -597,14 +1201,20 @@ my0:courseURL
 my0:courseStartDate
   a owl:DatatypeProperty ;
   rdfs:comment "Start date of the course taken."@en ;
-  rdfs:label "course Start Date"@en ;
+  rdfs:label "Course Start Date"@en,
+  "Kursstartdatum"@de,
+  "Date de début du cours"@fr,
+  "Data di inizio del corso"@it ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:date .
 
 my0:courseFinishDate
   a owl:DatatypeProperty ;
   rdfs:comment "Date when course was finished / certification acquired."@en ;
-  rdfs:label "course Finished Date"@en ;
+  rdfs:label "Course Finished Date"@en,
+  "Kursende Datum"@de,
+  "Date de fin du cours"@fr,
+  "Data di fine del corso"@it ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:date .
 
@@ -619,7 +1229,10 @@ my0:Skill
                     owl:onProperty my0:skillLevel ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
-  rdfs:label "Skill"@en ;
+  rdfs:label "Skill"@en,
+  "Fertigkeit"@de,
+  "Compétence"@fr,
+  "Competenza"@it ;
   rdfs:comment "CV entry for description of skills"@en ;
   rdfs:subClassOf my0:CV_Entry ;
   rdfs:subClassOf esco:Skill .
@@ -627,124 +1240,40 @@ my0:Skill
 my0:skillDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description of the skill"@en ;
-  rdfs:label "skill Description"@en ;
+  rdfs:label "Skill Description"@en,
+  "Beschreibung der Fertigkeit"@de,
+  "Description de la compétence"@fr,
+  "Descrizione della competenza"@it ;
   rdfs:domain my0:Skill ;
-  rdfs:range xsd:string .
-
-my0:CommunicationSkill
-  a owl:Class ;
-  rdfs:label "Communication Skill"@en ;
-  rdfs:comment "CV entry for communication skills"@en ;
-  rdfs:subClassOf my0:Skill .
-
-my0:OrganisationalSkills
-  a owl:Class ;
-  rdfs:label "Organisational Skills"@en ;
-  rdfs:comment "CV entry for organisational/ managerial skills"@en ;
-  rdfs:subClassOf my0:Skill .
-
-my0:JobRelatedSkills
-  a owl:Class ;
-  rdfs:label "Job Related Skills"@en ;
-  rdfs:comment "CV entry for job related skills"@en ;
-  rdfs:subClassOf my0:Skill .
-
-my0:DigitalSkills
-  a owl:Class ;
-  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                    owl:onProperty my0:informationProcessing ;
-                    owl:onProperty my0:communication ;
-                    owl:onProperty my0:contentCreation ;
-                    owl:onProperty my0:safety ;
-                    owl:onProperty my0:problemSolving ;
-                    owl:onProperty my0:hasICTCertificate ;
-                    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-                  ];
-  rdfs:label "Digital Skills"@en ;
-  rdfs:comment "CV entry for digital skills"@en ;
-  rdfs:subClassOf my0:Skill .
-
-my0:informationProcessing
-  a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the information processing skills"@en ;
-  rdfs:label "information Processing"@en ;
-  rdfs:domain my0:DigitalSkills ;
-  rdfs:range mybase0:SelfAssessmentProperty .
-
-my0:communication
-  a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the communication skills"@en ;
-  rdfs:label "communication"@en ;
-  rdfs:domain my0:DigitalSkills ;
-  rdfs:range mybase0:SelfAssessmentProperty .
-
-my0:contentCreation
-  a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the content creation skills"@en ;
-  rdfs:label "content Creation"@en ;
-  rdfs:domain my0:DigitalSkills ;
-  rdfs:range mybase0:SelfAssessmentProperty .
-
-my0:safety
-  a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the safety skills"@en ;
-  rdfs:label "safety"@en ;
-  rdfs:domain my0:DigitalSkills ;
-  rdfs:range mybase0:SelfAssessmentProperty .
-
-my0:problemSolving
-  a owl:ObjectProperty ;
-  rdfs:comment "Property regarding the problem solving skills"@en ;
-  rdfs:label "problem Solving"@en ;
-  rdfs:domain my0:DigitalSkills ;
-  rdfs:range mybase0:SelfAssessmentProperty .
-
-my0:hasICTCertificate
-  a owl:DatatypeProperty ;
-  rdfs:comment "Property linking to an ICT certificate"@en ;
-  rdfs:label "has ICT Certificate"@en ;
-  rdfs:domain my0:DigitalSkills ;
-  rdfs:range xsd:string .
-
-my0:otherComputerSkills
-  a owl:DatatypeProperty ;
-  rdfs:comment "Property regarding other computer skills"@en ;
-  rdfs:label "other Computer Skills"@en ;
-  rdfs:domain my0:DigitalSkills ;
   rdfs:range xsd:string .
 
 my0:skillName
   a owl:DatatypeProperty ;
   rdfs:comment "Name of the skill"@en ;
-  rdfs:label "skill Name"@en ;
+  rdfs:label "Skill Name"@en,
+  "Name der Fertigkeit"@de,
+  "Nom de la compétence"@fr,
+  "Nome dell'abilità"@it ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
 
 my0:skillLevel
   a owl:DatatypeProperty ;
   rdfs:comment "Level of the skill (0..5)"@en ;
-  rdfs:label "skill Level"@en ;
+  rdfs:label "Skill Level"@en,
+  "Qualifikationsniveau"@de,
+  "Niveau de compétence"@fr,
+  "Livello di abilità"@it ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:integer .
-
-my0:skillLastUsed
-  a owl:DatatypeProperty ;
-  rdfs:comment "Date when skill was last used."@en ;
-  rdfs:label "skill Last Used"@en ;
-  rdfs:domain my0:Skill ;
-  rdfs:range xsd:date .
-
-my0:skillYearsExperience
-  a owl:DatatypeProperty ;
-  rdfs:comment "Year of experience in this skill."@en ;
-  rdfs:label "skill Years Experience"@en ;
-  rdfs:domain my0:Skill ;
-  rdfs:range xsd:decimal .
 
 my0:skillHasCertificate
   a owl:DatatypeProperty ;
   rdfs:comment "Property regarding the certificate of the skill"@en ;
-  rdfs:label "skill Has Certificate"@en ;
+  rdfs:label "Has Certification?"@en,
+  "Hat die Zertifizierung?"@de,
+  "A-t-il la certification?"@fr,
+  "Ha la certificazione?"@it ;
   rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
 
@@ -758,50 +1287,22 @@ my0:LanguageSkill
                     owl:onProperty my0:languageSkillLevelSpokenProduction ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
-  rdfs:label "Language Skill"@en ;
+  rdfs:label "Language Skill"@en,
+  "Sprachkenntnisse"@de,
+  "Compétences linguistiques"@fr,
+  "Competenza linguistica"@it ;
   rdfs:comment "Language skill. Contains 5 levels for skill: spoken interaction, spoken production, listening, writing, reading."@en ;
   rdfs:subClassOf my0:Skill .
 
-my0:isMotherTongue
-  a owl:DatatypeProperty ;
-  rdfs:label "Is Mother Tongue"@en ;
+my0:languageSkillProficiency
+  a owl:ObjectProperty ;
+  rdfs:comment "Proficiency of language skill."@en ;
+  rdfs:label "Proficiency"@en,
+  "Kompetenz"@de,
+  "Compétence"@fr,
+  "Competenza"@it ;
   rdfs:domain my0:LanguageSkill ;
-  rdfs:range xsd:boolean .
-
-my0:languageSkillLevelReading
-  a owl:ObjectProperty ;
-  rdfs:comment "Reading level of language skill."@en ;
-  rdfs:label "language Skill Level Reading"@en ;
-  rdfs:domain my0:LanguageSkill ;
-  rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
-
-my0:languageSkillLevelWriting
-  a owl:ObjectProperty ;
-  rdfs:comment "Level of writing skills for language."@en ;
-  rdfs:label "language Skill Level Writing"@en ;
-  rdfs:domain my0:languageSkill ;
-  rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
-
-my0:languageSkillLevelListening
-  a owl:ObjectProperty ;
-  rdfs:comment "Level of listening skills for language."@en ;
-  rdfs:label "language Skill Level Listening"@en ;
-  rdfs:domain my0:languageSkill ;
-  rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
-
-my0:languageSkillLevelSpokenInteraction
-  a owl:ObjectProperty;
-  rdfs:comment "Level of spoken interaction for language."@en ;
-  rdfs:label "language Skill Level Spoken Interaction"@en ;
-  rdfs:domain my0:languageSkill ;
-  rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
-
-my0:languageSkillLevelSpokenProduction
-  a owl:ObjectProperty;
-  rdfs:comment "Level of spoken production for language."@en;
-  rdfs:label "language Skill Level Spoken Production"@en ;
-  rdfs:domain my0:languageSkill ;
-  rdfs:range mybase0:LanguageSkillSelfAssessmentProperty .
+  rdfs:range mybase0:LanguageSkillProficiencyProperty .
 
 my0:Reference
   a owl:Class ;
@@ -810,59 +1311,87 @@ my0:Reference
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "CV entry for references"@en ;
-  rdfs:label "Reference"@en ;
+  rdfs:label "Reference"@en,
+  "Referenz"@de,
+  "Référence"@fr,
+  "Riferimento"@it ;
   rdfs:subClassOf my0:CV_Entry .
-
-my0:referenceType
-  a owl:DatatypeProperty ;
-  rdfs:label "Reference Type"@en ;
-  rdfs:range xsd:string ;
-  rdfs:domain my0:Reference .
 
 my0:referenceBy
   a owl:ObjectProperty ;
   rdfs:comment "Points to a person who provides the reference."@en ;
-  rdfs:label "reference By"@en ;
+  rdfs:label "reference by"@en,
+  "Referenz durch"@de,
+  "référence par"@fr,
+  "riferimento da"@it ;
   rdfs:range my0:Person ;
   rdfs:domain my0:Reference .
 
 my0:Target
   a owl:Class ;
-  rdfs:label "Target"@en ;
+  rdfs:label "Target Job"@en,
+  "Zielauftrag"@de,
+  "Emploi cible"@fr,
+  "Obiettivo di lavoro"@it ;
   rdfs:comment "CV information for target of job application. (Single entry per CV. May be defined in the properties of CV class instead)."@en ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:targetCareerLevel
   a owl:ObjectProperty ;
-  rdfs:label "target Career Level"@en ;
+  rdfs:label "Career Level"@en ,
+  "Karrierestufe"@de,
+  "Niveau de carrière"@fr,
+  "Livello di carriera"@it ;
   rdfs:comment "Target career level."@en ;
   rdfs:domain my0:Target ;
   rdfs:range mybase0:CVCareerLevel .
 
 my0:targetCompanyDescription
   a owl:DatatypeProperty ;
-  rdfs:label "target Company Description"@en ;
+  rdfs:label "Company Description"@en,
+  "Unternehmensbeschreibung"@de,
+  "Description de l'entreprise"@fr,
+  "Descrizione dell'azienda"@it ;
   rdfs:comment "Description on the company where the candidate would like to work."@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
-my0:targetCompanyIndustry
+my0:targetCompanyField
   a owl:DatatypeProperty ;
   rdfs:comment "Industry of the company where the candidate would like to work."@en ;
-  rdfs:label "target Company Industry"@en ;
+  rdfs:label "Company Field/Sector"@en,
+  "Unternehmensfeld / Branche"@de,
+  "Domaine ou secteur d'activité de l'entreprise"@fr,
+  "Settore Aziendale"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetCompanySize
   a owl:ObjectProperty ;
   rdfs:comment "Size of the target company."@en ;
-  rdfs:label "target Company Size"@en ;
+  rdfs:label "Company Size"@en,
+  "Unternehmensgröße"@de,
+  "Taille de l'entreprise"@fr,
+  "Dimensione dell'azienda"@it ;
   rdfs:domain my0:Target ;
   rdfs:range mybase0:CompanySize .
 
+my0:targetRegion
+  a owl:ObjectProperty ;
+  rdfs:label "Target Region"@en,
+  "Zielregion"@de,
+  "Région cible"@fr,
+  "Regione di destinazione"@it ;
+  rdfs:comment "Region where candidate would like to work."@en ;
+  rdfs:domain my0:Target;
+  rdfs:range mybase0:RegionProperty.
+
 my0:targetCountry
   a owl:ObjectProperty ;
-  rdfs:label "target Country"@en ;
+  rdfs:label "Target Country"@en,
+  "Zielland"@de,
+  "Pays cible"@fr,
+  "Paese di destinazione"@it ;
   rdfs:comment "Country where candidate would like to work."@en ;
   rdfs:domain my0:Target ;
   rdfs:range country:ISO3166DefinedCountry .
@@ -870,59 +1399,71 @@ my0:targetCountry
 my0:targetJobTitle
   a owl:DatatypeProperty ;
   rdfs:comment "Title of the job applicant is seeking."@en ;
-  rdfs:label "target Job Title"@en ;
+  rdfs:label "Target Occupation"@en,
+  "Zielberuf"@de,
+  "Occupation cible"@fr,
+  "Occupazione di destinazione"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetJobDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description of the job applicant is seeking. Notes."@en ;
-  rdfs:label "target Job Description"@en ;
+  rdfs:label "Occupation Description"@en,
+  "Berufsbeschreibung"@de,
+  "Profession Description"@fr,
+  "Descrizione dell'occupazione"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetJobMode
   a owl:ObjectProperty ;
   rdfs:comment "Job mode: full-time / part-time"@en ;
-  rdfs:label "target Job Mode"@en ;
+  rdfs:label "Job Mode"@en,
+  "Auftragsmodus"@de,
+  "Mode de travail"@fr,
+  "Modalità di lavoro"@it ;
   rdfs:domain my0:Target ;
   rdfs:range mybase0:CVJobMode .
 
 my0:targetSalaryRange
   a owl:DatatypeProperty ;
   ns0:maxCardinality "1" ;
-  ns0:range "integer" ;
-  rdfs:comment "Target salary range"@en ;
-  rdfs:label "target Salary Range"@en ;
-  rdfs:domain my0:Target ;
-  rdfs:range xsd:string .
-
-my0:targetSalaryCurrency
-  a owl:DatatypeProperty ;
-  ns0:maxCardinality "1" ;
-  rdfs:label "target Salary Currency"@en ;
-  rdfs:comment "Currency for target salary."@en ;
+  rdfs:comment "Salary range"@en ;
+  rdfs:label "Salary Range"@en,
+  "Gehaltsspanne"@de,
+  "Échelle de salaire"@fr,
+  "Gamma di stipendio"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetWeeksNoticePeriod
   a owl:DatatypeProperty ;
   rdfs:comment "Notice period in weeks when can start to work."@en ;
-  rdfs:label "target Weeks Notice Period"@en ;
+  rdfs:label "Notice Period"@en,
+  "Kündigungsfrist"@de,
+  "Délai de préavis"@fr,
+  "Periodo di preavviso"@it ;
   rdfs:domain my0:Target ;
-  rdfs:range xsd:number .
+  rdfs:range xsd:string .
 
 my0:targetConditionWillRelocate
   a owl:DatatypeProperty ;
   rdfs:comment "Is candidate willing to relocate?"@en ;
-  rdfs:label "target Condition Will Relocate"@en ;
+  rdfs:label "Is willing to relocate?"@en,
+  "Sind Sie bereit, umzuziehen?"@de,
+  "Est prêt à déménager?"@fr,
+  "E' disposto a trasferirsi?"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:boolean .
 
 my0:targetConditionWillTravel
   a owl:DatatypeProperty ;
   rdfs:comment "Is candidate willing to travel?"@en ;
-  rdfs:label "target Condition Will Travel"@en ;
+  rdfs:label "Is willing to travel?"@en,
+  "Sind Sie bereit zu reisen?"@de,
+  "Est prêt à voyager?"@fr,
+  "E' disposto a viaggiare?"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:boolean .
 
@@ -934,12 +1475,18 @@ my0:OtherInfo
                      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                     ];
   rdfs:comment "Other information in CV"@en ;
-  rdfs:label "Other Info"@en ;
+  rdfs:label "Other Information"@en,
+  "Sonstige Informationen"@de,
+  "Autres informations"@fr,
+  "Altre informazioni"@it ;
   rdfs:subClassOf my0:CV_Entry .
 
 my0:otherInfoType
   a owl:ObjectProperty ;
-  rdfs:label "other Info Type"@en ;
+  rdfs:label "Other Information Type"@en,
+  "Art der sonstigen Informationen"@de,
+  "Type d'autres informations"@fr,
+  "Tipo di altre informazioni"@it ;
   rdfs:comment "Type of other CV information (interests / awards / accomplishments / point of view / membership / social activities / other)"@en ;
   rdfs:domain my0:OtherInfo ;
   rdfs:range mybase0:OtherCVInfoType .
@@ -947,6 +1494,9 @@ my0:otherInfoType
 my0:otherInfoDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description - content of misc CV information."@en ;
-  rdfs:label "other Info Description"@en ;
+  rdfs:label "Other Information Description"@en,
+  "Beschreibung der sonstigen Informationen"@de,
+  "Description des autres informations"@fr,
+  "Descrizione di altre informazioni"@it ;
   rdfs:domain my0:OtherInfo ;
   rdfs:range xsd:string .

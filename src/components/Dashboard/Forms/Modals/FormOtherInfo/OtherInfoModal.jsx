@@ -4,10 +4,20 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherInfo, updateOtherInfo } from "../../../../../actions";
-import { fetchOtherCVInfoTypes } from "../../../../../actions/utilityActions";
-import { retrieveOtherTypes } from "../../../../../utilities/utilityQueries";
-import { generateUUID } from '../../../../../reducers/cvReducer';
-import { getDataOfId  } from '../../../../../utilities/utilityFunctions';
+import {
+  fetchOtherCVInfoTypes,
+  fetchMainPropertiess
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveMainProperties,
+  retrieveBaseProperties
+} from "../../../../../utilities/utilityQueries";
+import {
+  cancelLabel,
+  resetLabel,
+  saveLabel,
+  updateLabel
+} from "../../../../../utilities/utilityFunctions";
 
 class OtherInfoModal extends Component {
   state = {
@@ -20,6 +30,7 @@ class OtherInfoModal extends Component {
 
   componentWillMount() {
     this.props.fetchOtherCVInfoTypes();
+    this.props.fetchMainPropertiess("my0:OtherInfo");
     this.setInitialValues();
   }
 
@@ -28,7 +39,8 @@ class OtherInfoModal extends Component {
       let inputRef = this.props.otherInfoObject;
       let otherInfo = { ...this.state.otherInfo };
       otherInfo["my0:otherInfoType"] = inputRef["my0:otherInfoType"];
-      otherInfo["my0:otherInfoDescription"] = inputRef["my0:otherInfoDescription"];
+      otherInfo["my0:otherInfoDescription"] =
+        inputRef["my0:otherInfoDescription"];
       this.setState({
         otherInfo
       });
@@ -52,7 +64,7 @@ class OtherInfoModal extends Component {
 
   handleSelectChange = (value, id) => {
     let otherInfo = { ...this.state.otherInfo };
-    otherInfo[id] = value['@type'];
+    otherInfo[id] = value["@type"];
     this.setState({ otherInfo });
   };
 
@@ -67,37 +79,94 @@ class OtherInfoModal extends Component {
 
   handleSave = e => {
     e.preventDefault();
-    this.props.createOtherInfo(
-      this.state.otherInfo
-    );
+    this.props.createOtherInfo(this.state.otherInfo);
   };
 
   handleUpdate = e => {
-    this.props.updateOtherInfo( {
+    this.props.updateOtherInfo({
       object: this.state.otherInfo,
       index: this.props.id
-    } );
+    });
   };
 
-  handleRenderingSubmitButton = () => {
+  handleRenderingSubmitButton = lang => {
+    let isDisabled =
+      this.state.otherInfo["my0:otherInfoDescription"] === "" ||
+      this.state.otherInfo["my0:otherInfoType"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
-          Save
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={isDisabled}
+          onClick={this.handleSave}
+        >
+          {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
-          Update
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
+          {updateLabel[lang]}
         </Button>
       );
     }
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
-    let { "my0:otherInfoDescription" : otherInfoDescription,   "my0:otherInfoType" : otherInfoCategory } = this.state.otherInfo;
+    let {
+      "my0:otherInfoDescription": otherInfoDescription,
+      "my0:otherInfoType": otherInfoType
+    } = this.state.otherInfo;
+
     let { onHide } = this.props;
+
+    let lang = this.props.language;
+
+    let translatedProps = this.props.translatedProps;
+
+    let titlesub = {
+      en: "Add new information",
+      fr: "Ajouter de nouvelles informations",
+      de: "Neue Informationen hinzufügen",
+      it: "Aggiungere nuove informazioni"
+    };
+
+    let updateSub = {
+      en: "Update information",
+      fr: "Mise à jour des informations",
+      de: "Aktualisierungsinformationen",
+      it: "Aggiornare le informazioni"
+    };
+
     return (
       <Modal
         show={this.props.show}
@@ -111,7 +180,7 @@ class OtherInfoModal extends Component {
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
               <Col md={4}>
-                {this.props.isUpdate ? "Update" : "Add New"} Other Information
+                {this.props.isUpdate ? updateSub[lang]  : titlesub[lang] }
               </Col>
               <Col md={8} />
             </Row>
@@ -126,14 +195,22 @@ class OtherInfoModal extends Component {
               marginBottom: "8px"
             }}
           >
-            <label className="label-rw">Category</label>
+            <label className="label-rw">{this.renderLabel(
+                translatedProps,
+                "otherInfoType",
+                lang
+              )}</label>
             <Combobox
-              name="otherInfoCategory"
-              placeholder="Select category"
+              name="otherInfoType"
+              placeholder={this.renderLabel(
+                translatedProps,
+                "otherInfoType",
+                lang
+              )}
               data={this.props.others}
-              textField="value"
+              textField={lang}
               valueField="@type"
-              value={otherInfoCategory}
+              value={otherInfoType}
               caseSensitive={false}
               minLength={3}
               filter="contains"
@@ -145,19 +222,23 @@ class OtherInfoModal extends Component {
           <div style={{ marginTop: "10px" }}>
             <CustomTextarea
               id="my0:otherInfoDescription"
-              label="Description"
+              label={this.renderLabel(
+                translatedProps,
+                "otherInfoDescription",
+                lang
+              )}
               value={otherInfoDescription}
               handleChange={this.handleInputChange}
             />
           </div>
         </Modal.Body>
         <Modal.Footer>
-          {this.handleRenderingSubmitButton()}
+          {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
-            Reset
+            {resetLabel[lang]}
           </Button>
           <Button variant="danger" onClick={onHide}>
-            Close
+            {cancelLabel[lang]}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -168,11 +249,18 @@ class OtherInfoModal extends Component {
 const mapstateToProps = (state, ownProps) => {
   return {
     initialValues: state.cv["my0:hasOtherInfo"][ownProps.id],
-    others: retrieveOtherTypes(state.utility.otherCVInfoValues)
+    others: retrieveBaseProperties(state.utility.otherCVInfoValues),
+    language: state.utility.language,
+    translatedProps: retrieveMainProperties(state.utility["my0:OtherInfo"])
   };
 };
 
 export default connect(
   mapstateToProps,
-  { createOtherInfo, fetchOtherCVInfoTypes, updateOtherInfo }
+  {
+    createOtherInfo,
+    fetchOtherCVInfoTypes,
+    updateOtherInfo,
+    fetchMainPropertiess
+  }
 )(OtherInfoModal);

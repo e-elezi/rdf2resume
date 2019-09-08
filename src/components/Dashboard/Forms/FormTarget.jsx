@@ -10,83 +10,29 @@ import {
   fetchCVJobModes,
   fetchCVCareerLevels,
   fetchCountries,
-  fetchCompanySizes
+  fetchCompanySizes,
+  fetchAllRegionss,
+  fetchAllIndustryTypess,
+  fetchMainPropertiess
 } from "../../../actions/utilityActions";
 import {
   retrieveCountryValues,
-  retrieveCareerLevels,
-  retrieveJobModes,
-  retrieveCompanySizes
+  retrieveMainProperties,
+  retrieveBaseProperties
 } from "../../../utilities/utilityQueries";
 
 class FormTarget extends Component {
   state = {
-    jobModeValues: [],
-    targetCompanyCountryValues: [],
-    targetCompanySizeValues: [],
-    targetCompanyIndustryValues: [],
-    jobCareerLevelValues: [],
-    currencyValues: []
-  };
-
-  getCompanyIndustryValues = () => {
-    return [
-      {
-        "@type": "Education",
-        "value": "Education"
-      },
-      {
-        "@type": "Agriculture",
-        "value": "Agriculture"
-      },
-      {
-        "@type": "Computer Science",
-        "value": "Computer Science"
-      },
-      {
-        "@type": "Logistics",
-        "value": "Logistics"
-      }];
-  };
-
-  getCurrencies = () => {
-    return [
-      {
-        "@type": "American Dollar",
-        "value": "American Dollar"
-      },
-      {
-        "@type": "Albanian LEK",
-        "value": "Albanian LEK"
-      },
-      {
-        "@type": "Euro EUR",
-        "value": "Euro EUR"
-      },
-      {
-        "@type": "YEN",
-        "value": "YEN"
-      },
-      {
-        "@type": "POUND",
-        "value": "POUND"
-      },
-      {
-        "@type": "Lira",
-        "value": "Lira"
-      }
-    ];
   };
 
   componentWillMount() {
-    this.setState({
-      currencyValues: this.getCurrencies(),
-      targetCompanyIndustryValues: this.getCompanyIndustryValues()
-    });
     this.props.fetchCVCareerLevels();
     this.props.fetchCVJobModes();
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
+    this.props.fetchAllIndustryTypess();
+    this.props.fetchAllRegionss();
+    this.props.fetchMainPropertiess('my0:Target');
   }
 
   handleInputChange = e => {
@@ -110,41 +56,80 @@ class FormTarget extends Component {
     this.props.updateTarget({ id: name, value: myarr });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@type"].indexOf(name) >= 0) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
     let {
       "my0:targetCompanySize" : targetCompanySize,
-      "my0:targetSalaryCurrency" : targetSalaryCurrency,
-      "my0:targetCompanyIndustry" : targetCompanyIndustry,
-      "my0:targetJobCareerLevel" : targetJobCareerLevel,
+      "my0:targetCompanyField" : targetCompanyField,
+      "my0:targetRegion" : targetRegion,
+      "my0:targetCareerLevel" : targetCareerLevel,
       "my0:targetJobMode" : targetJobMode,
-      "my0:weeksNoticePeriod" : weeksNoticePeriod,
+      "my0:targetWeeksNoticePeriod" : targetWeeksNoticePeriod,
       "my0:targetJobTitle" : targetJobTitle,
-      "my0:conditionWillTravel" : conditionWillTravel,
-      "my0:conditionWillRelocate" : conditionWillRelocate,
+      "my0:targetConditionWillTravel" : conditionWillTravel,
+      "my0:targetConditionWillRelocate" : conditionWillRelocate,
       "my0:targetJobDescription" : targetJobDescription,
       "my0:targetCompanyDescription" : targetCompanyDescription,
-      "my0:targetCompanyLocality" : targetCompanyLocality,
-      "my0:targetCompanyCountry" : targetCompanyCountry,
+      "my0:targetCountry" : targetCountry,
       "my0:targetSalaryRange" : targetSalaryRange
     } = this.props.target;
+
+    let titlePage = {
+      en: "Target Job",
+      fr: "Emploi cible",
+      de: "Zielauftrag",
+      it: "Obiettivo di lavoro"
+    };
+
+    let titlePage2 = {
+      en: "Target Company",
+      fr: "Société cible",
+      de: "Zielgesellschaft",
+      it: "Azienda di destinazione",
+    }
+
+
+    let lang = this.props.language;
+
+    let translatedProps = this.props.translatedProps;
 
     return (
       <Row className="main-content-row">
         <Col md={4}>
-          <h4>Target Job</h4>
+          <h4>{titlePage[lang]}</h4>
           <CustomInput
             id="targetJobTitle"
-            label="Job Title"
+            label={this.renderLabel(translatedProps, "targetJobTitle", lang)}
             type="text"
             value={targetJobTitle}
             handleChange={this.handleInputChange}
           />
-          <label className="label-rw">Job Mode</label>
+          <label className="label-rw">{this.renderLabel(translatedProps, "targetJobMode", lang)}</label>
           <Combobox
             name="targetJobMode"
-            placeholder="Select a job mode"
+            placeholder={this.renderLabel(translatedProps, "targetJobMode", lang)}
             data={this.props.jobModes}
-            textField="value"
+            textField={lang}
             valueField="@type"
             value={targetJobMode}
             caseSensitive={false}
@@ -152,106 +137,99 @@ class FormTarget extends Component {
             filter="contains"
             onChange={value => this.handleSelectChange("targetJobMode", value)}
           />
-          <label className="label-rw"> Job Career Level</label>
+          <label className="label-rw"> {this.renderLabel(translatedProps, "targetCareerLevel", lang)}</label>
           <Combobox
-            name="targetJobCareerLevel"
+            name="targetCareerLevel"
             data={this.props.careerLevels}
-            textField="value"
+            textField={lang}
             valueField="@type"
-            value={targetJobCareerLevel}
-            placeholder="Select a career level"
+            value={targetCareerLevel}
+            placeholder={this.renderLabel(translatedProps, "targetCareerLevel", lang)}
             caseSensitive={false}
             minLength={3}
             filter="contains"
             onChange={value =>
-              this.handleSelectChange("targetJobCareerLevel", value)
+              this.handleSelectChange("targetCareerLevel", value)
             }
           />
           <CustomInput
             id="targetSalaryRange"
-            label="Salary Range"
+            label={this.renderLabel(translatedProps, "targetSalaryRange", lang)}
             type="text"
             value={targetSalaryRange}
             handleChange={this.handleInputChange}
           />
-          <label className="label-rw">Salary Currency</label>
-          <Combobox
-            name="targetSalaryCurrency"
-            data={this.state.currencyValues}
-            value={targetSalaryCurrency}
-            placeholder="Select a currency"
-            textField="value"
-            valueField="@type"
-            caseSensitive={false}
-            minLength={3}
-            filter="contains"
-            onChange={value =>
-              this.handleSelectChange("targetSalaryCurrency", value)
-            }
-          />
           <CustomInput
-            id="weeksNoticePeriod"
-            label="Weeks Notice Period"
+            id="targetWeeksNoticePeriod"
+            label={this.renderLabel(translatedProps, "targetWeeksNoticePeriod", lang)}
             type="text"
-            value={weeksNoticePeriod}
+            value={targetWeeksNoticePeriod}
             handleChange={this.handleInputChange}
           />
           <div className="mb-3" />
           <CustomCheckbox
-            id="conditionWillRelocate"
+            id="targetConditionWillRelocate"
             type="checkbox"
-            label="Willing to relocate?"
+            label={this.renderLabel(translatedProps, "targetConditionWillRelocate", lang)}
             checked={conditionWillRelocate}
             handleChange={this.handleCheckboxChange}
           />
           <div style={{ marginTop: "10px", marginBottom: "10px" }}>
             <CustomCheckbox
-              id="conditionWillTravel"
+              id="targetConditionWillTravel"
               type="checkbox"
-              label="Willing to travel?"
+              label={this.renderLabel(translatedProps, "targetConditionWillTravel", lang)}
               checked={conditionWillTravel}
               handleChange={this.handleCheckboxChange}
             />
           </div>
           <CustomTextarea
             id="targetJobDescription"
-            label="Job Description"
+            label={this.renderLabel(translatedProps, "targetJobDescription", lang)}
             value={targetJobDescription}
             handleChange={this.handleInputChange}
           />
         </Col>
         <Col md={4}>
-          <h4>Target Company</h4>
-          <CustomInput
-            id="targetCompanyLocality"
-            label="Company Locality"
-            type="text"
-            value={targetCompanyLocality}
-            handleChange={this.handleInputChange}
-          />
-          <label className="label-rw">Company Country</label>
+          <h4>{titlePage2[lang]}</h4>
+          <label className="label-rw">{this.renderLabel(translatedProps, "targetRegion", lang)}</label>
           <Multiselect
-            name="targetCompanyCountry"
-            data={this.props.countries}
-            textField="value"
+            name="targetRegion"
+            data={this.props.regions}
+            textField={lang}
             valueField="@type"
-            value={targetCompanyCountry}
-            placeholder="Select a country"
+            value={targetRegion}
+            placeholder={this.renderLabel(translatedProps, "targetRegion", lang)}
             caseSensitive={false}
             minLength={3}
             filter="contains"
             onChange={value =>
-              this.handleMultiSelectChange("targetCompanyCountry", value)
+              this.handleMultiSelectChange("targetRegion", value)
             }
           />
-          <label className="label-rw">Company Size</label>
+          <label className="label-rw">{this.renderLabel(translatedProps, "targetCountry", lang)}</label>
+          <Multiselect
+            name="targetCountry"
+            data={this.props.countries}
+            textField={lang}
+            valueField="@type"
+            value={targetCountry}
+            placeholder={this.renderLabel(translatedProps, "targetCountry", lang)}
+            caseSensitive={false}
+            minLength={3}
+            filter="contains"
+            onChange={value =>
+              this.handleMultiSelectChange("targetCountry", value)
+            }
+          />
+          <label className="label-rw">{this.renderLabel(translatedProps, "targetCompanySize", lang)}</label>
           <Combobox
             name="targetCompanySize"
             data={this.props.companySizes}
             value={targetCompanySize}
-            textField="value"
+            textField={lang}
             valueField="@type"
-            placeholder="Select a size"
+            placeholder={this.renderLabel(translatedProps, "targetCompanySize", lang)}
             caseSensitive={false}
             minLength={3}
             filter="contains"
@@ -259,25 +237,25 @@ class FormTarget extends Component {
               this.handleSelectChange("targetCompanySize", value)
             }
           />
-          <label className="label-rw">Company Industry</label>
+          <label className="label-rw">{this.renderLabel(translatedProps, "targetCompanyField", lang)}</label>
           <Multiselect
-            name="targetCompanyIndustry"
-            data={this.state.targetCompanyIndustryValues}
-            value={targetCompanyIndustry}
-            textField="value"
+            name="targetCompanyField"
+            data={this.props.industries}
+            value={targetCompanyField}
+            textField={lang}
             valueField="@type"
-            placeholder="Select an industry"
+            placeholder={this.renderLabel(translatedProps, "targetCompanyField", lang)}
             caseSensitive={false}
             minLength={3}
             filter="contains"
             onChange={value =>
-              this.handleMultiSelectChange("targetCompanyIndustry", value)
+              this.handleMultiSelectChange("targetCompanyField", value)
             }
           />
           <div className="mb-3"></div>
           <CustomTextarea
             id="targetCompanyDescription"
-            label="Company Description"
+            label={this.renderLabel(translatedProps, "targetCompanyDescription", lang)}
             value={targetCompanyDescription}
             handleChange={this.handleInputChange}
           />
@@ -291,10 +269,14 @@ class FormTarget extends Component {
 const mapstateToProps = state => {
   return {
     countries: retrieveCountryValues(state.utility.countryValues),
-    jobModes: retrieveJobModes(state.utility.jobModeValues),
-    careerLevels: retrieveCareerLevels(state.utility.careerLevelValues),
-    companySizes: retrieveCompanySizes(state.utility.companySizeValues),
-    target: state.cv['my0:target']
+    jobModes: retrieveBaseProperties(state.utility.jobModeValues),
+    careerLevels: retrieveBaseProperties(state.utility.careerLevelValues),
+    companySizes: retrieveBaseProperties(state.utility.companySizeValues),
+    regions: retrieveBaseProperties(state.utility.regions),
+    industries: retrieveBaseProperties(state.utility.industries),
+    target: state.cv['my0:hasTarget'],
+    language: state.utility.language,
+    translatedProps: retrieveMainProperties(state.utility['my0:Target'])
   };
 };
 
@@ -305,6 +287,9 @@ export default connect(
     fetchCVCareerLevels,
     fetchCountries,
     fetchCompanySizes,
+    fetchMainPropertiess,
+    fetchAllRegionss,
+    fetchAllIndustryTypess,
     updateTarget
   }
 )(FormTarget);

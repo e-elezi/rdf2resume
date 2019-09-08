@@ -335,3 +335,31 @@ export function getNameFromURI(uri){
     return uri.substr(ind+1); 
   }
 }
+
+export const saveLabel = {
+  en: "Save",
+  fr: "Enregistrer",
+  de: "Speichern",
+  it: "Salva"
+}
+
+export const updateLabel = {
+  en: "Update",
+  fr: "Mise à jour",
+  de: "Aktualisieren",
+  it: "Aggiorna"
+}
+
+export const resetLabel = {
+  en: "Reset",
+  fr: "Réinitialiser",
+  de: "Zurücksetzen",
+  it: "Reset"
+}
+
+export const cancelLabel = {
+  en: "Cancel",
+  fr: "Annuler",
+  de: "Abbrechen",
+  it: "Annulla"
+}

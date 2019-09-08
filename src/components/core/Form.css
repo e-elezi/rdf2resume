@@ -100,6 +100,18 @@
   margin-left: 0;
 }
 
+.btn:disabled {
+  background: #dddddd;
+  border-color: #dddddd;
+  color: black;
+}
+
+.btn:disabled:hover {
+  background: #dddddd;
+  border-color: #dddddd;
+  color: black;
+}
+
 
 /*************************************************************************/
 /**************************** DROPDOWN REDUX *****************************/

@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const CustomRadioGroup = ({ items, name, value, handleChange }) => {
+const CustomRadioGroup = ({ items, lang, name, value, handleChange }) => {
   return (
     <div className="mb-3">
       {items.map(item => {
@@ -10,7 +10,7 @@ const CustomRadioGroup = ({ items, name, value, handleChange }) => {
             key={item["@type"]}
             custom
             type="radio"
-            label={item.value}
+            label={item[lang]}
             checked={item["@type"] === value ? true : false}
             name={name}
             id={item["@type"]}

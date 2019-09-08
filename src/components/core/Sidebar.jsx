@@ -1,21 +1,22 @@
 import React from "react";
 import { Nav, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Sidebar = ({ links }) => {
+const Sidebar = ( props ) => {
   return (
     <React.Fragment>
       <Nav className="flex-column">
-        {links.map(link => {
+        {props.links.map(link => {
           return (
-            <NavLink key={link.label} to={link.link}>
-              {link.label}
+            <NavLink key={link['en']} to={link.link}>
+              {link[props.language]}
             </NavLink>
           );
         })}
       </Nav>
       <Row className="footer-copyright">
-        <a href="#kot" target="_blank">
+        <a rel="noopener noreferrer" href="https://www.linkedin.com/in/enkeleda-elezi-928532a0/" target="_blank">
           @Enkeleda Elezi
         </a>
       </Row>
@@ -23,4 +24,13 @@ const Sidebar = ({ links }) => {
   );
 };
 
-export default Sidebar;
+const mapstateToProps = state => {
+  return {
+    language: state.utility.language,
+  };
+};
+
+export default connect(
+  mapstateToProps,
+  {}
+)(Sidebar);

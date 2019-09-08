@@ -24,11 +24,35 @@ class FormCourse extends Component {
 
   render() {
     let { showModal } = this.state;
+
+    let lang = this.props.language;
+
+    let titlePage = {
+      en: "Course/Training",
+      fr: "Cours/Training",
+      de: "Kurs/Training",
+      it: "Corso/Training"
+    };
+
+    let titlesub = {
+      en: "Add course / training",
+      fr: "Ajouter cours / training",
+      de: "Kurs / Training hinzufügen",
+      it: "Aggiungi corso / training",
+    }
+
+    let nocourse = {
+      en: "No courses have been added until now.",
+      fr: "Aucun cours n'a été ajouté jusqu'à présent.",
+      de: "Es wurden bisher keine Kurse hinzugefügt.",
+      it: "Non sono stati aggiunti corsi fino ad ora.",
+    }
+
     return (
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>Course/Training</h4>
+            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -40,13 +64,13 @@ class FormCourse extends Component {
                 <CourseModal show={showModal} onHide={this.handleClose} key={this.state.key} />
               </Col>
               <Col md={10} className="button-label">
-                <p>Add course / training</p>
+                <p>{titlesub[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
         {this.props.course.length === 0
-          ? "No courses have been added until now."
+          ? nocourse[lang]
           : ""}
         {this.props.course.map((co, index) => (
           <CourseView
@@ -62,7 +86,8 @@ class FormCourse extends Component {
 
 const mapStateToProps = state => {
   return {
-    course: state.cv["my0:hasCourse"]
+    course: state.cv["my0:hasCourse"],
+    language: state.utility.language
   };
 };
 

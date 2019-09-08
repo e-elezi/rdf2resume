@@ -16,6 +16,9 @@ import {
   CREATE_IM,
   UPDATE_IM,
   REMOVE_IM,
+  CREATE_WEBSITE,
+  UPDATE_WEBSITE,
+  REMOVE_WEBSITE,
   CREATE_REFERENCE,
   UPDATE_REFERENCE,
   REMOVE_REFERENCE,
@@ -37,15 +40,6 @@ import {
   UPDATE_SKILLS,
   UPDATE_CV
 } from "../actions/types";
-import { 
-  // getDataOfId, 
-  getDataOfType, 
-  // setDataOfId, 
-  createObjInGraph,
-  updateObjInGraph,
-  removeObjInGraph,
-  setDataOfId
- } from '../utilities/utilityFunctions';
 
 export function generateUUID() { // Public Domain/MIT
   var d = new Date().getTime();//Timestamp
@@ -63,19 +57,10 @@ export function generateUUID() { // Public Domain/MIT
   });
 }
 
-// var id_CV = generateUUID();
-// var id_aboutPerson = generateUUID();
-// var id_personAddress = generateUUID();
-// var id_target = generateUUID();
-// var id_CommunicationSkills = generateUUID();
-// var id_OrganisationalSkills = generateUUID();
-// var id_JobRelatedSkills = generateUUID();
-// var id_DigitalSkills = generateUUID();
-
 const INITIAL_STATE = {
   "my0:hasReference": [],
   "my0:hasWorkHistory": [],
-  "my0:cvLastUpdated": "",
+  "my0:cvLastUpdate": "",
   "my0:cvIsConfidential": false,
   "my0:cvCopyright": "",
   "my0:cvNotes": "",
@@ -91,8 +76,8 @@ const INITIAL_STATE = {
     "my0:photo": "",
     "my0:title": "",
     "my0:driversLicence": "",
-    "my0:website": "",
     "my0:hasCitizenship": [],
+    "my0:hasWebsite": [],
     "my0:address": {
       "@type": "my0:Address",
       "my0:country": "",
@@ -100,62 +85,44 @@ const INITIAL_STATE = {
       "my0:street": "",
       "my0:city": ""
     },
-    "my0:hasTelephoneNumber": [],
+    "my0:phoneNumber": "",
+    "my0:personDescription": "",
     "my0:gender": ""
   },
-  "my0:hasSkill": [
-  {
-    "@type": "my0:CommunicationSkills",
-    "my0:skillDescription": ""
-  },
-  {
-    "@type": "my0:OrganisationalSkills",
-    "my0:skillDescription": ""
-  },
-  {
-    "@type": "my0:JobRelatedSkills",
-    "my0:skillDescription": ""
-  },
-  {
-    "my0:otherDigitalSkills": "",
-    "@type": "my0:DigitalSkills",
-    "my0:informationProcessing": "",
-    "my0:problemSolving": "",
-    "my0:hasICTCertificate": false,
-    "my0:safety": "",
-    "my0:contentCreation": "",
-    "my0:communication": ""
-  }],
+  "my0:hasSkill": [],
   "@type": "my0:CV",
-  "my0:target": {
+  "my0:hasTarget": {
+    "@type": "my0:Target",
     "my0:targetJobDescription": "",
     "my0:targetJobTitle": "",
-    "my0:targetCompanyIndustry": [],
-    "my0:targetSalaryCurrency": "",
-    "my0:weeksNoticePeriod": "",
-    "my0:targetCompanyCountry": [],
-    "my0:conditionWillTravel": true,
-    "my0:targetJobMode": "",
+    "my0:targetWeeksNoticePeriod": "",
+    "my0:targetCountry": [],
+    "my0:targetConditionWillRelocate": true,
+    "my0:targetConditionWillTravel": "",
     "my0:conditionWillRelocate": true,
     "my0:targetSalaryRange": "",
     "my0:targetCompanySize": "",
-    "@type": "my0:Target",
-    "my0:targetJobCareerLevel": "",
+    "my0:targetCareerLevel": "",
     "my0:targetCompanyLocality": "",
-    "my0:targetCompanyDescription": ""
+    "my0:targetCompanyDescription": "",
+    "my0:targetCompanyField": [],
+    "my0:targetRegion": []
     },
-    "my0:hasOtherInfo": [],
-    "my0:cvTitle": "",
-    "my0:hasEducation": [],
-    "my0:cvIsActive": true,
-    "@context": {
-      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
-      "my0": "http://example.com/rdf2resume_ontology.rdf#",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
-    }
+  "my0:hasOtherInfo": [],
+  "my0:hasPublication": [],
+  "my0:hasPatent": [],
+  "my0:hasProject": [],
+  "my0:hasHonorAward": [],
+  "my0:hasEducation": [],
+  "my0:cvIsActive": true,
+  "@context": {
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
+    "my0": "http://example.com/rdf2resume_ontology.rdf#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
+  }
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -270,10 +237,29 @@ export default (state = INITIAL_STATE, action) => {
       return updatedSkills;
     case UPDATE_TARGET:
         let updatetarget = { ...state};
-        updatetarget['my0:target']["my0:" + action.payload.id] = action.payload.value;
+        updatetarget['my0:hasTarget']["my0:" + action.payload.id] = action.payload.value;
         return updatetarget;
     case UPDATE_CV:
       return { ...action.payload};
+    case CREATE_WEBSITE:
+      let aps = { ...state};
+      aps['my0:aboutPerson']['my0:hasWebsite'].push(
+        {
+          "@type": "my0:Website",
+          "my0:websiteURL": "",
+          "my0:websiteType": ""
+        }
+      );
+      return aps;
+    case UPDATE_WEBSITE:
+      let uaps = { ...state};
+      uaps['my0:aboutPerson']['my0:hasWebsite'][action.payload.id][action.payload.name] = action.payload.value;
+      return uaps;
+    case REMOVE_WEBSITE:
+      let removedimsdd = {...state}['my0:aboutPerson'];
+      let removedimss = _.filter(removedimsdd['my0:hasWebsite'], function(item, index) { return index !== action.payload; });
+      removedimsdd['my0:hasWebsite'] = removedimss;
+      return { ...state, "my0:aboutPerson": removedimsdd };
     case CREATE_IM:
       let ap = { ...state};
       ap['my0:aboutPerson']['my0:hasInstantMessaging'].push(

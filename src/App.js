@@ -20,9 +20,30 @@ class App extends Component {
     showInitialPage: true,
     showDescription: false,
     topbar: [
-      { label: "Fill in form", link: "/d/" },
-      { label: "Upload RDF", link: "/u/upload" },
-      { label: "About", link: "/about/" }
+      { 
+        "@type": "Fill in form",
+        "en": "Fill in form",
+        "de": "Formular ausfüllen",
+        "fr": "Remplissez le formulaire",
+        "it": "Compila il modulo", 
+        link: "/d" 
+      },
+      { 
+        "@type": "Upload RDF",
+        "en": "Upload RDF",
+        "de": "RDF hochladen",
+        "fr": "Charger RDF",
+        "it": "Carica RDF",  
+        link: "/u/upload" 
+      },
+      { 
+        "@type": "About",
+        "en": "About",
+        "de": "Über uns",
+        "fr": "Au sujet de",
+        "it": "Informazioni su",  
+        link: "/about/" 
+      }
     ]
   };
 

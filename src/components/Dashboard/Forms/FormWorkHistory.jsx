@@ -24,11 +24,33 @@ class FormWorkHistory extends Component {
 
   render() {
     let { showModal } = this.state;
+    let lang = this.props.language;
+    let titlePage = {
+      en: "Work History",
+      fr: "Antécédents de travail",
+      de: "Arbeitsablauf",
+      it: "Storia del lavoro"
+    };
+
+    let titlesub = {
+      en: "Add work history",
+      fr: "Ajouter un historique de travail",
+      de: "Arbeitsablauf hinzufügen",
+      it: "Aggiungere la cronologia dei lavori",
+    }
+
+    let nowwork = {
+      en: "No work histories have been added until now.",
+      fr: "Aucun historique de travail n'a été ajouté jusqu'à présent.",
+      de: "Bisher wurden keine Arbeitshistorien hinzugefügt.",
+      it: "Finora non sono state aggiunte storie di lavoro.",
+    }
+
     return (
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>Work History</h4>
+            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -40,13 +62,13 @@ class FormWorkHistory extends Component {
                 <WorkHistoryModal key={this.state.key} show={showModal} onHide={this.handleClose} />
               </Col>
               <Col md={10} className="button-label">
-                <p>Add work history</p>
+                <p>{titlesub[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
         {this.props.workHistories.length === 0
-          ? "No work histories have been added until now."
+          ? nowwork[lang]
           : ""}
         {this.props.workHistories.map((workHistory, index) => (
           <WorkHistoryView
@@ -62,7 +84,8 @@ class FormWorkHistory extends Component {
 
 const mapStateToProps = state => {
   return {
-    workHistories: state.cv["my0:hasWorkHistory"]
+    workHistories: state.cv["my0:hasWorkHistory"],
+    language: state.utility.language
   };
 };
 

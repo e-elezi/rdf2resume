@@ -4,10 +4,19 @@ import CustomTextarea from "../../core/CustomTextarea";
 import CustomInput from "../../core/CustomInput";
 import CustomCheckbox from "../../core/CustomCheckbox";
 import { updateAboutCV } from "../../../actions";
-import { getDataOfType } from '../../../utilities/utilityFunctions'
+import {
+  fetchMainPropertiess,
+} from "../../../actions/utilityActions";
+import {
+  retrieveMainProperties,
+} from "../../../utilities/utilityQueries";
 
 class FormAboutCV extends Component {
   state = {};
+
+  componentWillMount() {
+    this.props.fetchMainPropertiess('my0:CV');
+  }
 
   handleInputChange = e => {
     this.props.updateAboutCV({ id: e.target.id, value: e.target.value });
@@ -17,29 +26,54 @@ class FormAboutCV extends Component {
     this.props.updateAboutCV({ id: e.target.id, value: e.target.checked });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for(let i =0; i<length; i++) {
+      if(data[i]["@type"].indexOf(name)>=0){
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated,name);
+    if(translated[index]===undefined || translated[index][lang]===undefined){
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
+    let translatedProps = this.props.translatedProps;
+    let lang = this.props.language;
+    let now = {
+      "en": "Now",
+      "it": "Ora",
+      "fr": "À présent",
+      "de": "Jetzt"
+    }
+    let title = { 
+      "en": "About CV",
+      "fr": "À propos du CV", 
+      "de": "Über CV", 
+      "it": "Informazioni su CV",  
+      link: "/d/about" 
+    }
     let {
-      "my0:cvTitle" : cvTitle,
       "my0:cvNotes" : cvNotes,
       "my0:cvIsActive" : cvIsActive,
       "my0:cvIsConfidential" : cvIsConfidential,
-      "my0:cvLastUpdated" : cvLastUpdated,
+      "my0:cvLastUpdate" : cvLastUpdate,
       "my0:cvCopyright" : cvCopyright
     } = this.props.cv;
     return (
       <div className="row">
         <div className="col col-sm-5">
-          <h4 style={{ marginTop: "10px" }}>About CV</h4>
-          <CustomInput
-            id="cvTitle"
-            label="CV Title"
-            type="text"
-            value={cvTitle}
-            handleChange={this.handleInputChange}
-          />
+          <h4 style={{ marginTop: "10px" }}>{title[lang]}</h4>
           <CustomInput
             id="cvCopyright"
-            label="CV Copyright"
+            label={this.renderLabel(translatedProps, 'cvCopyright',lang)}
             type="text"
             value={cvCopyright}
             handleChange={this.handleInputChange}
@@ -47,14 +81,14 @@ class FormAboutCV extends Component {
           <div className="mb-3"/>
           <CustomTextarea
             id="cvNotes"
-            label="CV Notes"
+            label={this.renderLabel(translatedProps, 'cvNotes',lang)}
             value={cvNotes}
             handleChange={this.handleInputChange}
           />
           <CustomCheckbox
             id="cvIsActive"
             type="checkbox"
-            label="Is CV Active?"
+            label={this.renderLabel(translatedProps, 'cvIsActive',lang)}
             checked={cvIsActive}
             handleChange={this.handleCheckboxChange}
           />
@@ -62,7 +96,7 @@ class FormAboutCV extends Component {
             <CustomCheckbox
               id="cvIsConfidential"
               type="checkbox"
-              label="Is CV Confidential?"
+              label={this.renderLabel(translatedProps, 'cvIsConfidential',lang)}
               checked={cvIsConfidential}
               handleChange={this.handleCheckboxChange}
             />
@@ -75,10 +109,10 @@ class FormAboutCV extends Component {
               className=" col col-sm-9 form-label"
               style={{ paddingLeft: "0" }}
             >
-              <p>CV Last Updated </p>
+              <p>{this.renderLabel(translatedProps, 'cvLastUpdate',lang)}</p>
             </div>
             <div className="col col-sm-3 muted-text">
-              <p>{cvLastUpdated ? cvLastUpdated : "Now"}</p>
+              <p>{cvLastUpdate ? cvLastUpdate : now[lang]}</p>
             </div>
           </div>
         </div>
@@ -90,11 +124,15 @@ class FormAboutCV extends Component {
 
 const mapstateToProps = state => {
   return {
-    cv: state.cv
+    cv: state.cv,
+    language: state.utility.language,
+    translatedProps: retrieveMainProperties(state.utility['my0:CV'])
   };
 };
 
 export default connect(
   mapstateToProps,
-  { updateAboutCV }
+  {
+    updateAboutCV, fetchMainPropertiess
+  }
 )(FormAboutCV);

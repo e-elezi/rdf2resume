@@ -9,15 +9,20 @@ import { createEducation, updateEducation } from "../../../../../actions";
 import {
   fetchCountries,
   fetchCompanySizes,
-  fetchEduDegrees
+  fetchEduDegrees,
+  fetchMainPropertiess
 } from "../../../../../actions/utilityActions";
 import {
   retrieveCountryValues,
-  retrieveCompanySizes,
-  retrieveDegreeValues
+  retrieveMainProperties,
+  retrieveBaseProperties
 } from "../../../../../utilities/utilityQueries";
-import { generateUUID } from "../../../../../reducers/cvReducer";
-import { getDataOfId } from '../../../../../utilities/utilityFunctions';
+import {
+  cancelLabel,
+  resetLabel,
+  saveLabel,
+  updateLabel
+} from "../../../../../utilities/utilityFunctions";
 
 class EducationModal extends Component {
   state = {
@@ -31,18 +36,17 @@ class EducationModal extends Component {
         "my0:organizationWebsite": "",
         "my0:organizationAddress": {
           "@type": "Address",
-          "my0:city" : "",
-          "my0:country" : "",
-          "my0:street" : "",
-          "my0:postalCode" : ""
+          "my0:city": "",
+          "my0:country": "",
+          "my0:street": "",
+          "my0:postalCode": ""
         }
       },
       "my0:isEduCurrent": false,
       "my0:eduStartDate": "",
       "my0:eduGradDate": "",
       "my0:degreeType": "",
-      "my0:eduMajor": "",
-      "my0:eduMinor": "",
+      "my0:degree": "",
       "my0:eduDescription": ""
     }
   };
@@ -51,6 +55,9 @@ class EducationModal extends Component {
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
     this.props.fetchEduDegrees();
+    this.props.fetchMainPropertiess("my0:Education");
+    this.props.fetchMainPropertiess("my0:Organization");
+    this.props.fetchMainPropertiess("my0:Address");
     this.setInitialValues();
   }
 
@@ -85,18 +92,17 @@ class EducationModal extends Component {
             "my0:organizationWebsite": "",
             "my0:organizationAddress": {
               "@type": "Address",
-              "my0:city" : "",
-              "my0:country" : "",
-              "my0:street" : "",
-              "my0:postalCode" : ""
+              "my0:city": "",
+              "my0:country": "",
+              "my0:street": "",
+              "my0:postalCode": ""
             }
           },
           "my0:isEduCurrent": false,
           "my0:eduStartDate": "",
           "my0:eduGradDate": "",
           "my0:degreeType": "",
-          "my0:eduMajor": "",
-          "my0:eduMinor": "",
+          "my0:degree": "",
           "my0:eduDescription": ""
         }
       });
@@ -114,61 +120,80 @@ class EducationModal extends Component {
   };
 
   handleInputChange = e => {
-    let obj = {...this.state.education};
+    let obj = { ...this.state.education };
     let label = e.target.id;
-    if(e.target.name === "organization") {
-      obj['my0:studiedIn'][label] = e.target.value;
-    } else if(e.target.name === "address") {
-      obj['my0:studiedIn']['my0:organizationAddress'][label] = e.target.value;
+    if (e.target.name === "organization") {
+      obj["my0:studiedIn"][label] = e.target.value;
+    } else if (e.target.name === "address") {
+      obj["my0:studiedIn"]["my0:organizationAddress"][label] = e.target.value;
     } else {
       obj[label] = e.target.value;
     }
     this.setState({
       education: obj
-    })
+    });
   };
 
   handleSelectChange = (value, id, name) => {
-    let obj = {...this.state.education};
+    let obj = { ...this.state.education };
     let label = id;
-    if(name === "organization") {
-      obj['my0:studiedIn'][label] = value['@type'];
-    } else if(name === "address") {
-      obj['my0:studiedIn']['my0:organizationAddress'][label] = value['@type'];
+    if (name === "organization") {
+      obj["my0:studiedIn"][label] = value["@type"];
+    } else if (name === "address") {
+      obj["my0:studiedIn"]["my0:organizationAddress"][label] = value["@type"];
     } else {
-      obj[label] = value['@type'];
+      obj[label] = value["@type"];
     }
     this.setState({
       education: obj
-    })
+    });
   };
 
   handleSave = () => {
-    this.props.createEducation(
-      this.state.education
-    );
+    this.props.createEducation(this.state.education);
   };
 
   handleUpdate = () => {
-    this.props.updateEducation(
-      {
-         object: this.state.education,
-         index: this.props.id
-      }
-    );
+    this.props.updateEducation({
+      object: this.state.education,
+      index: this.props.id
+    });
   };
 
-  handleRenderingSubmitButton = () => {
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
+  handleRenderingSubmitButton = lang => {
     if (!this.props.isUpdate) {
       return (
         <Button type="submit" variant="primary" onClick={this.handleSave}>
-          Save
+          {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
         <Button type="submit" variant="primary" onClick={this.handleUpdate}>
-          Update
+          {updateLabel[lang]}
         </Button>
       );
     }
@@ -176,25 +201,47 @@ class EducationModal extends Component {
 
   render() {
     let {
-      "my0:eduStartDate" : eduStartDate,
-      "my0:eduGradDate" : eduGradDate,
-      "my0:degreeType" : degreeType,
-      "my0:eduMajor" : eduMajor,
-      "my0:eduMinor" : eduMinor,
-      "my0:eduDescription" : eduDescription,
-      "my0:isEduCurrent" : isEduCurrent,
-      "my0:studiedIn" : studiedIn
+      "my0:eduStartDate": eduStartDate,
+      "my0:eduGradDate": eduGradDate,
+      "my0:degreeType": degreeType,
+      "my0:degree": degree,
+      "my0:eduDescription": eduDescription,
+      "my0:isEduCurrent": isEduCurrent,
+      "my0:studiedIn": studiedIn
     } = this.state.education;
 
     let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationWebsite" : organizationWebsite,
-      "my0:organizationDescription" : organizationDescription,
-      "my0:organizationPhoneNumber" : organizationPhoneNumber,
-      "my0:organizationAddress" : address
+      "my0:organizationName": organizationName,
+      "my0:organizationWebsite": organizationWebsite,
+      "my0:organizationDescription": organizationDescription,
+      "my0:organizationPhoneNumber": organizationPhoneNumber,
+      "my0:organizationAddress": address
     } = studiedIn;
 
     let { onHide } = this.props;
+
+    let add = {
+      en: "Add new education",
+      fr: "Ajouter une nouvelle éducation",
+      de: "Neue Ausbildung hinzufügen",
+      it: "Aggiungere una nuova educazione"
+    };
+
+    let up = {
+      en: "Update education",
+      fr: "Mise à jour de l'éducation",
+      de: "Aktualisierung der Ausbildung",
+      it: "Aggiornamento educazione"
+    };
+
+    let lang = this.props.language;
+
+    let {
+      translatedProps,
+      translatedPropsOrg,
+      translatedPropsAddr
+    } = this.props;
+
     return (
       <Modal
         show={this.props.show}
@@ -207,14 +254,16 @@ class EducationModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={9}>
-                {this.props.isUpdate ? "Update" : "Add New"} Education
-              </Col>
+              <Col md={9}>{this.props.isUpdate ? add[lang] : up[lang]}</Col>
               <Col md={2}>
                 <CustomCheckbox
                   id="my0:isEduCurrent"
                   type="checkbox"
-                  label="Current?"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "isEduCurrent",
+                    lang
+                  )}
                   checked={isEduCurrent}
                   handleChange={this.handleCheckboxChange}
                 />
@@ -226,27 +275,43 @@ class EducationModal extends Component {
         <Modal.Body>
           <Row style={{ alignItems: "flex-start" }}>
             <Col md={6} style={{ paddingRight: "25px" }}>
-              <Row>
-                <Col md={6}>
-                  <CustomInput
-                    id="my0:eduStartDate"
-                    name="education"
-                    label="From"
-                    type="date"
-                    value={eduStartDate}
-                    handleChange={this.handleInputChange}
-                  />
-                </Col>
-                <Col md={6}>
-                  <CustomInput
-                    id="my0:eduGradDate"
-                    name="education"
-                    label="To"
-                    type="date"
-                    value={eduGradDate}
-                    handleChange={this.handleInputChange}
-                  />
-                </Col>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex",
+                  marginLeft: "0px"
+                }}
+              >
+                <CustomInput
+                  id="my0:eduStartDate"
+                  name="education"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "eduStartDate",
+                    lang
+                  )}
+                  type="date"
+                  value={eduStartDate}
+                  handleChange={this.handleInputChange}
+                />
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex",
+                  marginLeft: "0px"
+                }}
+              >
+                <CustomInput
+                  id="my0:eduGradDate"
+                  name="education"
+                  label={this.renderLabel(translatedProps, "eduGradDate", lang)}
+                  type="date"
+                  value={eduGradDate}
+                  handleChange={this.handleInputChange}
+                />
               </Row>
               <Row
                 style={{
@@ -259,7 +324,11 @@ class EducationModal extends Component {
                 <CustomInput
                   id="my0:organizationName"
                   name="organization"
-                  label="Educational Organization Name"
+                  label={this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationName",
+                    lang
+                  )}
                   type="text"
                   value={organizationName}
                   handleChange={this.handleInputChange}
@@ -267,7 +336,11 @@ class EducationModal extends Component {
                 <CustomInput
                   id="my0:organizationWebsite"
                   name="organization"
-                  label="Organization Website"
+                  label={this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationWebsite",
+                    lang
+                  )}
                   type="text"
                   value={organizationWebsite}
                   handleChange={this.handleInputChange}
@@ -277,7 +350,11 @@ class EducationModal extends Component {
                     <CustomInput
                       id="my0:postalCode"
                       name="address"
-                      label="Postal Code"
+                      label={this.renderLabel(
+                        translatedPropsAddr,
+                        "postalCode",
+                        lang
+                      )}
                       value={address["my0:postalCode"]}
                       handleChange={this.handleInputChange}
                     />
@@ -286,7 +363,11 @@ class EducationModal extends Component {
                     <CustomInput
                       id="my0:city"
                       name="address"
-                      label="City"
+                      label={this.renderLabel(
+                        translatedPropsAddr,
+                        "city",
+                        lang
+                      )}
                       value={address["my0:city"]}
                       handleChange={this.handleInputChange}
                     />
@@ -300,30 +381,36 @@ class EducationModal extends Component {
                     marginBottom: "8px"
                   }}
                 >
-                  <label className="label-rw">Organization Country</label>
+                  <label className="label-rw">
+                    {this.renderLabel(translatedPropsAddr, "country", lang)}
+                  </label>
                   <Combobox
                     name="my0:country"
-                    placeholder="Select country"
+                    placeholder={this.renderLabel(
+                      translatedPropsAddr,
+                      "country",
+                      lang
+                    )}
                     data={this.props.countries}
-                    textField="value"
+                    textField={lang}
                     valueField="@type"
                     value={address["my0:country"]}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
-                      this.handleSelectChange(
-                        value,
-                        "my0:country",
-                        "address"
-                      )
+                      this.handleSelectChange(value, "my0:country", "address")
                     }
                   />
                 </Row>
                 <CustomInput
                   id="my0:organizationPhoneNumber"
                   name="organization"
-                  label="Organization Phone Number"
+                  label={this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationPhoneNumber",
+                    lang
+                  )}
                   value={organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
@@ -331,7 +418,11 @@ class EducationModal extends Component {
                   <CustomTextarea
                     id="my0:organizationDescription"
                     name="organization"
-                    label="Organization Description"
+                    label={this.renderLabel(
+                      translatedPropsOrg,
+                      "organizationDescription",
+                      lang
+                    )}
                     value={organizationDescription}
                     handleChange={this.handleInputChange}
                   />
@@ -340,39 +431,43 @@ class EducationModal extends Component {
             </Col>
             <Col md={6}>
               <CustomInput
-                id="my0:eduMajor"
-                label="Major"
+                id="my0:degree"
+                label={this.renderLabel(translatedProps, "degree", lang)}
                 name="education"
                 type="text"
-                value={eduMajor}
+                value={degree}
                 handleChange={this.handleInputChange}
               />
-              <CustomInput
-                id="my0:eduMinor"
-                label="Minor"
-                name="education"
-                type="text"
-                value={eduMinor}
-                handleChange={this.handleInputChange}
-              />
-              <label className="label-rw">Degree type</label>
+              <label className="label-rw">
+                {this.renderLabel(translatedProps, "degreeType", lang)}
+              </label>
               <Combobox
                 name="my0:degreeType"
-                placeholder="Select degree"
+                placeholder={this.renderLabel(
+                  translatedProps,
+                  "degreeType",
+                  lang
+                )}
                 data={this.props.eduDegrees}
                 valueField="@type"
-                textField="value"
+                textField={lang}
                 value={degreeType}
                 caseSensitive={false}
                 minLength={3}
                 filter="contains"
-                onChange={value => this.handleSelectChange(value, "my0:degreeType", "education")}
+                onChange={value =>
+                  this.handleSelectChange(value, "my0:degreeType", "education")
+                }
               />
               <div style={{ marginTop: "10px" }}>
                 <CustomTextarea
                   id="my0:eduDescription"
                   name="education"
-                  label="Education Description"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "eduDescription",
+                    lang
+                  )}
                   value={eduDescription}
                   handleChange={this.handleInputChange}
                 />
@@ -381,12 +476,12 @@ class EducationModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          {this.handleRenderingSubmitButton()}
+          {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
-            Reset
+            {resetLabel[lang]}
           </Button>
           <Button variant="danger" onClick={onHide}>
-            Close
+            {cancelLabel[lang]}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -398,8 +493,14 @@ const mapstateToProps = (state, ownProps) => {
   return {
     initialValues: state.cv["my0:hasEducation"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
-    companySizes: retrieveCompanySizes(state.utility.companySizeValues),
-    eduDegrees: retrieveDegreeValues(state.utility.eduDegreeValues)
+    companySizes: retrieveBaseProperties(state.utility.companySizeValues),
+    eduDegrees: retrieveBaseProperties(state.utility.eduDegreeValues),
+    language: state.utility.language,
+    translatedPropsOrg: retrieveMainProperties(
+      state.utility["my0:Organization"]
+    ),
+    translatedPropsAddr: retrieveMainProperties(state.utility["my0:Address"]),
+    translatedProps: retrieveMainProperties(state.utility["my0:Education"])
   };
 };
 
@@ -410,6 +511,7 @@ export default connect(
     fetchCountries,
     fetchCompanySizes,
     fetchEduDegrees,
-    updateEducation
+    updateEducation,
+    fetchMainPropertiess
   }
 )(EducationModal);

@@ -6,10 +6,20 @@ import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { createCourse, updateCourse } from "../../../../../actions";
-import { fetchCountries } from "../../../../../actions/utilityActions";
-import { retrieveCountryValues } from "../../../../../utilities/utilityQueries";
-import { generateUUID } from "../../../../../reducers/cvReducer";
-import { getDataOfId } from '../../../../../utilities/utilityFunctions';
+import {
+  fetchCountries,
+  fetchMainPropertiess
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveMainProperties
+} from "../../../../../utilities/utilityQueries";
+import {
+  cancelLabel,
+  resetLabel,
+  saveLabel,
+  updateLabel
+} from "../../../../../utilities/utilityFunctions";
 
 class CourseModal extends Component {
   state = {
@@ -27,10 +37,10 @@ class CourseModal extends Component {
         "my0:organizationName": "",
         "my0:organizationAddress": {
           "@type": "Address",
-          "my0:city" : "",
-          "my0:country" : "",
-          "my0:street" : "",
-          "my0:postalCode" : ""
+          "my0:city": "",
+          "my0:country": "",
+          "my0:street": "",
+          "my0:postalCode": ""
         },
         "my0:organizationDescription": "",
         "my0:organizationPhoneNumber": "",
@@ -41,6 +51,9 @@ class CourseModal extends Component {
 
   componentWillMount() {
     this.props.fetchCountries();
+    this.props.fetchMainPropertiess("my0:Course");
+    this.props.fetchMainPropertiess("my0:Organization");
+    this.props.fetchMainPropertiess("my0:Address");
     this.setInitialValues();
   }
 
@@ -79,10 +92,10 @@ class CourseModal extends Component {
             "my0:organizationName": "",
             "my0:organizationAddress": {
               "@type": "Address",
-              "my0:city" : "",
-              "my0:country" : "",
-              "my0:street" : "",
-              "my0:postalCode" : ""
+              "my0:city": "",
+              "my0:country": "",
+              "my0:street": "",
+              "my0:postalCode": ""
             },
             "my0:organizationDescription": "",
             "my0:organizationPhoneNumber": "",
@@ -104,61 +117,80 @@ class CourseModal extends Component {
   };
 
   handleInputChange = e => {
-    let obj = {...this.state.course};
+    let obj = { ...this.state.course };
     let label = e.target.id;
-    if(e.target.name === "organization") {
-      obj['my0:organizedBy'][label] = e.target.value;
-    } else if(e.target.name === "address") {
-      obj['my0:organizedBy']['my0:organizationAddress'][label] = e.target.value;
+    if (e.target.name === "organization") {
+      obj["my0:organizedBy"][label] = e.target.value;
+    } else if (e.target.name === "address") {
+      obj["my0:organizedBy"]["my0:organizationAddress"][label] = e.target.value;
     } else {
       obj[label] = e.target.value;
     }
     this.setState({
       course: obj
-    })
+    });
   };
 
   handleSelectChange = (value, id, name) => {
-    let obj = {...this.state.course};
+    let obj = { ...this.state.course };
     let label = id;
-    if(name === "organization") {
-      obj['my0:organizedBy'][label] = value['@type'];
-    } else if(name === "address") {
-      obj['my0:organizedBy']['my0:organizationAddress'][label] = value['@type'];
+    if (name === "organization") {
+      obj["my0:organizedBy"][label] = value["@type"];
+    } else if (name === "address") {
+      obj["my0:organizedBy"]["my0:organizationAddress"][label] = value["@type"];
     } else {
-      obj[label] = value['@type'];
+      obj[label] = value["@type"];
     }
     this.setState({
       course: obj
-    })
+    });
   };
 
   handleSave = () => {
-    this.props.createCourse(
-      this.state.course
-    );
+    this.props.createCourse(this.state.course);
   };
 
   handleUpdate = () => {
-    this.props.updateCourse(
-      {
-         object: this.state.course,
-         index: this.props.id
-      }
-    );
+    this.props.updateCourse({
+      object: this.state.course,
+      index: this.props.id
+    });
   };
 
-  handleRenderingSubmitButton = () => {
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
+  handleRenderingSubmitButton = lang => {
     if (!this.props.isUpdate) {
       return (
         <Button type="submit" variant="primary" onClick={this.handleSave}>
-          Save
+          {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
         <Button type="submit" variant="primary" onClick={this.handleUpdate}>
-          Update
+          {updateLabel[lang]}
         </Button>
       );
     }
@@ -166,28 +198,51 @@ class CourseModal extends Component {
 
   render() {
     let {
-      "my0:hasCertification" : hasCertification,
-      "my0:courseTitle" : courseTitle,
-      "my0:courseDescription" : courseDescription,
-      "my0:courseURL" : courseURL,
-      "my0:courseStartDate" : courseStartDate,
-      "my0:courseFinishDate" : courseFinishDate,
-      "my0:organizedBy" : organizedBy
+      "my0:hasCertification": hasCertification,
+      "my0:courseTitle": courseTitle,
+      "my0:courseDescription": courseDescription,
+      "my0:courseURL": courseURL,
+      "my0:courseStartDate": courseStartDate,
+      "my0:courseFinishDate": courseFinishDate,
+      "my0:organizedBy": organizedBy
     } = this.state.course;
 
     let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationWebsite" : organizationWebsite,
-      "my0:organizationDescription" : organizationDescription,
-      "my0:organizationPhoneNumber" : organizationPhoneNumber,
-      "my0:organizationAddress" : organizationAddress
+      "my0:organizationName": organizationName,
+      "my0:organizationWebsite": organizationWebsite,
+      "my0:organizationDescription": organizationDescription,
+      "my0:organizationPhoneNumber": organizationPhoneNumber,
+      "my0:organizationAddress": organizationAddress
     } = organizedBy;
 
     let { onHide } = this.props;
+
+    let add = {
+      en: "Add new course/training",
+      fr: "Ajouter un nouveau cours/training",
+      de: "Neuen Kurs/Training hinzufügen",
+      it: "Aggiungere un nuovo corso/training"
+    };
+
+    let up = {
+      en: "Aktualisieren Sie den Kurs/Training",
+      fr: "Cours/training de mise à jour",
+      de: "Aktualisierung der Ausbildung",
+      it: "Aggiornamento corso/training"
+    };
+
+    let lang = this.props.language;
+
+    let {
+      translatedProps,
+      translatedPropsOrg,
+      translatedPropsAddr
+    } = this.props;
+
     return (
       <Modal
-      show={this.props.show}
-      onHide={this.props.onHide}
+        show={this.props.show}
+        onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         className="reference-modal"
@@ -196,12 +251,16 @@ class CourseModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={7}>{this.props.isUpdate ? "Update" : "Add New"} Course/Training</Col>
+              <Col md={7}>{this.props.isUpdate ? add[lang] : up[lang]}</Col>
               <Col md={5}>
                 <CustomCheckbox
                   id="my0:hasCertification"
                   type="checkbox"
-                  label="Does it provide certification?"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "hasCertification",
+                    lang
+                  )}
                   checked={hasCertification}
                   handleChange={this.handleCheckboxChange}
                 />
@@ -212,27 +271,49 @@ class CourseModal extends Component {
         <Modal.Body>
           <Row style={{ alignItems: "flex-start" }}>
             <Col md={6} style={{ paddingRight: "25px" }}>
-              <Row style={{ marginBottom: "8px" }}>
-                <Col md={6}>
-                  <CustomInput
-                    id="my0:courseStartDate"
-                    name="course"
-                    label="From"
-                    type="date"
-                    value={courseStartDate}
-                    handleChange={this.handleInputChange}
-                  />
-                </Col>
-                <Col md={6}>
-                  <CustomInput
-                    id="my0:courseFinishDate"
-                    name="course"
-                    label="To"
-                    type="date"
-                    value={courseFinishDate}
-                    handleChange={this.handleInputChange}
-                  />
-                </Col>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex",
+                  marginLeft: "0px",
+                  marginBottom: "8px"
+                }}
+              >
+                <CustomInput
+                  id="my0:courseStartDate"
+                  name="course"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "courseStartDate",
+                    lang
+                  )}
+                  type="date"
+                  value={courseStartDate}
+                  handleChange={this.handleInputChange}
+                />
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex",
+                  marginLeft: "0px",
+                  marginBottom: "8px"
+                }}
+              >
+                <CustomInput
+                  id="my0:courseFinishDate"
+                  name="course"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "courseFinishDate",
+                    lang
+                  )}
+                  type="date"
+                  value={courseFinishDate}
+                  handleChange={this.handleInputChange}
+                />
               </Row>
               <Row
                 style={{
@@ -246,7 +327,11 @@ class CourseModal extends Component {
                 <CustomInput
                   id="my0:organizationName"
                   name="organization"
-                  label="Organization Name"
+                  label={this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationName",
+                    lang
+                  )}
                   type="text"
                   value={organizationName}
                   handleChange={this.handleInputChange}
@@ -254,7 +339,11 @@ class CourseModal extends Component {
                 <CustomInput
                   id="my0:organizationWebsite"
                   name="organization"
-                  label="Organization Website"
+                  label={this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationWebsite",
+                    lang
+                  )}
                   type="text"
                   value={organizationWebsite}
                   handleChange={this.handleInputChange}
@@ -264,7 +353,11 @@ class CourseModal extends Component {
                     <CustomInput
                       id="my0:postalCode"
                       name="address"
-                      label="Postal Code"
+                      label={this.renderLabel(
+                        translatedPropsAddr,
+                        "postalCode",
+                        lang
+                      )}
                       value={organizationAddress["my0:postalCode"]}
                       handleChange={this.handleInputChange}
                     />
@@ -273,7 +366,11 @@ class CourseModal extends Component {
                     <CustomInput
                       id="my0:city"
                       name="address"
-                      label="City"
+                      label={this.renderLabel(
+                        translatedPropsAddr,
+                        "city",
+                        lang
+                      )}
                       value={organizationAddress["my0:city"]}
                       handleChange={this.handleInputChange}
                     />
@@ -287,30 +384,36 @@ class CourseModal extends Component {
                     marginBottom: "8px"
                   }}
                 >
-                  <label className="label-rw">Organization Country</label>
+                  <label className="label-rw">
+                    {this.renderLabel(translatedPropsAddr, "country", lang)}
+                  </label>
                   <Combobox
                     name="my0:country"
-                    placeholder="Select country"
+                    placeholder={this.renderLabel(
+                      translatedPropsAddr,
+                      "country",
+                      lang
+                    )}
                     data={this.props.countries}
-                    textField="value"
+                    textField={lang}
                     valueField="@type"
                     value={organizationAddress["my0:country"]}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
-                      this.handleSelectChange(
-                        value,
-                        "my0:country",
-                        "address"
-                      )
+                      this.handleSelectChange(value, "my0:country", "address")
                     }
                   />
                 </Row>
                 <CustomInput
                   id="my0:organizationPhoneNumber"
                   name="organization"
-                  label="Organization Phone Number"
+                  label={this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationPhoneNumber",
+                    lang
+                  )}
                   value={organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
@@ -318,7 +421,11 @@ class CourseModal extends Component {
                   <CustomTextarea
                     id="my0:organizationDescription"
                     name="organization"
-                    label="Organization Description"
+                    label={this.renderLabel(
+                      translatedPropsOrg,
+                      "organizationDescription",
+                      lang
+                    )}
                     value={organizationDescription}
                     handleChange={this.handleInputChange}
                   />
@@ -329,7 +436,7 @@ class CourseModal extends Component {
               <CustomInput
                 id="my0:courseTitle"
                 name="course"
-                label="Course/Training Title"
+                label={this.renderLabel(translatedProps, "courseTitle", lang)}
                 type="text"
                 value={courseTitle}
                 handleChange={this.handleInputChange}
@@ -337,7 +444,7 @@ class CourseModal extends Component {
               <CustomInput
                 id="my0:courseURL"
                 name="course"
-                label="Course/Training Website"
+                label={this.renderLabel(translatedProps, "courseURL", lang)}
                 type="text"
                 value={courseURL}
                 handleChange={this.handleInputChange}
@@ -346,7 +453,11 @@ class CourseModal extends Component {
               <CustomTextarea
                 id="my0:courseDescription"
                 name="course"
-                label="Course/Training Description"
+                label={this.renderLabel(
+                  translatedProps,
+                  "courseDescription",
+                  lang
+                )}
                 value={courseDescription}
                 handleChange={this.handleInputChange}
               />
@@ -354,12 +465,12 @@ class CourseModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
-        {this.handleRenderingSubmitButton()}
-            <Button className="btn-reset" onClick={this.clearForm}>
-              Reset
-            </Button>
+          {this.handleRenderingSubmitButton(lang)}
+          <Button className="btn-reset" onClick={this.clearForm}>
+            {resetLabel[lang]}
+          </Button>
           <Button variant="danger" onClick={onHide}>
-            Close
+            {cancelLabel[lang]}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -370,11 +481,17 @@ class CourseModal extends Component {
 const mapstateToProps = (state, ownProps) => {
   return {
     initialValues: state.cv["my0:hasCourse"][ownProps.id],
-    countries: retrieveCountryValues(state.utility.countryValues)
+    countries: retrieveCountryValues(state.utility.countryValues),
+    language: state.utility.language,
+    translatedPropsOrg: retrieveMainProperties(
+      state.utility["my0:Organization"]
+    ),
+    translatedPropsAddr: retrieveMainProperties(state.utility["my0:Address"]),
+    translatedProps: retrieveMainProperties(state.utility["my0:Course"])
   };
 };
 
 export default connect(
   mapstateToProps,
-  { createCourse, fetchCountries, updateCourse }
+  { createCourse, fetchCountries, updateCourse, fetchMainPropertiess }
 )(CourseModal);

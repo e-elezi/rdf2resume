@@ -21,6 +21,9 @@ import {
   CREATE_IM,
   UPDATE_IM,
   REMOVE_IM,
+  CREATE_WEBSITE,
+  UPDATE_WEBSITE,
+  REMOVE_WEBSITE,
   CREATE_REFERENCE,
   UPDATE_REFERENCE,
   REMOVE_REFERENCE,
@@ -60,6 +63,27 @@ export const updateOtherInfo = formValues => {
 export const removeOtherInfo = index => {
   return {
     type: REMOVE_OTHER_INFO,
+    payload: index
+  };
+};
+
+export const createWebsite = formValues => {
+  return {
+    type: CREATE_WEBSITE,
+    payload: formValues
+  };
+};
+
+export const updateWebsite = formValues => {
+  return {
+    type: UPDATE_WEBSITE,
+    payload: formValues
+  };
+};
+
+export const removeWebsite = index => {
+  return {
+    type: REMOVE_WEBSITE,
     payload: index
   };
 };

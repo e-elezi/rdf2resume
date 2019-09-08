@@ -347,3 +347,26 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.languagebox {
+  width: 55px !important;
+  border-color: white !important;
+}
+
+.languagebox > input {
+  text-transform: uppercase !important;
+  padding-top: 0px;
+  color: black;
+  font-weight: 400;
+  font-size: 1.3em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.rw-list-empty, .rw-list-option, .rw-list-optgroup {
+  padding: 1px 1px !important;
+}
+
+.rw-select.rw-select-bordered > .rw-btn.rw-btn-select > .rw-i .rw-i-caret-down {
+  padding-bottom: 3px !important;
+}
+

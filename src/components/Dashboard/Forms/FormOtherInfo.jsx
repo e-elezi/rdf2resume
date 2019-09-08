@@ -24,11 +24,35 @@ class FormOtherInfo extends Component {
 
   render() {
     let { showModal } = this.state;
+
+    let lang = this.props.language;
+
+    let titlePage = {
+      en: "Other Information",
+      fr: "Autres informations",
+      de: "Sonstige Informationen",
+      it: "Altre informazioni"
+    };
+
+    let titlesub = {
+      en: "Add other information",
+      fr: "Ajouter d'autres informations",
+      de: "Weitere Informationen hinzufügen",
+      it: "Aggiungi altre informazioni",
+    }
+
+    let noedu = {
+      en: "No other infos have been added until now.",
+      fr: "Aucune autre information n'a été ajoutée jusqu'à présent.",
+      de: "Es wurden bisher keine weiteren Infos hinzugefügt.",
+      it: "Non sono state aggiunte altre informazioni fino ad ora.",
+    }
+
     return (
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>Other Information</h4>
+            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -44,13 +68,13 @@ class FormOtherInfo extends Component {
                 />
               </Col>
               <Col md={10} className="button-label">
-                <p>Add other information</p>
+                <p>{titlesub[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
         {this.props.otherInfos.length === 0
-          ? "No other infos have been added until now."
+          ? noedu[lang]
           : ""}
         {this.props.otherInfos.map((otherinfo, index) => (
           <OtherInfoView
@@ -66,7 +90,8 @@ class FormOtherInfo extends Component {
 
 const mapStateToProps = state => {
   return {
-    otherInfos: state.cv["my0:hasOtherInfo"]
+    otherInfos: state.cv["my0:hasOtherInfo"],
+    language: state.utility.language
   };
 };
 
