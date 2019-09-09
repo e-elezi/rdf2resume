@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,8 +8,15 @@ import {
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
 import { removeReference } from "../../../../../actions";
-import ReferenceModal from './ReferenceModal';
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
+import ReferenceModal from "./ReferenceModal";
+import {
+  fetchCountries,
+  fetchTitleProperties
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveBaseProperties
+} from "../../../../../utilities/utilityQueries";
 
 class ReferenceCard extends Component {
   state = {
@@ -17,13 +24,18 @@ class ReferenceCard extends Component {
     key: 0
   };
 
+  componentWillMount() {
+    this.props.fetchCountries();
+    this.props.fetchTitleProperties();
+  }
+
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -33,32 +45,50 @@ class ReferenceCard extends Component {
     });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
-
     let {
-      "my0:title" : title,
-      "my0:firstName" : firstName,
-      "my0:lastName" : lastName,
-      "my0:address" : address,
+      "my0:title": title,
+      "my0:firstName": firstName,
+      "my0:lastName": lastName,
+      "my0:address": address,
       "my0:currentJob": currentJob,
-      "my0:email" : email,
-      "my0:hasTelephoneNumber" : hasTelephoneNumber,
-    } = this.props.referenceObj['my0:referenceBy'];
+      "my0:email": email,
+      "my0:hasTelephoneNumber": hasTelephoneNumber
+    } = this.props.referenceObj["my0:referenceBy"];
 
     let {
-      "my0:city" : city,
-      "my0:country" : country,
-      "my0:street" : street,
-      "my0:postalCode" : postalCode,
+      "my0:city": city,
+      "my0:country": country,
+      "my0:street": street,
+      "my0:postalCode": postalCode
     } = address;
 
-    let { 
-      "my0:jobTitle" : jobTitle,
-      "my0:employedIn": employedIn
-    } = currentJob;
+    let lang = this.props.language;
 
-    let {  "my0:organizatioName" : organizatioName } = employedIn;
-
+    let { "my0:jobTitle": jobTitle } = currentJob;
     return (
       <Card style={{ width: "18rem" }}>
         <Card.Header>
@@ -68,9 +98,7 @@ class ReferenceCard extends Component {
           />
           <FontAwesomeIcon
             icon={faTrash}
-            onClick={() => this.props.removeReference(
-              this.props.id
-            )}
+            onClick={() => this.props.removeReference(this.props.id)}
           />
         </Card.Header>
         <div className="card-icon">
@@ -78,17 +106,19 @@ class ReferenceCard extends Component {
         </div>
         <Card.Body>
           <Card.Title>
-            {getNameFromURI(title)} {firstName} {lastName}
+            {this.renderLabel(this.props.titles, title, lang)} {firstName}{" "}
+            {lastName}
           </Card.Title>
           <Card.Text>
-            {jobTitle} |{" "}
-            {organizatioName}
+            {jobTitle} | {currentJob["my0:employedIn"]["my0:organizationName"]}
           </Card.Text>
           <Card.Text>
-            {street}{" "}
-            {city}{" "}
-            {postalCode}{" "}
-            {getNameFromURI(country)}
+            <p>{street}</p>
+            <p>
+              {" "}
+              {postalCode} {" "} {city}{" "}
+            </p>
+            <p>{this.renderLabel(this.props.countries, country, lang)}</p>
           </Card.Text>
           <Card.Text>{hasTelephoneNumber}</Card.Text>
           <Card.Text>
@@ -107,8 +137,15 @@ class ReferenceCard extends Component {
   }
 }
 
-export default connect(
-  null,
-  { removeReference }
-)(ReferenceCard);
+const mapstateToProps = state => {
+  return {
+    language: state.utility.language,
+    countries: retrieveCountryValues(state.utility.countryValues),
+    titles: retrieveBaseProperties(state.utility.titleValues)
+  };
+};
 
+export default connect(
+  mapstateToProps,
+  { removeReference, fetchCountries, fetchTitleProperties }
+)(ReferenceCard);

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
-import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { createHonor, updateHonor } from "../../../../../actions";
 import { fetchMainPropertiess } from "../../../../../actions/utilityActions";
 import { retrieveMainProperties } from "../../../../../utilities/utilityQueries";
@@ -105,15 +103,26 @@ class HonorModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
+    let isDisabled = this.state.honor["my0:honortitle"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -179,7 +188,9 @@ class HonorModal extends Component {
                 <CustomInput
                   id="my0:honortitle"
                   name="honor"
-                  label={this.renderLabel(translatedProps, "honortitle", lang)}
+                  label={
+                    this.renderLabel(translatedProps, "honortitle", lang) + " *"
+                  }
                   type="text"
                   value={honortitle}
                   handleChange={this.handleInputChange}
@@ -200,14 +211,16 @@ class HonorModal extends Component {
                 />
               </Col>
             </Row>
-            <CustomInput
-              id="my0:honorIssuer"
-              name="honor"
-              label={this.renderLabel(translatedProps, "honorIssuer", lang)}
-              type="text"
-              value={honorIssuer}
-              handleChange={this.handleInputChange}
-            />
+            <div style={{ width: "100%", marginTop: "5px" }}>
+              <CustomInput
+                id="my0:honorIssuer"
+                name="honor"
+                label={this.renderLabel(translatedProps, "honorIssuer", lang)}
+                type="text"
+                value={honorIssuer}
+                handleChange={this.handleInputChange}
+              />
+            </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
               <CustomTextarea
                 id="my0:honorDescription"

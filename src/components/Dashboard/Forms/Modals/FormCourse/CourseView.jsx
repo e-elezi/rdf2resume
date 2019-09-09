@@ -5,17 +5,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
-  faMapMarkerAlt
+  faBookOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { removeCourse } from "../../../../../actions";
 import CourseModal from "./CourseModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
+import {
+  fetchCountries
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues
+} from "../../../../../utilities/utilityQueries";
 
 class CourseView extends Component {
   state = {
     editMode: false,
     key: 0
   };
+
+  componentDidMount() {
+    this.props.fetchCountries();
+  }
 
   handleCloseEdit = () => {
     let key = this.state.key
@@ -33,9 +42,32 @@ class CourseView extends Component {
     });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
     let {
-      "my0:hasCertification" : hasCertification,
+      //"my0:hasCertification" : hasCertification,
       "my0:courseTitle" : courseTitle,
       "my0:courseDescription" : courseDescription,
       // "my0:courseURL" : courseURL,
@@ -56,6 +88,8 @@ class CourseView extends Component {
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
     } = organizationAddress;
+
+    let lang = this.props.language;
 
     return (
       <React.Fragment>
@@ -91,18 +125,19 @@ class CourseView extends Component {
               }}
             >
               <b>
-                <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
+                <FontAwesomeIcon icon={faBookOpen} /> {` `}
                 {` `}
                 <a
                   href={organizationWebsite}
                   className="inline-link"
-                  target=" blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {organizationName}
-                </a>{" "}
+                </a>{" , "}
                 {` `}
                 {city} {` `}{" "}
-                {getNameFromURI(country)}
+                {this.renderLabel(this.props.countries, country, lang)}
               </b>
             </Row>
             <Row
@@ -113,15 +148,6 @@ class CourseView extends Component {
               }}
             >
               {courseDescription}
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-            Is Course certified? {hasCertification}
             </Row>
           </Col>
           <Col md={4}>
@@ -149,7 +175,14 @@ class CourseView extends Component {
   }
 }
 
+const mapstateToProps = (state) => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues),
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
-  { removeCourse }
+  mapstateToProps,
+  { removeCourse, fetchCountries }
 )(CourseView);

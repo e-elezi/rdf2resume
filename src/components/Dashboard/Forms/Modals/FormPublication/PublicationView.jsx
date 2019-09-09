@@ -63,7 +63,16 @@ class PublicationView extends Component {
                 display: "flex"
               }}
             >
-              <b>{publiciationTitle}</b>
+              <b>
+                <a
+                  href={publicationURL}
+                  className="inline-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {publiciationTitle}
+                </a>
+              </b>
             </Row>
             <Row
               style={{
@@ -75,13 +84,7 @@ class PublicationView extends Component {
               <b>
                 <FontAwesomeIcon icon={faBookOpen} />
                 {` `}
-                <a
-                  href={publicationURL}
-                  className="inline-link"
-                  target=" blank"
-                >
-                  {publiciationPublisher}
-                </a>{" "}
+                {publiciationPublisher}{" "}
               </b>
             </Row>
             <Row
@@ -101,7 +104,7 @@ class PublicationView extends Component {
               }}
             >
               <FontAwesomeIcon icon={faCopyright} />
-                {` `}
+              {` `}
               {publicationAuthor}
             </Row>
           </Col>

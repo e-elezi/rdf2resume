@@ -121,15 +121,26 @@ class ProjectModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
+    let isDisabled = this.state.project["my0:projectName"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -198,18 +209,17 @@ class ProjectModal extends Component {
                 <CustomInput
                   id="my0:projectName"
                   name="project"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "projectName",
-                    lang
-                  )}
+                  label={
+                    this.renderLabel(translatedProps, "projectName", lang) +
+                    " *"
+                  }
                   type="text"
                   value={projectName}
                   handleChange={this.handleInputChange}
                 />
               </Col>
               <Col md={3} style={{ paddingRight: "0" }}>
-              <CustomCheckbox
+                <CustomCheckbox
                   id="my0:projectIsCurrent"
                   type="checkbox"
                   label={this.renderLabel(
@@ -246,7 +256,7 @@ class ProjectModal extends Component {
                 />
               </Col>
               <Col md={6} style={{ paddingRight: "0" }}>
-              <CustomInput
+                <CustomInput
                   id="my0:projectEndDate"
                   name="project"
                   label={this.renderLabel(
@@ -260,31 +270,31 @@ class ProjectModal extends Component {
                 />
               </Col>
             </Row>
-            <CustomInput
-              id="my0:projectCreator"
-              name="project"
-              label={this.renderLabel(
-                translatedProps,
-                "projectCreator",
-                lang
-              )}
-              type="text"
-              value={projectCreator}
-              handleChange={this.handleInputChange}
-            />
-            <CustomInput
-              id="my0:projectURL"
-              name="project"
-              label={this.renderLabel(
-                translatedProps,
-                "projectURL",
-                lang
-              )}
-              type="text"
-              value={projectURL}
-              handleChange={this.handleInputChange}
-            />
-            <div style={{ width: '100%', marginTop: "10px" }}>
+            <div style={{ width: "100%", marginTop: "10px" }}>
+              <CustomInput
+                id="my0:projectCreator"
+                name="project"
+                label={this.renderLabel(
+                  translatedProps,
+                  "projectCreator",
+                  lang
+                )}
+                type="text"
+                value={projectCreator}
+                handleChange={this.handleInputChange}
+              />
+            </div>
+            <div style={{ width: "100%", marginTop: "10px" }}>
+              <CustomInput
+                id="my0:projectURL"
+                name="project"
+                label={this.renderLabel(translatedProps, "projectURL", lang)}
+                type="text"
+                value={projectURL}
+                handleChange={this.handleInputChange}
+              />
+            </div>
+            <div style={{ width: "100%", marginTop: "10px" }}>
               <CustomTextarea
                 id="my0:projectDescription"
                 name="project"

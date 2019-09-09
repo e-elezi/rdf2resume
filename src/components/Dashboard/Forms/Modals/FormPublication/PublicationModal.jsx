@@ -111,15 +111,16 @@ class PublicationModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
+    let disabled = this.state.publication['my0:publiciationTitle'] === '';
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleSave}>
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleUpdate}>
           {updateLabel[lang]}
         </Button>
       );
@@ -191,7 +192,7 @@ class PublicationModal extends Component {
                     translatedProps,
                     "publiciationTitle",
                     lang
-                  )}
+                  ) + ' *'}
                   type="text"
                   value={publiciationTitle}
                   handleChange={this.handleInputChange}
@@ -212,6 +213,7 @@ class PublicationModal extends Component {
                 />
               </Col>
             </Row>
+            <div style={{ width: '100%', marginTop: '5px'}}>
             <CustomInput
               id="my0:publiciationPublisher"
               name="publication"
@@ -224,6 +226,8 @@ class PublicationModal extends Component {
               value={publiciationPublisher}
               handleChange={this.handleInputChange}
             />
+            </div>
+            <div style={{ width: '100%', marginTop: '5px'}}>
             <CustomInput
               id="my0:publicationAuthor"
               name="publication"
@@ -236,6 +240,8 @@ class PublicationModal extends Component {
               value={publicationAuthor}
               handleChange={this.handleInputChange}
             />
+            </div>
+            <div style={{ width: '100%', marginTop: '5px'}}>
             <CustomInput
               id="my0:publicationURL"
               name="publication"
@@ -243,6 +249,7 @@ class PublicationModal extends Component {
               value={publicationURL}
               handleChange={this.handleInputChange}
             />
+            </div>
             <div style={{ width: '100%', marginTop: "10px" }}>
               <CustomTextarea
                 id="my0:publicationDescription"

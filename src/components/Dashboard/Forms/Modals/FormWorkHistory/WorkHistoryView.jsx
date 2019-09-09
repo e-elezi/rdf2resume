@@ -8,8 +8,15 @@ import {
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { removeWorkHistory } from "../../../../../actions";
+import {
+  retrieveCountryValues,
+  retrieveBaseProperties
+} from "../../../../../utilities/utilityQueries";
+import {
+  fetchCVJobModes,
+  fetchCountries
+} from "../../../../../actions/utilityActions";
 import WorkHistoryModal from "./WorkHistoryModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
 class WorkHistoryReview extends Component {
   state = {
@@ -17,13 +24,18 @@ class WorkHistoryReview extends Component {
     key: 0
   };
 
+  componentDidMount() {
+    this.props.fetchCVJobModes();
+    this.props.fetchCountries();
+  }
+
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -33,30 +45,61 @@ class WorkHistoryReview extends Component {
     });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
     let {
-      "my0:startDate" : startDate,
-      "my0:endDate" : endDate,
-      "my0:jobTitle" : jobTitle,
-      "my0:jobMode" : jobMode,
+      "my0:startDate": startDate,
+      "my0:endDate": endDate,
+      "my0:jobTitle": jobTitle,
+      "my0:jobMode": jobMode,
       // "my0:careerLevel" : careerLevel,
-      "my0:jobDescription" : jobDescription,
-      // "my0:isCurrent" : isCurrent
+      "my0:jobDescription": jobDescription,
+      "my0:isCurrent": isCurrent
     } = this.props.workHistory;
 
     let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationAddress" : organizationAddress,
-      "my0:organizationWebsite" : organizationWebsite,
-    } = this.props.workHistory['my0:employedIn'];
+      "my0:organizationName": organizationName,
+      "my0:organizationAddress": organizationAddress,
+      "my0:organizationWebsite": organizationWebsite
+    } = this.props.workHistory["my0:employedIn"];
 
     let {
-      "my0:city" : city,
-      "my0:country" : country
+      "my0:city": city,
+      "my0:country": country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
     } = organizationAddress;
 
+    let current = {
+      en: "Now",
+      de: "Jetzt",
+      fr: "A présent",
+      it: "Ora"
+    };
+
+    let lang = this.props.language;
 
     return (
       <React.Fragment>
@@ -69,7 +112,7 @@ class WorkHistoryReview extends Component {
         >
           <Col md={2}>
             <p>
-              {startDate} - {endDate}
+              {startDate} -{isCurrent ? current[lang] : endDate}
             </p>
           </Col>
           <Col md={6}>
@@ -81,7 +124,8 @@ class WorkHistoryReview extends Component {
               }}
             >
               <b>
-                {jobTitle} | { getNameFromURI(jobMode)}
+                {jobTitle} |{" "}
+                {this.renderLabel(this.props.jobmodes, jobMode, lang)}
               </b>
             </Row>
             <Row
@@ -97,13 +141,13 @@ class WorkHistoryReview extends Component {
                 <a
                   href={organizationWebsite}
                   className="inline-link"
-                  target=" blank"
+                  rel="noopener noreferrer" 
+                  target="_blank"
                 >
                   {organizationName}
-                </a>{" "}
-                {` `}
+                </a>{" , "}
                 {city} {` `}{" "}
-                {getNameFromURI(country)}
+                {this.renderLabel(this.props.countries, country, lang)}
               </b>
             </Row>
             <Row
@@ -123,8 +167,7 @@ class WorkHistoryReview extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeWorkHistory(this.props.id
-              )}
+              onClick={() => this.props.removeWorkHistory(this.props.id)}
             />
           </Col>
         </Row>
@@ -140,7 +183,19 @@ class WorkHistoryReview extends Component {
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    language: state.utility.language,
+    countries: retrieveCountryValues(state.utility.countryValues),
+    jobmodes: retrieveBaseProperties(state.utility.jobModeValues)
+  };
+};
+
 export default connect(
-  null,
-  { removeWorkHistory }
+  mapstateToProps,
+  {
+    removeWorkHistory,
+    fetchCountries,
+    fetchCVJobModes,
+  }
 )(WorkHistoryReview);

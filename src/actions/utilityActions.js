@@ -1,21 +1,8 @@
 import endpoint from "../api/endpoint";
 import {
-  // fetchAllCVCareerLevels,
-  // fetchAllCVJobModes,
-  // fetchAllCompanySizes,
   fetchAllCountries,
-  // fetchAllEduDegrees,
-  // fetchAllGenders,
-  // fetchAllLanguageSkillsProficiencies,
-  // fetchAllOtherCVInfoTypes,
-  // fetchAllTitleProperties,
   fetchMainProperties,
   fetchBaseProperties
-  // fetchAllIMTypes,
-  // fetchAllIndustryTypes,
-  // fetchAllPatentStatuses,
-  // fetchAllRegions,
-  // fetchAllWebsiteTypes
 } from "../utilities/utilityQueries";
 import {
   FETCH_ALL_COMPANY_SIZES,
@@ -34,6 +21,7 @@ import {
   FETCH_MAIN_PROPERTIES,
   FETCH_ALL_TITLE_PROPERTIES,
   TOGGLE_SPINNER,
+  UPDATE_ERROR,
   UPDATE_LANGUAGE
 } from "./types";
 
@@ -48,6 +36,13 @@ export const fetchCountries = () => async dispatch => {
     type: FETCH_ALL_COUNTRIES,
     payload: response.data.results.bindings
   });
+};
+
+export const updateError = (value) => {
+  return {
+    type: UPDATE_ERROR,
+    payload: value
+  };
 };
 
 export const fetchCVCareerLevels = () => async dispatch => {

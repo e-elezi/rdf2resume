@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
+import Swal from 'sweetalert2';
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -23,7 +24,9 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
+  updateLabel,
+  startDate,
+  endDate
 } from "../../../../../utilities/utilityFunctions";
 
 class WorkHistoryModal extends Component {
@@ -131,6 +134,32 @@ class WorkHistoryModal extends Component {
   handleInputChange = e => {
     let obj = { ...this.state.workHistory };
     let label = e.target.id;
+    if(label === 'my0:startDate'){
+      if(e.target.value > new Date().toJSON().slice(0,10).replace(/-/g,'-')){
+        Swal.fire({
+          title: 'Warning!',
+          text: startDate[this.props.language],
+          type: 'warning',
+          confirmButtonColor: '#4bb3cc',
+          heightAuto: false,
+          confirmButtonText: 'Okay'
+        })
+        return ;
+      }
+    }
+    if(label === 'my0:endDate'){
+      if(e.target.value < this.state.workHistory['my0:startDate']){
+        Swal.fire({
+          title: 'Warning!',
+          text: endDate[this.props.language],
+          type: 'warning',
+          confirmButtonColor: '#4bb3cc',
+          heightAuto: false,
+          confirmButtonText: 'Okay'
+        })
+        return ;
+      }
+    }
     if (e.target.name === "organization") {
       obj["my0:employedIn"][label] = e.target.value;
     } else if (e.target.name === "address") {
@@ -172,15 +201,19 @@ class WorkHistoryModal extends Component {
   };
 
   handleRenderingSubmitButton = lang => {
+    let isDisabled =
+      this.state.workHistory["my0:startDate"] === "" ||
+      this.state.workHistory["my0:employedIn"]["my0:organizationName"] === "" ||
+      this.state.workHistory["my0:jobTitle"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleSave}>
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleUpdate}>
           {updateLabel[lang]}
         </Button>
       );
@@ -294,7 +327,10 @@ class WorkHistoryModal extends Component {
                   <CustomInput
                     id="my0:startDate"
                     name="workHistory"
-                    label={this.renderLabel(translatedProps, "startDate", lang)}
+                    label={
+                      this.renderLabel(translatedProps, "startDate", lang) +
+                      " *"
+                    }
                     type="date"
                     value={startDate}
                     handleChange={this.handleInputChange}
@@ -305,7 +341,8 @@ class WorkHistoryModal extends Component {
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
                     display: "flex",
-                    marginLeft: "0px"
+                    marginLeft: "0px",
+                    marginTop: "10px"
                   }}
                 >
                   <CustomInput
@@ -325,21 +362,23 @@ class WorkHistoryModal extends Component {
                     marginLeft: "0px"
                   }}
                 >
-                  <div style={{ marginTop: "5px", width: "100%" }}>
+                  <div style={{ width: "100%" }}>
                     <CustomInput
                       id="my0:organizationName"
                       name="organization"
-                      label={this.renderLabel(
-                        translatedPropsOrg,
-                        "organizationName",
-                        lang
-                      )}
+                      label={
+                        this.renderLabel(
+                          translatedPropsOrg,
+                          "organizationName",
+                          lang
+                        ) + " *"
+                      }
                       type="text"
                       value={organizationName}
                       handleChange={this.handleInputChange}
                     />
                   </div>
-                  <div style={{ marginTop: "5px", width: "100%" }}>
+                  <div style={{ width: "100%" }}>
                     <CustomInput
                       id="my0:organizationWebsite"
                       name="organization"
@@ -353,17 +392,20 @@ class WorkHistoryModal extends Component {
                       handleChange={this.handleInputChange}
                     />
                   </div>
-                  <CustomInput
-                    id="my0:organizationPhoneNumber"
-                    name="organization"
-                    label={this.renderLabel(
-                      translatedPropsOrg,
-                      "organizationPhoneNumber",
-                      lang
-                    )}
-                    value={organizationPhoneNumber}
-                    handleChange={this.handleInputChange}
-                  />
+                  <div style={{ marginTop: "5px", width: "100%" }}>
+                    <CustomInput
+                      id="my0:organizationPhoneNumber"
+                      name="organization"
+                      label={this.renderLabel(
+                        translatedPropsOrg,
+                        "organizationPhoneNumber",
+                        lang
+                      )}
+                      value={organizationPhoneNumber}
+                      handleChange={this.handleInputChange}
+                    />
+                  </div>
+
                   <Row>
                     <Col sm={6}>
                       <CustomInput
@@ -397,7 +439,8 @@ class WorkHistoryModal extends Component {
                       width: "100%",
                       justifyContent: "left",
                       marginLeft: "0px",
-                      marginBottom: "8px"
+                      marginBottom: "8px",
+                      marginTop: '5px'
                     }}
                   >
                     <label className="label-rw">
@@ -479,7 +522,9 @@ class WorkHistoryModal extends Component {
                 <CustomInput
                   id="my0:jobTitle"
                   name="workHistory"
-                  label={this.renderLabel(translatedProps, "jobTitle", lang)}
+                  label={
+                    this.renderLabel(translatedProps, "jobTitle", lang) + " *"
+                  }
                   type="text"
                   value={jobTitle}
                   handleChange={this.handleInputChange}
@@ -489,7 +534,8 @@ class WorkHistoryModal extends Component {
                     width: "100%",
                     justifyContent: "left",
                     marginLeft: "0px",
-                    marginBottom: "8px"
+                    marginBottom: "8px",
+                    marginTop: '5px'
                   }}
                 >
                   <label className="label-rw">

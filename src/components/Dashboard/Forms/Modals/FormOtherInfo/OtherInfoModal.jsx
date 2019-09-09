@@ -199,7 +199,7 @@ class OtherInfoModal extends Component {
                 translatedProps,
                 "otherInfoType",
                 lang
-              )}</label>
+              ) + ' *'}</label>
             <Combobox
               name="otherInfoType"
               placeholder={this.renderLabel(
@@ -226,7 +226,7 @@ class OtherInfoModal extends Component {
                 translatedProps,
                 "otherInfoDescription",
                 lang
-              )}
+              ) + ' *'}
               value={otherInfoDescription}
               handleChange={this.handleInputChange}
             />

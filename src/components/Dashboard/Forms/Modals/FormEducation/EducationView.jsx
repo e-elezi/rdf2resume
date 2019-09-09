@@ -9,7 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removeEducation } from "../../../../../actions";
 import EducationModal from "./EducationModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
+import {
+  fetchCountries,
+  fetchEduDegrees
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveCountryValues,
+  retrieveBaseProperties
+} from "../../../../../utilities/utilityQueries";
 
 class EducationView extends Component {
   state = {
@@ -33,16 +40,39 @@ class EducationView extends Component {
     });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
 
     let {
       "my0:eduStartDate" : eduStartDate,
       "my0:eduGradDate" : eduGradDate,
       "my0:degreeType" : degreeType,
-      "my0:eduMajor" : eduMajor,
+      "my0:degree" : degree,
       // "my0:eduMinor" : eduMinor,
       "my0:eduDescription" : eduDescription,
-      // "my0:isEduCurrent" : isEduCurrent
+      "my0:isEduCurrent" : isEduCurrent,
       "my0:studiedIn" : studiedIn
     } = this.props.educationObj;
 
@@ -59,6 +89,15 @@ class EducationView extends Component {
       // "my0:postalCode" : postalCode,
     } = organizationAddress;
 
+    let current = {
+      en: "Now",
+      de: "Jetzt",
+      fr: "A présent",
+      it: "Ora"
+    };
+    
+    let lang = this.props.language;
+
 
     return (
       <React.Fragment>
@@ -71,7 +110,7 @@ class EducationView extends Component {
         >
           <Col md={2}>
             <p>
-              {eduStartDate} - {eduGradDate}
+              {eduStartDate} - {isEduCurrent ? current[lang] : eduGradDate}
             </p>
           </Col>
           <Col md={6}>
@@ -83,7 +122,7 @@ class EducationView extends Component {
               }}
             >
               <b>
-                {getNameFromURI(degreeType)} | {eduMajor}
+            {degree} | {this.renderLabel(this.props.eduDegrees, degreeType, lang)}
               </b>
             </Row>
             <Row
@@ -99,15 +138,15 @@ class EducationView extends Component {
                 <a
                   href={organizationWebsite}
                   className="inline-link"
-                  target=" blank"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {organizationName}
-                </a>{" "}
-                {` `}
+                </a>{" , "}
                 {
                   city
                 } {` `}{" "}
-                {getNameFromURI(country)}
+                {this.renderLabel(this.props.countries, country, lang)}
               </b>
             </Row>
             <Row
@@ -143,7 +182,15 @@ class EducationView extends Component {
   }
 }
 
+const mapstateToProps = (state) => {
+  return {
+    countries: retrieveCountryValues(state.utility.countryValues),
+    eduDegrees: retrieveBaseProperties(state.utility.eduDegreeValues),
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
-  { removeEducation }
+  mapstateToProps,
+  { removeEducation, fetchCountries, fetchEduDegrees }
 )(EducationView);

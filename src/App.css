@@ -349,13 +349,16 @@
 }
 
 .languagebox {
-  width: 55px !important;
-  border-color: white !important;
+  width: 70px !important;
+  border-radius: 5px !important;
+  border: 2px solid #4bb3cc !important;
+
 }
 
 .languagebox > input {
   text-transform: uppercase !important;
   padding-top: 0px;
+  padding-left: 5px;
   color: black;
   font-weight: 400;
   font-size: 1.3em;
@@ -366,7 +369,28 @@
   padding: 1px 1px !important;
 }
 
-.rw-select.rw-select-bordered > .rw-btn.rw-btn-select > .rw-i .rw-i-caret-down {
-  padding-bottom: 3px !important;
+.rw-btn.rw-btn-select {
+  padding-bottom: 4px !important;
 }
 
+.rw-list-option > span {
+  padding-left: 5px !important;
+}
+
+.error {
+  color: white;
+  background-color: red;
+  border-radius: 2px;
+  padding: 3px;
+  font-size: 10px;
+}
+
+.fa-book-open {
+  color: #4bb3cc !important;
+}
+
+.fa-copyright {
+  color: #4bb3cc !important;
+  margin-right: 5px;
+  margin-top: 4px;
+}

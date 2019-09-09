@@ -159,15 +159,20 @@ class ReferenceModal extends Component {
   };
 
   handleRenderingSubmitButton = lang => {
+    let disabled =
+    this.state.reference["my0:referenceBy"]["my0:firstName"] === "" ||
+    this.state.reference["my0:referenceBy"]["my0:lastName"] === "" ||
+    this.state.reference["my0:referenceBy"]['my0:currentJob']['my0:jobTitle'] === "" ||
+    this.state.reference["my0:referenceBy"]['my0:currentJob']['my0:employedIn']['my0:organizationName'] === ""
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleSave}>
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleUpdate}>
           {updateLabel[lang]}
         </Button>
       );
@@ -248,18 +253,7 @@ class ReferenceModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={4}>{this.props.isUpdate ? up[lang] : add[lang] }</Col>
-              <Col md={4}>
-                <Row
-                  style={{
-                    width: "100%",
-                    justifyContent: "left",
-                    marginLeft: "0px",
-                    marginBottom: "8px"
-                  }}
-                ></Row>
-              </Col>
-              <Col md={4} />
+              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang] }</Col>
             </Row>
           </Modal.Title>
         </Modal.Header>
@@ -297,7 +291,7 @@ class ReferenceModal extends Component {
               <CustomInput
                 id="my0:firstName"
                 name="person"
-                label={this.renderLabel(translatedProps, "firstName", lang)}
+                label={this.renderLabel(translatedProps, "firstName", lang) + ' *'}
                 type="text"
                 value={firstName}
                 handleChange={this.handleInputChange}
@@ -306,7 +300,7 @@ class ReferenceModal extends Component {
             <Col md={4}>
               <CustomInput
                 id="my0:lastName"
-                label={this.renderLabel(translatedProps, "lastName", lang)}
+                label={this.renderLabel(translatedProps, "lastName", lang) + ' *'}
                 name="person"
                 type="text"
                 value={lastName}
@@ -319,7 +313,7 @@ class ReferenceModal extends Component {
               <CustomInput
                 id="my0:jobTitle"
                 name="workHistory"
-                label={this.renderLabel(translatedPropsWork, "jobTitle", lang)}
+                label={this.renderLabel(translatedPropsWork, "jobTitle", lang) + ' *'}
                 type="text"
                 value={jobTitle}
                 handleChange={this.handleInputChange}
@@ -333,7 +327,7 @@ class ReferenceModal extends Component {
                   translatedPropsOrg,
                   "organizationName",
                   lang
-                )}
+                ) + ' *'}
                 type="text"
                 value={organizationName}
                 handleChange={this.handleInputChange}
@@ -416,9 +410,9 @@ class ReferenceModal extends Component {
           />
           <CustomInput
             id="my0:email"
-            label={this.renderLabel(translatedProps, "email", lang)}
+            label={this.renderLabel(translatedProps, "email", lang) + ' *'}
             name="person"
-            type="email"
+            type="text"
             value={email}
             handleChange={this.handleInputChange}
           />

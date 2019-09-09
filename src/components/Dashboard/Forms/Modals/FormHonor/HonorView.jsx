@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
-  faMapMarkerAlt
+  faBookOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { removeHonor } from "../../../../../actions";
 import HonorModal from "./HonorModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
 
 class HonorView extends Component {
   state = {
@@ -75,7 +74,7 @@ class HonorView extends Component {
               }}
             >
               <b>
-                <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
+                <FontAwesomeIcon icon={faBookOpen} /> {` `}
                 {` `}
                   {honorIssuer}
               </b>

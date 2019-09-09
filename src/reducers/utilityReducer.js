@@ -15,6 +15,7 @@ import {
   FETCH_ALL_SELF_ASSESSMENT_PROPERTIES,
   FETCH_ALL_TITLE_PROPERTIES,
   TOGGLE_SPINNER,
+  UPDATE_ERROR,
   UPDATE_LANGUAGE,
   FETCH_MAIN_PROPERTIES
 } from "../actions/types";
@@ -53,6 +54,11 @@ const INITIAL_STATE = {
   titleValues: [],
   eduDegreeValues: [],
   showSpinner: false,
+  error: {
+    'my0:firstName': false,
+    'my0:lastName': false,
+    'my0:email': false
+  },
   language: 'en'
 };
 
@@ -80,6 +86,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, titleValues: action.payload };
     case TOGGLE_SPINNER:
         return { ...state, showSpinner: action.payload };
+    case UPDATE_ERROR:
+      let stats = {...state['error']};
+      stats[action.payload.object] = action.payload.value;
+      return { ...state, error: stats };
     case UPDATE_LANGUAGE:
         return { ...state, language: action.payload };
     case FETCH_ALL_IMS:

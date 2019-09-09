@@ -108,6 +108,7 @@ class FormSubmit extends Component {
                 }
                 href={this.state.jsonPath}
                 target="_blank"
+                rel="noopener noreferrer"
                 download
                 hidden
               ></a>
@@ -139,6 +140,7 @@ class FormSubmit extends Component {
                   style={{marginTop: '150px'}}
                   href={this.state.pdfPath + ".tex"}
                   target="_blank"
+                  rel="noopener noreferrer"
                   download
                 >Download .Tex file</a>
               ) : (

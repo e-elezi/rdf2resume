@@ -81,7 +81,6 @@ class FormReference extends Component {
                   id={index}
                 />
               );
-            return "";
           })}
         </Row>
       </React.Fragment>

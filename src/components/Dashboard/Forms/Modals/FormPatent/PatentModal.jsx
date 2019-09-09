@@ -123,15 +123,19 @@ class PatentModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
+    let isDisabled =
+      this.state.patent["my0:patentTitle"] === "" ||
+      this.state.patent["my0:patentOffice"] === "" ||
+      this.state.patent["my0:patentNumber"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleSave}>
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleUpdate}>
           {updateLabel[lang]}
         </Button>
       );
@@ -212,7 +216,10 @@ class PatentModal extends Component {
                 <CustomInput
                   id="my0:patentTitle"
                   name="patent"
-                  label={this.renderLabel(translatedProps, "patentTitle", lang)}
+                  label={
+                    this.renderLabel(translatedProps, "patentTitle", lang) +
+                    " *"
+                  }
                   type="text"
                   value={patentTitle}
                   handleChange={this.handleInputChange}
@@ -246,11 +253,10 @@ class PatentModal extends Component {
                 <CustomInput
                   id="my0:patentOffice"
                   name="patent"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "patentOffice",
-                    lang
-                  )}
+                  label={
+                    this.renderLabel(translatedProps, "patentOffice", lang) +
+                    " *"
+                  }
                   type="text"
                   value={patentOffice}
                   handleChange={this.handleInputChange}
@@ -260,11 +266,10 @@ class PatentModal extends Component {
                 <CustomInput
                   id="my0:patentNumber"
                   name="patent"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "patentNumber",
-                    lang
-                  )}
+                  label={
+                    this.renderLabel(translatedProps, "patentNumber", lang) +
+                    " *"
+                  }
                   type="text"
                   value={patentNumber}
                   handleChange={this.handleInputChange}
@@ -293,8 +298,15 @@ class PatentModal extends Component {
                   value={patentInventor}
                   handleChange={this.handleInputChange}
                 />
+                <CustomInput
+                  id="my0:patentURL"
+                  name="patent"
+                  label={this.renderLabel(translatedProps, "patentURL", lang)}
+                  value={patentURL}
+                  handleChange={this.handleInputChange}
+                />
               </Col>
-              <Col md={3} style={{ paddingRight: "0" }}>
+              <Col md={3} style={{ paddingRight: "0", paddingTop: '20px' }}>
                 <CustomRadioGroup
                   items={this.props.statuses}
                   lang={lang}
@@ -304,14 +316,6 @@ class PatentModal extends Component {
                 />
               </Col>
             </Row>
-
-            <CustomInput
-              id="my0:patentURL"
-              name="patent"
-              label={this.renderLabel(translatedProps, "patentURL", lang)}
-              value={patentURL}
-              handleChange={this.handleInputChange}
-            />
             <div style={{ width: "100%", marginTop: "10px" }}>
               <CustomTextarea
                 id="my0:patentDescription"

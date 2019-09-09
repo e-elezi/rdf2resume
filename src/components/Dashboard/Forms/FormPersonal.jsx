@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import CustomRadioGroup from "../../core/CustomRadioGroup";
 import { Combobox, Multiselect } from "react-widgets";
+import Swal from 'sweetalert2';
 import { connect } from "react-redux";
 import CustomTextarea from "../../core/CustomTextarea";
 import {
@@ -24,6 +25,7 @@ import {
   fetchTitleProperties,
   fetchAllWebsiteTypess,
   fetchAllIMTypess,
+  updateError,
   fetchMainPropertiess
 } from "../../../actions/utilityActions";
 import {
@@ -69,9 +71,28 @@ class FormPersonal extends Component {
     });
   };
 
-  handleMultiSelectChange = (name, value) => {
+  handleMultiSelectChange = (name, value, lang) => {
     let myarr = [];
+    let texts = {
+      "en": 'You can not add more than 2',
+      "de": "Du kannst nicht mehr als 2 hinzufügen.",
+      "it": "Non è possibile aggiungere più del 2",
+      "fr": "Vous ne pouvez pas ajouter plus de 2"
+    }
     let length = value.length;
+    if(name === 'hasCitizenship' || name === 'hasNationality'){
+      if(value.length >= 3){
+        Swal.fire({
+          title: 'Warning!',
+          text: texts[lang],
+          type: 'warning',
+          confirmButtonColor: '#4bb3cc',
+          heightAuto: false,
+          confirmButtonText: 'Okay'
+        })
+        return ;
+      }
+    }
     for (let i = 0; i < length; i++) {
       myarr.push(value[i]["@type"]);
     }
@@ -93,7 +114,6 @@ class FormPersonal extends Component {
   removeWebsite = index => {
     this.props.removeWebsite(index);
   };
-
 
   addInstantMessaging = id => {
     this.props.createIM();
@@ -160,6 +180,23 @@ class FormPersonal extends Component {
     }
   }
 
+  handleBlur = e => {
+    let label = e.target.id;
+    if (label === "firstName" || label === "lastName" || label === "email") {
+      if (e.target.value === "") {
+        this.props.updateError({
+          object: "my0:" + label,
+          value: true
+        });
+      } else {
+        this.props.updateError({
+          object: "my0:" + label,
+          value: false
+        });
+      }
+    }
+  };
+
   render() {
     let {
       "my0:firstName": firstName,
@@ -190,33 +227,40 @@ class FormPersonal extends Component {
       en: "Accepted formats: PNG, JPG.",
       fr: "Formats acceptés : PNG, JPG.",
       de: "Akzeptierte Formate: PNG, JPG.",
-      it: "Formati accettati: PNG, JPG.",
-    }
+      it: "Formati accettati: PNG, JPG."
+    };
 
     let sizemax = {
       en: "Max. size: 1MB.",
       fr: "Taille maxi : 1MB.",
       de: "Max. Größe: 1MB.",
-      it: "Dimensione max.: 1MB.",
-    }
+      it: "Dimensione max.: 1MB."
+    };
 
     let website = {
-      "en": "Website",
-      "de": "Website",
-      "fr": "Site web",
-      "it": "Sito web"
-    }
+      en: "Website",
+      de: "Website",
+      fr: "Site web",
+      it: "Sito web"
+    };
 
     let im = {
-      "en": "Instant Messaging",
-      "de": "Sofortnachricht",
-      "fr": "Message instantané",
-      "it": "Messaggio istantaneo"
-}
+      en: "Instant Messaging",
+      de: "Sofortnachricht",
+      fr: "Message instantané",
+      it: "Messaggio istantaneo"
+    };
 
-    let { translatedProps, translatedPropsAddr, translatedPropsWeb, translatedPropsIM } = this.props;
+    let {
+      translatedProps,
+      translatedPropsAddr,
+      translatedPropsWeb,
+      translatedPropsIM
+    } = this.props;
 
     let lang = this.props.language;
+
+    let error = this.props.error;
 
     let instantMessaging = this.props.aboutperson["my0:hasInstantMessaging"];
 
@@ -252,29 +296,47 @@ class FormPersonal extends Component {
             <div className="col col-sm-6">
               <CustomInput
                 id="firstName"
-                label={this.renderLabel(translatedProps, "firstName", lang)}
+                label={
+                  this.renderLabel(translatedProps, "firstName", lang) + " *"
+                }
                 type="text"
+                handleBlurEvent={this.handleBlur}
                 value={firstName}
                 handleChange={this.handleInputChange}
               />
+              {error["my0:firstName"] ? (
+                <span className="error">Required</span>
+              ) : (
+                ""
+              )}
             </div>
             <div className="col col-sm-6">
               <CustomInput
                 id="lastName"
-                label={this.renderLabel(translatedProps, "lastName", lang)}
+                label={
+                  this.renderLabel(translatedProps, "lastName", lang) + " *"
+                }
                 type="text"
                 value={lastName}
+                handleBlurEvent={this.handleBlur}
                 handleChange={this.handleInputChange}
               />
+              {error["my0:lastName"] ? (
+                <span className="error">Required</span>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <CustomInput
             id="email"
-            label={this.renderLabel(translatedProps, "email", lang)}
-            type="email"
+            label={this.renderLabel(translatedProps, "email", lang) + " *"}
+            type="text"
+            handleBlurEvent={this.handleBlur}
             value={email}
             handleChange={this.handleInputChange}
           />
+          {error["my0:email"] ? <span className="error">Required</span> : ""}
           <CustomInput
             id="phoneNumber"
             label={this.renderLabel(translatedProps, "phoneNumber", lang)}
@@ -361,7 +423,7 @@ class FormPersonal extends Component {
             minLength={3}
             filter="contains"
             onChange={value =>
-              this.handleMultiSelectChange("hasCitizenship", value)
+              this.handleMultiSelectChange("hasCitizenship", value, lang)
             }
           />
           <label className="label-rw">
@@ -382,7 +444,7 @@ class FormPersonal extends Component {
             minLength={3}
             filter="contains"
             onChange={value =>
-              this.handleMultiSelectChange("hasNationality", value)
+              this.handleMultiSelectChange("hasNationality", value, lang)
             }
           />
           <CustomInput
@@ -401,9 +463,7 @@ class FormPersonal extends Component {
             <Col md={2} className="p-0 instant-add-wrapper">
               <AddButton
                 classnames="add-button small-button"
-                handleClick={() =>
-                  this.addWebsite("hasWebsite")
-                }
+                handleClick={() => this.addWebsite("hasWebsite")}
               />
             </Col>
           </Row>
@@ -417,26 +477,30 @@ class FormPersonal extends Component {
                     textField={lang}
                     valueField="@type"
                     value={member["my0:websiteType"]}
-                    placeholder={this.renderLabel(translatedPropsWeb, "websiteType", lang)}
+                    placeholder={this.renderLabel(
+                      translatedPropsWeb,
+                      "websiteType",
+                      lang
+                    )}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
-                      this.updateWebsite(
-                        "my0:websiteType",
-                        value,
-                        index
-                      )
+                      this.updateWebsite("my0:websiteType", value, index)
                     }
                   />
                 </div>
               </Col>
               <Col md={7} style={{ marginTop: "7px" }}>
-              <CustomInput
+                <CustomInput
                   id="websiteURL"
-                  label={this.renderLabel(translatedPropsWeb, "websiteURL", lang)}
+                  label={this.renderLabel(
+                    translatedPropsWeb,
+                    "websiteURL",
+                    lang
+                  )}
                   type="text"
-                  value={member['my0:websiteURL']}
+                  value={member["my0:websiteURL"]}
                   handleChange={e =>
                     this.updateWebsite("my0:websiteURL", e.target.value, index)
                   }
@@ -476,7 +540,11 @@ class FormPersonal extends Component {
                     textField={lang}
                     valueField="@type"
                     value={member["my0:instantMessagingName"]}
-                    placeholder={this.renderLabel(translatedPropsIM, "instantMessagingName", lang)}
+                    placeholder={this.renderLabel(
+                      translatedPropsIM,
+                      "instantMessagingName",
+                      lang
+                    )}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
@@ -493,7 +561,11 @@ class FormPersonal extends Component {
               <Col md={5} style={{ marginTop: "7px" }}>
                 <CustomInput
                   id="my0:instantMessagingUsername"
-                  label={this.renderLabel(translatedPropsIM, "instantMessagingUsername", lang)}
+                  label={this.renderLabel(
+                    translatedPropsIM,
+                    "instantMessagingUsername",
+                    lang
+                  )}
                   type="text"
                   value={member["my0:instantMessagingUsername"]}
                   handleChange={e =>
@@ -601,7 +673,8 @@ const mapstateToProps = state => {
     translatedPropsIM: retrieveMainProperties(
       state.utility["my0:InstantMessaging"]
     ),
-    aboutperson: state.cv["my0:aboutPerson"]
+    aboutperson: state.cv["my0:aboutPerson"],
+    error: state.utility.error
   };
 };
 
@@ -618,6 +691,7 @@ export default connect(
     createIM,
     updateIM,
     removeIM,
+    updateError,
     createWebsite,
     updateWebsite,
     removeWebsite

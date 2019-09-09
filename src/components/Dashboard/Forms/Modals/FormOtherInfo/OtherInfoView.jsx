@@ -5,13 +5,22 @@ import { removeOtherInfo } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import OtherInfoModal from "./OtherInfoModal";
-import { getNameFromURI  } from '../../../../../utilities/utilityFunctions'
+import {
+  fetchOtherCVInfoTypes
+} from "../../../../../actions/utilityActions";
+import {
+  retrieveBaseProperties
+} from "../../../../../utilities/utilityQueries";
 
 class OtherInfoView extends Component {
   state = {
     editMode: false,
     key: 0
   };
+
+  componentWillMount() {
+    this.props.fetchOtherCVInfoTypes();
+  }
 
   handleCloseEdit = () => {
     let key = this.state.key
@@ -28,9 +37,40 @@ class OtherInfoView extends Component {
       editMode: true
     });
   };
+
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
   
   render() {
     let { otherInfoObject } = this.props;
+    let lang = this.props.language;
+    let title = {
+      "en": "Category",
+      "de": "Kategorie",
+      "it": "Categoria",
+      "fr": "Catégorie"
+    }
+
     return (
       <React.Fragment>
         <Row
@@ -42,7 +82,8 @@ class OtherInfoView extends Component {
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              <u>Category:</u> { getNameFromURI(otherInfoObject["my0:otherInfoType"])}
+              <u>{title[lang]}:</u> {this.renderLabel(this.props.others, otherInfoObject["my0:otherInfoType"], lang)}
+
             </h4>
           </Col>
           <Col md={4}>
@@ -84,7 +125,14 @@ class OtherInfoView extends Component {
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    others: retrieveBaseProperties(state.utility.otherCVInfoValues),
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
-  { removeOtherInfo }
+  mapstateToProps,
+  { removeOtherInfo, fetchOtherCVInfoTypes }
 )(OtherInfoView);

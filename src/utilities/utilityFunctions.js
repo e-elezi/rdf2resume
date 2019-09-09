@@ -363,3 +363,17 @@ export const cancelLabel = {
   de: "Abbrechen",
   it: "Annulla"
 }
+
+export const startDate = {
+  en: "Date needs to be in the past!",
+  fr: "La date doit se situer dans le passé!",
+  de: "Das Datum muss in der Vergangenheit liegen!",
+  it: "La data deve essere nel passato!"
+}
+
+export const endDate = {
+  en: "End date can not be further in the past than start date!",
+  fr: "La date de fin ne peut pas être plus éloignée de la date de début !",
+  de: "Das Enddatum darf nicht weiter in der Vergangenheit liegen als das Anfangsdatum!",
+  it: "La data di fine non può essere più lontana della data di inizio!"
+}

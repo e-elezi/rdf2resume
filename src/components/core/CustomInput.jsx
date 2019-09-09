@@ -5,12 +5,14 @@ import "./Form.css";
 const CustomInput = (props) => {
   return (
     <Form.Group controlId={props.id} className="floating-label mb-2">
+      
       <Form.Control
         className={props.classnames}
         type={props.type}
         placeholder={props.label}
         value={props.value}
         name={props.name}
+        onBlur={e => props.handleBlurEvent? props.handleBlurEvent(e) : ''}
         onChange={e => props.handleChange(e)}
       >
       </Form.Control>

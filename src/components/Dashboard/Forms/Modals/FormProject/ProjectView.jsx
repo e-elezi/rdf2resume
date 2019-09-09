@@ -2,14 +2,9 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faTrash,
-  faMapMarkerAlt
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { removeProject } from "../../../../../actions";
 import ProjectModal from "./ProjectModal";
-import { getNameFromURI } from "../../../../../utilities/utilityFunctions";
 
 class ProjectView extends Component {
   state = {
@@ -44,6 +39,15 @@ class ProjectView extends Component {
       "my0:projectURL": projectURL
     } = this.props.projectObj;
 
+    let current = {
+      en: "Now",
+      de: "Jetzt",
+      fr: "A présent",
+      it: "Ora"
+    };
+
+    let lang = this.props.language;
+
     return (
       <React.Fragment>
         <Row
@@ -55,7 +59,8 @@ class ProjectView extends Component {
         >
           <Col md={2}>
             <p>
-              {projectStartDate} - {projectEndDate}
+              {projectStartDate} -{" "}
+              {projectIsCurrent ? current[lang] : projectEndDate}
             </p>
           </Col>
           <Col md={6}>
@@ -66,7 +71,16 @@ class ProjectView extends Component {
                 display: "flex"
               }}
             >
-              <b>{projectName}</b>
+              <b>
+                <a
+                  href={projectURL}
+                  className="inline-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {projectName}
+                </a>
+              </b>
             </Row>
             <Row
               style={{
@@ -76,11 +90,9 @@ class ProjectView extends Component {
               }}
             >
               <b>
-                <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
+                <FontAwesomeIcon icon={faBookOpen} /> {` `}
                 {` `}
-                <a href={projectURL} className="inline-link" target=" blank">
-                  {projectCreator}
-                </a>
+                {projectCreator}
               </b>
             </Row>
             <Row
@@ -116,7 +128,13 @@ class ProjectView extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removeProject }
 )(ProjectView);

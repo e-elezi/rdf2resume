@@ -607,6 +607,16 @@ my0:hasCitizenship
   rdfs:domain my0:Person ;
   rdfs:range country:ISO3166DefinedCountry .
 
+my0:currentJob
+  a owl:ObjectProperty ;
+  rdfs:label "Current Job"@en,
+  "Aktueller Job"@de,
+  "Emploi actuel"@fr,
+  "Lavoro attuale"@it ;
+  rdfs:comment "Indicates the current job of the person"@en ;
+  rdfs:domain my0:Person ;
+  rdfs:range my0:WorkHistory .
+
 my0:hasNationality
   a owl:ObjectProperty ;
   rdfs:comment "Person's nationality."@en ;
@@ -1361,7 +1371,7 @@ my0:targetCompanyField
   rdfs:comment "Industry of the company where the candidate would like to work."@en ;
   rdfs:label "Company Field/Sector"@en,
   "Unternehmensfeld / Branche"@de,
-  "Domaine ou secteur d'activité de l'entreprise"@fr,
+  "Domaine ou secteur de l'entreprise"@fr,
   "Settore Aziendale"@it ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .

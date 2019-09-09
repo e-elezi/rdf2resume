@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal, Row, Col, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -45,6 +45,7 @@ class SubmitModal extends Component {
                 <div>
                     <img
                      id="Design1"
+                     alt="Design1"
                      onClick={this.handleSliderClick}
                      style={{height: '450px', width: '300px'}} 
                      src={require('../../../../../images/Design1.png')} />
@@ -52,6 +53,7 @@ class SubmitModal extends Component {
                 <div>
                     <img
                     id="Design2"
+                    alt="Design2"
                     onClick={this.handleSliderClick} 
                     style={{height: '450px', width: '300px'}} 
                     src={require('../../../../../images/Design2.png')} />
@@ -59,6 +61,7 @@ class SubmitModal extends Component {
                 <div>
                     <img
                     id="Design3"
+                    alt="Design3"
                     onClick={this.handleSliderClick} 
                     style={{height: '450px', width: '300px'}} 
                     src={require('../../../../../images/Design3.png')} />

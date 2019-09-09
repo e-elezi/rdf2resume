@@ -10,13 +10,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removePatent } from "../../../../../actions";
 import PatentModal from "./PatentModal";
-import { getNameFromURI } from "../../../../../utilities/utilityFunctions";
+import { fetchAllPatentStatusess } from "../../../../../actions/utilityActions";
+import { retrieveBaseProperties } from "../../../../../utilities/utilityQueries";
 
 class PatentView extends Component {
   state = {
     editMode: false,
     key: 0
   };
+
+  componentWillMount() {
+    this.props.fetchAllPatentStatusess();
+  }
 
   handleCloseEdit = () => {
     let key = this.state.key;
@@ -34,6 +39,29 @@ class PatentView extends Component {
     });
   };
 
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
+
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
+
   render() {
     let {
       "my0:patentTitle": patentTitle,
@@ -46,6 +74,8 @@ class PatentView extends Component {
       "my0:patentDescription": patentDescription
     } = this.props.patentObj;
 
+    let lang = this.props.language;
+
     return (
       <React.Fragment>
         <Row
@@ -56,8 +86,10 @@ class PatentView extends Component {
           }}
         >
           <Col md={2}>
-            {getNameFromURI(patentStatus)}
-            <p>{patentIssuedDate}</p>
+            <p style={{ marginBottom: "10px" }}>{patentIssuedDate}</p>
+            <p>
+              <u>{this.renderLabel(this.props.statuses, patentStatus, lang)}</u>
+            </p>
           </Col>
           <Col md={6}>
             <Row
@@ -67,7 +99,17 @@ class PatentView extends Component {
                 display: "flex"
               }}
             >
-              <b>{patentTitle}</b> - {patentNumber}
+              <b>
+                <a
+                  href={patentURL}
+                  className="inline-link"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {patentTitle}
+                </a>
+              </b>{" "}
+              - {patentNumber}
             </Row>
             <Row
               style={{
@@ -79,9 +121,7 @@ class PatentView extends Component {
               <b>
                 <FontAwesomeIcon icon={faBookOpen} />
                 {` `}
-                <a href={patentURL} className="inline-link" target=" blank">
-                  {patentOffice}
-                </a>{" "}
+                {patentOffice}{" "}
               </b>
             </Row>
             <Row
@@ -101,8 +141,7 @@ class PatentView extends Component {
               }}
             >
               <FontAwesomeIcon icon={faCopyright} />
-              {` `}
-              {patentInventor}
+              {` `} {patentInventor}
             </Row>
           </Col>
           <Col md={4}>
@@ -128,7 +167,14 @@ class PatentView extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    language: state.utility.language,
+    statuses: retrieveBaseProperties(state.utility.patents)
+  };
+};
+
 export default connect(
-  null,
-  { removePatent }
+  mapstateToProps,
+  { removePatent, fetchAllPatentStatusess }
 )(PatentView);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
+import Swal from 'sweetalert2';
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -18,7 +19,9 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
+  updateLabel,
+  startDate,
+  endDate
 } from "../../../../../utilities/utilityFunctions";
 
 class CourseModal extends Component {
@@ -119,6 +122,32 @@ class CourseModal extends Component {
   handleInputChange = e => {
     let obj = { ...this.state.course };
     let label = e.target.id;
+    if(label === 'my0:courseStartDate'){
+      if(e.target.value > new Date().toJSON().slice(0,10).replace(/-/g,'-')){
+        Swal.fire({
+          title: 'Warning!',
+          text: startDate[this.props.language],
+          type: 'warning',
+          confirmButtonColor: '#4bb3cc',
+          heightAuto: false,
+          confirmButtonText: 'Okay'
+        })
+        return ;
+      }
+    }
+    if(label === 'my0:courseFinishDate'){
+      if(e.target.value < this.state.course['my0:courseStartDate']){
+        Swal.fire({
+          title: 'Warning!',
+          text: endDate[this.props.language],
+          type: 'warning',
+          confirmButtonColor: '#4bb3cc',
+          heightAuto: false,
+          confirmButtonText: 'Okay'
+        })
+        return ;
+      }
+    }
     if (e.target.name === "organization") {
       obj["my0:organizedBy"][label] = e.target.value;
     } else if (e.target.name === "address") {
@@ -181,15 +210,19 @@ class CourseModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
+    let isDisabled =
+      this.state.course["my0:courseStartDate"] === "" ||
+      this.state.course["my0:organizedBy"]["my0:organizationName"] === "" ||
+      this.state.course["my0:courseTitle"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleSave}>
+        <Button disabled={isDisabled}  type="submit" variant="primary" onClick={this.handleSave}>
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button disabled={isDisabled}  type="submit" variant="primary" onClick={this.handleUpdate}>
           {updateLabel[lang]}
         </Button>
       );
@@ -287,7 +320,7 @@ class CourseModal extends Component {
                     translatedProps,
                     "courseStartDate",
                     lang
-                  )}
+                  ) + ' *'}
                   type="date"
                   value={courseStartDate}
                   handleChange={this.handleInputChange}
@@ -331,23 +364,25 @@ class CourseModal extends Component {
                     translatedPropsOrg,
                     "organizationName",
                     lang
-                  )}
+                  ) + ' *'}
                   type="text"
                   value={organizationName}
                   handleChange={this.handleInputChange}
                 />
-                <CustomInput
-                  id="my0:organizationWebsite"
-                  name="organization"
-                  label={this.renderLabel(
-                    translatedPropsOrg,
-                    "organizationWebsite",
-                    lang
-                  )}
-                  type="text"
-                  value={organizationWebsite}
-                  handleChange={this.handleInputChange}
-                />
+                <div style={{ width: "100%" }}>
+                  <CustomInput
+                    id="my0:organizationWebsite"
+                    name="organization"
+                    label={this.renderLabel(
+                      translatedPropsOrg,
+                      "organizationWebsite",
+                      lang
+                    )}
+                    type="text"
+                    value={organizationWebsite}
+                    handleChange={this.handleInputChange}
+                  />
+                </div>
                 <Row style={{ marginBottom: "8px" }}>
                   <Col sm={6}>
                     <CustomInput
@@ -417,7 +452,7 @@ class CourseModal extends Component {
                   value={organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
-                <div style={{ marginTop: "10px" }}>
+                <div style={{ marginTop: "10px", width: "100%" }}>
                   <CustomTextarea
                     id="my0:organizationDescription"
                     name="organization"
@@ -436,7 +471,7 @@ class CourseModal extends Component {
               <CustomInput
                 id="my0:courseTitle"
                 name="course"
-                label={this.renderLabel(translatedProps, "courseTitle", lang)}
+                label={this.renderLabel(translatedProps, "courseTitle", lang) + ' *'}
                 type="text"
                 value={courseTitle}
                 handleChange={this.handleInputChange}
