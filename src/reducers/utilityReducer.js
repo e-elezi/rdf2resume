@@ -12,6 +12,7 @@ import {
   FETCH_ALL_WEBSITES,
   FETCH_ALL_LANGUAGE_SELF_ASSESSMENT_PROPERTIES,
   FETCH_ALL_OTHER_CV_INFO_TYPES,
+  FETCH_ALL_SKILL_CATEGORIES,
   FETCH_ALL_SELF_ASSESSMENT_PROPERTIES,
   FETCH_ALL_TITLE_PROPERTIES,
   TOGGLE_SPINNER,
@@ -23,6 +24,7 @@ import {
 const INITIAL_STATE = {
   ims: [],
   industries: [],
+  skillCategories: [],
   patents: [],
   regions: [],
   websites: [],
@@ -37,6 +39,7 @@ const INITIAL_STATE = {
   'my0:Project': [],
   'my0:Reference': [],
   'my0:Skill': [],
+  'my0:LanguageSkill': [],
   'my0:Course': [],
   'my0:OtherInfo': [],
   'my0:Website': [],
@@ -47,7 +50,6 @@ const INITIAL_STATE = {
   genderValues: [],
   jobModeValues: [],
   careerLevelValues: [],
-  selfAssessmentValues: [],
   languageSelfAssessmentValues: [],
   companySizeValues: [],
   otherCVInfoValues: [],
@@ -70,6 +72,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, countryValues: action.payload };
     case FETCH_ALL_CV_CAREER_LEVELS:
       return { ...state, careerLevelValues: action.payload };
+    case FETCH_ALL_SKILL_CATEGORIES:
+         return { ...state, skillCategories: action.payload };
     case FETCH_ALL_CV_JOB_MODES:
       return { ...state, jobModeValues: action.payload };
     case FETCH_ALL_EDU_DEGREES:

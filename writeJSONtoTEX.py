@@ -2,6 +2,8 @@ import os,glob,subprocess
 import argparse
 from texDesign import headerCV, generateMainDesign3, generateMainDesign2, generateMainDesign1
 from datetime import datetime
+import requests
+
 
 footer = r'''\end{document}
 '''
@@ -14,17 +16,17 @@ def getnameURI(uri):
 			index = i
 	return uri[index:length]
 
-def writeJSONtoTEX(data, filename, desingNumber):
+def writeJSONtoTEX(data, filename, desingNumber, language):
   main = r''''''
 
   if(desingNumber==0):
-    main = generateMainDesign1(data)
+    main = generateMainDesign1(data, language)
 
   if(desingNumber==1):
-    main = generateMainDesign2(data)
+    main = generateMainDesign2(data, language)
 
   if(desingNumber==2):
-    main = generateMainDesign3(data)
+    main = generateMainDesign3(data, language)
     
   content = headerCV[desingNumber] + main + footer
 

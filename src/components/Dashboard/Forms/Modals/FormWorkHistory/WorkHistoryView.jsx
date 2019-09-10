@@ -107,7 +107,8 @@ class WorkHistoryReview extends Component {
           style={{
             justifyContent: "flex-start",
             alignItems: "flex-start",
-            display: "flex"
+            display: "flex",
+            marginBottom: '10px'
           }}
         >
           <Col md={2}>

@@ -44,7 +44,7 @@ class FormTarget extends Component {
   };
 
   handleSelectChange = (name, value) => {
-    this.props.updateTarget({ id: name, value: value });
+    this.props.updateTarget({ id: name, value: value["@type"] });
   };
 
   handleMultiSelectChange = (name, value) => {

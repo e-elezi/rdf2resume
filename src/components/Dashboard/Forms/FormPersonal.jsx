@@ -108,7 +108,11 @@ class FormPersonal extends Component {
   };
 
   updateWebsite = (name, value, index) => {
-    this.props.updateWebsite({ id: index, name: name, value: value });
+    if(value["@type"]){
+      this.props.updateWebsite({ id: index, name: name, value: value["@type"] });
+    } else {
+      this.props.updateWebsite({ id: index, name: name, value: value });
+    }
   };
 
   removeWebsite = index => {
@@ -120,7 +124,11 @@ class FormPersonal extends Component {
   };
 
   updateInstantMessaging = (name, value, index) => {
-    this.props.updateIM({ id: index, name: name, value: value });
+    if(value["@type"]){
+      this.props.updateIM({ id: index, name: name, value: value["@type"] });
+    } else {
+      this.props.updateIM({ id: index, name: name, value: value });
+    }
   };
 
   removeInstantMessaging = index => {

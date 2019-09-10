@@ -45,11 +45,12 @@ def generate_pdf():
     req_data = request.get_json()
     content = req_data['data']['cv']
     designNumber = req_data['data']['designNumber']
+    language = req_data['data']['language']
     now = datetime.now()
     dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
     if not os.path.exists('build/static/media/pdf'):
       os.mkdir('build/static/media/pdf')
-    writeJSONtoTEX(content, "rdf2resume" + dt_string, designNumber )
+    writeJSONtoTEX(content, "rdf2resume" + dt_string, designNumber, language )
     return "static/media/pdf/rdf2resume" + dt_string
 
 @app.route('/upload', methods=['POST'])

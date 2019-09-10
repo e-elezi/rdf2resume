@@ -3,33 +3,27 @@ import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import SkillModal from "./Modals/FormSkill/SkillModal";
 import SkillView from "./Modals/FormSkill/SkillView";
+import LanguageView from "./Modals/FormLanguage/LanguageView";
+import LanguageModal from "./Modals/FormLanguage/LanguageModal";
 import AddButton from "../../core/AddButton";
-import { Combobox } from "react-widgets";
-import CustomInput from "../../core/CustomInput";
-import RemoveButton from "../../core/RemoveButton";
-import CustomTextarea from "../../core/CustomTextarea";
-import CustomCheckbox from "../../core/CustomCheckbox";
 import { updateSkills, createOtherSkill } from "../../../actions";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
-  fetchSelfAssessmentProperties
+  fetchSkillCategories
 } from "../../../actions/utilityActions";
-import {
-  retrieveAssessment,
-  retrieveLngAssessment
-} from "../../../utilities/utilityQueries";
+import { retrieveBaseProperties } from "../../../utilities/utilityQueries";
+import { getNameFromURI } from "../../../utilities/utilityFunctions";
 
 class FormSkill extends Component {
   state = {
     showModal: false,
-    languageLevelSkillsValue: [],
-    generalSkillLevelValue: [],
+    showLanguageModal: false,
     key: 0
   };
 
   componentWillMount() {
+    this.props.fetchSkillCategories();
     this.props.fetchLanguageSkillSelfAssessmentProperties();
-    this.props.fetchSelfAssessmentProperties();
   }
 
   handleClose = () => {
@@ -42,436 +36,110 @@ class FormSkill extends Component {
     this.setState({ showModal: true, key: ++key });
   };
 
-  handleInputChange = (e, index) => {
-
-    let myarr = [...this.props.skills];
-    myarr[index][e.target.name] = e.target.value;
-    this.props.updateSkills(myarr);
+  handleLanguageClose = () => {
+    let key = this.state.key;
+    this.setState({ showLanguageModal: false, key: ++key });
   };
 
-  handleCheckboxChange = (e, index) => {
-
-    let myarr = [...this.props.skills];
-    myarr[index][e.target.name] = e.target.checked;
-    this.props.updateSkills( myarr);
+  handleLanguageShow = () => {
+    let key = this.state.key;
+    this.setState({ showLanguageModal: true, key: ++key });
   };
 
-  handleSelectChange = (name, value, index) => {
-    let myarr = [...this.props.skills];
-    myarr[index][name] = value;
-    this.props.updateSkills(myarr);
-  };
+  findInArray(data, name) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      let index = data[i]["@type"].indexOf(name);
+      let newlength = data[i]["@type"].length;
+      if (index >= 0 && index + name.length >= newlength) {
+        return i;
+      }
+    }
+  }
 
-  addLanguageSkill = () => {
-    let myarr = 
-      {
-        "@type": "my0:LanguageSkill",
-        "my0:languageSkillLevelReading": "",
-        "my0:languageSkillLevelWriting": "",
-        "my0:languageSkillLevelListening": "",
-        "my0:languageSkillLevelSpokenInteraction": "",
-        "my0:languageSkillLevelSpokenProduction": "",
-        "my0:isMotherTongue": false,
-        "my0:skillName": ""
-      };
-  
-    this.props.createOtherSkill(myarr);
-  };
-
-  updateLanguageSkill = (name, value, index) => {
-    let myarr = [...this.props.skills];
-    myarr[index][name] = value;
-    this.props.updateSkills(myarr);
-  };
-
-  removeLanguageSkill = (index) => {
-    let myarr = this.props.skills.filter(
-      (item, ind) => ind !== index
-    );
-    this.props.updateSkills(myarr);
-  };
+  renderLabel(translated, name, lang) {
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
+      return name;
+    } else {
+      return translated[index][lang];
+    }
+  }
 
   render() {
-    let { showModal } = this.state;
+    let { showModal, showLanguageModal } = this.state;
+
+    let titlePage = {
+      en: "Language Skills",
+      fr: "Compétences linguistiques",
+      de: "Sprachkenntnisse",
+      it: "Competenze linguistiche"
+    };
+
+    let addLang = {
+      en: "Add language",
+      fr: "Ajouter une langue",
+      de: "Sprache hinzufügen",
+      it: "Aggiungi lingua"
+    };
+
+    let titlesub = {
+      en: "Other Skills",
+      fr: "Autres compétences",
+      de: "Andere Fähigkeiten",
+      it: "Altre competenze"
+    };
+
+    let addskill = {
+      en: "Add skill",
+      fr: "Ajouter une compétence",
+      de: "Skill hinzufügen",
+      it: "Aggiungi abilità"
+    };
+
+    let lang = this.props.language;
+
+    let categories = this.props.categories;
+
     return (
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h6 style={{ marginTop: "10px" }}>Language Skills</h6>
+            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
               <Col md={2}>
                 <AddButton
                   classnames="add-button"
-                  handleClick={() => this.addLanguageSkill()}
+                  handleClick={this.handleLanguageShow}
+                />
+                <LanguageModal
+                  show={showLanguageModal}
+                  key={this.state.key}
+                  onHide={this.handleLanguageClose}
                 />
               </Col>
               <Col md={10} className="button-label">
-                <p>Add Language Skill</p>
+                <p>{addLang[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
-        <Row style={{ justifyContent: "left" }}>
-          <Col sm={10}>
-            <table className="table">
-              <thead className="thead-light">
-                <tr>
-                  <th style={{ width: "150px" }} scope="col">
-                    Language
-                  </th>
-                  <th style={{ width: "150px" }} scope="col">
-                    Reading
-                  </th>
-                  <th style={{ width: "150px" }} scope="col">
-                    Writing
-                  </th>
-                  <th style={{ width: "150px" }} scope="col">
-                    Listening
-                  </th>
-                  <th style={{ width: "180px" }} scope="col">
-                    Spoken Interaction
-                  </th>
-                  <th style={{ width: "180px" }} scope="col">
-                    Spoken Production
-                  </th>
-                  <th style={{ width: "180px" }} scope="col">
-                    Is Mother Tongue?
-                  </th>
-                  <th scope="col">{` `}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.props.skills.map((member, index) => (
-                  member['@type']==="my0:LanguageSkill" ? 
-                  <tr key={index}>
-                    <th>
-                      <div style={{ marginTop: "10px" }}>
-                        <CustomInput
-                          id="my0:skillName"
-                          label="Name"
-                          type="text"
-                          value={member['my0:skillName']}
-                          handleChange={e =>
-                            this.updateLanguageSkill(
-                              e.target.id,
-                              e.target.value,
-                              index
-                            )
-                          }
-                        />
-                      </div>
-                    </th>
-                    <td>
-                      <div style={{ marginTop: "15px" }}>
-                        <Combobox
-                          name="my0:languageSkillLevelReading"
-                          data={this.props.lngAssessmentValues}
-                          textField="value"
-                          valueField="@type"
-                          value={member['my0:languageSkillLevelReading']}
-                          placeholder="Select level"
-                          caseSensitive={false}
-                          minLength={3}
-                          filter="contains"
-                          onChange={value =>
-                            this.updateLanguageSkill(
-                              "my0:languageSkillLevelReading",
-                              value,
-                              index
-                            )
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <div style={{ marginTop: "15px" }}>
-                        <Combobox
-                          name="my0:languageSkillLevelWriting"
-                          data={this.props.lngAssessmentValues}
-                          textField="value"
-                          valueField="@type"
-                          value={member['my0:languageSkillLevelWriting']}
-                          placeholder="Select level"
-                          caseSensitive={false}
-                          minLength={3}
-                          filter="contains"
-                          onChange={value =>
-                            this.updateLanguageSkill(
-                              "my0:languageSkillLevelWriting",
-                              value,
-                              index
-                            )
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <div style={{ marginTop: "15px" }}>
-                        <Combobox
-                          name="my0:languageSkillLevelListening"
-                          data={this.props.lngAssessmentValues}
-                          textField="value"
-                          valueField="@type"
-                          value={member['my0:languageSkillLevelListening']}
-                          placeholder="Select level"
-                          caseSensitive={false}
-                          minLength={3}
-                          filter="contains"
-                          onChange={value =>
-                            this.updateLanguageSkill(
-                              "my0:languageSkillLevelListening",
-                              value,
-                              index
-                            )
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <div style={{ marginTop: "15px" }}>
-                        <Combobox
-                          name="my0:languageSkillLevelSpokenInteraction"
-                          data={this.props.lngAssessmentValues}
-                          textField="value"
-                          valueField="@type"
-                          value={member['my0:languageSkillLevelSpokenInteraction']}
-                          placeholder="Select level"
-                          caseSensitive={false}
-                          minLength={3}
-                          filter="contains"
-                          onChange={value =>
-                            this.updateLanguageSkill(
-                              "my0:languageSkillLevelSpokenInteraction",
-                              value,
-                              index
-                            )
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <div style={{ marginTop: "15px" }}>
-                        <Combobox
-                          name="my0:languageSkillLevelSpokenProduction"
-                          data={this.props.lngAssessmentValues}
-                          textField="value"
-                          valueField="@type"
-                          value={member['my0:languageSkillLevelSpokenProduction']}
-                          placeholder="Select level"
-                          caseSensitive={false}
-                          minLength={3}
-                          filter="contains"
-                          onChange={value =>
-                            this.updateLanguageSkill(
-                              "my0:languageSkillLevelSpokenProduction",
-                              value,
-                              index
-                            )
-                          }
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <CustomCheckbox
-                        id={"my0:isMotherTongue" + index}
-                        type="checkbox"
-                        checked={member['my0:isMotherTongue']}
-                        handleChange={e =>
-                          this.updateLanguageSkill(
-                            "my0:isMotherTongue",
-                            e.target.checked,
-                            index
-                          )
-                        }
-                      />
-                    </td>
-                    <td style={{ display: "flex", justifyContent: "center" }}>
-                      <RemoveButton
-                        classnames="shift-left"
-                        handleClick={() =>
-                          this.removeLanguageSkill(index)
-                        }
-                      />
-                    </td>
-                  </tr> : ''
-                ))}
-              </tbody>
-            </table>
-          </Col>
-          <Col sm={2} />
-        </Row>
-        <Row>
-        {this.props.skills.map( (skill,index) => (
-          skill['@type']==="my0:CommunicationSkills" ?  
-          <Col md={3} key={index}>
-          <CustomTextarea
-            id="my0:CommunicationSkills"
-            name="my0:skillDescription"
-            label="Communication Skills"
-            value={skill["my0:skillDescription"]}
-            handleChange={(e)=>this.handleInputChange(e, index)}
-          />
-        </Col> 
-        : ''))}
+        {this.props.skills.map((skill, index) =>
+          skill["@type"] === "my0:LanguageSkill" ? (
+            <LanguageView languageSkillObj={skill} id={index} key={index} />
+          ) : (
+            ""
+          )
+        )}
 
-        {this.props.skills.map((skill,index) => (
-        skill['@type']==="my0:OrganisationalSkills" ?  
-          <Col md={3} key={index}>
-          <CustomTextarea
-              id="my0:OrganisationalSkills"
-              name="my0:skillDescription"
-              label="Organization Skills"
-              value={skill["my0:skillDescription"]}
-              handleChange={(e)=>this.handleInputChange(e, index)}
-            />
-        </Col> 
-        : ''))}
-
-        {this.props.skills.map((skill,index) => (
-        skill['@type']==="my0:JobRelatedSkills" ?  
-          <Col md={3} key={index}>
-          <CustomTextarea
-              id="my0:JobRelatedSkills"
-              name="my0:skillDescription"
-              label="Job Related Skills"
-              value={skill["my0:skillDescription"]}
-              handleChange={(e)=>this.handleInputChange(e, index)}
-            />
-        </Col> 
-        : ''))}
-          <Col md={3} />
-        </Row>
-        <Row style={{ justifyContent: "left" }}>
-        {this.props.skills.map((skill,index) => (
-        skill['@type']==="my0:DigitalSkills" ?  
-        <React.Fragment key={index}>
-        <Col md={3}>
-            <h6>Digital Skills</h6>
-            <label className="label-rw">Information Processing Level</label>
-            <Combobox
-              name="informationProcessing"
-              data={this.props.assessmentValues}
-              textField="value"
-              valueField="@type"
-              value={skill["my0:informationProcessing"]}
-              placeholder="Select level"
-              caseSensitive={false}
-              minLength={3}
-              filter="contains"
-              onChange={value =>
-                this.handleSelectChange(
-                  "my0:informationProcessing",
-                  value,
-                  index
-                )
-              }
-            />
-            <label className="label-rw">Communication Level</label>
-            <Combobox
-              name="communication"
-              data={this.props.assessmentValues}
-              textField="value"
-              valueField="@type"
-              value={skill["my0:communication"]}
-              placeholder="Select level"
-              caseSensitive={false}
-              minLength={3}
-              filter="contains"
-              onChange={value =>
-                this.handleSelectChange(
-                  "my0:communication",
-                  value,
-                  index
-                )
-              }
-            />
-
-            <label className="label-rw">Content Creation Level</label>
-            <Combobox
-              name="contentCreation"
-              data={this.props.assessmentValues}
-              textField="value"
-              valueField="@type"
-              value={skill["my0:contentCreation"]}
-              placeholder="Select level"
-              caseSensitive={false}
-              minLength={3}
-              filter="contains"
-              onChange={value =>
-                this.handleSelectChange(
-                  "my0:contentCreation",
-                  value,
-                  index
-                )
-              }
-            />
-
-            <label className="label-rw">Safety Level</label>
-            <Combobox
-              name="safety"
-              data={this.props.assessmentValues}
-              textField="value"
-              valueField="@type"
-              value={skill["my0:safety"]}
-              placeholder="Select level"
-              caseSensitive={false}
-              minLength={3}
-              filter="contains"
-              onChange={value =>
-                this.handleSelectChange(
-                  "my0:safety",
-                  value,
-                  index
-                )
-              }
-            />
-
-            <label className="label-rw">Problem Solving Level</label>
-            <Combobox
-              name="problemSolving"
-              data={this.props.assessmentValues}
-              textField="value"
-              valueField="@type"
-              value={skill["my0:problemSolving"]}
-              placeholder="Select level"
-              caseSensitive={false}
-              minLength={3}
-              filter="contains"
-              onChange={value =>
-                this.handleSelectChange(
-                  "my0:problemSolving",
-                  value,
-                  index
-                )
-              }
-            />
-          </Col>
-          <Col md={3}>
-            <h6> {` `}</h6>
-            <CustomCheckbox
-              name="my0:hasICTCertificate"
-              id="my0:hasICTCertificate"
-              type="checkbox"
-              label="Has Certification?"
-              checked={skill["my0:hasICTCertificate"]}
-              handleChange={(e)=>this.handleCheckboxChange(e, index)}
-            />
-            <CustomTextarea
-              name="my0:otherDigitalSkills"
-              id="my0:DigitalSkills"
-              label="Other Digital Skills"
-              value={skill["my0:otherDigitalSkills"]}
-              handleChange={(e)=>this.handleInputChange(e,index)}
-            />
-          </Col>
-          </React.Fragment>
-        : ''))}
-        </Row>
-        <Row> 
+        <Row style={{ marginTop: "50px" }}>
           <Col md={8}>
-            <h6 style={{ marginTop: "10px" }}>Other Skills</h6>
+            <h4 style={{ marginTop: "10px" }}>{titlesub[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -480,19 +148,89 @@ class FormSkill extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <SkillModal show={showModal} key={this.state.key} onHide={this.handleClose} />
+                <SkillModal
+                  show={showModal}
+                  key={this.state.key}
+                  onHide={this.handleClose}
+                />
               </Col>
               <Col md={10} className="button-label">
-                <p>Add Other Skill</p>
+                <p>{addskill[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
-         {this.props.skills.map( (skill, index) => (
-           skill['@type']==="my0:Skill" ? 
-           <SkillView skillObj={skill} id={index} key={index} />
-           : ''
-         ))} 
+        <Row style={{ marginTop: "20px" }}>
+          <Col md={3}>
+            <h6>
+              <u>{this.renderLabel(categories, "IndustryKnowledge", lang)}</u>
+            </h6>
+          </Col>
+          <Col md={3}>
+            <h6>
+              <u>{this.renderLabel(categories, "ToolsTechnologies", lang)}</u>
+            </h6>
+          </Col>
+          <Col md={3}>
+            <h6>
+              <u>{this.renderLabel(categories, "InterpersonalSkills", lang)}</u>
+            </h6>
+          </Col>
+          <Col md={3}>
+            <h6>
+              <u>{this.renderLabel(categories, "OtherSkills", lang)}</u>
+            </h6>
+          </Col>
+        </Row>
+        <Row style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
+          <Col md={3}>
+            {this.props.skills.map((skill, index) =>
+              skill["@type"] === "my0:Skill" &&
+              skill["my0:skillCategory"] &&
+              getNameFromURI(skill["my0:skillCategory"]) ===
+                "IndustryKnowledge" ? (
+                <SkillView skillObj={skill} id={index} key={index} />
+              ) : (
+                ""
+              )
+            )}
+          </Col>
+          <Col md={3}>
+            {this.props.skills.map((skill, index) =>
+              skill["@type"] === "my0:Skill" &&
+              skill["my0:skillCategory"] &&
+              getNameFromURI(skill["my0:skillCategory"]) ===
+                "ToolsTechnologies" ? (
+                <SkillView skillObj={skill} id={index} key={index} />
+              ) : (
+                ""
+              )
+            )}
+          </Col>
+          <Col md={3}>
+            {this.props.skills.map((skill, index) =>
+              skill["@type"] === "my0:Skill" &&
+              skill["my0:skillCategory"] &&
+              getNameFromURI(skill["my0:skillCategory"]) ===
+                "InterpersonalSkills" ? (
+                <SkillView skillObj={skill} id={index} key={index} />
+              ) : (
+                ""
+              )
+            )}
+          </Col>
+          <Col md={3}>
+            {this.props.skills.map((skill, index) =>
+              skill["@type"] === "my0:Skill" &&
+              skill["my0:skillCategory"] &&
+              getNameFromURI(skill["my0:skillCategory"]) === "OtherSkills" ? (
+                <SkillView skillObj={skill} id={index} key={index} />
+              ) : (
+                ""
+              )
+            )}
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }
@@ -500,12 +238,9 @@ class FormSkill extends Component {
 
 const mapStateToProps = state => {
   return {
-    lngAssessmentValues: retrieveLngAssessment(
-      state.utility.languageSelfAssessmentValues
-    ),
-    assessmentValues: retrieveAssessment(state.utility.selfAssessmentValues),
+    language: state.utility.language,
+    categories: retrieveBaseProperties(state.utility.skillCategories),
     skills: state.cv["my0:hasSkill"]
-    // otherSkills: Object.values(state.cv.skills.OtherSkills)
   };
 };
 
@@ -515,6 +250,6 @@ export default connect(
     fetchLanguageSkillSelfAssessmentProperties,
     updateSkills,
     createOtherSkill,
-    fetchSelfAssessmentProperties
+    fetchSkillCategories
   }
 )(FormSkill);

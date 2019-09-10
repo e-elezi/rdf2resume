@@ -330,6 +330,82 @@ headerCV = [
 main = r''''''
 space =  r''' '''
 comma = r''', '''
+workTitle = {
+  "en": 'Work experience',
+  "de": 'Berufserfahrung',
+  "fr": 'Expérience de travail',
+  "it": 'Esperienza di lavoro'
+}
+educationTitle = {
+  "en": 'Education',
+  "de": 'Ausbildung',
+  "fr": "L'éducation",
+  "it": 'Educazione'
+}
+languageTitle = {
+  "en": 'Language Skills',
+  "de": 'Sprachkenntnisse',
+  "fr": "Compétences linguistiques",
+  "it": 'Competenze linguistiche'
+}
+skillTitle = {
+  "en": 'Other Skills',
+  "de": 'Andere Fähigkeiten',
+  "fr": "Autres compétences",
+  "it": 'Altre competenze'
+}
+referenceTitle = [
+  {
+  "en": 'References',
+  "de": 'Referenzen',
+  "fr": "Les références",
+  "it": 'Riferimenti'
+  },
+  {
+  "en": 'References upon request.',
+  "de": 'Referenzen auf Anfrage.',
+  "fr": "Références sur demande.",
+  "it": 'Riferimenti su richiesta.'
+  }
+] 
+courseTitle = {
+  "en": 'Course/Training',
+  "de": 'Kurs/Training',
+  "fr": "Cours/Training",
+  "it": 'Corso/Training'
+}
+aboutMeTitle = {
+  "en": 'About me',
+  "de": 'Über mich',
+  "fr": "À mon sujet",
+  "it": 'Su di me'
+}
+otherInfoTitle = {
+  "en": 'Other Information',
+  "de": 'Sonstige Informationen',
+  "fr": "Autres informations",
+  "it": 'Altre informazioni'
+}
+skilllevel = [
+  {
+  "en": 'Good Level',
+  "de": 'Gutes Niveau',
+  "fr": "Bon niveau",
+  "it": 'Buon livello'
+  },
+  {
+  "en": 'Intermediate',
+  "de": 'Mittelstufe',
+  "fr": "Intermédiaire",
+  "it": 'Intermedio'
+  }, 
+  {
+  "en": 'Basic level',
+  "de": 'Grundstufe',
+  "fr": "Niveau de base",
+  "it": 'Livello base'
+  }
+]
 
 def getnameURI(uri):
 	index = 0
@@ -339,7 +415,7 @@ def getnameURI(uri):
 			index = i
 	return uri[index:length]
 
-def generateMainDesign3(data):
+def generateMainDesign3(data, language):
     if (data['my0:aboutPerson']):
       item = data['my0:aboutPerson']
       main = r'''
@@ -350,7 +426,7 @@ def generateMainDesign3(data):
     if(data['my0:hasWorkHistory']):
       main = main +  r'''
       
-      \section{Work experience}
+      \section{''' + workTitle[language] + r'''}
  
       \begin{eventlist}
       
@@ -382,16 +458,16 @@ def generateMainDesign3(data):
       item = data['my0:aboutPerson']
       main = main + r'''
       \personal
-        [''' + item['my0:website'] + r''']
+        [''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r''']
         {''' + item['my0:address']['my0:street'] + comma + item['my0:address']['my0:postalCode'] + r'''\newline ''' + item['my0:address']['my0:city'] + r''' (''' + getnameURI(item['my0:address']['my0:country']) + r''')}
-        {''' + item['my0:hasTelephoneNumber'][0] + r'''}
+        {''' + item['my0:phoneNumber'][0] + r'''}
         {''' + item['my0:email'] + r'''}
 
       '''
     if(data['my0:hasEducation']):
       main = main +  r'''
       
-      \section{Education}
+      \section{''' + educationTitle[language] + r'''}
       
       \begin{yearlist}
       
@@ -410,7 +486,7 @@ def generateMainDesign3(data):
         main = main + r'''
 
         \item[''' + getnameURI(item['my0:degreeType']) + r''']{''' + startDateString + r''' -- ''' + endDateString + r'''}
-        {''' + item['my0:eduMajor'] + r'''}
+        {''' + item['my0:degree'] + r'''}
         {''' + item['my0:studiedIn']['my0:organizationName'] + r''', ''' + item['my0:studiedIn']['my0:organizationAddress']['my0:city'] + r'''}
 
         '''
@@ -435,11 +511,11 @@ def generateMainDesign3(data):
         #print basic skills
         main = main + r'''
         
-        \section{Other skills}
+        \section{''' + skillTitle[language] + r'''}
         
         \begin{factlist}
 
-        \item{Good level}
+        \item{''' + skilllevel[0][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
@@ -451,7 +527,7 @@ def generateMainDesign3(data):
         #print intermediate skills
         main = main + r'''
                 
-        \item{Intermediate}
+        \item{''' + skilllevel[1][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
@@ -463,7 +539,7 @@ def generateMainDesign3(data):
         #print basic skills
         main = main + r'''
                 
-        \item{Basic level}
+        \item{''' + skilllevel[2][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
@@ -477,7 +553,7 @@ def generateMainDesign3(data):
         '''
     if(data['my0:hasOtherInfo']):
         main = main + r'''
-        \section{Other information}
+        \section{''' + otherInfoTitle[language] + r'''}
         
         \begin{otherlist}
         '''
@@ -488,13 +564,13 @@ def generateMainDesign3(data):
         '''
     return main
 
-def generateMainDesign2(data):
+def generateMainDesign2(data, language):
     if (data['my0:aboutPerson']):
       item = data['my0:aboutPerson']
       #write personal information about the user
       main = r'''\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
       \textbf{\Large '''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''} & \textbf{\today} \\
-      '''+ item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + item['my0:address']['my0:city'] + comma +  getnameURI(item['my0:address']['my0:country']) +r''' & ''' + item['my0:website'] + r'''\\
+      '''+ item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + item['my0:address']['my0:city'] + comma +  getnameURI(item['my0:address']['my0:country']) +r''' & ''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''\\
       \end{tabular*}
       \\'''
       main = r'''% Left frame
@@ -507,27 +583,27 @@ def generateMainDesign2(data):
       \begin{flushright}\small
 	    ''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''\\
 	    \url{''' + item['my0:email'] + r'''}  \\
-	    \url{''' + item['my0:website'] + r'''} \\
-	    ''' + item['my0:hasTelephoneNumber'][0] + r'''
+	    \url{''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''} \\
+	    ''' + item['my0:phoneNumber'][0] + r'''
       \end{flushright}\normalsize
       \framebreak'''
 
       main = main +  r'''%Right frame
       %%%%%%%%%%%%%%%%%%%%
       \Huge\bfseries {\color{RoyalBlue} ''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''} \\
-      \Large\bfseries  ''' + data['my0:target']['my0:targetJobTitle'] + r''' \\
+      \Large\bfseries  ''' + data['my0:hasTarget']['my0:targetJobTitle'] + r''' \\
 
       \normalsize\normalfont
 
       % About me
       \begin{AboutMe}
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel bibendum metus. Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla. Pellentesque condimentum justo ut ligula feugiat nec facilisis tellus ultricies. Nullam sit amet dictum ipsum. Sed lacus neque, hendrerit eu rhoncus nec, pellentesque vitae sem.
+      ''' + item['my0:personDescription'] + r'''
       \end{AboutMe}\\*'''
     if(data['my0:hasWorkHistory']):
       main = main +  r'''
       
       % Experience
-      \CVSection{Experience}'''
+      \CVSection{''' + workTitle[language] + r'''}'''
       for item in (data['my0:hasWorkHistory']):
         main = main + r'''
         \CVItem{''' + item['my0:startDate'] + r''' - ''' + item['my0:endDate'] + ''', ''' + item['my0:jobTitle']  + r'''}\\ ''' + item['my0:jobDescription'] + '''
@@ -536,10 +612,10 @@ def generateMainDesign2(data):
       main = main +  r'''
       
       % Education
-      \CVSection{Education}'''
+      \CVSection{''' + educationTitle[language] + r'''}'''
       for item in (data['my0:hasEducation']):
         main = main + r''' 
-        \CVItem{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + ''', ''' + item['my0:eduMajor'] + comma + getnameURI(item['my0:degreeType'])  + r'''}\\ ''' + item['my0:eduDescription'] + '''
+        \CVItem{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + ''', ''' + item['my0:degree'] + comma + getnameURI(item['my0:degreeType'])  + r'''}\\ ''' + item['my0:eduDescription'] + '''
         \SmallSep
         
         '''
@@ -550,7 +626,7 @@ def generateMainDesign2(data):
       
       % Skills
       \CVSection{Skills}
-      \CVItem{Language Skills}
+      \CVItem{''' + languageTitle[language] + r'''}
       \begin{multicols}{3}
       \begin{compactitem}[\color{RoyalBlue}$\circ$]'''
       for items in (data['my0:hasSkill']):
@@ -562,7 +638,7 @@ def generateMainDesign2(data):
       \end{multicols}
       \SmallSep
 
-      \CVItem{Other}
+      \CVItem{''' + skillTitle[language] + r'''}
       \begin{multicols}{3}
       \begin{compactitem}[\color{RoyalBlue}$\circ$]
       '''
@@ -586,25 +662,25 @@ def generateMainDesign2(data):
     main = main + r'''
       
       % References
-      \CVSection{References}
-      References upon request.
+      \CVSection{''' + referenceTitle[0][language] + r'''}
+      ''' + referenceTitle[1][language] + r'''
 
       '''
     return main
 
-def generateMainDesign1(data):
+def generateMainDesign1(data, language):
     if (data['my0:aboutPerson']):
       item = data['my0:aboutPerson']
       #write personal information about the user
       main = r'''\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
       \textbf{\Large '''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''} & \textbf{\today} \\
-      '''+ item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + item['my0:address']['my0:city'] + comma +  getnameURI(item['my0:address']['my0:country']) +r''' & ''' + item['my0:website'] + r'''\\
+      '''+ item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + item['my0:address']['my0:city'] + comma +  getnameURI(item['my0:address']['my0:country']) +r''' & ''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''\\
       \end{tabular*}
       \\'''
 
     if (data['my0:hasWorkHistory']):
       main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \resheading{Work History}
+      \resheading{''' + workTitle[language] + r'''}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{itemize}'''
       for item in (data['my0:hasWorkHistory']):
@@ -618,12 +694,12 @@ def generateMainDesign1(data):
 
     if (data['my0:hasEducation']):
 	    main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \resheading{Education}
+	    \resheading{''' + educationTitle[language] + r'''}
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	    \begin{itemize}'''
 	    for item in (data['my0:hasEducation']):
 		    main = main +  r'''
-		    \item \ressubheading{''' + item['my0:studiedIn']['my0:organizationName'] + r'''}{''' + item['my0:studiedIn']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:studiedIn']['my0:organizationAddress']['my0:country']) + r'''}{''' + getnameURI(item['my0:degreeType']) + comma + item['my0:eduMajor']+ r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + r'''}\\
+		    \item \ressubheading{''' + item['my0:studiedIn']['my0:organizationName'] + r'''}{''' + item['my0:studiedIn']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:studiedIn']['my0:organizationAddress']['my0:country']) + r'''}{''' + getnameURI(item['my0:degreeType']) + comma + item['my0:degree']+ r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + r'''}\\
 		    \begin{itemize}
 		    \item[]{''' + item['my0:eduDescription'] + r'''}
 		    \end{itemize}'''
@@ -632,7 +708,7 @@ def generateMainDesign1(data):
 
     if (data['my0:hasCourse']):
 	    main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \resheading{Courses/Trainings}
+	    \resheading{''' + courseTitle[language] + r'''}
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	    \begin{itemize}'''
 	    for item in (data['my0:hasCourse']):
@@ -646,7 +722,7 @@ def generateMainDesign1(data):
   
     if (data['my0:hasOtherInfo']):
 	    main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \resheading{Other information}
+	    \resheading{''' + otherInfoTitle[language] + r'''}
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	    \begin{itemize}'''
 	    for item in (data['my0:hasOtherInfo']):

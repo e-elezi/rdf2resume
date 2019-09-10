@@ -2,6 +2,41 @@
 @prefix mybase0: <http://example.com/rdf2resume_base_ontology.rdf#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
+mybase0:SkillCategoryProperty
+  rdfs:label "Skill Category"@en,
+  "Skill-Kategorie"@de,
+  "Catégorie de compétences"@fr,
+  "Categoria di abilità"@it ;
+  a owl:Class .
+
+mybase0:IndustryKnowledge
+  rdfs:label "Industry Knowledge"@en,
+  "Branchenkenntnisse"@de,
+  "Connaissance de l'industrie"@fr,
+  "Conoscenza del settore"@it;
+  a mybase0:SkillCategoryProperty.
+
+mybase0:ToolsTechnologies
+  rdfs:label "Tools & Technologies"@en,
+  "Werkzeuge und Technologien"@de,
+  "Outils et technologies"@fr,
+  "Strumenti e tecnologie"@it;
+  a mybase0:SkillCategoryProperty .
+
+mybase0:InterpersonalSkills
+  rdfs:label "Interpersonal Skills"@en,
+  "Zwischenmenschliche Fähigkeiten"@de,
+  "Compétences interpersonnelles"@fr,
+  "Competenze interpersonali"@it;
+  a mybase0:SkillCategoryProperty .
+
+mybase0:OtherSkills
+  rdfs:label "Other Skills"@en,
+  "Andere Fähigkeiten"@de,
+  "Autres compétences"@fr,
+  "Altre competenze"@it;
+  a mybase0:SkillCategoryProperty .
+
 mybase0:RegionProperty
   rdfs:label "Region"@en,
   "Region"@de,

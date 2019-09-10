@@ -5,6 +5,7 @@ import { removeOtherSkill } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import SkillModal from "./SkillModal";
+import CustomLevelButton from "../../../../core/CustomLevelButton";
 
 class SkillView extends Component {
   state = {
@@ -13,12 +14,12 @@ class SkillView extends Component {
   };
 
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -28,14 +29,16 @@ class SkillView extends Component {
     });
   };
 
+  handleLevelClick = () => {
+    return;
+  };
+
   render() {
     let {
       "my0:skillName": skillName,
       "my0:skillDescription": skillDescription,
-      "my0:skillHasCertificate": skillHasCertificate,
-      "my0:skillLastUsed": skillLastUsed,
-      "my0:skillLevel": skillLevel,
-      "my0:skillYearsExperience": skillYearsExperience
+      //"my0:skillHasCertificate": skillHasCertificate,
+      "my0:skillLevel": skillLevel
     } = this.props.skillObj;
 
     return (
@@ -49,7 +52,11 @@ class SkillView extends Component {
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              {skillName} | {skillLevel}
+              {skillName}{" "}
+              <CustomLevelButton
+                handleClick={this.handleLevelClick}
+                filledNumber={skillLevel}
+              />
             </h4>
           </Col>
           <Col md={4}>
@@ -76,23 +83,6 @@ class SkillView extends Component {
             }}
           >
             {skillDescription}
-          </p>
-        </Row>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            marginLeft: "0px"
-          }}
-        >
-          <p
-            style={{
-              width: "80%"
-            }}
-          >
-            {skillLastUsed}
-            {skillYearsExperience}
-            {skillHasCertificate}
           </p>
         </Row>
         <SkillModal

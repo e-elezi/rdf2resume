@@ -18,6 +18,7 @@ import {
   FETCH_ALL_GENDERS,
   FETCH_ALL_LANGUAGE_SELF_ASSESSMENT_PROPERTIES,
   FETCH_ALL_OTHER_CV_INFO_TYPES,
+  FETCH_ALL_SKILL_CATEGORIES,
   FETCH_MAIN_PROPERTIES,
   FETCH_ALL_TITLE_PROPERTIES,
   TOGGLE_SPINNER,
@@ -34,6 +35,19 @@ export const fetchCountries = () => async dispatch => {
   let response = await endpoint.get(queryUrl);
   dispatch({
     type: FETCH_ALL_COUNTRIES,
+    payload: response.data.results.bindings
+  });
+};
+
+export const fetchSkillCategories = () => async dispatch => {
+  let queryUrl =
+    "http://localhost:3030/resume/query" +
+    "?query=" +
+    encodeURIComponent(fetchBaseProperties('mybase0:SkillCategoryProperty')) +
+    "&format=json";
+  let response = await endpoint.get(queryUrl);
+  dispatch({
+    type: FETCH_ALL_SKILL_CATEGORIES,
     payload: response.data.results.bindings
   });
 };

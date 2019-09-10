@@ -1,34 +1,30 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { removeOtherInfo } from "../../../../../actions";
+import { removeOtherSkill } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import OtherInfoModal from "./OtherInfoModal";
-import {
-  fetchOtherCVInfoTypes
-} from "../../../../../actions/utilityActions";
-import {
-  retrieveBaseProperties
-} from "../../../../../utilities/utilityQueries";
+import LanguageModal from "./LanguageModal";
+import { fetchLanguageSkillSelfAssessmentProperties } from "../../../../../actions/utilityActions";
+import { retrieveBaseProperties } from "../../../../../utilities/utilityQueries";
 
-class OtherInfoView extends Component {
+class LanguageView extends Component {
   state = {
     editMode: false,
     key: 0
   };
 
   componentWillMount() {
-    this.props.fetchOtherCVInfoTypes();
+    this.props.fetchLanguageSkillSelfAssessmentProperties();
   }
 
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -60,16 +56,12 @@ class OtherInfoView extends Component {
       return translated[index][lang];
     }
   }
-  
+
   render() {
-    let { otherInfoObject } = this.props;
-    let lang = this.props.language;
-    let title = {
-      "en": "Category",
-      "de": "Kategorie",
-      "it": "Categoria",
-      "fr": "Catégorie"
-    }
+    let {
+      "my0:skillName": skillName,
+      "my0:languageSkillProficiency": languageSkillProficiency
+    } = this.props.languageSkillObj;
 
     return (
       <React.Fragment>
@@ -78,14 +70,16 @@ class OtherInfoView extends Component {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             marginLeft: "0px",
-            marginBottom: '10px'
+            marginBottom: '5px'
           }}
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
-            <h4>
-              <u>{title[lang]}:</u> {this.renderLabel(this.props.others, otherInfoObject["my0:otherInfoType"], lang)}
-
-            </h4>
+            <b>{skillName}</b> -{" "}
+            {this.renderLabel(
+              this.props.types,
+              languageSkillProficiency,
+              this.props.language
+            )}
           </Col>
           <Col md={4}>
             <FontAwesomeIcon
@@ -94,31 +88,16 @@ class OtherInfoView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeOtherInfo(this.props.id)}
+              onClick={() => this.props.removeOtherSkill(this.props.id)}
             />
           </Col>
         </Row>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            marginLeft: "0px"
-          }}
-        >
-          <p
-            style={{
-              width: "80%"
-            }}
-          >
-            {otherInfoObject["my0:otherInfoDescription"]}
-          </p>
-        </Row>
-        <OtherInfoModal
+        <LanguageModal
           show={this.state.editMode}
           id={this.props.id}
           isUpdate={true}
           onHide={this.handleCloseEdit}
-          otherInfoObject={this.props.otherInfoObject}
+          skillObj={this.props.skillObj}
           key={this.state.key}
         />
       </React.Fragment>
@@ -126,14 +105,14 @@ class OtherInfoView extends Component {
   }
 }
 
-const mapstateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
-    others: retrieveBaseProperties(state.utility.otherCVInfoValues),
-    language: state.utility.language
+    language: state.utility.language,
+    types: retrieveBaseProperties(state.utility.languageSelfAssessmentValues)
   };
 };
 
 export default connect(
-  mapstateToProps,
-  { removeOtherInfo, fetchOtherCVInfoTypes }
-)(OtherInfoView);
+  mapStateToProps,
+  { removeOtherSkill, fetchLanguageSkillSelfAssessmentProperties }
+)(LanguageView);
