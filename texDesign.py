@@ -1,4 +1,5 @@
 from datetime import datetime
+from queries import runQueryDBPEDIA, runQueryMainOntology, runQueryCountryMainOntology
 
 headerCV = [
    r'''\documentclass[letterpaper,11pt]{article}
@@ -14,6 +15,8 @@ headerCV = [
     \usepackage{lmodern}
     \usepackage[utf8]{inputenc}
     \usepackage[]{babel}
+    \usepackage{fontawesome}
+    \usepackage{hyperref}
 
 
     %-----------------------------------------------------------
@@ -89,8 +92,9 @@ headerCV = [
    \setlength{\multicolsep}{0pt}
    \usepackage{paralist}										% compact lists
    \usepackage{tikz}
-   \usepackage{hyperref}
    \usepackage[utf8]{inputenc}
+   \usepackage{fontawesome}
+    \usepackage{hyperref}
    
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    % Create column layout
@@ -323,6 +327,9 @@ headerCV = [
 	\renewcommand\inskip{\bigskip}}}
     {\bigskip}
 
+  \usepackage{fontawesome}
+  \usepackage{hyperref}
+
    \begin{document}
    '''
 ]
@@ -416,6 +423,155 @@ def getnameURI(uri):
 	return uri[index:length]
 
 def generateMainDesign3(data, language):
+    if (data['my0:aboutPerson']):
+      item = data['my0:aboutPerson']
+      main = r'''
+      
+      \part{'''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''}
+      
+      '''
+    if(data['my0:hasWorkHistory']):
+      main = main +  r'''
+      
+      \section{''' + workTitle[language] + r'''}
+ 
+      \begin{eventlist}
+      
+      '''
+      for item in (data['my0:hasWorkHistory']):
+        startDateString = ''
+        endDateString = ''
+        if(item['my0:startDate'] !=''):
+            startDate = datetime.strptime(item['my0:startDate'], '%Y-%m-%d')
+            startDateString = startDate.strftime("%b %Y")
+        if(item['my0:endDate'] !=''):
+            endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
+            endDateString = endDate.strftime("%b %Y")
+        if(item['my0:isCurrent'] == True):
+            endDateString = 'Now '
+        endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
+        main = main + r'''
+        \item{''' + startDateString + r''' - ''' + endDateString + r'''}
+        {''' + item['my0:employedIn']['my0:organizationName'] + r''', ''' + item['my0:employedIn']['my0:organizationAddress']['my0:city'] + r'''}
+        {''' + item['my0:jobTitle'] + r'''}
+
+        ''' + item['my0:jobDescription'] + r'''
+
+        '''
+    main = main + r'''\end{eventlist}
+    
+    '''
+    if (data['my0:aboutPerson']):
+      item = data['my0:aboutPerson']
+      main = main + r'''
+      \personal
+        [''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r''']
+        {''' + item['my0:address']['my0:street'] + comma + item['my0:address']['my0:postalCode'] + r'''\newline ''' + item['my0:address']['my0:city'] + r''' (''' + getnameURI(item['my0:address']['my0:country']) + r''')}
+        {''' + item['my0:phoneNumber'][0] + r'''}
+        {''' + item['my0:email'] + r'''}
+
+      '''
+    if(data['my0:hasEducation']):
+      main = main +  r'''
+      
+      \section{''' + educationTitle[language] + r'''}
+      
+      \begin{yearlist}
+      
+      '''
+      for item in (data['my0:hasEducation']):
+        startDateString = ''
+        endDateString = ''
+        if(item['my0:eduStartDate'] !=''):
+            startDate = datetime.strptime(item['my0:eduStartDate'], '%Y-%m-%d')
+            startDateString = startDate.strftime("%Y")
+        if(item['my0:eduGradDate'] !=''):
+            endDate = datetime.strptime(item['my0:eduGradDate'], '%Y-%m-%d')
+            endDateString = endDate.strftime("%Y")
+        if(item['my0:isEduCurrent'] == True):
+            endDateString = 'Now '
+        main = main + r'''
+
+        \item[''' + getnameURI(item['my0:degreeType']) + r''']{''' + startDateString + r''' -- ''' + endDateString + r'''}
+        {''' + item['my0:degree'] + r'''}
+        {''' + item['my0:studiedIn']['my0:organizationName'] + r''', ''' + item['my0:studiedIn']['my0:organizationAddress']['my0:city'] + r'''}
+
+        '''
+    main = main + r'''\end{yearlist}
+    
+    '''
+    if(data['my0:hasSkill']):
+        #print language skills
+        main = main + r'''
+        \section{Language skills}
+        
+        \begin{factlist}
+        '''
+        for item in (data['my0:hasSkill']):
+            if(item['@type'] == 'my0:LanguageSkill'):
+                main = main + r'''
+                \item{''' + item['my0:skillName'] + r'''}
+                '''
+        main = main + r'''
+        \end{factlist}
+        '''
+        #print basic skills
+        main = main + r'''
+        
+        \section{''' + skillTitle[language] + r'''}
+        
+        \begin{factlist}
+
+        \item{''' + skilllevel[0][language] + r'''}
+            {
+        '''
+        for item in (data['my0:hasSkill']):
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 4 ):
+                main = main + item['my0:skillName'] + r''' '''
+        main = main + r'''}
+        
+        '''
+        #print intermediate skills
+        main = main + r'''
+                
+        \item{''' + skilllevel[1][language] + r'''}
+            {
+        '''
+        for item in (data['my0:hasSkill']):
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 2 and ord(item['my0:skillLevel']) < 4 ):
+                main = main + item['my0:skillName']+ r''' '''
+        main = main + r'''}
+        
+        '''
+        #print basic skills
+        main = main + r'''
+                
+        \item{''' + skilllevel[2][language] + r'''}
+            {
+        '''
+        for item in (data['my0:hasSkill']):
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) == 1 ):
+                main = main + item['my0:skillName']+ r''' '''
+        main = main + r'''}
+        
+        '''
+        main = main + r'''\end{factlist}
+        
+        '''
+    if(data['my0:hasOtherInfo']):
+        main = main + r'''
+        \section{''' + otherInfoTitle[language] + r'''}
+        
+        \begin{otherlist}
+        '''
+        for item in (data['my0:hasOtherInfo']):
+            main = main + r''' {''' +getnameURI(item['my0:otherInfoType']) + r'''}{\newline ''' +item['my0:otherInfoDescription'] + r'''} '''
+        main = main + r'''
+        \end{otherlist}
+        '''
+    return main
+
+def generateMainDesign3Enriched(data, language):
     if (data['my0:aboutPerson']):
       item = data['my0:aboutPerson']
       main = r'''
@@ -668,6 +824,110 @@ def generateMainDesign2(data, language):
       '''
     return main
 
+def generateMainDesign2Enriched(data, language):
+    if (data['my0:aboutPerson']):
+      item = data['my0:aboutPerson']
+      #write personal information about the user
+      main = r'''\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
+      \textbf{\Large '''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''} & \textbf{\today} \\
+      '''+ item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + item['my0:address']['my0:city'] + comma +  getnameURI(item['my0:address']['my0:country']) +r''' & ''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''\\
+      \end{tabular*}
+      \\'''
+      main = r'''% Left frame
+      %%%%%%%%%%%%%%%%%%%%
+      \begin{figure}
+        \hfill
+        \includegraphics[width=0.6\columnwidth]{''' +'build/static/media/photos/' +item['my0:photo'] + r'''}
+        \vspace{-7cm}
+      \end{figure} 
+      \begin{flushright}\small
+	    ''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''\\
+	    \url{''' + item['my0:email'] + r'''}  \\
+	    \url{''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''} \\
+	    ''' + item['my0:phoneNumber'][0] + r'''
+      \end{flushright}\normalsize
+      \framebreak'''
+
+      main = main +  r'''%Right frame
+      %%%%%%%%%%%%%%%%%%%%
+      \Huge\bfseries {\color{RoyalBlue} ''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''} \\
+      \Large\bfseries  ''' + data['my0:hasTarget']['my0:targetJobTitle'] + r''' \\
+
+      \normalsize\normalfont
+
+      % About me
+      \begin{AboutMe}
+      ''' + item['my0:personDescription'] + r'''
+      \end{AboutMe}\\*'''
+    if(data['my0:hasWorkHistory']):
+      main = main +  r'''
+      
+      % Experience
+      \CVSection{''' + workTitle[language] + r'''}'''
+      for item in (data['my0:hasWorkHistory']):
+        main = main + r'''
+        \CVItem{''' + item['my0:startDate'] + r''' - ''' + item['my0:endDate'] + ''', ''' + item['my0:jobTitle']  + r'''}\\ ''' + item['my0:jobDescription'] + '''
+        \SmallSep'''
+    if(data['my0:hasEducation']):
+      main = main +  r'''
+      
+      % Education
+      \CVSection{''' + educationTitle[language] + r'''}'''
+      for item in (data['my0:hasEducation']):
+        main = main + r''' 
+        \CVItem{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + ''', ''' + item['my0:degree'] + comma + getnameURI(item['my0:degreeType'])  + r'''}\\ ''' + item['my0:eduDescription'] + '''
+        \SmallSep
+        
+        '''
+      main = main + '''
+      \Sep '''
+    if(data['my0:hasSkill']):
+      main = main +  r'''
+      
+      % Skills
+      \CVSection{Skills}
+      \CVItem{''' + languageTitle[language] + r'''}
+      \begin{multicols}{3}
+      \begin{compactitem}[\color{RoyalBlue}$\circ$]'''
+      for items in (data['my0:hasSkill']):
+        if(items['@type']=='my0:LanguageSkill'):
+          main = main + r'''\item ''' + items['my0:skillName'] + r'''
+          ''' 
+      main = main + r'''
+      \end{compactitem}
+      \end{multicols}
+      \SmallSep
+
+      \CVItem{''' + skillTitle[language] + r'''}
+      \begin{multicols}{3}
+      \begin{compactitem}[\color{RoyalBlue}$\circ$]
+      '''
+      for items in (data['my0:hasSkill']):
+        if(items['@type']=='my0:Skill'):
+          main = main + r'''\item ''' + items['my0:skillName'] + r'''
+          ''' 
+      main = main + r'''
+      \end{compactitem}
+      \end{multicols}
+      \Sep
+
+      '''
+    if(data['my0:hasOtherInfo']):
+      for items in (data['my0:hasOtherInfo']):
+        main = main + r'''
+        \CVSection{''' + getnameURI(items['my0:otherInfoType']) + r'''}
+        ''' + items['my0:otherInfoDescription'] + r'''
+        
+        '''
+    main = main + r'''
+      
+      % References
+      \CVSection{''' + referenceTitle[0][language] + r'''}
+      ''' + referenceTitle[1][language] + r'''
+
+      '''
+    return main
+
 def generateMainDesign1(data, language):
     if (data['my0:aboutPerson']):
       item = data['my0:aboutPerson']
@@ -728,6 +988,97 @@ def generateMainDesign1(data, language):
 	    for item in (data['my0:hasOtherInfo']):
 		    main = main +  r'''
 		    \item[] \ressubheading{''' + getnameURI(item['my0:otherInfoType']) + r'''}{}{}{}\\*''' + item['my0:otherInfoDescription']
+
+    main = main + r'''\end{itemize}'''
+    return main
+
+def generateMainDesign1Enriched(data, language):
+    if (data['my0:aboutPerson']):
+      item = data['my0:aboutPerson']
+      address =  item['my0:address']
+      country = runQueryCountryMainOntology(address['my0:country'],language )
+      full_address = address['my0:street'] + space + address['my0:city'] +  space + address['my0:postalCode'] + space + country
+
+
+      #write personal information about the user
+      main = r'''\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
+      \textbf{\Large '''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''} & \textbf{\today} \\
+      '''+ address['my0:street'] + space +address['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + address['my0:city'] + comma +  country +r'''\href{https://www.openstreetmap.org/search?query='''+ full_address + r'''}{\faMapMarker}  & ''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''\\
+      \end{tabular*}
+      \\'''
+
+    if (data['my0:hasWorkHistory']):
+      
+      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \resheading{''' + workTitle[language] + r'''}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{itemize}'''
+      for item in (data['my0:hasWorkHistory']):
+
+        address =  item['my0:employedIn']['my0:organizationAddress']
+        orgName = item['my0:employedIn']['my0:organizationName']
+        country = runQueryCountryMainOntology(address['my0:country'],language )
+        city = address['my0:city']
+        jobMode = runQueryMainOntology(item['my0:jobMode'], language)
+
+        main = main +  r'''
+        \item \ressubheading{\href{''' + runQueryDBPEDIA(orgName, language) + r'''}{''' +  orgName + r'''}}{\href{''' + runQueryDBPEDIA(city, language)+'''}{''' + city + r'''}, \href{''' + runQueryDBPEDIA(country, language) + r'''}{''' + country + r'''} }{''' + item['my0:jobTitle'] + comma + jobMode+ r'''}{''' + item['my0:startDate'] + r''' - ''' + item['my0:endDate'] + r'''}\\
+        \begin{itemize}
+        \item[]{''' + item['my0:jobDescription'] + r'''}
+        \end{itemize}'''
+
+    main = main + r'''\end{itemize}'''
+
+    if (data['my0:hasEducation']):
+      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	    \resheading{''' + educationTitle[language] + r'''}
+	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	    \begin{itemize}'''
+      for item in (data['my0:hasEducation']):
+        address =  item['my0:studiedIn']['my0:organizationAddress']
+        orgName = item['my0:studiedIn']['my0:organizationName']
+        country = runQueryCountryMainOntology(address['my0:country'],language )
+        city = address['my0:city']
+        degreeType = runQueryMainOntology(item['my0:degreeType'], language)
+
+        main = main +  r'''
+        \item \ressubheading{\href{''' + runQueryDBPEDIA(orgName, language) + r'''}{''' +  orgName + r'''}}{\href{''' + runQueryDBPEDIA(city, language)+'''}{''' + city + r'''}, \href{''' + runQueryDBPEDIA(country, language) + r'''}{''' + country + r'''} }{''' + item['my0:degree'] + comma + degreeType+ r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + r'''}\\
+        \begin{itemize}
+        \item[]{''' + item['my0:eduDescription'] + r'''}
+        \end{itemize}'''
+        
+
+    main = main + r'''\end{itemize}'''
+
+    if (data['my0:hasCourse']):
+      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	    \resheading{''' + courseTitle[language] + r'''}
+	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	    \begin{itemize}'''
+      for item in (data['my0:hasCourse']):
+        address =  item['my0:organizedBy']['my0:organizationAddress']
+        orgName = item['my0:organizedBy']['my0:organizationName']
+        country = runQueryCountryMainOntology(address['my0:country'],language )
+        city = address['my0:city']
+
+        main = main +  r'''
+        \item \ressubheading{\href{''' + runQueryDBPEDIA(orgName, language) + r'''}{''' +  orgName + r'''}}{\href{''' + runQueryDBPEDIA(city, language)+'''}{''' + city + r'''}, \href{''' + runQueryDBPEDIA(country, language) + r'''}{''' + country + r'''} }{\href{''' +item['my0:courseURL'] + r'''}{''' + item['my0:courseTitle'] + r'''}}{''' + item['my0:courseStartDate'] + r''' - ''' + item['my0:courseFinishDate'] + r'''}\\
+        \begin{itemize}
+        \item[]{''' + item['my0:courseDescription'] + r'''}
+        \end{itemize}'''
+
+    main = main + r'''\end{itemize}'''
+  
+    if (data['my0:hasOtherInfo']):
+      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	    \resheading{''' + otherInfoTitle[language] + r'''}
+	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	    \begin{itemize}'''
+      for item in (data['my0:hasOtherInfo']):
+        types = runQueryMainOntology(item['my0:otherInfoType'], language)
+        
+        main = main +  r'''
+		    \item[] \ressubheading{''' + types + r'''}{}{}{}\\*''' + item['my0:otherInfoDescription']
 
     main = main + r'''\end{itemize}'''
     return main

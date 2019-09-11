@@ -7,7 +7,7 @@ import urllib.parse
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 from flask_cors import CORS, cross_origin
-from writeJSONtoTEX import writeJSONtoTEX
+from writeJSONtoTEX import writeJSONtoTEX, writeJSONtoTEXEnriched
 
 app = Flask(__name__,template_folder="build", static_folder="build/static")
 CORS(app, support_credentials=True)
@@ -51,6 +51,19 @@ def generate_pdf():
     if not os.path.exists('build/static/media/pdf'):
       os.mkdir('build/static/media/pdf')
     writeJSONtoTEX(content, "rdf2resume" + dt_string, designNumber, language )
+    return "static/media/pdf/rdf2resume" + dt_string
+
+@app.route('/generate_pdf_enriched', methods=['POST'])
+def generate_pdf_enriched():
+    req_data = request.get_json()
+    content = req_data['data']['cv']
+    designNumber = req_data['data']['designNumber']
+    language = req_data['data']['language']
+    now = datetime.now()
+    dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
+    if not os.path.exists('build/static/media/pdf'):
+      os.mkdir('build/static/media/pdf')
+    writeJSONtoTEXEnriched(content, "rdf2resume" + dt_string, designNumber, language )
     return "static/media/pdf/rdf2resume" + dt_string
 
 @app.route('/upload', methods=['POST'])

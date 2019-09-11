@@ -152,7 +152,7 @@
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
           "my0:postalCode": "50672",
           "@type": "Address",
-          "my0:city": "Köln",
+          "my0:city": "Cologne",
           "my0:street": ""
         },
         "my0:organizationWebsite": "https://www.publicissapient.com/"

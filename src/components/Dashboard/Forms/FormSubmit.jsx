@@ -16,6 +16,7 @@ class FormSubmit extends Component {
     this.anchorHiddenRef = React.createRef();
     this.state = {
       showModal: false,
+      showModalEnriched: false,
       key: 0,
       showPDF: false,
       pdfPath: "",
@@ -31,6 +32,16 @@ class FormSubmit extends Component {
   handleShow = () => {
     let key = this.state.key;
     this.setState({ showModal: true, key: ++key });
+  };
+
+  handleCloseEnriched = () => {
+    let key = this.state.key;
+    this.setState({ showModalEnriched: false, key: ++key });
+  };
+
+  handleShowEnriched = () => {
+    let key = this.state.key;
+    this.setState({ showModalEnriched: true, key: ++key });
   };
 
   checkError = (data) => {
@@ -125,7 +136,34 @@ class FormSubmit extends Component {
     }
   };
 
-  handleDownloadingTex = () => {};
+  handleShowPDFEnriched = async (designNumber, language) => {
+    if (this.checkError(this.props.cvData)) {
+      let lang = this.props.language;
+      Swal.fire({
+        title: warningLabel[lang],
+        text: warningText[lang],
+        type: "warning",
+        confirmButtonColor: "#4bb3cc",
+        heightAuto: false,
+        confirmButtonText: "Okay"
+      });
+    } else {
+      const response = await axios.post("/generate_pdf_enriched", {
+        data: {
+          cv: this.props.cvData,
+          designNumber: designNumber,
+          language: language
+        }
+      });
+      this.setState({
+        pdfPath: "../../" + response.data
+      });
+      this.setState({
+        showModal: false,
+        showPDF: true
+      });
+    }
+  };
 
   renderPDF = () => {
     if (this.state.showPDF) {
@@ -221,8 +259,14 @@ class FormSubmit extends Component {
               <CustomButton
                 label={thirdbutton[lang]}
                 classnames="final-submit"
-                handleClick={this.handlePDFgenerationWithInterlinking}
+                handleClick={this.handleShowEnriched}
               />
+              <SubmitModal
+              showPdf={this.handleShowPDFEnriched}
+              show={this.state.showModalEnriched}
+              key={this.state.key}
+              onHide={this.handleCloseEnriched}
+            />
             </Row>
             <Row style={{ justifyContent: "left", marginLeft: 0 }}>
               {this.state.showPDF ? (
