@@ -19,6 +19,44 @@ import {
   titleDescription,
   topBar
 } from "./translations/translations";
+import Loader from "react-loader-spinner";
+import { usePromiseTracker } from "react-promise-tracker";
+
+const LoadingIndicator = props => {
+  const { promiseInProgress } = usePromiseTracker();
+
+  return (
+    promiseInProgress && (
+      <div
+        style={{
+          zIndex: "500",
+          position: "fixed",
+          display: "block",
+          top: "50%",
+          left: "50%"
+        }}
+      >
+        <Loader type="ThreeDots" color="#2d889e" height="100" width="100" />
+      </div>
+    )
+  );
+};
+
+const LoadingIndicator2 = props => {
+  return (
+    <div
+        style={{
+          zIndex: "500",
+          position: "fixed",
+          display: "block",
+          top: "50%",
+          left: "50%"
+        }}
+      >
+      <Loader type="ThreeDots" color="#2d889e" height="100" width="100" />
+    </div>
+  );
+};
 
 class App extends Component {
   state = {
@@ -43,6 +81,8 @@ class App extends Component {
     let lang = this.props.language;
     return (
       <React.Fragment>
+        <LoadingIndicator />
+        {/* <LoadingIndicator2 /> */}
         {this.state.showInitialPage ? (
           <Container className="initial-content">
             <Row className="logo">
@@ -79,14 +119,20 @@ class App extends Component {
             {this.state.showDescription ? (
               <Row>
                 <Col md={12}>
-                  <p className="description-content">{titleDescription[lang]}</p>
+                  <p className="description-content">
+                    {titleDescription[lang]}
+                  </p>
                 </Col>
               </Row>
             ) : (
               ""
             )}
             <Row className="footer-copyright">
-              <a rel="noopener noreferrer" href="https://www.linkedin.com/in/enkeleda-elezi-928532a0/" target="_blank">
+              <a
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/in/enkeleda-elezi-928532a0/"
+                target="_blank"
+              >
                 @Enkeleda Elezi
               </a>
             </Row>

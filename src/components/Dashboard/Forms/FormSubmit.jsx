@@ -7,6 +7,7 @@ import Spinner from "../../../components/core/Spinner";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { trackPromise } from "react-promise-tracker";
 import {
   warningLabel,
   warningText,
@@ -122,20 +123,34 @@ class FormSubmit extends Component {
         confirmButtonText: "Okay"
       });
     } else {
-      const response = await axios.post("/generate_pdf", {
-        data: {
-          cv: this.props.cvData,
-          designNumber: designNumber,
-          language: language
-        }
+      this.setState({
+        pdfPath: ""
       });
       this.setState({
-        pdfPath: "../../" + response.data
+        showPDF: false
       });
-      this.setState({
-        showModal: false,
-        showPDF: true
-      });
+      this.handleClose();
+      trackPromise(
+        axios
+          .post("/generate_pdf", {
+            data: {
+              cv: this.props.cvData,
+              designNumber: designNumber,
+              language: language
+            }
+          })
+          .then(resp => {
+            this.setState({
+              pdfPath: "../../" + resp.data
+            });
+            this.setState({
+              showPDF: true
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      );
     }
   };
 
@@ -151,20 +166,34 @@ class FormSubmit extends Component {
         confirmButtonText: "Okay"
       });
     } else {
-      const response = await axios.post("/generate_pdf_enriched", {
-        data: {
-          cv: this.props.cvData,
-          designNumber: designNumber,
-          language: language
-        }
+      this.setState({
+        pdfPath: ""
       });
       this.setState({
-        pdfPath: "../../" + response.data
+        showPDF: false
       });
-      this.setState({
-        showModal: false,
-        showPDF: true
-      });
+      this.handleCloseEnriched();
+      trackPromise(
+        axios
+          .post("/generate_pdf_enriched", {
+            data: {
+              cv: this.props.cvData,
+              designNumber: designNumber,
+              language: language
+            }
+          })
+          .then(resp => {
+            this.setState({
+              pdfPath: "../../" + resp.data
+            });
+            this.setState({
+              showPDF: true
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      );
     }
   };
 
