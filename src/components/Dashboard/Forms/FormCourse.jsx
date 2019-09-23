@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import CourseModal from "./Modals/FormCourse/CourseModal";
 import CourseView from "./Modals/FormCourse/CourseView";
 import AddButton from "../../core/AddButton";
+import {
+  courseAddTitle,
+  courseNoTitle,
+  courseTitle
+} from "../../../translations/translations";
 
 class FormCourse extends Component {
   state = {
@@ -13,13 +18,12 @@ class FormCourse extends Component {
 
   handleClose = () => {
     let key = this.state.key;
-    this.setState({ showModal: false,
-    key: ++key });
+    this.setState({ showModal: false, key: ++key });
   };
 
   handleShow = () => {
     let key = this.state.key;
-    this.setState({ showModal: true, key: ++key  });
+    this.setState({ showModal: true, key: ++key });
   };
 
   render() {
@@ -27,32 +31,11 @@ class FormCourse extends Component {
 
     let lang = this.props.language;
 
-    let titlePage = {
-      en: "Course/Training",
-      fr: "Cours/Training",
-      de: "Kurs/Training",
-      it: "Corso/Training"
-    };
-
-    let titlesub = {
-      en: "Add course / training",
-      fr: "Ajouter cours / training",
-      de: "Kurs / Training hinzufügen",
-      it: "Aggiungi corso / training",
-    }
-
-    let nocourse = {
-      en: "No courses have been added until now.",
-      fr: "Aucun cours n'a été ajouté jusqu'à présent.",
-      de: "Es wurden bisher keine Kurse hinzugefügt.",
-      it: "Non sono stati aggiunti corsi fino ad ora.",
-    }
-
     return (
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
+            <h4 style={{ marginTop: "10px" }}>{courseTitle[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -61,23 +44,21 @@ class FormCourse extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <CourseModal show={showModal} onHide={this.handleClose} key={this.state.key} />
+                <CourseModal
+                  show={showModal}
+                  onHide={this.handleClose}
+                  key={this.state.key}
+                />
               </Col>
               <Col md={10} className="button-label">
-                <p>{titlesub[lang]}</p>
+                <p>{courseAddTitle[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
-        {this.props.course.length === 0
-          ? nocourse[lang]
-          : ""}
+        {this.props.course.length === 0 ? courseNoTitle[lang] : ""}
         {this.props.course.map((co, index) => (
-          <CourseView
-            courseObj={co}
-            id={index}
-            key={index}
-          />
+          <CourseView courseObj={co} id={index} key={index} />
         ))}
       </React.Fragment>
     );

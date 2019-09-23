@@ -72,14 +72,14 @@ def process_upload_file():
     if request.method == 'POST':
       f = request.files['file']
       file_content = f.read()
-      url = "http://rdf-translator.appspot.com/convert/"+ request.args['standard'] +"/json-ld/content"
-      payload = "content=" +  urllib.parse.quote(file_content)
-      headers = {
-        'Content-Type': "application/x-www-form-urlencoded",
-        'cache-control': "no-cache"
-      }
-      response = requests.request("POST", url, data=payload, headers=headers)
-      return(response.text)
+      # url = "http://rdf-translator.appspot.com/convert/"+ request.args['standard'] +"/json-ld/content"
+      # payload = "content=" +  urllib.parse.quote(file_content)
+      # headers = {
+      #   'Content-Type': "application/x-www-form-urlencoded",
+      #   'cache-control': "no-cache"
+      # }
+      # response = requests.request("POST", url, data=payload, headers=headers)
+      return(file_content)
 
 @app.route('/upload_photo', methods=['POST'])
 @cross_origin()

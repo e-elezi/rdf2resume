@@ -10,8 +10,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  honorAddTitle,
+  honorUpdateTitle
+} from "../../../../../translations/translations";
 
 class HonorModal extends Component {
   state = {
@@ -139,20 +141,6 @@ class HonorModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new honor/award",
-      fr: "Ajouter un nouvel honneur/prix",
-      de: "Neue Ehre/Award hinzufügen",
-      it: "Aggiungi un nuovo premi/riconoscimento"
-    };
-
-    let up = {
-      en: "Update honor/award",
-      fr: "Mise à jour de l'honneur/du prix",
-      de: "Aktualisieren der Ehre/Auszeichnung",
-      it: "Aggiornare riconoscimento/premio"
-    };
-
     let lang = this.props.language;
 
     let { translatedProps } = this.props;
@@ -169,7 +157,11 @@ class HonorModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+              <Col md={12}>
+                {this.props.isUpdate
+                  ? honorUpdateTitle[lang]
+                  : honorAddTitle[lang]}
+              </Col>
             </Row>
           </Modal.Title>
         </Modal.Header>

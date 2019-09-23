@@ -18,8 +18,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  referenceAddTitle,
+  referenceUpdateTitle
+} from "../../../../../translations/translations";
 
 class ReferenceModal extends Component {
   state = {
@@ -160,19 +162,33 @@ class ReferenceModal extends Component {
 
   handleRenderingSubmitButton = lang => {
     let disabled =
-    this.state.reference["my0:referenceBy"]["my0:firstName"] === "" ||
-    this.state.reference["my0:referenceBy"]["my0:lastName"] === "" ||
-    this.state.reference["my0:referenceBy"]['my0:currentJob']['my0:jobTitle'] === "" ||
-    this.state.reference["my0:referenceBy"]['my0:currentJob']['my0:employedIn']['my0:organizationName'] === ""
+      this.state.reference["my0:referenceBy"]["my0:firstName"] === "" ||
+      this.state.reference["my0:referenceBy"]["my0:lastName"] === "" ||
+      this.state.reference["my0:referenceBy"]["my0:currentJob"][
+        "my0:jobTitle"
+      ] === "" ||
+      this.state.reference["my0:referenceBy"]["my0:currentJob"][
+        "my0:employedIn"
+      ]["my0:organizationName"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={disabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={disabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -219,20 +235,6 @@ class ReferenceModal extends Component {
 
     let lang = this.props.language;
 
-    let add = {
-      en: "Add new reference",
-      fr: "Ajouter une nouvelle référence",
-      de: "Neue Referenz hinzufügen",
-      it: "Aggiungere un nuovo riferimento"
-    };
-
-    let up = {
-      en: "Update reference",
-      fr: "Référence de la mise à jour",
-      de: "Referenz aktualisieren",
-      it: "Aggiornare il riferimento"
-    };
-
     let {
       translatedProps,
       translatedPropsAddr,
@@ -253,7 +255,11 @@ class ReferenceModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang] }</Col>
+              <Col md={12}>
+                {this.props.isUpdate
+                  ? referenceUpdateTitle[lang]
+                  : referenceAddTitle[lang]}
+              </Col>
             </Row>
           </Modal.Title>
         </Modal.Header>
@@ -291,7 +297,9 @@ class ReferenceModal extends Component {
               <CustomInput
                 id="my0:firstName"
                 name="person"
-                label={this.renderLabel(translatedProps, "firstName", lang) + ' *'}
+                label={
+                  this.renderLabel(translatedProps, "firstName", lang) + " *"
+                }
                 type="text"
                 value={firstName}
                 handleChange={this.handleInputChange}
@@ -300,7 +308,9 @@ class ReferenceModal extends Component {
             <Col md={4}>
               <CustomInput
                 id="my0:lastName"
-                label={this.renderLabel(translatedProps, "lastName", lang) + ' *'}
+                label={
+                  this.renderLabel(translatedProps, "lastName", lang) + " *"
+                }
                 name="person"
                 type="text"
                 value={lastName}
@@ -313,7 +323,9 @@ class ReferenceModal extends Component {
               <CustomInput
                 id="my0:jobTitle"
                 name="workHistory"
-                label={this.renderLabel(translatedPropsWork, "jobTitle", lang) + ' *'}
+                label={
+                  this.renderLabel(translatedPropsWork, "jobTitle", lang) + " *"
+                }
                 type="text"
                 value={jobTitle}
                 handleChange={this.handleInputChange}
@@ -323,11 +335,13 @@ class ReferenceModal extends Component {
               <CustomInput
                 id="my0:organizationName"
                 name="organization"
-                label={this.renderLabel(
-                  translatedPropsOrg,
-                  "organizationName",
-                  lang
-                ) + ' *'}
+                label={
+                  this.renderLabel(
+                    translatedPropsOrg,
+                    "organizationName",
+                    lang
+                  ) + " *"
+                }
                 type="text"
                 value={organizationName}
                 handleChange={this.handleInputChange}
@@ -410,7 +424,7 @@ class ReferenceModal extends Component {
           />
           <CustomInput
             id="my0:email"
-            label={this.renderLabel(translatedProps, "email", lang) + ' *'}
+            label={this.renderLabel(translatedProps, "email", lang) + " *"}
             name="person"
             type="text"
             value={email}

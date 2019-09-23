@@ -16,8 +16,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  otherInfoAddTitle,
+  otherInfoUpdateTitle
+} from "../../../../../translations/translations";
 
 class OtherInfoModal extends Component {
   state = {
@@ -153,20 +155,6 @@ class OtherInfoModal extends Component {
 
     let translatedProps = this.props.translatedProps;
 
-    let titlesub = {
-      en: "Add new information",
-      fr: "Ajouter de nouvelles informations",
-      de: "Neue Informationen hinzufügen",
-      it: "Aggiungere nuove informazioni"
-    };
-
-    let updateSub = {
-      en: "Update information",
-      fr: "Mise à jour des informations",
-      de: "Aktualisierungsinformationen",
-      it: "Aggiornare le informazioni"
-    };
-
     return (
       <Modal
         show={this.props.show}
@@ -180,7 +168,9 @@ class OtherInfoModal extends Component {
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
               <Col md={4}>
-                {this.props.isUpdate ? updateSub[lang]  : titlesub[lang] }
+                {this.props.isUpdate
+                  ? otherInfoUpdateTitle[lang]
+                  : otherInfoAddTitle[lang]}
               </Col>
               <Col md={8} />
             </Row>
@@ -195,11 +185,9 @@ class OtherInfoModal extends Component {
               marginBottom: "8px"
             }}
           >
-            <label className="label-rw">{this.renderLabel(
-                translatedProps,
-                "otherInfoType",
-                lang
-              ) + ' *'}</label>
+            <label className="label-rw">
+              {this.renderLabel(translatedProps, "otherInfoType", lang) + " *"}
+            </label>
             <Combobox
               name="otherInfoType"
               placeholder={this.renderLabel(
@@ -222,11 +210,13 @@ class OtherInfoModal extends Component {
           <div style={{ marginTop: "10px" }}>
             <CustomTextarea
               id="my0:otherInfoDescription"
-              label={this.renderLabel(
-                translatedProps,
-                "otherInfoDescription",
-                lang
-              ) + ' *'}
+              label={
+                this.renderLabel(
+                  translatedProps,
+                  "otherInfoDescription",
+                  lang
+                ) + " *"
+              }
               value={otherInfoDescription}
               handleChange={this.handleInputChange}
             />

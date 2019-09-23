@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { Link, Route, withRouter } from "react-router-dom";
 import "./App.css";
-import 'react-widgets/dist/css/react-widgets.css'
+import "react-widgets/dist/css/react-widgets.css";
 import Topbar from "./components/Topbar";
 import Upload from "./components/Upload/Upload";
 import Main from "./components/Dashboard/Main";
@@ -14,37 +14,16 @@ import {
   updateAboutPerson,
   updateTarget
 } from "./actions/index";
+import {
+  titleApp,
+  titleDescription,
+  topBar
+} from "./translations/translations";
 
 class App extends Component {
   state = {
     showInitialPage: true,
-    showDescription: false,
-    topbar: [
-      { 
-        "@type": "Fill in form",
-        "en": "Fill in form",
-        "de": "Formular ausfüllen",
-        "fr": "Remplissez le formulaire",
-        "it": "Compila il modulo", 
-        link: "/d" 
-      },
-      { 
-        "@type": "Upload RDF",
-        "en": "Upload RDF",
-        "de": "RDF hochladen",
-        "fr": "Charger RDF",
-        "it": "Carica RDF",  
-        link: "/u/upload" 
-      },
-      { 
-        "@type": "About",
-        "en": "About",
-        "de": "Über uns",
-        "fr": "Au sujet de",
-        "it": "Informazioni su",  
-        link: "/about/" 
-      }
-    ]
+    showDescription: false
   };
 
   handleFirstPageButtonClick = e => [
@@ -61,6 +40,7 @@ class App extends Component {
   };
 
   render() {
+    let lang = this.props.language;
     return (
       <React.Fragment>
         {this.state.showInitialPage ? (
@@ -69,7 +49,7 @@ class App extends Component {
               <h1>Logo</h1>
             </Row>
             <Row>
-              <h1>Welcome to RDF2Résumé</h1>
+              <h1>{titleApp[lang]}</h1>
               <Button
                 className="info-button"
                 variant="light"
@@ -85,44 +65,34 @@ class App extends Component {
                   className="btn btn-primary"
                   onClick={e => this.handleFirstPageButtonClick(e)}
                 >
-                  Fill in Form
+                  {topBar[0][lang]}
                 </Link>
                 <Link
                   to="/u/upload"
                   className="btn btn-success"
                   onClick={e => this.handleFirstPageButtonClick(e)}
                 >
-                  Upload RDF
+                  {topBar[1][lang]}
                 </Link>
               </Col>
             </Row>
             {this.state.showDescription ? (
               <Row>
                 <Col md={12}>
-                  <p className="description-content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                    deserunt neque tempore recusandae animi soluta quasi?
-                    Asperiores rem dolore eaque vel, porro, soluta unde debitis
-                    aliquam laboriosam. Repellat explicabo, maiores! <br />
-                    <br />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Omnis optio neque consectetur consequatur magni in nisi,
-                    natus beatae quidem quam odit commodi ducimus totam eum,
-                    alias, adipisci nesciunt voluptate. Voluptatum.
-                  </p>
+                  <p className="description-content">{titleDescription[lang]}</p>
                 </Col>
               </Row>
             ) : (
               ""
             )}
             <Row className="footer-copyright">
-              <a href="#kot" target="_blank">
+              <a rel="noopener noreferrer" href="https://www.linkedin.com/in/enkeleda-elezi-928532a0/" target="_blank">
                 @Enkeleda Elezi
               </a>
             </Row>
           </Container>
         ) : (
-          <Topbar links={this.state.topbar} />
+          <Topbar links={topBar} />
         )}
         <Route
           path="/d"
@@ -139,7 +109,8 @@ const mapStateToProps = state => {
   return {
     formData: state.form,
     cvData: state.cv,
-    showSpinner: state.utility.showSpinner
+    showSpinner: state.utility.showSpinner,
+    language: state.utility.language
   };
 };
 

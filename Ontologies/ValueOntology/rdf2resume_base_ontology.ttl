@@ -142,6 +142,19 @@ mybase0:Twitter
   owl:disjointWith mybase0:WeChat;
   a mybase0:InstantMessagingTypeProperty .
 
+mybase0:Instagram
+  rdfs:label "Instagram"@en,
+  "Instagram"@de,
+  "Instagram"@fr,
+  "Instagram"@it;
+  owl:disjointWith mybase0:ICQ;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Skype;
+  owl:disjointWith mybase0:GoogleHangouts;
+  owl:disjointWith mybase0:QQ;
+  owl:disjointWith mybase0:WeChat;
+  a mybase0:InstantMessagingTypeProperty .
+
 mybase0:ICQ
   rdfs:label "ICQ"@en,
   "ICQ"@de,
@@ -214,6 +227,32 @@ mybase0:Personal
   "Persönlich"@de,
   "Personnel"@fr,
   "Personale"@it;
+  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Blog;
+  owl:disjointWith mybase0:Rssfeed;
+  owl:disjointWith mybase0:Portfolio;
+  owl:disjointWith mybase0:OtherValue;
+  a mybase0:WebsiteTypeProperty .
+
+mybase0:Linkedin
+  rdfs:label "Linkedin"@en,
+  "Linkedin"@de,
+  "Linkedin"@fr,
+  "Linkedin"@it;
+  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Blog;
+  owl:disjointWith mybase0:Rssfeed;
+  owl:disjointWith mybase0:Portfolio;
+  owl:disjointWith mybase0:OtherValue;
+  a mybase0:WebsiteTypeProperty .
+
+mybase0:Xing
+  rdfs:label "Xing"@en,
+  "Xing"@de,
+  "Xing"@fr,
+  "Xing"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:CompanyValue;
   owl:disjointWith mybase0:Blog;

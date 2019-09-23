@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import CustomRadioGroup from "../../core/CustomRadioGroup";
 import { Combobox, Multiselect } from "react-widgets";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import CustomTextarea from "../../core/CustomTextarea";
 import {
@@ -33,6 +33,14 @@ import {
   retrieveMainProperties,
   retrieveBaseProperties
 } from "../../../utilities/utilityQueries";
+import {
+  personalAccepted,
+  personalIM,
+  personalSizeMax,
+  personalWebsite,
+  mainSidebar,
+  personalNationalityAlert
+} from "../../../translations/translations";
 import axios from "axios";
 
 class FormPersonal extends Component {
@@ -73,24 +81,18 @@ class FormPersonal extends Component {
 
   handleMultiSelectChange = (name, value, lang) => {
     let myarr = [];
-    let texts = {
-      "en": 'You can not add more than 2',
-      "de": "Du kannst nicht mehr als 2 hinzufügen.",
-      "it": "Non è possibile aggiungere più del 2",
-      "fr": "Vous ne pouvez pas ajouter plus de 2"
-    }
     let length = value.length;
-    if(name === 'hasCitizenship' || name === 'hasNationality'){
-      if(value.length >= 3){
+    if (name === "hasCitizenship" || name === "hasNationality") {
+      if (value.length >= 3) {
         Swal.fire({
-          title: 'Warning!',
-          text: texts[lang],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          title: "Warning!",
+          text: personalNationalityAlert[lang],
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
     for (let i = 0; i < length; i++) {
@@ -108,8 +110,12 @@ class FormPersonal extends Component {
   };
 
   updateWebsite = (name, value, index) => {
-    if(value["@type"]){
-      this.props.updateWebsite({ id: index, name: name, value: value["@type"] });
+    if (value["@type"]) {
+      this.props.updateWebsite({
+        id: index,
+        name: name,
+        value: value["@type"]
+      });
     } else {
       this.props.updateWebsite({ id: index, name: name, value: value });
     }
@@ -124,7 +130,7 @@ class FormPersonal extends Component {
   };
 
   updateInstantMessaging = (name, value, index) => {
-    if(value["@type"]){
+    if (value["@type"]) {
       this.props.updateIM({ id: index, name: name, value: value["@type"] });
     } else {
       this.props.updateIM({ id: index, name: name, value: value });
@@ -223,41 +229,7 @@ class FormPersonal extends Component {
       "my0:photo": photo
     } = this.props.aboutperson;
 
-    let titlePage = {
-      en: "Personal Information",
-      fr: "Renseignements personnels",
-      de: "Persönliche Daten",
-      it: "Informazioni personali",
-      link: "/d/about"
-    };
-
-    let accepted = {
-      en: "Accepted formats: PNG, JPG.",
-      fr: "Formats acceptés : PNG, JPG.",
-      de: "Akzeptierte Formate: PNG, JPG.",
-      it: "Formati accettati: PNG, JPG."
-    };
-
-    let sizemax = {
-      en: "Max. size: 1MB.",
-      fr: "Taille maxi : 1MB.",
-      de: "Max. Größe: 1MB.",
-      it: "Dimensione max.: 1MB."
-    };
-
-    let website = {
-      en: "Website",
-      de: "Website",
-      fr: "Site web",
-      it: "Sito web"
-    };
-
-    let im = {
-      en: "Instant Messaging",
-      de: "Sofortnachricht",
-      fr: "Message instantané",
-      it: "Messaggio istantaneo"
-    };
+    let titlePage = mainSidebar[1];
 
     let {
       translatedProps,
@@ -465,7 +437,7 @@ class FormPersonal extends Component {
           <div className="mb-3" />
           <Row className="m-0">
             <Col md={5} className="p-0">
-              <p className="mb-0">{website[lang]}</p>
+              <p className="mb-0">{personalWebsite[lang]}</p>
             </Col>
             <Col md={5} className="p-0" />
             <Col md={2} className="p-0 instant-add-wrapper">
@@ -525,7 +497,7 @@ class FormPersonal extends Component {
           <div className="mb-3" />
           <Row className="m-0">
             <Col md={5} className="p-0">
-              <p className="mb-0">{im[lang]}</p>
+              <p className="mb-0">{personalIM[lang]}</p>
             </Col>
             <Col md={5} className="p-0" />
             <Col md={2} className="p-0 instant-add-wrapper">
@@ -649,9 +621,9 @@ class FormPersonal extends Component {
               }}
               role="alert"
             >
-              {accepted[lang]}
+              {personalAccepted[lang]}
               <br />
-              {sizemax[lang]}
+              {personalSizeMax[lang]}
             </div>
             <CustomRadioGroup
               items={this.props.genders}

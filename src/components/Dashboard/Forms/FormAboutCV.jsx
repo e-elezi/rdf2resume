@@ -4,18 +4,15 @@ import CustomTextarea from "../../core/CustomTextarea";
 import CustomInput from "../../core/CustomInput";
 import CustomCheckbox from "../../core/CustomCheckbox";
 import { updateAboutCV } from "../../../actions";
-import {
-  fetchMainPropertiess,
-} from "../../../actions/utilityActions";
-import {
-  retrieveMainProperties,
-} from "../../../utilities/utilityQueries";
+import { fetchMainPropertiess } from "../../../actions/utilityActions";
+import { retrieveMainProperties } from "../../../utilities/utilityQueries";
+import { now, topBar } from "../../../translations/translations";
 
 class FormAboutCV extends Component {
   state = {};
 
   componentWillMount() {
-    this.props.fetchMainPropertiess('my0:CV');
+    this.props.fetchMainPropertiess("my0:CV");
   }
 
   handleInputChange = e => {
@@ -28,16 +25,19 @@ class FormAboutCV extends Component {
 
   findInArray(data, name) {
     let length = data.length;
-    for(let i =0; i<length; i++) {
-      if(data[i]["@type"].indexOf(name)>=0){
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@type"].indexOf(name) >= 0) {
         return i;
       }
     }
   }
 
   renderLabel(translated, name, lang) {
-    let index = this.findInArray(translated,name);
-    if(translated[index]===undefined || translated[index][lang]===undefined){
+    let index = this.findInArray(translated, name);
+    if (
+      translated[index] === undefined ||
+      translated[index][lang] === undefined
+    ) {
       return name;
     } else {
       return translated[index][lang];
@@ -47,25 +47,13 @@ class FormAboutCV extends Component {
   render() {
     let translatedProps = this.props.translatedProps;
     let lang = this.props.language;
-    let now = {
-      "en": "Now",
-      "it": "Ora",
-      "fr": "À présent",
-      "de": "Jetzt"
-    }
-    let title = { 
-      "en": "About CV",
-      "fr": "À propos du CV", 
-      "de": "Über CV", 
-      "it": "Informazioni su CV",  
-      link: "/d/about" 
-    }
+    let title = topBar[0];
     let {
-      "my0:cvNotes" : cvNotes,
-      "my0:cvIsActive" : cvIsActive,
-      "my0:cvIsConfidential" : cvIsConfidential,
-      "my0:cvLastUpdate" : cvLastUpdate,
-      "my0:cvCopyright" : cvCopyright
+      "my0:cvNotes": cvNotes,
+      "my0:cvIsActive": cvIsActive,
+      "my0:cvIsConfidential": cvIsConfidential,
+      "my0:cvLastUpdate": cvLastUpdate,
+      "my0:cvCopyright": cvCopyright
     } = this.props.cv;
     return (
       <div className="row">
@@ -73,22 +61,22 @@ class FormAboutCV extends Component {
           <h4 style={{ marginTop: "10px" }}>{title[lang]}</h4>
           <CustomInput
             id="cvCopyright"
-            label={this.renderLabel(translatedProps, 'cvCopyright',lang)}
+            label={this.renderLabel(translatedProps, "cvCopyright", lang)}
             type="text"
             value={cvCopyright}
             handleChange={this.handleInputChange}
           />
-          <div className="mb-3"/>
+          <div className="mb-3" />
           <CustomTextarea
             id="cvNotes"
-            label={this.renderLabel(translatedProps, 'cvNotes',lang)}
+            label={this.renderLabel(translatedProps, "cvNotes", lang)}
             value={cvNotes}
             handleChange={this.handleInputChange}
           />
           <CustomCheckbox
             id="cvIsActive"
             type="checkbox"
-            label={this.renderLabel(translatedProps, 'cvIsActive',lang)}
+            label={this.renderLabel(translatedProps, "cvIsActive", lang)}
             checked={cvIsActive}
             handleChange={this.handleCheckboxChange}
           />
@@ -96,7 +84,11 @@ class FormAboutCV extends Component {
             <CustomCheckbox
               id="cvIsConfidential"
               type="checkbox"
-              label={this.renderLabel(translatedProps, 'cvIsConfidential',lang)}
+              label={this.renderLabel(
+                translatedProps,
+                "cvIsConfidential",
+                lang
+              )}
               checked={cvIsConfidential}
               handleChange={this.handleCheckboxChange}
             />
@@ -109,7 +101,7 @@ class FormAboutCV extends Component {
               className=" col col-sm-9 form-label"
               style={{ paddingLeft: "0" }}
             >
-              <p>{this.renderLabel(translatedProps, 'cvLastUpdate',lang)}</p>
+              <p>{this.renderLabel(translatedProps, "cvLastUpdate", lang)}</p>
             </div>
             <div className="col col-sm-3 muted-text">
               <p>{cvLastUpdate ? cvLastUpdate : now[lang]}</p>
@@ -126,13 +118,14 @@ const mapstateToProps = state => {
   return {
     cv: state.cv,
     language: state.utility.language,
-    translatedProps: retrieveMainProperties(state.utility['my0:CV'])
+    translatedProps: retrieveMainProperties(state.utility["my0:CV"])
   };
 };
 
 export default connect(
   mapstateToProps,
   {
-    updateAboutCV, fetchMainPropertiess
+    updateAboutCV,
+    fetchMainPropertiess
   }
 )(FormAboutCV);

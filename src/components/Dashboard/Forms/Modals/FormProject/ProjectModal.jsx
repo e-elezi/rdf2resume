@@ -11,8 +11,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  projectAddTitle,
+  projectUpdateTitle
+} from "../../../../../translations/translations";
 
 class ProjectModal extends Component {
   state = {
@@ -160,20 +162,6 @@ class ProjectModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new project",
-      fr: "Ajouter un nouveau projet",
-      de: "Neues Projekt hinzufügen",
-      it: "Aggiungi nuovo progetto"
-    };
-
-    let up = {
-      en: "Update project",
-      fr: "Mettre à jour le projet",
-      de: "Projekt aktualisieren",
-      it: "Aggiornare il progetto"
-    };
-
     let lang = this.props.language;
 
     let { translatedProps } = this.props;
@@ -190,7 +178,11 @@ class ProjectModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+              <Col md={12}>
+                {this.props.isUpdate
+                  ? projectUpdateTitle[lang]
+                  : projectAddTitle[lang]}
+              </Col>
             </Row>
           </Modal.Title>
         </Modal.Header>

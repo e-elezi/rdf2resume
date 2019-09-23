@@ -3,8 +3,16 @@ import { Combobox } from "react-widgets";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateCV } from "../../actions";
-import Swal from 'sweetalert2';
-import { parseJSONLDTOJSON } from '../../utilities/utilityFunctions';
+import Swal from "sweetalert2";
+import {
+  uploadTitle,
+  uploadDescription,
+  uploadButtonLabel,
+  errorTitle,
+  successTitle,
+  uploadSelectLabel
+} from "../../translations/translations";
+// import { parseJSONLDTOJSON } from '../../utilities/utilityFunctions';
 
 class UploadForm extends Component {
   state = {
@@ -22,52 +30,53 @@ class UploadForm extends Component {
     let file = e.target.files[0];
     var formData = new FormData();
     formData.append("file", file);
-    axios.post("/upload?standard="+ this.state.rdfValueSelected, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    }).then(resp=>{
-      this.props.updateCV(parseJSONLDTOJSON(resp.data));
-      Swal.fire({
-        title: 'Success!',
-        text: 'Do you want to continue to forms?',
-        type: 'success',
-        confirmButtonColor: '#4bb3cc',
-        heightAuto: false,
-        confirmButtonText: 'Okay'
-      }).then((result) => {
-        if (result.value) {
-          this.props.history.push('/d/about');
+    axios
+      .post("/upload?standard=" + this.state.rdfValueSelected, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
         }
       })
-    })  
-    .catch(error=>{
-      console.log(error);
-      Swal.fire({
-        title: 'Error!',
-        text: error,
-        type: 'error',
-        heightAuto: false,
-        confirmButtonText: 'Okay'
+      .then(resp => {
+        this.props.updateCV(resp.data);
+        //this.props.updateCV(parseJSONLDTOJSON(resp.data));
+        Swal.fire({
+          title: successTitle[this.props.language],
+          // text: "Do you want to continue to forms?",
+          type: "success",
+          confirmButtonColor: "#4bb3cc",
+          heightAuto: false,
+          confirmButtonText: "Okay"
+        }).then(result => {
+          if (result.value) {
+            this.props.history.push("/d/about");
+          }
+        });
       })
-    });
+      .catch(error => {
+        console.log(error);
+        Swal.fire({
+          title: errorTitle[this.props.language],
+          text: error,
+          type: "error",
+          heightAuto: false,
+          confirmButtonText: "Okay"
+        });
+      });
   };
 
   render() {
+    let lang = this.props.language;
+
     return (
       <React.Fragment>
         <div className="form-group">
-          <h4>Upload RDF File</h4>
-          <p>
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-            ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-            Lorem ipsum{" "}
-          </p>
+          <h4>{uploadTitle[lang]}</h4>
+          <p> {uploadDescription[lang]} </p>
           <div style={{ maxWidth: "250px" }}>
             <Combobox
               name="rdfStandard"
               id="rdfStandard"
-              placeholder="Select RDF Standard"
+              placeholder={uploadSelectLabel[lang]}
               data={this.state.rdfValues}
               value={this.state.rdfValueSelected}
               caseSensitive={false}
@@ -76,7 +85,7 @@ class UploadForm extends Component {
             />
           </div>
           <label style={{ marginLeft: "0px" }} className="btn btn-primary">
-            Browse
+            {uploadButtonLabel[lang]}
             <input onChange={this.onChange} type="file" hidden />
           </label>
         </div>
@@ -85,8 +94,14 @@ class UploadForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     updateCV
   }

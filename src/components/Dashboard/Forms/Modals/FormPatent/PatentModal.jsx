@@ -17,8 +17,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  patentAddTitle,
+  patentUpdateTitle
+} from "../../../../../translations/translations";
 
 class PatentModal extends Component {
   state = {
@@ -129,13 +131,23 @@ class PatentModal extends Component {
       this.state.patent["my0:patentNumber"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -167,20 +179,6 @@ class PatentModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new pantent",
-      fr: "Ajouter un nouveau pantalon",
-      de: "Neues Pantent hinzufügen",
-      it: "Aggiungere un nuovo pantalone"
-    };
-
-    let up = {
-      en: "Update patent",
-      fr: "Mise à jour du brevet",
-      de: "Patent aktualisieren",
-      it: "Aggiornare il brevetto"
-    };
-
     let lang = this.props.language;
 
     let { translatedProps } = this.props;
@@ -197,7 +195,11 @@ class PatentModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+              <Col md={12}>
+                {this.props.isUpdate
+                  ? patentUpdateTitle[lang]
+                  : patentAddTitle[lang]}
+              </Col>
             </Row>
           </Modal.Title>
         </Modal.Header>
@@ -306,7 +308,7 @@ class PatentModal extends Component {
                   handleChange={this.handleInputChange}
                 />
               </Col>
-              <Col md={3} style={{ paddingRight: "0", paddingTop: '20px' }}>
+              <Col md={3} style={{ paddingRight: "0", paddingTop: "20px" }}>
                 <CustomRadioGroup
                   items={this.props.statuses}
                   lang={lang}

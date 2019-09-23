@@ -17,6 +17,7 @@ import {
   fetchCountries
 } from "../../../../../actions/utilityActions";
 import WorkHistoryModal from "./WorkHistoryModal";
+import { now } from "../../../../../translations/translations";
 
 class WorkHistoryReview extends Component {
   state = {
@@ -92,12 +93,7 @@ class WorkHistoryReview extends Component {
       // "my0:postalCode" : postalCode,
     } = organizationAddress;
 
-    let current = {
-      en: "Now",
-      de: "Jetzt",
-      fr: "A présent",
-      it: "Ora"
-    };
+    let current = now;
 
     let lang = this.props.language;
 
@@ -108,7 +104,7 @@ class WorkHistoryReview extends Component {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             display: "flex",
-            marginBottom: '10px'
+            marginBottom: "10px"
           }}
         >
           <Col md={2}>
@@ -142,11 +138,12 @@ class WorkHistoryReview extends Component {
                 <a
                   href={organizationWebsite}
                   className="inline-link"
-                  rel="noopener noreferrer" 
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   {organizationName}
-                </a>{" , "}
+                </a>
+                {" , "}
                 {city} {` `}{" "}
                 {this.renderLabel(this.props.countries, country, lang)}
               </b>
@@ -197,6 +194,6 @@ export default connect(
   {
     removeWorkHistory,
     fetchCountries,
-    fetchCVJobModes,
+    fetchCVJobModes
   }
 )(WorkHistoryReview);

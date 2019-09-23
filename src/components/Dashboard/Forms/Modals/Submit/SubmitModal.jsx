@@ -8,6 +8,7 @@ import fr from "../../../../../images/fr.png";
 import it from "../../../../../images/it.png";
 import en from "../../../../../images/en.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { submitModalTitle, submitModalConvert  } from '../../../../../translations/translations';
 
 class SubmitModal extends Component {
   state = {
@@ -68,6 +69,8 @@ class SubmitModal extends Component {
 
     let languages = ["de", "en", "it", "fr"];
 
+    let lang = this.props.language;
+
     return (
       <Modal
         show={this.props.show}
@@ -79,7 +82,7 @@ class SubmitModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Choose your preferred design and download
+            {submitModalTitle[lang]}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -122,7 +125,7 @@ class SubmitModal extends Component {
             itemComponent={ListItem}
           />{" "}
           <Button variant="primary" onClick={this.handleConverting}>
-            Convert
+            {submitModalConvert[lang]}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -130,7 +133,13 @@ class SubmitModal extends Component {
   }
 }
 
+const mapstateToProps = state => {
+  return {
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   {}
 )(SubmitModal);

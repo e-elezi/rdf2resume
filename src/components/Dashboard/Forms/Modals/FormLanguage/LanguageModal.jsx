@@ -16,8 +16,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  languageAddTitle,
+  languageUpdateTitle
+} from "../../../../../translations/translations";
 
 class LanguageModal extends Component {
   state = {
@@ -151,20 +153,6 @@ class LanguageModal extends Component {
     } = this.state.languageSkill;
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new language",
-      fr: "Ajouter une nouvelle langue",
-      de: "Neue Sprache hinzufügen",
-      it: "Aggiungi nuova lingua"
-    };
-
-    let up = {
-      en: "Update language",
-      fr: "Mise à jour de la langue",
-      de: "Sprache aktualisieren",
-      it: "Aggiornamento lingua"
-    };
-
     let lang = this.props.language;
     let types = this.props.types;
     let { translatedProps, translatedPropsSkill } = this.props;
@@ -180,7 +168,11 @@ class LanguageModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+              <Col md={12}>
+                {this.props.isUpdate
+                  ? languageUpdateTitle[lang]
+                  : languageAddTitle[lang]}
+              </Col>
             </Row>
           </Modal.Title>
         </Modal.Header>

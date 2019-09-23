@@ -19,8 +19,12 @@ import {
   resetLabel,
   saveLabel,
   updateLabel
-} from "../../../../../utilities/utilityFunctions";
+} from "../../../../../translations/translations";
 import CustomLevelButton from "../../../../core/CustomLevelButton";
+import {
+  skillAddTitle,
+  skillUpdateTitle
+} from "../../../../../translations/translations";
 
 class SkillModal extends Component {
   state = {
@@ -184,20 +188,6 @@ class SkillModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new other skill",
-      fr: "Ajouter une nouvelle compétence",
-      de: "Füge neue andere Fertigkeiten hinzu",
-      it: "Aggiungete nuove abilità"
-    };
-
-    let up = {
-      en: "Update other skill",
-      fr: "Mettre à jour d'autres compétences",
-      de: "Andere Fertigkeiten aktualisieren",
-      it: "Aggiornare altre abilità"
-    };
-
     let lang = this.props.language;
 
     let { translatedProps } = this.props;
@@ -214,7 +204,11 @@ class SkillModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={4}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+              <Col md={4}>
+                {this.props.isUpdate
+                  ? skillUpdateTitle[lang]
+                  : skillAddTitle[lang]}
+              </Col>
               <Col md={8} />
             </Row>
           </Modal.Title>
@@ -257,11 +251,9 @@ class SkillModal extends Component {
             </label>
             <Combobox
               name="my0:skillCategory"
-              placeholder={this.renderLabel(
-                translatedProps,
-                "skillCategory",
-                lang
-              ) + ' *'}
+              placeholder={
+                this.renderLabel(translatedProps, "skillCategory", lang) + " *"
+              }
               data={this.props.categories}
               textField={lang}
               valueField="@type"

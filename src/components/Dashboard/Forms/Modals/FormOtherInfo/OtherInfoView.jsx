@@ -5,12 +5,9 @@ import { removeOtherInfo } from "../../../../../actions";
 import { connect } from "react-redux";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import OtherInfoModal from "./OtherInfoModal";
-import {
-  fetchOtherCVInfoTypes
-} from "../../../../../actions/utilityActions";
-import {
-  retrieveBaseProperties
-} from "../../../../../utilities/utilityQueries";
+import { fetchOtherCVInfoTypes } from "../../../../../actions/utilityActions";
+import { retrieveBaseProperties } from "../../../../../utilities/utilityQueries";
+import { categorieLabel } from "../../../../../translations/translations";
 
 class OtherInfoView extends Component {
   state = {
@@ -23,12 +20,12 @@ class OtherInfoView extends Component {
   }
 
   handleCloseEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: false, key: ++key });
   };
 
   handleShowEdit = () => {
-    let key = this.state.key
+    let key = this.state.key;
     this.setState({ editMode: true, key: ++key });
   };
 
@@ -60,16 +57,10 @@ class OtherInfoView extends Component {
       return translated[index][lang];
     }
   }
-  
+
   render() {
     let { otherInfoObject } = this.props;
     let lang = this.props.language;
-    let title = {
-      "en": "Category",
-      "de": "Kategorie",
-      "it": "Categoria",
-      "fr": "Catégorie"
-    }
 
     return (
       <React.Fragment>
@@ -78,13 +69,17 @@ class OtherInfoView extends Component {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             marginLeft: "0px",
-            marginBottom: '10px'
+            marginBottom: "10px"
           }}
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
             <h4>
-              <u>{title[lang]}:</u> {this.renderLabel(this.props.others, otherInfoObject["my0:otherInfoType"], lang)}
-
+              <u>{categorieLabel[lang]}:</u>{" "}
+              {this.renderLabel(
+                this.props.others,
+                otherInfoObject["my0:otherInfoType"],
+                lang
+              )}
             </h4>
           </Col>
           <Col md={4}>

@@ -17,6 +17,7 @@ import {
   retrieveCountryValues,
   retrieveBaseProperties
 } from "../../../../../utilities/utilityQueries";
+import { now } from '../../../../../translations/translations';
 
 class EducationView extends Component {
   state = {
@@ -89,12 +90,7 @@ class EducationView extends Component {
       // "my0:postalCode" : postalCode,
     } = organizationAddress;
 
-    let current = {
-      en: "Now",
-      de: "Jetzt",
-      fr: "A présent",
-      it: "Ora"
-    };
+    let current = now;
     
     let lang = this.props.language;
 

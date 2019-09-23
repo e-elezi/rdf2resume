@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
 import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
 import AddButton from "../../core/AddButton";
+import {
+  workAddTitle,
+  workNoTitle,
+  workTitle
+} from "../../../translations/translations";
 
 class FormWorkHistory extends Component {
   state = {
@@ -13,44 +18,23 @@ class FormWorkHistory extends Component {
 
   handleClose = () => {
     let key = this.state.key;
-    this.setState({ showModal: false,
-    key: ++key });
+    this.setState({ showModal: false, key: ++key });
   };
 
   handleShow = () => {
     let key = this.state.key;
-    this.setState({ showModal: true, key: ++key  });
+    this.setState({ showModal: true, key: ++key });
   };
 
   render() {
     let { showModal } = this.state;
     let lang = this.props.language;
-    let titlePage = {
-      en: "Work History",
-      fr: "Antécédents de travail",
-      de: "Arbeitsablauf",
-      it: "Storia del lavoro"
-    };
-
-    let titlesub = {
-      en: "Add work history",
-      fr: "Ajouter un historique de travail",
-      de: "Arbeitsablauf hinzufügen",
-      it: "Aggiungere la cronologia dei lavori",
-    }
-
-    let nowwork = {
-      en: "No work histories have been added until now.",
-      fr: "Aucun historique de travail n'a été ajouté jusqu'à présent.",
-      de: "Bisher wurden keine Arbeitshistorien hinzugefügt.",
-      it: "Finora non sono state aggiunte storie di lavoro.",
-    }
 
     return (
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
+            <h4 style={{ marginTop: "10px" }}>{workTitle[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -59,23 +43,21 @@ class FormWorkHistory extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <WorkHistoryModal key={this.state.key} show={showModal} onHide={this.handleClose} />
+                <WorkHistoryModal
+                  key={this.state.key}
+                  show={showModal}
+                  onHide={this.handleClose}
+                />
               </Col>
               <Col md={10} className="button-label">
-                <p>{titlesub[lang]}</p>
+                <p>{workAddTitle[lang]}</p>
               </Col>
             </Row>
           </Col>
         </Row>
-        {this.props.workHistories.length === 0
-          ? nowwork[lang]
-          : ""}
+        {this.props.workHistories.length === 0 ? workNoTitle[lang] : ""}
         {this.props.workHistories.map((workHistory, index) => (
-          <WorkHistoryView
-            workHistory={workHistory}
-            id={index}
-            key={index}
-          />
+          <WorkHistoryView workHistory={workHistory} id={index} key={index} />
         ))}
       </React.Fragment>
     );

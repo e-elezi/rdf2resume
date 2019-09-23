@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -24,8 +24,10 @@ import {
   saveLabel,
   updateLabel,
   startDate,
-  endDate
-} from "../../../../../utilities/utilityFunctions";
+  endDate,
+  educationAddTitle,
+  educationUpdateTitle
+} from "../../../../../translations/translations";
 
 class EducationModal extends Component {
   state = {
@@ -125,30 +127,36 @@ class EducationModal extends Component {
   handleInputChange = e => {
     let obj = { ...this.state.education };
     let label = e.target.id;
-    if(label === 'my0:eduStartDate'){
-      if(e.target.value > new Date().toJSON().slice(0,10).replace(/-/g,'-')){
+    if (label === "my0:eduStartDate") {
+      if (
+        e.target.value >
+        new Date()
+          .toJSON()
+          .slice(0, 10)
+          .replace(/-/g, "-")
+      ) {
         Swal.fire({
-          title: 'Warning!',
+          title: "Warning!",
           text: startDate[this.props.language],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
-    if(label === 'my0:eduGradDate'){
-      if(e.target.value < this.state.education['my0:eduStartDate']){
+    if (label === "my0:eduGradDate") {
+      if (e.target.value < this.state.education["my0:eduStartDate"]) {
         Swal.fire({
-          title: 'Warning!',
+          title: "Warning!",
           text: endDate[this.props.language],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
     if (e.target.name === "organization") {
@@ -221,13 +229,23 @@ class EducationModal extends Component {
       this.state.education["my0:eduGradDate"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -255,20 +273,6 @@ class EducationModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new education",
-      fr: "Ajouter une nouvelle éducation",
-      de: "Neue Ausbildung hinzufügen",
-      it: "Aggiungere una nuova educazione"
-    };
-
-    let up = {
-      en: "Update education",
-      fr: "Mise à jour de l'éducation",
-      de: "Aktualisierung der Ausbildung",
-      it: "Aggiornamento educazione"
-    };
-
     let lang = this.props.language;
 
     let {
@@ -289,7 +293,11 @@ class EducationModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={9}>{this.props.isUpdate ? add[lang] : up[lang]}</Col>
+              <Col md={9}>
+                {this.props.isUpdate
+                  ? educationUpdateTitle[lang]
+                  : educationAddTitle[lang]}
+              </Col>
               <Col md={2}>
                 <CustomCheckbox
                   id="my0:isEduCurrent"
@@ -321,11 +329,10 @@ class EducationModal extends Component {
                 <CustomInput
                   id="my0:eduStartDate"
                   name="education"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "eduStartDate",
-                    lang
-                  ) + ' *'}
+                  label={
+                    this.renderLabel(translatedProps, "eduStartDate", lang) +
+                    " *"
+                  }
                   type="date"
                   value={eduStartDate}
                   handleChange={this.handleInputChange}
@@ -343,7 +350,10 @@ class EducationModal extends Component {
                 <CustomInput
                   id="my0:eduGradDate"
                   name="education"
-                  label={this.renderLabel(translatedProps, "eduGradDate", lang) + ' *'}
+                  label={
+                    this.renderLabel(translatedProps, "eduGradDate", lang) +
+                    " *"
+                  }
                   type="date"
                   value={eduGradDate}
                   handleChange={this.handleInputChange}
@@ -361,11 +371,13 @@ class EducationModal extends Component {
                   <CustomInput
                     id="my0:organizationName"
                     name="organization"
-                    label={this.renderLabel(
-                      translatedPropsOrg,
-                      "organizationName",
-                      lang
-                    ) + ' *'}
+                    label={
+                      this.renderLabel(
+                        translatedPropsOrg,
+                        "organizationName",
+                        lang
+                      ) + " *"
+                    }
                     type="text"
                     value={organizationName}
                     handleChange={this.handleInputChange}
@@ -454,7 +466,7 @@ class EducationModal extends Component {
                   value={organizationPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
-                <div style={{ marginTop: "10px", width: '100%' }}>
+                <div style={{ marginTop: "10px", width: "100%" }}>
                   <CustomTextarea
                     id="my0:organizationDescription"
                     name="organization"
@@ -472,14 +484,14 @@ class EducationModal extends Component {
             <Col md={6}>
               <CustomInput
                 id="my0:degree"
-                label={this.renderLabel(translatedProps, "degree", lang) + ' *'}
+                label={this.renderLabel(translatedProps, "degree", lang) + " *"}
                 name="education"
                 type="text"
                 value={degree}
                 handleChange={this.handleInputChange}
               />
               <label className="label-rw">
-                {this.renderLabel(translatedProps, "degreeType", lang) + ' *'}
+                {this.renderLabel(translatedProps, "degreeType", lang) + " *"}
               </label>
               <Combobox
                 name="my0:degreeType"
@@ -499,7 +511,7 @@ class EducationModal extends Component {
                   this.handleSelectChange(value, "my0:degreeType", "education")
                 }
               />
-              <div style={{ marginTop: "10px", width: '100%' }}>
+              <div style={{ marginTop: "10px", width: "100%" }}>
                 <CustomTextarea
                   id="my0:eduDescription"
                   name="education"

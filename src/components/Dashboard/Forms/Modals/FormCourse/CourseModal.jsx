@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -16,13 +16,15 @@ import {
   retrieveMainProperties
 } from "../../../../../utilities/utilityQueries";
 import {
+  courseAddTitle,
+  courseUpdateTitle,
   cancelLabel,
   resetLabel,
   saveLabel,
   updateLabel,
   startDate,
   endDate
-} from "../../../../../utilities/utilityFunctions";
+} from "../../../../../translations/translations";
 
 class CourseModal extends Component {
   state = {
@@ -122,30 +124,36 @@ class CourseModal extends Component {
   handleInputChange = e => {
     let obj = { ...this.state.course };
     let label = e.target.id;
-    if(label === 'my0:courseStartDate'){
-      if(e.target.value > new Date().toJSON().slice(0,10).replace(/-/g,'-')){
+    if (label === "my0:courseStartDate") {
+      if (
+        e.target.value >
+        new Date()
+          .toJSON()
+          .slice(0, 10)
+          .replace(/-/g, "-")
+      ) {
         Swal.fire({
-          title: 'Warning!',
+          title: "Warning!",
           text: startDate[this.props.language],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
-    if(label === 'my0:courseFinishDate'){
-      if(e.target.value < this.state.course['my0:courseStartDate']){
+    if (label === "my0:courseFinishDate") {
+      if (e.target.value < this.state.course["my0:courseStartDate"]) {
         Swal.fire({
-          title: 'Warning!',
+          title: "Warning!",
           text: endDate[this.props.language],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
     if (e.target.name === "organization") {
@@ -216,13 +224,23 @@ class CourseModal extends Component {
       this.state.course["my0:courseTitle"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button disabled={isDisabled}  type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button disabled={isDisabled}  type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -250,20 +268,6 @@ class CourseModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new course/training",
-      fr: "Ajouter un nouveau cours/training",
-      de: "Neuen Kurs/Training hinzufügen",
-      it: "Aggiungere un nuovo corso/training"
-    };
-
-    let up = {
-      en: "Aktualisieren Sie den Kurs/Training",
-      fr: "Cours/training de mise à jour",
-      de: "Aktualisierung der Ausbildung",
-      it: "Aggiornamento corso/training"
-    };
-
     let lang = this.props.language;
 
     let {
@@ -284,7 +288,11 @@ class CourseModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={7}>{this.props.isUpdate ? add[lang] : up[lang]}</Col>
+              <Col md={7}>
+                {this.props.isUpdate
+                  ? courseUpdateTitle[lang]
+                  : courseAddTitle[lang]}
+              </Col>
               <Col md={5}>
                 <CustomCheckbox
                   id="my0:hasCertification"
@@ -316,11 +324,10 @@ class CourseModal extends Component {
                 <CustomInput
                   id="my0:courseStartDate"
                   name="course"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "courseStartDate",
-                    lang
-                  ) + ' *'}
+                  label={
+                    this.renderLabel(translatedProps, "courseStartDate", lang) +
+                    " *"
+                  }
                   type="date"
                   value={courseStartDate}
                   handleChange={this.handleInputChange}
@@ -360,11 +367,13 @@ class CourseModal extends Component {
                 <CustomInput
                   id="my0:organizationName"
                   name="organization"
-                  label={this.renderLabel(
-                    translatedPropsOrg,
-                    "organizationName",
-                    lang
-                  ) + ' *'}
+                  label={
+                    this.renderLabel(
+                      translatedPropsOrg,
+                      "organizationName",
+                      lang
+                    ) + " *"
+                  }
                   type="text"
                   value={organizationName}
                   handleChange={this.handleInputChange}
@@ -471,7 +480,9 @@ class CourseModal extends Component {
               <CustomInput
                 id="my0:courseTitle"
                 name="course"
-                label={this.renderLabel(translatedProps, "courseTitle", lang) + ' *'}
+                label={
+                  this.renderLabel(translatedProps, "courseTitle", lang) + " *"
+                }
                 type="text"
                 value={courseTitle}
                 handleChange={this.handleInputChange}

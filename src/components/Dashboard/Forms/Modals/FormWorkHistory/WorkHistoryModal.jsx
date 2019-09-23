@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
@@ -26,8 +26,10 @@ import {
   saveLabel,
   updateLabel,
   startDate,
-  endDate
-} from "../../../../../utilities/utilityFunctions";
+  endDate,
+  workAddTitle,
+  workUpdateTitle
+} from "../../../../../translations/translations";
 
 class WorkHistoryModal extends Component {
   state = {
@@ -134,30 +136,36 @@ class WorkHistoryModal extends Component {
   handleInputChange = e => {
     let obj = { ...this.state.workHistory };
     let label = e.target.id;
-    if(label === 'my0:startDate'){
-      if(e.target.value > new Date().toJSON().slice(0,10).replace(/-/g,'-')){
+    if (label === "my0:startDate") {
+      if (
+        e.target.value >
+        new Date()
+          .toJSON()
+          .slice(0, 10)
+          .replace(/-/g, "-")
+      ) {
         Swal.fire({
-          title: 'Warning!',
+          title: "Warning!",
           text: startDate[this.props.language],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
-    if(label === 'my0:endDate'){
-      if(e.target.value < this.state.workHistory['my0:startDate']){
+    if (label === "my0:endDate") {
+      if (e.target.value < this.state.workHistory["my0:startDate"]) {
         Swal.fire({
-          title: 'Warning!',
+          title: "Warning!",
           text: endDate[this.props.language],
-          type: 'warning',
-          confirmButtonColor: '#4bb3cc',
+          type: "warning",
+          confirmButtonColor: "#4bb3cc",
           heightAuto: false,
-          confirmButtonText: 'Okay'
-        })
-        return ;
+          confirmButtonText: "Okay"
+        });
+        return;
       }
     }
     if (e.target.name === "organization") {
@@ -207,13 +215,23 @@ class WorkHistoryModal extends Component {
       this.state.workHistory["my0:jobTitle"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button disabled={isDisabled} type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={isDisabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -253,20 +271,6 @@ class WorkHistoryModal extends Component {
       "my0:employedIn": employedIn
     } = this.state.workHistory;
 
-    let add = {
-      en: "Add new work experience",
-      fr: "Ajouter une nouvelle expérience de travail",
-      de: "Neue Arbeitserfahrung hinzufügen",
-      it: "Aggiungere nuove esperienze di lavoro"
-    };
-
-    let up = {
-      en: "Update work experience",
-      fr: "Mettre à jour l'expérience professionnelle",
-      de: "Aktualisierung der Berufserfahrung",
-      it: "Aggiornare l'esperienza lavorativa"
-    };
-
     let {
       "my0:organizationName": organizationName,
       "my0:organizationField": organizationField,
@@ -299,7 +303,11 @@ class WorkHistoryModal extends Component {
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
               <Row>
-                <Col md={9}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+                <Col md={9}>
+                  {this.props.isUpdate
+                    ? workUpdateTitle[lang]
+                    : workAddTitle[lang]}
+                </Col>
                 <Col md={2}>
                   <CustomCheckbox
                     id="my0:isCurrent"
@@ -440,7 +448,7 @@ class WorkHistoryModal extends Component {
                       justifyContent: "left",
                       marginLeft: "0px",
                       marginBottom: "8px",
-                      marginTop: '5px'
+                      marginTop: "5px"
                     }}
                   >
                     <label className="label-rw">
@@ -535,7 +543,7 @@ class WorkHistoryModal extends Component {
                     justifyContent: "left",
                     marginLeft: "0px",
                     marginBottom: "8px",
-                    marginTop: '5px'
+                    marginTop: "5px"
                   }}
                 >
                   <label className="label-rw">

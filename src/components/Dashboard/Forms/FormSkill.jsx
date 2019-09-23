@@ -13,6 +13,12 @@ import {
 } from "../../../actions/utilityActions";
 import { retrieveBaseProperties } from "../../../utilities/utilityQueries";
 import { getNameFromURI } from "../../../utilities/utilityFunctions";
+import {
+  skillAddTitle,
+  skillLanguageAddTitle,
+  skillLanguageTitle,
+  skillTitle
+} from "../../../translations/translations";
 
 class FormSkill extends Component {
   state = {
@@ -72,34 +78,6 @@ class FormSkill extends Component {
   render() {
     let { showModal, showLanguageModal } = this.state;
 
-    let titlePage = {
-      en: "Language Skills",
-      fr: "Compétences linguistiques",
-      de: "Sprachkenntnisse",
-      it: "Competenze linguistiche"
-    };
-
-    let addLang = {
-      en: "Add language",
-      fr: "Ajouter une langue",
-      de: "Sprache hinzufügen",
-      it: "Aggiungi lingua"
-    };
-
-    let titlesub = {
-      en: "Other Skills",
-      fr: "Autres compétences",
-      de: "Andere Fähigkeiten",
-      it: "Altre competenze"
-    };
-
-    let addskill = {
-      en: "Add skill",
-      fr: "Ajouter une compétence",
-      de: "Skill hinzufügen",
-      it: "Aggiungi abilità"
-    };
-
     let lang = this.props.language;
 
     let categories = this.props.categories;
@@ -108,7 +86,7 @@ class FormSkill extends Component {
       <React.Fragment>
         <Row>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
+            <h4 style={{ marginTop: "10px" }}>{skillLanguageTitle[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -124,7 +102,7 @@ class FormSkill extends Component {
                 />
               </Col>
               <Col md={10} className="button-label">
-                <p>{addLang[lang]}</p>
+                <p>{skillLanguageAddTitle[lang]}</p>
               </Col>
             </Row>
           </Col>
@@ -139,7 +117,7 @@ class FormSkill extends Component {
 
         <Row style={{ marginTop: "50px" }}>
           <Col md={8}>
-            <h4 style={{ marginTop: "10px" }}>{titlesub[lang]}</h4>
+            <h4 style={{ marginTop: "10px" }}>{skillTitle[lang]}</h4>
           </Col>
           <Col md={4} className="side-button-wrapper">
             <Row>
@@ -155,7 +133,7 @@ class FormSkill extends Component {
                 />
               </Col>
               <Col md={10} className="button-label">
-                <p>{addskill[lang]}</p>
+                <p>{skillAddTitle[lang]}</p>
               </Col>
             </Row>
           </Col>

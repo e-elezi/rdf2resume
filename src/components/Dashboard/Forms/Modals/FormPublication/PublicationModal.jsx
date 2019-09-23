@@ -10,8 +10,10 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
-} from "../../../../../utilities/utilityFunctions";
+  updateLabel,
+  publicationUpdateTitle,
+  publicationAddTitle
+} from "../../../../../translations/translations";
 
 class PublicationModal extends Component {
   state = {
@@ -111,16 +113,26 @@ class PublicationModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
-    let disabled = this.state.publication['my0:publiciationTitle'] === '';
+    let disabled = this.state.publication["my0:publiciationTitle"] === "";
     if (!this.props.isUpdate) {
       return (
-        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleSave}>
+        <Button
+          disabled={disabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleSave}
+        >
           {saveLabel[lang]}
         </Button>
       );
     } else {
       return (
-        <Button disabled={disabled} type="submit" variant="primary" onClick={this.handleUpdate}>
+        <Button
+          disabled={disabled}
+          type="submit"
+          variant="primary"
+          onClick={this.handleUpdate}
+        >
           {updateLabel[lang]}
         </Button>
       );
@@ -139,20 +151,6 @@ class PublicationModal extends Component {
 
     let { onHide } = this.props;
 
-    let add = {
-      en: "Add new publication",
-      fr: "Ajouter une nouvelle publication",
-      de: "Neue Publikation hinzufügen",
-      it: "Aggiungi nuova pubblicazione"
-    };
-
-    let up = {
-      en: "Update publication",
-      fr: "Mise à jour de la publication",
-      de: "Publikation aktualisieren",
-      it: "Aggiornare la pubblicazione"
-    };
-
     let lang = this.props.language;
 
     let { translatedProps } = this.props;
@@ -169,7 +167,11 @@ class PublicationModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={12}>{this.props.isUpdate ? up[lang] : add[lang]}</Col>
+              <Col md={12}>
+                {this.props.isUpdate
+                  ? publicationUpdateTitle[lang]
+                  : publicationAddTitle[lang]}
+              </Col>
             </Row>
           </Modal.Title>
         </Modal.Header>
@@ -188,11 +190,13 @@ class PublicationModal extends Component {
                 <CustomInput
                   id="my0:publiciationTitle"
                   name="publication"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "publiciationTitle",
-                    lang
-                  ) + ' *'}
+                  label={
+                    this.renderLabel(
+                      translatedProps,
+                      "publiciationTitle",
+                      lang
+                    ) + " *"
+                  }
                   type="text"
                   value={publiciationTitle}
                   handleChange={this.handleInputChange}
@@ -213,44 +217,48 @@ class PublicationModal extends Component {
                 />
               </Col>
             </Row>
-            <div style={{ width: '100%', marginTop: '5px'}}>
-            <CustomInput
-              id="my0:publiciationPublisher"
-              name="publication"
-              label={this.renderLabel(
-                translatedProps,
-                "publiciationPublisher",
-                lang
-              )}
-              type="text"
-              value={publiciationPublisher}
-              handleChange={this.handleInputChange}
-            />
+            <div style={{ width: "100%", marginTop: "5px" }}>
+              <CustomInput
+                id="my0:publiciationPublisher"
+                name="publication"
+                label={this.renderLabel(
+                  translatedProps,
+                  "publiciationPublisher",
+                  lang
+                )}
+                type="text"
+                value={publiciationPublisher}
+                handleChange={this.handleInputChange}
+              />
             </div>
-            <div style={{ width: '100%', marginTop: '5px'}}>
-            <CustomInput
-              id="my0:publicationAuthor"
-              name="publication"
-              label={this.renderLabel(
-                translatedProps,
-                "publicationAuthor",
-                lang
-              )}
-              type="text"
-              value={publicationAuthor}
-              handleChange={this.handleInputChange}
-            />
+            <div style={{ width: "100%", marginTop: "5px" }}>
+              <CustomInput
+                id="my0:publicationAuthor"
+                name="publication"
+                label={this.renderLabel(
+                  translatedProps,
+                  "publicationAuthor",
+                  lang
+                )}
+                type="text"
+                value={publicationAuthor}
+                handleChange={this.handleInputChange}
+              />
             </div>
-            <div style={{ width: '100%', marginTop: '5px'}}>
-            <CustomInput
-              id="my0:publicationURL"
-              name="publication"
-              label={this.renderLabel(translatedProps, "publicationURL", lang)}
-              value={publicationURL}
-              handleChange={this.handleInputChange}
-            />
+            <div style={{ width: "100%", marginTop: "5px" }}>
+              <CustomInput
+                id="my0:publicationURL"
+                name="publication"
+                label={this.renderLabel(
+                  translatedProps,
+                  "publicationURL",
+                  lang
+                )}
+                value={publicationURL}
+                handleChange={this.handleInputChange}
+              />
             </div>
-            <div style={{ width: '100%', marginTop: "10px" }}>
+            <div style={{ width: "100%", marginTop: "10px" }}>
               <CustomTextarea
                 id="my0:publicationDescription"
                 name="publication"

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { removeProject } from "../../../../../actions";
 import ProjectModal from "./ProjectModal";
+import { now } from '../../../../../translations/translations';
 
 class ProjectView extends Component {
   state = {
@@ -39,12 +40,7 @@ class ProjectView extends Component {
       "my0:projectURL": projectURL
     } = this.props.projectObj;
 
-    let current = {
-      en: "Now",
-      de: "Jetzt",
-      fr: "A présent",
-      it: "Ora"
-    };
+    let current = now;
 
     let lang = this.props.language;
 
