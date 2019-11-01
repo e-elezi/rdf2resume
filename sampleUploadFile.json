@@ -267,7 +267,7 @@
     "my0:hasWebsite": [
       {
         "my0:websiteURL": "https://www.linkedin.com/in/enkeleda-elezi-928532a0/",
-        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Personal",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Linkedin",
         "@type": "my0:Website"
       },
       {
@@ -324,7 +324,7 @@
       "my0:skillLevel": "5",
       "my0:skillHasCertificate": false,
       "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
-      "my0:skillDescription": ""
+      "my0:skillDescription": "Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsum"
     },
     {
       "my0:skillName": "HTML5",
@@ -332,7 +332,7 @@
       "my0:skillLevel": "5",
       "my0:skillHasCertificate": false,
       "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
-      "my0:skillDescription": ""
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"
     },
     {
       "my0:skillName": "CSS3",
@@ -340,7 +340,7 @@
       "my0:skillLevel": "5",
       "my0:skillHasCertificate": false,
       "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
-      "my0:skillDescription": ""
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsum"
     },
     {
       "my0:skillName": "React",
@@ -348,7 +348,7 @@
       "my0:skillLevel": "4",
       "my0:skillHasCertificate": false,
       "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
-      "my0:skillDescription": ""
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsum"
     },
     {
       "my0:skillName": "AngularJS",
@@ -404,7 +404,7 @@
       "my0:skillLevel": "5",
       "my0:skillHasCertificate": false,
       "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge",
-      "my0:skillDescription": ""
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"
     },
     {
       "my0:skillName": "Project Management",

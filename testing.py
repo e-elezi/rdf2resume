@@ -1,24 +1,27 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 def processNameSpacesTo_(name):
-	return name.replace(" ", "_")
+    return name.replace(" ", "_")
+
 
 def runQueryDBPEDIA(objectName, lang):
-    sparql = SPARQLWrapper("http://dbpedia.org/sparql",returnFormat=JSON)
+    sparql = SPARQLWrapper("http://dbpedia.org/sparql", returnFormat=JSON)
     sparql.setQuery("""
     SELECT ?d WHERE {
-	?country rdfs:label \"""" + objectName  + """\"@""" + lang + """.
+	?country rdfs:label \"""" + objectName + """\"@""" + lang + """.
 	?country foaf:isPrimaryTopicOf ?d.}""")
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     results = results["results"]["bindings"]
-    text = ''
-    if(len(results)>=1):
+    text = ""
+    if(len(results) >= 1):
         text = results[0]['d']['value']
     return text
 
+
 def runQueryMainOntology(objectName, lang):
-    sparql = SPARQLWrapper("http://localhost:3030/resume/sparql",returnFormat=JSON)
+    sparql = SPARQLWrapper(
+        "http://localhost:3030/resume/sparql", returnFormat=JSON)
     sparql.setQuery("""
 	PREFIX owl: <http://www.w3.org/2002/07/owl#>
 	PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -38,12 +41,14 @@ def runQueryMainOntology(objectName, lang):
     results = sparql.query().convert()
     results = results["results"]["bindings"]
     text = ''
-    if(len(results)>=1):
+    if(len(results) >= 1):
         text = results[0]['o']['value']
     return text
 
+
 def runQueryCountryMainOntology(objectName, lang):
-    sparql = SPARQLWrapper("http://localhost:3030/resume/sparql",returnFormat=JSON)
+    sparql = SPARQLWrapper(
+        "http://localhost:3030/resume/sparql", returnFormat=JSON)
     sparql.setQuery("""
 	PREFIX owl: <http://www.w3.org/2002/07/owl#>
 	PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -63,6 +68,8 @@ def runQueryCountryMainOntology(objectName, lang):
     results = sparql.query().convert()
     results = results["results"]["bindings"]
     text = ''
-    if(len(results)>=1):
+    if(len(results) >= 1):
         text = results[0]['o']['value']
     return text
+
+print(runQueryDBPEDIA('kot', 'en'))

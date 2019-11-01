@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Table } from "react-bootstrap";
 import { connect } from "react-redux";
+// import ReactTable from 'react-table'
+// import 'react-table/react-table.css'
 import SkillModal from "./Modals/FormSkill/SkillModal";
 import SkillView from "./Modals/FormSkill/SkillView";
 import LanguageView from "./Modals/FormLanguage/LanguageView";
@@ -75,6 +77,13 @@ class FormSkill extends Component {
     }
   }
 
+  processColumns(categories, lang) {
+    return [{
+      Header: this.renderLabel(categories, "IndustryKnowledge", lang),
+      accessor: 'name' // String-based value accessors!
+    }];
+  }
+
   render() {
     let { showModal, showLanguageModal } = this.state;
 
@@ -111,8 +120,8 @@ class FormSkill extends Component {
           skill["@type"] === "my0:LanguageSkill" ? (
             <LanguageView languageSkillObj={skill} id={index} key={index} />
           ) : (
-            ""
-          )
+              ""
+            )
         )}
 
         <Row style={{ marginTop: "50px" }}>
@@ -138,76 +147,60 @@ class FormSkill extends Component {
             </Row>
           </Col>
         </Row>
-        <Row style={{ marginTop: "20px" }}>
-          <Col md={3}>
-            <h6>
-              <u>{this.renderLabel(categories, "IndustryKnowledge", lang)}</u>
-            </h6>
-          </Col>
-          <Col md={3}>
-            <h6>
-              <u>{this.renderLabel(categories, "ToolsTechnologies", lang)}</u>
-            </h6>
-          </Col>
-          <Col md={3}>
-            <h6>
-              <u>{this.renderLabel(categories, "InterpersonalSkills", lang)}</u>
-            </h6>
-          </Col>
-          <Col md={3}>
-            <h6>
-              <u>{this.renderLabel(categories, "OtherSkills", lang)}</u>
-            </h6>
-          </Col>
-        </Row>
-        <Row style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-          <Col md={3}>
-            {this.props.skills.map((skill, index) =>
-              skill["@type"] === "my0:Skill" &&
-              skill["my0:skillCategory"] &&
-              getNameFromURI(skill["my0:skillCategory"]) ===
-                "IndustryKnowledge" ? (
-                <SkillView skillObj={skill} id={index} key={index} />
-              ) : (
-                ""
-              )
-            )}
-          </Col>
-          <Col md={3}>
-            {this.props.skills.map((skill, index) =>
-              skill["@type"] === "my0:Skill" &&
-              skill["my0:skillCategory"] &&
-              getNameFromURI(skill["my0:skillCategory"]) ===
-                "ToolsTechnologies" ? (
-                <SkillView skillObj={skill} id={index} key={index} />
-              ) : (
-                ""
-              )
-            )}
-          </Col>
-          <Col md={3}>
-            {this.props.skills.map((skill, index) =>
-              skill["@type"] === "my0:Skill" &&
-              skill["my0:skillCategory"] &&
-              getNameFromURI(skill["my0:skillCategory"]) ===
-                "InterpersonalSkills" ? (
-                <SkillView skillObj={skill} id={index} key={index} />
-              ) : (
-                ""
-              )
-            )}
-          </Col>
-          <Col md={3}>
-            {this.props.skills.map((skill, index) =>
-              skill["@type"] === "my0:Skill" &&
-              skill["my0:skillCategory"] &&
-              getNameFromURI(skill["my0:skillCategory"]) === "OtherSkills" ? (
-                <SkillView skillObj={skill} id={index} key={index} />
-              ) : (
-                ""
-              )
-            )}
-          </Col>
+        <Row style={{ marginTop: "20px", marginRight: 0, marginLeft: 0 }}>
+          <Table size="sm">
+            <thead>
+              <tr>
+                <th>{this.renderLabel(categories, "IndustryKnowledge", lang)}</th>
+                <th>{this.renderLabel(categories, "ToolsTechnologies", lang)}</th>
+                <th>{this.renderLabel(categories, "InterpersonalSkills", lang)}</th>
+                <th>{this.renderLabel(categories, "OtherSkills", lang)}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{this.props.skills.map((skill, index) =>
+                  skill["@type"] === "my0:Skill" &&
+                    skill["my0:skillCategory"] &&
+                    getNameFromURI(skill["my0:skillCategory"]) ===
+                    "IndustryKnowledge" ? (
+                      <SkillView skillObj={skill} id={index} key={index} />
+                    ) : (
+                      ""
+                    )
+                )}</td>
+                <td>{this.props.skills.map((skill, index) =>
+                  skill["@type"] === "my0:Skill" &&
+                    skill["my0:skillCategory"] &&
+                    getNameFromURI(skill["my0:skillCategory"]) ===
+                    "ToolsTechnologies" ? (
+                      <SkillView skillObj={skill} id={index} key={index} />
+                    ) : (
+                      ""
+                    )
+                )}</td>
+                <td>{this.props.skills.map((skill, index) =>
+                  skill["@type"] === "my0:Skill" &&
+                    skill["my0:skillCategory"] &&
+                    getNameFromURI(skill["my0:skillCategory"]) ===
+                    "InterpersonalSkills" ? (
+                      <SkillView skillObj={skill} id={index} key={index} />
+                    ) : (
+                      ""
+                    )
+                )}</td>
+                <td>{this.props.skills.map((skill, index) =>
+                  skill["@type"] === "my0:Skill" &&
+                    skill["my0:skillCategory"] &&
+                    getNameFromURI(skill["my0:skillCategory"]) === "OtherSkills" ? (
+                      <SkillView skillObj={skill} id={index} key={index} />
+                    ) : (
+                      ""
+                    )
+                )}</td>
+              </tr>
+            </tbody>
+          </Table>
         </Row>
       </React.Fragment>
     );

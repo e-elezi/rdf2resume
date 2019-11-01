@@ -10,8 +10,13 @@ import CustomLevelButton from "../../../../core/CustomLevelButton";
 class SkillView extends Component {
   state = {
     editMode: false,
-    key: 0
+    key: 0,
+    // showCollapse: false
   };
+
+  // handleCollapseToggle = (e) => {
+  //   this.setState({ showCollapse: !this.state.showCollapse })
+  // }
 
   handleCloseEdit = () => {
     let key = this.state.key;
@@ -36,7 +41,7 @@ class SkillView extends Component {
   render() {
     let {
       "my0:skillName": skillName,
-      "my0:skillDescription": skillDescription,
+      // "my0:skillDescription": skillDescription,
       //"my0:skillHasCertificate": skillHasCertificate,
       "my0:skillLevel": skillLevel
     } = this.props.skillObj;
@@ -49,17 +54,24 @@ class SkillView extends Component {
             alignItems: "flex-start",
             marginLeft: "0px"
           }}
+          className="skill-cell"
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
-            <h4>
-              {skillName}{" "}
-              <CustomLevelButton
-                handleClick={this.handleLevelClick}
-                filledNumber={skillLevel}
-              />
-            </h4>
+            {skillName}{" "}
+            <CustomLevelButton
+              handleClick={this.handleLevelClick}
+              filledNumber={skillLevel}
+            />
           </Col>
           <Col md={4}>
+            {/* {this.state.showCollapse ? <FontAwesomeIcon
+              icon={faCaretUp}
+              onClick={() => this.handleCollapseToggle(this.props.id)}
+            /> :
+              <FontAwesomeIcon
+                icon={faCaretDown}
+                onClick={() => this.handleCollapseToggle(this.props.id)}
+              />} */}
             <FontAwesomeIcon
               icon={faEdit}
               onClick={() => this.handleUpdateClick()}
@@ -68,9 +80,10 @@ class SkillView extends Component {
               icon={faTrash}
               onClick={() => this.props.removeOtherSkill(this.props.id)}
             />
+
           </Col>
         </Row>
-        <Row
+        {/* {this.state.showCollapse ? <Row
           style={{
             justifyContent: "flex-start",
             alignItems: "flex-start",
@@ -81,10 +94,13 @@ class SkillView extends Component {
             style={{
               width: "80%"
             }}
+
+            className="content"
           >
             {skillDescription}
           </p>
-        </Row>
+        </Row> : ''} */}
+
         <SkillModal
           show={this.state.editMode}
           id={this.props.id}

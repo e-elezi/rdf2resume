@@ -54,7 +54,7 @@ const Topbar = props => {
           <Nav className="justify-content-end">
             {props.links.map(link => {
               return (
-                <NavLink key={link["@type"]} to={link.link}>
+                <NavLink key={link.link} to={link.link}>
                   {link[props.language]}
                 </NavLink>
               );

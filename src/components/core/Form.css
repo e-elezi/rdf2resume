@@ -112,13 +112,13 @@
   color: black;
 }
 
-.custom-level-button-container > button {
+.custom-level-button-container>button {
   background-color: white;
   border: 2px solid #4bb3cc;
   border-radius: 50%;
 }
 
-.custom-level-button-container > button.filled {
+.custom-level-button-container>button.filled {
   background-color: #4bb3cc;
 }
 
@@ -165,9 +165,9 @@
 }
 
 .rw-widget-container.rw-state-focus,
-.rw-state-focus > .rw-widget-container,
+.rw-state-focus>.rw-widget-container,
 .rw-widget-container.rw-state-focus:hover,
-.rw-state-focus > .rw-widget-container:hover {
+.rw-state-focus>.rw-widget-container:hover {
   background-color: #fff;
   border-color: #4bb3cc;
   box-shadow: none;
@@ -182,10 +182,12 @@
   border: none;
   border-left: 0;
 }
+
 .rw-select-bordered:hover,
 .rw-select-bordered:active {
   background-color: white;
 }
+
 .rw-select-bordered:active {
   box-shadow: none;
 }
@@ -205,6 +207,7 @@
 .rw-filter-input {
   box-shadow: none;
 }
+
 .rw-widget-input.rw-state-focus {
   box-shadow: none;
 }
@@ -215,12 +218,14 @@
   border-color: #4bb3cc;
   color: white;
 }
+
 .rw-list-option:hover,
 .rw-list-option:hover.rw-state-focus {
   background-color: #4bb3cc;
   border-color: #4bb3cc;
   color: white;
 }
+
 .rw-list-option.rw-state-selected,
 .rw-list-option.rw-state-selected:hover {
   background-color: #4bb3cc;
@@ -262,6 +267,7 @@
   display: block;
   position: absolute;
 }
+
 .form-control:focus {
   border: 0;
   border-bottom: 2px solid #4bb3cc;
@@ -269,13 +275,13 @@
   box-shadow: none;
 }
 
-.form-control:placeholder-shown + .form-label {
+.form-control:placeholder-shown+.form-label {
   visibility: hidden;
   z-index: -1;
 }
 
-.form-control:not(:placeholder-shown) + .form-label,
-.form-control:focus:not(:placeholder-shown) + .form-label {
+.form-control:not(:placeholder-shown)+.form-label,
+.form-control:focus:not(:placeholder-shown)+.form-label {
   visibility: visible;
   z-index: 1;
   opacity: 1;
@@ -376,12 +382,12 @@ textarea:focus {
 }
 
 /* On mouse-over, add a grey background color */
-.form-check:hover input ~ .checkmark {
+.form-check:hover input~.checkmark {
   background-color: white;
 }
 
 /* When the checkbox is checked, add a blue background */
-.form-check input:checked ~ .checkmark {
+.form-check input:checked~.checkmark {
   background-color: white;
 }
 
@@ -393,7 +399,7 @@ textarea:focus {
 }
 
 /* Show the checkmark when checked */
-.form-check input:checked ~ .checkmark:after {
+.form-check input:checked~.checkmark:after {
   display: block;
 }
 
@@ -443,12 +449,12 @@ textarea:focus {
 }
 
 /* On mouse-over, add a grey background color */
-.label-radio:hover input ~ .checkmark {
+.label-radio:hover input~.checkmark {
   background-color: lightgray;
 }
 
 /* When the radio button is checked, add a blue background */
-.label-radio input:checked ~ .checkmark {
+.label-radio input:checked~.checkmark {
   background-color: #4bb3cc;
 }
 
@@ -460,7 +466,7 @@ textarea:focus {
 }
 
 /* Show the indicator (dot/circle) when checked */
-.label-radio input:checked ~ .checkmark:after {
+.label-radio input:checked~.checkmark:after {
   display: block;
 }
 
@@ -484,26 +490,31 @@ textarea:focus {
   margin: 0;
 }
 
-.btn:focus, .btn.focus {
+.btn:focus,
+.btn.focus {
   outline: 0;
   box-shadow: none;
 }
 
-.btn-primary:focus, .btn-primary.focus {
+.btn-primary:focus,
+.btn-primary.focus {
   box-shadow: none;
 }
 
-.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
   box-shadow: none;
 }
 
-.btn-info:focus, .btn-info.focus {
+.btn-info:focus,
+.btn-info.focus {
   box-shadow: none;
 }
 
-.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
-.show > .btn-info.dropdown-toggle:focus {
+.btn-info:not(:disabled):not(.disabled):active:focus,
+.btn-info:not(:disabled):not(.disabled).active:focus,
+.show>.btn-info.dropdown-toggle:focus {
   box-shadow: none;
 }
 
@@ -518,7 +529,7 @@ textarea:focus {
   border-color: darkred !important;
 }
 
-.custom-control-input:checked ~ .custom-control-label::before {
+.custom-control-input:checked~.custom-control-label::before {
   background-color: #4BB3CC;
   border-color: #4BB3CC;
   box-shadow: 0 0 5px 0 #4BB3CC;
@@ -568,6 +579,37 @@ textarea:focus {
   color: #4bb3cc;
   margin-right: 10px;
   cursor: pointer;
+}
+
+.skill-cell .fa-trash {
+  height: 1em !important;
+  width: 1em !important;
+  color: #4bb3cc;
+  cursor: pointer;
+  vertical-align: middle !important;
+}
+
+.skill-cell .fa-edit {
+  height: 1em !important;
+  width: 1em !important;
+  color: #4bb3cc;
+  cursor: pointer;
+  vertical-align: middle !important;
+}
+
+.skill-cell .fa-caret-up,
+.skill-cell .fa-caret-down {
+  height: 1.2em !important;
+  width: 1.2em !important;
+  color: #4bb3cc;
+  margin-right: 10px;
+  cursor: pointer;
+  vertical-align: middle !important;
+}
+
+.skill-cell .custom-level-button-container .btn{
+  margin: 5px !important;
+  padding: 5px !important;
 }
 
 .card-body {
@@ -625,20 +667,20 @@ a.inline-link:hover {
   padding-top: 0;
 }
 
-.submit-modal > .modal-content {
-  background-color: rgba(0, 0, 0 , 0.5);
-  border-color: rgba(0, 0, 0 , 0.3);
+.submit-modal>.modal-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.3);
   color: white;
   min-width: 400px;
 }
 
-.submit-modal > .modal-content > .modal-header {
+.submit-modal>.modal-content>.modal-header {
   justify-content: center;
   align-content: center;
   text-align: center;
 }
 
-.submit-modal > .modal-content > .modal-body > .carousel > .carousel-inner >.carousel-item {
+.submit-modal>.modal-content>.modal-body>.carousel>.carousel-inner>.carousel-item {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -654,10 +696,22 @@ a.inline-link:hover {
 .thumbs-wrapper.axis-vertical {
   display: none;
 }
-.slider > .slide.selected {
+
+.slider>.slide.selected {
   background-color: transparent;
 }
 
 .control-dots {
   padding-left: 0px;
+}
+
+.content {
+  cursor: pointer;
+  border-left: solid 1px #f2f2f2;
+  border-right: solid 1px #f2f2f2;
+  border-bottom: solid 1px #f2f2f2;
+  border-radius: 0 0 5px 5px;
+  padding: 15px;
+  font-family: verdana;
+  font-size: 14px;
 }

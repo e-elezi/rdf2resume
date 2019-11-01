@@ -1,6 +1,9 @@
 import os,glob,subprocess
 import argparse
-from texDesign import headerCV, generateMainDesign3, generateMainDesign2, generateMainDesign1, generateMainDesign1Enriched, generateMainDesign2Enriched, generateMainDesign3Enriched
+# from texDesign import headerCV, generateMainDesign3, generateMainDesign2, generateMainDesign1, generateMainDesign1Enriched, generateMainDesign2Enriched, generateMainDesign3Enriched
+from texDesign1 import generateMainDesign1, generateMainDesign1Enriched
+from texDesign2 import generateMainDesign2, generateMainDesign2Enriched
+from texDesign3 import generateMainDesign3, generateMainDesign3Enriched
 from datetime import datetime
 import requests
 
@@ -28,7 +31,7 @@ def writeJSONtoTEX(data, filename, desingNumber, language):
   if(desingNumber==2):
     main = generateMainDesign3(data, language)
     
-  content = headerCV[desingNumber] + main + footer
+  content = main + footer
 
   completeName = os.path.join('build/static/media/pdf', filename)
   with open(completeName + '.tex','w') as f:
@@ -55,7 +58,7 @@ def writeJSONtoTEXEnriched(data, filename, desingNumber, language):
   if(desingNumber==2):
     main = generateMainDesign3Enriched(data, language)
     
-  content = headerCV[desingNumber] + main + footer
+  content = main + footer
 
   completeName = os.path.join('build/static/media/pdf', filename)
   with open(completeName + '.tex','w') as f:
