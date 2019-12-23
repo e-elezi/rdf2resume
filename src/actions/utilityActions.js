@@ -1,4 +1,6 @@
 import endpoint from "../api/endpoint";
+import escoEndpoint from "../api/escoEndpoint";
+
 import {
   fetchAllCountries,
   fetchMainProperties,
@@ -23,7 +25,8 @@ import {
   FETCH_ALL_TITLE_PROPERTIES,
   TOGGLE_SPINNER,
   UPDATE_ERROR,
-  UPDATE_LANGUAGE
+  UPDATE_LANGUAGE,
+  FETCH_SKILL_SUGGESTION
 } from "./types";
 
 export const fetchCountries = () => async dispatch => {
@@ -244,14 +247,26 @@ export const fetchMainPropertiess = (object) => async dispatch => {
   });
 };
 
-export const toggleSpinner = (showSpinnerBoolean) =>{
+export const fetchSkillSuggestion = (skillText, language) => async dispatch => {
+  let queryUrl =
+    "suggest2?type=skill&language=" + encodeURIComponent(language) + "&text=" +
+    encodeURIComponent(skillText);
+  let response = await escoEndpoint.get(queryUrl);
+  //console.log(response);
+  dispatch({
+    type: FETCH_SKILL_SUGGESTION,
+    payload: response.data["_embedded"].results,
+  });
+};
+
+export const toggleSpinner = (showSpinnerBoolean) => {
   return {
     type: TOGGLE_SPINNER,
     payload: showSpinnerBoolean
   }
 }
 
-export const updateLanguage = (value) =>{
+export const updateLanguage = (value) => {
   return {
     type: UPDATE_LANGUAGE,
     payload: value

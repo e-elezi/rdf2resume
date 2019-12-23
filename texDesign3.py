@@ -186,40 +186,42 @@ headerCV3 = r'''% Copyright (C) 2012  Nicola Fontana <ntd at entidi.it>
    '''
 
 main = r''''''
-space =  r''' '''
+space = r''' '''
 comma = r''', '''
+
 
 def generateMainDesign3(data, language):
     main = headerCV3
 
     if (data['my0:aboutPerson']):
-      item = data['my0:aboutPerson']
-      main = main +  r'''
+        item = data['my0:aboutPerson']
+        main = main + r'''
       
-      \part{'''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''}
+      \part{''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''}
       
       '''
     if(data['my0:hasWorkHistory']):
-      main = main +  r'''
+        main = main + r'''
       
       \section{''' + workTitle[language] + r'''}
  
       \begin{eventlist}
       
       '''
-      for item in (data['my0:hasWorkHistory']):
-        startDateString = ''
-        endDateString = ''
-        if(item['my0:startDate'] !=''):
-            startDate = datetime.strptime(item['my0:startDate'], '%Y-%m-%d')
-            startDateString = startDate.strftime("%b %Y")
-        if(item['my0:endDate'] !=''):
+        for item in (data['my0:hasWorkHistory']):
+            startDateString = ''
+            endDateString = ''
+            if(item['my0:startDate'] != ''):
+                startDate = datetime.strptime(
+                    item['my0:startDate'], '%Y-%m-%d')
+                startDateString = startDate.strftime("%b %Y")
+            if(item['my0:endDate'] != ''):
+                endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
+                endDateString = endDate.strftime("%b %Y")
+            if(item['my0:isCurrent'] == True):
+                endDateString = 'Now '
             endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
-            endDateString = endDate.strftime("%b %Y")
-        if(item['my0:isCurrent'] == True):
-            endDateString = 'Now '
-        endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
-        main = main + r'''
+            main = main + r'''
         \item{''' + startDateString + r''' - ''' + endDateString + r'''}
         {''' + item['my0:employedIn']['my0:organizationName'] + r''', ''' + item['my0:employedIn']['my0:organizationAddress']['my0:city'] + r'''}
         {''' + item['my0:jobTitle'] + r'''}
@@ -227,12 +229,12 @@ def generateMainDesign3(data, language):
         ''' + item['my0:jobDescription'] + r'''
 
         '''
-    main = main + r'''\end{eventlist}
+        main = main + r'''\end{eventlist}
     
-    '''
+        '''
     if (data['my0:aboutPerson']):
-      item = data['my0:aboutPerson']
-      main = main + r'''
+        item = data['my0:aboutPerson']
+        main = main + r'''
       \personal
         [''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r''']
         {''' + item['my0:address']['my0:street'] + comma + item['my0:address']['my0:postalCode'] + r'''\newline ''' + item['my0:address']['my0:city'] + r''' (''' + getnameURI(item['my0:address']['my0:country']) + r''')}
@@ -241,25 +243,27 @@ def generateMainDesign3(data, language):
 
       '''
     if(data['my0:hasEducation']):
-      main = main +  r'''
+        main = main + r'''
       
       \section{''' + educationTitle[language] + r'''}
       
       \begin{yearlist}
       
       '''
-      for item in (data['my0:hasEducation']):
-        startDateString = ''
-        endDateString = ''
-        if(item['my0:eduStartDate'] !=''):
-            startDate = datetime.strptime(item['my0:eduStartDate'], '%Y-%m-%d')
-            startDateString = startDate.strftime("%Y")
-        if(item['my0:eduGradDate'] !=''):
-            endDate = datetime.strptime(item['my0:eduGradDate'], '%Y-%m-%d')
-            endDateString = endDate.strftime("%Y")
-        if(item['my0:isEduCurrent'] == True):
-            endDateString = 'Now '
-        main = main + r'''
+        for item in (data['my0:hasEducation']):
+            startDateString = ''
+            endDateString = ''
+            if(item['my0:eduStartDate'] != ''):
+                startDate = datetime.strptime(
+                    item['my0:eduStartDate'], '%Y-%m-%d')
+                startDateString = startDate.strftime("%Y")
+            if(item['my0:eduGradDate'] != ''):
+                endDate = datetime.strptime(
+                    item['my0:eduGradDate'], '%Y-%m-%d')
+                endDateString = endDate.strftime("%Y")
+            if(item['my0:isEduCurrent'] == True):
+                endDateString = 'Now '
+            main = main + r'''
 
         \item[''' + getnameURI(item['my0:degreeType']) + r''']{''' + startDateString + r''' -- ''' + endDateString + r'''}
         {''' + item['my0:degree'] + r'''}
@@ -270,36 +274,38 @@ def generateMainDesign3(data, language):
     
     '''
     if(data['my0:hasCourse']):
-      main = main +  r'''
+        main = main + r'''
       
       \section{''' + courseTitle[language] + r'''}
       
       \begin{yearlist}
       
       '''
-      for item in (data['my0:hasCourse']):
-        startDateString = ''
-        endDateString = ''
-        if(item['my0:courseStartDate'] !=''):
-            startDate = datetime.strptime(item['my0:courseStartDate'], '%Y-%m-%d')
-            startDateString = startDate.strftime("%Y")
-        if(item['my0:courseFinishDate'] !=''):
-            endDate = datetime.strptime(item['my0:courseFinishDate'], '%Y-%m-%d')
-            endDateString = endDate.strftime("%Y")
+        for item in (data['my0:hasCourse']):
+            startDateString = ''
+            endDateString = ''
+            if(item['my0:courseStartDate'] != ''):
+                startDate = datetime.strptime(
+                    item['my0:courseStartDate'], '%Y-%m-%d')
+                startDateString = startDate.strftime("%Y")
+            if(item['my0:courseFinishDate'] != ''):
+                endDate = datetime.strptime(
+                    item['my0:courseFinishDate'], '%Y-%m-%d')
+                endDateString = endDate.strftime("%Y")
 
-        main = main + r'''
+            main = main + r'''
 
         \item[''' + item["my0:courseTitle"] + r''']{''' + startDateString + r''' -- ''' + endDateString + r'''}
         {}
         {''' + item['my0:organizedBy']['my0:organizationName'] + r''', ''' + item['my0:organizedBy']['my0:organizationAddress']['my0:city'] + r'''}
 
         '''
-        main = main + r'''\end{yearlist}
+            main = main + r'''\end{yearlist}
     
         '''
 
     if(data['my0:hasSkill']):
-        #print language skills
+            # print language skills
         main = main + r'''
         \section{Language skills}
         
@@ -313,7 +319,7 @@ def generateMainDesign3(data, language):
         main = main + r'''
         \end{factlist}
         '''
-        #print basic skills
+        # print basic skills
         main = main + r'''
         
         \section{''' + skillTitle[language] + r'''}
@@ -324,32 +330,32 @@ def generateMainDesign3(data, language):
             {
         '''
         for item in (data['my0:hasSkill']):
-            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 4 ):
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 4):
                 main = main + item['my0:skillName'] + r''' '''
         main = main + r'''}
         
         '''
-        #print intermediate skills
+        # print intermediate skills
         main = main + r'''
                 
         \item{''' + skilllevel[1][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
-            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 2 and ord(item['my0:skillLevel']) < 4 ):
-                main = main + item['my0:skillName']+ r''' '''
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 2 and ord(item['my0:skillLevel']) < 4):
+                main = main + item['my0:skillName'] + r''' '''
         main = main + r'''}
         
         '''
-        #print basic skills
+        # print basic skills
         main = main + r'''
                 
         \item{''' + skilllevel[2][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
-            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) == 1 ):
-                main = main + item['my0:skillName']+ r''' '''
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) == 1):
+                main = main + item['my0:skillName'] + r''' '''
         main = main + r'''}
         
         '''
@@ -363,43 +369,47 @@ def generateMainDesign3(data, language):
         \begin{otherlist}
         '''
         for item in (data['my0:hasOtherInfo']):
-            main = main + r''' {''' +getnameURI(item['my0:otherInfoType']) + r'''}{\newline ''' +item['my0:otherInfoDescription'] + r'''} '''
+            main = main + r''' {''' + getnameURI(item['my0:otherInfoType']) + \
+                r'''}{\newline ''' + \
+                item['my0:otherInfoDescription'] + r'''} '''
         main = main + r'''
         \end{otherlist}
         '''
     return main
 
+
 def generateMainDesign3Enriched(data, language):
     main = headerCV3
 
     if (data['my0:aboutPerson']):
-      item = data['my0:aboutPerson']
-      main = main + r'''
+        item = data['my0:aboutPerson']
+        main = main + r'''
       
-      \part{'''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''}
+      \part{''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''}
       
       '''
     if(data['my0:hasWorkHistory']):
-      main = main +  r'''
+        main = main + r'''
       
       \section{''' + workTitle[language] + r'''}
  
       \begin{eventlist}
       
       '''
-      for item in (data['my0:hasWorkHistory']):
-        startDateString = ''
-        endDateString = ''
-        if(item['my0:startDate'] !=''):
-            startDate = datetime.strptime(item['my0:startDate'], '%Y-%m-%d')
-            startDateString = startDate.strftime("%b %Y")
-        if(item['my0:endDate'] !=''):
+        for item in (data['my0:hasWorkHistory']):
+            startDateString = ''
+            endDateString = ''
+            if(item['my0:startDate'] != ''):
+                startDate = datetime.strptime(
+                    item['my0:startDate'], '%Y-%m-%d')
+                startDateString = startDate.strftime("%b %Y")
+            if(item['my0:endDate'] != ''):
+                endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
+                endDateString = endDate.strftime("%b %Y")
+            if(item['my0:isCurrent'] == True):
+                endDateString = 'Now '
             endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
-            endDateString = endDate.strftime("%b %Y")
-        if(item['my0:isCurrent'] == True):
-            endDateString = 'Now '
-        endDate = datetime.strptime(item['my0:endDate'], '%Y-%m-%d')
-        main = main + r'''
+            main = main + r'''
         \item{''' + startDateString + r''' - ''' + endDateString + r'''}
         {''' + item['my0:employedIn']['my0:organizationName'] + r''', ''' + item['my0:employedIn']['my0:organizationAddress']['my0:city'] + r'''}
         {''' + item['my0:jobTitle'] + r'''}
@@ -411,8 +421,8 @@ def generateMainDesign3Enriched(data, language):
     
     '''
     if (data['my0:aboutPerson']):
-      item = data['my0:aboutPerson']
-      main = main + r'''
+        item = data['my0:aboutPerson']
+        main = main + r'''
       \personal
         [''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r''']
         {''' + item['my0:address']['my0:street'] + comma + item['my0:address']['my0:postalCode'] + r'''\newline ''' + item['my0:address']['my0:city'] + r''' (''' + getnameURI(item['my0:address']['my0:country']) + r''')}
@@ -421,25 +431,27 @@ def generateMainDesign3Enriched(data, language):
 
       '''
     if(data['my0:hasEducation']):
-      main = main +  r'''
+        main = main + r'''
       
       \section{''' + educationTitle[language] + r'''}
       
       \begin{yearlist}
       
       '''
-      for item in (data['my0:hasEducation']):
-        startDateString = ''
-        endDateString = ''
-        if(item['my0:eduStartDate'] !=''):
-            startDate = datetime.strptime(item['my0:eduStartDate'], '%Y-%m-%d')
-            startDateString = startDate.strftime("%Y")
-        if(item['my0:eduGradDate'] !=''):
-            endDate = datetime.strptime(item['my0:eduGradDate'], '%Y-%m-%d')
-            endDateString = endDate.strftime("%Y")
-        if(item['my0:isEduCurrent'] == True):
-            endDateString = 'Now '
-        main = main + r'''
+        for item in (data['my0:hasEducation']):
+            startDateString = ''
+            endDateString = ''
+            if(item['my0:eduStartDate'] != ''):
+                startDate = datetime.strptime(
+                    item['my0:eduStartDate'], '%Y-%m-%d')
+                startDateString = startDate.strftime("%Y")
+            if(item['my0:eduGradDate'] != ''):
+                endDate = datetime.strptime(
+                    item['my0:eduGradDate'], '%Y-%m-%d')
+                endDateString = endDate.strftime("%Y")
+            if(item['my0:isEduCurrent'] == True):
+                endDateString = 'Now '
+            main = main + r'''
 
         \item[''' + getnameURI(item['my0:degreeType']) + r''']{''' + startDateString + r''' -- ''' + endDateString + r'''}
         {''' + item['my0:degree'] + r'''}
@@ -450,7 +462,7 @@ def generateMainDesign3Enriched(data, language):
     
     '''
     if(data['my0:hasSkill']):
-        #print language skills
+            # print language skills
         main = main + r'''
         \section{Language skills}
         
@@ -464,7 +476,7 @@ def generateMainDesign3Enriched(data, language):
         main = main + r'''
         \end{factlist}
         '''
-        #print basic skills
+        # print basic skills
         main = main + r'''
         
         \section{''' + skillTitle[language] + r'''}
@@ -475,32 +487,32 @@ def generateMainDesign3Enriched(data, language):
             {
         '''
         for item in (data['my0:hasSkill']):
-            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 4 ):
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 4):
                 main = main + item['my0:skillName'] + r''' '''
         main = main + r'''}
         
         '''
-        #print intermediate skills
+        # print intermediate skills
         main = main + r'''
                 
         \item{''' + skilllevel[1][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
-            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 2 and ord(item['my0:skillLevel']) < 4 ):
-                main = main + item['my0:skillName']+ r''' '''
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) >= 2 and ord(item['my0:skillLevel']) < 4):
+                main = main + item['my0:skillName'] + r''' '''
         main = main + r'''}
         
         '''
-        #print basic skills
+        # print basic skills
         main = main + r'''
                 
         \item{''' + skilllevel[2][language] + r'''}
             {
         '''
         for item in (data['my0:hasSkill']):
-            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) == 1 ):
-                main = main + item['my0:skillName']+ r''' '''
+            if(item['@type'] == 'my0:Skill' and ord(item['my0:skillLevel']) == 1):
+                main = main + item['my0:skillName'] + r''' '''
         main = main + r'''}
         
         '''
@@ -514,98 +526,10 @@ def generateMainDesign3Enriched(data, language):
         \begin{otherlist}
         '''
         for item in (data['my0:hasOtherInfo']):
-            main = main + r''' {''' +getnameURI(item['my0:otherInfoType']) + r'''}{\newline ''' +item['my0:otherInfoDescription'] + r'''} '''
+            main = main + r''' {''' + getnameURI(item['my0:otherInfoType']) + \
+                r'''}{\newline ''' + \
+                item['my0:otherInfoDescription'] + r'''} '''
         main = main + r'''
         \end{otherlist}
         '''
-    return main
-
-    if (data['my0:aboutPerson']):
-      item = data['my0:aboutPerson']
-      address =  item['my0:address']
-      country = runQueryCountryMainOntology(address['my0:country'],language )
-      full_address = address['my0:street'] + space + address['my0:city'] +  space + address['my0:postalCode'] + space + country
-
-
-      #write personal information about the user
-      main = r'''\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-      \textbf{\Large '''+ item['my0:firstName'] + space + item['my0:lastName'] +r'''} & \textbf{\today} \\
-      '''+ address['my0:street'] + space +address['my0:postalCode'] + r''' & ''' + item['my0:email'] +r'''\\''' + address['my0:city'] + comma +  country +r'''\href{https://www.openstreetmap.org/search?query='''+ full_address + r'''}{\faMapMarker}  & ''' + item['my0:hasWebsite'][0]['my0:websiteURL'] + r'''\\
-      \end{tabular*}
-      \\'''
-
-    if (data['my0:hasWorkHistory']):
-      
-      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \resheading{''' + workTitle[language] + r'''}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{itemize}'''
-      for item in (data['my0:hasWorkHistory']):
-
-        address =  item['my0:employedIn']['my0:organizationAddress']
-        orgName = item['my0:employedIn']['my0:organizationName']
-        country = runQueryCountryMainOntology(address['my0:country'],language )
-        city = address['my0:city']
-        jobMode = runQueryMainOntology(item['my0:jobMode'], language)
-
-        main = main +  r'''
-        \item \ressubheading{\href{''' + runQueryDBPEDIA(orgName, language) + r'''}{''' +  orgName + r'''}}{\href{''' + runQueryDBPEDIA(city, language)+'''}{''' + city + r'''}, \href{''' + runQueryDBPEDIA(country, language) + r'''}{''' + country + r'''} }{''' + item['my0:jobTitle'] + comma + jobMode+ r'''}{''' + item['my0:startDate'] + r''' - ''' + item['my0:endDate'] + r'''}\\
-        \begin{itemize}
-        \item[]{''' + item['my0:jobDescription'] + r'''}
-        \end{itemize}'''
-
-    main = main + r'''\end{itemize}'''
-
-    if (data['my0:hasEducation']):
-      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \resheading{''' + educationTitle[language] + r'''}
-	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \begin{itemize}'''
-      for item in (data['my0:hasEducation']):
-        address =  item['my0:studiedIn']['my0:organizationAddress']
-        orgName = item['my0:studiedIn']['my0:organizationName']
-        country = runQueryCountryMainOntology(address['my0:country'],language )
-        city = address['my0:city']
-        degreeType = runQueryMainOntology(item['my0:degreeType'], language)
-
-        main = main +  r'''
-        \item \ressubheading{\href{''' + runQueryDBPEDIA(orgName, language) + r'''}{''' +  orgName + r'''}}{\href{''' + runQueryDBPEDIA(city, language)+'''}{''' + city + r'''}, \href{''' + runQueryDBPEDIA(country, language) + r'''}{''' + country + r'''} }{''' + item['my0:degree'] + comma + degreeType+ r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + item['my0:eduGradDate'] + r'''}\\
-        \begin{itemize}
-        \item[]{''' + item['my0:eduDescription'] + r'''}
-        \end{itemize}'''
-        
-
-    main = main + r'''\end{itemize}'''
-
-    if (data['my0:hasCourse']):
-      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \resheading{''' + courseTitle[language] + r'''}
-	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \begin{itemize}'''
-      for item in (data['my0:hasCourse']):
-        address =  item['my0:organizedBy']['my0:organizationAddress']
-        orgName = item['my0:organizedBy']['my0:organizationName']
-        country = runQueryCountryMainOntology(address['my0:country'],language )
-        city = address['my0:city']
-
-        main = main +  r'''
-        \item \ressubheading{\href{''' + runQueryDBPEDIA(orgName, language) + r'''}{''' +  orgName + r'''}}{\href{''' + runQueryDBPEDIA(city, language)+'''}{''' + city + r'''}, \href{''' + runQueryDBPEDIA(country, language) + r'''}{''' + country + r'''} }{\href{''' +item['my0:courseURL'] + r'''}{''' + item['my0:courseTitle'] + r'''}}{''' + item['my0:courseStartDate'] + r''' - ''' + item['my0:courseFinishDate'] + r'''}\\
-        \begin{itemize}
-        \item[]{''' + item['my0:courseDescription'] + r'''}
-        \end{itemize}'''
-
-    main = main + r'''\end{itemize}'''
-  
-    if (data['my0:hasOtherInfo']):
-      main = main +  r'''%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \resheading{''' + otherInfoTitle[language] + r'''}
-	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	    \begin{itemize}'''
-      for item in (data['my0:hasOtherInfo']):
-        types = runQueryMainOntology(item['my0:otherInfoType'], language)
-        
-        main = main +  r'''
-		    \item[] \ressubheading{''' + types + r'''}{}{}{}\\*''' + item['my0:otherInfoDescription']
-
-    main = main + r'''\end{itemize}'''
     return main

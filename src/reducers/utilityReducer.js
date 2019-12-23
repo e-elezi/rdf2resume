@@ -18,7 +18,8 @@ import {
   TOGGLE_SPINNER,
   UPDATE_ERROR,
   UPDATE_LANGUAGE,
-  FETCH_MAIN_PROPERTIES
+  FETCH_MAIN_PROPERTIES,
+  FETCH_SKILL_SUGGESTION
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -61,7 +62,8 @@ const INITIAL_STATE = {
     'my0:lastName': false,
     'my0:email': false
   },
-  language: 'en'
+  language: 'en',
+  skillSuggestion: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -78,6 +80,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, jobModeValues: action.payload };
     case FETCH_ALL_EDU_DEGREES:
       return { ...state, eduDegreeValues: action.payload };
+    case FETCH_SKILL_SUGGESTION:
+      return { ...state, skillSuggestion: action.payload };
     case FETCH_ALL_GENDERS:
       return { ...state, genderValues: action.payload };
     case FETCH_ALL_LANGUAGE_SELF_ASSESSMENT_PROPERTIES:

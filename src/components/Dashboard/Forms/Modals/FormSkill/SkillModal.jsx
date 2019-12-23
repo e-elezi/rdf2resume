@@ -4,11 +4,12 @@ import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherSkill, updateOtherSkill } from "../../../../../actions";
-import CustomInput from "../../../../core/CustomInput";
+// import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import {
   fetchMainPropertiess,
-  fetchSkillCategories
+  fetchSkillCategories,
+  fetchSkillSuggestion
 } from "../../../../../actions/utilityActions";
 import {
   retrieveMainProperties,
@@ -42,6 +43,7 @@ class SkillModal extends Component {
     this.setInitialValues();
     this.props.fetchSkillCategories();
     this.props.fetchMainPropertiess("my0:Skill");
+    this.props.fetchSkillSuggestion();
   }
 
   setInitialValues = () => {
@@ -105,6 +107,7 @@ class SkillModal extends Component {
 
   handleSave = e => {
     e.preventDefault();
+    //console.log(this.state.otherSkill);
     this.props.createOtherSkill(this.state.otherSkill);
   };
 
@@ -177,6 +180,17 @@ class SkillModal extends Component {
     });
   };
 
+  handleSkillSuggestion = (value, id, language) => {
+    this.props.fetchSkillSuggestion(value, language);
+    let obj = { ...this.state.otherSkill };
+    let label = id;
+    //console.log(value);
+    obj[label] = value["title"];
+    this.setState({
+      otherSkill: obj
+    });
+  };
+
   render() {
     let {
       "my0:skillName": skillName,
@@ -216,7 +230,7 @@ class SkillModal extends Component {
         <Modal.Body>
           <Row>
             <Col md={8}>
-              <CustomInput
+              {/* <CustomInput
                 id="my0:skillName"
                 label={
                   this.renderLabel(translatedProps, "skillName", lang) + " *"
@@ -224,6 +238,20 @@ class SkillModal extends Component {
                 type="text"
                 value={skillName}
                 handleChange={this.handleInputChange}
+              /> */}
+              <Combobox
+                name="my0:skillName"
+                placeholder={
+                  this.renderLabel(translatedProps, "skillName", lang) + " *"
+                }
+                data={this.props.skillSuggestions}
+                textField="title"
+                valueField="title"
+                value={skillName}
+                caseSensitive={false}
+                onChange={value =>
+                  this.handleSkillSuggestion(value, "my0:skillName", lang)
+                }
               />
             </Col>
             <Col md={4}>
@@ -303,7 +331,8 @@ const mapStateToProps = (state, ownProps) => {
     initialValues: state.cv["my0:hasSkill"][ownProps.id],
     language: state.utility.language,
     categories: retrieveBaseProperties(state.utility.skillCategories),
-    translatedProps: retrieveMainProperties(state.utility["my0:Skill"])
+    translatedProps: retrieveMainProperties(state.utility["my0:Skill"]),
+    skillSuggestions: state.utility.skillSuggestion
   };
 };
 
@@ -311,6 +340,7 @@ export default connect(
   mapStateToProps,
   {
     fetchSkillCategories,
+    fetchSkillSuggestion,
     createOtherSkill,
     updateOtherSkill,
     fetchMainPropertiess

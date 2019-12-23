@@ -5,6 +5,7 @@
 mybase0:SkillCategoryProperty
   rdfs:label "Skill Category"@en,
   "Skill-Kategorie"@de,
+  "Kategoria e aftësisë"@sq,
   "Catégorie de compétences"@fr,
   "Categoria di abilità"@it ;
   a owl:Class .
@@ -12,6 +13,7 @@ mybase0:SkillCategoryProperty
 mybase0:IndustryKnowledge
   rdfs:label "Industry Knowledge"@en,
   "Branchenkenntnisse"@de,
+  "Njohuritë e industrisë"@sq,
   "Connaissance de l'industrie"@fr,
   "Conoscenza del settore"@it;
   a mybase0:SkillCategoryProperty.
@@ -20,6 +22,7 @@ mybase0:ToolsTechnologies
   rdfs:label "Tools & Technologies"@en,
   "Werkzeuge und Technologien"@de,
   "Outils et technologies"@fr,
+  "Vegla dhe Teknologji"@sq,
   "Strumenti e tecnologie"@it;
   a mybase0:SkillCategoryProperty .
 

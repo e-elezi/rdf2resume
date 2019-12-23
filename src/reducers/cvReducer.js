@@ -98,7 +98,28 @@ const INITIAL_STATE = {
       "my0:city": ""
     },
     "my0:phoneNumber": "",
-    "my0:personDescription": "",
+    "my0:personDescription": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+    ],
     "my0:gender": ""
   },
   "my0:hasSkill": [],
