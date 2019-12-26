@@ -224,7 +224,8 @@ class FormPersonal extends Component {
       "my0:title": title,
       "my0:driversLicence": driversLicence,
       "my0:address": address,
-      "my0:personDescription": personDescription,
+      "my0:personShortDescription": personShortDescription,
+      "my0:personLongDescription": personLongDescription,
       "my0:hasWebsite": hasWebsite,
       "my0:photo": photo
     } = this.props.aboutperson;
@@ -249,10 +250,17 @@ class FormPersonal extends Component {
         <Col md={4}>
           <h4 style={{ marginTop: "10px" }}>{titlePage[lang]}</h4>
           <CustomTextarea
-            id="personDescription"
-            rows="22"
-            label={this.renderLabel(translatedProps, "personDescription", lang)}
-            value={personDescription}
+            id="personShortDescription"
+            rows="5"
+            label={this.renderLabel(translatedProps, "personShortDescription", lang)}
+            value={personShortDescription}
+            handleChange={this.handleInputChange}
+          />
+          <CustomTextarea
+            id="personLongDescription"
+            rows="15"
+            label={this.renderLabel(translatedProps, "personLongDescription", lang)}
+            value={personLongDescription}
             handleChange={this.handleInputChange}
           />
         </Col>

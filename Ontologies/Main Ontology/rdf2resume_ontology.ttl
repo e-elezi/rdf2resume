@@ -778,14 +778,25 @@ my0:email
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
-my0:personDescription
+my0:personShortDescription
   a owl:DatatypeProperty ;
-  rdfs:label "Description / Notes about me"@en,
-  "Beschreibung / Notizen über mich"@de,
-  "Përshkrim / Shënime rreth meje"@sq,
-  "Description / Notes sur moi"@fr,
-  "Descrizione / Note su di me"@it ;
-  rdfs:comment "Indicates the person's description about themselves"@en ;
+  rdfs:label "Short Description / Notes about me"@en,
+  "Kurzbeschreibung / Anmerkungen zu mir"@de,
+  "Përshkrim i shkurtër / Shënime të shkurtra rreth meje"@sq,
+  "Brève description / Notes sur moi"@fr,
+  "Breve descrizione / Note su di me"@it ;
+  rdfs:comment "Indicates the short person's description about themselves"@en ;
+  rdfs:domain my0:Person ;
+  rdfs:range xsd:string .
+
+my0:personLongDescription
+  a owl:DatatypeProperty ;
+  rdfs:label "Long Description / Notes about me"@en,
+  "Lange Beschreibung / Anmerkungen zu mir"@de,
+  "Përshkrim i gjatë/ Shënime të gjata rreth meje"@sq,
+  "Description longue / Notes sur moi"@fr,
+  "Lunga descrizione / Note su di me"@it ;
+  rdfs:comment "Indicates the long person's description about themselves"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
