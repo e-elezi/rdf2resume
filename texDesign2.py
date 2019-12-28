@@ -336,19 +336,19 @@ def generateMainDesign2(data, language):
       '''
         publications = sorted(
             data['my0:hasPublication'],
-            key=lambda x: x['my0:publiciationDate'], reverse=True
+            key=lambda x: x['my0:publicationDate'], reverse=True
         )
         for item in (publications):
 
             title = r''' \href{''' + item['my0:publicationURL'] + \
-                r'''}{''' + item['my0:publiciationTitle'] + r'''} '''
+                r'''}{''' + item['my0:publicationTitle'] + r'''} '''
 
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
         '''
             main = main + r'''{''' + title + r'''}{''' + \
-                item['my0:publiciationDate'] + r'''}{''' + item['my0:publicationAuthor'] + \
-                r'''}{''' + item['my0:publiciationPublisher'] + r'''}'''
+                item['my0:publicationDate'] + r'''}{''' + item['my0:publicationAuthor'] + \
+                r'''}{''' + item['my0:publicationPublisher'] + r'''}'''
             main = main + r'''\resumeItemListStart
         \resumeItem { ''' + item['my0:publicationDescription'] + r'''}
         \resumeItemListEnd'''
@@ -636,19 +636,19 @@ def generateMainDesign2Enriched(data, language):
       '''
         publications = sorted(
             data['my0:hasPublication'],
-            key=lambda x: x['my0:publiciationDate'], reverse=True
+            key=lambda x: x['my0:publicationDate'], reverse=True
         )
         for item in (publications):
 
             title = r''' \href{''' + item['my0:publicationURL'] + \
-                r'''}{''' + item['my0:publiciationTitle'] + r'''} '''
+                r'''}{''' + item['my0:publicationTitle'] + r'''} '''
 
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
         '''
             main = main + r'''{''' + title + r'''}{''' + \
-                item['my0:publiciationDate'] + r'''}{''' + item['my0:publicationAuthor'] + \
-                r'''}{''' + item['my0:publiciationPublisher'] + r'''}'''
+                item['my0:publicationDate'] + r'''}{''' + item['my0:publicationAuthor'] + \
+                r'''}{''' + item['my0:publicationPublisher'] + r'''}'''
             main = main + r'''\resumeItemListStart
         \resumeItem { ''' + item['my0:publicationDescription'] + r'''}
         \resumeItemListEnd'''

@@ -228,11 +228,11 @@ my0:hasHonorAward
 my0:Publication
   a owl:Class ;
   rdfs:subClassOf [ rdf:type owl:Restriction ;
-                    owl:onProperty my0:publiciationTitle ;
+                    owl:onProperty my0:publicationTitle ;
                     owl:onProperty my0:publicationDescription ;
                     owl:onProperty my0:publicationURL ;
-                    owl:onProperty my0:publiciationDate ;
-                    owl:onProperty my0:publiciationPublisher ;
+                    owl:onProperty my0:publicationDate ;
+                    owl:onProperty my0:publicationPublisher ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
   rdfs:comment "Publication Class that defines neccessary information about a specific publication"@en ;
@@ -242,7 +242,7 @@ my0:Publication
   "Publikim"@sq,
   "Pubblicazione"@it .
 
-my0:publiciationTitle
+my0:publicationTitle
   a owl:DatatypeProperty ;
   rdfs:label "Title"@en,
   "Titel"@de,
@@ -253,7 +253,7 @@ my0:publiciationTitle
   rdfs:domain my0:Publication ;
   rdfs:range xsd:string .
 
-my0:publiciationPublisher
+my0:publicationPublisher
   a owl:DatatypeProperty ;
   rdfs:label "Publisher"@en,
   "Herausgeber"@de,
@@ -264,7 +264,7 @@ my0:publiciationPublisher
   rdfs:domain my0:Publication ;
   rdfs:range xsd:string .
 
-my0:publiciationDate
+my0:publicationDate
   a owl:DatatypeProperty ;
   rdfs:label "Publication date"@en,
   "Veröffentlichungsdatum"@de,

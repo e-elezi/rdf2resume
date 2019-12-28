@@ -19,9 +19,9 @@ class PublicationModal extends Component {
   state = {
     publication: {
       "@type": "my0:Publication",
-      "my0:publiciationTitle": "",
-      "my0:publiciationPublisher": "",
-      "my0:publiciationDate": "",
+      "my0:publicationTitle": "",
+      "my0:publicationPublisher": "",
+      "my0:publicationDate": "",
       "my0:publicationAuthor": "",
       "my0:publicationURL": "",
       "my0:publicationDescription": ""
@@ -37,10 +37,10 @@ class PublicationModal extends Component {
     if (this.props.id !== null && this.props.isUpdate === true) {
       let inputRef = this.props.initialValues;
       let publication = { ...this.state.publication };
-      publication["my0:publiciationTitle"] = inputRef["my0:publiciationTitle"];
-      publication["my0:publiciationPublisher"] =
-        inputRef["my0:publiciationPublisher"];
-      publication["my0:publiciationDate"] = inputRef["my0:publiciationDate"];
+      publication["my0:publicationTitle"] = inputRef["my0:publicationTitle"];
+      publication["my0:publicationPublisher"] =
+        inputRef["my0:publicationPublisher"];
+      publication["my0:publicationDate"] = inputRef["my0:publicationDate"];
       publication["my0:publicationAuthor"] = inputRef["my0:publicationAuthor"];
       publication["my0:publicationURL"] = inputRef["my0:publicationURL"];
       publication["my0:publicationDescription"] =
@@ -56,9 +56,9 @@ class PublicationModal extends Component {
       this.setState({
         publication: {
           "@type": "my0:Publication",
-          "my0:publiciationTitle": "",
-          "my0:publiciationPublisher": "",
-          "my0:publiciationDate": "",
+          "my0:publicationTitle": "",
+          "my0:publicationPublisher": "",
+          "my0:publicationDate": "",
           "my0:publicationAuthor": "",
           "my0:publicationURL": "",
           "my0:publicationDescription": ""
@@ -113,7 +113,7 @@ class PublicationModal extends Component {
   }
 
   handleRenderingSubmitButton = lang => {
-    let disabled = this.state.publication["my0:publiciationTitle"] === "";
+    let disabled = this.state.publication["my0:publicationTitle"] === "";
     if (!this.props.isUpdate) {
       return (
         <Button
@@ -141,9 +141,9 @@ class PublicationModal extends Component {
 
   render() {
     let {
-      "my0:publiciationTitle": publiciationTitle,
-      "my0:publiciationPublisher": publiciationPublisher,
-      "my0:publiciationDate": publiciationDate,
+      "my0:publicationTitle": publicationTitle,
+      "my0:publicationPublisher": publicationPublisher,
+      "my0:publicationDate": publicationDate,
       "my0:publicationAuthor": publicationAuthor,
       "my0:publicationURL": publicationURL,
       "my0:publicationDescription": publicationDescription
@@ -188,46 +188,46 @@ class PublicationModal extends Component {
             >
               <Col md={9} style={{ paddingLeft: "0" }}>
                 <CustomInput
-                  id="my0:publiciationTitle"
+                  id="my0:publicationTitle"
                   name="publication"
                   label={
                     this.renderLabel(
                       translatedProps,
-                      "publiciationTitle",
+                      "publicationTitle",
                       lang
                     ) + " *"
                   }
                   type="text"
-                  value={publiciationTitle}
+                  value={publicationTitle}
                   handleChange={this.handleInputChange}
                 />
               </Col>
               <Col md={3} style={{ paddingRight: "0" }}>
                 <CustomInput
-                  id="my0:publiciationDate"
+                  id="my0:publicationDate"
                   name="publication"
                   label={this.renderLabel(
                     translatedProps,
-                    "publiciationDate",
+                    "publicationDate",
                     lang
                   )}
                   type="date"
-                  value={publiciationDate}
+                  value={publicationDate}
                   handleChange={this.handleInputChange}
                 />
               </Col>
             </Row>
             <div style={{ width: "100%", marginTop: "5px" }}>
               <CustomInput
-                id="my0:publiciationPublisher"
+                id="my0:publicationPublisher"
                 name="publication"
                 label={this.renderLabel(
                   translatedProps,
-                  "publiciationPublisher",
+                  "publicationPublisher",
                   lang
                 )}
                 type="text"
-                value={publiciationPublisher}
+                value={publicationPublisher}
                 handleChange={this.handleInputChange}
               />
             </div>

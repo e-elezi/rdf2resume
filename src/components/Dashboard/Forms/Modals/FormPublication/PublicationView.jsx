@@ -35,9 +35,9 @@ class PublicationView extends Component {
 
   render() {
     let {
-      "my0:publiciationTitle": publiciationTitle,
-      "my0:publiciationPublisher": publiciationPublisher,
-      "my0:publiciationDate": publiciationDate,
+      "my0:publicationTitle": publicationTitle,
+      "my0:publicationPublisher": publicationPublisher,
+      "my0:publicationDate": publicationDate,
       "my0:publicationAuthor": publicationAuthor,
       "my0:publicationURL": publicationURL,
       "my0:publicationDescription": publicationDescription
@@ -54,7 +54,7 @@ class PublicationView extends Component {
           }}
         >
           <Col md={2}>
-            <p>{publiciationDate}</p>
+            <p>{publicationDate}</p>
           </Col>
           <Col md={6}>
             <Row
@@ -71,7 +71,7 @@ class PublicationView extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {publiciationTitle}
+                  {publicationTitle}
                 </a>
               </b>
             </Row>
@@ -85,7 +85,7 @@ class PublicationView extends Component {
               <b>
                 <FontAwesomeIcon icon={faBookOpen} />
                 {` `}
-                {publiciationPublisher}{" "}
+                {publicationPublisher}{" "}
               </b>
             </Row>
             <Row

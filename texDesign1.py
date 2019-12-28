@@ -178,11 +178,11 @@ def generateMainDesign1(data, language):
 	    \begin{itemize}'''
         publications = sorted(
             data['my0:hasPublication'],
-            key=lambda x: x['my0:publiciationDate'], reverse=True
+            key=lambda x: x['my0:publicationDate'], reverse=True
         )
         for item in (publications):
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:publiciationTitle'] + r'''}{''' + item['my0:publiciationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publiciationDate'] + r'''}\\
+		    \item \ressubheading{''' + item['my0:publicationTitle'] + r'''}{''' + item['my0:publicationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publicationDate'] + r'''}\\
 		    \begin{itemize}
 		    \item[]{''' + item['my0:publicationDescription'] + r'''}
 		    \end{itemize}'''
@@ -395,11 +395,11 @@ def generateMainDesign1Enriched(data, language):
 	    \begin{itemize}'''
         publications = sorted(
             data['my0:hasPublication'],
-            key=lambda x: x['my0:publiciationDate'], reverse=True
+            key=lambda x: x['my0:publicationDate'], reverse=True
         )
         for item in (publications):
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:publiciationTitle'] + r'''}{''' + item['my0:publiciationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publiciationDate'] + r'''}\\
+		    \item \ressubheading{''' + item['my0:publicationTitle'] + r'''}{''' + item['my0:publicationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publicationDate'] + r'''}\\
 		    \begin{itemize}
 		    \item[]{''' + item['my0:publicationDescription'] + r'''}
 		    \end{itemize}'''

@@ -3,9 +3,9 @@
     {
       "my0:publicationAuthor": "Enkeleda Elezi",
       "@type": "my0:Publication",
-      "my0:publiciationDate": "2019-09-10",
-      "my0:publiciationTitle": "RDF2Résumé",
-      "my0:publiciationPublisher": "University of Bonn",
+      "my0:publicationDate": "2019-09-10",
+      "my0:publicationTitle": "RDF2Résumé",
+      "my0:publicationPublisher": "University of Bonn",
       "my0:publicationURL": "https://www.iais.fraunhofer.de/de/kontakt.html",
       "my0:publicationDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. "
     }

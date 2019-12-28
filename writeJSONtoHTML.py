@@ -506,15 +506,15 @@ def generateHTMLPublications(data, lang):
 
     publications = sorted(
     data['my0:hasPublication'],
-    key=lambda x: x['my0:publiciationDate'], reverse=True
+    key=lambda x: x['my0:publicationDate'], reverse=True
     )
 
     # print publication info
     for publication in publications:
         date_print = r''''''
-        if publication['my0:publiciationDate'] != '':
+        if publication['my0:publicationDate'] != '':
             date_obj = datetime.strptime(
-            publication['my0:publiciationDate'], '%Y-%m-%d')
+            publication['my0:publicationDate'], '%Y-%m-%d')
             date_print = date_obj.strftime("%b %Y")
 
         text = text + r'''
@@ -523,14 +523,14 @@ def generateHTMLPublications(data, lang):
                                 <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                     <div class=" resume-content mr-auto">
                                         <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i><span property="my0:publicationTitle"
-                                        content="''' + publication['my0:publiciationTitle'] + r'''">''' + publication['my0:publiciationTitle'] + r'''</span></h4>
+                                        content="''' + publication['my0:publicationTitle'] + r'''">''' + publication['my0:publicationTitle'] + r'''</span></h4>
                                         <h4 class="mb-3"><i class="fa fa-pen cl-atlantis"></i>
                                             <span property="my0:publicationAuthor" content="''' + publication['my0:publicationAuthor'] + r'''">''' + publication['my0:publicationAuthor'] + r'''</span>
                                         </h4>
                                         <p property="my0:publicationDescription">''' + publication['my0:publicationDescription'] + r'''</p>
                                     </div>
                                 <div class="resume-date text-md-right">
-                                    <span property="my0:publiciationDate" content="''' + publication['my0:publiciationDate'] + r'''" class="text-primary">''' + date_print  + r'''</span>
+                                    <span property="my0:publicationDate" content="''' + publication['my0:publicationDate'] + r'''" class="text-primary">''' + date_print  + r'''</span>
                                 </div>
                             </div>
                         </div>
