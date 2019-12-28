@@ -7,6 +7,7 @@ import de from "../images/de.png";
 import fr from "../images/fr.png";
 import it from "../images/it.png";
 import en from "../images/en.png";
+import sq from "../images/sq.png";
 import { updateLanguage } from "../actions/utilityActions";
 import { connect } from "react-redux";
 
@@ -17,6 +18,11 @@ const Topbar = props => {
       <span>
         {item === "de" ? (
           <img src={de} width="20px" height="20px" alt={item}></img>
+        ) : (
+          ""
+        )}
+        {item === "sq" ? (
+          <img src={sq} width="20px" height="20px" alt={item}></img>
         ) : (
           ""
         )}
@@ -40,7 +46,7 @@ const Topbar = props => {
     </React.Fragment>
   );
 
-  let languages = ["de", "en", "it", "fr"];
+  let languages = ["de", "en", "it", "fr", "sq"];
 
   let changeLanguage = (value) => props.updateLanguage(value);
 

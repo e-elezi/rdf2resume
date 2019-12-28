@@ -29,6 +29,7 @@ mybase0:ToolsTechnologies
 mybase0:InterpersonalSkills
   rdfs:label "Interpersonal Skills"@en,
   "Zwischenmenschliche Fähigkeiten"@de,
+  "Aftësitë ndërpersonale"@sq,
   "Compétences interpersonnelles"@fr,
   "Competenze interpersonali"@it;
   a mybase0:SkillCategoryProperty .
@@ -37,12 +38,14 @@ mybase0:OtherSkills
   rdfs:label "Other Skills"@en,
   "Andere Fähigkeiten"@de,
   "Autres compétences"@fr,
+  "Aftësi të tjera"@sq,
   "Altre competenze"@it;
   a mybase0:SkillCategoryProperty .
 
 mybase0:RegionProperty
   rdfs:label "Region"@en,
   "Region"@de,
+  "Rajoni"@sq,
   "Région"@fr,
   "Regione"@it ;
   a owl:Class .
@@ -50,6 +53,7 @@ mybase0:RegionProperty
 mybase0:Africa
   rdfs:label "Africa"@en,
   "Afrika"@de,
+  "Afrika"@sq,
   "Afrique"@fr,
   "Africa"@it;
   a mybase0:RegionProperty .
@@ -57,34 +61,39 @@ mybase0:Africa
 mybase0:Asia
   rdfs:label "Asia"@en,
   "Asien"@de,
+  "Azia"@sq,
   "Asie"@fr,
   "Asia"@it;
   a mybase0:RegionProperty .
 
 mybase0:CentralAmerica
   rdfs:label "Central America"@en,
-  "Patent erteilt"@de,
-  "Brevet délivré"@fr,
+  "Mittelamerika"@de,
+  "Amerika Qëndrore"@sq,
+  "Amérique centrale"@fr,
   "America Centrale"@it;
   a mybase0:RegionProperty .
 
 mybase0:Europe
   rdfs:label "Europe"@en,
-  "Mittelamerika"@de,
-  "Amérique centrale"@fr,
-  "Brevetto rilasciato"@it;
+  "Europa"@de,
+  "Europa"@sq,
+  "Europe"@fr,
+  "Europa"@it;
   a mybase0:RegionProperty .
 
 mybase0:Caribbean
   rdfs:label "Caribbean"@en,
   "Karibik"@de,
-  "Antillais"@fr,
+  "Karaibet"@sq,
+  "Caraïbes"@fr,
   "Caraibi"@it;
   a mybase0:RegionProperty .
 
 mybase0:NorthAmerica
   rdfs:label "North America"@en,
   "Nordamerika"@de,
+  "Amerika e Veriut"@sq,
   "Amérique du Nord"@fr,
   "Nord America"@it;
   a mybase0:RegionProperty .
@@ -92,6 +101,7 @@ mybase0:NorthAmerica
 mybase0:Oceania
   rdfs:label "Oceania"@en,
   "Ozeanien"@de,
+  "Oqeania"@sq,
   "Océanie"@fr,
   "Oceania"@it;
   a mybase0:RegionProperty .
@@ -99,6 +109,7 @@ mybase0:Oceania
 mybase0:SouthAmerica
   rdfs:label "South America"@en,
   "Südamerika"@de,
+  "Amerika Jugore"@sq,
   "Amérique du Sud"@fr,
   "Sudamerica"@it;
   a mybase0:RegionProperty .
@@ -106,6 +117,7 @@ mybase0:SouthAmerica
 mybase0:StatusProperty
   rdfs:label "Status"@en,
   "Status"@de,
+  "Statusi"@sq,
   "Statut"@fr,
   "Stato"@it ;
   a owl:Class .
@@ -113,6 +125,7 @@ mybase0:StatusProperty
 mybase0:PatentIssued
   rdfs:label "Patent Issued"@en,
   "Patent erteilt"@de,
+  "Patenta lëshuar më"@sq,
   "Brevet délivré"@fr,
   "Brevetto rilasciato"@it;
   owl:disjointWith mybase0:PatentPending;
@@ -121,6 +134,7 @@ mybase0:PatentIssued
 mybase0:PatentPending
   rdfs:label "Patent Pending"@en,
   "Zum Patent angemeldet"@de,
+  "Patentë në pritje"@sq,
   "Brevet en instance"@fr,
   "In attesa di brevetto"@it;
   owl:disjointWith mybase0:PatentIssued;
@@ -129,6 +143,7 @@ mybase0:PatentPending
 mybase0:InstantMessagingTypeProperty
   rdfs:label "Type"@en,
   "Typ"@de,
+  "Tipi"@sq,
   "Type"@fr,
   "Tipo"@it;
   a owl:Class .
@@ -136,6 +151,7 @@ mybase0:InstantMessagingTypeProperty
 mybase0:Skype
   rdfs:label "Skype"@en,
   "Skype"@de,
+  "Skype"@sq,
   "Skype"@fr,
   "Skype"@it;
   owl:disjointWith mybase0:GoogleHangouts;
@@ -146,6 +162,7 @@ mybase0:GoogleHangouts
   rdfs:label "Google Hangouts"@en,
   "Google Hangouts"@de,
   "Google Hangouts"@fr,
+  "Google Hangouts"@sq,
   "Google Hangouts"@it;
   owl:disjointWith mybase0:Skype;
   owl:disjointWith mybase0:WeChat;
@@ -155,6 +172,7 @@ mybase0:WeChat
   rdfs:label "WeChat"@en,
   "WeChat"@de,
   "WeChat"@fr,
+  "WeChat"@sq,
   "WeChat"@it;
   owl:disjointWith mybase0:Skype;
   owl:disjointWith mybase0:GoogleHangouts;
@@ -163,6 +181,7 @@ mybase0:WeChat
 mybase0:WebsiteTypeProperty
   rdfs:label "Type"@en,
   "Typ"@de,
+  "Tipi"@sq,
   "Type"@fr,
   "Tipo"@it;
   a owl:Class .
@@ -171,6 +190,7 @@ mybase0:WebsiteTypeProperty
 mybase0:Twitter
   rdfs:label "Twitter"@en,
   "Twitter"@de,
+  "Twitter"@sq,
   "Twitter"@fr,
   "Twitter"@it;
   owl:disjointWith mybase0:OtherValue;
@@ -189,6 +209,7 @@ mybase0:Twitter
 mybase0:Facebook
   rdfs:label "Facebook"@en,
   "Facebook"@de,
+  "Facebook"@sq,
   "Facebook"@fr,
   "Facebook"@it;
   owl:disjointWith mybase0:OtherValue;
@@ -207,6 +228,7 @@ mybase0:Facebook
 mybase0:Github
   rdfs:label "Github"@en,
   "Github"@de,
+  "Github"@sq,
   "Github"@fr,
   "Github"@it;
   owl:disjointWith mybase0:OtherValue;
@@ -225,6 +247,7 @@ mybase0:Github
 mybase0:Instagram
   rdfs:label "Instagram"@en,
   "Instagram"@de,
+  "Instagram"@sq,
   "Instagram"@fr,
   "Instagram"@it;
   owl:disjointWith mybase0:OtherValue;
@@ -243,6 +266,7 @@ mybase0:Instagram
 mybase0:Personal
   rdfs:label "Personal"@en,
   "Persönlich"@de,
+  "Personale"@sq,
   "Personnel"@fr,
   "Personale"@it;
   owl:disjointWith mybase0:OtherValue;
@@ -262,6 +286,7 @@ mybase0:Linkedin
   rdfs:label "Linkedin"@en,
   "Linkedin"@de,
   "Linkedin"@fr,
+  "Linkedin"@sq,
   "Linkedin"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
@@ -280,6 +305,7 @@ mybase0:Xing
   rdfs:label "Xing"@en,
   "Xing"@de,
   "Xing"@fr,
+  "Xing"@sq,
   "Xing"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
@@ -298,6 +324,7 @@ mybase0:CompanyValue
   rdfs:label "Company"@en,
   "Unternehmen"@de,
   "Société"@fr,
+  "Kompania"@sq,
   "Azienda"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
@@ -316,6 +343,7 @@ mybase0:Blog
   rdfs:label "Blog"@en,
   "Unternehmen"@de,
   "Blog"@fr,
+  "Blog"@sq,
   "Blog"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
@@ -334,6 +362,7 @@ mybase0:Rssfeed
   rdfs:label "RSS Feed"@en,
   "RSS Feed"@de,
   "Flux RSS"@fr,
+  "RSS"@sq,
   "Feed RSS"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
@@ -351,6 +380,7 @@ mybase0:Rssfeed
 mybase0:Portfolio
   rdfs:label "Portfolio"@en,
   "Portfolio"@de,
+  "Portofoli"@sq,
   "Portefeuille"@fr,
   "Portafoglio"@it;
   owl:disjointWith mybase0:OtherValue;
@@ -370,6 +400,7 @@ mybase0:OtherValue
   rdfs:label "Other"@en,
   "Sonstiges"@de,
   "Autre"@fr,
+  "Të tjera"@sq,
   "Altro"@it;
   owl:disjointWith mybase0:Portfolio;
   owl:disjointWith mybase0:Personal;
@@ -388,6 +419,7 @@ mybase0:GenderProperty
   rdfs:label "Gender"@en,
   "Geschlecht"@de,
   "Sexe"@fr,
+  "Gjinia"@sq,
   "Genere"@it;
   a owl:Class .
 
@@ -395,6 +427,7 @@ mybase0:Female
   rdfs:label "Female"@en,
   "Weiblich"@de,
   "Féminin"@fr,
+  "Femër"@sq,
   "Femmine"@it;
   owl:disjointWith mybase0:Male;
   owl:disjointWith mybase0:NotIndicated;
@@ -404,6 +437,7 @@ mybase0:Male
   rdfs:label "Male"@en,
   "Männlich"@de,
   "Mâle"@fr,
+  "Mashkull"@sq,
   "Maschio"@it;
   a mybase0:GenderProperty .
 
@@ -411,12 +445,14 @@ mybase0:NotIndicated
   rdfs:label "Not Indicated"@en,
   "Nicht angedeutet"@de,
   "Non indiqué"@fr,
+  "Jo e shënuar"@sq,
   "Non indicato"@it;
   a mybase0:GenderProperty .
 
 mybase0:LanguageSkillProficiencyProperty
   rdfs:label "Proficiency"@en,
   "Kompetenz"@de,
+  "Zotësia"@sq,
   "Compétence"@fr,
   "Competenza"@it ;
   a owl:Class .
@@ -424,6 +460,7 @@ mybase0:LanguageSkillProficiencyProperty
 mybase0:ElementaryProficiency
   rdfs:label "Elementary Proficiency"@en ,
   "Grundlegende Kenntnisse"@de,
+  "Zotësia elementare"@sq,
   "Compétence élémentaire"@fr,
   "Competenza elementare"@it ;
   owl:disjointWith mybase0:LimitedWorkingProficiency;
@@ -435,6 +472,7 @@ mybase0:ElementaryProficiency
 mybase0:LimitedWorkingProficiency
   rdfs:label "Limited Working Proficiency"@en ,
   "Eingeschränkte Arbeitsfähigkeiten"@de,
+  "Zotësi pune e limituar"@sq,
   "Compétence de travail limitée"@fr,
   "Competenza di lavoro limitata"@it ;
   owl:disjointWith mybase0:ElementaryProficiency;
@@ -446,6 +484,7 @@ mybase0:LimitedWorkingProficiency
 mybase0:ProfessionalWorkingProficiency
   rdfs:label "Professional Working Proficiency"@en ,
   "Professionelle Arbeitsfähigkeiten"@de,
+  "Zotësi pune profesionale"@sq,
   "Compétence professionnelle au travail"@fr,
   "Competenza professionale di lavoro"@it ;
   owl:disjointWith mybase0:ElementaryProficiency;
@@ -457,6 +496,7 @@ mybase0:ProfessionalWorkingProficiency
 mybase0:FullProfessionalProficiency
   rdfs:label "Full Professional Proficiency"@en ,
   "Volle fachliche Kompetenz"@de,
+  "Zotësi profesionale e plotë"@sq,
   "Compétence professionnelle complète"@fr,
   "Piena competenza professionale"@it ;
   owl:disjointWith mybase0:ElementaryProficiency;
@@ -468,6 +508,7 @@ mybase0:FullProfessionalProficiency
 mybase0:NativeProficiency
   rdfs:label "Native or Bilingual Proficiency"@en ,
   "Native oder zweisprachige Kenntnisse"@de,
+  "Zotësi të shkëlqyera amtare ose dygjuhësore"@sq,
   "Maîtrise d'une langue maternelle ou bilingue"@fr,
   "Competenza nativa o bilingue"@it ;
   owl:disjointWith mybase0:ElementaryProficiency;
@@ -480,12 +521,14 @@ mybase0:TitleProperty
   rdfs:label "Title"@en,
   "Titel"@de,
   "Titre"@fr,
+  "Titulli"@sq,
   "Titolo"@it;
   a owl:Class .
 
 mybase0:Mr
   rdfs:label "Mr"@en ,
   "Herr"@de,
+  "Z."@sq,
   "Monsieur"@fr,
   "Sig."@it;
   owl:disjointWith mybase0:Mrs;
@@ -496,6 +539,7 @@ mybase0:Mr
 mybase0:Mrs
   rdfs:label "Mrs"@en,
   "Frau"@de,
+  "Znj"@sq,
   "Madame"@fr,
   "Signora"@it;
   a mybase0:TitleProperty .
@@ -503,6 +547,7 @@ mybase0:Mrs
 mybase0:Miss
   rdfs:label "Miss"@en,
   "Fräulein"@de,
+  "Znj"@sq,
   "Mademoiselle"@fr,
   "Signorina"@it;
   a mybase0:TitleProperty .
@@ -510,6 +555,7 @@ mybase0:Miss
 mybase0:DrMrs
   rdfs:label "Dr. Mrs"@en,
   "Frau Dr"@de,
+  "Dr."@sq,
   "Madame Dr"@fr,
   "Signora Dott"@it;
   a mybase0:TitleProperty .
@@ -517,6 +563,7 @@ mybase0:DrMrs
 mybase0:DrMr
   rdfs:label "Dr. Mr"@en ,
   "Herr Dr"@de,
+  "Dr."@sq,
   "Monsieur Dr"@fr,
   "Sig. Dott"@it;
   a mybase0:TitleProperty .
@@ -524,6 +571,7 @@ mybase0:DrMr
 mybase0:DrMiss
   rdfs:label "Dr. Miss"@en ,
   "Fräulein Dr"@de,
+  "Dr."@sq,
   "Mademoiselle Dr"@fr,
   "Signorina Dott"@it;
   a mybase0:TitleProperty .
@@ -531,6 +579,7 @@ mybase0:DrMiss
 mybase0:CompanySize
   rdfs:label "Company Size"@en,
   "Unternehmensgröße"@de,
+  "Përmasat e kompanisë"@sq,
   "Taille de l'entreprise"@fr,
   "Dimensione dell'azienda"@it;
   a owl:Class .
@@ -538,6 +587,7 @@ mybase0:CompanySize
 mybase0:SmallCompany
   rdfs:label "Small Company"@en ,
   "Kleines Unternehmen"@de,
+  "Kompani e vogël"@sq,
   "Petite entreprise"@fr,
   "Piccola azienda"@it;
   a mybase0:CompanySize .
@@ -545,6 +595,7 @@ mybase0:SmallCompany
 mybase0:MediumCompany
   rdfs:label "Medium Company"@en ,
   "Mittleres Unternehmen"@de,
+  "Kompani mesatare"@sq,
   "Moyenne Entreprise"@fr,
   "Media Azienda"@it;
   owl:disjointWith mybase0:SmallCompany;
@@ -554,6 +605,7 @@ mybase0:MediumCompany
 mybase0:LargeCompany
   rdfs:label "Large Company"@en,
   "Großunternehmen"@de,
+  "Kompani e madhe"@sq,
   "Grande entreprise"@fr,
   "Grande azienda"@it;
   a mybase0:CompanySize .
@@ -562,12 +614,14 @@ mybase0:CVJobMode
   a owl:Class ;
   rdfs:label "Job Mode"@en ,
   "Auftragsmodus"@de,
+  "Tipi i punës"@sq,
   "Mode de travail"@fr,
   "Modalità di lavoro"@it.
 
 mybase0:EmployeeFull
   rdfs:label "Employee Full time"@en  ,
   "Angestellter Vollzeit"@de,
+  "Punonjës me kohë të plotë"@sq,
   "Employé(e) Temps plein"@fr,
   "Dipendente a tempo pieno"@it;
   owl:disjointWith mybase0:EmployeePart;
@@ -579,12 +633,14 @@ mybase0:EmployeePart
   rdfs:label "Employee Part time"@en  ,
   "Angestellter Teilzeitbeschäftigte"@de,
   "Employé(e) Temps partiel"@fr,
+  "Punonjës me kohë të pjesshme"@sq,
   "Dipendente a tempo parziale"@it;
   a mybase0:CVJobMode .
 
 mybase0:Contractor
   rdfs:label "Contractor"@en  ,
   "Auftragnehmer"@de,
+  "Kontraktues"@sq,
   "Contractant"@fr,
   "Contraente"@it;
   a mybase0:CVJobMode .
@@ -592,6 +648,7 @@ mybase0:Contractor
 mybase0:Intern
   rdfs:label "Intern"@en  ,
   "Praktikant"@de,
+  "Praktikant"@sq,
   "Stagiaire"@fr,
   "Interno"@it;
   a mybase0:CVJobMode .
@@ -600,6 +657,7 @@ mybase0:CVCareerLevel
   a owl:Class ;
   rdfs:label "Career level"@en  ,
   "Karrierestufe"@de,
+  "Niveli i karrierës"@sq,
   "Niveau de carrière"@fr,
   "Livello di carriera"@it.
 
@@ -613,6 +671,7 @@ mybase0:HighSchool
   owl:disjointWith mybase0:SeniorExecutive;
   rdfs:label "Student (high school)"@en  ,
   "Schüler (Gymnasium)"@de,
+  "Student (Gjimnaz)"@sq,
   "Étudiant (secondaire)"@fr,
   "Studente (scuola superiore)"@it.
 
@@ -620,6 +679,7 @@ mybase0:Student
   a mybase0:CVCareerLevel ;
   rdfs:label "Student (graduate/undergraduate)"@en  ,
   "Student (Absolvent / Bachelor)"@de,
+  "Student (Bachelor/Master)"@sq,
   "Étudiant (gradué/de premier cycle)"@fr,
   "Studente (laureato/laurea)"@it.
 
@@ -628,19 +688,22 @@ mybase0:EntryLvl
   rdfs:label "Entry level (less than 2 years of experience)"@en,
   "Einstiegslevel (weniger als 2 Jahre Erfahrung)"@de,
   "Niveau d'entrée (moins de 2 ans d'expérience)"@fr,
+  "Niveli i hyrjes (më pak se 2 vjet përvojë)"@sq,
   "Livello base (meno di 2 anni di esperienza)"@it.
 
 mybase0:MidCareer
   a mybase0:CVCareerLevel ;
   rdfs:label "Mid-career (2+ years of experience)"@en ,
   "Mittlere Karriere (2+ Jahre Erfahrung)"@de,
+  "Nivel mesatar (më shumë se 2 vjet përvojë)"@sq,
   "Mi-carrière (2+ ans d'expérience)"@fr,
   "A metà carriera (2+ anni di esperienza)"@it.
 
 mybase0:Management
   a mybase0:CVCareerLevel ;
-  rdfs:label "Management (Manager/Direktor der Mitarbeiter)"@en  ,
-  "Mittlere Karriere (2+ Jahre Erfahrung)"@de,
+  rdfs:label "Management (Manager/Director of personnel)"@en  ,
+  "Management (Manager/Direktor der Mitarbeiter)"@de,
+  "Menaxhimi (menaxheri / drejtori i punonjësve)"@sq,
   "Gestion (gestionnaire/directeur du personnel)"@fr,
   "Gestione (dirigente/direttore del personale)"@it.
 
@@ -648,6 +711,7 @@ mybase0:Executive
   a mybase0:CVCareerLevel ;
   rdfs:label "Executive (SVP, EVP, VP)"@en  ,
   "Exekutiv (SVP, EVP, VP)"@de,
+  "Ekzekutiv (SVP, EVP, VP)"@sq,
   "Cadre (SVP, EVP, VP)"@fr,
   "Esecutivo (SVP, EVP, VP, VP)"@it.
 
@@ -655,6 +719,7 @@ mybase0:SeniorExecutive
   a mybase0:CVCareerLevel ;
   rdfs:label "Senior Executive (president / CEO)"@en  ,
   "Senior Executive (Präsident / CEO)"@de,
+  "Ekzekutiv i Lartë (president / CEO)"@sq,
   "Cadre supérieur (président / chef de la direction)"@fr,
   "Senior Executive (presidente / CEO)"@it.
 
@@ -662,6 +727,7 @@ mybase0:EduDegree
   a owl:Class ;
   rdfs:label "Degree"@en  ,
   "Abschluss"@de,
+  "Diploma"@sq,
   "Diplôme"@fr,
   "Laurea"@it.
 
@@ -673,9 +739,10 @@ mybase0:EduHighSchool
   owl:disjointWith mybase0:EduMaster;
   owl:disjointWith mybase0:EduDoctorate;
   owl:disjointWith mybase0:EduAssociate;
-  rdfs:label "High school or equivalent."@en,
-  "High School oder gleichwertig."@de,
-  "Études secondaires ou l'équivalent."@fr,
+  rdfs:label "High school or equivalent"@en,
+  "High School oder gleichwertig"@de,
+  "Shkollë e mesme ose ekuivalente"@sq,
+  "Études secondaires ou l'équivalent"@fr,
   "Liceo o equivalente."@it.
 
 mybase0:EduVocational
@@ -689,6 +756,7 @@ mybase0:EduVocational
   rdfs:label "Vocational"@en ,
   "Beruflicher Bereich"@de,
   "Professionnel"@fr,
+  "Profesionale"@sq,
   "Professionale"@it.
 
 mybase0:EduCollegeCoursework
@@ -700,6 +768,7 @@ mybase0:EduCollegeCoursework
   owl:disjointWith mybase0:EduDoctorate;
   owl:disjointWith mybase0:EduAssociate;
   rdfs:label "Some college coursework completed."@en ,
+  "Disa lëndë universitare të përfunduara."@sq,
   "Einige College-Kursarbeiten wurden abgeschlossen."@de,
   "Quelques cours universitaires terminés."@fr,
   "Alcuni corsi universitari completati."@it.
@@ -714,6 +783,7 @@ mybase0:EduBachelor
   owl:disjointWith mybase0:EduAssociate;
   rdfs:label "Bachelor's degree"@en,
   "Bachelor-Abschluss"@de,
+  "Diploma e Bachelor-it"@sq,
   "Diplôme de bachelier"@fr,
   "Laurea di primo livello"@it.
 
@@ -727,6 +797,7 @@ mybase0:EduMaster
   owl:disjointWith mybase0:EduAssociate;
   rdfs:label "Master's degree"@en ,
   "Master-Abschluss"@de,
+  "Diploma e Master-it"@sq,
   "Diplôme de maîtrise"@fr,
   "Laurea magistrale"@it.
 
@@ -740,6 +811,7 @@ mybase0:EduDoctorate
   owl:disjointWith mybase0:EduAssociate;
   rdfs:label "Doctorate"@en ,
   "Doktorat"@de,
+  "Doktoratura"@sq,
   "Doctorat"@fr,
   "Dottorato"@it.
 
@@ -754,12 +826,14 @@ mybase0:EduAssociate
   rdfs:label "Associate degree"@en ,
   "Assoziierter Abschluss"@de,
   "Diplôme d'associé"@fr,
+  "Diploma e asociuar"@sq,
   "Laurea Associato"@it.
 
 mybase0:IndustryType
   a owl:Class ;
   rdfs:label "Sector/Field"@en  ,
   "Sektor/Feld"@de,
+  "Sektori/Fusha"@sq,
   "Secteur/Domaine"@fr,
   "Settore/Campo"@it.
 
@@ -767,6 +841,7 @@ mybase0:Advertisting
   a mybase0:IndustryType ;
   rdfs:label "Advertisting"@en  ,
   "Werben"@de,
+  "Reklama"@sq,
   "Publicité"@fr,
   "Pubblicità"@it.
 
@@ -774,6 +849,7 @@ mybase0:ConstructionIndustry
   a mybase0:IndustryType ;
   rdfs:label "Construction Industry"@en  ,
   "Bauindustrie"@de,
+  "Industria e ndërtimit"@sq,
   "Industrie de la construction"@fr,
   "Industria delle costruzioni"@it.
 
@@ -781,6 +857,7 @@ mybase0:EducationValue
   a mybase0:IndustryType ;
   rdfs:label "Education"@en  ,
   "Ausbildung"@de,
+  "Edukimi"@sq,
   "L'éducation"@fr,
   "Educazione"@it.
 
@@ -788,6 +865,7 @@ mybase0:Farming
   a mybase0:IndustryType ;
   rdfs:label "Farming"@en  ,
   "Landwirtschaft"@de,
+  "Bujqësi"@sq,
   "Agriculture"@fr,
   "L'agricoltura"@it.
 
@@ -795,6 +873,7 @@ mybase0:Finance
   a mybase0:IndustryType ;
   rdfs:label "Finance"@en  ,
   "Finanzen"@de,
+  "Financa"@sq,
   "Finances"@fr,
   "Finanza"@it.
 
@@ -802,6 +881,7 @@ mybase0:HeavyIndustry
   a mybase0:IndustryType ;
   rdfs:label "Heavy Industry"@en  ,
   "Schwerindustrie"@de,
+  "Industria e rëndë"@sq,
   "Industrie lourde"@fr,
   "Industria pesante"@it.
 
@@ -809,6 +889,7 @@ mybase0:InformationIndustry
   a mybase0:IndustryType ;
   rdfs:label "Information Industry"@en  ,
   "Informationsindustrie"@de,
+  "Industria e informacionit"@sq,
   "Industrie de l'information"@fr,
   "Industria dell'informazione"@it.
 
@@ -816,6 +897,7 @@ mybase0:Infrastructure
   a mybase0:IndustryType ;
   rdfs:label "Infrastructure"@en  ,
   "Infrastruktur"@de,
+  "Infrastruktura"@sq,
   "Infrastructure"@fr,
   "Infrastruttura"@it.
 
@@ -823,6 +905,7 @@ mybase0:LightIndustry
   a mybase0:IndustryType ;
   rdfs:label "Light Industry"@en  ,
   "Leichtindustrie"@de,
+  "Industria e lehtë"@sq,
   "Industrie légère"@fr,
   "Industria leggera"@it.
 
@@ -830,6 +913,7 @@ mybase0:Materials
   a mybase0:IndustryType ;
   rdfs:label "Materials"@en  ,
   "Materialien"@de,
+  "Materialet"@sq,
   "Matériaux"@fr,
   "Materiali"@it.
 
@@ -837,6 +921,7 @@ mybase0:MusicIndustry
   a mybase0:IndustryType ;
   rdfs:label "Music Industry"@en  ,
   "Musikindustrie"@de,
+  "Industria e muzikës"@sq,
   "Industrie de la musique"@fr,
   "Industria musicale"@it.
 
@@ -844,6 +929,7 @@ mybase0:Retail
   a mybase0:IndustryType ;
   rdfs:label "Retail"@en  ,
   "Einzelhandel"@de,
+  "Shitje me pakicë"@sq,
   "Vente au détail"@fr,
   "Commercio al dettaglio"@it.
 
@@ -851,6 +937,7 @@ mybase0:SecondaryIndustry
   a mybase0:IndustryType ;
   rdfs:label "Secondary Industry"@en  ,
   "Sekundäre Industrie"@de,
+  "Industria dytësore"@sq,
   "Industrie secondaire"@fr,
   "Industria secondaria"@it.
 
@@ -858,6 +945,7 @@ mybase0:Space
   a mybase0:IndustryType ;
   rdfs:label "Space"@en  ,
   "Raum"@de,
+  "Hapësira"@sq,
   "Espace"@fr,
   "Spazio"@it.
 
@@ -865,6 +953,7 @@ mybase0:TertiarySector
   a mybase0:IndustryType ;
   rdfs:label "Tertiary Sector"@en  ,
   "Tertiärer Sektor"@de,
+  "Sektori i tretë"@sq,
   "Secteur tertiaire"@fr,
   "Settore Terziario"@it.
 
@@ -873,12 +962,14 @@ mybase0:AgricultureIndustry
   rdfs:label "Agriculture Industry"@en  ,
   "Landwirtschaftliche Industrie"@de,
   "Industrie agricole"@fr,
+  "Industria bujqësore"@sq,
   "Agricoltura Industria"@it.
 
 mybase0:CreativeIndustries
   a mybase0:IndustryType ;
   rdfs:label "Creative Industries"@en  ,
   "Kreativwirtschaft"@de,
+  "Industria krijuese"@sq,
   "Industries créatives"@fr,
   "Industrie Creative"@it.
 
@@ -886,6 +977,7 @@ mybase0:EntertainmentIndustry
   a mybase0:IndustryType ;
   rdfs:label "Entertainment Industry"@en  ,
   "Unterhaltungsindustrie"@de,
+  "Industria argëtuese"@sq,
   "L'industrie du divertissement"@fr,
   "Industria dell'intrattenimento"@it.
 
@@ -894,26 +986,30 @@ mybase0:Fashion
   rdfs:label "Fashion"@en  ,
   "Mode"@de,
   "Mode"@fr,
+  "Moda"@sq,
   "Moda"@it.
 
 mybase0:GreenIndustry
   a mybase0:IndustryType ;
   rdfs:label "Green Industry"@en  ,
-  "Interessen"@de,
-  "Intérêts"@fr,
-  "Interessi"@it.
+  "Grüne Industrie"@de,
+  "Industria e gjelbër"@sq,
+  "Industrie verte"@fr,
+  "Industria verde"@it.
 
 mybase0:HospitalityIndustry
   a mybase0:IndustryType ;
   rdfs:label "Hospitality Industry"@en  ,
-  "Grüne Industrie"@de,
-  "Industrie verte"@fr,
-  "Industria verde"@it.
+  "Gastgewerbe"@de,
+  "Industria e mikpritjes"@sq,
+  "Industrie de l'accueil"@fr,
+  "Industria alberghiera"@it.
 
 mybase0:InformationTechnology
   a mybase0:IndustryType ;
   rdfs:label "Information Technology"@en  ,
   "Informationstechnologie"@de,
+  "Teknologjia e informacionit"@sq,
   "Technologies de l'information"@fr,
   "Tecnologia dell'informazione"@it.
 
@@ -921,6 +1017,7 @@ mybase0:ITIndustry
   a mybase0:IndustryType ;
   rdfs:label "IT Industry"@en  ,
   "IT-Branche"@de,
+  "Industria IT"@sq,
   "Industrie des TI"@fr,
   "Industria IT"@it.
 
@@ -928,6 +1025,7 @@ mybase0:Manufacturing
   a mybase0:IndustryType ;
   rdfs:label "Manufacturing"@en  ,
   "Herstellung"@de,
+  "Industria përpunuese"@sq,
   "Fabrication"@fr,
   "Produzione"@it.
 
@@ -935,6 +1033,7 @@ mybase0:Media
   a mybase0:IndustryType ;
   rdfs:label "Media"@en  ,
   "Medien"@de,
+  "Media"@sq,
   "Médias"@fr,
   "Media"@it.
 
@@ -942,6 +1041,7 @@ mybase0:PrimaryIndustry
   a mybase0:IndustryType ;
   rdfs:label "Primary Industry"@en  ,
   "Grundstoffindustrie"@de,
+  "Industria primare"@sq,
   "Industrie primaire"@fr,
   "Industria primaria"@it.
 
@@ -949,6 +1049,7 @@ mybase0:Robotics
   a mybase0:IndustryType ;
   rdfs:label "Robotics"@en  ,
   "Robotik"@de,
+  "Robotika"@sq,
   "Robotique"@fr,
   "Robotica"@it.
 
@@ -956,6 +1057,7 @@ mybase0:ServiceIndustry
   a mybase0:IndustryType ;
   rdfs:label "Service Industry"@en  ,
   "Dienstleistungsbranche"@de,
+  "Industria e shërbimeve"@sq,
   "Industrie des services"@fr,
   "Industria dei servizi"@it.
 
@@ -963,12 +1065,17 @@ mybase0:Telecom
   a mybase0:IndustryType ;
   rdfs:label "Telecom"@en  ,
   "Telekommunikation"@de,
+  "Telekomunikacioni"@sq,
   "Télécom"@fr,
   "Telecomunicazioni"@it.
 
 mybase0:OtherCVInfoType
   a owl:Class ;
-  rdfs:label "Type of misc information added to a CV."@en .
+  rdfs:label "Type of misc information added to a CV."@en ,
+  "Art der verschiedenen Informationen, die einem Lebenslauf hinzugefügt werden."@de,
+  "Lloj informacionesh të ndryshme të shtuara në CV."@sq,
+  "Type d'informations diverses ajoutées à un CV."@fr,
+  "Tipo di informazioni errate aggiunte a un CV."@it.
 
 mybase0:Interests
   a mybase0:OtherCVInfoType ;
@@ -978,6 +1085,7 @@ mybase0:Interests
   owl:disjointWith mybase0:Other;
   rdfs:label "Interests"@en  ,
   "Interessen"@de,
+  "Interesat"@sq,
   "Intérêts"@fr,
   "Interessi"@it.
 
@@ -989,6 +1097,7 @@ mybase0:PointOfView
   owl:disjointWith mybase0:Other;
   rdfs:label "Point Of View"@en ,
   "Aussichtspunkt"@de,
+  "Pikëpamje"@sq,
   "Point de vue"@fr,
   "Punto di vista"@it.
 
@@ -1000,6 +1109,7 @@ mybase0:Membership
   owl:disjointWith mybase0:Other;
   rdfs:label "Membership"@en ,
   "Mitgliedschaft"@de,
+  "Anëtarësimi"@sq,
   "Adhésion"@fr,
   "Iscrizione"@it.
 
@@ -1011,6 +1121,7 @@ mybase0:SocialActivities
   owl:disjointWith mybase0:Other;
   rdfs:label "Social Activities"@en ,
   "Soziale Aktivitäten"@de,
+  "Aktivitete sociale"@sq,
   "Activités sociales"@fr,
   "Attività sociali"@it.
 
@@ -1022,5 +1133,6 @@ mybase0:Other
   owl:disjointWith mybase0:SocialActivities;
   rdfs:label "Other"@en ,
   "Sonstiges"@de,
+  "Të tjera"@sq,
   "Autre"@fr,
   "Altro"@it.

@@ -344,6 +344,7 @@
   ns0:nameEnglish "Saint Kitts And Nevis"@en,
   "Sankt Kitts und Nevis"@de,
   "Saint-Kitts-et-Nevis"@fr,
+  "Shën Kits dhe Nevis"@sq,
   "Saint Kitts e Nevis"@it .
 
 ns0:ISO3166.Bahrain
@@ -359,6 +360,7 @@ ns0:Bahrain
   ns0:nameLocal "Al Bahrayn" ;
   ns0:nameEnglish "Bahrain"@en,
   "Bahrain"@de,
+  "Bahrain"@sq,
   "Bahreïn"@fr,
   "Bahrain"@it ;
   ns0:nameEnglishLong "Kingdom of Bahrain" ;
@@ -368,6 +370,7 @@ ns0:Burma
   a ns0:IndependentState ;
   ns0:nameEnglish "Burma"@en,
   "Birma"@de,
+  "Birmani"@sq,
   "Birmanie"@fr,
   "Birmania"@it ;
   ns0:nameEnglishLong "Union of Burma" ;
@@ -379,6 +382,7 @@ ns0:Myanmar
   a ns0:IndependentState ;
   ns0:nameEnglish "Myanmar"@en,
   "Myanmar"@de,
+  "Myanmar"@sq,
   "Myanmar"@fr,
   "Myanmar"@it ;
   ns0:nameLocalLong "Pyidaungzu Myanma Naingngandaw" ;
@@ -390,6 +394,7 @@ ns0:CentralAfricanRepublic
   ns0:nameLocal "Republique Centrafricaine" ;
   ns0:nameEnglish "Central African Republic"@en,
   "Zentralafrikanische Republik"@de,
+  "Republika Qendrore e Afrikës"@sq,
   "République centrafricaine"@fr,
   "Repubblica Centroafricana"@it .
 
@@ -399,6 +404,7 @@ ns0:PapuaNewGuinea
   ns0:nameEnglishLong "Independent State of Papua New Guinea" ;
   ns0:nameEnglish "Papua New Guinea"@en,
   "Papua-Neuguinea"@de,
+  "Papua Guinea e Re"@sq,
   "Papouasie-Nouvelle-Guinée"@fr,
   "Papua-Nuova Guinea"@it .
 
@@ -415,6 +421,7 @@ ns0:Belgium
   ns0:nameLocalLong "Royaume de Belgique/Koninkrijk Belgie" ;
   ns0:nameEnglish "Belgium"@en,
   "Belgien"@de,
+  "Belgjika"@sq,
   "Belgique"@fr,
   "Belgio"@it ;
   ns0:nameEnglishLong "Kingdom of Belgium" ;
@@ -433,6 +440,7 @@ ns0:Cuba
   ns0:nameLocalLong "Republica de Cuba" ;
   ns0:nameEnglish "Cuba"@en,
   "Kuba"@de,
+  "Kuba"@sq,
   "Cuba"@fr,
   "Cuba"@it ;
   ns0:nameEnglishLong "Republic of Cuba" ;
@@ -451,6 +459,7 @@ ns0:SaintVincentAndTheGrenadines
   ns0:nameLocal "Saint Vincent And The Grenadines" ;
   ns0:nameEnglish "Saint Vincent And The Grenadines"@en,
   "Saint Vincent und die Grenadinen"@de,
+  "Shën Vincent dhe Grenadinet"@sq,
   "Saint-Vincent-et-les Grenadines"@fr,
   "Saint Vincent e Grenadine"@it .
 
@@ -467,6 +476,7 @@ ns0:FalklandIslands
   ns0:dependentTerritoryOf ns0:UnitedKingdom ;
   ns0:nameEnglish "Falkland Islands (Islas Malvinas)"@en,
   "Falklandinseln"@de,
+  "Ishujt Falkland/Malvinet"@sq,
   "Îles Malouines"@fr,
   "Isole Malvine"@it ;
   ns0:nameLocal "Falkland Islands (Islas Malvinas)" .
@@ -477,6 +487,7 @@ ns0:UnitedKingdom
   ns0:nameLocalLong "United Kingdom of Great Britain and Northern Ireland" ;
   ns0:nameEnglish "United Kingdom"@en,
   "Vereinigtes Königreich"@de,
+  "Mbretëria e Bashkuar"@sq,
   "Royaume-Uni"@fr,
   "Regno Unito"@it ;
   ns0:nameLocal "United Kingdom" .
@@ -494,6 +505,7 @@ ns0:Germany
   ns0:nameLocal "Deutschland" ;
   ns0:nameEnglish "Germany"@en,
   "Deutschland"@de,
+  "Gjermania"@sq,
   "Allemagne"@fr,
   "Germania"@it ;
   ns0:nameEnglishLong "Federal Republic of Germany" ;
@@ -513,6 +525,7 @@ ns0:Gambia
   ns0:nameLocal "Gambia" ;
   ns0:nameEnglish "The Gambia"@en,
   "Gambia"@de,
+  "Gambia"@sq,
   "Gambie"@fr,
   "Gambia"@it .
 
@@ -520,6 +533,7 @@ ns0:Bahamas
   a ns0:IndependentState ;
   ns0:nameEnglish "Bahamas"@en,
   "Bahamas"@de,
+  "Bahamas"@sq,
   "Bahamas"@fr,
   "Bahamas"@it ;
   ns0:nameLocalLong "Commonwealth of The Bahamas" ;
@@ -531,6 +545,7 @@ ns0:Fiji
   ns0:nameEnglishLong "Republic of the Fiji Islands" ;
   ns0:nameEnglish "Fiji"@en,
   "Fidschi"@de,
+  "Fiji"@sq,
   "Fidji"@fr,
   "Figi"@it ;
   ns0:nameLocal "Fiji" .
@@ -548,6 +563,7 @@ ns0:Namibia
   ns0:nameEnglishLong "Republic of Namibia" ;
   ns0:nameEnglish "Namibia"@en,
   "Namibia"@de,
+  "Namibia"@sq,
   "Namibie"@fr,
   "Namibia"@it ;
   ns0:nameLocal "Namibia" .
@@ -566,6 +582,7 @@ ns0:Mayotte
   ns0:dependentTerritoryOf ns0:France ;
   ns0:nameEnglish "Mayotte"@en,
   "Mayotte"@de,
+  "Mayotte"@sq,
   "Mayotte"@fr,
   "Mayotte"@it ;
   ns0:nameEnglishLong "Territorial Collectivity of Mayotte" .
@@ -574,6 +591,7 @@ ns0:France
   a ns0:IndependentState ;
   ns0:nameEnglish "France"@en,
   "France"@de,
+  "Franca"@sq,
   "Mayotte"@fr,
   "Francia"@it ;
   ns0:nameLocalLong "Republique Francaise" ;
@@ -595,6 +613,7 @@ ns0:MarshallIslands
   ns0:nameLocal "Marshall Islands" ;
   ns0:nameEnglish "Marshall Islands"@en,
   "Marshallinseln"@de,
+  "Ishujt Marshall"@sq,
   "Îles Marshall"@fr,
   "Isole Marshall"@it .
 
@@ -611,6 +630,7 @@ ns0:Botswana
   ns0:nameEnglishLong "Republic of Botswana" ;
   ns0:nameEnglish "Botswana"@en,
   "Botswana"@de,
+  "Botsvanë"@sq,
   "Botswana"@fr,
   "Botswana"@it ;
   ns0:nameLocal "Botswana" .
@@ -627,6 +647,7 @@ ns0:Venezuela
   a ns0:IndependentState ;
   ns0:nameEnglish "Venezuela"@en,
   "Venezuela"@de,
+  "Venezuela"@sq,
   "Venezuela"@fr,
   "Venezuela"@it ;
   ns0:nameLocal "Venezuela" ;
@@ -645,6 +666,7 @@ ns0:Ireland
   a ns0:IndependentState ;
   ns0:nameEnglish "Ireland"@en,
   "Irland"@de,
+  "Irlanda"@sq,
   "Irlande"@fr,
   "Irlanda"@it ;
   ns0:nameLocal "Ireland" .
@@ -663,6 +685,7 @@ ns0:Chile
   ns0:nameLocalLong "Republica de Chile" ;
   ns0:nameEnglish "Chile"@en,
   "Chile"@de,
+  "Kili"@sq,
   "Chili"@fr,
   "Cile"@it ;
   ns0:nameLocal "Chile" .
@@ -671,6 +694,7 @@ ns0:Kyrgyzstan
   a ns0:IndependentState ;
   ns0:nameEnglish "Kyrgyzstan"@en,
   "Kirgisistan"@de,
+  "Kirgistan"@sq,
   "Kirghizistan"@fr,
   "Kirghizistan"@it ;
   ns0:nameLocal "Kyrgyz Respublikasy" ;
@@ -698,6 +722,7 @@ ns0:Pakistan
   ns0:nameLocal "Pakistan" ;
   ns0:nameEnglish "Pakistan"@en,
   "Pakistan"@de,
+  "Pakistan"@sq,
   "Pakistan"@fr,
   "Pakistan"@it ;    
   ns0:nameEnglishLong "Islamic Republic of Pakistan" .
@@ -716,6 +741,7 @@ ns0:Guyana
   ns0:nameLocal "Guyana" ;
   ns0:nameEnglish "Guyana"@en,
   "Guyana"@de,
+  "Guyana"@sq,
   "Guyana"@fr,
   "Guyana"@it .
 
@@ -732,6 +758,7 @@ ns0:Bangladesh
   ns0:nameEnglish "Bangladesh"@en,
   "Bangladesch"@de,
   "Bangladesh"@fr,
+  "Bangladesh"@sq,
   "Bangladesh"@it ;
   ns0:nameLocalLong "People's Republic of Bangladesh" ;
   ns0:nameEnglishLong "People's Republic of Bangladesh" ;
@@ -742,6 +769,7 @@ ns0:Georgia
   ns0:nameLocal "Sak'art'velo" ;
   ns0:nameEnglish "Georgia"@en,
   "Georgien"@de,
+  "Gjeorgjia"@sq,
   "Géorgie"@fr,
   "Georgia"@it .
 
@@ -750,6 +778,7 @@ ns0:China
   ns0:nameEnglishLong "People's Republic of China" ;
   ns0:nameEnglish "China"@en ,
   "China"@de,
+  "Kina"@sq,
   "Chine"@fr,
   "Cina"@it ;
   ns0:nameLocal "Zhong Guo" ;
@@ -761,6 +790,7 @@ ns0:Taiwan
   ns0:nameLocal "T'ai-wan" ;
   ns0:nameEnglish "Taiwan"@en,
   "Taiwan"@de,
+  "Taiwan"@sq,
   "Taïwan"@fr,
   "Taiwan"@it .
 
@@ -768,6 +798,7 @@ ns0:Iceland
   a ns0:IndependentState ;
   ns0:nameEnglish "Iceland"@en,
   "Island"@de,
+  "Islanda"@sq,
   "Islande"@fr,
   "Islanda"@it ;
   ns0:nameLocalLong "Lydhveldidh Island" ;
@@ -790,6 +821,7 @@ ns0:BritishIndianOceanTerritories
   ns0:dependentTerritoryOf ns0:UnitedKingdom ;
   ns0:nameEnglish "British Indian Ocean Territories"@en,
   "Britische Territorien im Indischen Ozean"@de,
+  "Territoret Britanike të Oqeanit Indian"@sq,
   "Territoires britanniques de l'océan Indien"@fr,
   "Territori britannici dell'Oceano Indiano"@it .
 
@@ -801,6 +833,7 @@ ns0:Iran
   ns0:nameEnglish "Iran"@en,
   "Iran"@de,
   "Iran"@fr,
+  "Iran"@sq,
   "Iran"@it .
 
 ns0:Anguilla
@@ -809,6 +842,7 @@ ns0:Anguilla
   ns0:dependentTerritoryOf ns0:UnitedKingdom ;
   ns0:nameEnglish "Anguilla"@en,
   "Anguilla"@de,
+  "Anguilla"@sq,
   "Anguilla"@fr,
   "Anguilla"@it .
 
@@ -816,6 +850,7 @@ ns0:Palau
   a ns0:IndependentState ;
   ns0:nameEnglish "Palau"@en,
   "Palau"@de,
+  "Palau"@sq,
   "Palaos"@fr,
   "Palau"@it ;
   ns0:nameEnglishLong "Republic of Palau" ;
@@ -829,6 +864,7 @@ ns0:Belarus
   ns0:nameLocalLong "Respublika Byelarus'" ;
   ns0:nameEnglish "Belarus"@en,
   "Weißrussland"@de,
+  "Bjellorusi"@sq,
   "Biélorussie"@fr,
   "Bielorussia"@it .
 
@@ -845,6 +881,7 @@ ns0:TurksAndCaicosIslands
   ns0:nameLocal "Turks And Caicos Islands" ;
   ns0:nameEnglish "Turks And Caicos Islands"@en,
   "Turks- und Caicosinseln"@de,
+  "Ishujt Turq dhe Kaikos"@sq,
   "Isole Turks e Caicos"@fr,
   "Turks e Caicos"@it ;
   ns0:dependentTerritoryOf ns0:UnitedKingdom .
@@ -864,6 +901,7 @@ ns0:EquatorialGuinea
   ns0:nameLocal "Guinea Ecuatorial" ;
   ns0:nameEnglish "Equatorial Guinea"@en,
   "Äquatorialguinea"@de,
+  "Guinea Ekuatoriale"@sq,
   "Guinée équatoriale"@fr,
   "Guinea Equatoriale"@it .
 
@@ -873,6 +911,7 @@ ns0:Mauritania
   ns0:nameLocalLong "Al Jumhuriyah al Islamiyah al Muritaniyah" ;
   ns0:nameEnglish "Mauritania"@en,
   "Mauretanien"@de,
+  "Mavritani"@sq,
   "Mauritanie"@fr,
   "Mauritania"@it ;
   ns0:nameLocal "Muritaniyah" .
@@ -892,6 +931,7 @@ ns0:Guadeloupe
   ns0:nameEnglishLong "Department of Guadeloupe" ;
   ns0:nameEnglish "Guadeloupe"@en,
   "Guadeloupe"@de,
+  "Guadeloupe"@sq,
   "Guadeloupe"@fr,
   "Guadalupa"@it ;
   ns0:dependentTerritoryOf ns0:France ;
@@ -904,6 +944,7 @@ ns0:Lithuania
   ns0:nameLocalLong "Lietuvos Respublika" ;
   ns0:nameEnglish "Lithuania"@en,
   "Litauen"@de,
+  "Lituania"@sq,
   "Lituanie"@fr,
   "Lituania"@it .
 
@@ -921,6 +962,7 @@ ns0:PalestinianTerritoryOccupied
   ns0:nameEnglish "Palestinian Territory, Occupied"@en,
   "Palästinensisches Gebiet, besetztes Gebiet"@de,
   "Palestinien, Territoire occupé"@fr,
+  "Territori Palestinez, i okupuar"@sq,
   "Territorio palestinese occupato"@it ;
   ns0:nameLocal "Palestinian Territory, Occupied" .
 
@@ -929,6 +971,7 @@ ns0:Israel
   ns0:nameEnglish "Israel"@en,
   "Israel"@de,
   "Israël"@fr,
+  "Izrael"@sq,
   "Israele"@it ;
   ns0:nameLocalLong "Medinat Yisra'el" ;
   ns0:nameLocal "Yisra'el" ;
@@ -946,6 +989,7 @@ ns0:Japan
   a ns0:IndependentState ;
   ns0:nameEnglish "Japan"@en,
   "Japan"@de,
+  "Japoni"@sq,
   "Japon"@fr,
   "Giappone"@it ;
   ns0:nameLocal "Japan" .
@@ -962,6 +1006,7 @@ ns0:Angola
   a ns0:IndependentState ;
   ns0:nameEnglish "Angola"@en,
   "Angola"@de,
+  "Angolë"@sq,
   "Angola"@fr,
   "Angola"@it ;
   ns0:nameLocal "Angola" ;
@@ -974,6 +1019,7 @@ ns0:CapeVerde
   ns0:nameLocalLong "Republica de Cabo Verde" ;
   ns0:nameEnglish "Cape Verde"@en,
   "Kap Verde"@de,
+  "Kepi Verde"@sq,
   "Cap-Vert"@fr,
   "Capo Verde"@it ;
   ns0:nameEnglishLong "Republic of Cape Verde" .
@@ -982,6 +1028,7 @@ ns0:NorthernMarianaIslands
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "Northern Mariana Islands"@en,
   "Nördliche Marianeninseln"@de,
+  "Ishujt Mariana Veriore"@sq,
   "Mariannes du Nord (Îles)"@fr,
   "Isole Marianne del Nord"@it ;
   ns0:nameEnglishLong "Commonwealth of the Northern Mariana Islands" ;
@@ -994,6 +1041,7 @@ ns0:UnitedStates
   ns0:nameEnglish "United States"@en,
   "Vereinigte Staaten"@de,
   "États-Unis"@fr,
+  "Shtetet e Bashkuara"@sq,
   "Stati Uniti"@it ;
   ns0:nameEnglishLong "United States of America" ;
   ns0:nameLocalLong "United States of America" ;
@@ -1003,6 +1051,7 @@ ns0:Antarctica
   a ns0:UnclaimableTerritory ;
   ns0:nameEnglish "Antarctica"@en,
   "Antarktis"@de,
+  "Antarktidë"@sq,
   "Antarctique"@fr,
   "Antartide"@it ;
   ns0:nameLocal "Antarctica" .
@@ -1020,6 +1069,7 @@ ns0:Cyprus
   ns0:nameLocal "Cyprus" ;
   ns0:nameEnglish "Cyprus"@en,
   "Zypern"@de,
+  "Qipro"@sq,
   "Chypre"@fr,
   "Cipro"@it ;
   ns0:nameEnglishLong "Republic of Cyprus" .
@@ -1029,6 +1079,7 @@ ns0:Somalia
   ns0:nameEnglish "Somalia"@en,
   "Somalia"@de,
   "Somalie"@fr,
+  "Somalia"@sq,
   "Somalia"@it ;
   ns0:nameEnglishLong "Somali Republic" ;
   ns0:nameLocal "Somalia" .
@@ -1039,6 +1090,7 @@ ns0:Jordan
   ns0:nameEnglishLong "Hashemite Kingdom of Jordan" ;
   ns0:nameEnglish "Jordan"@en,
   "Jordanien"@de,
+  "Jordania"@sq,
   "Jordanie"@fr,
   "Giordania"@it ;
   ns0:nameLocalLong "Al Mamlakah al Urduniyah al Hashimiyah" .
@@ -1047,6 +1099,7 @@ ns0:Honduras
   a ns0:IndependentState ;
   ns0:nameEnglish "Honduras"@en,
   "Honduras"@de,
+  "Honduras"@sq,
   "Honduras"@fr,
   "Honduras"@it ;
   ns0:nameLocalLong "Republica de Honduras" ;
@@ -1058,6 +1111,7 @@ ns0:Libya
   ns0:nameEnglishLong "Great Socialist People's Libyan Arab Jamahiriya" ;
   ns0:nameEnglish "Libya"@en,
   "Libyen"@de,
+  "Libi"@sq,
   "Libye"@fr,
   "Libia"@it ;
   ns0:nameLocalLong "Al Jumahiriyah al Arabiyah al Libiyah ash Shabiyah al Ishtirakiyah al Uzma" ;
@@ -1076,6 +1130,7 @@ ns0:CostaRica
   ns0:nameEnglishLong "Republic of Costa Rica" ;
   ns0:nameEnglish "Costa Rica"@en,
   "Costa Rica"@de,
+  "Kosta Rika"@sq,
   "Costa Rica"@fr,
   "Costa Rica"@it ;
   ns0:nameLocalLong "Republica de Costa Rica" ;
@@ -1096,6 +1151,7 @@ ns0:Austria
   ns0:nameEnglishLong "Republic of Austria" ;
   ns0:nameEnglish "Austria"@en,
   "Österreich"@de,
+  "Austria"@sq,
   "Autriche"@fr,
   "Austria"@it .
 
@@ -1113,6 +1169,7 @@ ns0:Nicaragua
   ns0:nameLocal "Nicaragua" ;
   ns0:nameEnglish "Nicaragua"@en,
   "Nicaragua"@de,
+  "Nikaragua"@sq,
   "Nicaragua"@fr,
   "Nicaragua"@it ;
   ns0:nameLocalLong "Republica de Nicaragua" .
@@ -1124,6 +1181,7 @@ ns0:NewZealand
   ns0:nameLocal "New Zealand" ;
   ns0:nameEnglish "New Zealand"@en,
   "Neuseeland"@de,
+  "Zelanda e Re"@sq,
   "Nouvelle-Zélande"@fr,
   "Nuova Zelanda"@it .
 
@@ -1133,6 +1191,7 @@ ns0:TrinidadAndTobago
   ns0:nameEnglishLong "Republic of Trinidad and Tobago" ;
   ns0:nameEnglish "Trinidad And Tobago"@en,
   "Trinidad und Tobago"@de,
+  "Trinidad Dhe Tobago"@sq,
   "Trinité-et-Tobago"@fr,
   "Trinidad e Tobago"@it .
 
@@ -1142,6 +1201,7 @@ ns0:CaymanIslands
   ns0:nameLocal "Cayman Islands" ;
   ns0:nameEnglish "Cayman Islands"@en,
   "Kaimaninseln"@de,
+  "Ishujt Kajman"@sq,
   "Îles Caïmans"@fr,
   "Isole Cayman"@it .
 
@@ -1157,6 +1217,7 @@ ns0:Thailand
   a ns0:IndependentState ;
   ns0:nameEnglish "Thailand"@en,
   "Thailand"@de,
+  "Tajlanda"@sq,
   "Thaïlande"@fr,
   "Thailandia"@it ;
   ns0:nameLocal "Thailand" ;
@@ -1169,6 +1230,7 @@ ns0:Hungary
   ns0:nameLocalLong "Magyar Koztarsasag" ;
   ns0:nameEnglish "Hungary"@en,
   "Ungarn"@de,
+  "Hungari"@sq,
   "Hongrie"@fr,
   "Ungheria"@it .
 
@@ -1193,6 +1255,7 @@ ns0:Aruba
   ns0:nameLocal "Aruba" ;
   ns0:nameEnglish "Aruba"@en,
   "Aruba"@de,
+  "Aruba"@sq,
   "Aruba"@fr,
   "Aruba"@it ;
   ns0:dependentTerritoryOf ns0:Netherlands .
@@ -1203,6 +1266,7 @@ ns0:Netherlands
   ns0:nameLocal "Nederland" ;
   ns0:nameEnglish "Netherlands"@en,
   "Niederlande"@de,
+  "Hollanda"@sq,
   "Néerlandais"@fr,
   "Paesi Bassi"@it ;
   ns0:nameLocalLong "Koninkrijk der Nederlanden" .
@@ -1221,6 +1285,7 @@ ns0:Turkey
   ns0:nameLocal "Turkiye" ;
   ns0:nameEnglish "Turkey"@en,
   "Türkei"@de,
+  "Turqi"@sq,
   "Turquie"@fr,
   "Turchia"@it ;
   ns0:nameEnglishLong "Republic of Turkey" .
@@ -1238,6 +1303,7 @@ ns0:Laos
   ns0:nameLocal "Laos" ;
   ns0:nameEnglish "Laos"@en,
   "Laos"@de,
+  "Laos"@sq,
   "Laos"@fr,
   "Laos"@it ;
   ns0:nameLocalLong "Sathalanalat Paxathipatai Paxaxon Lao" ;
@@ -1256,6 +1322,7 @@ ns0:Greenland
   ns0:nameEnglish "Greenland"@en,
   "Grönland"@de,
   "Groenland"@fr,
+  "Grenlanda"@sq,
   "Groenlandia"@it ;
   ns0:dependentTerritoryOf ns0:Denmark ;
   ns0:nameLocal "Kalaallit Nunaat" .
@@ -1267,6 +1334,7 @@ ns0:Denmark
   ns0:nameEnglish "Denmark"@en,
   "Dänemark"@de,
   "Danemark"@fr,
+  "Danimarka"@sq,
   "Danimarca"@it ;
   ns0:nameEnglishLong "Kingdom of Denmark" .
 
@@ -1290,6 +1358,7 @@ ns0:SriLanka
   a ns0:IndependentState ;
   ns0:nameEnglish "Sri Lanka"@en,
   "Sri Lanka"@de,
+  "Sri Lanka"@sq,
   "Sri Lanka"@fr,
   "Sri Lanka"@it ;
   ns0:nameEnglishLong "Democratic Socialist Republic of Sri Lanka" ;
@@ -1301,6 +1370,7 @@ ns0:Lebanon
   ns0:nameLocal "Lubnan" ;
   ns0:nameEnglish "Lebanon"@en,
   "Libanon"@de,
+  "Liban"@sq,
   "Liban"@fr,
   "Libano"@it ;
   ns0:nameEnglishLong "Lebanese Republic" .
@@ -1319,6 +1389,7 @@ ns0:Maldives
   ns0:nameEnglishLong "Republic of Maldives" ;
   ns0:nameEnglish "Maldives"@en,
   "Malediven"@de,
+  "Maldives"@sq,
   "Maldives"@fr,
   "Maldive"@it ;
   ns0:nameLocalLong "Dhivehi Raajjeyge Jumhooriyyaa" .
@@ -1337,6 +1408,7 @@ ns0:CzechRepublic
   ns0:nameLocalLong "Ceska Republika" ;
   ns0:nameEnglish "Czech Republic"@en,
   "Tschechische Republik"@de,
+  "Republika Çeke"@sq,
   "République tchèque"@fr,
   "Repubblica Ceca"@it ;
   ns0:nameEnglishLong "Ceska Republika" .
@@ -1347,6 +1419,7 @@ ns0:CongoDemocraticRepublic
   owl:sameAs ns0:Zaire ;
   ns0:nameEnglish "Congo"@en,
   "Kongo"@de,
+  "Kongo"@sq,
   "Congo"@fr,
   "Congo"@it ;
   ns0:nameLocal "Congo" ;
@@ -1357,6 +1430,7 @@ ns0:Zaire
   owl:sameAs ns0:CongoDemocraticRepublic ;
   ns0:nameEnglish "Zaire"@en,
   "Zaire"@de,
+  "Zaire"@sq,
   "Zaïre"@fr,
   "Zaire"@it ;
   ns0:nameLocal "Zaire" .
@@ -1365,6 +1439,7 @@ ns0:Malta
   a ns0:IndependentState ;
   ns0:nameEnglish "Malta"@en,
   "Malta"@de,
+  "Malta"@sq,
   "Malte"@fr,
   "Malta"@it ;
   ns0:nameLocalLong "Repubblika ta' Malta" ;
@@ -1379,6 +1454,7 @@ ns0:Monaco
   ns0:nameEnglish "Monaco"@en,
   "Monaco"@de,
   "Monaco"@fr,
+  "Monaco"@sq,
   "Monaco"@it .
 
 ns0:ISO3166.UnitedStatesMinorOutlyingIslands
@@ -1396,6 +1472,7 @@ ns0:UnitedStatesMinorOutlyingIslands
   ns0:nameEnglish "United States Minor Outlying Islands"@n,
   "Kleinere abgelegene Inseln der Vereinigten Staaten"@de,
   "Îles mineures éloignées des États-Unis"@fr,
+  "Ishujt e Vogël larg Shteteve të Bashkuara"@sq,
   "Isole Minori Esterne degli Stati Uniti d'America"@it .
 
 ns0:ISO3166.Niue
@@ -1411,6 +1488,7 @@ ns0:Niue
   ns0:nameEnglishLong "Republic of Niue" ;
   ns0:nameEnglish "Niue"@en,
   "Niue"@de,
+  "Niue"@sq,
   "Nioué"@fr,
   "Niue"@it ;
   ns0:nameLocal "Niue" ;
@@ -1430,6 +1508,7 @@ ns0:Gibraltar
   ns0:nameLocal "Gibraltar" ;
   ns0:nameEnglish "Gibraltar"@en,
   "Gibraltar"@de,
+  "Gjibraltar"@sq,
   "Gibraltar"@fr,
   "Gibilterra"@it .
 
@@ -1447,6 +1526,7 @@ ns0:Argentina
   ns0:nameEnglishLong "Argentine Republic" ;
   ns0:nameEnglish "Argentine"@en,
   "Argentinisch"@de,
+  "Argjentina"@sq,
   "Argentin"@fr,
   "Argentina"@it ;
   ns0:nameLocal "Argentina" .
@@ -1456,6 +1536,7 @@ ns0:Estonia
   ns0:nameEnglishLong "Republic of Estonia" ;
   ns0:nameEnglish "Estonia"@en,
   "Estland"@de,
+  "Estoni"@sq,
   "Estonie"@fr,
   "Estonia"@it ;
   ns0:nameLocal "Eesti" ;
@@ -1467,6 +1548,7 @@ ns0:Poland
   ns0:nameEnglish "Poland"@en,
   "Polen"@de,
   "Pologne"@fr,
+  "Poloni"@sq,
   "Polonia"@it ;
   ns0:nameLocalLong "Rzeczpospolita Polska" ;
   ns0:nameLocal "Polska" .
@@ -1485,6 +1567,7 @@ ns0:HolySee
   ns0:nameEnglish "Holy See"@en,
   "Heiliger Stuhl"@de,
   "Saint-Siège"@fr,
+  "Selia e Shenjtë"@sq,
   "Santa Sede"@it ;
   ns0:nameLocal "Santa Sede (Citta del Vaticano)" ;
   ns0:nameEnglishLong "The Holy See" ;
@@ -1495,6 +1578,7 @@ ns0:VaticanCityState
   owl:sameAs ns0:HolySee ;
   ns0:nameEnglish "Vatican City State"@en,
   "Vatikanstadt Staat"@de,
+  "Shteti i qytetit të Vatikanit"@sq,
   "État de la Cité du Vatican"@fr,
   "Città del Vaticano"@it ;
   ns0:nameLocal "Vatican City State" .
@@ -1512,6 +1596,7 @@ ns0:FaroeIslands
   ns0:dependentTerritoryOf ns0:Denmark ;
   ns0:nameEnglish "Faroe Islands"@en,
   "Färöer Inseln"@de,
+  "Ishujt Faroe"@sq,
   "Féroé (Îles)"@fr,
   "Isole Faroe"@it ;
   ns0:nameLocal "Foroyar" .
@@ -1520,6 +1605,7 @@ ns0:Belize
   a ns0:IndependentState ;
   ns0:nameEnglish "Belize"@en,
   "Belize"@de,
+  "Belize"@sq,
   "Belize"@fr,
   "Belize"@it ;
   ns0:nameLocal "Belize" .
@@ -1538,6 +1624,7 @@ ns0:Kenya
   ns0:nameLocal "Kenya" ;
   ns0:nameEnglish "Kenya"@en,
   "Kenia"@de,
+  "Kenya"@sq,
   "Kenya"@fr,
   "Kenya"@it .
 
@@ -1553,6 +1640,7 @@ ns0:Andorra
   a ns0:IndependentState ;
   ns0:nameEnglish "Andorra"@en,
   "Andorra"@de,
+  "Andorra"@sq,
   "Andorre"@fr,
   "Andorra"@it ;
   ns0:nameEnglishLong "Principality of Andorra" ;
@@ -1564,6 +1652,7 @@ ns0:AlandIslands
   ns0:dependentTerritoryOf ns0:Finland ;
   ns0:nameEnglish "Aland Islands"@en,
   "Aland-Inseln"@de,
+  "Ishujt Aland"@sq,
   "Aland (Îles)"@fr,
   "Isole Aland"@it ;
   ns0:nameLocal "Ahvenanmaa" .
@@ -1574,6 +1663,7 @@ ns0:Finland
   ns0:nameLocalLong "Suomen Tasavalta" ;
   ns0:nameEnglish "Finland"@en,
   "Finnland"@de,
+  "Finlanda"@sq,
   "Finlande"@fr,
   "Finlandia"@it ;
   ns0:nameEnglishLong "Republic of Finland" .
@@ -1591,6 +1681,7 @@ ns0:Niger
   ns0:nameLocalLong "Republique du Niger" ;
   ns0:nameEnglish "Niger"@en,
   "Nigeria"@de,
+  "Nigeria"@sq,
   "Niger"@fr,
   "Nigeria"@it ;
   ns0:nameLocal "Niger" ;
@@ -1611,6 +1702,7 @@ ns0:VirginIslandsUS
   ns0:dependentTerritoryOf ns0:UnitedStates ;
   ns0:nameEnglish "Virgin Islands (U.S.)"@en,
   "Jungferninseln (USA)"@de,
+  "Ishujt e Virgjër (SHBA)"@sq,
   "Îles Vierges (États-Unis)"@fr,
   "Isole Vergini (USA)"@it ;
   ns0:nameLocalLong "United States Virgin Islands" .
@@ -1627,6 +1719,7 @@ ns0:Malawi
   a ns0:IndependentState ;
   ns0:nameEnglish "Malawi"@en,
   "Malawi"@de,
+  "Malawi"@sq,
   "Malawi"@fr,
   "Malawi"@it ;
   ns0:nameLocal "Malawi" ;
@@ -1662,6 +1755,7 @@ ns0:Kazakhstan
   ns0:nameEnglishLong "Republic of Kazakhstan" ;
   ns0:nameEnglish "Kazakhstan"@en,
   "Kasachstan"@de,
+  "Kazahstan"@sq,
   "Kazakhstan"@fr,
   "Kazakistan"@it .
 
@@ -1671,6 +1765,7 @@ ns0:PuertoRico
   ns0:nameLocal "Puerto Rico" ;
   ns0:nameEnglish "Puerto Rico"@en,
   "Puerto Rico"@de,
+  "Porto Riko"@sq,
   "Porto Rico"@fr,
   "Porto Rico"@it ;
   ns0:dependentTerritoryOf ns0:UnitedStates ;
@@ -1688,6 +1783,7 @@ ns0:Tajikistan
   a ns0:IndependentState ;
   ns0:nameEnglish "Tajikistan"@en,
   "Tadschikistan"@de,
+  "Taxhikistan"@sq,
   "Tadjikistan"@fr,
   "Tagikistan"@it ;
   ns0:nameLocalLong "Jumhurii Tojikiston" ;
@@ -1702,6 +1798,7 @@ ns0:AmericanSamoa
   ns0:nameLocalLong "Territory of American Samoa" ;
   ns0:nameEnglish "American Samoa"@en,
   "Amerikanisch-Samoa"@de,
+  "Samoa amerikane"@sq,
   "Samoa américaines"@fr,
   "Samoa Americane"@it .
 
@@ -1718,6 +1815,7 @@ ns0:Turkmenistan
   ns0:nameEnglish "Turkmenistan"@en,
   "Turkmenistan"@de,
   "Turkménistan"@fr,
+  "Turkmenistan"@sq,
   "Turkmenistan"@it ;
   ns0:nameLocal "Turkmenistan" .
 
@@ -1744,6 +1842,7 @@ ns0:NewCaledonia
   ns0:nameLocalLong "Territoire des Nouvelle-Caledonie et Dependances" ;
   ns0:nameEnglish "New Caledonia"@en,
   "Neukaledonien"@de,
+  "Kaledonia e Re"@sq,
   "Nouvelle-Calédonie"@fr,
   "Nuova Caledonia"@it ;
   ns0:nameEnglishLong "Territory of New Caledonia and Dependencies" .
@@ -1762,6 +1861,7 @@ ns0:Portugal
   ns0:nameEnglish "Portugal"@en,
   "Portugal"@de,
   "Portugal"@fr,
+  "Portugali"@sq,
   "Portogallo"@it ;
   ns0:nameLocal "Portugal" ;
   ns0:nameEnglishLong "Portuguese Republic" .
@@ -1771,6 +1871,7 @@ ns0:Greece
   ns0:nameLocalLong "Elliniki Dhimokratia" ;
   ns0:nameEnglish "Greece"@en,
   "Griechenland"@de,
+  "Greqi"@sq,
   "Grèce"@fr,
   "Grecia"@it ;
   ns0:nameEnglishLong "Hellenic Republic" ;
@@ -1796,6 +1897,7 @@ ns0:Mozambique
   a ns0:IndependentState ;
   ns0:nameEnglish "Mozambique"@en,
   "Mosambik"@de,
+  "Mozambik"@sq,
   "Mozambique"@fr,
   "Mozambico"@it ;
   ns0:nameLocalLong "Republica de Mocambique" ;
@@ -1815,6 +1917,7 @@ ns0:Croatia
   ns0:nameEnglishLong "Republic of Croatia" ;
   ns0:nameEnglish "Croatia"@en,
   "Kroatien"@de,
+  "Kroacia"@sq,
   "Croatie"@fr,
   "Croazia"@it ;
   ns0:nameLocalLong "Republika Hrvatska" ;
@@ -1834,6 +1937,7 @@ ns0:Latvia
   ns0:nameEnglishLong "Republic of Latvia" ;
   ns0:nameEnglish "Latvia"@en,
   "Lettland"@de,
+  "Letoni"@sq,
   "Lettonie"@fr,
   "Lettonia"@it ;
   ns0:nameLocalLong "Latvijas Republika" .
@@ -1850,6 +1954,7 @@ ns0:GuineaBissau
   a ns0:IndependentState ;
   ns0:nameEnglish "Guinea-Bissau"@en,
   "Guinea-Bissau"@de,
+  "Guinea-Bissau"@sq,
   "Guinée-Bissau"@fr,
   "Guinea-Bissau"@it ;
   ns0:nameEnglishLong "Republic of Guinea-Bissau" ;
@@ -1863,6 +1968,7 @@ ns0:FranceMetropolitan
   ns0:nameEnglish "France Metropolitan"@en,
   "Frankreich Metropolitan"@de,
   "France Métropolitaine"@fr,
+  "Metropolit i Francës"@sq,
   "Francia Metropolitana"@it ;
   rdfs:comment "ISO limits to the European part of France, excluding French Guiana, French Polynesia, French Southern and Antarctic Lands, Guadeloupe, Martinique, Mayotte, New Caledonia, Reunion, Saint Pierre and Miquelon, Wallis and Futuna" .
 
@@ -1880,6 +1986,7 @@ ns0:Liberia
   ns0:nameLocal "Liberia" ;
   ns0:nameEnglish "Liberia"@en,
   "Liberia"@de,
+  "Liberi"@sq,
   "Libéria"@fr,
   "Liberia"@it .
 
@@ -1887,6 +1994,7 @@ ns0:SaintLucia
   a ns0:IndependentState ;
   ns0:nameEnglish "Saint Lucia"@en,
   "Saint Lucia"@de,
+  "Shën Lucia"@sq,
   "Sainte-Lucie"@fr,
   "Santa Lucia"@it ;
   ns0:nameLocal "Saint Lucia" .
@@ -1904,6 +2012,7 @@ ns0:Syria
   ns0:nameLocalLong "Al Jumhuriyah al Arabiyah as Suriyah" ;
   ns0:nameEnglish "Syria"@en,
   "Syrien"@de,
+  "Siria"@sq,
   "Syrie"@fr,
   "Siria"@it ;
   ns0:nameLocal "Suriyah" ;
@@ -1913,6 +2022,7 @@ ns0:Swaziland
   a ns0:IndependentState ;
   ns0:nameEnglish "Swaziland"@en,
   "Swasiland"@de,
+  "Swaziland"@sq,
   "Swaziland"@fr,
   "Swaziland"@it ;
   ns0:nameLocal "Swaziland" ;
@@ -1933,6 +2043,7 @@ ns0:SaoTomeAndPrincipe
   ns0:nameLocal "Sao Tome e Principe" ;
   ns0:nameEnglish "Sao Tome And Principe"@en,
   "Sao Tome und Principe"@de,
+  "Sao Tome Dhe Principe"@sq,
   "Sao Tomé-et-Principe"@fr,
   "Sao Tome e Principe"@it .
 
@@ -1942,6 +2053,7 @@ ns0:UnitedArabEmirates
   ns0:nameEnglish "United Arab Emirates"@en,
   "Vereinigte Arabische Emirate"@de,
   "Émirats arabes unis"@fr,
+  "Emiratet e Bashkuara Arabe"@sq,
   "Emirati Arabi Uniti"@it ;
   ns0:nameEnglishLong "United Arab Emirates" ;
   ns0:nameLocal "Al Imarat al Arabiyah al Muttahidah" .
@@ -1960,6 +2072,7 @@ ns0:Seychelles
   ns0:nameEnglish "Seychelles"@en,
   "Seychellen"@de,
   "Seychelles"@fr,
+  "Seychelles"@sq,
   "Seychelles"@it ;
   ns0:nameLocal "Seychelles" .
 
@@ -1967,6 +2080,7 @@ ns0:Kuwait
   a ns0:IndependentState ;
   ns0:nameEnglish "Kuwait"@en,
   "Kuwait"@de,
+  "Kuwait"@sq,
   "Koweït"@fr,
   "Kuwait"@it ;
   ns0:nameLocal "Al Kuwayt" ;
@@ -1978,6 +2092,7 @@ ns0:ElSalvador
   ns0:nameEnglishLong "Republic of El Salvador" ;
   ns0:nameEnglish "El Salvador"@en,
   "El Salvador"@de,
+  "El Salvador"@sq,
   "Salvador"@fr,
   "El Salvador"@it ;
   ns0:nameLocalLong "Republica de El Salvador" ;
@@ -1996,6 +2111,7 @@ ns0:Burundi
   ns0:nameLocal "Burundi" ;
   ns0:nameEnglish "Burundi"@en,
   "Burundi"@de,
+  "Burundi"@sq,
   "Burundi"@fr,
   "Burundi"@it ;
   ns0:nameEnglishLong "Republic of Burundi" ;
@@ -2009,6 +2125,7 @@ ns0:Indonesia
   ns0:nameEnglish "Indonesia"@en,
   "Indonesien"@de,
   "Indonésie"@fr,
+  "Indonezi"@sq,
   "Indonesia"@it .
 
 ns0:CocosIslands
@@ -2019,6 +2136,7 @@ ns0:CocosIslands
   ns0:nameLocal "Cocos (Keeling) Islands" ;
   ns0:nameEnglish "Cocos (Keeling) Islands"@n,
   "Cocos (Keeling) Inseln"@de,
+  "Ishujt Cocos (Keeling)"@sq,
   "Cocos (Keeling) (Îles)"@fr,
   "Isole Cocos (Keeling)"@it .
 
@@ -2026,6 +2144,7 @@ ns0:Australia
   a ns0:IndependentState ;
   ns0:nameEnglish "Australia"@en,
   "Australien"@de,
+  "Australi"@sq,
   "Australie"@fr,
   "Australia"@it ;
   ns0:nameLocalLong "Commonwealth of Australia" ;
@@ -2044,6 +2163,7 @@ ns0:WesternSahara
   a ns0:VirtuallyAnnexedTerritory ;
   ns0:nameEnglish "Western Sahara"@en,
   "Westsahara"@de,
+  "Sahara Perëndimore"@sq,
   "Sahara occidental"@fr,
   "Sahara occidentale"@it ;
   ns0:annexedTerritoryOf ns0:Morocco ;
@@ -2054,6 +2174,7 @@ ns0:Morocco
   ns0:nameLocal "Al Maghrib" ;
   ns0:nameEnglish "Morocco"@en,
   "Marokko"@de,
+  "Maroku"@sq,
   "Maroc"@fr,
   "Marocco"@it ;
   ns0:nameLocalLong "Al Mamlakah al Maghribiyah" ;
@@ -2073,6 +2194,7 @@ ns0:Algeria
   ns0:nameEnglishLong "People's Democratic Republic of Algeria" ;
   ns0:nameEnglish "Algeria"@en,
   "Algerien"@de,
+  "Algjeri"@sq,
   "Algérie"@fr,
   "Algeria"@it ;
   ns0:nameLocalLong "Al Jumhuriyah al Jaza'iriyah ad Dimuqratiyah ash Sha'biyah" .
@@ -2081,6 +2203,7 @@ ns0:Nepal
   a ns0:IndependentState ;
   ns0:nameEnglish "Nepal"@en,
   "Nepal"@de,
+  "Nepal"@sq,
   "Népal"@fr,
   "Nepal"@it ;
   ns0:nameLocal "Nepal" ;
@@ -2090,6 +2213,7 @@ ns0:DominicanRepublic
   a ns0:IndependentState ;
   ns0:nameEnglish "Dominican Republic"@en,
   "Dominikanische Republik"@de,
+  "Republika Domenikane"@sq,
   "République dominicaine"@fr,
   "Repubblica Dominicana"@it ;
   ns0:nameLocalLong "Republica Dominicana" ;
@@ -2104,6 +2228,7 @@ ns0:Togo
   ns0:nameEnglish "Togo"@en,
   "Togo"@de,
   "Togo"@fr,
+  "Togo"@sq,
   "Togo"@it .
 
 ns0:Nigeria
@@ -2111,6 +2236,7 @@ ns0:Nigeria
   ns0:nameLocal "Nigeria" ;
   ns0:nameEnglish "Nigeria"@en,
   "Nigeria"@de,
+  "Nigeria"@sq,
   "Nigéria"@fr,
   "Nigeria"@it ;
   ns0:nameEnglishLong "Federal Republic of Nigeria" .
@@ -2129,6 +2255,7 @@ ns0:Montserrat
   ns0:nameEnglish "Montserrat"@en,
   "Montserrat"@de,
   "Montserrat"@fr,
+  "Montserrat"@sq,
   "Montserrat"@it ;
   ns0:nameLocal "Montserrat" .
 
@@ -2146,6 +2273,7 @@ ns0:SaintPierreAndMiquelon
   ns0:nameLocalLong "Departement de Saint-Pierre et Miquelon" ;
   ns0:nameEnglish "Saint Pierre And Miquelon"@en,
   "Saint Pierre und Miquelon"@de,
+  "Shën Pierr dhe Mikelon"@sq,
   "Saint Pierre et Miquelon"@fr,
   "Saint Pierre e Miquelon"@it ;
   ns0:nameEnglishLong "Territorial Collectivity of Saint Pierre and Miquelon" ;
@@ -2164,6 +2292,7 @@ ns0:Italy
   ns0:nameEnglishLong "Italian Republic" ;
   ns0:nameEnglish "Italy"@en,
   "Italien"@de,
+  "Itali"@sq,
   "Italie"@fr,
   "Italia"@it ;
   ns0:nameLocal "Italia" ;
@@ -2175,6 +2304,7 @@ ns0:Lesotho
   ns0:nameLocal "Lesotho" ;
   ns0:nameEnglish "Lesotho"@en,
   "Lesotho"@de,
+  "Lesoto"@sq,
   "Lesotho"@fr,
   "Lesotho"@it .
 
@@ -2193,6 +2323,7 @@ ns0:WallisAndFutunaIslands
   ns0:dependentTerritoryOf ns0:France ;
   ns0:nameEnglish "Wallis And Futuna Islands"@en,
   "Wallis und Futuna Inseln"@de,
+  "Ishujt Wallis dhe Futuna"@sq,
   "Wallis-et-Futuna (Îles)"@fr,
   "Isole Wallis e Futuna"@it ;
   ns0:nameLocal "Wallis et Futuna" .
@@ -2204,6 +2335,7 @@ ns0:BruneiDarussalam
   ns0:nameLocal "Brunei" ;
   ns0:nameEnglish "Brunei"@en,
   "Brunei"@de,
+  "Brunei"@sq,
   "Brunei"@fr,
   "Brunei"@it .
 
@@ -2214,6 +2346,7 @@ ns0:Panama
   ns0:nameLocal "Panama" ;
   ns0:nameEnglish "Panama"@en,
   "Panama"@de,
+  "Panama"@sq,
   "Panama"@fr,
   "Panama"@it .
 
@@ -2223,6 +2356,7 @@ ns0:PitcairnIslands
   ns0:nameEnglishLong "Pitcairn, Henderson, Ducie, and Oeno Islands" ;
   ns0:nameEnglish "Pitcairn Islands"@en,
   "Pitcairn Inseln"@de,
+  "Ishujt Pitcairn"@sq,
   "Pitcairn (Îles)"@fr,
   "Isole Pitcairn"@it ;
   ns0:nameLocal "Pitcairn Islands" ;
@@ -2243,6 +2377,7 @@ ns0:Philippines
   ns0:nameEnglish "Philippines"@en,
   "Philippinen"@de,
   "Philippines"@fr,
+  "Filipinet"@sq,
   "Filippine"@it ;
   ns0:nameEnglishLong "Republic of the Philippines" .
 
@@ -2252,6 +2387,7 @@ ns0:Eritrea
   ns0:nameLocal "Ertra" ;
   ns0:nameEnglish "Eritrea"@en,
   "Eritrea"@de,
+  "Eritrea"@sq,
   "Érythrée"@fr,
   "Eritrea"@it ;
   ns0:nameLocalLong "Hagere Ertra" .
@@ -2263,6 +2399,7 @@ ns0:SanMarino
   ns0:nameLocal "San Marino" ;
   ns0:nameEnglish "San Marino"@en,
   "San Marino"@de,
+  "San Marino"@sq,
   "Saint-Marin"@fr,
   "San Marino"@it .
 
@@ -2280,6 +2417,7 @@ ns0:Vanuatu
   ns0:nameEnglishLong "Republic of Vanuatu" ;
   ns0:nameEnglish "Vanuatu"@en,
   "Vanuatu"@de,
+  "Vanuatu"@sq,
   "Vanuatu"@fr,
   "Vanuatu"@it .
 
@@ -2296,6 +2434,7 @@ ns0:Azerbaijan
   ns0:nameLocalLong "Azarbaycan Respublikasi" ;
   ns0:nameEnglish "Azerbaijan"@en,
   "Aserbaidschan"@de,
+  "Azerbaixhan"@sq,
   "Azerbaïdjan"@fr,
   "Azerbaigian"@it ;
   ns0:nameEnglishLong "Republic of Azerbaijan" ;
@@ -2315,6 +2454,7 @@ ns0:Luxembourg
   ns0:nameLocal "Luxembourg" ;
   ns0:nameEnglish "Luxembourg"@en,
   "Luxemburg"@de,
+  "Luksemburg"@sq,
   "Luxembourgeois"@fr,
   "Lussemburgo"@it ;
   ns0:nameLocalLong "Grand Duche de Luxembourg" .
@@ -2332,6 +2472,7 @@ ns0:Senegal
   ns0:nameEnglishLong "Republic of Senegal" ;
   ns0:nameEnglish "Senegal"@en,
   "Senegal"@de,
+  "Senegal"@sq,
   "Sénégal"@fr,
   "Senegal"@it ;
   ns0:nameLocal "Senegal" ;
@@ -2351,6 +2492,7 @@ ns0:ChristmasIsland
   ns0:nameEnglish "Christmas Island"@en,
   "Weihnachtsinsel"@de,
   "Île Noël"@fr,
+  "Ishulli i Krishtëlindjes"@sq,
   "Isola di Natale"@it ;
   ns0:nameLocal "Christmas Island" .
 
@@ -2367,6 +2509,7 @@ ns0:Madagascar
   ns0:nameLocal "Madagascar" ;
   ns0:nameEnglish "Madagascar"@en,
   "Madagaskar"@de,
+  "Madagaskar"@sq,
   "Madagascar"@fr,
   "Madagascar"@it ;
   ns0:nameEnglishLong "Republic of Madagascar" ;
@@ -2383,7 +2526,8 @@ ns0:ISO3166.PuertoRico
 ns0:RussianFederation
   a ns0:IndependentState ;
   ns0:nameEnglish "Russian"@en,
-  "Russisch"@de,
+  "Ruse"@de,
+  "Madagaskar"@sq,
   "Russe"@fr,
   "Russo"@it ;
   ns0:nameLocal "Rossiya" ;
@@ -2403,6 +2547,7 @@ ns0:Benin
   ns0:nameEnglish "Benin"@en,
   "Benin"@de,
   "Bénin"@fr,
+  "Benin"@sq,
   "Benin"@it ;
   ns0:nameLocal "Benin" ;
   ns0:nameLocalLong "Republique du Benin" ;
@@ -2415,6 +2560,7 @@ ns0:BosniaAndHerzegovina
   ns0:nameEnglish "Bosnia And Herzegovina"@en,
   "Bosnien und Herzegowina"@de,
   "Bosnie-Herzégovine"@fr,
+  "Bosnja dhe Hercegovina"@sq,
   "Bosnia-Erzegovina"@it .
 
 ns0:ISO3166.Albania
@@ -2429,28 +2575,46 @@ ns0:Albania
   a ns0:IndependentState ;
   ns0:nameEnglish "Albania"@en,
   "Albanien"@de,
+  "Shqipëria"@sq,
   "Albanie"@fr,
   "Albania"@it ;
   ns0:nameLocal "Shqiperia" ;
   ns0:nameLocalLong "Republika e Shqiperise" ;
   ns0:nameEnglishLong "Republic of Albania" .
 
-ns0:ISO3166.SerbiaAndMontenegro
+ns0:ISO3166.Serbia
   a ns0:ISO3166DefinedCountry ;
-  ns0:countryNameISO3166Short "SERBIA AND MONTENEGRO" ;
-  ns0:countryCodeISO3166Alpha2 "CS" ;
-  ns0:referencesCountry ns0:SerbiaAndMontenegro ;
-  ns0:countryCodeUNNumeric3 "891" ;
-  ns0:countryCodeISO3166Alpha3 "SCG" .
+  ns0:countryNameISO3166Short "SERBIA" ;
+  ns0:countryCodeISO3166Alpha2 "RS" ;
+  ns0:referencesCountry ns0:Serbia ;
+  ns0:countryCodeUNNumeric3 "688" ;
+  ns0:countryCodeISO3166Alpha3 "SRB" .
 
-ns0:SerbiaAndMontenegro
+ns0:Serbia
   a ns0:IndependentState ;
-  ns0:nameEnglish "Serbia And Montenegro"@en,
-  "Serbien und Montenegro"@de,
-  "Serbie-et-Monténégro"@fr,
-  "Serbia e Montenegro"@it ;
-  ns0:nameLocal "Jugoslavija" ;
-  ns0:nameLocalLong "Savezna Republika Jugoslavija" .
+  ns0:nameEnglish "Serbia"@en,
+  "Serbien"@de,
+  "Serbia"@sq,
+  "Serbie"@fr,
+  "Serbia"@it ;
+  ns0:nameLocal "Србија" .
+
+ns0:ISO3166.Montenegro
+  a ns0:ISO3166DefinedCountry ;
+  ns0:countryNameISO3166Short "MONTENEGRO" ;
+  ns0:countryCodeISO3166Alpha2 "ME" ;
+  ns0:referencesCountry ns0:Montenegro ;
+  ns0:countryCodeUNNumeric3 "499" ;
+  ns0:countryCodeISO3166Alpha3 "MNE" .
+
+ns0:Montenegro
+  a ns0:IndependentState ;
+  ns0:nameEnglish "Montenegro"@en,
+  "Montenegro"@de,
+  "Mali i Zi"@sq,
+  "Monténégro"@fr,
+  "Montenegro"@it ;
+  ns0:nameLocal "Црна Гора" .
 
 ns0:ISO3166.Mali
   a ns0:ISO3166DefinedCountry ;
@@ -2466,6 +2630,7 @@ ns0:Mali
   ns0:nameLocalLong "Republique de Mali" ;
   ns0:nameEnglish "Mali"@en,
   "Mali"@de,
+  "Mali"@sq,
   "Mali"@fr,
   "Mali"@it ;
   ns0:nameLocal "Mali" .
@@ -2474,6 +2639,7 @@ ns0:Malaysia
   a ns0:IndependentState ;
   ns0:nameEnglish "Malaysia"@en,
   "Malaysia"@de,
+  "Malajzi"@sq,
   "Malaisie"@fr,
   "Malesia"@it ;
   ns0:nameLocal "Malaysia" .
@@ -2499,6 +2665,7 @@ ns0:Comoros
   ns0:nameEnglishLong "Union of the Comoros" ;
   ns0:nameEnglish "Comoros"@en,
   "Komoren"@de,
+  "Komora"@sq,
   "Comores"@fr,
   "Comore"@it ;
   ns0:nameLocal "Comores" ;
@@ -2511,6 +2678,7 @@ ns0:Slovenia
   ns0:nameEnglishLong "Republic of Slovenia" ;
   ns0:nameEnglish "Slovenia"@en,
   "Slowenien"@de,
+  "Slovenia"@sq,
   "Slovénie"@fr,
   "Slovenia"@it .
 
@@ -2521,6 +2689,7 @@ ns0:SouthGeorgiaAndTheSouthSandwichIslands
   ns0:nameEnglish "South Georgia and the South Sandwich Islands"@en,
   "Südgeorgien und die südlichen Sandwichinseln"@de,
   "Géorgie du Sud et îles Sandwich du Sud"@fr,
+  "Xhorxhia Jugore dhe Ishujt Sanduiç të Jugut"@sq,
   "Georgia del Sud e Isole Sandwich del Sud"@it .
 
 ns0:Brazil
@@ -2528,6 +2697,7 @@ ns0:Brazil
   ns0:nameLocal "Brasil" ;
   ns0:nameEnglish "Brazil"@en,
   "Brasilien"@de,
+  "Brazil"@sq,
   "Brésil"@fr,
   "Brasile"@it ;
   ns0:nameLocalLong "Republica Federativa do Brasil" ;
@@ -2537,6 +2707,7 @@ ns0:Sweden
   a ns0:IndependentState ;
   ns0:nameEnglish "Sweden"@en,
   "Schweden"@de,
+  "Suedi"@sq,
   "Suède"@fr,
   "Svezia"@it ;
   ns0:nameLocalLong "Konungariket Sverige" ;
@@ -2555,6 +2726,7 @@ ns0:Ecuador
   a ns0:IndependentState ;
   ns0:nameEnglish "Ecuador"@en,
   "Ecuador"@de,
+  "Ekuador"@sq,
   "Équateur"@fr,
   "Ecuador"@it ;
   ns0:nameLocal "Ecuador" ;
@@ -2598,6 +2770,7 @@ ns0:BouvetIsland
   ns0:nameLocal "Bouvet Island" ;
   ns0:nameEnglish "Bouvet Island"@en,
   "Bouvet Insel"@de,
+  "Ishulli i Bouvet"@sq,
   "Île Bouvet"@fr,
   "Isola di Bouvet"@it ;
   ns0:dependentTerritoryOf ns0:Norway .
@@ -2606,6 +2779,7 @@ ns0:Norway
   a ns0:IndependentState ;
   ns0:nameEnglish "Norway"@en,
   "Norwegen"@de,
+  "Norvegjia"@sq,
   "Norvège"@fr,
   "Norvegia"@it ;
   ns0:nameLocal "Norge" ;
@@ -2627,6 +2801,7 @@ ns0:HongKong
   ns0:dependentTerritoryOf ns0:China ;
   ns0:nameEnglish "Hong Kong"@en,
   "Hong kong"@de,
+  "Hong Kong"@sq,
   "Hong Kong"@fr,
   "Hong Kong"@it .
 
@@ -2644,6 +2819,7 @@ ns0:Djibouti
   ns0:nameEnglish "Djibouti"@en,
   "Dschibuti"@de,
   "Djibouti"@fr,
+  "Djibouti"@sq,
   "Gibuti"@it ;
   ns0:nameLocal "Djibouti" .
 
@@ -2676,6 +2852,7 @@ ns0:Spain
   a ns0:IndependentState ;
   ns0:nameEnglish "Spain"@en,
   "Spanien"@de,
+  "Spanja"@sq,
   "Espagne"@fr,
   "Spagna"@it ;
   ns0:nameLocal "Espana" ;
@@ -2694,6 +2871,7 @@ ns0:SaudiArabia
   ns0:nameLocalLong "Al Mamlakah al Arabiyah as Suudiyah" ;
   ns0:nameEnglish "Saudi Arabia"@en,
   "Saudi-Arabien"@de,
+  "Arabia Saudite"@sq,
   "Arabie saoudite"@fr,
   "Arabia Saudita"@it ;
   ns0:nameEnglishLong "Kingdom of Saudi Arabia" ;
@@ -2714,6 +2892,7 @@ ns0:CoteDIvoire
   ns0:nameLocal "Cote D' Ivoire" ;
   ns0:nameEnglish "Cote D' Ivoire"@en,
   "Elfenbeinküste"@de,
+  "Bregu i Fildishit"@sq,
   "Cote D' Ivoire"@fr,
   "Costa D' Ivoire"@it .
 
@@ -2732,6 +2911,7 @@ ns0:Congo
   ns0:nameLocalLong "Republique du Congo" ;
   ns0:nameEnglish "Congo"@en,
   "Kongo"@de,
+  "Kongo"@sq,
   "Congo"@fr,
   "Congo"@it .
 
@@ -2740,6 +2920,7 @@ ns0:Paraguay
   ns0:nameEnglishLong "Republic of Paraguay" ;
   ns0:nameEnglish "Paraguay"@en,
   "Paraguay"@de,
+  "Paraguaj"@sq,
   "Paraguay"@fr,
   "Paraguay"@it ;
   ns0:nameLocalLong "Republica del Paraguay" ;
@@ -2749,6 +2930,7 @@ ns0:SierraLeone
   a ns0:IndependentState ;
   ns0:nameEnglish "Sierra Leone"@en,
   "Sierra Leone"@de,
+  "Sierra Leone"@sq,
   "Sierra Leone"@fr,
   "Sierra Leone"@it ;
   ns0:nameEnglishLong "Republic of Sierra Leone" ;
@@ -2783,6 +2965,7 @@ ns0:VirginIslandsBritish
   ns0:nameLocal "British Virgin Islands" ;
   ns0:nameEnglish "British Virgin Islands"@en,
   "Britische Jungferninseln"@de,
+  "Ishujt e Virgjër Britanik"@sq,
   "Îles Vierges britanniques"@fr,
   "Isole Vergini britanniche"@it ;
   ns0:dependentTerritoryOf ns0:UnitedKingdom .
@@ -2792,6 +2975,7 @@ ns0:Oman
   ns0:nameLocal "Uman" ;
   ns0:nameEnglish "Oman"@en,
   "Oman"@de,
+  "Oman"@sq,
   "Oman"@fr,
   "Oman"@it ;
   ns0:nameEnglishLong "Sultanate of Oman" ;
@@ -2809,6 +2993,7 @@ ns0:Mexico
   a ns0:IndependentState ;
   ns0:nameEnglish "Mexico"@en,
   "Mexiko"@de,
+  "Meksikë"@sq,
   "Mexique"@fr,
   "Messico"@it ;
   ns0:nameLocalLong "Estados Unidos Mexicanos" ;
@@ -2819,6 +3004,7 @@ ns0:Haiti
   a ns0:IndependentState ;
   ns0:nameEnglish "Haiti"@en,
   "Haiti"@de,
+  "Haiti"@sq,
   "Haïti"@fr,
   "Haiti"@it ;
   ns0:nameLocal "Haiti" ;
@@ -2837,6 +3023,7 @@ ns0:Suriname
   a ns0:IndependentState ;
   ns0:nameEnglish "Suriname"@en,
   "Surinam"@de,
+  "Suriname"@sq,
   "Suriname"@fr,
   "Suriname"@it ;
   ns0:nameLocal "Suriname" ;
@@ -2863,6 +3050,7 @@ ns0:Guatemala
   a ns0:IndependentState ;
   ns0:nameEnglish "Guatemala"@en,
   "Guatemala"@de,
+  "Guatemala"@sq,
   "Guatemala"@fr,
   "Guatemala"@it ;
   ns0:nameEnglishLong "Republic of Guatemala" ;
@@ -2890,6 +3078,7 @@ ns0:Canada
   ns0:nameLocal "Canada" ;
   ns0:nameEnglish "Canada"@en,
   "Kanada"@de,
+  "Kanada"@sq,
   "Canada"@fr,
   "Canada"@it .
 
@@ -2907,6 +3096,7 @@ ns0:Uzbekistan
   ns0:nameLocal "Ozbekiston" ;
   ns0:nameEnglish "Uzbekistan"@en,
   "Usbekistan"@de,
+  "Uzbekistan"@sq,
   "Ouzbékistan"@fr,
   "Uzbekistan"@it ;
   ns0:nameEnglishLong "Republic of Uzbekistan" .
@@ -2916,6 +3106,7 @@ ns0:Egypt
   ns0:nameLocalLong "Jumhuriyat Misr al-Arabiyah" ;
   ns0:nameEnglish "Egypt"@en,
   "Ägypten"@de,
+  "Egjipt"@sq,
   "Égypte"@fr,
   "Egitto"@it ;
   ns0:nameLocal "Misr" ;
@@ -2941,6 +3132,7 @@ ns0:Uganda
   a ns0:IndependentState ;
   ns0:nameEnglish "Uganda"@en,
   "Uganda"@de,
+  "Uganda"@sq,
   "Ouganda"@fr,
   "Uganda"@it ;
   ns0:nameLocal "Uganda" ;
@@ -2958,6 +3150,7 @@ ns0:Tonga
   a ns0:IndependentState ;
   ns0:nameEnglish "Tonga"@en,
   "Tonga"@de,
+  "Tonga"@sq,
   "Tonga"@fr,
   "Tonga"@it ;
   ns0:nameLocal "Tonga" ;
@@ -2978,6 +3171,7 @@ ns0:SouthAfrica
   ns0:nameEnglishLong "Republic of South Africa" ;
   ns0:nameEnglish "South Africa"@en,
   "Südafrika"@de,
+  "Afrika e Jugut"@sq,
   "Afrique du Sud"@fr,
   "Africa del Sud"@it .
 
@@ -2994,6 +3188,7 @@ ns0:BurkinaFaso
   ns0:nameLocal "Burkina Faso" ;
   ns0:nameEnglish "Burkina Faso"@en,
   "Burkina Faso"@de,
+  "Burkina Faso"@sq,
   "Burkina Faso"@fr,
   "Burkina Faso"@it .
 
@@ -3010,6 +3205,7 @@ ns0:HeardIslandAndMcDonaldIslands
   ns0:nameLocalLong "Territory of Heard Island and McDonald Islands" ;
   ns0:nameEnglish "Heard Island And McDonald Islands"@en,
   "Heard Insel und McDonald Inseln"@de,
+  "Ishulli Heard dhe Ishujt McDonald"@sq,
   "Heard et McDonald (Îles)"@fr,
   "Isola Heard e Isole McDonald"@it ;
   ns0:nameEnglishLong "Territory of Heard Island and McDonald Islands" ;
@@ -3028,6 +3224,7 @@ ns0:Sudan
   a ns0:IndependentState ;
   ns0:nameEnglish "Sudan"@en,
   "Sudan"@de,
+  "Sudan"@sq,
   "Soudan"@fr,
   "Sudan"@it ;
   ns0:nameEnglishLong "Republic of the Sudan" ;
@@ -3038,6 +3235,7 @@ ns0:Tunisia
   a ns0:IndependentState ;
   ns0:nameEnglish "Tunisia"@en,
   "Tunesien"@de,
+  "Tunizia"@sq,
   "Tunisie"@fr,
   "Tunisia"@it ;
   ns0:nameLocal "Tunis" ;
@@ -3059,6 +3257,7 @@ ns0:Gabon
   ns0:nameLocalLong "Republique Gabonaise" ;
   ns0:nameEnglish "Gabon"@en,
   "Gabun"@de,
+  "Gabon"@sq,
   "Gabon"@fr,
   "Gabon"@it .
 
@@ -3076,6 +3275,7 @@ ns0:Martinique
   ns0:nameEnglish "Martinique"@en,
   "Martinique"@de,
   "Martinique"@fr,
+  "Martinique"@sq,
   "Martinica"@it ;
   ns0:nameEnglishLong "Department of Martinique" ;
   ns0:nameLocal "Martinique" ;
@@ -3109,6 +3309,7 @@ ns0:Macau
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "Macau"@en,
   "Macau"@de,
+  "Macau"@sq,
   "Macao"@fr,
   "Macao"@it ;
   ns0:nameEnglishLong "Macao Special Administrative Region of China" ;
@@ -3128,6 +3329,7 @@ ns0:Guam
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "Guam"@en,
   "Guam"@de,
+  "Guam"@sq,
   "Guam"@fr,
   "Guam"@it ;
   ns0:dependentTerritoryOf ns0:UnitedStates ;
@@ -3140,6 +3342,7 @@ ns0:Kiribati
   ns0:nameEnglishLong "Republic of Kiribati" ;
   ns0:nameEnglish "Kiribati"@en,
   "Kiribati"@de,
+  "Kiribati"@sq,
   "Kiribati"@fr,
   "Kiribati"@it ;
   ns0:nameLocal "Kiribati" .
@@ -3148,6 +3351,7 @@ ns0:Vietnam
   a ns0:IndependentState ;
   ns0:nameEnglish "Vietnam"@en,
   "Vietnam"@de,
+  "Vietnam"@sq,
   "Vietnam"@fr,
   "Vietnam"@it ;
   ns0:nameLocal "Viet Nam" ;
@@ -3169,6 +3373,7 @@ ns0:Tanzania
   ns0:nameEnglish "Tanzania"@en,
   "Tansania"@de,
   "Tanzanie"@fr,
+  "Tanzania"@sq,
   "Tanzania"@it .
 
 ns0:Uruguay
@@ -3178,6 +3383,7 @@ ns0:Uruguay
   ns0:nameLocal "Uruguay" ;
   ns0:nameEnglish "Uruguay"@en,
   "Uruguay"@de,
+  "Uruguay"@sq,
   "Uruguay"@fr,
   "Uruguay"@it .
 
@@ -3212,12 +3418,14 @@ ns0:Micronesia
   ns0:nameEnglish "Federated States of Micronesia"@en,
   "Föderierte Staaten von Mikronesien"@de,
   "États fédérés de Micronésie"@fr,
+  "Shtetet e Federuara të Mikronezisë"@sq,
   "Stati Federati di Micronesia"@it .
 
 ns0:FrenchPolynesia
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "French Polynesia"@en,
   "Französisch-Polynesien"@de,
+  "Polinezia Franceze"@sq,
   "Polynésie française"@fr,
   "Polinesia Francese"@it ;
   ns0:nameLocal "Polynesie Francaise" ;
@@ -3237,6 +3445,7 @@ ns0:Ukraine
   a ns0:IndependentState ;
   ns0:nameEnglish "Ukraine"@en,
   "Ukraine"@de,
+  "Ukrainë"@sq,
   "Ukraine"@fr,
   "Ucraina"@it ;
   ns0:nameLocal "Ukrayina" .
@@ -3246,6 +3455,7 @@ ns0:Rwanda
   ns0:nameLocalLong "Republika y'u Rwanda" ;
   ns0:nameEnglish "Rwanda"@en,
   "Ruanda"@de,
+  "Ruanda"@sq,
   "Rwanda"@fr,
   "Ruanda"@it ;
   ns0:nameLocal "Rwanda" ;
@@ -3275,6 +3485,7 @@ ns0:Qatar
   ns0:nameEnglish "Qatar"@en,
   "Qatar"@de,
   "Qatar"@fr,
+  "Qatar"@sq,
   "Qatar"@it .
 
 ns0:ISO3166.BurkinaFaso
@@ -3298,6 +3509,7 @@ ns0:Samoa
   ns0:nameLocal "Samoa" ;
   ns0:nameEnglish "Samoa"@en,
   "Samoa"@de,
+  "Samoa"@sq,
   "Samoa"@fr,
   "Samoa"@it ;
   ns0:nameLocalLong "Independent State of Samoa" ;
@@ -3316,6 +3528,7 @@ ns0:Tuvalu
   ns0:nameLocal "Tuvalu" ;
   ns0:nameEnglish "Tuvalu"@en,
   "Tuvalu"@de,
+  "Tuvalu"@sq,
   "Tuvalu"@fr,
   "Tuvalu"@it .
 
@@ -3323,6 +3536,7 @@ ns0:NetherlandsAntilles
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "Netherlands Antilles"@en,
   "Niederländische Antillen"@de,
+  "Antiletë Hollandezë"@sq,
   "Antilles néerlandaises"@fr,
   "Antille Olandesi"@it ;
   ns0:nameLocal "Nederlandse Antillen" ;
@@ -3341,6 +3555,7 @@ ns0:FrenchGuiana
   ns0:nameLocal "Guyane" ;
   ns0:nameEnglish "French Guiana"@en,
   "Französisch-Guayana"@de,
+  "Guiana Franceze"@sq,
   "Guyane française"@fr,
   "Guyana Francese"@it ;
   ns0:dependentTerritoryOf ns0:France ;
@@ -3360,6 +3575,7 @@ ns0:Zambia
   ns0:nameEnglish "Zambia"@en,
   "Sambia"@de,
   "Zambie"@fr,
+  "Zambia"@sq,
   "Zambia"@it ;
   ns0:nameLocal "Zambia" .
 
@@ -3375,6 +3591,7 @@ ns0:Bermuda
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "Bermuda"@en,
   "Bermudas"@de,
+  "Bermuda"@sq,
   "Bermudes"@fr,
   "Bermuda"@it ;
   ns0:dependentTerritoryOf ns0:UnitedKingdom ;
@@ -3392,6 +3609,7 @@ ns0:Macedonia
   a ns0:IndependentState ;
   ns0:nameEnglish "Macedonia"@en,
   "Nordmakedonien"@de,
+  "Maqedoni"@sq,
   "Macédoine du Nord"@fr,
   "Macedonia del Nord"@it ;
   ns0:nameLocal "Makedonija" ;
@@ -3436,6 +3654,7 @@ ns0:Armenia
   ns0:nameEnglish "Armenia"@en,
   "Armenien"@de,
   "Arménie"@fr,
+  "Armenia"@sq,
   "Armenia"@it ;
   ns0:nameEnglishLong "Republic of Armenia" .
 
@@ -3443,6 +3662,7 @@ ns0:Bulgaria
   a ns0:IndependentState ;
   ns0:nameEnglish "Bulgaria"@en,
   "Bulgarien"@de,
+  "Bullgari"@sq,
   "Bulgarie"@fr,
   "Bulgaria"@it ;
   ns0:nameLocal "Bulgaria" ;
@@ -3478,6 +3698,7 @@ ns0:SaintHelena
   ns0:dependentTerritoryOf ns0:UnitedKingdom ;
   ns0:nameEnglish "Saint Helena"@en,
   "Sankt Helena"@de,
+  "Shën Helena"@sq,
   "Sainte-Hélène"@fr,
   "Santa Elena"@it .
 
@@ -3495,6 +3716,7 @@ ns0:CookIslands
   ns0:associatedTerritoryOf ns0:NewZealand ;
   ns0:nameEnglish "Cook Islands"@en,
   "Cookinseln"@de,
+  "Ishujt Kuk"@sq,
   "Îles Cook"@fr,
   "Isole Cook"@it .
 
@@ -3512,6 +3734,7 @@ ns0:Ethiopia
   ns0:nameEnglishLong "Federal Democratic Republic of Ethiopia" ;
   ns0:nameEnglish "Ethiopia"@en,
   "Äthiopien"@de,
+  "Etiopia"@sq,
   "Éthiopie"@fr,
   "Etiopia"@it ;
   ns0:nameLocalLong "Ityop'iya Federalawi Demokrasiyawi Ripeblik" .
@@ -3521,6 +3744,7 @@ ns0:AntiguaAndBarbuda
   ns0:nameLocal "Antigua And Barbuda" ;
   ns0:nameEnglish "Antigua And Barbuda"@en,
   "Antigua und Barbuda"@de,
+  "Antigua dhe Barbuda"@sq,
   "Antigua-et-Barbuda"@fr,
   "Antigua e Barbuda"@it .
 
@@ -3547,6 +3771,7 @@ ns0:Slovakia
   ns0:nameLocalLong "Slovenska Republika" ;
   ns0:nameEnglish "Slovakia"@en,
   "Slowakei"@de,
+  "Slovakia"@sq,
   "Slovaquie"@fr,
   "Slovacchia"@it .
 
@@ -3562,6 +3787,7 @@ ns0:Bhutan
   a ns0:IndependentState ;
   ns0:nameEnglish "Bhutan"@en,
   "Bhutan"@de,
+  "Butan"@sq,
   "Bhoutan"@fr,
   "Bhutan"@it ;
   ns0:nameEnglishLong "Kingdom of Bhutan" ;
@@ -3580,6 +3806,7 @@ ns0:Jamaica
   ns0:nameLocal "Jamaica" ;
   ns0:nameEnglish "Jamaica"@en,
   "Jamaika"@de,
+  "Xhamaika"@sq,
   "Jamaïque"@fr,
   "Giamaica"@it .
 
@@ -3595,6 +3822,7 @@ ns0:SolomonIslands
   a ns0:IndependentState ;
   ns0:nameEnglish "Solomon Islands"@en,
   "Salomoninseln"@de,
+  "Ishujt Solomon"@sq,
   "Îles Salomon"@fr,
   "Isole Salomone"@it ;
   ns0:nameLocal "Solomon Islands" .
@@ -3603,6 +3831,7 @@ ns0:Peru
   a ns0:IndependentState ;
   ns0:nameEnglish "Peru"@en,
   "Peru"@de,
+  "Peru"@sq,
   "Pérou"@fr,
   "Perú"@it ;
   ns0:nameEnglishLong "Republic of Peru" ;
@@ -3631,6 +3860,7 @@ ns0:Liechtenstein
   ns0:nameLocal "Liechtenstein" ;
   ns0:nameEnglish "Liechtenstein"@en,
   "Liechtenstein"@de,
+  "Liechtenstein"@sq,
   "Liechtenstein"@fr,
   "Liechtenstein"@it ;
   ns0:nameEnglishLong "Principality of Liechtenstein" .
@@ -3663,6 +3893,7 @@ ns0:Colombia
   a ns0:IndependentState ;
   ns0:nameEnglish "Colombia"@en,
   "Kolumbien"@de,
+  "Kolumbia"@sq,
   "Colombie"@fr,
   "Colombia"@it ;
   ns0:nameEnglishLong "Republic of Colombia" ;
@@ -3681,6 +3912,7 @@ ns0:Iraq
   a ns0:IndependentState ;
   ns0:nameEnglish "Iraq"@en,
   "Irak"@de,
+  "Irak"@sq,
   "Irak"@fr,
   "Iraq"@it ;
   ns0:nameEnglishLong "Republic of Iraq" ;
@@ -3700,6 +3932,7 @@ ns0:Switzerland
   a ns0:IndependentState ;
   ns0:nameEnglish "Switzerland"@en,
   "Die Schweiz"@de,
+  "Zvicra"@sq,
   "Suisse"@fr,
   "Svizzera"@it ;
   ns0:nameLocal "Schweiz" ;
@@ -3710,6 +3943,7 @@ ns0:India
   a ns0:IndependentState ;
   ns0:nameEnglish "India"@en,
   "Indien"@de,
+  "India"@sq,
   "Inde"@fr,
   "India"@it ;
   ns0:nameEnglishLong "Republic of India" ;
@@ -3729,6 +3963,7 @@ ns0:Reunion
   ns0:nameLocal "Ile de la Reunion" ;
   ns0:nameEnglish "Reunion"@en,
   "Reunion"@de,
+  "Bashkim"@sq,
   "Réunion"@fr,
   "Riunione"@it ;
   ns0:nameEnglishLong "Department of Reunion" .
@@ -3754,6 +3989,7 @@ ns0:Barbados
   ns0:nameLocal "Barbados" ;
   ns0:nameEnglish "Barbados"@en,
   "Barbados"@de,
+  "Barbados"@sq,
   "Barbade"@fr,
   "Barbados"@it .
 
@@ -3789,6 +4025,7 @@ ns0:NorfolkIsland
   ns0:nameLocal "Norfolk Island" ;
   ns0:nameEnglish "Norfolk Island"@en,
   "Norfolkinsel"@de,
+  "Ishulli Norfolk"@sq,
   "Île Norfolk"@fr,
   "Isola di Norfolk"@it .
 
@@ -3805,6 +4042,7 @@ ns0:Romania
   ns0:nameLocal "Romania" ;
   ns0:nameEnglish "Romania"@en,
   "Rumänien"@de,
+  "Rumania"@sq,
   "Roumanie"@fr,
   "Romania"@it .
 
@@ -3812,6 +4050,7 @@ ns0:Singapore
   a ns0:IndependentState ;
   ns0:nameEnglish "Singapore"@en,
   "Singapore"@de,
+  "Singapor"@sq,
   "Singapour"@fr,
   "Singapore"@it ;
   ns0:nameEnglishLong "Republic of Singapore" ;
@@ -3831,6 +4070,7 @@ ns0:Ghana
   ns0:nameLocal "Ghana" ;
   ns0:nameEnglish "Ghana"@en,
   "Ghana"@de,
+  "Gana"@sq,
   "Ghana"@fr,
   "Ghana"@it .
 
@@ -3847,6 +4087,7 @@ ns0:EastTimor
   ns0:nameLocal "Timor Lorosa'e" ;
   ns0:nameEnglish "East Timor"@en,
   "Osttimor"@de,
+  "Timori Lindor"@sq,
   "Timor-Est"@fr,
   "Timor Est"@it ;
   ns0:nameLocalLong "Republika Demokratika Timor Lorosa'e" ;
@@ -3858,6 +4099,7 @@ ns0:Chad
   ns0:nameLocal "Tchad" ;
   ns0:nameEnglish "Chad"@en,
   "Tschad"@de,
+  "Çad"@sq,
   "Tchad"@fr,
   "Ciad"@it ;
   ns0:nameEnglishLong "Republic of Chad" .
@@ -3877,6 +4119,7 @@ ns0:Yemen
   ns0:nameLocal "Al Yaman" ;
   ns0:nameEnglish "Yemen"@en,
   "Jemen"@de,
+  "Jemen"@sq,
   "Yémen"@fr,
   "Yemen"@it .
 
@@ -3902,6 +4145,7 @@ ns0:KoreaNorth
   ns0:nameLocalLong "Choson-minjujuui-inmin-konghwaguk" ;
   ns0:nameEnglish "North Korea"@en,
   "Nordkorea"@de,
+  "Korea e veriut"@sq,
   "Corée du Nord"@fr,
   "Corea del Nord"@it ;
   ns0:nameEnglishLong "Democratic People's Republic of Korea" .
@@ -3946,6 +4190,7 @@ ns0:Bolivia
   ns0:nameEnglish "Bolivia"@en,
   "Bolivien"@de,
   "Bolivie"@fr,
+  "Bolivia"@sq,
   "Bolivia"@it .
 
 ns0:ISO3166.Lesotho
@@ -4008,6 +4253,7 @@ ns0:FrenchSouthernTerritories
   a ns0:FullyDependentTerritory ;
   ns0:nameEnglish "French Southern Territories"@en,
   "Französische Süd-Territorien"@de,
+  "Territoret Franceze Jugore"@sq,
   "Territoires français du Sud"@fr,
   "Territori francesi del sud"@it ;
   ns0:dependentTerritoryOf ns0:France ;
@@ -4036,6 +4282,7 @@ ns0:Guinea
   ns0:nameLocal "Guinee" ;
   ns0:nameEnglish "Guinea"@en,
   "Guinea"@de,
+  "Guine"@sq,
   "Guinée"@fr,
   "Guinea"@it ;
   ns0:nameLocalLong "Republique de Guinee" ;
@@ -4070,6 +4317,7 @@ ns0:Zimbabwe
   ns0:nameLocal "Zimbabwe" ;
   ns0:nameEnglish "Zimbabwe"@en,
   "Simbabwe"@de,
+  "Zimbabve"@sq,
   "Zimbabwe"@fr,
   "Zimbabwe"@it ;
   ns0:nameEnglishLong "Republic of Zimbabwe" .
@@ -4087,6 +4335,7 @@ ns0:Mongolia
   ns0:nameLocal "Mongol Uls" ;
   ns0:nameEnglish "Mongolia"@en,
   "Mongolei"@de,
+  "Mongoli"@sq,
   "Mongolie"@fr,
   "Mongolia"@it .
 
@@ -4095,6 +4344,7 @@ ns0:Cameroon
   ns0:nameLocal "Cameroon" ;
   ns0:nameEnglish "Cameroon"@en,
   "Kamerun"@de,
+  "Kamerun"@sq,
   "Cameroun"@fr,
   "Camerun"@it ;
   ns0:nameEnglishLong "Republic of Cameroon" .
@@ -4121,6 +4371,7 @@ ns0:SvalbardAndJanMayenIslands
   ns0:dependentTerritoryOf ns0:Norway ;
   ns0:nameEnglish "Svalbard And Jan Mayen Islands"@en,
   "Svalbard und Jan Mayen Inseln"@de,
+  "Ishujt Svalbard dhe Jan Mayen"@sq,
   "Svalbard et Jan Mayen (Îles)"@fr,
   "Isole Svalbard e Jan Mayen"@it .
 
@@ -4138,6 +4389,7 @@ ns0:Cambodia
   ns0:nameEnglishLong "Kingdom of Cambodia" ;
   ns0:nameEnglish "Cambodia"@en,
   "Kambodscha"@de,
+  "Kambodia"@sq,
   "Cambodge"@fr,
   "Cambogia"@it ;
   ns0:nameLocal "Kampuchea" .
@@ -4172,6 +4424,7 @@ ns0:Afghanistan
   ns0:nameLocalLong "Dowlat-e Eslami-ye Afghanestan" ;
   ns0:nameEnglish "Afghanistan"@en,
   "Afghanistan"@de,
+  "Afganistan"@sq,
   "Afghanistan"@fr,
   "Afghanistan"@it ;
   ns0:nameEnglishLong "Islamic State of Afghanistan" .
@@ -4197,6 +4450,7 @@ ns0:Dominica
   ns0:nameLocal "Dominica" ;
   ns0:nameEnglish "Dominica"@en,
   "Dominica"@de,
+  "Dominica"@sq,
   "Dominique"@fr,
   "Dominica"@it ;
   ns0:nameEnglishLong "Commonwealth of Dominica" .
@@ -4262,6 +4516,7 @@ ns0:Mauritius
   ns0:nameLocal "Mauritius" ;
   ns0:nameEnglish "Mauritius"@en,
   "Mauritius"@de,
+  "Mauritius"@sq,
   "Maurice"@fr,
   "Mauritius"@it ;
   ns0:nameEnglishLong "Republic of Mauritius" .
@@ -4295,6 +4550,7 @@ ns0:Moldova
   ns0:nameLocal "Republica Moldova" ;
   ns0:nameEnglish "Moldova"@en,
   "Moldawien"@de,
+  "Moldovë"@sq,
   "Moldavie"@fr,
   "Moldavia"@it ;
   ns0:nameLocalLong "Republica Moldova" ;
@@ -4320,6 +4576,7 @@ ns0:KoreaSouth
   a ns0:IndependentState ;
   ns0:nameEnglish "South Korea"@en,
   "Südkorea"@de,
+  "Korea Jugore"@sq,
   "Corée du Sud"@fr,
   "Corea del Sud"@it ;
   ns0:nameLocalLong "Taehan-min'guk" ;
@@ -4347,6 +4604,7 @@ ns0:Nauru
   ns0:nameLocal "Nauru" ;
   ns0:nameEnglish "Nauru"@en,
   "Süd Nauru"@de,
+  "Nauru"@sq,
   "Nauru Sud"@fr,
   "Sud Nauru"@it ;
   ns0:nameEnglishLong "Republic of Nauru" .
@@ -4396,6 +4654,7 @@ ns0:Grenada
   ns0:nameLocal "Grenada" ;
   ns0:nameEnglish "Grenada"@en,
   "Grenada"@de,
+  "Grenada"@sq,
   "Grenade"@fr,
   "Grenada"@it .
 
@@ -4477,6 +4736,7 @@ ns0:Tokelau
   ns0:nameLocal "Tokelau" ;
   ns0:nameEnglish "Tokelau"@en,
   "Tokelau"@de,
+  "Tokelau"@sq,
   "Tokélaou"@fr,
   "Tokelau"@it .
 
