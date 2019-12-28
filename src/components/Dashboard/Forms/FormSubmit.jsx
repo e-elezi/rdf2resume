@@ -15,7 +15,8 @@ import {
   submitFirstButtonLabel,
   submitSecondButtonLabel,
   submitThirdButtonLabel,
-  submitFourthButtonLabel
+  submitFourthButtonLabel,
+  submitFifthButtonLabel
 } from "../../../translations/translations";
 
 class FormSubmit extends Component {
@@ -23,13 +24,15 @@ class FormSubmit extends Component {
     super(props);
     // Create the ref
     this.anchorHiddenRef = React.createRef();
+    this.anchorTwoHiddenRef = React.createRef();
     this.state = {
       showModal: false,
       showModalEnriched: false,
       key: 0,
       showPDF: false,
       pdfPath: "",
-      jsonPath: ""
+      jsonPath: "",
+      zipPath: ""
     };
   }
 
@@ -197,6 +200,39 @@ class FormSubmit extends Component {
     }
   };
 
+  generateHTML = async (language) => {
+    if (this.checkError(this.props.cvData)) {
+      let lang = this.props.language;
+      Swal.fire({
+        title: warningLabel[lang],
+        text: warningText[lang],
+        type: "warning",
+        confirmButtonColor: "#4bb3cc",
+        heightAuto: false,
+        confirmButtonText: "Okay"
+      });
+    } else {
+      trackPromise(
+        axios
+          .post("/generate_html", {
+            data: {
+              cv: this.props.cvData,
+              language: language
+            }
+          })
+          .then(resp => {
+            this.setState({
+              zipPath: '../../static/' + resp.data
+            });
+            this.anchorTwoHiddenRef.click();
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      );
+    }
+  };
+
   renderPDF = () => {
     if (this.state.showPDF) {
       return (
@@ -233,6 +269,25 @@ class FormSubmit extends Component {
                   (this.anchorHiddenRef = anchorHiddenRef)
                 }
                 href={this.state.jsonPath}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                hidden
+              >
+                {" "}
+              </a>
+            </Row>
+            <Row style={{ justifyContent: "left", marginLeft: 0 }}>
+              <CustomButton
+                label={submitFifthButtonLabel[lang]}
+                classnames="final-submit"
+                handleClick={() => this.generateHTML(lang)}
+              />
+              <a
+                ref={anchorTwoHiddenRef =>
+                  (this.anchorTwoHiddenRef = anchorTwoHiddenRef)
+                }
+                href={this.state.zipPath}
                 target="_blank"
                 rel="noopener noreferrer"
                 download
@@ -280,8 +335,8 @@ class FormSubmit extends Component {
                   {submitFourthButtonLabel[lang]}
                 </a>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </Row>
           </Col>
           <Col md={8}>{this.renderPDF()}</Col>

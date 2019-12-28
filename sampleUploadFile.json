@@ -20,18 +20,18 @@
       "my0:eduStartDate": "2013-10-07",
       "my0:isEduCurrent": false,
       "my0:studiedIn": {
-        "my0:organizationPhoneNumber": "+355 4 255 6987",
+        "my0:orgPhoneNumber": "+355 4 255 6987",
         "@type": "my0:EducationalOrg",
-        "my0:organizationName": "Faculty of Natural Sciences",
-        "my0:organizationDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
-        "my0:organizationAddress": {
+        "my0:orgName": "Faculty of Natural Sciences",
+        "my0:orgDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
+        "my0:orgAddress": {
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
           "my0:postalCode": "1001",
           "@type": "Address",
           "my0:city": "Tirana",
           "my0:street": ""
         },
-        "my0:organizationWebsite": "http://www.fshn.edu.al/"
+        "my0:orgWebsite": "http://www.fshn.edu.al/"
       },
       "my0:eduGradDate": "2016-07-15"
     },
@@ -43,18 +43,18 @@
       "my0:eduStartDate": "2017-10-02",
       "my0:isEduCurrent": true,
       "my0:studiedIn": {
-        "my0:organizationPhoneNumber": "",
+        "my0:orgPhoneNumber": "",
         "@type": "my0:EducationalOrg",
-        "my0:organizationName": "University of Bonn",
-        "my0:organizationDescription": "Public university in Bonn, North Rhine-Westphalia",
-        "my0:organizationAddress": {
+        "my0:orgName": "University of Bonn",
+        "my0:orgDescription": "Public university in Bonn, North Rhine-Westphalia",
+        "my0:orgAddress": {
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
           "my0:postalCode": "53113",
           "@type": "Address",
           "my0:city": "Bonn",
           "my0:street": ""
         },
-        "my0:organizationWebsite": "https://www.uni-bonn.de/the-university"
+        "my0:orgWebsite": "https://www.uni-bonn.de/the-university"
       },
       "my0:eduGradDate": "2020-01-06"
     }
@@ -87,18 +87,18 @@
   "my0:hasCourse": [
     {
       "my0:organizedBy": {
-        "my0:organizationPhoneNumber": "",
+        "my0:orgPhoneNumber": "",
         "@type": "my0:Organization",
-        "my0:organizationName": "Udemy, Inc.",
-        "my0:organizationDescription": "Udemy.com is the world's largest online learning platform. It is aimed at professional adults and students. Udemy has more than 30 million students and 50,000 instructors teaching courses in over 60 languages. ",
-        "my0:organizationAddress": {
+        "my0:orgName": "Udemy, Inc.",
+        "my0:orgDescription": "Udemy.com is the world's largest online learning platform. It is aimed at professional adults and students. Udemy has more than 30 million students and 50,000 instructors teaching courses in over 60 languages. ",
+        "my0:orgAddress": {
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnitedStates",
           "my0:postalCode": "",
           "@type": "Address",
           "my0:city": "San Fransisco",
           "my0:street": ""
         },
-        "my0:organizationWebsite": "https://www.udemy.com/"
+        "my0:orgWebsite": "https://www.udemy.com/"
       },
       "@type": "my0:Course",
       "my0:hasQualification": "",
@@ -118,19 +118,19 @@
       "my0:endDate": "2016-10-03",
       "my0:jobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
       "my0:employedIn": {
-        "my0:organizationPhoneNumber": "",
+        "my0:orgPhoneNumber": "",
         "@type": "my0:Company",
-        "my0:organizationName": "Raiffeisen Albania",
-        "my0:organizationDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
-        "my0:organizationField": "http://example.com/rdf2resume_base_ontology.rdf#Finance",
-        "my0:organizationAddress": {
+        "my0:orgName": "Raiffeisen Albania",
+        "my0:orgDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#Finance",
+        "my0:orgAddress": {
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
           "my0:postalCode": "1001",
           "@type": "Address",
           "my0:city": "Tirana",
           "my0:street": ""
         },
-        "my0:organizationWebsite": "https://www.raiffeisen.al/"
+        "my0:orgWebsite": "https://www.raiffeisen.al/"
       },
       "my0:jobTitle": "Web developer",
       "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
@@ -143,19 +143,19 @@
       "my0:endDate": "2019-03-29",
       "my0:jobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
       "my0:employedIn": {
-        "my0:organizationPhoneNumber": " 0221 65027100",
+        "my0:orgPhoneNumber": " 0221 65027100",
         "@type": "my0:Company",
-        "my0:organizationName": "Publicis Sapient",
-        "my0:organizationDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
-        "my0:organizationField": "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry",
-        "my0:organizationAddress": {
+        "my0:orgName": "Publicis Sapient",
+        "my0:orgDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry",
+        "my0:orgAddress": {
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
           "my0:postalCode": "50672",
           "@type": "Address",
           "my0:city": "Cologne",
           "my0:street": ""
         },
-        "my0:organizationWebsite": "https://www.publicissapient.com/"
+        "my0:orgWebsite": "https://www.publicissapient.com/"
       },
       "my0:jobTitle": "Frontend Developer",
       "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
@@ -168,19 +168,19 @@
       "my0:endDate": "",
       "my0:jobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
       "my0:employedIn": {
-        "my0:organizationPhoneNumber": "02241 14-3000",
+        "my0:orgPhoneNumber": "02241 14-3000",
         "@type": "my0:Company",
-        "my0:organizationName": "Fraunhofer",
-        "my0:organizationDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
-        "my0:organizationField": "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry",
-        "my0:organizationAddress": {
+        "my0:orgName": "Fraunhofer",
+        "my0:orgDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry",
+        "my0:orgAddress": {
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
           "my0:postalCode": "53757",
           "@type": "Address",
           "my0:city": "Sankt Augustin",
           "my0:street": ""
         },
-        "my0:organizationWebsite": "https://www.fraunhofer.de/en.html"
+        "my0:orgWebsite": "https://www.fraunhofer.de/en.html"
       },
       "my0:jobTitle": "Student Research Assistant",
       "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
@@ -208,7 +208,7 @@
           "@type": "my0:WorkHistory",
           "my0:jobTitle": "Senior Researcher",
           "my0:employedIn": {
-            "my0:organizationName": "Fraunhofer",
+            "my0:orgName": "Fraunhofer",
             "@type": "my0:Company"
           }
         }
@@ -257,7 +257,8 @@
     },
     "my0:firstName": "Enkeleda",
     "my0:driversLicence": "",
-    "my0:personDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+    "my0:personShortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+    "my0:personLongDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
     "my0:email": "enkeleda.elezi@gmail.com",
     "my0:photo": "",
     "my0:title": "http://example.com/rdf2resume_base_ontology.rdf#Mrs",
@@ -271,8 +272,8 @@
         "@type": "my0:Website"
       },
       {
-        "my0:websiteURL": "https://www.linkedin.com/in/enkeleda-elezi-928532a0/",
-        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#OtherValue",
+        "my0:websiteURL": "https://github.com/e-elezi",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Github",
         "@type": "my0:Website"
       }
     ],

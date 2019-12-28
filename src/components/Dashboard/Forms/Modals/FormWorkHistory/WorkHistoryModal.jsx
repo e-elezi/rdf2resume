@@ -44,18 +44,18 @@ class WorkHistoryModal extends Component {
       "my0:isCurrent": false,
       "my0:employedIn": {
         "@type": "my0:Company",
-        "my0:organizationName": "",
-        "my0:organizationAddress": {
+        "my0:orgName": "",
+        "my0:orgAddress": {
           "@type": "Address",
           "my0:city": "",
           "my0:country": "",
           "my0:street": "",
           "my0:postalCode": ""
         },
-        "my0:organizationDescription": "",
-        "my0:organizationPhoneNumber": "",
-        "my0:organizationWebsite": "",
-        "my0:organizationField": ""
+        "my0:orgDescription": "",
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "",
+        "my0:orgField": ""
       }
     }
   };
@@ -105,17 +105,17 @@ class WorkHistoryModal extends Component {
           "my0:isCurrent": false,
           "my0:employedIn": {
             "@type": "my0:Company",
-            "my0:organizationName": "",
-            "my0:organizationAddress": {
+            "my0:orgName": "",
+            "my0:orgAddress": {
               "@type": "Address",
               "my0:city": "",
               "my0:country": "",
               "my0:street": "",
               "my0:postalCode": ""
             },
-            "my0:organizationDescription": "",
-            "my0:organizationPhoneNumber": "",
-            "my0:organizationWebsite": "",
+            "my0:orgDescription": "",
+            "my0:orgPhoneNumber": "",
+            "my0:orgWebsite": "",
             "my0:companyIndustry": ""
           }
         }
@@ -168,10 +168,10 @@ class WorkHistoryModal extends Component {
         return;
       }
     }
-    if (e.target.name === "organization") {
+    if (e.target.name === "org") {
       obj["my0:employedIn"][label] = e.target.value;
     } else if (e.target.name === "address") {
-      obj["my0:employedIn"]["my0:organizationAddress"][label] = e.target.value;
+      obj["my0:employedIn"]["my0:orgAddress"][label] = e.target.value;
     } else {
       obj[label] = e.target.value;
     }
@@ -183,10 +183,10 @@ class WorkHistoryModal extends Component {
   handleSelectChange = (value, id, name) => {
     let obj = { ...this.state.workHistory };
     let label = id;
-    if (name === "organization") {
+    if (name === "org") {
       obj["my0:employedIn"][label] = value["@type"];
     } else if (name === "address") {
-      obj["my0:employedIn"]["my0:organizationAddress"][label] = value["@type"];
+      obj["my0:employedIn"]["my0:orgAddress"][label] = value["@type"];
     } else {
       obj[label] = value["@type"];
     }
@@ -211,7 +211,7 @@ class WorkHistoryModal extends Component {
   handleRenderingSubmitButton = lang => {
     let isDisabled =
       this.state.workHistory["my0:startDate"] === "" ||
-      this.state.workHistory["my0:employedIn"]["my0:organizationName"] === "" ||
+      this.state.workHistory["my0:employedIn"]["my0:orgName"] === "" ||
       this.state.workHistory["my0:jobTitle"] === "";
     if (!this.props.isUpdate) {
       return (
@@ -272,12 +272,12 @@ class WorkHistoryModal extends Component {
     } = this.state.workHistory;
 
     let {
-      "my0:organizationName": organizationName,
-      "my0:organizationField": organizationField,
-      "my0:organizationWebsite": organizationWebsite,
-      "my0:organizationDescription": organizationDescription,
-      "my0:organizationPhoneNumber": organizationPhoneNumber,
-      "my0:organizationAddress": address
+      "my0:orgName": orgName,
+      "my0:orgField": orgField,
+      "my0:orgWebsite": orgWebsite,
+      "my0:orgDescription": orgDescription,
+      "my0:orgPhoneNumber": orgPhoneNumber,
+      "my0:orgAddress": address
     } = employedIn;
 
     let { onHide } = this.props;
@@ -372,44 +372,44 @@ class WorkHistoryModal extends Component {
                 >
                   <div style={{ width: "100%" }}>
                     <CustomInput
-                      id="my0:organizationName"
-                      name="organization"
+                      id="my0:orgName"
+                      name="org"
                       label={
                         this.renderLabel(
                           translatedPropsOrg,
-                          "organizationName",
+                          "orgName",
                           lang
                         ) + " *"
                       }
                       type="text"
-                      value={organizationName}
+                      value={orgName}
                       handleChange={this.handleInputChange}
                     />
                   </div>
                   <div style={{ width: "100%" }}>
                     <CustomInput
-                      id="my0:organizationWebsite"
-                      name="organization"
+                      id="my0:orgWebsite"
+                      name="org"
                       label={this.renderLabel(
                         translatedPropsOrg,
-                        "organizationWebsite",
+                        "orgWebsite",
                         lang
                       )}
                       type="text"
-                      value={organizationWebsite}
+                      value={orgWebsite}
                       handleChange={this.handleInputChange}
                     />
                   </div>
                   <div style={{ marginTop: "5px", width: "100%" }}>
                     <CustomInput
-                      id="my0:organizationPhoneNumber"
-                      name="organization"
+                      id="my0:orgPhoneNumber"
+                      name="org"
                       label={this.renderLabel(
                         translatedPropsOrg,
-                        "organizationPhoneNumber",
+                        "orgPhoneNumber",
                         lang
                       )}
-                      value={organizationPhoneNumber}
+                      value={orgPhoneNumber}
                       handleChange={this.handleInputChange}
                     />
                   </div>
@@ -484,19 +484,19 @@ class WorkHistoryModal extends Component {
                     <label className="label-rw">
                       {this.renderLabel(
                         translatedPropsOrg,
-                        "organizationField",
+                        "orgField",
                         lang
                       )}
                     </label>
                     <Combobox
-                      name="my0:organizationField"
+                      name="my0:orgField"
                       placeholder={this.renderLabel(
                         translatedPropsOrg,
-                        "organizationField",
+                        "orgField",
                         lang
                       )}
                       data={this.props.industries}
-                      value={organizationField}
+                      value={orgField}
                       textField={lang}
                       valueField="@type"
                       caseSensitive={false}
@@ -505,22 +505,22 @@ class WorkHistoryModal extends Component {
                       onChange={value =>
                         this.handleSelectChange(
                           value,
-                          "my0:organizationField",
-                          "organization"
+                          "my0:orgField",
+                          "org"
                         )
                       }
                     />
                   </Row>
                   <div style={{ width: "100%" }}>
                     <CustomTextarea
-                      id="my0:organizationDescription"
-                      name="organization"
+                      id="my0:orgDescription"
+                      name="org"
                       label={this.renderLabel(
                         translatedPropsOrg,
-                        "organizationDescription",
+                        "orgDescription",
                         lang
                       )}
-                      value={organizationDescription}
+                      value={orgDescription}
                       handleChange={this.handleInputChange}
                     />
                   </div>

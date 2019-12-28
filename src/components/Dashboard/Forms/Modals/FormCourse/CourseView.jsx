@@ -77,9 +77,9 @@ class CourseView extends Component {
     } = this.props.courseObj;
 
     let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationAddress" : organizationAddress,
-      "my0:organizationWebsite" : organizationWebsite,
+      "my0:orgName" : orgName,
+      "my0:orgAddress" : orgAddress,
+      "my0:orgWebsite" : orgWebsite,
     } = organizedBy;
 
     let {
@@ -87,7 +87,7 @@ class CourseView extends Component {
       "my0:country" : country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
-    } = organizationAddress;
+    } = orgAddress;
 
     let lang = this.props.language;
 
@@ -129,12 +129,12 @@ class CourseView extends Component {
                 <FontAwesomeIcon icon={faBookOpen} /> {` `}
                 {` `}
                 <a
-                  href={organizationWebsite}
+                  href={orgWebsite}
                   className="inline-link"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {organizationName}
+                  {orgName}
                 </a>{" , "}
                 {` `}
                 {city} {` `}{" "}

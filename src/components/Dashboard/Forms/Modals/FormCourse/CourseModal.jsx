@@ -39,17 +39,17 @@ class CourseModal extends Component {
       "my0:hasQualification": "",
       "my0:organizedBy": {
         "@type": "my0:Organization",
-        "my0:organizationName": "",
-        "my0:organizationAddress": {
+        "my0:orgName": "",
+        "my0:orgAddress": {
           "@type": "Address",
           "my0:city": "",
           "my0:country": "",
           "my0:street": "",
           "my0:postalCode": ""
         },
-        "my0:organizationDescription": "",
-        "my0:organizationPhoneNumber": "",
-        "my0:organizationWebsite": ""
+        "my0:orgDescription": "",
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": ""
       }
     }
   };
@@ -94,17 +94,17 @@ class CourseModal extends Component {
           "my0:hasQualification": "",
           "my0:organizedBy": {
             "@type": "my0:Organization",
-            "my0:organizationName": "",
-            "my0:organizationAddress": {
+            "my0:orgName": "",
+            "my0:orgAddress": {
               "@type": "Address",
               "my0:city": "",
               "my0:country": "",
               "my0:street": "",
               "my0:postalCode": ""
             },
-            "my0:organizationDescription": "",
-            "my0:organizationPhoneNumber": "",
-            "my0:organizationWebsite": ""
+            "my0:orgDescription": "",
+            "my0:orgPhoneNumber": "",
+            "my0:orgWebsite": ""
           }
         }
       });
@@ -156,10 +156,10 @@ class CourseModal extends Component {
         return;
       }
     }
-    if (e.target.name === "organization") {
+    if (e.target.name === "org") {
       obj["my0:organizedBy"][label] = e.target.value;
     } else if (e.target.name === "address") {
-      obj["my0:organizedBy"]["my0:organizationAddress"][label] = e.target.value;
+      obj["my0:organizedBy"]["my0:orgAddress"][label] = e.target.value;
     } else {
       obj[label] = e.target.value;
     }
@@ -171,10 +171,10 @@ class CourseModal extends Component {
   handleSelectChange = (value, id, name) => {
     let obj = { ...this.state.course };
     let label = id;
-    if (name === "organization") {
+    if (name === "org") {
       obj["my0:organizedBy"][label] = value["@type"];
     } else if (name === "address") {
-      obj["my0:organizedBy"]["my0:organizationAddress"][label] = value["@type"];
+      obj["my0:organizedBy"]["my0:orgAddress"][label] = value["@type"];
     } else {
       obj[label] = value["@type"];
     }
@@ -220,7 +220,7 @@ class CourseModal extends Component {
   handleRenderingSubmitButton = lang => {
     let isDisabled =
       this.state.course["my0:courseStartDate"] === "" ||
-      this.state.course["my0:organizedBy"]["my0:organizationName"] === "" ||
+      this.state.course["my0:organizedBy"]["my0:orgName"] === "" ||
       this.state.course["my0:courseTitle"] === "";
     if (!this.props.isUpdate) {
       return (
@@ -259,11 +259,11 @@ class CourseModal extends Component {
     } = this.state.course;
 
     let {
-      "my0:organizationName": organizationName,
-      "my0:organizationWebsite": organizationWebsite,
-      "my0:organizationDescription": organizationDescription,
-      "my0:organizationPhoneNumber": organizationPhoneNumber,
-      "my0:organizationAddress": organizationAddress
+      "my0:orgName": orgName,
+      "my0:orgWebsite": orgWebsite,
+      "my0:orgDescription": orgDescription,
+      "my0:orgPhoneNumber": orgPhoneNumber,
+      "my0:orgAddress": orgAddress
     } = organizedBy;
 
     let { onHide } = this.props;
@@ -365,30 +365,30 @@ class CourseModal extends Component {
                 }}
               >
                 <CustomInput
-                  id="my0:organizationName"
-                  name="organization"
+                  id="my0:orgName"
+                  name="org"
                   label={
                     this.renderLabel(
                       translatedPropsOrg,
-                      "organizationName",
+                      "orgName",
                       lang
                     ) + " *"
                   }
                   type="text"
-                  value={organizationName}
+                  value={orgName}
                   handleChange={this.handleInputChange}
                 />
                 <div style={{ width: "100%" }}>
                   <CustomInput
-                    id="my0:organizationWebsite"
-                    name="organization"
+                    id="my0:orgWebsite"
+                    name="org"
                     label={this.renderLabel(
                       translatedPropsOrg,
-                      "organizationWebsite",
+                      "orgWebsite",
                       lang
                     )}
                     type="text"
-                    value={organizationWebsite}
+                    value={orgWebsite}
                     handleChange={this.handleInputChange}
                   />
                 </div>
@@ -402,7 +402,7 @@ class CourseModal extends Component {
                         "postalCode",
                         lang
                       )}
-                      value={organizationAddress["my0:postalCode"]}
+                      value={orgAddress["my0:postalCode"]}
                       handleChange={this.handleInputChange}
                     />
                   </Col>
@@ -415,7 +415,7 @@ class CourseModal extends Component {
                         "city",
                         lang
                       )}
-                      value={organizationAddress["my0:city"]}
+                      value={orgAddress["my0:city"]}
                       handleChange={this.handleInputChange}
                     />
                   </Col>
@@ -441,7 +441,7 @@ class CourseModal extends Component {
                     data={this.props.countries}
                     textField={lang}
                     valueField="@type"
-                    value={organizationAddress["my0:country"]}
+                    value={orgAddress["my0:country"]}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
@@ -451,26 +451,26 @@ class CourseModal extends Component {
                   />
                 </Row>
                 <CustomInput
-                  id="my0:organizationPhoneNumber"
-                  name="organization"
+                  id="my0:orgPhoneNumber"
+                  name="org"
                   label={this.renderLabel(
                     translatedPropsOrg,
-                    "organizationPhoneNumber",
+                    "orgPhoneNumber",
                     lang
                   )}
-                  value={organizationPhoneNumber}
+                  value={orgPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
                 <div style={{ marginTop: "10px", width: "100%" }}>
                   <CustomTextarea
-                    id="my0:organizationDescription"
-                    name="organization"
+                    id="my0:orgDescription"
+                    name="org"
                     label={this.renderLabel(
                       translatedPropsOrg,
-                      "organizationDescription",
+                      "orgDescription",
                       lang
                     )}
-                    value={organizationDescription}
+                    value={orgDescription}
                     handleChange={this.handleInputChange}
                   />
                 </div>

@@ -78,9 +78,9 @@ class EducationView extends Component {
     } = this.props.educationObj;
 
     let {
-      "my0:organizationName" : organizationName,
-      "my0:organizationAddress" : organizationAddress,
-      "my0:organizationWebsite" : organizationWebsite,
+      "my0:orgName" : orgName,
+      "my0:orgAddress" : orgAddress,
+      "my0:orgWebsite" : orgWebsite,
     } = studiedIn;
 
     let {
@@ -88,7 +88,7 @@ class EducationView extends Component {
       "my0:country" : country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
-    } = organizationAddress;
+    } = orgAddress;
 
     let current = now;
     
@@ -133,12 +133,12 @@ class EducationView extends Component {
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
                 <a
-                  href={organizationWebsite}
+                  href={orgWebsite}
                   className="inline-link"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {organizationName}
+                  {orgName}
                 </a>{" , "}
                 {
                   city

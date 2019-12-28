@@ -81,9 +81,9 @@ class WorkHistoryReview extends Component {
     } = this.props.workHistory;
 
     let {
-      "my0:organizationName": organizationName,
-      "my0:organizationAddress": organizationAddress,
-      "my0:organizationWebsite": organizationWebsite
+      "my0:orgName": orgName,
+      "my0:orgAddress": orgAddress,
+      "my0:orgWebsite": orgWebsite
     } = this.props.workHistory["my0:employedIn"];
 
     let {
@@ -91,7 +91,7 @@ class WorkHistoryReview extends Component {
       "my0:country": country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
-    } = organizationAddress;
+    } = orgAddress;
 
     let current = now;
 
@@ -136,12 +136,12 @@ class WorkHistoryReview extends Component {
                 <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
                 {` `}
                 <a
-                  href={organizationWebsite}
+                  href={orgWebsite}
                   className="inline-link"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  {organizationName}
+                  {orgName}
                 </a>
                 {" , "}
                 {city} {` `}{" "}

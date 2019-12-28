@@ -133,52 +133,12 @@ mybase0:InstantMessagingTypeProperty
   "Tipo"@it;
   a owl:Class .
 
-mybase0:Twitter
-  rdfs:label "Twitter"@en,
-  "Twitter"@de,
-  "Twitter"@fr,
-  "Twitter"@it;
-  owl:disjointWith mybase0:ICQ;
-  owl:disjointWith mybase0:Skype;
-  owl:disjointWith mybase0:GoogleHangouts;
-  owl:disjointWith mybase0:QQ;
-  owl:disjointWith mybase0:WeChat;
-  a mybase0:InstantMessagingTypeProperty .
-
-mybase0:Instagram
-  rdfs:label "Instagram"@en,
-  "Instagram"@de,
-  "Instagram"@fr,
-  "Instagram"@it;
-  owl:disjointWith mybase0:ICQ;
-  owl:disjointWith mybase0:Twitter;
-  owl:disjointWith mybase0:Skype;
-  owl:disjointWith mybase0:GoogleHangouts;
-  owl:disjointWith mybase0:QQ;
-  owl:disjointWith mybase0:WeChat;
-  a mybase0:InstantMessagingTypeProperty .
-
-mybase0:ICQ
-  rdfs:label "ICQ"@en,
-  "ICQ"@de,
-  "ICQ"@fr,
-  "ICQ"@it;
-  owl:disjointWith mybase0:Twitter;
-  owl:disjointWith mybase0:Skype;
-  owl:disjointWith mybase0:GoogleHangouts;
-  owl:disjointWith mybase0:QQ;
-  owl:disjointWith mybase0:WeChat;
-  a mybase0:InstantMessagingTypeProperty .
-
 mybase0:Skype
   rdfs:label "Skype"@en,
   "Skype"@de,
   "Skype"@fr,
   "Skype"@it;
-  owl:disjointWith mybase0:Twitter;
-  owl:disjointWith mybase0:ICQ;
   owl:disjointWith mybase0:GoogleHangouts;
-  owl:disjointWith mybase0:QQ;
   owl:disjointWith mybase0:WeChat;
   a mybase0:InstantMessagingTypeProperty .
 
@@ -187,22 +147,7 @@ mybase0:GoogleHangouts
   "Google Hangouts"@de,
   "Google Hangouts"@fr,
   "Google Hangouts"@it;
-  owl:disjointWith mybase0:Twitter;
-  owl:disjointWith mybase0:ICQ;
   owl:disjointWith mybase0:Skype;
-  owl:disjointWith mybase0:QQ;
-  owl:disjointWith mybase0:WeChat;
-  a mybase0:InstantMessagingTypeProperty .
-
-mybase0:QQ
-  rdfs:label "QQ"@en,
-  "QQ"@de,
-  "QQ"@fr,
-  "QQ"@it;
-  owl:disjointWith mybase0:Twitter;
-  owl:disjointWith mybase0:ICQ;
-  owl:disjointWith mybase0:Skype;
-  owl:disjointWith mybase0:GoogleHangouts;
   owl:disjointWith mybase0:WeChat;
   a mybase0:InstantMessagingTypeProperty .
 
@@ -211,11 +156,8 @@ mybase0:WeChat
   "WeChat"@de,
   "WeChat"@fr,
   "WeChat"@it;
-  owl:disjointWith mybase0:Twitter;
-  owl:disjointWith mybase0:ICQ;
   owl:disjointWith mybase0:Skype;
   owl:disjointWith mybase0:GoogleHangouts;
-  owl:disjointWith mybase0:QQ;
   a mybase0:InstantMessagingTypeProperty .
 
 mybase0:WebsiteTypeProperty
@@ -225,17 +167,95 @@ mybase0:WebsiteTypeProperty
   "Tipo"@it;
   a owl:Class .
 
+
+mybase0:Twitter
+  rdfs:label "Twitter"@en,
+  "Twitter"@de,
+  "Twitter"@fr,
+  "Twitter"@it;
+  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:Blog;
+  owl:disjointWith mybase0:Rssfeed;
+  owl:disjointWith mybase0:Portfolio;
+  a mybase0:WebsiteTypeProperty .
+
+mybase0:Facebook
+  rdfs:label "Facebook"@en,
+  "Facebook"@de,
+  "Facebook"@fr,
+  "Facebook"@it;
+  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:Blog;
+  owl:disjointWith mybase0:Rssfeed;
+  owl:disjointWith mybase0:Portfolio;
+  a mybase0:WebsiteTypeProperty .
+
+mybase0:Github
+  rdfs:label "Github"@en,
+  "Github"@de,
+  "Github"@fr,
+  "Github"@it;
+  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Blog;
+  owl:disjointWith mybase0:Rssfeed;
+  owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:Portfolio;
+  a mybase0:WebsiteTypeProperty .
+
+mybase0:Instagram
+  rdfs:label "Instagram"@en,
+  "Instagram"@de,
+  "Instagram"@fr,
+  "Instagram"@it;
+  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Blog;
+  owl:disjointWith mybase0:Rssfeed;
+  owl:disjointWith mybase0:Portfolio;
+  a mybase0:WebsiteTypeProperty .
+
 mybase0:Personal
   rdfs:label "Personal"@en,
   "Persönlich"@de,
   "Personnel"@fr,
   "Personale"@it;
   owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Github;
   owl:disjointWith mybase0:CompanyValue;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Rssfeed;
   owl:disjointWith mybase0:Portfolio;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:Linkedin
@@ -244,11 +264,16 @@ mybase0:Linkedin
   "Linkedin"@fr,
   "Linkedin"@it;
   owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Github;
   owl:disjointWith mybase0:CompanyValue;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Rssfeed;
   owl:disjointWith mybase0:Portfolio;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:Xing
@@ -257,11 +282,16 @@ mybase0:Xing
   "Xing"@fr,
   "Xing"@it;
   owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Github;
   owl:disjointWith mybase0:CompanyValue;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Rssfeed;
   owl:disjointWith mybase0:Portfolio;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:CompanyValue
@@ -271,10 +301,15 @@ mybase0:CompanyValue
   "Azienda"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:Xing;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Rssfeed;
   owl:disjointWith mybase0:Portfolio;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:Blog
@@ -284,10 +319,15 @@ mybase0:Blog
   "Blog"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
-  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Company;
   owl:disjointWith mybase0:Rssfeed;
   owl:disjointWith mybase0:Portfolio;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:Rssfeed
@@ -297,10 +337,15 @@ mybase0:Rssfeed
   "Feed RSS"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
-  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Company;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Portfolio;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:Portfolio
@@ -310,10 +355,15 @@ mybase0:Portfolio
   "Portafoglio"@it;
   owl:disjointWith mybase0:OtherValue;
   owl:disjointWith mybase0:Personal;
-  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Company;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Rssfeed;
-  owl:disjointWith mybase0:OtherValue;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:OtherValue
@@ -321,12 +371,17 @@ mybase0:OtherValue
   "Sonstiges"@de,
   "Autre"@fr,
   "Altro"@it;
-  owl:disjointWith mybase0:OtherValue;
+  owl:disjointWith mybase0:Portfolio;
   owl:disjointWith mybase0:Personal;
-  owl:disjointWith mybase0:CompanyValue;
+  owl:disjointWith mybase0:Twitter;
+  owl:disjointWith mybase0:Facebook;
+  owl:disjointWith mybase0:Instagram;
+  owl:disjointWith mybase0:Linkedin;
+  owl:disjointWith mybase0:Github;
+  owl:disjointWith mybase0:Xing;
+  owl:disjointWith mybase0:Company;
   owl:disjointWith mybase0:Blog;
   owl:disjointWith mybase0:Rssfeed;
-  owl:disjointWith mybase0:Portfolio;
   a mybase0:WebsiteTypeProperty .
 
 mybase0:GenderProperty

@@ -148,6 +148,13 @@ export const submitFirstButtonLabel = {
   it: "Scaricare come JSON-LD"
 };
 
+export const submitFifthButtonLabel = {
+  en: "Generate Résumé RDFa",
+  fr: "Générer un résumé RDFa",
+  de: "Lebenslauf RDFa erzeugen",
+  it: "Generazione di un curriculum RDFa"
+};
+
 export const submitSecondButtonLabel = {
   en: "Generate Résumé PDF",
   fr: "Générer un résumé PDF",

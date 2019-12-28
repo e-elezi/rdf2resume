@@ -35,11 +35,11 @@ class EducationModal extends Component {
       "@type": "my0:Education",
       "my0:studiedIn": {
         "@type": "my0:EducationalOrg",
-        "my0:organizationName": "",
-        "my0:organizationDescription": "",
-        "my0:organizationPhoneNumber": "",
-        "my0:organizationWebsite": "",
-        "my0:organizationAddress": {
+        "my0:orgName": "",
+        "my0:orgDescription": "",
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "",
+        "my0:orgAddress": {
           "@type": "Address",
           "my0:city": "",
           "my0:country": "",
@@ -91,11 +91,11 @@ class EducationModal extends Component {
           "@type": "my0:Education",
           "my0:studiedIn": {
             "@type": "my0:EducationalOrg",
-            "my0:organizationName": "",
-            "my0:organizationDescription": "",
-            "my0:organizationPhoneNumber": "",
-            "my0:organizationWebsite": "",
-            "my0:organizationAddress": {
+            "my0:orgName": "",
+            "my0:orgDescription": "",
+            "my0:orgPhoneNumber": "",
+            "my0:orgWebsite": "",
+            "my0:orgAddress": {
               "@type": "Address",
               "my0:city": "",
               "my0:country": "",
@@ -159,10 +159,10 @@ class EducationModal extends Component {
         return;
       }
     }
-    if (e.target.name === "organization") {
+    if (e.target.name === "org") {
       obj["my0:studiedIn"][label] = e.target.value;
     } else if (e.target.name === "address") {
-      obj["my0:studiedIn"]["my0:organizationAddress"][label] = e.target.value;
+      obj["my0:studiedIn"]["my0:orgAddress"][label] = e.target.value;
     } else {
       obj[label] = e.target.value;
     }
@@ -174,10 +174,10 @@ class EducationModal extends Component {
   handleSelectChange = (value, id, name) => {
     let obj = { ...this.state.education };
     let label = id;
-    if (name === "organization") {
+    if (name === "org") {
       obj["my0:studiedIn"][label] = value["@type"];
     } else if (name === "address") {
-      obj["my0:studiedIn"]["my0:organizationAddress"][label] = value["@type"];
+      obj["my0:studiedIn"]["my0:orgAddress"][label] = value["@type"];
     } else {
       obj[label] = value["@type"];
     }
@@ -225,7 +225,7 @@ class EducationModal extends Component {
       this.state.education["my0:eduStartDate"] === "" ||
       this.state.education["my0:degree"] === "" ||
       this.state.education["my0:degreeType"] === "" ||
-      this.state.education["my0:studiedIn"]["my0:organizationName"] === "" ||
+      this.state.education["my0:studiedIn"]["my0:orgName"] === "" ||
       this.state.education["my0:eduGradDate"] === "";
     if (!this.props.isUpdate) {
       return (
@@ -264,11 +264,11 @@ class EducationModal extends Component {
     } = this.state.education;
 
     let {
-      "my0:organizationName": organizationName,
-      "my0:organizationWebsite": organizationWebsite,
-      "my0:organizationDescription": organizationDescription,
-      "my0:organizationPhoneNumber": organizationPhoneNumber,
-      "my0:organizationAddress": address
+      "my0:orgName": orgName,
+      "my0:orgWebsite": orgWebsite,
+      "my0:orgDescription": orgDescription,
+      "my0:orgPhoneNumber": orgPhoneNumber,
+      "my0:orgAddress": address
     } = studiedIn;
 
     let { onHide } = this.props;
@@ -369,31 +369,31 @@ class EducationModal extends Component {
               >
                 <div style={{ width: "100%" }}>
                   <CustomInput
-                    id="my0:organizationName"
-                    name="organization"
+                    id="my0:orgName"
+                    name="org"
                     label={
                       this.renderLabel(
                         translatedPropsOrg,
-                        "organizationName",
+                        "orgName",
                         lang
                       ) + " *"
                     }
                     type="text"
-                    value={organizationName}
+                    value={orgName}
                     handleChange={this.handleInputChange}
                   />
                 </div>
                 <div style={{ width: "100%" }}>
                   <CustomInput
-                    id="my0:organizationWebsite"
-                    name="organization"
+                    id="my0:orgWebsite"
+                    name="org"
                     label={this.renderLabel(
                       translatedPropsOrg,
-                      "organizationWebsite",
+                      "orgWebsite",
                       lang
                     )}
                     type="text"
-                    value={organizationWebsite}
+                    value={orgWebsite}
                     handleChange={this.handleInputChange}
                   />
                 </div>
@@ -456,26 +456,26 @@ class EducationModal extends Component {
                   />
                 </Row>
                 <CustomInput
-                  id="my0:organizationPhoneNumber"
-                  name="organization"
+                  id="my0:orgPhoneNumber"
+                  name="org"
                   label={this.renderLabel(
                     translatedPropsOrg,
-                    "organizationPhoneNumber",
+                    "orgPhoneNumber",
                     lang
                   )}
-                  value={organizationPhoneNumber}
+                  value={orgPhoneNumber}
                   handleChange={this.handleInputChange}
                 />
                 <div style={{ marginTop: "10px", width: "100%" }}>
                   <CustomTextarea
-                    id="my0:organizationDescription"
-                    name="organization"
+                    id="my0:orgDescription"
+                    name="org"
                     label={this.renderLabel(
                       translatedPropsOrg,
-                      "organizationDescription",
+                      "orgDescription",
                       lang
                     )}
-                    value={organizationDescription}
+                    value={orgDescription}
                     handleChange={this.handleInputChange}
                   />
                 </div>

@@ -16,6 +16,12 @@ projectTitle = {
     "de": "Projekt",
     "it": "Il progetto"
 }
+honorTitle = {
+    "en": "Honor & Awards",
+    "fr": "Prix et distinctions",
+    "de": "Ehrungen & Auszeichnungen",
+    "it": "Premi e riconoscimenti"
+}
 publicationTitle = {
     "en": "Publication",
     "fr": "Publication",
@@ -117,14 +123,36 @@ skilllevel = [
     }
 ]
 
+toolsTech = {
+    "en": 'Tools & Technologies',
+    "de": 'Werkzeuge und Technologien',
+    "fr": "Outils et technologies",
+    "it": 'Strumenti e tecnologie',
+    "sq": 'Vegla dhe Teknologji'
+}
+
+industrySkills = {
+    "en": 'Industry Knowledge',
+    "de": 'Branchenkenntnisse',
+    "fr": "Connaissance de l'industrie",
+    "it": 'Conoscenza del settore',
+    "sq": 'Njohuritë e industrisë'
+}
+
+interpersonalSkills = {
+    "en": 'Interpersonal Skills',
+    "de": 'Zwischenmenschliche Fähigkeiten',
+    "fr": "Compétences interpersonnelles",
+    "it": 'Competenze interpersonali'
+}
 
 def getnameURI(uri):
     index = 0
     length = len(uri)
     for i in range(length):
-        if(uri[i] == '/' or uri[i] == '#'):
+        if uri[i] == '#':
             index = i
-    return uri[index:length]
+    return uri[index + 1:length]
 
 def doesURIContainWord(uri, word):
     txt = getnameURI(uri)

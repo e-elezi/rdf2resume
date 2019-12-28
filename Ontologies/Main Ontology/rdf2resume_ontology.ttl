@@ -308,7 +308,7 @@ my0:publicationDescription
   rdfs:domain my0:Publication ;
   rdfs:range xsd:string .
 
-  my0:Patent
+my0:Patent
   a owl:Class ;
   rdfs:subClassOf [ rdf:type owl:Restriction ;
                     owl:onProperty my0:patentDescription ;
@@ -944,7 +944,7 @@ my0:Company
   "Azienda"@it ;
   rdfs:subClassOf my0:Organization .
 
-my0:organizationField
+my0:orgField
   a owl:DatatypeProperty ;
   rdfs:comment "Field/Sector of the organization"@en ;
   rdfs:label "Organization Field/Sector"@en,
@@ -965,7 +965,7 @@ my0:EducationalOrg
   "Organizzazione educativa"@it ;
   rdfs:subClassOf my0:Organization .
 
-my0:organizationName
+my0:orgName
   a owl:DatatypeProperty ;
   rdfs:comment "Name of the organization"@en ;
   rdfs:label "Organization Name"@en,
@@ -976,7 +976,7 @@ my0:organizationName
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
-my0:organizationSize
+my0:orgSize
   a owl:DatatypeProperty ;
   rdfs:comment "Size of the organization"@en ;
   rdfs:label "Organization Size"@en,
@@ -987,7 +987,7 @@ my0:organizationSize
   rdfs:domain my0:Organization ;
   rdfs:range mybase0:CompanySize.
 
-my0:organizationAddress
+my0:orgAddress
   a owl:ObjectProperty ;
   rdfs:comment "Address of the organization. Not all properties of the address are required"@en ;
   rdfs:label "Organization Address"@en,
@@ -998,7 +998,7 @@ my0:organizationAddress
   rdfs:domain my0:Organization ;
   rdfs:range my0:Address .
 
-my0:organizationDescription
+my0:orgDescription
   a owl:DatatypeProperty ;
   rdfs:comment "Description about the organization."@en ;
   rdfs:label "Organization Description"@en,
@@ -1009,7 +1009,7 @@ my0:organizationDescription
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
-my0:organizationPhoneNumber
+my0:orgPhoneNumber
   a owl:DatatypeProperty ;
   rdfs:comment "Organization phone number"@en ;
   rdfs:label "Organization Phone Number"@en,
@@ -1020,7 +1020,7 @@ my0:organizationPhoneNumber
   rdfs:domain my0:Organization ;
   rdfs:range xsd:string .
 
-my0:organizationWebsite
+my0:orgWebsite
   a owl:DatatypeProperty ;
   rdfs:comment "Organization home page"@en ;
   rdfs:label "Organization Website"@en,
@@ -1426,7 +1426,7 @@ my0:skillHasCertificate
   "A-t-il la certification?"@fr,
   "Ha la certificazione?"@it ;
   rdfs:domain my0:Skill ;
-  rdfs:range xsd:string .
+  rdfs:range xsd:boolean .
 
 my0:LanguageSkill
   a owl:Class ;
