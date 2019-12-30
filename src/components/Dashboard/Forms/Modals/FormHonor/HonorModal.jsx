@@ -19,10 +19,70 @@ class HonorModal extends Component {
   state = {
     honor: {
       "@type": "my0:Honor",
-      "my0:honortitle": "",
+      "my0:honortitle": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:honorIssuedDate": "",
-      "my0:honorIssuer": "",
-      "my0:honorDescription": ""
+      "my0:honorIssuer": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
+      "my0:honorDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -50,10 +110,70 @@ class HonorModal extends Component {
       this.setState({
         honor: {
           "@type": "my0:Honor",
-          "my0:honortitle": "",
+          "my0:honortitle": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:honorIssuedDate": "",
-          "my0:honorIssuer": "",
-          "my0:honorDescription": ""
+          "my0:honorIssuer": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
+          "my0:honorDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -61,10 +181,34 @@ class HonorModal extends Component {
     }
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let obj = { ...this.state.honor };
     let label = e.target.id;
-    obj[label] = e.target.value;
+    if (lang) {
+      obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
       honor: obj
     });
@@ -184,8 +328,8 @@ class HonorModal extends Component {
                     this.renderLabel(translatedProps, "honortitle", lang) + " *"
                   }
                   type="text"
-                  value={honortitle}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(honortitle, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Col>
               <Col md={3} style={{ paddingRight: "0" }}>
@@ -209,8 +353,8 @@ class HonorModal extends Component {
                 name="honor"
                 label={this.renderLabel(translatedProps, "honorIssuer", lang)}
                 type="text"
-                value={honorIssuer}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(honorIssuer, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
@@ -222,8 +366,8 @@ class HonorModal extends Component {
                   "honorDescription",
                   lang
                 )}
-                value={honorDescription}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(honorDescription, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </div>
           </Row>

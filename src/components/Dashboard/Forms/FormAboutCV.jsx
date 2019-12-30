@@ -15,8 +15,8 @@ class FormAboutCV extends Component {
     this.props.fetchMainPropertiess("my0:CV");
   }
 
-  handleInputChange = e => {
-    this.props.updateAboutCV({ id: e.target.id, value: e.target.value });
+  handleInputChange = (e, lang) => {
+    this.props.updateAboutCV({ id: e.target.id, value: e.target.value, language: lang });
   };
 
   handleCheckboxChange = e => {
@@ -44,6 +44,15 @@ class FormAboutCV extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let translatedProps = this.props.translatedProps;
     let lang = this.props.language;
@@ -63,15 +72,15 @@ class FormAboutCV extends Component {
             id="cvCopyright"
             label={this.renderLabel(translatedProps, "cvCopyright", lang)}
             type="text"
-            value={cvCopyright}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(cvCopyright, lang)}
+            handleChange={(e) => this.handleInputChange(e, lang)}
           />
           <div className="mb-3" />
           <CustomTextarea
             id="cvNotes"
             label={this.renderLabel(translatedProps, "cvNotes", lang)}
-            value={cvNotes}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(cvNotes, lang)}
+            handleChange={(e) => this.handleInputChange(e, lang)}
           />
           <CustomCheckbox
             id="cvIsActive"

@@ -42,6 +42,10 @@ class FormTarget extends Component {
     this.props.updateTarget({ id: e.target.id, value: e.target.value });
   };
 
+  handleInputChangeWithLanguage = (e, lang) => {
+    this.props.updateTarget({ id: e.target.id, value: e.target.value, language: lang });
+  };
+
   handleCheckboxChange = e => {
     this.props.updateTarget({ id: e.target.id, value: e.target.checked });
   };
@@ -80,6 +84,15 @@ class FormTarget extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:targetCompanySize": targetCompanySize,
@@ -98,6 +111,7 @@ class FormTarget extends Component {
     } = this.props.target;
 
     let lang = this.props.language;
+    console.log(lang);
 
     let translatedProps = this.props.translatedProps;
 
@@ -109,8 +123,8 @@ class FormTarget extends Component {
             id="targetJobTitle"
             label={this.renderLabel(translatedProps, "targetJobTitle", lang)}
             type="text"
-            value={targetJobTitle}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(targetJobTitle, lang)}
+            handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
           <label className="label-rw">
             {this.renderLabel(translatedProps, "targetJobMode", lang)}
@@ -168,8 +182,8 @@ class FormTarget extends Component {
               lang
             )}
             type="text"
-            value={targetWeeksNoticePeriod}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(targetWeeksNoticePeriod, lang)}
+            handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
           <div className="mb-3" />
           <CustomCheckbox
@@ -203,8 +217,8 @@ class FormTarget extends Component {
               "targetJobDescription",
               lang
             )}
-            value={targetJobDescription}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(targetJobDescription, lang)}
+            handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
         </Col>
         <Col md={4}>
@@ -301,8 +315,8 @@ class FormTarget extends Component {
               "targetCompanyDescription",
               lang
             )}
-            value={targetCompanyDescription}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(targetCompanyDescription, lang)}
+            handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
         </Col>
         <Col md={4}> </Col>

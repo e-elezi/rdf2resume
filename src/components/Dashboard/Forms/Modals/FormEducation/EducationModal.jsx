@@ -36,14 +36,74 @@ class EducationModal extends Component {
       "my0:studiedIn": {
         "@type": "my0:EducationalOrg",
         "my0:orgName": "",
-        "my0:orgDescription": "",
+        "my0:orgDescription": [{
+          "@value": "",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        },
+        ],
         "my0:orgPhoneNumber": "",
         "my0:orgWebsite": "",
         "my0:orgAddress": {
           "@type": "Address",
-          "my0:city": "",
+          "my0:city": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:country": "",
-          "my0:street": "",
+          "my0:street": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:postalCode": ""
         }
       },
@@ -51,8 +111,48 @@ class EducationModal extends Component {
       "my0:eduStartDate": "",
       "my0:eduGradDate": "",
       "my0:degreeType": "",
-      "my0:degree": "",
-      "my0:eduDescription": ""
+      "my0:degree": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
+      "my0:eduDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -92,14 +192,74 @@ class EducationModal extends Component {
           "my0:studiedIn": {
             "@type": "my0:EducationalOrg",
             "my0:orgName": "",
-            "my0:orgDescription": "",
+            "my0:orgDescription": [{
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            },
+            ],
             "my0:orgPhoneNumber": "",
             "my0:orgWebsite": "",
             "my0:orgAddress": {
               "@type": "Address",
-              "my0:city": "",
+              "my0:city": [{
+                "@value": "",
+                "@language": "en"
+              },
+              {
+                "@value": "",
+                "@language": "it"
+              },
+              {
+                "@value": "",
+                "@language": "fr"
+              },
+              {
+                "@value": "",
+                "@language": "de"
+              },
+              {
+                "@value": "",
+                "@language": "sq"
+              },
+              ],
               "my0:country": "",
-              "my0:street": "",
+              "my0:street": [{
+                "@value": "",
+                "@language": "en"
+              },
+              {
+                "@value": "",
+                "@language": "it"
+              },
+              {
+                "@value": "",
+                "@language": "fr"
+              },
+              {
+                "@value": "",
+                "@language": "de"
+              },
+              {
+                "@value": "",
+                "@language": "sq"
+              },
+              ],
               "my0:postalCode": ""
             }
           },
@@ -107,8 +267,48 @@ class EducationModal extends Component {
           "my0:eduStartDate": "",
           "my0:eduGradDate": "",
           "my0:degreeType": "",
-          "my0:degree": "",
-          "my0:eduDescription": ""
+          "my0:degree": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
+          "my0:eduDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -124,7 +324,27 @@ class EducationModal extends Component {
     });
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let obj = { ...this.state.education };
     let label = e.target.id;
     if (label === "my0:eduStartDate") {
@@ -160,11 +380,23 @@ class EducationModal extends Component {
       }
     }
     if (e.target.name === "org") {
-      obj["my0:studiedIn"][label] = e.target.value;
+      if (lang) {
+        obj["my0:studiedIn"][label] = this.replaceLanguageValue(obj["my0:studiedIn"][label], lang, e.target.value);
+      } else {
+        obj["my0:studiedIn"][label] = e.target.value;
+      }
     } else if (e.target.name === "address") {
-      obj["my0:studiedIn"]["my0:orgAddress"][label] = e.target.value;
+      if (lang) {
+        obj["my0:studiedIn"]["my0:orgAddress"][label] = this.replaceLanguageValue(obj["my0:studiedIn"]["my0:orgAddress"][label], lang, e.target.value);
+      } else {
+        obj["my0:studiedIn"]["my0:orgAddress"][label] = e.target.value;
+      }
     } else {
-      obj[label] = e.target.value;
+      if (lang) {
+        obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
+      } else {
+        obj[label] = e.target.value;
+      }
     }
     this.setState({
       education: obj
@@ -420,8 +652,8 @@ class EducationModal extends Component {
                         "city",
                         lang
                       )}
-                      value={address["my0:city"]}
-                      handleChange={this.handleInputChange}
+                      value={this.findTranslatedValue(address["my0:city"], lang)}
+                      handleChange={(e) => this.handleInputChange(e, lang)}
                     />
                   </Col>
                 </Row>
@@ -475,8 +707,8 @@ class EducationModal extends Component {
                       "orgDescription",
                       lang
                     )}
-                    value={orgDescription}
-                    handleChange={this.handleInputChange}
+                    value={this.findTranslatedValue(orgDescription, lang)}
+                    handleChange={(e) => this.handleInputChange(e, lang)}
                   />
                 </div>
               </Row>
@@ -487,8 +719,8 @@ class EducationModal extends Component {
                 label={this.renderLabel(translatedProps, "degree", lang) + " *"}
                 name="education"
                 type="text"
-                value={degree}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(degree, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
               <label className="label-rw">
                 {this.renderLabel(translatedProps, "degreeType", lang) + " *"}
@@ -520,8 +752,8 @@ class EducationModal extends Component {
                     "eduDescription",
                     lang
                   )}
-                  value={eduDescription}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(eduDescription, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </div>
             </Col>

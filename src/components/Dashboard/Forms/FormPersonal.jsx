@@ -71,6 +71,15 @@ class FormPersonal extends Component {
     });
   };
 
+  handleInputChangeWithLanguage = (e, lang, secondLevel) => {
+    this.props.updateAboutPerson({
+      id: e.target.id,
+      language: lang,
+      value: e.target.value,
+      secondLevel
+    });
+  };
+
   handleSelectChange = (name, value, secondLevel) => {
     this.props.updateAboutPerson({
       id: name,
@@ -211,6 +220,15 @@ class FormPersonal extends Component {
     }
   };
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:firstName": firstName,
@@ -253,15 +271,15 @@ class FormPersonal extends Component {
             id="personShortDescription"
             rows="5"
             label={this.renderLabel(translatedProps, "personShortDescription", lang)}
-            value={personShortDescription}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(personShortDescription, lang)}
+            handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
           <CustomTextarea
             id="personLongDescription"
             rows="15"
             label={this.renderLabel(translatedProps, "personLongDescription", lang)}
-            value={personLongDescription}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(personLongDescription, lang)}
+            handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
         </Col>
         <Col md={4} className="pt-4">
@@ -295,8 +313,8 @@ class FormPersonal extends Component {
               {error["my0:firstName"] ? (
                 <span className="error">Required</span>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
             <div className="col col-sm-6">
               <CustomInput
@@ -312,8 +330,8 @@ class FormPersonal extends Component {
               {error["my0:lastName"] ? (
                 <span className="error">Required</span>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
           </div>
           <CustomInput
@@ -337,8 +355,8 @@ class FormPersonal extends Component {
               id="street"
               label={this.renderLabel(translatedPropsAddr, "street", lang)}
               type="text"
-              value={address["my0:street"]}
-              handleChange={e => this.handleInputChange(e, "address")}
+              value={this.findTranslatedValue(address["my0:street"], lang)}
+              handleChange={e => this.handleInputChangeWithLanguage(e, lang, "address")}
             />
             <Row>
               <Col md={6}>
@@ -359,8 +377,8 @@ class FormPersonal extends Component {
                   id="city"
                   label={this.renderLabel(translatedPropsAddr, "city", lang)}
                   type="text"
-                  value={address["my0:city"]}
-                  handleChange={e => this.handleInputChange(e, "address")}
+                  value={this.findTranslatedValue(address["my0:city"], lang)}
+                  handleChange={e => this.handleInputChangeWithLanguage(e, lang, "address")}
                 />
               </Col>
             </Row>
@@ -591,32 +609,32 @@ class FormPersonal extends Component {
                   ></img>
                 </React.Fragment>
               ) : (
-                <div className="photo-div">
-                  <p
-                    style={{
-                      textAlign: "center",
-                      marginTop: "10px",
-                      marginBottom: "0"
-                    }}
-                  >
-                    {this.renderLabel(translatedProps, "photo", lang)}
-                  </p>
-                  <div className="photo-div-button">
-                    <AddButton
-                      handleClick={this.handleAddPhotoClick}
-                      classnames="add-button"
-                    />
-                    <input
-                      onChange={this.onChangePhotoUpload}
-                      ref={inputHiddenRef =>
-                        (this.inputHiddenRef = inputHiddenRef)
-                      }
-                      type="file"
-                      hidden
-                    />
+                  <div className="photo-div">
+                    <p
+                      style={{
+                        textAlign: "center",
+                        marginTop: "10px",
+                        marginBottom: "0"
+                      }}
+                    >
+                      {this.renderLabel(translatedProps, "photo", lang)}
+                    </p>
+                    <div className="photo-div-button">
+                      <AddButton
+                        handleClick={this.handleAddPhotoClick}
+                        classnames="add-button"
+                      />
+                      <input
+                        onChange={this.onChangePhotoUpload}
+                        ref={inputHiddenRef =>
+                          (this.inputHiddenRef = inputHiddenRef)
+                        }
+                        type="file"
+                        hidden
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
             <div
               className="alert alert-warning"

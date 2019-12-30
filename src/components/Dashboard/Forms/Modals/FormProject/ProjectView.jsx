@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faUser, faTrash, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { removeProject } from "../../../../../actions";
 import ProjectModal from "./ProjectModal";
 import { now } from '../../../../../translations/translations';
@@ -29,6 +29,15 @@ class ProjectView extends Component {
     });
   };
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:projectName": projectName,
@@ -36,6 +45,7 @@ class ProjectView extends Component {
       "my0:projectStartDate": projectStartDate,
       "my0:projectEndDate": projectEndDate,
       "my0:projectCreator": projectCreator,
+      "my0:projectRole": projectRole,
       "my0:projectDescription": projectDescription,
       "my0:projectURL": projectURL
     } = this.props.projectObj;
@@ -75,7 +85,7 @@ class ProjectView extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {projectName}
+                  {this.findTranslatedValue(projectName, lang)}
                 </a>
               </b>
             </Row>
@@ -89,7 +99,7 @@ class ProjectView extends Component {
               <b>
                 <FontAwesomeIcon icon={faBookOpen} /> {` `}
                 {` `}
-                {projectCreator}
+                {this.findTranslatedValue(projectCreator, lang)}
               </b>
             </Row>
             <Row
@@ -99,7 +109,20 @@ class ProjectView extends Component {
                 display: "flex"
               }}
             >
-              {projectDescription}
+              <b>
+                <FontAwesomeIcon icon={faUser} /> {` `}
+                {` `}
+                {this.findTranslatedValue(projectRole, lang)}
+              </b>
+            </Row>
+            <Row
+              style={{
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+                display: "flex"
+              }}
+            >
+              {this.findTranslatedValue(projectDescription, lang)}
             </Row>
           </Col>
           <Col md={4}>

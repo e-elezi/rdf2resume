@@ -74,8 +74,48 @@ const INITIAL_STATE = {
   "my0:hasWorkHistory": [],
   "my0:cvLastUpdate": "",
   "my0:cvIsConfidential": false,
-  "my0:cvCopyright": "",
-  "my0:cvNotes": "",
+  "my0:cvCopyright": [{
+      "@value": "",
+      "@language": "en"
+    },
+    {
+      "@value": "",
+      "@language": "de"
+    },
+    {
+      "@value": "",
+      "@language": "it"
+    },
+    {
+      "@value": "",
+      "@language": "fr"
+    },
+    {
+      "@value": "",
+      "@language": "sq"
+    }
+  ],
+  "my0:cvNotes": [{
+      "@value": "",
+      "@language": "en"
+    },
+    {
+      "@value": "",
+      "@language": "de"
+    },
+    {
+      "@value": "",
+      "@language": "it"
+    },
+    {
+      "@value": "",
+      "@language": "fr"
+    },
+    {
+      "@value": "",
+      "@language": "sq"
+    }
+  ],
   "my0:hasCourse": [],
   "my0:aboutPerson": {
     "my0:hasNationality": [],
@@ -94,12 +134,51 @@ const INITIAL_STATE = {
       "@type": "my0:Address",
       "my0:country": "",
       "my0:postalCode": "",
-      "my0:street": "",
-      "my0:city": ""
+      "my0:street": [{
+          "@value": "",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:city": [{
+          "@value": "",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
     },
     "my0:phoneNumber": "",
-    "my0:personShortDescription": [
-      {
+    "my0:personShortDescription": [{
         "@value": "",
         "@language": "en"
       },
@@ -120,8 +199,7 @@ const INITIAL_STATE = {
         "@language": "sq"
       },
     ],
-    "my0:personLongDescription": [
-      {
+    "my0:personLongDescription": [{
         "@value": "",
         "@language": "en"
       },
@@ -148,9 +226,69 @@ const INITIAL_STATE = {
   "@type": "my0:CV",
   "my0:hasTarget": {
     "@type": "my0:Target",
-    "my0:targetJobDescription": "",
-    "my0:targetJobTitle": "",
-    "my0:targetWeeksNoticePeriod": "",
+    "my0:targetJobDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetJobTitle": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetWeeksNoticePeriod": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
     "my0:targetCountry": [],
     "my0:targetConditionWillRelocate": true,
     "my0:targetConditionWillTravel": "",
@@ -158,11 +296,30 @@ const INITIAL_STATE = {
     "my0:targetSalaryRange": "",
     "my0:targetCompanySize": "",
     "my0:targetCareerLevel": "",
-    "my0:targetCompanyLocality": "",
-    "my0:targetCompanyDescription": "",
+    "my0:targetCompanyDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
     "my0:targetCompanyField": [],
     "my0:targetRegion": []
-    },
+  },
   "my0:hasOtherInfo": [],
   "my0:hasPublication": [],
   "my0:hasPatent": [],
@@ -180,208 +337,389 @@ const INITIAL_STATE = {
   }
 }
 
+function replaceLanguageValue(data, language, value) {
+  let length = data.length;
+  for (let i = 0; i < length; i++) {
+    if (data[i]["@language"] === language) {
+      data[i]["@value"] = value;
+      break;
+    }
+  }
+  return data;
+}
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_CV:
-      return { ...state, cv: action.payload };
+      return {
+        ...state, cv: action.payload
+      };
     case FETCH_ABOUT_CV:
-      return { ...state, aboutCV: action.payload };
+      return {
+        ...state, aboutCV: action.payload
+      };
     case FETCH_ABOUT_PERSON:
-      return { ...state, aboutPerson: action.payload };
+      return {
+        ...state, aboutPerson: action.payload
+      };
     case FETCH_TARGET:
-      return { ...state, target: action.payload };
+      return {
+        ...state, target: action.payload
+      };
     case FETCH_EDUCATION:
-      return { ...state, education: action.payload };
+      return {
+        ...state, education: action.payload
+      };
     case FETCH_COURSES:
-      return { ...state, courses: action.payload };
+      return {
+        ...state, courses: action.payload
+      };
     case FETCH_WORK_HISTORY:
-      return { ...state, workHistory: action.payload };
+      return {
+        ...state, workHistory: action.payload
+      };
     case FETCH_SKILLS:
-      return { ...state, skills: action.payload };
+      return {
+        ...state, skills: action.payload
+      };
     case FETCH_REFERENCES:
-      return { ...state, references: action.payload };
+      return {
+        ...state, references: action.payload
+      };
     case FETCH_OTHER_INFO:
-      return { ...state["my0:hasOtherInfo"], ..._.mapKeys(action.payload, "id") };
+      return {
+        ...state["my0:hasOtherInfo"], ..._.mapKeys(action.payload, "id")
+      };
     case CREATE_OTHER_INFO:
-      let otherinfos = {...state};
+      let otherinfos = {
+        ...state
+      };
       otherinfos['my0:hasOtherInfo'].push(action.payload);
       return otherinfos;
     case UPDATE_OTHER_INFO:
-      let updateotherinfos = {...state};
+      let updateotherinfos = {
+        ...state
+      };
       updateotherinfos['my0:hasOtherInfo'][action.payload.index] = action.payload.object;
       return updateotherinfos;
     case REMOVE_OTHER_INFO:
-      let removedotherinfo = {...state}['my0:hasOtherInfo'];
-      let removedotherinfos = _.filter(removedotherinfo, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasOtherInfo": removedotherinfos };
+      let removedotherinfo = {
+        ...state
+      };
+      let removedotherinfos = _.filter(removedotherinfo, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasOtherInfo": removedotherinfos
+      };
     case CREATE_PUBLICATION:
-      let pubs = {...state};
+      let pubs = {
+        ...state
+      };
       pubs['my0:hasPublication'].push(action.payload);
       return pubs;
     case UPDATE_PUBLICATION:
-      let updatedpubs = {...state};
+      let updatedpubs = {
+        ...state
+      };
       updatedpubs['my0:hasPublication'][action.payload.index] = action.payload.object;
       return updatedpubs;
     case REMOVE_PUBLICATION:
-      let removepub = {...state}['my0:hasPublication'];
-      let removedpubss = _.filter(removepub, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasPublication": removedpubss };
+      let removepub = {
+        ...state
+      };
+      let removedpubss = _.filter(removepub, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasPublication": removedpubss
+      };
     case CREATE_PATENT:
-      let pats = {...state};
+      let pats = {
+        ...state
+      };
       pats['my0:hasPatent'].push(action.payload);
       return pats;
     case UPDATE_PATENT:
-      let updatedpats = {...state};
+      let updatedpats = {
+        ...state
+      };
       updatedpats['my0:hasPatent'][action.payload.index] = action.payload.object;
       return updatedpats;
     case REMOVE_PATENT:
-      let removepat = {...state}['my0:hasPatent'];
-      let removedpatss = _.filter(removepat, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasPatent": removedpatss };
+      let removepat = {
+        ...state
+      };
+      let removedpatss = _.filter(removepat, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasPatent": removedpatss
+      };
     case CREATE_PROJECT:
-      let pros = {...state};
+      let pros = {
+        ...state
+      };
       pros['my0:hasProject'].push(action.payload);
       return pros;
     case UPDATE_PROJECT:
-      let updatedpros = {...state};
+      let updatedpros = {
+        ...state
+      };
       updatedpros['my0:hasProject'][action.payload.index] = action.payload.object;
       return updatedpros;
     case REMOVE_PROJECT:
-      let removepros = {...state}['my0:hasProject'];
-      let removeprosss = _.filter(removepros, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasProject": removeprosss };
+      let removepros = {
+        ...state
+      };
+      let removeprosss = _.filter(removepros, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasProject": removeprosss
+      };
     case CREATE_HONOR:
-      let hons = {...state};
+      let hons = {
+        ...state
+      };
       hons['my0:hasHonorAward'].push(action.payload);
       return hons;
     case UPDATE_HONOR:
-      let updateshons = {...state};
+      let updateshons = {
+        ...state
+      };
       updateshons['my0:hasHonorAward'][action.payload.index] = action.payload.object;
       return updateshons;
     case REMOVE_HONOR:
-      let removehons = {...state}['my0:hasHonorAward'];
-      let removehonss = _.filter(removehons, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasHonorAward": removehonss };
+      let removehons = {
+        ...state
+      };
+      let removehonss = _.filter(removehons, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasHonorAward": removehonss
+      };
     case CREATE_REFERENCE:
-      let references = {...state};
+      let references = {
+        ...state
+      };
       references['my0:hasReference'].push(action.payload);
       return references;
     case UPDATE_REFERENCE:
-      let updatereferences = {...state};
+      let updatereferences = {
+        ...state
+      };
       updatereferences['my0:hasReference'][action.payload.index] = action.payload.object;
       return updatereferences;
     case REMOVE_REFERENCE:
-      let removereference = {...state}['my0:hasReference'];
-      let removereferences = _.filter(removereference, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasReference": removereferences };
+      let removereference = {
+        ...state
+      };
+      let removereferences = _.filter(removereference, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasReference": removereferences
+      };
     case CREATE_WORK_HISTORY:
-      let workhistories = {...state};
+      let workhistories = {
+        ...state
+      };
       workhistories['my0:hasWorkHistory'].push(action.payload);
       return workhistories;
     case UPDATE_WORK_HISTORY:
-      let updateworkhistories = {...state};
+      let updateworkhistories = {
+        ...state
+      };
       updateworkhistories['my0:hasWorkHistory'][action.payload.index] = action.payload.object;
       return updateworkhistories;
     case REMOVE_WORK_HISTORY:
-      let removeworkhistory = {...state}['my0:hasWorkHistory'];
-      let removeworkhistorys = _.filter(removeworkhistory, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasWorkHistory": removeworkhistorys };
+      let removeworkhistory = {
+        ...state
+      };
+      let removeworkhistorys = _.filter(removeworkhistory, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasWorkHistory": removeworkhistorys
+      };
     case CREATE_EDUCATION:
-      let educations = {...state};
+      let educations = {
+        ...state
+      };
       educations['my0:hasEducation'].push(action.payload);
       return educations;
     case UPDATE_EDUCATION:
-      let updateeducations = {...state};
+      let updateeducations = {
+        ...state
+      };
       updateeducations['my0:hasEducation'][action.payload.index] = action.payload.object;
       return updateeducations;
     case REMOVE_EDUCATION:
-      let removeeducation = {...state}['my0:hasEducation'];
-      let removeeducations = _.filter(removeeducation, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasEducation": removeeducations };
+      let removeeducation = {
+        ...state
+      };
+      let removeeducations = _.filter(removeeducation, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasEducation": removeeducations
+      };
     case CREATE_COURSE:
-      let courses = {...state};
+      let courses = {
+        ...state
+      };
       courses['my0:hasCourse'].push(action.payload);
       return courses;
     case UPDATE_COURSE:
-      let updatecourses = {...state};
+      let updatecourses = {
+        ...state
+      };
       updatecourses['my0:hasCourse'][action.payload.index] = action.payload.object;
       return updatecourses;
     case REMOVE_COURSE:
-      let removecourses = {...state}['my0:hasCourse'];
-      let removecoursess = _.filter(removecourses, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasCourse": removecoursess };
+      let removecourses = {
+        ...state
+      };
+      let removecoursess = _.filter(removecourses, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasCourse": removecoursess
+      };
     case CREATE_OTHER_SKILL:
-      let otherskills = {...state};
+      let otherskills = {
+        ...state
+      };
       otherskills['my0:hasSkill'].push(action.payload);
       return otherskills;
     case UPDATE_OTHER_SKILL:
-      let updatedskill = {...state};
+      let updatedskill = {
+        ...state
+      };
       updatedskill['my0:hasSkill'][action.payload.index] = action.payload.object;
       return updatedskill;
     case REMOVE_OTHER_SKILL:
-      let removedskills = {...state}['my0:hasSkill'];
-      let removedskillss = _.filter(removedskills, function(item, index) { return index !== action.payload; });
-      return { ...state, "my0:hasSkill": removedskillss };
+      let removedskills = {
+        ...state
+      };
+      let removedskillss = _.filter(removedskills, function (item, index) {
+        return index !== action.payload;
+      });
+      return {
+        ...state, "my0:hasSkill": removedskillss
+      };
     case UPDATE_ABOUT_CV:
-      let aboutcv = { ...state};
-      aboutcv["my0:" + action.payload.id] = action.payload.value;
+      let aboutcv = {
+        ...state
+      };
+      let property = aboutcv["my0:" + action.payload.id];
+      if (action.payload.language) {
+        property = replaceLanguageValue(property, action.payload.language, action.payload.value);
+        aboutcv["my0:" + action.payload.id] = property;
+      } else {
+        aboutcv["my0:" + action.payload.id] = action.payload.value;
+      }
       return aboutcv;
     case UPDATE_ABOUT_PERSON:
-      let aboutperson = { ...state};
-      if(action.payload.secondLevel && action.payload.secondLevel !== undefined){
-        aboutperson['my0:aboutPerson']["my0:" + action.payload.secondLevel]["my0:" + action.payload.id] = action.payload.value;
+      let aboutperson = {
+        ...state
+      };
+      if (action.payload.secondLevel && action.payload.secondLevel !== undefined) {
+        let propertyPersonal = aboutperson['my0:aboutPerson']["my0:" + action.payload.secondLevel]["my0:" + action.payload.id];
+        if (action.payload.language) {
+          propertyPersonal = replaceLanguageValue(propertyPersonal, action.payload.language, action.payload.value);
+          aboutperson['my0:aboutPerson']["my0:" + action.payload.secondLevel]["my0:" + action.payload.id] = propertyPersonal;
+        } else {
+          aboutperson['my0:aboutPerson']["my0:" + action.payload.secondLevel]["my0:" + action.payload.id] = action.payload.value;
+        }
       } else {
-        aboutperson['my0:aboutPerson']["my0:" + action.payload.id] = action.payload.value;
+        let propertyPersonal = aboutperson['my0:aboutPerson']["my0:" + action.payload.id];
+        if (action.payload.language) {
+          propertyPersonal = replaceLanguageValue(propertyPersonal, action.payload.language, action.payload.value);
+          aboutperson['my0:aboutPerson']["my0:" + action.payload.id] = propertyPersonal;
+        } else {
+          aboutperson['my0:aboutPerson']["my0:" + action.payload.id] = action.payload.value;
+        }
       }
       return aboutperson;
     case UPDATE_SKILLS:
-      let updatedSkills = {...state};
-      updatedSkills['my0:hasSkill'] = action.payload; 
+      let updatedSkills = {
+        ...state
+      };
+      updatedSkills['my0:hasSkill'] = action.payload;
       return updatedSkills;
     case UPDATE_TARGET:
-        let updatetarget = { ...state};
+      let updatetarget = {
+        ...state
+      };
+      let propertyTarget = updatetarget['my0:hasTarget']["my0:" + action.payload.id];
+      if (action.payload.language) {
+        propertyTarget = replaceLanguageValue(propertyTarget, action.payload.language, action.payload.value);
+        updatetarget['my0:hasTarget']["my0:" + action.payload.id] = propertyTarget;
+      } else {
         updatetarget['my0:hasTarget']["my0:" + action.payload.id] = action.payload.value;
-        return updatetarget;
+      }
+      return updatetarget;
     case UPDATE_CV:
-      return { ...action.payload};
+      return {
+        ...action.payload
+      };
     case CREATE_WEBSITE:
-      let aps = { ...state};
-      aps['my0:aboutPerson']['my0:hasWebsite'].push(
-        {
-          "@type": "my0:Website",
-          "my0:websiteURL": "",
-          "my0:websiteType": ""
-        }
-      );
+      let aps = {
+        ...state
+      };
+      aps['my0:aboutPerson']['my0:hasWebsite'].push({
+        "@type": "my0:Website",
+        "my0:websiteURL": "",
+        "my0:websiteType": ""
+      });
       return aps;
     case UPDATE_WEBSITE:
-      let uaps = { ...state};
+      let uaps = {
+        ...state
+      };
       uaps['my0:aboutPerson']['my0:hasWebsite'][action.payload.id][action.payload.name] = action.payload.value;
       return uaps;
     case REMOVE_WEBSITE:
-      let removedimsdd = {...state}['my0:aboutPerson'];
-      let removedimss = _.filter(removedimsdd['my0:hasWebsite'], function(item, index) { return index !== action.payload; });
+      let removedimsdd = {
+        ...state
+      };
+      let removedimss = _.filter(removedimsdd['my0:hasWebsite'], function (item, index) {
+        return index !== action.payload;
+      });
       removedimsdd['my0:hasWebsite'] = removedimss;
-      return { ...state, "my0:aboutPerson": removedimsdd };
+      return {
+        ...state, "my0:aboutPerson": removedimsdd
+      };
     case CREATE_IM:
-      let ap = { ...state};
-      ap['my0:aboutPerson']['my0:hasInstantMessaging'].push(
-        {
-          "@type": "my0:InstantMessaging",
-          "my0:instantMessagingName": "",
-          "my0:instantMessagingUsername": ""
-        }
-      );
+      let ap = {
+        ...state
+      };
+      ap['my0:aboutPerson']['my0:hasInstantMessaging'].push({
+        "@type": "my0:InstantMessaging",
+        "my0:instantMessagingName": "",
+        "my0:instantMessagingUsername": ""
+      });
       return ap;
     case UPDATE_IM:
-      let uap = { ...state};
+      let uap = {
+        ...state
+      };
       uap['my0:aboutPerson']['my0:hasInstantMessaging'][action.payload.id][action.payload.name] = action.payload.value;
       return uap;
     case REMOVE_IM:
-      let removedim = {...state}['my0:aboutPerson'];
-      let removedims = _.filter(removedim['my0:hasInstantMessaging'], function(item, index) { return index !== action.payload; });
+      let removedim = {
+        ...state
+      };
+      let removedims = _.filter(removedim['my0:hasInstantMessaging'], function (item, index) {
+        return index !== action.payload;
+      });
       removedim['my0:hasInstantMessaging'] = removedims;
-      return { ...state, "my0:aboutPerson": removedim };
+      return {
+        ...state, "my0:aboutPerson": removedim
+      };
     default:
       return state;
   }

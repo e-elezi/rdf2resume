@@ -65,26 +65,35 @@ class CourseView extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       //"my0:hasCertification" : hasCertification,
-      "my0:courseTitle" : courseTitle,
-      "my0:courseDescription" : courseDescription,
+      "my0:courseTitle": courseTitle,
+      "my0:courseDescription": courseDescription,
       // "my0:courseURL" : courseURL,
-      "my0:courseStartDate" : courseStartDate,
-      "my0:courseFinishDate" : courseFinishDate,
-      "my0:organizedBy" : organizedBy
+      "my0:courseStartDate": courseStartDate,
+      "my0:courseFinishDate": courseFinishDate,
+      "my0:organizedBy": organizedBy
     } = this.props.courseObj;
 
     let {
-      "my0:orgName" : orgName,
-      "my0:orgAddress" : orgAddress,
-      "my0:orgWebsite" : orgWebsite,
+      "my0:orgName": orgName,
+      "my0:orgAddress": orgAddress,
+      "my0:orgWebsite": orgWebsite,
     } = organizedBy;
 
     let {
-      "my0:city" : city,
-      "my0:country" : country
+      "my0:city": city,
+      "my0:country": country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
     } = orgAddress;
@@ -115,7 +124,7 @@ class CourseView extends Component {
               }}
             >
               <b>
-                {courseTitle}
+                {this.findTranslatedValue(courseTitle, lang)}
               </b>
             </Row>
             <Row
@@ -137,7 +146,7 @@ class CourseView extends Component {
                   {orgName}
                 </a>{" , "}
                 {` `}
-                {city} {` `}{" "}
+                {this.findTranslatedValue(city, lang)} {` `}{" "}
                 {this.renderLabel(this.props.countries, country, lang)}
               </b>
             </Row>
@@ -148,7 +157,7 @@ class CourseView extends Component {
                 display: "flex"
               }}
             >
-              {courseDescription}
+              {this.findTranslatedValue(courseDescription, lang)}
             </Row>
           </Col>
           <Col md={4}>
@@ -160,7 +169,7 @@ class CourseView extends Component {
               icon={faTrash}
               onClick={() => this.props.removeCourse(
                 this.props.id
-               )}
+              )}
             />
           </Col>
         </Row>

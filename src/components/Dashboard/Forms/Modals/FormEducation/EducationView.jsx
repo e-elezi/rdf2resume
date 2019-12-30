@@ -64,34 +64,43 @@ class EducationView extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
 
     let {
-      "my0:eduStartDate" : eduStartDate,
-      "my0:eduGradDate" : eduGradDate,
-      "my0:degreeType" : degreeType,
-      "my0:degree" : degree,
+      "my0:eduStartDate": eduStartDate,
+      "my0:eduGradDate": eduGradDate,
+      "my0:degreeType": degreeType,
+      "my0:degree": degree,
       // "my0:eduMinor" : eduMinor,
-      "my0:eduDescription" : eduDescription,
-      "my0:isEduCurrent" : isEduCurrent,
-      "my0:studiedIn" : studiedIn
+      "my0:eduDescription": eduDescription,
+      "my0:isEduCurrent": isEduCurrent,
+      "my0:studiedIn": studiedIn
     } = this.props.educationObj;
 
     let {
-      "my0:orgName" : orgName,
-      "my0:orgAddress" : orgAddress,
-      "my0:orgWebsite" : orgWebsite,
+      "my0:orgName": orgName,
+      "my0:orgAddress": orgAddress,
+      "my0:orgWebsite": orgWebsite,
     } = studiedIn;
 
     let {
-      "my0:city" : city,
-      "my0:country" : country
+      "my0:city": city,
+      "my0:country": country
       // "my0:street" : street,
       // "my0:postalCode" : postalCode,
     } = orgAddress;
 
     let current = now;
-    
+
     let lang = this.props.language;
 
 
@@ -119,7 +128,7 @@ class EducationView extends Component {
               }}
             >
               <b>
-            {degree} | {this.renderLabel(this.props.eduDegrees, degreeType, lang)}
+                {this.findTranslatedValue(degree, lang)} | {this.renderLabel(this.props.eduDegrees, degreeType, lang)}
               </b>
             </Row>
             <Row
@@ -141,7 +150,7 @@ class EducationView extends Component {
                   {orgName}
                 </a>{" , "}
                 {
-                  city
+                  this.findTranslatedValue(city, lang)
                 } {` `}{" "}
                 {this.renderLabel(this.props.countries, country, lang)}
               </b>
@@ -153,7 +162,7 @@ class EducationView extends Component {
                 display: "flex"
               }}
             >
-              {eduDescription}
+              {this.findTranslatedValue(eduDescription, lang)}
             </Row>
           </Col>
           <Col md={4}>
@@ -163,7 +172,7 @@ class EducationView extends Component {
             />
             <FontAwesomeIcon
               icon={faTrash}
-              onClick={() => this.props.removeEducation(this.props.id )}
+              onClick={() => this.props.removeEducation(this.props.id)}
             />
           </Col>
         </Row>

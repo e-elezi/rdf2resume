@@ -26,14 +26,74 @@ class PatentModal extends Component {
   state = {
     patent: {
       "@type": "my0:Patent",
-      "my0:patentTitle": "",
-      "my0:patentOffice": "",
+      "my0:patentTitle": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
+      "my0:patentOffice": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:patentNumber": "",
       "my0:patentInventor": "",
       "my0:patentURL": "",
       "my0:patentIssuedDate": "",
       "my0:patentStatus": "",
-      "my0:patentDescription": ""
+      "my0:patentDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -66,14 +126,74 @@ class PatentModal extends Component {
       this.setState({
         patent: {
           "@type": "my0:Patent",
-          "my0:patentTitle": "",
-          "my0:patentOffice": "",
+          "my0:patentTitle": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
+          "my0:patentOffice": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:patentNumber": "",
           "my0:patentInventor": "",
           "my0:patentURL": "",
           "my0:patentIssuedDate": "",
           "my0:patentStatus": "",
-          "my0:patentDescription": ""
+          "my0:patentDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -81,10 +201,34 @@ class PatentModal extends Component {
     }
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let obj = { ...this.state.patent };
     let label = e.target.id;
-    obj[label] = e.target.value;
+    if (lang) {
+      obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
       patent: obj
     });
@@ -223,8 +367,8 @@ class PatentModal extends Component {
                     " *"
                   }
                   type="text"
-                  value={patentTitle}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(patentTitle, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Col>
               <Col md={3} style={{ paddingRight: "0" }}>
@@ -260,8 +404,8 @@ class PatentModal extends Component {
                     " *"
                   }
                   type="text"
-                  value={patentOffice}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(patentOffice, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Col>
               <Col md={6} style={{ paddingRight: "0" }}>
@@ -327,8 +471,8 @@ class PatentModal extends Component {
                   "patentDescription",
                   lang
                 )}
-                value={patentDescription}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(patentDescription, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </div>
           </Row>

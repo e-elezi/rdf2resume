@@ -33,6 +33,15 @@ class PublicationView extends Component {
     });
   };
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:publicationTitle": publicationTitle,
@@ -42,6 +51,8 @@ class PublicationView extends Component {
       "my0:publicationURL": publicationURL,
       "my0:publicationDescription": publicationDescription
     } = this.props.publicationObject;
+
+    let lang = this.props.language;
 
     return (
       <React.Fragment>
@@ -71,7 +82,7 @@ class PublicationView extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {publicationTitle}
+                  {this.findTranslatedValue(publicationTitle, lang)}
                 </a>
               </b>
             </Row>
@@ -95,7 +106,7 @@ class PublicationView extends Component {
                 display: "flex"
               }}
             >
-              {publicationDescription}
+              {this.findTranslatedValue(publicationDescription, lang)}
             </Row>
             <Row
               style={{
@@ -132,7 +143,13 @@ class PublicationView extends Component {
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removePublication }
 )(PublicationView);

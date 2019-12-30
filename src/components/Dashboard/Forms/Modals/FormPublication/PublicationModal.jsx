@@ -19,12 +19,52 @@ class PublicationModal extends Component {
   state = {
     publication: {
       "@type": "my0:Publication",
-      "my0:publicationTitle": "",
+      "my0:publicationTitle": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:publicationPublisher": "",
       "my0:publicationDate": "",
       "my0:publicationAuthor": "",
       "my0:publicationURL": "",
-      "my0:publicationDescription": ""
+      "my0:publicationDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -56,12 +96,52 @@ class PublicationModal extends Component {
       this.setState({
         publication: {
           "@type": "my0:Publication",
-          "my0:publicationTitle": "",
+          "my0:publicationTitle": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:publicationPublisher": "",
           "my0:publicationDate": "",
           "my0:publicationAuthor": "",
           "my0:publicationURL": "",
-          "my0:publicationDescription": ""
+          "my0:publicationDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -69,10 +149,34 @@ class PublicationModal extends Component {
     }
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let obj = { ...this.state.publication };
     let label = e.target.id;
-    obj[label] = e.target.value;
+    if (lang) {
+      obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
       publication: obj
     });
@@ -198,8 +302,8 @@ class PublicationModal extends Component {
                     ) + " *"
                   }
                   type="text"
-                  value={publicationTitle}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(publicationTitle, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Col>
               <Col md={3} style={{ paddingRight: "0" }}>
@@ -267,8 +371,8 @@ class PublicationModal extends Component {
                   "publicationDescription",
                   lang
                 )}
-                value={publicationDescription}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(publicationDescription, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </div>
           </Row>

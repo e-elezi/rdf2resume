@@ -38,6 +38,15 @@ class SkillView extends Component {
     return;
   };
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:skillName": skillName,
@@ -45,6 +54,8 @@ class SkillView extends Component {
       //"my0:skillHasCertificate": skillHasCertificate,
       "my0:skillLevel": skillLevel
     } = this.props.skillObj;
+
+    let lang = this.props.language;
 
     return (
       <React.Fragment>
@@ -57,7 +68,7 @@ class SkillView extends Component {
           className="skill-cell"
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
-            {skillName}{" "}
+            {this.findTranslatedValue(skillName, lang)}{" "}
             <CustomLevelButton
               handleClick={this.handleLevelClick}
               filledNumber={skillLevel}
@@ -114,7 +125,13 @@ class SkillView extends Component {
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    language: state.utility.language,
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removeOtherSkill }
 )(SkillView);

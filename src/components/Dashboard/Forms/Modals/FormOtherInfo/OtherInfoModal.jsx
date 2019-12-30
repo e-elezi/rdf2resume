@@ -26,7 +26,27 @@ class OtherInfoModal extends Component {
     otherInfo: {
       "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
-      "my0:otherInfoDescription": ""
+      "my0:otherInfoDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -53,7 +73,27 @@ class OtherInfoModal extends Component {
     const hist = {
       "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
-      "my0:otherInfoDescription": ""
+      "my0:otherInfoDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     };
     if (!this.props.isUpdate) {
       this.setState({
@@ -70,10 +110,21 @@ class OtherInfoModal extends Component {
     this.setState({ otherInfo });
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  handleInputChange = (e, lang) => {
     let label = e.target.id;
     let otherInfo = { ...this.state.otherInfo };
-    otherInfo[label] = e.target.value;
+    otherInfo[label] = this.replaceLanguageValue(otherInfo[label], lang, e.target.value);
     this.setState({
       otherInfo
     });
@@ -140,6 +191,15 @@ class OtherInfoModal extends Component {
       return name;
     } else {
       return translated[index][lang];
+    }
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
     }
   }
 
@@ -217,8 +277,8 @@ class OtherInfoModal extends Component {
                   lang
                 ) + " *"
               }
-              value={otherInfoDescription}
-              handleChange={this.handleInputChange}
+              value={this.findTranslatedValue(otherInfoDescription, lang)}
+              handleChange={(e) => this.handleInputChange(e, lang)}
             />
           </div>
         </Modal.Body>

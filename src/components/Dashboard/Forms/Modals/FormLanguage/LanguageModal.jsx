@@ -25,7 +25,27 @@ class LanguageModal extends Component {
   state = {
     languageSkill: {
       "@type": "my0:LanguageSkill",
-      "my0:skillName": "",
+      "my0:skillName": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:languageSkillProficiency": ""
     }
   };
@@ -55,7 +75,27 @@ class LanguageModal extends Component {
       this.setState({
         languageSkill: {
           "@type": "my0:LanguageSkill",
-          "my0:skillName": "",
+          "my0:skillName": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:languageSkillProficiency": ""
         }
       });
@@ -64,10 +104,34 @@ class LanguageModal extends Component {
     }
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let label = e.target.id;
     let languageSkill = { ...this.state.languageSkill };
-    languageSkill[label] = e.target.value;
+    if (lang) {
+      languageSkill[label] = this.replaceLanguageValue(languageSkill[label], lang, e.target.value);
+    } else {
+      languageSkill[label] = e.target.value;
+    }
     this.setState({
       languageSkill
     });
@@ -195,8 +259,8 @@ class LanguageModal extends Component {
                     " *"
                   }
                   type="text"
-                  value={skillName}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(skillName, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Row>
               <Row

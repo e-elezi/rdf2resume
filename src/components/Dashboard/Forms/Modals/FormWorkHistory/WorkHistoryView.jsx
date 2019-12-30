@@ -69,6 +69,15 @@ class WorkHistoryReview extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:startDate": startDate,
@@ -121,7 +130,7 @@ class WorkHistoryReview extends Component {
               }}
             >
               <b>
-                {jobTitle} |{" "}
+                {this.findTranslatedValue(jobTitle, lang)} |{" "}
                 {this.renderLabel(this.props.jobmodes, jobMode, lang)}
               </b>
             </Row>
@@ -144,7 +153,7 @@ class WorkHistoryReview extends Component {
                   {orgName}
                 </a>
                 {" , "}
-                {city} {` `}{" "}
+                {this.findTranslatedValue(city, lang)} {` `}{" "}
                 {this.renderLabel(this.props.countries, country, lang)}
               </b>
             </Row>
@@ -155,7 +164,7 @@ class WorkHistoryReview extends Component {
                 display: "flex"
               }}
             >
-              {jobDescription}
+              {this.findTranslatedValue(jobDescription, lang)}
             </Row>
           </Col>
           <Col md={4}>

@@ -57,11 +57,22 @@ class LanguageView extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:skillName": skillName,
       "my0:languageSkillProficiency": languageSkillProficiency
     } = this.props.languageSkillObj;
+
+    let lang = this.props.language;
 
     return (
       <React.Fragment>
@@ -74,7 +85,7 @@ class LanguageView extends Component {
           }}
         >
           <Col md={8} style={{ paddingLeft: "0" }}>
-            <b>{skillName}</b> -{" "}
+            <b>{this.findTranslatedValue(skillName, lang)}</b> -{" "}
             {this.renderLabel(
               this.props.types,
               languageSkillProficiency,

@@ -34,16 +34,76 @@ class ReferenceModal extends Component {
         "my0:lastName": "",
         "my0:address": {
           "@type": "my0:Address",
-          "my0:city": "",
+          "my0:city": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:country": "",
-          "my0:street": "",
+          "my0:street": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:postalCode": ""
         },
         "my0:phoneNumber": "",
         "my0:email": "",
         "my0:currentJob": {
           "@type": "my0:WorkHistory",
-          "my0:jobTitle": "",
+          "my0:jobTitle": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:employedIn": {
             "@type": "my0:Company",
             "my0:organizationName": ""
@@ -86,16 +146,76 @@ class ReferenceModal extends Component {
             "my0:lastName": "",
             "my0:address": {
               "@type": "my0:Address",
-              "my0:city": "",
+              "my0:city": [{
+                "@value": "",
+                "@language": "en"
+              },
+              {
+                "@value": "",
+                "@language": "it"
+              },
+              {
+                "@value": "",
+                "@language": "fr"
+              },
+              {
+                "@value": "",
+                "@language": "de"
+              },
+              {
+                "@value": "",
+                "@language": "sq"
+              },
+              ],
               "my0:country": "",
-              "my0:street": "",
+              "my0:street": [{
+                "@value": "",
+                "@language": "en"
+              },
+              {
+                "@value": "",
+                "@language": "it"
+              },
+              {
+                "@value": "",
+                "@language": "fr"
+              },
+              {
+                "@value": "",
+                "@language": "de"
+              },
+              {
+                "@value": "",
+                "@language": "sq"
+              },
+              ],
               "my0:postalCode": ""
             },
             "my0:hasTelephoneNumber": "",
             "my0:email": "",
             "my0:currentJob": {
               "@type": "my0:WorkHistory",
-              "my0:jobTitle": "",
+              "my0:jobTitle": [{
+                "@value": "",
+                "@language": "en"
+              },
+              {
+                "@value": "",
+                "@language": "it"
+              },
+              {
+                "@value": "",
+                "@language": "fr"
+              },
+              {
+                "@value": "",
+                "@language": "de"
+              },
+              {
+                "@value": "",
+                "@language": "sq"
+              },
+              ],
               "my0:employedIn": {
                 "@type": "my0:Company",
                 "my0:organizationName": ""
@@ -129,20 +249,60 @@ class ReferenceModal extends Component {
     });
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let obj = { ...this.state.reference };
     let label = e.target.id;
     if (e.target.name === "person") {
-      obj["my0:referenceBy"][label] = e.target.value;
+      if (lang) {
+        obj["my0:referenceBy"][label] = this.replaceLanguageValue(obj["my0:referenceBy"][label], lang, e.target.value);
+      } else {
+        obj["my0:referenceBy"][label] = e.target.value;
+      }
     } else if (e.target.name === "address") {
-      obj["my0:referenceBy"]["my0:address"][label] = e.target.value;
+      if (lang) {
+        obj["my0:referenceBy"]["my0:address"][label] = this.replaceLanguageValue(obj["my0:referenceBy"]["my0:address"][label], lang, e.target.value);
+      } else {
+        obj["my0:referenceBy"]["my0:address"][label] = e.target.value;
+      }
     } else if (e.target.name === "workHistory") {
-      obj["my0:referenceBy"]["my0:currentJob"][label] = e.target.value;
+      if (lang) {
+        obj["my0:referenceBy"]["my0:currentJob"][label] = this.replaceLanguageValue(obj["my0:referenceBy"]["my0:currentJob"][label], lang, e.target.value);
+      } else {
+        obj["my0:referenceBy"]["my0:currentJob"][label] = e.target.value;
+      }
     } else if (e.target.name === "organization") {
-      obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label] =
-        e.target.value;
+      if (lang) {
+        obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label] = this.replaceLanguageValue(obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label], lang, e.target.value);
+      } else {
+        obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label] =
+          e.target.value;
+      }
     } else {
-      obj[label] = e.target.value;
+      if (lang) {
+        obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
+      } else {
+        obj[label] = e.target.value;
+      }
     }
     this.setState({
       reference: obj
@@ -165,10 +325,10 @@ class ReferenceModal extends Component {
       this.state.reference["my0:referenceBy"]["my0:firstName"] === "" ||
       this.state.reference["my0:referenceBy"]["my0:lastName"] === "" ||
       this.state.reference["my0:referenceBy"]["my0:currentJob"][
-        "my0:jobTitle"
+      "my0:jobTitle"
       ] === "" ||
       this.state.reference["my0:referenceBy"]["my0:currentJob"][
-        "my0:employedIn"
+      "my0:employedIn"
       ]["my0:organizationName"] === "";
     if (!this.props.isUpdate) {
       return (
@@ -327,8 +487,8 @@ class ReferenceModal extends Component {
                   this.renderLabel(translatedPropsWork, "jobTitle", lang) + " *"
                 }
                 type="text"
-                value={jobTitle}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(jobTitle, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </Col>
             <Col md={6}>
@@ -354,8 +514,8 @@ class ReferenceModal extends Component {
               name="address"
               label={this.renderLabel(translatedPropsAddr, "street", lang)}
               type="text"
-              value={address["my0:street"]}
-              handleChange={this.handleInputChange}
+              value={this.findTranslatedValue(address["my0:street"], lang)}
+              handleChange={(e) => this.handleInputChange(e, lang)}
             />
             <Row>
               <Col md={6}>
@@ -378,8 +538,8 @@ class ReferenceModal extends Component {
                   name="address"
                   label={this.renderLabel(translatedPropsAddr, "city", lang)}
                   type="text"
-                  value={address["my0:city"]}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(address["my0:city"], lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Col>
             </Row>

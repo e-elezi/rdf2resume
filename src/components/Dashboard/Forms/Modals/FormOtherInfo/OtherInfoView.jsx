@@ -58,6 +58,15 @@ class OtherInfoView extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let { otherInfoObject } = this.props;
     let lang = this.props.language;
@@ -105,7 +114,7 @@ class OtherInfoView extends Component {
               width: "80%"
             }}
           >
-            {otherInfoObject["my0:otherInfoDescription"]}
+            {this.findTranslatedValue(otherInfoObject["my0:otherInfoDescription"], lang)}
           </p>
         </Row>
         <OtherInfoModal

@@ -20,13 +20,94 @@ class ProjectModal extends Component {
   state = {
     project: {
       "@type": "my0:Project",
-      "my0:projectName": "",
+      "my0:projectName": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:projectIsCurrent": "",
       "my0:projectStartDate": "",
       "my0:projectEndDate": "",
-      "my0:projectCreator": "",
+      "my0:projectCreator": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
+      "my0:projectRole": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:projectURL": "",
-      "my0:projectDescription": ""
+      "my0:projectDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -44,6 +125,7 @@ class ProjectModal extends Component {
       project["my0:projectStartDate"] = inputRef["my0:projectStartDate"];
       project["my0:projectEndDate"] = inputRef["my0:projectEndDate"];
       project["my0:projectCreator"] = inputRef["my0:projectCreator"];
+      project["my0:projectRole"] = inputRef["my0:projectRole"];
       project["my0:projectURL"] = inputRef["my0:projectURL"];
       project["my0:projectDescription"] = inputRef["my0:projectDescription"];
       this.setState({
@@ -57,13 +139,94 @@ class ProjectModal extends Component {
       this.setState({
         project: {
           "@type": "my0:Project",
-          "my0:projectName": "",
+          "my0:projectName": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:projectIsCurrent": "",
           "my0:projectStartDate": "",
           "my0:projectEndDate": "",
-          "my0:projectCreator": "",
+          "my0:projectCreator": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
+          "my0:projectRole": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:projectURL": "",
-          "my0:projectDescription": ""
+          "my0:projectDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -71,10 +234,34 @@ class ProjectModal extends Component {
     }
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let obj = { ...this.state.project };
     let label = e.target.id;
-    obj[label] = e.target.value;
+    if (lang) {
+      obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
+    } else {
+      obj[label] = e.target.value;
+    }
     this.setState({
       project: obj
     });
@@ -156,6 +343,7 @@ class ProjectModal extends Component {
       "my0:projectStartDate": projectStartDate,
       "my0:projectEndDate": projectEndDate,
       "my0:projectCreator": projectCreator,
+      "my0:projectRole": projectRole,
       "my0:projectURL": projectURL,
       "my0:projectDescription": projectDescription
     } = this.state.project;
@@ -206,8 +394,8 @@ class ProjectModal extends Component {
                     " *"
                   }
                   type="text"
-                  value={projectName}
-                  handleChange={this.handleInputChange}
+                  value={this.findTranslatedValue(projectName, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Col>
               <Col md={3} style={{ paddingRight: "0" }}>
@@ -264,6 +452,20 @@ class ProjectModal extends Component {
             </Row>
             <div style={{ width: "100%", marginTop: "10px" }}>
               <CustomInput
+                id="my0:projectRole"
+                name="project"
+                label={this.renderLabel(
+                  translatedProps,
+                  "projectRole",
+                  lang
+                )}
+                type="text"
+                value={this.findTranslatedValue(projectRole, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
+              />
+            </div>
+            <div style={{ width: "100%", marginTop: "10px" }}>
+              <CustomInput
                 id="my0:projectCreator"
                 name="project"
                 label={this.renderLabel(
@@ -272,8 +474,8 @@ class ProjectModal extends Component {
                   lang
                 )}
                 type="text"
-                value={projectCreator}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(projectCreator, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
@@ -295,8 +497,8 @@ class ProjectModal extends Component {
                   "projectDescription",
                   lang
                 )}
-                value={projectDescription}
-                handleChange={this.handleInputChange}
+                value={this.findTranslatedValue(projectDescription, lang)}
+                handleChange={(e) => this.handleInputChange(e, lang)}
               />
             </div>
           </Row>

@@ -62,6 +62,15 @@ class PatentView extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:patentTitle": patentTitle,
@@ -107,7 +116,7 @@ class PatentView extends Component {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  {patentTitle}
+                  {this.findTranslatedValue(patentTitle, lang)}
                 </a>
               </b>{" "}
               - {patentNumber}
@@ -122,7 +131,7 @@ class PatentView extends Component {
               <b>
                 <FontAwesomeIcon icon={faBookOpen} />
                 {` `}
-                {patentOffice}{" "}
+                {this.findTranslatedValue(patentOffice, lang)}{" "}
               </b>
             </Row>
             <Row
@@ -132,7 +141,7 @@ class PatentView extends Component {
                 display: "flex"
               }}
             >
-              {patentDescription}
+              {this.findTranslatedValue(patentDescription, lang)}
             </Row>
             <Row
               style={{

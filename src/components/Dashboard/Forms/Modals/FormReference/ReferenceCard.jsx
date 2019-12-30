@@ -68,6 +68,15 @@ class ReferenceCard extends Component {
     }
   }
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
       "my0:title": title,
@@ -110,13 +119,13 @@ class ReferenceCard extends Component {
             {lastName}
           </Card.Title>
           <Card.Text>
-            {jobTitle} | {currentJob["my0:employedIn"]["my0:organizationName"]}
+            {this.findTranslatedValue(jobTitle, lang)} | {currentJob["my0:employedIn"]["my0:organizationName"]}
           </Card.Text>
           <Card.Text>
-            <p>{street}</p>
+            <p>{this.findTranslatedValue(street, lang)}</p>
             <p>
               {" "}
-              {postalCode} {" "} {city}{" "}
+              {postalCode} {" "} {this.findTranslatedValue(city, lang)}{" "}
             </p>
             <p>{this.renderLabel(this.props.countries, country, lang)}</p>
           </Card.Text>

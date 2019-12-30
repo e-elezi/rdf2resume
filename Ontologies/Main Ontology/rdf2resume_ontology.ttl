@@ -478,6 +478,17 @@ my0:projectEndDate
   rdfs:domain my0:Project ;
   rdfs:range xsd:date .
 
+my0:projectName
+  a owl:DatatypeProperty ;
+  rdfs:label "Project Role"@en,
+  "Projekt Rolle"@de,
+  "Roli në Projekt"@sq,
+  "Rôle du projet"@fr,
+  "Ruolo del progetto"@it ;
+  rdfs:comment "Indicates the role in the project"@en ;
+  rdfs:domain my0:Project ;
+  rdfs:range xsd:string .
+
 my0:projectCreator
   a owl:DatatypeProperty ;
   rdfs:label "Creator"@en,

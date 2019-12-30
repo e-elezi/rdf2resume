@@ -31,8 +31,48 @@ class SkillModal extends Component {
   state = {
     otherSkill: {
       "@type": "my0:Skill",
-      "my0:skillName": "",
-      "my0:skillDescription": "",
+      "my0:skillName": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
+      "my0:skillDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:skillCategory": "",
       "my0:skillLevel": "",
       "my0:skillHasCertificate": true
@@ -67,8 +107,48 @@ class SkillModal extends Component {
       this.setState({
         otherSkill: {
           "@type": "my0:Skill",
-          "my0:skillName": "",
-          "my0:skillDescription": "",
+          "my0:skillName": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
+          "my0:skillDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ],
           "my0:skillCategory": "",
           "my0:skillLevel": "",
           "my0:skillHasCertificate": true
@@ -87,10 +167,34 @@ class SkillModal extends Component {
     });
   };
 
-  handleInputChange = e => {
+  replaceLanguageValue(data, language, value) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === language) {
+        data[i]["@value"] = value;
+        break;
+      }
+    }
+    return data;
+  }
+
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
+  handleInputChange = (e, lang) => {
     let label = e.target.id;
     let otherSkill = { ...this.state.otherSkill };
-    otherSkill[label] = e.target.value;
+    if (lang) {
+      otherSkill[label] = this.replaceLanguageValue(otherSkill[label], lang, e.target.value);
+    } else {
+      otherSkill[label] = e.target.value;
+    }
     this.setState({
       otherSkill
     });
@@ -184,8 +288,8 @@ class SkillModal extends Component {
     this.props.fetchSkillSuggestion(value, language);
     let obj = { ...this.state.otherSkill };
     let label = id;
-    //console.log(value);
-    obj[label] = value["title"];
+    obj[label] = this.replaceLanguageValue(obj[label], language, value["title"]);
+    // obj[label] = value["title"];
     this.setState({
       otherSkill: obj
     });
@@ -247,7 +351,7 @@ class SkillModal extends Component {
                 data={this.props.skillSuggestions}
                 textField="title"
                 valueField="title"
-                value={skillName}
+                value={this.findTranslatedValue(skillName, lang)}
                 caseSensitive={false}
                 onChange={value =>
                   this.handleSkillSuggestion(value, "my0:skillName", lang)
@@ -297,8 +401,8 @@ class SkillModal extends Component {
           <CustomTextarea
             id="my0:skillDescription"
             label={this.renderLabel(translatedProps, "skillDescription", lang)}
-            value={skillDescription}
-            handleChange={this.handleInputChange}
+            value={this.findTranslatedValue(skillDescription, lang)}
+            handleChange={(e) => this.handleInputChange(e, lang)}
           />
           <CustomCheckbox
             id="my0:skillHasCertificate"

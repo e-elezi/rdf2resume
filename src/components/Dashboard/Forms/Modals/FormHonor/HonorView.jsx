@@ -32,13 +32,24 @@ class HonorView extends Component {
     });
   };
 
+  findTranslatedValue(data, lang) {
+    let length = data.length;
+    for (let i = 0; i < length; i++) {
+      if (data[i]["@language"] === lang) {
+        return data[i]["@value"];
+      }
+    }
+  }
+
   render() {
     let {
-      "my0:honortitle" : honortitle,
-      "my0:honorIssuedDate" : honorIssuedDate,
-      "my0:honorIssuer" : honorIssuer,
-      "my0:honorDescription" : honorDescription
+      "my0:honortitle": honortitle,
+      "my0:honorIssuedDate": honorIssuedDate,
+      "my0:honorIssuer": honorIssuer,
+      "my0:honorDescription": honorDescription
     } = this.props.honorObj;
+
+    let lang = this.props.language;
 
     return (
       <React.Fragment>
@@ -64,7 +75,7 @@ class HonorView extends Component {
               }}
             >
               <b>
-                {honortitle}
+                {this.findTranslatedValue(honortitle, lang)}
               </b>
             </Row>
             <Row
@@ -77,7 +88,7 @@ class HonorView extends Component {
               <b>
                 <FontAwesomeIcon icon={faBookOpen} /> {` `}
                 {` `}
-                  {honorIssuer}
+                {this.findTranslatedValue(honorIssuer, lang)}
               </b>
             </Row>
             <Row
@@ -87,7 +98,7 @@ class HonorView extends Component {
                 display: "flex"
               }}
             >
-              {honorDescription}
+              {this.findTranslatedValue(honorDescription, lang)}
             </Row>
           </Col>
           <Col md={4}>
@@ -99,7 +110,7 @@ class HonorView extends Component {
               icon={faTrash}
               onClick={() => this.props.removeHonor(
                 this.props.id
-               )}
+              )}
             />
           </Col>
         </Row>
@@ -115,7 +126,13 @@ class HonorView extends Component {
   }
 }
 
+const mapstateToProps = (state, ownProps) => {
+  return {
+    language: state.utility.language
+  };
+};
+
 export default connect(
-  null,
+  mapstateToProps,
   { removeHonor }
 )(HonorView);
