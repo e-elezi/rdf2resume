@@ -406,6 +406,7 @@ export default (state = INITIAL_STATE, action) => {
       let removedotherinfo = {
         ...state
       };
+      removedotherinfo = removedotherinfo["my0:hasOtherInfo"];
       let removedotherinfos = _.filter(removedotherinfo, function (item, index) {
         return index !== action.payload;
       });
@@ -428,6 +429,7 @@ export default (state = INITIAL_STATE, action) => {
       let removepub = {
         ...state
       };
+      removepub = removepub["my0:hasPublication"];
       let removedpubss = _.filter(removepub, function (item, index) {
         return index !== action.payload;
       });
@@ -450,6 +452,7 @@ export default (state = INITIAL_STATE, action) => {
       let removepat = {
         ...state
       };
+      removepat = removepat["my0:hasPatent"];
       let removedpatss = _.filter(removepat, function (item, index) {
         return index !== action.payload;
       });
@@ -472,6 +475,7 @@ export default (state = INITIAL_STATE, action) => {
       let removepros = {
         ...state
       };
+      removepros = removepros["my0:hasProject"];
       let removeprosss = _.filter(removepros, function (item, index) {
         return index !== action.payload;
       });
@@ -494,6 +498,7 @@ export default (state = INITIAL_STATE, action) => {
       let removehons = {
         ...state
       };
+      removehons = removehons["my0:hasHonorAward"];
       let removehonss = _.filter(removehons, function (item, index) {
         return index !== action.payload;
       });
@@ -516,6 +521,7 @@ export default (state = INITIAL_STATE, action) => {
       let removereference = {
         ...state
       };
+      removereference = removereference["my0:hasReference"];
       let removereferences = _.filter(removereference, function (item, index) {
         return index !== action.payload;
       });
@@ -538,6 +544,7 @@ export default (state = INITIAL_STATE, action) => {
       let removeworkhistory = {
         ...state
       };
+      removeworkhistory = removeworkhistory["my0:hasWorkHistory"];
       let removeworkhistorys = _.filter(removeworkhistory, function (item, index) {
         return index !== action.payload;
       });
@@ -560,6 +567,7 @@ export default (state = INITIAL_STATE, action) => {
       let removeeducation = {
         ...state
       };
+      removeeducation = removeeducation["my0:hasEducation"];
       let removeeducations = _.filter(removeeducation, function (item, index) {
         return index !== action.payload;
       });
@@ -582,6 +590,7 @@ export default (state = INITIAL_STATE, action) => {
       let removecourses = {
         ...state
       };
+      removecourses = removecourses["my0:hasCourse"];
       let removecoursess = _.filter(removecourses, function (item, index) {
         return index !== action.payload;
       });
@@ -604,6 +613,7 @@ export default (state = INITIAL_STATE, action) => {
       let removedskills = {
         ...state
       };
+      removedskills = removedskills["my0:hasSkill"];
       let removedskillss = _.filter(removedskills, function (item, index) {
         return index !== action.payload;
       });
@@ -686,6 +696,7 @@ export default (state = INITIAL_STATE, action) => {
       let removedimsdd = {
         ...state
       };
+      removedimsdd = removedimsdd["my0:aboutPerson"];
       let removedimss = _.filter(removedimsdd['my0:hasWebsite'], function (item, index) {
         return index !== action.payload;
       });
@@ -713,6 +724,7 @@ export default (state = INITIAL_STATE, action) => {
       let removedim = {
         ...state
       };
+      removedim = removedim["my0:aboutPerson"];
       let removedims = _.filter(removedim['my0:hasInstantMessaging'], function (item, index) {
         return index !== action.payload;
       });
