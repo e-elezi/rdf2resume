@@ -6,6 +6,7 @@ import { faEdit, faUser, faTrash, faBookOpen } from "@fortawesome/free-solid-svg
 import { removeProject } from "../../../../../actions";
 import ProjectModal from "./ProjectModal";
 import { now } from '../../../../../translations/translations';
+import { renderPartialDate } from "../../../../../utilities/utilityFunctions";
 
 class ProjectView extends Component {
   state = {
@@ -66,8 +67,8 @@ class ProjectView extends Component {
         >
           <Col md={2}>
             <p>
-              {projectStartDate} -{" "}
-              {projectIsCurrent ? current[lang] : projectEndDate}
+              {renderPartialDate(projectStartDate)} -{" "}
+              {projectIsCurrent ? current[lang] : renderPartialDate(projectEndDate)}
             </p>
           </Col>
           <Col md={6}>

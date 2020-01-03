@@ -4,7 +4,7 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import CustomInput from "../../../../core/CustomInput";
-import { createProject, updateProject } from "../../../../../actions";
+import { createProject, updateProject, updateCVLastUpdate } from "../../../../../actions";
 import { fetchMainPropertiess } from "../../../../../actions/utilityActions";
 import { retrieveMainProperties } from "../../../../../utilities/utilityQueries";
 import {
@@ -277,6 +277,7 @@ class ProjectModal extends Component {
 
   handleSave = () => {
     this.props.createProject(this.state.project);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = () => {
@@ -284,6 +285,7 @@ class ProjectModal extends Component {
       object: this.state.project,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -527,5 +529,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createProject, updateProject, fetchMainPropertiess }
+  { createProject, updateCVLastUpdate, updateProject, fetchMainPropertiess }
 )(ProjectModal);

@@ -17,7 +17,8 @@ import {
   removeIM,
   createWebsite,
   updateWebsite,
-  removeWebsite
+  removeWebsite,
+  updateCVLastUpdate
 } from "../../../actions";
 import {
   fetchCountries,
@@ -69,6 +70,7 @@ class FormPersonal extends Component {
       value: e.target.value,
       secondLevel
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleInputChangeWithLanguage = (e, lang, secondLevel) => {
@@ -78,6 +80,7 @@ class FormPersonal extends Component {
       value: e.target.value,
       secondLevel
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleSelectChange = (name, value, secondLevel) => {
@@ -86,6 +89,7 @@ class FormPersonal extends Component {
       value: value["@type"],
       secondLevel
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleMultiSelectChange = (name, value, lang) => {
@@ -108,14 +112,17 @@ class FormPersonal extends Component {
       myarr.push(value[i]["@type"]);
     }
     this.props.updateAboutPerson({ id: name, value: myarr });
+    this.props.updateCVLastUpdate();
   };
 
   handleRadioChange = e => {
     this.props.updateAboutPerson({ id: e.target.name, value: e.target.id });
+    this.props.updateCVLastUpdate();
   };
 
   addWebsite = id => {
     this.props.createWebsite();
+    this.props.updateCVLastUpdate();
   };
 
   updateWebsite = (name, value, index) => {
@@ -128,14 +135,17 @@ class FormPersonal extends Component {
     } else {
       this.props.updateWebsite({ id: index, name: name, value: value });
     }
+    this.props.updateCVLastUpdate();
   };
 
   removeWebsite = index => {
     this.props.removeWebsite(index);
+    this.props.updateCVLastUpdate();
   };
 
   addInstantMessaging = id => {
     this.props.createIM();
+    this.props.updateCVLastUpdate();
   };
 
   updateInstantMessaging = (name, value, index) => {
@@ -144,10 +154,12 @@ class FormPersonal extends Component {
     } else {
       this.props.updateIM({ id: index, name: name, value: value });
     }
+    this.props.updateCVLastUpdate();
   };
 
   removeInstantMessaging = index => {
     this.props.removeIM(index);
+    this.props.updateCVLastUpdate();
   };
 
   handleAddPhotoClick = () => {
@@ -169,6 +181,7 @@ class FormPersonal extends Component {
           id: "photo",
           value: resp.data
         });
+        this.props.updateCVLastUpdate();
       })
       .catch(error => {
         console.log(error);
@@ -700,6 +713,7 @@ export default connect(
     updateError,
     createWebsite,
     updateWebsite,
-    removeWebsite
+    removeWebsite,
+    updateCVLastUpdate
   }
 )(FormPersonal);

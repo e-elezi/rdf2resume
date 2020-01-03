@@ -18,6 +18,7 @@ import {
 } from "../../../../../actions/utilityActions";
 import WorkHistoryModal from "./WorkHistoryModal";
 import { now } from "../../../../../translations/translations";
+import { renderPartialDate } from "../../../../../utilities/utilityFunctions";
 
 class WorkHistoryReview extends Component {
   state = {
@@ -118,7 +119,7 @@ class WorkHistoryReview extends Component {
         >
           <Col md={2}>
             <p>
-              {startDate} -{isCurrent ? current[lang] : endDate}
+              {renderPartialDate(startDate)} -{isCurrent ? current[lang] : renderPartialDate(endDate)}
             </p>
           </Col>
           <Col md={6}>

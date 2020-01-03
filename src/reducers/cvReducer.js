@@ -50,7 +50,8 @@ import {
   UPDATE_ABOUT_PERSON,
   UPDATE_TARGET,
   UPDATE_SKILLS,
-  UPDATE_CV
+  UPDATE_CV,
+  UPDATE_CV_LAST_UPDATE
 } from "../actions/types";
 
 // export function generateUUID() { // Public Domain/MIT
@@ -632,6 +633,14 @@ export default (state = INITIAL_STATE, action) => {
         aboutcv["my0:" + action.payload.id] = action.payload.value;
       }
       return aboutcv;
+    case UPDATE_CV_LAST_UPDATE:
+      let aboutcvUpd = {
+        ...state
+      };
+      let today = new Date();
+      let currdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      aboutcvUpd["my0:cvLastUpdate"] = currdate;
+      return aboutcvUpd;
     case UPDATE_ABOUT_PERSON:
       let aboutperson = {
         ...state

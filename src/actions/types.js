@@ -5,7 +5,8 @@ export const FETCH_CV = "FETCH_CV";
 
 /* Form level action creators */
 export const FETCH_ABOUT_CV ='FETCH_ABOUT_CV';
-export const UPDATE_ABOUT_CV ='UPDATE_ABOUT_CV'
+export const UPDATE_ABOUT_CV ='UPDATE_ABOUT_CV';
+export const UPDATE_CV_LAST_UPDATE ='UPDATE_CV_LAST_UPDATE'
 
 export const FETCH_ABOUT_PERSON ='FETCH_ABOUT_PERSON';
 export const UPDATE_ABOUT_PERSON ='UPDATE_ABOUT_PERSON';

@@ -15,6 +15,7 @@ import {
 import {
   retrieveCountryValues
 } from "../../../../../utilities/utilityQueries";
+import { renderPartialDate } from "../../../../../utilities/utilityFunctions";
 
 class CourseView extends Component {
   state = {
@@ -112,7 +113,7 @@ class CourseView extends Component {
         >
           <Col md={2}>
             <p>
-              {courseStartDate} - {courseFinishDate}
+              {renderPartialDate(courseStartDate)} - {renderPartialDate(courseFinishDate)}
             </p>
           </Col>
           <Col md={6}>

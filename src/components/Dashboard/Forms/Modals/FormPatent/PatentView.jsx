@@ -12,6 +12,7 @@ import { removePatent } from "../../../../../actions";
 import PatentModal from "./PatentModal";
 import { fetchAllPatentStatusess } from "../../../../../actions/utilityActions";
 import { retrieveBaseProperties } from "../../../../../utilities/utilityQueries";
+import { renderPartialDate } from "../../../../../utilities/utilityFunctions";
 
 class PatentView extends Component {
   state = {
@@ -96,7 +97,7 @@ class PatentView extends Component {
           }}
         >
           <Col md={2}>
-            <p style={{ marginBottom: "10px" }}>{patentIssuedDate}</p>
+            <p style={{ marginBottom: "10px" }}>{renderPartialDate(patentIssuedDate)}</p>
             <p>
               <u>{this.renderLabel(this.props.statuses, patentStatus, lang)}</u>
             </p>

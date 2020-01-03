@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
-import { createPublication, updatePublication } from "../../../../../actions";
+import { createPublication, updatePublication, updateCVLastUpdate } from "../../../../../actions";
 import { fetchMainPropertiess } from "../../../../../actions/utilityActions";
 import { retrieveMainProperties } from "../../../../../utilities/utilityQueries";
 import {
@@ -184,6 +184,7 @@ class PublicationModal extends Component {
 
   handleSave = () => {
     this.props.createPublication(this.state.publication);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = () => {
@@ -191,6 +192,7 @@ class PublicationModal extends Component {
       object: this.state.publication,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -401,5 +403,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createPublication, updatePublication, fetchMainPropertiess }
+  { createPublication, updateCVLastUpdate, updatePublication, fetchMainPropertiess }
 )(PublicationModal);

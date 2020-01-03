@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomInput from "../../../../core/CustomInput";
-import { createReference, updateReference } from "../../../../../actions";
+import { createReference, updateReference, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchCountries,
   fetchTitleProperties,
@@ -311,6 +311,7 @@ class ReferenceModal extends Component {
 
   handleSave = () => {
     this.props.createReference(this.state.reference);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = () => {
@@ -318,6 +319,7 @@ class ReferenceModal extends Component {
       object: this.state.reference,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleRenderingSubmitButton = lang => {
@@ -629,6 +631,7 @@ export default connect(
     fetchCountries,
     fetchTitleProperties,
     updateReference,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(ReferenceModal);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
-import { createOtherSkill, updateOtherSkill } from "../../../../../actions";
+import { createOtherSkill, updateOtherSkill, updateCVLastUpdate } from "../../../../../actions";
 import CustomInput from "../../../../core/CustomInput";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
@@ -149,6 +149,7 @@ class LanguageModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherSkill(this.state.languageSkill);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = e => {
@@ -156,6 +157,7 @@ class LanguageModal extends Component {
       object: this.state.languageSkill,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -335,6 +337,7 @@ export default connect(
     createOtherSkill,
     updateOtherSkill,
     fetchLanguageSkillSelfAssessmentProperties,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(LanguageModal);

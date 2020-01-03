@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
-import { createOtherInfo, updateOtherInfo } from "../../../../../actions";
+import { createOtherInfo, updateOtherInfo, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchOtherCVInfoTypes,
   fetchMainPropertiess
@@ -133,6 +133,7 @@ class OtherInfoModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createOtherInfo(this.state.otherInfo);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = e => {
@@ -140,6 +141,7 @@ class OtherInfoModal extends Component {
       object: this.state.otherInfo,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleRenderingSubmitButton = lang => {
@@ -311,6 +313,7 @@ export default connect(
     createOtherInfo,
     fetchOtherCVInfoTypes,
     updateOtherInfo,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(OtherInfoModal);

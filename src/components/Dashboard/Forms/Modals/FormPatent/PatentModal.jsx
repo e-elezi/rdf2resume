@@ -4,7 +4,7 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomRadioGroup from "../../../../core/CustomRadioGroup";
 import CustomInput from "../../../../core/CustomInput";
-import { createPatent, updatePatent } from "../../../../../actions";
+import { createPatent, updatePatent, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchMainPropertiess,
   fetchAllPatentStatusess
@@ -236,6 +236,7 @@ class PatentModal extends Component {
 
   handleSave = () => {
     this.props.createPatent(this.state.patent);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = () => {
@@ -243,6 +244,7 @@ class PatentModal extends Component {
       object: this.state.patent,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -502,5 +504,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createPatent, updatePatent, fetchMainPropertiess, fetchAllPatentStatusess }
+  { createPatent, updateCVLastUpdate, updatePatent, fetchMainPropertiess, fetchAllPatentStatusess }
 )(PatentModal);

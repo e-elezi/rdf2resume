@@ -55,8 +55,15 @@ import {
   UPDATE_ABOUT_PERSON,
   UPDATE_TARGET,
   UPDATE_SKILLS,
-  UPDATE_CV
+  UPDATE_CV,
+  UPDATE_CV_LAST_UPDATE
 } from "./types";
+
+export const updateCVLastUpdate = () => {
+  return {
+    type: UPDATE_CV_LAST_UPDATE
+  };
+};
 
 export const createOtherInfo = formValues => {
   return {

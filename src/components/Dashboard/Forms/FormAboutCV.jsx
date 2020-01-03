@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import CustomTextarea from "../../core/CustomTextarea";
 import CustomInput from "../../core/CustomInput";
 import CustomCheckbox from "../../core/CustomCheckbox";
-import { updateAboutCV } from "../../../actions";
+import { updateAboutCV, updateCVLastUpdate } from "../../../actions";
 import { fetchMainPropertiess } from "../../../actions/utilityActions";
 import { retrieveMainProperties } from "../../../utilities/utilityQueries";
 import { now, topBar } from "../../../translations/translations";
+import { renderFullDate } from '../../../utilities/utilityFunctions';
 
 class FormAboutCV extends Component {
   state = {};
@@ -17,10 +18,12 @@ class FormAboutCV extends Component {
 
   handleInputChange = (e, lang) => {
     this.props.updateAboutCV({ id: e.target.id, value: e.target.value, language: lang });
+    this.props.updateCVLastUpdate();
   };
 
   handleCheckboxChange = e => {
     this.props.updateAboutCV({ id: e.target.id, value: e.target.checked });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -113,7 +116,7 @@ class FormAboutCV extends Component {
               <p>{this.renderLabel(translatedProps, "cvLastUpdate", lang)}</p>
             </div>
             <div className="col col-sm-3 muted-text">
-              <p>{cvLastUpdate ? cvLastUpdate : now[lang]}</p>
+              <p>{cvLastUpdate ? renderFullDate(cvLastUpdate) : now[lang]}</p>
             </div>
           </div>
         </div>
@@ -135,6 +138,7 @@ export default connect(
   mapstateToProps,
   {
     updateAboutCV,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(FormAboutCV);

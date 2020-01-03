@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
-import { createWorkHistory, updateWorkHistory } from "../../../../../actions";
+import { createWorkHistory, updateWorkHistory, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchCVJobModes,
   fetchCVCareerLevels,
@@ -430,6 +430,7 @@ class WorkHistoryModal extends Component {
   handleSave = e => {
     e.preventDefault();
     this.props.createWorkHistory(this.state.workHistory);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = e => {
@@ -438,6 +439,7 @@ class WorkHistoryModal extends Component {
       object: this.state.workHistory,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleRenderingSubmitButton = lang => {
@@ -894,6 +896,7 @@ export default connect(
     fetchCountries,
     fetchCompanySizes,
     fetchAllIndustryTypess,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(WorkHistoryModal);

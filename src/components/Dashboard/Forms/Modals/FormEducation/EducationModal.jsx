@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
-import { createEducation, updateEducation } from "../../../../../actions";
+import { createEducation, updateEducation, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchCountries,
   fetchCompanySizes,
@@ -420,6 +420,7 @@ class EducationModal extends Component {
 
   handleSave = () => {
     this.props.createEducation(this.state.education);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = () => {
@@ -427,6 +428,7 @@ class EducationModal extends Component {
       object: this.state.education,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -796,6 +798,7 @@ export default connect(
     fetchCompanySizes,
     fetchEduDegrees,
     updateEducation,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(EducationModal);

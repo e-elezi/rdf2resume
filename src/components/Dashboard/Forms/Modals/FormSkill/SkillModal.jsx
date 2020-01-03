@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
-import { createOtherSkill, updateOtherSkill } from "../../../../../actions";
+import { createOtherSkill, updateOtherSkill, updateCVLastUpdate } from "../../../../../actions";
 // import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import {
@@ -213,6 +213,7 @@ class SkillModal extends Component {
     e.preventDefault();
     //console.log(this.state.otherSkill);
     this.props.createOtherSkill(this.state.otherSkill);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = e => {
@@ -220,6 +221,7 @@ class SkillModal extends Component {
       object: this.state.otherSkill,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   handleRenderingSubmitButton = lang => {
@@ -447,6 +449,7 @@ export default connect(
     fetchSkillSuggestion,
     createOtherSkill,
     updateOtherSkill,
-    fetchMainPropertiess
+    fetchMainPropertiess,
+    updateCVLastUpdate
   }
 )(SkillModal);

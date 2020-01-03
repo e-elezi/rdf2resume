@@ -82,7 +82,7 @@ class FormSubmit extends Component {
     return error;
   };
 
-  handleFormSubmit = async e => {
+  handleFormSubmit = async (e) => {
     e.preventDefault();
     if (this.checkError(this.props.cvData)) {
       let lang = this.props.language;
@@ -95,6 +95,7 @@ class FormSubmit extends Component {
         confirmButtonText: "Okay"
       });
     } else {
+      console.log(this.props.cvData);
       axios
         .post("/submit_form", this.props.cvData)
         .then(resp => {

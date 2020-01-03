@@ -35,6 +35,23 @@ export function getDataArrayOfType(data, type) {
   return myarr;
 }
 
+export function renderPartialDate(dateString) {
+  var pattern = /(\d{4})-(\d{2})-(\d{2})/;
+  var dt = new Date(dateString.replace(pattern, '$1-$2-$3'));
+  var m = dt.getMonth() + 1; //Month from 0 to 11
+  var y = dt.getFullYear();
+  return m + '/' + y;
+}
+
+export function renderFullDate(dateString) {
+  var pattern = /(\d{4})-(\d{2})-(\d{2})/;
+  var dt = new Date(dateString.replace(pattern, '$1-$2-$3'));
+  var d = dt.getDate();
+  var m = dt.getMonth() + 1; //Month from 0 to 11
+  var y = dt.getFullYear();
+  return d + '/' + m + '/' + y;
+}
+
 function replaceEmptyProperties(data) {
   let hasCourse = false;
   let hasEducation = false;

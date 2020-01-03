@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
-import { createHonor, updateHonor } from "../../../../../actions";
+import { createHonor, updateHonor, updateCVLastUpdate } from "../../../../../actions";
 import { fetchMainPropertiess } from "../../../../../actions/utilityActions";
 import { retrieveMainProperties } from "../../../../../utilities/utilityQueries";
 import {
@@ -216,6 +216,7 @@ class HonorModal extends Component {
 
   handleSave = () => {
     this.props.createHonor(this.state.honor);
+    this.props.updateCVLastUpdate();
   };
 
   handleUpdate = () => {
@@ -223,6 +224,7 @@ class HonorModal extends Component {
       object: this.state.honor,
       index: this.props.id
     });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -396,5 +398,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createHonor, updateHonor, fetchMainPropertiess }
+  { createHonor, updateHonor, fetchMainPropertiess, updateCVLastUpdate }
 )(HonorModal);

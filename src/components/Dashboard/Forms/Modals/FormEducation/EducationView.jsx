@@ -18,6 +18,7 @@ import {
   retrieveBaseProperties
 } from "../../../../../utilities/utilityQueries";
 import { now } from '../../../../../translations/translations';
+import { renderPartialDate } from "../../../../../utilities/utilityFunctions";
 
 class EducationView extends Component {
   state = {
@@ -116,7 +117,7 @@ class EducationView extends Component {
         >
           <Col md={2}>
             <p>
-              {eduStartDate} - {isEduCurrent ? current[lang] : eduGradDate}
+              {renderPartialDate(eduStartDate)} - {isEduCurrent ? current[lang] : renderPartialDate(eduGradDate)}
             </p>
           </Col>
           <Col md={6}>

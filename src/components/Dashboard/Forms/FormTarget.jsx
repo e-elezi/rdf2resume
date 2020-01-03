@@ -5,7 +5,7 @@ import CustomTextarea from "../../core/CustomTextarea";
 import CustomCheckbox from "../../core/CustomCheckbox";
 import { Combobox, Multiselect } from "react-widgets";
 import { connect } from "react-redux";
-import { updateTarget } from "../../../actions";
+import { updateTarget, updateCVLastUpdate } from "../../../actions";
 import {
   fetchCVJobModes,
   fetchCVCareerLevels,
@@ -40,18 +40,22 @@ class FormTarget extends Component {
 
   handleInputChange = e => {
     this.props.updateTarget({ id: e.target.id, value: e.target.value });
+    this.props.updateCVLastUpdate();
   };
 
   handleInputChangeWithLanguage = (e, lang) => {
     this.props.updateTarget({ id: e.target.id, value: e.target.value, language: lang });
+    this.props.updateCVLastUpdate();
   };
 
   handleCheckboxChange = e => {
     this.props.updateTarget({ id: e.target.id, value: e.target.checked });
+    this.props.updateCVLastUpdate();
   };
 
   handleSelectChange = (name, value) => {
     this.props.updateTarget({ id: name, value: value["@type"] });
+    this.props.updateCVLastUpdate();
   };
 
   handleMultiSelectChange = (name, value) => {
@@ -61,6 +65,7 @@ class FormTarget extends Component {
       myarr.push(value[i]["@type"]);
     }
     this.props.updateTarget({ id: name, value: myarr });
+    this.props.updateCVLastUpdate();
   };
 
   findInArray(data, name) {
@@ -349,6 +354,7 @@ export default connect(
     fetchMainPropertiess,
     fetchAllRegionss,
     fetchAllIndustryTypess,
-    updateTarget
+    updateTarget,
+    updateCVLastUpdate
   }
 )(FormTarget);

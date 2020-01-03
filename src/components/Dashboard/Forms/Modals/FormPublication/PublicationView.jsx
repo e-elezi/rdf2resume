@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { removePublication } from "../../../../../actions";
 import PublicationModal from "./PublicationModal";
+import { renderPartialDate } from "../../../../../utilities/utilityFunctions";
 
 class PublicationView extends Component {
   state = {
@@ -65,7 +66,7 @@ class PublicationView extends Component {
           }}
         >
           <Col md={2}>
-            <p>{publicationDate}</p>
+            <p>{renderPartialDate(publicationDate)}</p>
           </Col>
           <Col md={6}>
             <Row
