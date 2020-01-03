@@ -40,6 +40,9 @@ import {
   personalSizeMax,
   personalWebsite,
   mainSidebar,
+  warningLabel,
+  photoWrongExtensionText,
+  photoTooBigText,
   personalNationalityAlert
 } from "../../../translations/translations";
 import axios from "axios";
@@ -168,24 +171,50 @@ class FormPersonal extends Component {
 
   onChangePhotoUpload = async e => {
     let file = e.target.files[0];
-    var formData = new FormData();
-    formData.append("file", file);
-    axios
-      .post("/upload_photo", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
-      .then(resp => {
-        this.props.updateAboutPerson({
-          id: "photo",
-          value: resp.data
-        });
-        this.props.updateCVLastUpdate();
-      })
-      .catch(error => {
-        console.log(error);
+    //check file type and file size
+    let fileSize = file.size;
+    fileSize = fileSize / 1048576; //size in mb 
+    let fileName = file.name;
+    let extension = fileName.replace(/^.*\./, '');
+    if (fileSize >= 1) {
+      Swal.fire({
+        title: warningLabel[this.props.language],
+        text: photoTooBigText[this.props.language],
+        type: "warning",
+        confirmButtonColor: "#4bb3cc",
+        heightAuto: false,
+        confirmButtonText: "Okay"
       });
+    } else if (extension === 'png' || extension === 'jpg') {
+      var formData = new FormData();
+      formData.append("file", file);
+      axios
+        .post("/upload_photo", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(resp => {
+          this.props.updateAboutPerson({
+            id: "photo",
+            value: resp.data
+          });
+          this.props.updateCVLastUpdate();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      Swal.fire({
+        title: warningLabel[this.props.language],
+        text: photoWrongExtensionText[this.props.language],
+        type: "warning",
+        confirmButtonColor: "#4bb3cc",
+        heightAuto: false,
+        confirmButtonText: "Okay"
+      });
+    }
+
   };
 
   clearPhotoUpload = () => {

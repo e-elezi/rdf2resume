@@ -736,6 +736,22 @@ export const warningText = {
   it: "Non è possibile presentare, senza correggere gli errori."
 };
 
+export const photoTooBigText = {
+  en: "File size is bigger than 1 MB.",
+  sq: "Përmasa e skedarit tejkalon 1 MB.",
+  de: "Die Dateigröße ist größer als 1 MB.",
+  fr: "La taille du fichier est supérieure à 1 Mo.",
+  it: "La dimensione del file è maggiore di 1 MB."
+};
+
+export const photoWrongExtensionText = {
+  en: "File type is different than JPG/PNG.",
+  sq: "Tipi i skedarit është ndryshe nga JPG/PNG.",
+  de: "Der Dateityp ist anders als JPG/PNG.",
+  fr: "Le type de fichier est différent de JPG/PNG.",
+  it: "Il tipo di file è diverso da JPG/PNG."
+};
+
 export const startDate = {
   en: "Date needs to be in the past!",
   sq: "Data duhet të jetë në të kaluarën!",
