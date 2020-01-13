@@ -28,7 +28,27 @@ class ReferenceModal extends Component {
   state = {
     reference: {
       "@type": "my0:Reference",
-      "my0:refRelationDescription": "",
+      "my0:refRelationDescription": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ],
       "my0:referenceBy": {
         "@type": "my0:Person",
         "my0:title": "",
@@ -91,6 +111,7 @@ class ReferenceModal extends Component {
     this.props.fetchCountries();
     this.props.fetchTitleProperties();
     this.props.fetchMainPropertiess("my0:Person");
+    this.props.fetchMainPropertiess("my0:Reference");
     this.props.fetchMainPropertiess("my0:Address");
     this.setInitialValues();
   }
@@ -274,8 +295,7 @@ class ReferenceModal extends Component {
     let disabled =
       this.state.reference["my0:referenceBy"]["my0:firstName"] === "" ||
       this.state.reference["my0:referenceBy"]["my0:lastName"] === "" ||
-      this.state.reference["my0:referenceBy"]["my0:email"] === "" ||
-      this.state.reference["my0:refRelationDescription"] === ""
+      this.state.reference["my0:referenceBy"]["my0:email"] === ""
     if (!this.props.isUpdate) {
       return (
         <Button
@@ -343,8 +363,7 @@ class ReferenceModal extends Component {
     let {
       translatedProps,
       translatedPropsAddr,
-      translatedPropsOrg,
-      translatedPropsWork
+      translatedPropsRef,
     } = this.props;
 
     const { onHide } = this.props;
@@ -505,11 +524,12 @@ class ReferenceModal extends Component {
             value={email}
             handleChange={this.handleInputChange}
           />
+          <br />
           <CustomTextarea
             id="my0:refRelationDescription"
             name="reference"
             label={this.renderLabel(
-              translatedProps,
+              translatedPropsRef,
               "refRelationDescription",
               lang
             )}
@@ -542,9 +562,7 @@ const mapstateToProps = (state, ownProps) => {
     ),
     translatedPropsAddr: retrieveMainProperties(state.utility["my0:Address"]),
     translatedProps: retrieveMainProperties(state.utility["my0:Person"]),
-    translatedPropsWork: retrieveMainProperties(
-      state.utility["my0:WorkHistory"]
-    )
+    translatedPropsRef: retrieveMainProperties(state.utility["my0:Reference"])
   };
 };
 

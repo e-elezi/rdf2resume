@@ -9,7 +9,7 @@ import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { createCourse, updateCourse, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchCountries,
-  fetchMainPropertiess
+  fetchMainPropertiess,
 } from "../../../../../actions/utilityActions";
 import {
   retrieveCountryValues,
@@ -76,7 +76,6 @@ class CourseModal extends Component {
       "my0:courseURL": "",
       "my0:courseStartDate": "",
       "my0:courseFinishDate": "",
-      "my0:hasQualification": "",
       "my0:organizedBy": {
         "@type": "my0:Organization",
         "my0:orgName": "",
@@ -148,7 +147,6 @@ class CourseModal extends Component {
           "@language": "sq"
         },
         ],
-        "my0:orgPhoneNumber": "",
         "my0:orgWebsite": ""
       }
     }
@@ -172,7 +170,6 @@ class CourseModal extends Component {
       course["my0:courseURL"] = inputRef["my0:courseURL"];
       course["my0:courseStartDate"] = inputRef["my0:courseStartDate"];
       course["my0:courseFinishDate"] = inputRef["my0:courseFinishDate"];
-      course["my0:hasQualification"] = inputRef["my0:hasQualification"];
       course["my0:organizedBy"] = inputRef["my0:organizedBy"];
       this.setState({
         course
@@ -231,7 +228,6 @@ class CourseModal extends Component {
           "my0:courseURL": "",
           "my0:courseStartDate": "",
           "my0:courseFinishDate": "",
-          "my0:hasQualification": "",
           "my0:organizedBy": {
             "@type": "my0:Organization",
             "my0:orgName": "",
@@ -303,7 +299,6 @@ class CourseModal extends Component {
               "@language": "sq"
             },
             ],
-            "my0:orgPhoneNumber": "",
             "my0:orgWebsite": ""
           }
         }
@@ -496,7 +491,6 @@ class CourseModal extends Component {
       "my0:orgName": orgName,
       "my0:orgWebsite": orgWebsite,
       "my0:orgDescription": orgDescription,
-      "my0:orgPhoneNumber": orgPhoneNumber,
       "my0:orgAddress": orgAddress
     } = organizedBy;
 
@@ -684,17 +678,6 @@ class CourseModal extends Component {
                     }
                   />
                 </Row>
-                <CustomInput
-                  id="my0:orgPhoneNumber"
-                  name="org"
-                  label={this.renderLabel(
-                    translatedPropsOrg,
-                    "orgPhoneNumber",
-                    lang
-                  )}
-                  value={orgPhoneNumber}
-                  handleChange={this.handleInputChange}
-                />
                 <div style={{ marginTop: "10px", width: "100%" }}>
                   <CustomTextarea
                     id="my0:orgDescription"
@@ -767,7 +750,7 @@ const mapstateToProps = (state, ownProps) => {
       state.utility["my0:Organization"]
     ),
     translatedPropsAddr: retrieveMainProperties(state.utility["my0:Address"]),
-    translatedProps: retrieveMainProperties(state.utility["my0:Course"])
+    translatedProps: retrieveMainProperties(state.utility["my0:Course"]),
   };
 };
 

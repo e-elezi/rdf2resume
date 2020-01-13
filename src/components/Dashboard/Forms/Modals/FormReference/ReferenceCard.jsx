@@ -130,10 +130,10 @@ class ReferenceCard extends Component {
           </Card.Text>
           <Card.Text>{phoneNumberWork}</Card.Text>
           <Card.Text>
-            <Card.Link href="#">{email}</Card.Link>
+            <Card.Link href="mailto:">{email}</Card.Link>
           </Card.Text>
           <Card.Text>
-            <Card.Link href="#">{this.findTranslatedValue(refRelationDescription, lang)}</Card.Link>
+            {this.findTranslatedValue(refRelationDescription, lang)}
           </Card.Text>
         </Card.Body>
         <ReferenceModal

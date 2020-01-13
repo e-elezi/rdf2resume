@@ -4,7 +4,7 @@ import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherSkill, updateOtherSkill, updateCVLastUpdate } from "../../../../../actions";
-// import CustomInput from "../../../../core/CustomInput";
+import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import {
   fetchMainPropertiess,
@@ -75,7 +75,28 @@ class SkillModal extends Component {
       ],
       "my0:skillCategory": "",
       "my0:skillLevel": "",
-      "my0:skillHasCertificate": true
+      "my0:skillHasCertificate": true,
+      "my0:skillCertificateName": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -96,6 +117,8 @@ class SkillModal extends Component {
       otherSkill["my0:skillLevel"] = inputRef["my0:skillLevel"];
       otherSkill["my0:skillHasCertificate"] =
         inputRef["my0:skillHasCertificate"];
+      otherSkill["my0:skillCertificateName"] =
+        inputRef["my0:skillCertificateName"];
       this.setState({
         otherSkill
       });
@@ -151,7 +174,28 @@ class SkillModal extends Component {
           ],
           "my0:skillCategory": "",
           "my0:skillLevel": "",
-          "my0:skillHasCertificate": true
+          "my0:skillHasCertificate": true,
+          "my0:skillCertificateName": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -303,7 +347,8 @@ class SkillModal extends Component {
       "my0:skillCategory": skillCategory,
       "my0:skillDescription": skillDescription,
       "my0:skillHasCertificate": skillHasCertificate,
-      "my0:skillLevel": skillLevel
+      "my0:skillLevel": skillLevel,
+      "my0:skillCertificateName": skillCertificateName
     } = this.state.otherSkill;
 
     let { onHide } = this.props;
@@ -336,15 +381,6 @@ class SkillModal extends Component {
         <Modal.Body>
           <Row>
             <Col md={8}>
-              {/* <CustomInput
-                id="my0:skillName"
-                label={
-                  this.renderLabel(translatedProps, "skillName", lang) + " *"
-                }
-                type="text"
-                value={skillName}
-                handleChange={this.handleInputChange}
-              /> */}
               <Combobox
                 name="my0:skillName"
                 placeholder={
@@ -416,6 +452,15 @@ class SkillModal extends Component {
             )}
             checked={skillHasCertificate}
             handleChange={this.handleCheckboxChange}
+          />
+          <CustomInput
+            id="my0:skillCertificateName"
+            label={
+              this.renderLabel(translatedProps, "skillCertificateName", lang)
+            }
+            type="text"
+            value={this.findTranslatedValue(skillCertificateName, lang)}
+            handleChange={(e) => this.handleInputChange(e, lang)}
           />
         </Modal.Body>
         <Modal.Footer>

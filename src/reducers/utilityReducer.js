@@ -69,49 +69,93 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_ALL_COMPANY_SIZES:
-      return { ...state, companySizeValues: action.payload };
+      return {
+        ...state, companySizeValues: action.payload
+      };
     case FETCH_ALL_COUNTRIES:
-      return { ...state, countryValues: action.payload };
+      return {
+        ...state, countryValues: action.payload
+      };
     case FETCH_ALL_CV_CAREER_LEVELS:
-      return { ...state, careerLevelValues: action.payload };
+      return {
+        ...state, careerLevelValues: action.payload
+      };
     case FETCH_ALL_SKILL_CATEGORIES:
-         return { ...state, skillCategories: action.payload };
+      return {
+        ...state, skillCategories: action.payload
+      };
     case FETCH_ALL_CV_JOB_MODES:
-      return { ...state, jobTypeValues: action.payload };
+      return {
+        ...state, jobTypeValues: action.payload
+      };
     case FETCH_ALL_EDU_DEGREES:
-      return { ...state, eduDegreeValues: action.payload };
+      return {
+        ...state, eduDegreeValues: action.payload
+      };
     case FETCH_SKILL_SUGGESTION:
-      return { ...state, skillSuggestion: action.payload };
+      return {
+        ...state, skillSuggestion: action.payload
+      };
     case FETCH_ALL_GENDERS:
-      return { ...state, genderValues: action.payload };
+      return {
+        ...state, genderValues: action.payload
+      };
     case FETCH_ALL_LANGUAGE_SELF_ASSESSMENT_PROPERTIES:
-      return { ...state, languageSelfAssessmentValues: action.payload };
+      return {
+        ...state, languageSelfAssessmentValues: action.payload
+      };
     case FETCH_ALL_OTHER_CV_INFO_TYPES:
-      return { ...state, otherCVInfoValues: action.payload };
+      return {
+        ...state, otherCVInfoValues: action.payload
+      };
     case FETCH_ALL_SELF_ASSESSMENT_PROPERTIES:
-      return { ...state, selfAssessmentValues: action.payload };
+      return {
+        ...state, selfAssessmentValues: action.payload
+      };
     case FETCH_ALL_TITLE_PROPERTIES:
-      return { ...state, titleValues: action.payload };
+      return {
+        ...state, titleValues: action.payload
+      };
     case TOGGLE_SPINNER:
-        return { ...state, showSpinner: action.payload };
+      return {
+        ...state, showSpinner: action.payload
+      };
     case UPDATE_ERROR:
-      let stats = {...state['error']};
+      let stats = {
+        ...state['error']
+      };
       stats[action.payload.object] = action.payload.value;
-      return { ...state, error: stats };
+      return {
+        ...state, error: stats
+      };
     case UPDATE_LANGUAGE:
-        return { ...state, language: action.payload };
+      return {
+        ...state, language: action.payload
+      };
     case FETCH_ALL_IMS:
-        return { ...state, ims: action.payload };
+      return {
+        ...state, ims: action.payload
+      };
     case FETCH_ALL_INDUSTRIES:
-        return { ...state, industries: action.payload };
+      return {
+        ...state, industries: action.payload
+      };
     case FETCH_ALL_WEBSITES:
-        return { ...state, websites: action.payload };
+      return {
+        ...state, websites: action.payload
+      };
     case FETCH_ALL_REGIONS:
-        return { ...state, regions: action.payload };
+      return {
+        ...state, regions: action.payload
+      };
     case FETCH_ALL_PATENTS:
-        return { ...state, patents: action.payload };
+      return {
+        ...state, patents: action.payload
+      };
     case FETCH_MAIN_PROPERTIES:
-        return { ...state,  [action.payload.object]: action.payload.data };
+      return {
+        ...state, [action.payload.object]: action.payload.data
+      };
     default:
       return state;
   }

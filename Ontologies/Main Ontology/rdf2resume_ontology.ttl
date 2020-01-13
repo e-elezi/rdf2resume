@@ -1045,6 +1045,7 @@ my0:isCurrent
 
 my0:Education
   a owl:Class ;
+  rdfs:subClassOf esco:Qualification ;
   rdfs:subClassOf [ rdf:type owl:Restriction ;
                     owl:onProperty my0:studiedIn ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1133,6 +1134,7 @@ my0:eduDescription
 
 my0:Course
   a owl:Class ;
+  rdfs:subClassOf esco:Qualification ;
   rdfs:subClassOf [ rdf:type owl:Restriction ;
                     owl:onProperty my0:organizedBy ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1175,16 +1177,6 @@ my0:hasCertification
   "Ha la certificazione?"@it ;
   rdfs:domain my0:Course ;
   rdfs:range xsd:boolean .
-
-my0:hasQualification
-  a owl:ObjectProperty ;
-  rdfs:label "Has Qualification?"@en,
-  "Hat die Qualifikation?"@de,
-  "A la qualification?"@fr,
-  "Është e kualifikuar?"@sq,
-  "Ha la qualifica?"@it ;
-  rdfs:domain my0:Course ;
-  rdfs:range esco:Qualification .
 
 my0:courseTitle
   a owl:DatatypeProperty ;
@@ -1314,7 +1306,7 @@ my0:skillCertificateName
   "Emri i certifikatës"@sq,
   "Nom du certificat"@fr,
   "Nome del certificato"@it ;
-  rdfs:domain my0:LanguageSkill ;
+  rdfs:domain my0:Skill ;
   rdfs:range xsd:string .
 
 my0:LanguageSkill

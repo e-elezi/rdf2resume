@@ -4,6 +4,7 @@ import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import { createOtherSkill, updateOtherSkill, updateCVLastUpdate } from "../../../../../actions";
 import CustomInput from "../../../../core/CustomInput";
+import CustomCheckbox from "../../../../core/CustomCheckbox";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
   fetchMainPropertiess
@@ -46,7 +47,29 @@ class LanguageModal extends Component {
         "@language": "sq"
       },
       ],
-      "my0:languageSkillProficiency": ""
+      "my0:languageSkillProficiency": "",
+      "my0:skillHasCertificate": true,
+      "my0:skillCertificateName": [{
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      },
+      ]
     }
   };
 
@@ -64,6 +87,9 @@ class LanguageModal extends Component {
       languageSkill["my0:skillName"] = inputRef["my0:skillName"];
       languageSkill["my0:languageSkillProficiency"] =
         inputRef["my0:languageSkillProficiency"];
+      languageSkill["my0:skillHasCertificate"] = inputRef["my0:skillHasCertificate"];
+      languageSkill["my0:skillCertificateName"] = inputRef["my0:skillCertificateName"];
+
       this.setState({
         languageSkill
       });
@@ -96,7 +122,29 @@ class LanguageModal extends Component {
             "@language": "sq"
           },
           ],
-          "my0:languageSkillProficiency": ""
+          "my0:languageSkillProficiency": "",
+          "my0:skillHasCertificate": true,
+          "my0:skillCertificateName": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          },
+          ]
         }
       });
     } else {
@@ -212,9 +260,19 @@ class LanguageModal extends Component {
     }
   };
 
+  handleCheckboxChange = e => {
+    let languageSkill = { ...this.state.languageSkill };
+    languageSkill[e.target.id] = e.target.checked;
+    this.setState({
+      languageSkill
+    });
+  };
+
   render() {
     let {
       "my0:skillName": skillName,
+      "my0:skillHasCertificate": skillHasCertificate,
+      "my0:skillCertificateName": skillCertificateName,
       "my0:languageSkillProficiency": languageSkillProficiency
     } = this.state.languageSkill;
     let { onHide } = this.props;
@@ -301,6 +359,26 @@ class LanguageModal extends Component {
                       "my0:languageSkillProficiency"
                     )
                   }
+                />
+                <CustomCheckbox
+                  id="my0:skillHasCertificate"
+                  type="checkbox"
+                  label={this.renderLabel(
+                    translatedProps,
+                    "skillHasCertificate",
+                    lang
+                  )}
+                  checked={skillHasCertificate}
+                  handleChange={this.handleCheckboxChange}
+                />
+                <CustomInput
+                  id="my0:skillCertificateName"
+                  label={
+                    this.renderLabel(translatedProps, "skillCertificateName", lang)
+                  }
+                  type="text"
+                  value={this.findTranslatedValue(skillCertificateName, lang)}
+                  handleChange={(e) => this.handleInputChange(e, lang)}
                 />
               </Row>
             </Col>

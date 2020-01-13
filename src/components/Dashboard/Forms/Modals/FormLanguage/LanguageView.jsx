@@ -69,6 +69,7 @@ class LanguageView extends Component {
   render() {
     let {
       "my0:skillName": skillName,
+      "my0:skillCertificateName": skillCertificateName,
       "my0:languageSkillProficiency": languageSkillProficiency
     } = this.props.languageSkillObj;
 
@@ -90,7 +91,8 @@ class LanguageView extends Component {
               this.props.types,
               languageSkillProficiency,
               this.props.language
-            )}
+            )} -{" "}
+            {this.findTranslatedValue(skillCertificateName, lang)}
           </Col>
           <Col md={4}>
             <FontAwesomeIcon
