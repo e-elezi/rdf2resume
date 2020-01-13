@@ -599,3 +599,8 @@ a:active {
     width:100%;
     position:absolute;
 }
+
+.skill-item {
+    height: 90%;
+    padding: 5px;
+}

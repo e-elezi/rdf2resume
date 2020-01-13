@@ -5,7 +5,7 @@ import argparse
 from datetime import datetime
 import requests
 from queries import runQueryDBPEDIA, runQueryMainOntology, runQueryCountryMainOntology
-from translations import toolsTech, otherSkillTitle , industrySkills, interpersonalSkills, courseTitle, workTitle, educationTitle, honorTitle, languageTitle, referenceTitle, skillTitle, aboutMeTitle, otherTitle, otherInfoTitle, skilllevel, getnameURI, projectTitle, patentTitle, publicationTitle, current, pending, doesURIContainWord
+from translations import toolsTech, otherSkillTitle, industrySkills, interpersonalSkills, courseTitle, workTitle, educationTitle, honorTitle, languageTitle, referenceTitle, skillTitle, aboutMeTitle, otherTitle, otherInfoTitle, skilllevel, getnameURI, projectTitle, patentTitle, publicationTitle, current, pending, doesURIContainWord
 
 header = r'''
 <!--
@@ -18,32 +18,61 @@ Changed by: Enkeleda Elezi enkeleda.elezi@gmail.com
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>RDF2Résumé</title>
 
-        <!-- Global stylesheets -->
-        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/devicons/css/devicons.min.css" rel="stylesheet">
-        <link href="css/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <body prefix="
-    my0: http://example.com/rdf2resume_ontology.rdf#
-    rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-    ns1: http://rdf-translator.appspot.com/
-    xsd: http://www.w3.org/2001/XMLSchema#
-    rdfs: http://www.w3.org/2000/01/rdf-schema#" id="page-top">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>RDF2Résumé</title>
+
+  <!-- Global stylesheets -->
+  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/devicons/css/devicons.min.css" rel="stylesheet">
+  <link href="css/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body prefix="
+my0: http://example.com/rdf2resume_ontology.rdf#
+rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+ns1: http://rdf-translator.appspot.com/
+xsd: http://www.w3.org/2001/XMLSchema#
+rdfs: http://www.w3.org/2000/01/rdf-schema#" id="page-top">
 '''
 
 footer = r'''
+            <!--====================================================
+                                    FOOTER
+            ======================================================-->
+            <section rel="" class="p-3 p-lg-5 " id="footer">
+                <div class="row my-auto">
+                    <div class="resume-item col-md-12 col-sm-12 ">
+                        <div typeof="" class="resume-item col-md-12 col-sm-12 ">
+                            <div class="mx-0 p-4 text-center">
+                                <div class=" resume-content mr-auto">
+                                    <p property="">This website was generated with RDF2Résumé Web App by <a href="https://github.com/e-elezi">Enkeleda Elezi</a>.<br>Content by<a href="">
+                                        <span property="my0:title" content="http://example.com/rdf2resume_base_ontology.rdf#Mrs" class="text-primary">Mrs</span> Enkeleda
+                                        <span property="my0:lastName" content="Elezi" class="text-primary">Elezi</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
         </div>
+        <!-- Global javascript -->
+        <script src="js/jquery/jquery.min.js"></script>
+        <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-easing/jquery.easing.min.js"></script>
+        <script src="js/counter/jquery.waypoints.min.js"></script>
+        <script src="js/custom.js"></script>
     </body>
 </html>
 '''
@@ -56,7 +85,7 @@ def generateHTMLNAV(photoData, data, lang):
     photoText = r''''''
     if photoData != '':
         photoText = r'''
-                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src=''' + photoData + r''' alt="">
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src=''' + photoData + r''' alt="Profile Photo">
         '''
     workText = r''''''
     eduText = r''''''
@@ -151,9 +180,15 @@ def generateHTMLNAV(photoData, data, lang):
     return text
 
 
-def generateHTMLABOUT(aboutData):
+def generateHTMLABOUT(aboutData, lang):
     address = aboutData['my0:address']
-    countryName = getnameURI(address['my0:country'])
+    formerName = aboutData["my0:formerName"]
+    formerNameText = r''''''
+    if formerName != "":
+        formerNameText = r'''
+        <span property="my0:formerName" content="''' + aboutData['my0:formerName'] + r'''" class="text-primary">(''' + aboutData['my0:formerName'] + r''')</span>
+        '''
+    countryName = runQueryMainOntology(address['my0:country'], lang)
     fullAddress = address['my0:street'] + ' ' + address['my0:postalCode'] + \
         ' ' + address['my0:city'] + ' ' + countryName
 
@@ -163,16 +198,17 @@ def generateHTMLABOUT(aboutData):
                                     ABOUT
             ======================================================-->
             <section rel="my0:aboutPerson" typeof="my0:Person" class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-                <div class="my-auto">
-                    <h1 property="my0:firstName" content="''' + aboutData['my0:firstName'] + r'''" class="mb-0"> <span property="my0:title"
-                    content="''' + aboutData['my0:title'] + r'''" class="text-primary">Mrs</span> ''' + aboutData['my0:firstName'] + r'''
-                        <span property="my0:lastName" content="''' + aboutData['my0:lastName'] + r'''" class="text-primary">''' + aboutData['my0:lastName'] + r'''</span>
+                <div class="row my-auto pt-5">
+                    <h1 class="mb-0 col-12 text-center"> <span property="my0:title"
+                    content="''' + aboutData['my0:title'] + r'''" class="text-primary">''' + runQueryMainOntology(aboutData['my0:title'], lang) + r'''</span> <span property="my0:firstName" content="''' + aboutData['my0:firstName'] + r'''" class="text-primary">''' + aboutData['my0:firstName'] + r'''</span>
+                    <span property="my0:lastName" content="''' + aboutData['my0:lastName'] + r'''" class="text-primary">''' + aboutData['my0:lastName'] + r'''</span>
+                    ''' + formerNameText + r'''
                     </h1>
-                    <div class="subheading mb-5" property="my0:personShortDescription">''' + aboutData['my0:personShortDescription'] + r'''
+                    <div class="subheading mb-5 col-12 text-center" property="my0:personShortDescription">''' + aboutData['my0:personShortDescription'][lang] + r'''
                     </div>
-                    <p property="my0:personLongDescription" class="mb-5" style="max-width: 500px;">''' + aboutData['my0:personLongDescription'] + r'''
+                    <p property="my0:personLongDescription" class="col-12 ofsset-12 col-md-8 offset-md-2 text-center mb-5 pt-3"''' + aboutData['my0:personLongDescription'][lang] + r'''
                     </p>
-                    <ul rel="my0:hasWebsite" class="list-inline list-social-icons mb-0">
+                    <ul rel="my0:hasWebsite" class="list-inline list-social-icons mb-0 col-12 pt-5 text-center">
 
     '''
 
@@ -189,6 +225,10 @@ def generateHTMLABOUT(aboutData):
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-''' + websiteText + r''' fa-stack-1x fa-inverse"></i>
                                 </span>
+                                <span 
+                                hidden
+                                property="my0:websiteType" content="''' + website['my0:websiteType'] + r'''>
+                                </span>
                             </a>
                         </li>
         '''
@@ -198,10 +238,10 @@ def generateHTMLABOUT(aboutData):
                     </ul>
                 </div>
                 <br />
-                <div class="my-auto">
-                    <div class="contact-cont2">
+                <div class="row justify-content-center my-auto pt-5 text-center">
+                    <div class="contact-cont2 col-4 col-md-2">
                         <div rel="my0:address" class="contact-add contact-box-desc">
-                            <h3><i class="fa fa-map-marker cl-atlantis fa-2x"></i> Address</a></h3>
+                            <h3><i class="fa fa-map-marker cl-atlantis fa-1x"></i> Address</a></h3>
                             <a target="_empty" href="https://www.openstreetmap.org/search?query=''' + fullAddress + r'''"
                             typeof="my0:Address">
                                 <span property="my0:street" content="''' + address['my0:street'] + r'''">''' + address['my0:street'] + r'''<span><br />
@@ -212,12 +252,12 @@ def generateHTMLABOUT(aboutData):
                             </a>
                         </div>
                     </div>
-                    <div class="contact-phone contact-side-desc contact-box-desc">
-                        <h3><i class="fa fa-phone cl-atlantis fa-2x"></i> Phone</h3>
-                        <p property="my0:phoneNumber" content="''' + aboutData['my0:phoneNumber'] + r'''">''' + aboutData['my0:phoneNumber'] + r'''</p>
+                    <div class="contact-phone contact-box-desc col-4 col-md-2">
+                        <h3><i class="fa fa-phone cl-atlantis fa-1x"></i> Phone</h3>
+                        <p property="my0:phoneNumberMobile" content="''' + aboutData['my0:phoneNumberMobile'] + r'''">''' + aboutData['my0:phoneNumberMobile'] + r'''</p>
                     </div>
-                    <div class="contact-mail contact-side-desc contact-box-desc">
-                        <h3><i class="fa fa-envelope-o cl-atlantis fa-2x"></i> Email</h3>
+                    <div class="contact-mail contact-box-desc col-4 col-md-2">
+                        <h3><i class="fa fa-envelope-o cl-atlantis fa-1x"></i> E-mail</h3>
                         <address property="my0:email" content="''' + aboutData['my0:email'] + r'''" class="address-details-f">
                             <a href="mailto:''' + aboutData['my0:email'] + r'''" class="">''' + aboutData['my0:email'] + r'''</a>
                         </address>
@@ -271,10 +311,10 @@ def generateHTMLWorkExperience(data, lang):
                         <div class="mb-5 heading-border"></div>
                         </div>
     '''
-    
+
     works = sorted(
-    data['my0:hasWorkHistory'],
-    key=lambda x: x['my0:startDate'], reverse=True
+        data['my0:hasWorkHistory'],
+        key=lambda x: x['my0:startDate'], reverse=True
     )
 
     for work in works:
@@ -282,19 +322,19 @@ def generateHTMLWorkExperience(data, lang):
         workOrgAddress = workOrg['my0:orgAddress']
         text = text + r'''
                         <div typeof="my0:WorkHistory" class="resume-item col-md-6 col-sm-12">
-                            <div class="card mx-0 p-4 mb-5" style="border-color: #28a745; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
+                            <div class="card mx-0 p-4 mb-5" style="border-color: #2598f3; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                 <div class="resume-content mr-auto">
-                                    <h4 class="mb-3"><i class="fa fa-briefcase mr-3 text-info"></i><span property="my0:jobTitle">
-                                    ''' + work['my0:jobTitle'] + r'''</span><span property="my0:jobMode"
-                                    content="''' + work['my0:jobMode'] + r'''"> (''' + getnameURI(work['my0:jobMode']) + r''')</span></h4>
-                                    <h4 class="mb-3"><i class="fa fa-map-marker cl-atlantis"></i><span rel="my0:employedIn"
+                                     <h4 class="mb-3"><i class="fa fa-globe mr-3 text-primary"></i><span property="my0:jobTitle">
+                                    ''' + work['my0:jobTitle'][lang] + r'''</span><span property="my0:jobType"
+                                    content="''' + work['my0:jobType'] + r'''"> (''' + runQueryMainOntology(work['my0:jobType'], lang) + r''')</span></h4>
+                                    <h4 class="mb-3"><i class="fa fa-map-marker mr-3" style="color: #074679;"></i><span rel="my0:employedIn"
                                     typeOf="my0:Company">
                                         <span property="my0:orgName" content="''' + workOrg['my0:orgName'] + r'''">''' + workOrg['my0:orgName'] + r'''</span>
                                         <span rel="my0:orgAddress" typeOf="my0:Address">
                                         <span property="my0:city" content="''' + workOrgAddress['my0:city'] + r'''"> - ''' + workOrgAddress['my0:city'] + r'''</span><span property="my0:country"
-                                        content="''' + workOrgAddress['my0:country'] + r'''">, ''' + getnameURI(workOrgAddress['my0:country']) + r'''</span></span>
+                                        content="''' + workOrgAddress['my0:country'] + r'''">, ''' + runQueryCountryMainOntology(workOrgAddress['my0:country'], lang) + r'''</span></span>
                                     </h4>
-                                    <p property="my0:jobDescription">''' + work['my0:jobDescription'] + r'''</p>
+                                    <p property="my0:jobDescription">''' + work['my0:jobDescription'][lang] + r'''</p>
                                 </div>
                                 ''' + generateHTMLTwoDateSection('startDate', work['my0:startDate'], 'endDate', work['my0:endDate'], 'isCurrent', work['my0:isCurrent'], lang) + r'''
                             </div>
@@ -324,19 +364,19 @@ def generateHTMLProject(data, lang):
     '''
 
     projects = sorted(
-    data['my0:hasProject'],
-    key=lambda x: x['my0:projectStartDate'], reverse=True
+        data['my0:hasProject'],
+        key=lambda x: x['my0:projectStartDate'], reverse=True
     )
 
     for project in projects:
         text = text + r'''
                         <div typeof="my0:Project" class="resume-item col-md-12 col-sm-12 ">
-                            <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
+                            <div class="card mx-0 p-4 mb-5" style="border-color: #0c7fda; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                 <div class=" resume-content mr-auto">
-                                    <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i><span
-                                    property="my0:projectName">''' + project['my0:projectName'] + r'''</span><span property="my0:projectCreator" content="''' + project['my0:projectCreator'] + r'''"> -
-                                    ''' + project['my0:projectCreator'] + r'''</span></h4>
-                                    <p property="my0:projectDescription">''' + project['my0:projectDescription'] + r'''</p>
+                                    <h4 class="mb-3"><i class="fa fa-globe mr-3 text-primary"></i><span
+                                    property="my0:projectName">''' + project['my0:projectName'][lang] + r'''</span><span property="my0:projectCreator" content="''' + project['my0:projectCreator'][lang] + r'''"> -
+                                    ''' + project['my0:projectCreator'][lang] + r'''</span></h4>
+                                    <p property="my0:projectDescription">''' + project['my0:projectDescription'][lang] + r'''</p>
                                 </div>
                                 ''' + generateHTMLTwoDateSection('projectStartDate', project['my0:projectStartDate'], 'projectEndDate', project['my0:projectEndDate'], 'projectIsCurrent', project['my0:projectIsCurrent'], lang) + r'''
                             </div>
@@ -364,10 +404,10 @@ def generateHTMLEducationCourses(data, lang):
                         <div class="mb-5 heading-border"></div>
                     </div>
     '''
-    
+
     edus = sorted(
-    data['my0:hasEducation'],
-    key=lambda x: x['my0:eduStartDate'], reverse=True
+        data['my0:hasEducation'],
+        key=lambda x: x['my0:eduStartDate'], reverse=True
     )
 
     # print education
@@ -376,19 +416,20 @@ def generateHTMLEducationCourses(data, lang):
         eduOrgAddress = eduOrg['my0:orgAddress']
         text = text + r'''
                         <div typeof="my0:Education" class="resume-item col-md-12 col-sm-12 ">
-                            <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
+                             <div class="card mx-0 p-4 mb-5" style="border-color: #0962a9; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                 <div class="resume-content mr-auto">
-                                    <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i><span property="my0:degreeType"
-                                    content="''' + edu['my0:degreeType'] + r'''">Master of Science</span><span
-                                    property="my0:degree" content="''' + edu['my0:degree'] + r'''"> - ''' + edu['my0:degree'] + r'''</span></h4>
-                                    <h4 class="mb-3"><i class="fa fa-map-marker cl-atlantis"></i><span rel="my0:studiedIn"
+                                    <h4 class="mb-3"><i class="fa fa-graduation-cap mr-3 text-primary"></i><span property="my0:degree"
+                                    content="''' + edu['my0:degree'] + r'''">''' + runQueryMainOntology(edu['my0:degree'], lang) + r'''</span>
+                                    <span
+                                    property="my0:degreeFieldOfStudy" content="''' + edu['my0:degreeFieldOfStudy'][lang] + r'''"> - ''' + edu['my0:degreeFieldOfStudy'][lang] + r'''</span></h4>
+                                    <h4 class="mb-3"><i class="fa fa-map-marker mr-3" style="color: #074679;"></i><span rel="my0:studiedIn"
                                     typeOf="my0:EducationalOrg">
-                                        <span property="my0:orgName" content="''' + eduOrg['my0:orgName'] + r'''">''' + eduOrg['my0:orgName'] + r'''</span>
+                                        <span property="my0:orgName" content="''' + eduOrg['my0:orgName'][lang] + r'''">''' + eduOrg['my0:orgName'][lang] + r'''</span>
                                         <span rel="my0:orgAddress" typeOf="my0:Address">
                                         <span property="my0:city" content="''' + eduOrgAddress['my0:city'] + r'''"> - ''' + eduOrgAddress['my0:city'] + r'''</span><span property="my0:country"
-                                        content="''' + eduOrgAddress['my0:country'] + r'''">, ''' + getnameURI(eduOrgAddress['my0:country']) + r'''</span></span>
+                                        content="''' + eduOrgAddress['my0:country'] + r'''">, ''' + runQueryCountryMainOntology(eduOrgAddress['my0:country'], lang) + r'''</span></span>
                                     </h4>
-                                    <p property="my0:eduDescription">''' + edu['my0:eduDescription'] + r'''</p>
+                                    <p property="my0:eduDescription">''' + edu['my0:eduDescription'][lang] + r'''</p>
                                 </div>
                                 ''' + generateHTMLTwoDateSection('eduStartDate', edu['my0:eduStartDate'], 'eduGradDate', edu['my0:eduGradDate'], 'isEduCurrent', edu['my0:isEduCurrent'], lang) + r'''
                             </div>
@@ -405,8 +446,8 @@ def generateHTMLEducationCourses(data, lang):
     '''
 
     courses = sorted(
-    data['my0:hasCourse'],
-    key=lambda x: x['my0:courseStartDate'], reverse=True
+        data['my0:hasCourse'],
+        key=lambda x: x['my0:courseStartDate'], reverse=True
     )
 
     # print courses
@@ -414,12 +455,12 @@ def generateHTMLEducationCourses(data, lang):
         courseOrg = course['my0:organizedBy']
         text = text + r'''
                         <div typeof="my0:Course" class="resume-item col-md-12 col-sm-12 ">
-                            <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
+                             <div class="card mx-0 p-4 mb-5" style="border-color: #074679; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                 <div class=" resume-content mr-auto">
-                                    <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i><span property="my0:courseTitle">
-                                    ''' + course['my0:courseTitle'] + r'''</span><span rel="my0:organizedBy" typeof="my0:Organization"><span
+                                    <h4 class="mb-3"><i class="fa fa-globe mr-3 text-primary"></i><span property="my0:courseTitle">
+                                    ''' + course['my0:courseTitle'][lang] + r'''</span><span rel="my0:organizedBy" typeof="my0:Organization"><span
                                     property="my0:orgName" content="''' + courseOrg['my0:orgName'] + r'''"> - ''' + courseOrg['my0:orgName'] + r'''</span></span></h4>
-                                    <p property="my0:courseDescription">''' + course['my0:courseDescription'] + r'''</p>
+                                    <p property="my0:courseDescription">''' + course['my0:courseDescription'][lang] + r'''</p>
                                 </div>
                                 ''' + generateHTMLTwoDateSection('courseStartDate', course['my0:courseStartDate'], 'courseFinishDate', course['my0:courseFinishDate'], '', 'False',  lang) + r'''
                             </div>
@@ -449,8 +490,8 @@ def generateHTMLPatents(data, lang):
                     </div>
     '''
     patents = sorted(
-    data['my0:hasPatent'],
-    key=lambda x: x['my0:patentIssuedDate'], reverse=True
+        data['my0:hasPatent'],
+        key=lambda x: x['my0:patentIssuedDate'], reverse=True
     )
 
     # print patent info
@@ -459,24 +500,30 @@ def generateHTMLPatents(data, lang):
         date_print = r''''''
         if patent['my0:patentIssuedDate'] != '':
             date_obj = datetime.strptime(
-            patent['my0:patentIssuedDate'], '%Y-%m-%d')
-            date_print = date_obj.strftime("%b %Y")
+                patent['my0:patentIssuedDate'], '%Y-%m-%d')
+            date_print = r'''
+            <span property="my0:patentIssuedDate" class="text-primary" content="''' + patent['my0:patentIssuedDate'] + r'''">''' + date_obj.strftime("%b %Y") + r'''</span>
+            '''
+        else:
+            date_print = r'''
+            <span property="my0:patentStatus" content="''' + patent['my0:patentStatus'] + r'''"
+            class="text-primary">''' + status + r'''</span>
+            '''
 
         text = text + r'''
                         <div typeof="my0:Patent" class="resume-item col-md-12 col-sm-12 ">
-                            <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
+                            <div class="card mx-0 p-4 mb-5" style="border-color: #010e18; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                 <div class=" resume-content mr-auto">
-                                    <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i><span property="my0:patentNumber">
-                                    ''' + patent['my0:patentNumber'] + r'''</span><span property="my0:patentTitle" content="''' + patent['my0:patentTitle'] + r'''"> - ''' + patent['my0:patentTitle'] + r'''</span></h4>
-                                    <h4 class="mb-3"><i class="fa fa-pen cl-atlantis"></i>
+                                    <h4 class="mb-3"><i class="fa fa-certificate mr-3 text-primary"></i><span property="my0:patentNumber">
+                                    ''' + patent['my0:patentNumber'] + r'''</span><span property="my0:patentTitle" content="''' + patent['my0:patentTitle'][lang] + r'''"> - ''' + patent['my0:patentTitle'][lang] + r'''</span></h4>
+                                    <h4 class="mb-3"><i class="fa fa-pencil text-primary mr-3"></i>
                                         <span property="my0:patentInventor" content="''' + patent['my0:patentInventor'] + r'''">''' + patent['my0:patentInventor'] + r'''</span>
                                     </h4>
-                                    <p property="my0:patentDescription">''' + patent['my0:patentDescription'] + r'''</p>
+                                    <p property="my0:patentDescription">''' + patent['my0:patentDescription'][lang] + r'''</p>
                                 </div>
                                 <div class="resume-date text-md-right">
-                                    <span property="my0:patentStatus" content="''' + patent['my0:patentStatus'] + r'''"
-                                    class="text-primary" hidden>''' + status + r'''</span>
-                                    <span property="my0:patentIssuedDate" class="text-primary" content="''' + patent['my0:patentIssuedDate'] + r'''">''' + date_print + r'''</span>
+                                    ''' + date_print + r'''
+                                    
                                 </div>
                             </div>
                         </div>
@@ -505,8 +552,8 @@ def generateHTMLPublications(data, lang):
     '''
 
     publications = sorted(
-    data['my0:hasPublication'],
-    key=lambda x: x['my0:publicationDate'], reverse=True
+        data['my0:hasPublication'],
+        key=lambda x: x['my0:publicationDate'], reverse=True
     )
 
     # print publication info
@@ -514,23 +561,23 @@ def generateHTMLPublications(data, lang):
         date_print = r''''''
         if publication['my0:publicationDate'] != '':
             date_obj = datetime.strptime(
-            publication['my0:publicationDate'], '%Y-%m-%d')
+                publication['my0:publicationDate'], '%Y-%m-%d')
             date_print = date_obj.strftime("%b %Y")
 
         text = text + r'''
                         <div class="resume-item col-md-12 col-sm-12 ">
                             <div typeof="my0:Publication" class="resume-item col-md-12 col-sm-12 ">
-                                <div class="card mx-0 p-4 mb-5" style="border-color: #17a2b8; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
+                                <div class="card mx-0 p-4 mb-5" style="border-color: #042a49; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.21);">
                                     <div class=" resume-content mr-auto">
-                                        <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i><span property="my0:publicationTitle"
-                                        content="''' + publication['my0:publicationTitle'] + r'''">''' + publication['my0:publicationTitle'] + r'''</span></h4>
-                                        <h4 class="mb-3"><i class="fa fa-pen cl-atlantis"></i>
+                                        <h4 class="mb-3"><i class="fa fa-book mr-3 text-primary"></i><span property="my0:publicationTitle"
+                                        content="''' + publication['my0:publicationTitle'] + r'''">''' + publication['my0:publicationTitle'][lang] + r'''</span></h4>
+                                         <h4 class="mb-3"><i class="fa fa-pencil mr-3" style="color: #074679;"></i>
                                             <span property="my0:publicationAuthor" content="''' + publication['my0:publicationAuthor'] + r'''">''' + publication['my0:publicationAuthor'] + r'''</span>
                                         </h4>
-                                        <p property="my0:publicationDescription">''' + publication['my0:publicationDescription'] + r'''</p>
+                                        <p property="my0:publicationDescription">''' + publication['my0:publicationDescription'][lang] + r'''</p>
                                     </div>
                                 <div class="resume-date text-md-right">
-                                    <span property="my0:publicationDate" content="''' + publication['my0:publicationDate'] + r'''" class="text-primary">''' + date_print  + r'''</span>
+                                    <span property="my0:publicationDate" content="''' + publication['my0:publicationDate'] + r'''" class="text-primary">''' + date_print + r'''</span>
                                 </div>
                             </div>
                         </div>
@@ -560,8 +607,8 @@ def generateHTMLHonors(data, lang):
 
     '''
     honors = sorted(
-    data['my0:hasHonorAward'],
-    key=lambda x: x['my0:honorIssuedDate'], reverse=True
+        data['my0:hasHonorAward'],
+        key=lambda x: x['my0:honorIssuedDate'], reverse=True
     )
 
     # print honor info
@@ -573,8 +620,8 @@ def generateHTMLHonors(data, lang):
                             <div class="award-icon"></div>
                             <div class="award-content">
                                 <span class="date" property="my0:honorIssuedDate" content="''' + honor['my0:honorIssuedDate'] + r'''">''' + date_obj.strftime("%b %Y") + r'''</span>
-                                <h5 class="title"><span property="my0:honorTitle">''' + honor['my0:honorTitle'] + r'''</span></h5>
-                                <p property="my0:honorDescription" class="description">''' + honor['my0:honorDescription'] + r'''</p>
+                                <h5 class="title"><span property="my0:honorTitle">''' + honor['my0:honorTitle'][lang] + r'''</span></h5>
+                                <p property="my0:honorDescription" class="description">''' + honor['my0:honorDescription'][lang] + r'''</p>
                             </div>
                         </div>
         '''
@@ -608,9 +655,9 @@ def generateHTMLOtherInfo(data, lang):
         text = text + r'''
                         <div typeof="my0:OtherInfo" class="resume-item col-md-12 col-sm-12 ">
                             <div class=" resume-content mr-auto">
-                                <h4 class="mb-3"><i class="fa fa-globe mr-3 text-info"></i>Category: <span property="my0:otherInfoType"
+                                 <h4 class="mb-3"><i class="fa fa-info mr-3 text-primary"></i>Category: <span property="my0:otherInfoType"
                                 content="''' + other['my0:otherInfoType'] + r'''">''' + types + r'''</span></h4>
-                                <p property="my0:otherInfoDescription">''' + other['my0:otherInfoDescription'] + r'''</p>
+                                <p property="my0:otherInfoDescription">''' + other['my0:otherInfoDescription'][lang] + r'''</p>
                             </div>
                         </div>
         '''
@@ -621,6 +668,17 @@ def generateHTMLOtherInfo(data, lang):
     '''
 
     return text
+
+# skill view
+# <!--<h2><span class="counter" property="my0:skillLevel">5</span>/5 </h2>-->
+# <p property="my0:skillName">RDF Graphs</p>
+# <h2 property="my0:skillName">RDF Graphs</h2>
+# <h2><span>
+# <i class="fa fa-circle" style="color: white; font-size: 1.5rem;"></i>
+# <i class="fa fa-circle" style="color: white; font-size: 1.5rem;"></i>
+# <i class="fa fa-circle" style="color: white; font-size: 1.5rem;"></i>
+# <i class="fa fa-circle" style="color: white; font-size: 1.5rem;"></i>
+# <i class="fa fa-circle" style="color: white; font-size: 1.5rem;"></i></span></h2>
 
 
 def generateHTMLSkills(data, lang):
@@ -646,13 +704,13 @@ def generateHTMLSkills(data, lang):
             text = text + r'''
                             <div typeof="my0:LanguageSkill" class="col-md-3 col-sm-6">
                                 <div class="skill-item">
-                                    <h2 property="my0:languageSkillProficiency"
-                                    content="''' + skill['my0:languageSkillProficiency'] + r'''"><span class="counter">''' + proficiency + r'''</span></h2>
-                                    <p property="my0:skillName">''' + skill['my0:skillName'] + r'''</p>
+                                    <p property="my0:languageSkillProficiency"
+                                    content="''' + skill['my0:languageSkillProficiency'] + r'''"><span class="counter">''' + proficiency + r'''</span></p>
+                                    <h2 property="my0:skillName">''' + skill['my0:skillName'] + r'''</h2>
                                 </div>
                             </div>
             '''
-    
+
     text = text + r'''
                         </div>
                     </div>
@@ -666,7 +724,7 @@ def generateHTMLSkills(data, lang):
     '''
 
     for skill in (data['my0:hasSkill']):
-        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies' :
+        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies':
             text = text + r'''
                             <div typeof="my0:Skill" class="col-md-3 col-sm-6">
                                 <div class="skill-item">
@@ -689,7 +747,7 @@ def generateHTMLSkills(data, lang):
     '''
 
     for skill in (data['my0:hasSkill']):
-        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge' :
+        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge':
             text = text + r'''
                             <div typeof="my0:Skill" class="col-md-3 col-sm-6">
                                 <div class="skill-item">
@@ -711,7 +769,7 @@ def generateHTMLSkills(data, lang):
     '''
 
     for skill in (data['my0:hasSkill']):
-        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#InterpersonalSkills' :
+        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#InterpersonalSkills':
             text = text + r'''
                             <div typeof="my0:Skill" class="col-md-3 col-sm-6">
                                 <div class="skill-item">
@@ -733,7 +791,7 @@ def generateHTMLSkills(data, lang):
     '''
 
     for skill in (data['my0:hasSkill']):
-        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#OtherSkills' :
+        if skill['@type'] == 'my0:Skill' and skill['my0:skillCategory'] == 'http://example.com/rdf2resume_base_ontology.rdf#OtherSkills':
             text = text + r'''
                             <div typeof="my0:Skill" class="col-md-3 col-sm-6">
                                 <div class="skill-item">
@@ -766,7 +824,7 @@ def generateHTMLDesign1(data, language):
         '''
 
         # write about part
-        main = main + generateHTMLABOUT(item)
+        main = main + generateHTMLABOUT(item, language)
 
     if (data['my0:hasWorkHistory']):
         main = main + generateHTMLWorkExperience(data, language)
