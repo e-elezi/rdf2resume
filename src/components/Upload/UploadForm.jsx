@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Combobox } from "react-widgets";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateCV } from "../../actions";
@@ -10,7 +9,7 @@ import {
   uploadButtonLabel,
   errorTitle,
   successTitle,
-  uploadSelectLabel
+  // uploadSelectLabel
 } from "../../translations/translations";
 // import { parseJSONLDTOJSON } from '../../utilities/utilityFunctions';
 
@@ -71,19 +70,7 @@ class UploadForm extends Component {
       <React.Fragment>
         <div className="form-group">
           <h4>{uploadTitle[lang]}</h4>
-          <p> {uploadDescription[lang]} </p>
-          <div style={{ maxWidth: "250px" }}>
-            <Combobox
-              name="rdfStandard"
-              id="rdfStandard"
-              placeholder={uploadSelectLabel[lang]}
-              data={this.state.rdfValues}
-              value={this.state.rdfValueSelected}
-              caseSensitive={false}
-              filter="contains"
-              onChange={value => this.handleSelectChange(value)}
-            />
-          </div>
+          <p style={{ width: '700px' }}> {uploadDescription[lang]} </p>
           <label style={{ marginLeft: "0px" }} className="btn btn-primary">
             {uploadButtonLabel[lang]}
             <input onChange={this.onChange} type="file" hidden />

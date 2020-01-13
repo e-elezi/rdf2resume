@@ -101,19 +101,19 @@ export const aboutCountry = {
  */
 
 export const uploadTitle = {
-  en: "Upload RDF File",
-  fr: "Télécharger le fichier RDF",
-  de: "RDF-Datei hochladen",
-  sq: "Ngarko dokumentin RDF",
-  it: "Carica file RDF"
+  en: "Upload JSON-LD RDF File",
+  fr: "Télécharger le fichier RDF JSON-LD",
+  de: "RDF-JSON-LD-Datei hochladen",
+  sq: "Ngarko dokumentin RDF JSON-LD",
+  it: "Carica file RDF JSON-LD"
 };
 
 export const uploadDescription = {
-  en: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-  sq: "Lorem ipsum Lorem ipsum Lorem ipsum",
-  fr: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-  de: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-  it: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+  en: "Upload previously downloaded, JSON-LD Résumé data that matches the ontology Résumé2RDF.\n For more information check our About Page.",
+  sq: "Ngarkoni të dhënat e shkarkuara më parë, të dhëna JSON-LD që përkojnë me ontologjinë Résumé2RDF.\n Për më shumë informacion, kontrolloni Rreth faqes tonë.",
+  fr: "Téléchargez les données de CV JSON-LD précédemment téléchargées qui correspondent à l'ontologie Résumé2RDF.\n Pour plus d'information, consultez notre page À propos.",
+  de: "Laden Sie zuvor heruntergeladene JSON-LD-Resumé-Daten hoch, die mit der Ontologie Résumé2RDF übereinstimmen.\n Weitere Informationen finden Sie auf unserer About Seite.",
+  it: "Carica i dati del curriculum JSON-LD precedentemente scaricati, JSON-LD Résumé che corrispondono all'ontologia Résumé2RDF.\n Per ulteriori informazioni consultate la nostra pagina Informazioni su."
 };
 
 export const uploadButtonLabel = {
