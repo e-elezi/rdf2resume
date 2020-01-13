@@ -61,7 +61,7 @@ coltitle=black,center title}}
 \counterwithin{figure}{section}
 \numberwithin{equation}{section}
 
-\title{RDF2RESUME ONTOLOGY SPECIFICATION}
+\title{R{\'e}sum{\'e}2RDF Ontology Specification}
 \author{Enkeleda Elezi enkeleda.elezi@gmail.com}
 \date{June 2019}
 
@@ -71,16 +71,16 @@ coltitle=black,center title}}
 
 %--{Abstract}--------------------------------------------------------------
 \begin{abstract}
- The RDF2R{\'e}sum{\'e} Ontology provides the main concepts and properties required to describe the information contained in a Curriculum Vitae (CV) or a personal Resume on the Semantic Web. Information including work and academic experiences, skills, references, etc.
+ The R{\'e}sum{\'e}2RDF Ontology provides the main concepts and properties required to describe the information contained in a Curriculum Vitae (CV) or a personal Resume on the Semantic Web. Information including work and academic experiences, skills, projects, publications, patents, references and so on.
 \end{abstract}
 
 \pagenumbering{roman}\tableofcontents\newpage\pagenumbering{arabic}
 
 %--{Introduction}-----------------------------------------------------------
 \section{Introduction}\label{introduction}
-RDF2R{\'e}sum{\'e} is an ontology designed to express information contained within personal Resume or Curriculum Vitae (CV) on the Semantic Web.
+R{\'e}sum{\'e}2RDF is an ontology designed to express information contained within personal Resume or Curriculum Vitae (CV) on the Semantic Web.
 \\\\
-It allows to describe professional work experience, academic details, skills, certification and courses attended, and other relevant information.
+It allows to describe professional work experience, academic details, skills, certification and courses attended, project, publications, patents and other relevant information.
 
 %--{Terminology and Notation}------------------------------------------------
 \subsection{Terminology and Notation}
@@ -91,41 +91,102 @@ Namespace URIs of the general form "http://www.example.com/." represents some ap
 The XML Namespace URIs that MUST be used by implementations of this specification is:
 
 \begin{itemize}
-\item[-] http://example.com/cv.rdfs\# - RDF2R{\'e}sum{\'e} ontology
-\item[-] http://example.com/base.rdfs\# - base taxonomy containing possible values for RDF2R{\'e}sum{\'e} properties
+\item[-] http://example.com/cv.rdfs\# - R{\'e}sum{\'e}2RDF ontology
+\item[-] http://example.com/value.rdfs\# - value ontology containing possible values for R{\'e}sum{\'e}2RDF properties
 \end{itemize}
 
-%--{RDF2Resume At A Glance}--------------------------------------------------
-\section{RDF2R{\'e}sum{\'e} At A Glance}\label{rdf2resumeataglance}
-An alphabetical index of RDF2R{\'e}sum{\'e} terms, by class (categories or types) and by property. All the terms are hyperlinked to their detailed description for quick reference. 
+%--{Resume2RDF At A Glance}--------------------------------------------------
+\section{R{\'e}sum{\'e}2RDF At A Glance}\label{rdf2resumeataglance}
+An alphabetical index of R{\'e}sum{\'e}2RDF terms, by class (categories or types) and by property. All the terms are hyperlinked to their detailed description for quick reference. 
 \\\\
-Classes:  | \hyperlink{Address}{Address} | \hyperlink{CV}{CV} | \hyperlink{CV_Entry}{CV\_Entry} | \hyperlink{CommunicationSkill}{CommunicationSkill} | \hyperlink{Company}{Company} | \hyperlink{Course}{Course} | \hyperlink{DigitalSkills}{DigitalSkills} | \hyperlink{EducationalOrg}{EducationalOrg} | \hyperlink{InstantMessaging}{InstantMessaging} | \hyperlink{JobRelatedSkills}{JobRelatedSkills} | \hyperlink{LanguageSkill}{LanguageSkill} | \hyperlink{MotherTongue}{MotherTongue} | \hyperlink{OrganisationalSkills}{OrganisationalSkills} | \hyperlink{Organization}{Organization}  | \hyperlink{OtherInfo}{OtherInfo} | \hyperlink{Person}{Person} | \hyperlink{PersonalReference}{PersonalReference} | \hyperlink{ProfessionalReference}{ProfessionalReference} | \hyperlink{Reference}{Reference} | \hyperlink{Skill}{Skill}  | \hyperlink{Target}{Target}  | \hyperlink{Training}{Training} | \hyperlink{WorkHistory}{WorkHistory}
+Classes:  | \hyperlink{Address}{Address} | \hyperlink{CV}{CV} |  \hyperlink{Company}{Company} | \hyperlink{Course}{Course} | |
+\hyperlink{Education}{Education} | \hyperlink{EducationalOrg}{EducationalOrg} |
+\hyperlink{HonorAward}{HonorAward} |
+\hyperlink{InstantMessaging}{InstantMessaging} |  \hyperlink{LanguageSkill}{LanguageSkill} |  \hyperlink{Organization}{Organization}  | \hyperlink{OtherInfo}{OtherInfo} |
+\hyperlink{Patent}{Patent} | \hyperlink{Person}{Person} |
+\hyperlink{Project}{Project} |
+\hyperlink{Publication}{Publication} |
+\hyperlink{Reference}{Reference} | \hyperlink{Skill}{Skill}  | \hyperlink{Target}{Target}  | \hyperlink{Training}{Training} |
+\hyperlink{Website}{Website} |\hyperlink{WorkHistory}{WorkHistory}
 \\\\
-Properties: | \hyperlink{aboutPerson}{aboutPerson} | \hyperlink{address}{address} | \hyperlink{careerLevel}{careerLevel} |  \hyperlink{city}{city} | \hyperlink{communication}{communication} | \hyperlink{companyIndustry}{companyIndustry} | \hyperlink{contentCreation}{contentCreation} | \hyperlink{country}{country} |\hyperlink{courseDescription}{courseDescription} |\hyperlink{courseFinishDate}{courseFinishDate} |\hyperlink{courseStartDate}{courseStartDate} |\hyperlink{courseTitle}{courseTitle} |\hyperlink{courseURL}{courseURL} |\hyperlink{cvCopyright}{cvCopyright} |\hyperlink{cvIsActive}{cvIsActive} |\hyperlink{cvIsConfidential}{cvIsConfidential} |\hyperlink{cvLastUpdate}{cvLastUpdate} |\hyperlink{cvNotes}{cvNotes} |\hyperlink{cvTitle}{cvTitle} |\hyperlink{dateOfBirth}{dateOfBirth} |\hyperlink{degreeType}{degreeType} |\hyperlink{driversLicence}{driversLicence} |\hyperlink{eduDescription}{eduDescription} |\hyperlink{eduGradDate}{eduGradDate} |\hyperlink{eduMajor}{eduMajor} |\hyperlink{eduMinor}{eduMinor} |\hyperlink{eduStartDate}{eduStartDate} |\hyperlink{email}{email} |\hyperlink{employedIn}{employedIn} 
-|\hyperlink{endDate}{endDate} 
-|\hyperlink{firstName}{firstName} |
-|\hyperlink{gender}{gender} |
-|\hyperlink{hasCertification}{hasCertification} |
-|\hyperlink{hasCitizenship}{hasCitizenship} |
-|\hyperlink{hasCourse}{hasCourse} |
-|\hyperlink{hasEducation}{hasEducation} |
-|\hyperlink{hasICTCertificate}{hasICTCertificate} |
-|\hyperlink{hasInstantMessaging}{hasInstantMessaging} |\hyperlink{hasNationality}{hasNationality} |\hyperlink{hasOtherInfo}{hasOtherInfo} |\hyperlink{hasQualification}{hasQualification} |\hyperlink{hasReference}{hasReference} |\hyperlink{hasSkill}{hasSkill} |\hyperlink{hasTarget}{hasTarget} |\hyperlink{hasTelephoneNumber}{hasTelephoneNumber} |\hyperlink{hasWebsite}{hasWebsite} |\hyperlink{hasWorkHistory}{hasWorkHistory} |\hyperlink{informationProcessing}{informationProcessing} |\hyperlink{instantMessagingName}{instantMessagingName} |\hyperlink{instantMessagingUsername}{instantMessagingUsername} |\hyperlink{isCurrent}{isCurrent} |\hyperlink{jobDescription}{jobDescription} |\hyperlink{jobMode}{jobMode} |\hyperlink{jobTitle}{jobTitle} |\hyperlink{languageSkillLevelListening}{languageSkillLevelListening} |\hyperlink{languageSkillLevelReading}{languageSkillLevelReading} |\hyperlink{languageSkillLevelSpokenInteraction}{languageSkillLevelSpokenInteraction} |\hyperlink{languageSkillLevelSpokenProduction}{languageSkillLevelSpokenProduction} |\hyperlink{languageSkillLevelWriting}{languageSkillLevelWriting} |\hyperlink{lastName}{lastName} |\hyperlink{organizationAddress}{organizationAddress} |\hyperlink{organizationDescription}{organizationDescription} |\hyperlink{organizationName}{organizationName} |\hyperlink{organizationWebsite}{organizationWebsite} |\hyperlink{organizedBy}{organizedBy} |\hyperlink{otherComputerSkills}{otherComputerSkills} |\hyperlink{otherInfoDescription}{otherInfoDescription} |\hyperlink{otherInfoType}{otherInfoType} |\hyperlink{photo}{photo} |\hyperlink{postalCode}{postalCode} |\hyperlink{problemSolving}{problemSolving} |\hyperlink{referenceBy}{referenceBy} |\hyperlink{safety}{safety} | \hyperlink{skillDescription}{skillDescription} |\hyperlink{skillHasCertificate}{skillHasCertificate} |\hyperlink{skillLastUsed}{skillLastUsed} |\hyperlink{skillLevel}{skillLevel} |\hyperlink{skillName}{skillName} |\hyperlink{skillYearsExperience}{skillYearsExperience} |\hyperlink{startDate}{startDate} |\hyperlink{street}{street} | \hyperlink{studiedIn}{studiedIn} |\hyperlink{targetCareerLevel}{targetCareerLevel} |\hyperlink{targetCompanyDescription}{targetCompanyDescription} |\hyperlink{targetCompanyIndustry}{targetCompanyIndustry} |\hyperlink{targetCompanySize}{targetCompanySize} |\hyperlink{targetConditionWillRelocate}{targetConditionWillRelocate} |\hyperlink{targetConditionWillTravel}{targetConditionWillTravel} |\hyperlink{targetCountry}{targetCountry} |\hyperlink{targetJobDescription}{targetJobDescription} |\hyperlink{targetJobMode}{targetJobMode} |\hyperlink{targetJobTitle}{targetJobTitle} |\hyperlink{targetSalaryCurrency}{targetSalaryCurrency} |\hyperlink{targetSalaryRange}{targetSalaryRange} |\hyperlink{targetWeeksNoticePeriod}{targetWeeksNoticePeriod} |\hyperlink{title}{title} |
+Properties: | \hyperlink{aboutPerson}{aboutPerson} | \hyperlink{address}{address} | \hyperlink{careerLevel}{careerLevel} |  \hyperlink{city}{city} |    \hyperlink{country}{country} | \hyperlink{courseDescription}{courseDescription} | \hyperlink{courseFinishDate}{courseFinishDate} | \hyperlink{courseStartDate}{courseStartDate} | \hyperlink{courseTitle}{courseTitle} | \hyperlink{courseURL}{courseURL} | \hyperlink{cvCopyright}{cvCopyright} | \hyperlink{cvIsActive}{cvIsActive} | \hyperlink{cvIsConfidential}{cvIsConfidential} | \hyperlink{cvLastUpdate}{cvLastUpdate} | \hyperlink{cvNotes}{cvNotes} |  \hyperlink{dateOfBirth}{dateOfBirth} | \hyperlink{degree}{degree} |
+\hyperlink{degreeFieldOfStudy}{degreeFieldOfStudy} |
+\hyperlink{driversLicence}{driversLicence} | \hyperlink{eduDescription}{eduDescription} | \hyperlink{eduGradDate}{eduGradDate} |  \hyperlink{eduStartDate}{eduStartDate} | \hyperlink{email}{email} | \hyperlink{employedIn}{employedIn} 
+\hyperlink{endDate}{endDate} 
+\hyperlink{firstName}{firstName} |
+\hyperlink{formerName}{formerName} |
+\hyperlink{gender}{gender} |
+\hyperlink{hasCertification}{hasCertification} |
+\hyperlink{hasCourse}{hasCourse} |
+\hyperlink{hasEducation}{hasEducation} |
+\hyperlink{hasHonorAward}{hasHonorAward} |
+\hyperlink{hasInstantMessaging}{hasInstantMessaging} | \hyperlink{hasNationality}{hasNationality} | \hyperlink{hasPatent}{hasPatent} |
+\hyperlink{hasProject}{hasProject} |
+\hyperlink{hasPublication}{hasPublication} |
+\hyperlink{hasQualification}{hasQualification} | \hyperlink{hasReference}{hasReference} | \hyperlink{hasSkill}{hasSkill} | \hyperlink{hasTarget}{hasTarget} |  \hyperlink{hasWebsite}{hasWebsite} | \hyperlink{hasWorkHistory}{hasWorkHistory} |
+\hyperlink{honorDescription}{honorDescription} |
+\hyperlink{honorIssuedDate}{honorIssuedDate} |
+\hyperlink{honorIssuer}{honorIssuer} |
+\hyperlink{honortitle}{honortitle} |
+\hyperlink{instantMessagingName}{instantMessagingName} | \hyperlink{instantMessagingUsername}{instantMessagingUsername} |\hyperlink{isCurrent}{isCurrent} |
+\hyperlink{isEduCurrent}{isEduCurrent} |
+\hyperlink{jobDescription}{jobDescription} |  \hyperlink{jobTitle}{jobTitle} |
+\hyperlink{jobType}{jobType} |
+\hyperlink{languageSkillProficiency}{languageSkillProficiency} |
+\hyperlink{lastName}{lastName} |
+\hyperlink{orgAddress}{orgAddress} | \hyperlink{orgDescription}{orgDescription} | \hyperlink{orgField}{orgField} |
+\hyperlink{orgName}{orgName} |
+\hyperlink{orgSize}{orgSize} |
+\hyperlink{orgWebsite}{orgWebsite} |
+\hyperlink{organizedBy}{organizedBy} | \hyperlink{otherInfoDescription}{otherInfoDescription} | \hyperlink{patentDescription}{patentDescription} | 
+\hyperlink{patentInventor}{patentInventor} | 
+\hyperlink{patentIssuedDate}{patentIssuedDate} | 
+\hyperlink{patentNumber}{patentNumber} | 
+\hyperlink{patentOffice}{patentOffice} | 
+\hyperlink{patentStatus}{patentStatus} | 
+\hyperlink{patentTitle}{patentTitle} | 
+\hyperlink{patentURL}{patentURL} | 
+\hyperlink{personLongDescription}{personLongDescription} | 
+\hyperlink{personShortDescription}{personShortDescription} | 
+\hyperlink{phoneNumberHome}{phoneNumberHome} | 
+\hyperlink{phoneNumberMobile}{phoneNumberMobile} | 
+\hyperlink{phoneNumberWork}{phoneNumberWork} | 
+\hyperlink{photo}{photo} |
+\hyperlink{projectCreator}{projectCreator} | 
+\hyperlink{projectDescription}{projectDescription} | 
+\hyperlink{projectEndDate}{projectEndDate} | 
+\hyperlink{projectIsCurrent}{projectIsCurrent} | 
+\hyperlink{projectName}{projectName} | 
+\hyperlink{projectRole}{projectRole} | 
+\hyperlink{projectStartDate}{projectStartDate} | 
+\hyperlink{projectURL}{projectURL} |
+\hyperlink{publicationAuthor}{publicationAuthor} |
+\hyperlink{publicationDate}{publicationDate} |
+\hyperlink{publicationDescription}{publicationDescription} |
+\hyperlink{publicationPublisher}{publicationPublisher} |
+\hyperlink{publicationTitle}{publicationTitle} |
+\hyperlink{publicationURL}{publicationURL} |
+\hyperlink{referenceBy}{referenceBy} |
+\hyperlink{skillCategory}{skillCategory} |
+\hyperlink{skillCertificateName}{skillCertificateName} |
+\hyperlink{skillDescription}{skillDescription} | \hyperlink{skillHasCertificate}{skillHasCertificate} |  \hyperlink{skillLevel}{skillLevel} |
+\hyperlink{skillName}{skillName} |  \hyperlink{startDate}{startDate} |
+\hyperlink{street}{street} |
+\hyperlink{studiedIn}{studiedIn} | \hyperlink{targetCareerLevel}{targetCareerLevel} | \hyperlink{targetCompanyDescription}{targetCompanyDescription} | \hyperlink{targetCompanyField}{targetCompanyField} | \hyperlink{targetCompanySize}{targetCompanySize} | \hyperlink{targetConditionWillRelocate}{targetConditionWillRelocate} |\hyperlink{targetConditionWillTravel}{targetConditionWillTravel} |\hyperlink{targetCountry}{targetCountry} |\hyperlink{targetJobDescription}{targetJobDescription}  |\hyperlink{targetJobTitle}{targetJobTitle}
+|\hyperlink{targetJobType}{targetJobType}
+|\hyperlink{targetJobRegion}{targetJobRegion} |\hyperlink{targetSalaryRange}{targetSalaryRange} |\hyperlink{targetWeeksNoticePeriod}{targetWeeksNoticePeriod} |\hyperlink{title}{title} 
+|\hyperlink{websiteType}{websiteType} 
+|\hyperlink{websiteURL}{websiteURL} |
 
 %--{RDF2Resume cross-reference: Classes and Properties}--------------------------------------------------
-\section{RDF2R{\'e}sum{\'e} cross-reference: Classes and Properties}
+\section{R{\'e}sum{\'e}2RDF cross-reference: Classes and Properties}
 
 %--{Classes}--------------------------------------------------
 \subsection{Classes}
 \subsubsection{Class: CV}\hypertarget{CV}{}
 \textit{CV} - Curriculum Vitae (CV) Class
 \\\\
-\textbf{in-domain-of:} \hyperlink{aboutPerson}{aboutPerson}, \hyperlink{cvCopyright}{cvCopyright}, \hyperlink{cvIsActive}{cvIsActive}, \hyperlink{cvIsConfidential}{cvIsConfidential}, \hyperlink{cvLastUpdate}{cvLastUpdate},  \hyperlink{cvNotes}{cvNotes}, \hyperlink{cvTitle}{cvTitle}, \hyperlink{hasCourse}{hasCourse}, \hyperlink{hasEducation}{hasEducation}, \hyperlink{hasOtherInfo}{hasOtherInfo}, \hyperlink{hasReference}{hasReference}, \hyperlink{hasSkill}{hasSkill}, \hyperlink{hasTarget}{hasTarget}, \hyperlink{hasWorkHistory}{hasWorkHistory}
-
-\subsubsection{Class: CV\_Entry}\hypertarget{CV_Entry}{}
-\textit{CV\_Entry} - Single entry of CV information. Type of CV information specified in subclasses.
-\\\\
-\textbf{subclassOf:} rdfs:Resource
+\textbf{in-domain-of:} \hyperlink{aboutPerson}{aboutPerson}, \hyperlink{cvCopyright}{cvCopyright}, \hyperlink{cvIsActive}{cvIsActive}, \hyperlink{cvIsConfidential}{cvIsConfidential}, \hyperlink{cvLastUpdate}{cvLastUpdate},  \hyperlink{cvNotes}{cvNotes}, \hyperlink{hasCourse}{hasCourse}, \hyperlink{hasEducation}{hasEducation}, \hyperlink{hasOtherInfo}{hasOtherInfo},  \hyperlink{hasReference}{hasReference}, \hyperlink{hasSkill}{hasSkill}, \hyperlink{hasTarget}{hasTarget}, \hyperlink{hasWorkHistory}{hasWorkHistory}
 
 \subsubsection{Class: Person}\hypertarget{Person}{}
 \textit{Person} - Person Class that defines the necessary information about the specific person's curriculum vitae.

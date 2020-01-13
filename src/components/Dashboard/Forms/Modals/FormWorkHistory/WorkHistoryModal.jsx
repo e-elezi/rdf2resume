@@ -8,7 +8,7 @@ import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import { createWorkHistory, updateWorkHistory, updateCVLastUpdate } from "../../../../../actions";
 import {
-  fetchCVJobModes,
+  fetchCVJobTypes,
   fetchCVCareerLevels,
   fetchCountries,
   fetchCompanySizes,
@@ -80,7 +80,7 @@ class WorkHistoryModal extends Component {
       },
       ],
       "my0:careerLevel": "",
-      "my0:jobMode": "",
+      "my0:jobType": "",
       "my0:isCurrent": false,
       "my0:employedIn": {
         "@type": "my0:Company",
@@ -153,7 +153,6 @@ class WorkHistoryModal extends Component {
           "@language": "sq"
         },
         ],
-        "my0:orgPhoneNumber": "",
         "my0:orgWebsite": "",
         "my0:orgField": ""
       }
@@ -162,7 +161,7 @@ class WorkHistoryModal extends Component {
 
   componentDidMount() {
     this.props.fetchCVCareerLevels();
-    this.props.fetchCVJobModes();
+    this.props.fetchCVJobTypes();
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
     this.props.fetchAllIndustryTypess();
@@ -181,7 +180,7 @@ class WorkHistoryModal extends Component {
       workHistory["my0:endDate"] = inputRef["my0:endDate"];
       workHistory["my0:jobTitle"] = inputRef["my0:jobTitle"];
       workHistory["my0:jobDescription"] = inputRef["my0:jobDescription"];
-      workHistory["my0:jobMode"] = inputRef["my0:jobMode"];
+      workHistory["my0:jobType"] = inputRef["my0:jobType"];
       workHistory["my0:careerLevel"] = inputRef["my0:careerLevel"];
       workHistory["my0:isCurrent"] = inputRef["my0:isCurrent"];
       workHistory["my0:employedIn"] = inputRef["my0:employedIn"];
@@ -241,7 +240,7 @@ class WorkHistoryModal extends Component {
           },
           ],
           "my0:careerLevel": "",
-          "my0:jobMode": "",
+          "my0:jobType": "",
           "my0:isCurrent": false,
           "my0:employedIn": {
             "@type": "my0:Company",
@@ -314,7 +313,6 @@ class WorkHistoryModal extends Component {
               "@language": "sq"
             },
             ],
-            "my0:orgPhoneNumber": "",
             "my0:orgWebsite": "",
             "my0:companyIndustry": ""
           }
@@ -498,7 +496,7 @@ class WorkHistoryModal extends Component {
       "my0:startDate": startDate,
       "my0:endDate": endDate,
       "my0:jobTitle": jobTitle,
-      "my0:jobMode": jobMode,
+      "my0:jobType": jobType,
       "my0:careerLevel": careerLevel,
       "my0:jobDescription": jobDescription,
       "my0:isCurrent": isCurrent,
@@ -510,7 +508,6 @@ class WorkHistoryModal extends Component {
       "my0:orgField": orgField,
       "my0:orgWebsite": orgWebsite,
       "my0:orgDescription": orgDescription,
-      "my0:orgPhoneNumber": orgPhoneNumber,
       "my0:orgAddress": address
     } = employedIn;
 
@@ -634,20 +631,6 @@ class WorkHistoryModal extends Component {
                       handleChange={this.handleInputChange}
                     />
                   </div>
-                  <div style={{ marginTop: "5px", width: "100%" }}>
-                    <CustomInput
-                      id="my0:orgPhoneNumber"
-                      name="org"
-                      label={this.renderLabel(
-                        translatedPropsOrg,
-                        "orgPhoneNumber",
-                        lang
-                      )}
-                      value={orgPhoneNumber}
-                      handleChange={this.handleInputChange}
-                    />
-                  </div>
-
                   <Row>
                     <Col sm={6}>
                       <CustomInput
@@ -781,26 +764,26 @@ class WorkHistoryModal extends Component {
                   }}
                 >
                   <label className="label-rw">
-                    {this.renderLabel(translatedProps, "jobMode", lang)}
+                    {this.renderLabel(translatedProps, "jobType", lang)}
                   </label>
                   <Combobox
-                    name="my0:jobMode"
+                    name="my0:jobType"
                     placeholder={this.renderLabel(
                       translatedProps,
-                      "jobMode",
+                      "jobType",
                       lang
                     )}
-                    data={this.props.jobmodes}
+                    data={this.props.jobtypes}
                     textField={lang}
                     valueField="@type"
-                    value={jobMode}
+                    value={jobType}
                     caseSensitive={false}
                     minLength={3}
                     filter="contains"
                     onChange={value =>
                       this.handleSelectChange(
                         value,
-                        "my0:jobMode",
+                        "my0:jobType",
                         "workHistory"
                       )
                     }
@@ -880,7 +863,7 @@ const mapstateToProps = (state, ownProps) => {
     translatedProps: retrieveMainProperties(state.utility["my0:WorkHistory"]),
     initialValues: state.cv["my0:hasWorkHistory"][ownProps.id],
     countries: retrieveCountryValues(state.utility.countryValues),
-    jobmodes: retrieveBaseProperties(state.utility.jobModeValues),
+    jobtypes: retrieveBaseProperties(state.utility.jobTypeValues),
     careerlevels: retrieveBaseProperties(state.utility.careerLevelValues),
     companysizes: retrieveBaseProperties(state.utility.companySizeValues)
   };
@@ -891,7 +874,7 @@ export default connect(
   {
     createWorkHistory,
     updateWorkHistory,
-    fetchCVJobModes,
+    fetchCVJobTypes,
     fetchCVCareerLevels,
     fetchCountries,
     fetchCompanySizes,

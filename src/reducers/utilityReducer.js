@@ -49,7 +49,7 @@ const INITIAL_STATE = {
   'my0:Target': [],
   countryValues: [],
   genderValues: [],
-  jobModeValues: [],
+  jobTypeValues: [],
   careerLevelValues: [],
   languageSelfAssessmentValues: [],
   companySizeValues: [],
@@ -77,7 +77,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_ALL_SKILL_CATEGORIES:
          return { ...state, skillCategories: action.payload };
     case FETCH_ALL_CV_JOB_MODES:
-      return { ...state, jobModeValues: action.payload };
+      return { ...state, jobTypeValues: action.payload };
     case FETCH_ALL_EDU_DEGREES:
       return { ...state, eduDegreeValues: action.payload };
     case FETCH_SKILL_SUGGESTION:

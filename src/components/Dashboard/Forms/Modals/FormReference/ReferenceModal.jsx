@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { Combobox } from "react-widgets";
+import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import { createReference, updateReference, updateCVLastUpdate } from "../../../../../actions";
 import {
@@ -27,6 +28,7 @@ class ReferenceModal extends Component {
   state = {
     reference: {
       "@type": "my0:Reference",
+      "my0:refRelationDescription": "",
       "my0:referenceBy": {
         "@type": "my0:Person",
         "my0:title": "",
@@ -79,11 +81,38 @@ class ReferenceModal extends Component {
           ],
           "my0:postalCode": ""
         },
-        "my0:phoneNumber": "",
-        "my0:email": "",
-        "my0:currentJob": {
-          "@type": "my0:WorkHistory",
-          "my0:jobTitle": [{
+        "my0:phoneNumberWork": "",
+        "my0:email": ""
+      }
+    }
+  };
+
+  componentWillMount() {
+    this.props.fetchCountries();
+    this.props.fetchTitleProperties();
+    this.props.fetchMainPropertiess("my0:Person");
+    this.props.fetchMainPropertiess("my0:Address");
+    this.setInitialValues();
+  }
+
+  setInitialValues = () => {
+    if (this.props.id !== null && this.props.isUpdate === true) {
+      let inputRef = this.props.initialValues;
+      let reference = { ...this.state.reference };
+      reference["my0:refRelationDescription"] = inputRef["my0:refRelationDescription"];
+      reference["my0:referenceBy"] = inputRef["my0:referenceBy"];
+      this.setState({
+        reference
+      });
+    }
+  };
+
+  clearForm = () => {
+    if (!this.props.isUpdate) {
+      this.setState({
+        reference: {
+          "@type": "my0:Reference",
+          "my0:refRelationDescription": [{
             "@value": "",
             "@language": "en"
           },
@@ -104,41 +133,6 @@ class ReferenceModal extends Component {
             "@language": "sq"
           },
           ],
-          "my0:employedIn": {
-            "@type": "my0:Company",
-            "my0:organizationName": ""
-          }
-        }
-      }
-    }
-  };
-
-  componentWillMount() {
-    this.props.fetchCountries();
-    this.props.fetchTitleProperties();
-    this.props.fetchMainPropertiess("my0:Person");
-    this.props.fetchMainPropertiess("my0:Organization");
-    this.props.fetchMainPropertiess("my0:Address");
-    this.props.fetchMainPropertiess("my0:WorkHistory");
-    this.setInitialValues();
-  }
-
-  setInitialValues = () => {
-    if (this.props.id !== null && this.props.isUpdate === true) {
-      let inputRef = this.props.initialValues;
-      let reference = { ...this.state.reference };
-      reference["my0:referenceBy"] = inputRef["my0:referenceBy"];
-      this.setState({
-        reference
-      });
-    }
-  };
-
-  clearForm = () => {
-    if (!this.props.isUpdate) {
-      this.setState({
-        reference: {
-          "@type": "my0:Reference",
           "my0:referenceBy": {
             "@type": "my0:Person",
             "my0:title": "",
@@ -191,36 +185,8 @@ class ReferenceModal extends Component {
               ],
               "my0:postalCode": ""
             },
-            "my0:hasTelephoneNumber": "",
-            "my0:email": "",
-            "my0:currentJob": {
-              "@type": "my0:WorkHistory",
-              "my0:jobTitle": [{
-                "@value": "",
-                "@language": "en"
-              },
-              {
-                "@value": "",
-                "@language": "it"
-              },
-              {
-                "@value": "",
-                "@language": "fr"
-              },
-              {
-                "@value": "",
-                "@language": "de"
-              },
-              {
-                "@value": "",
-                "@language": "sq"
-              },
-              ],
-              "my0:employedIn": {
-                "@type": "my0:Company",
-                "my0:organizationName": ""
-              }
-            }
+            "my0:phoneNumberWork": "",
+            "my0:email": ""
           }
         }
       });
@@ -236,11 +202,6 @@ class ReferenceModal extends Component {
       obj["my0:referenceBy"][label] = value["@type"];
     } else if (name === "address") {
       obj["my0:referenceBy"]["my0:address"][label] = value["@type"];
-    } else if (name === "workHistory") {
-      obj["my0:referenceBy"]["my0:currentJob"][label] = value["@type"];
-    } else if (name === "organization") {
-      obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label] =
-        value["@type"];
     } else {
       obj[label] = value["@type"];
     }
@@ -284,19 +245,6 @@ class ReferenceModal extends Component {
       } else {
         obj["my0:referenceBy"]["my0:address"][label] = e.target.value;
       }
-    } else if (e.target.name === "workHistory") {
-      if (lang) {
-        obj["my0:referenceBy"]["my0:currentJob"][label] = this.replaceLanguageValue(obj["my0:referenceBy"]["my0:currentJob"][label], lang, e.target.value);
-      } else {
-        obj["my0:referenceBy"]["my0:currentJob"][label] = e.target.value;
-      }
-    } else if (e.target.name === "organization") {
-      if (lang) {
-        obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label] = this.replaceLanguageValue(obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label], lang, e.target.value);
-      } else {
-        obj["my0:referenceBy"]["my0:currentJob"]["my0:employedIn"][label] =
-          e.target.value;
-      }
     } else {
       if (lang) {
         obj[label] = this.replaceLanguageValue(obj[label], lang, e.target.value);
@@ -326,12 +274,8 @@ class ReferenceModal extends Component {
     let disabled =
       this.state.reference["my0:referenceBy"]["my0:firstName"] === "" ||
       this.state.reference["my0:referenceBy"]["my0:lastName"] === "" ||
-      this.state.reference["my0:referenceBy"]["my0:currentJob"][
-      "my0:jobTitle"
-      ] === "" ||
-      this.state.reference["my0:referenceBy"]["my0:currentJob"][
-      "my0:employedIn"
-      ]["my0:organizationName"] === "";
+      this.state.reference["my0:referenceBy"]["my0:email"] === "" ||
+      this.state.reference["my0:refRelationDescription"] === ""
     if (!this.props.isUpdate) {
       return (
         <Button
@@ -386,14 +330,13 @@ class ReferenceModal extends Component {
       "my0:firstName": firstName,
       "my0:lastName": lastName,
       "my0:email": email,
-      "my0:phoneNumber": hasTelephoneNumber,
-      "my0:currentJob": currentJob,
+      "my0:phoneNumberWork": phoneNumberWork,
       "my0:address": address
     } = this.state.reference["my0:referenceBy"];
 
-    let { "my0:jobTitle": jobTitle, "my0:employedIn": employedIn } = currentJob;
-
-    let { "my0:organizationName": organizationName } = employedIn;
+    let {
+      "my0:refRelationDescription": refRelationDescription
+    } = this.state.reference;
 
     let lang = this.props.language;
 
@@ -480,36 +423,6 @@ class ReferenceModal extends Component {
               />
             </Col>
           </Row>
-          <Row>
-            <Col md={6}>
-              <CustomInput
-                id="my0:jobTitle"
-                name="workHistory"
-                label={
-                  this.renderLabel(translatedPropsWork, "jobTitle", lang) + " *"
-                }
-                type="text"
-                value={this.findTranslatedValue(jobTitle, lang)}
-                handleChange={(e) => this.handleInputChange(e, lang)}
-              />
-            </Col>
-            <Col md={6}>
-              <CustomInput
-                id="my0:organizationName"
-                name="organization"
-                label={
-                  this.renderLabel(
-                    translatedPropsOrg,
-                    "organizationName",
-                    lang
-                  ) + " *"
-                }
-                type="text"
-                value={organizationName}
-                handleChange={this.handleInputChange}
-              />
-            </Col>
-          </Row>
           <div>
             <CustomInput
               id="my0:street"
@@ -577,11 +490,11 @@ class ReferenceModal extends Component {
             </Row>
           </div>
           <CustomInput
-            id="my0:phoneNumber"
+            id="my0:phoneNumberWork"
             name="person"
-            label={this.renderLabel(translatedProps, "phoneNumber", lang)}
+            label={this.renderLabel(translatedProps, "phoneNumberWork", lang)}
             type="text"
-            value={hasTelephoneNumber}
+            value={phoneNumberWork}
             handleChange={this.handleInputChange}
           />
           <CustomInput
@@ -591,6 +504,17 @@ class ReferenceModal extends Component {
             type="text"
             value={email}
             handleChange={this.handleInputChange}
+          />
+          <CustomTextarea
+            id="my0:refRelationDescription"
+            name="reference"
+            label={this.renderLabel(
+              translatedProps,
+              "refRelationDescription",
+              lang
+            )}
+            value={this.findTranslatedValue(refRelationDescription, lang)}
+            handleChange={(e) => this.handleInputChange(e, lang)}
           />
         </Modal.Body>
         <Modal.Footer>

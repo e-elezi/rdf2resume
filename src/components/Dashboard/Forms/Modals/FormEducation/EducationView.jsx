@@ -79,7 +79,7 @@ class EducationView extends Component {
     let {
       "my0:eduStartDate": eduStartDate,
       "my0:eduGradDate": eduGradDate,
-      "my0:degreeType": degreeType,
+      "my0:degreeFieldOfStudy": degreeFieldOfStudy,
       "my0:degree": degree,
       // "my0:eduMinor" : eduMinor,
       "my0:eduDescription": eduDescription,
@@ -129,7 +129,7 @@ class EducationView extends Component {
               }}
             >
               <b>
-                {this.findTranslatedValue(degree, lang)} | {this.renderLabel(this.props.eduDegrees, degreeType, lang)}
+                {this.findTranslatedValue(degreeFieldOfStudy, lang)} | {this.renderLabel(this.props.eduDegrees, degree, lang)}
               </b>
             </Row>
             <Row
@@ -148,7 +148,7 @@ class EducationView extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {orgName}
+                  {this.findTranslatedValue(orgName, lang)}
                 </a>{" , "}
                 {
                   this.findTranslatedValue(city, lang)

@@ -43,7 +43,7 @@ import {
   warningLabel,
   photoWrongExtensionText,
   photoTooBigText,
-  personalNationalityAlert
+  // personalNationalityAlert
 } from "../../../translations/translations";
 import axios from "axios";
 
@@ -98,19 +98,19 @@ class FormPersonal extends Component {
   handleMultiSelectChange = (name, value, lang) => {
     let myarr = [];
     let length = value.length;
-    if (name === "hasCitizenship" || name === "hasNationality") {
-      if (value.length >= 3) {
-        Swal.fire({
-          title: "Warning!",
-          text: personalNationalityAlert[lang],
-          type: "warning",
-          confirmButtonColor: "#4bb3cc",
-          heightAuto: false,
-          confirmButtonText: "Okay"
-        });
-        return;
-      }
-    }
+    // if (name === "hasCitizenship" || name === "hasNationality") {
+    //   if (value.length >= 3) {
+    //     Swal.fire({
+    //       title: "Warning!",
+    //       text: personalNationalityAlert[lang],
+    //       type: "warning",
+    //       confirmButtonColor: "#4bb3cc",
+    //       heightAuto: false,
+    //       confirmButtonText: "Okay"
+    //     });
+    //     return;
+    //   }
+    // }
     for (let i = 0; i < length; i++) {
       myarr.push(value[i]["@type"]);
     }
@@ -275,11 +275,13 @@ class FormPersonal extends Component {
     let {
       "my0:firstName": firstName,
       "my0:lastName": lastName,
-      "my0:hasCitizenship": hasCitizenship,
+      "my0:formerName": formerName,
       "my0:hasNationality": hasNationality,
       "my0:dateOfBirth": dateOfBirth,
       "my0:gender": gender,
-      "my0:phoneNumber": phoneNumber,
+      "my0:phoneNumberHome": phoneNumberHome,
+      "my0:phoneNumberWork": phoneNumberWork,
+      "my0:phoneNumberMobile": phoneNumberMobile,
       "my0:email": email,
       "my0:title": title,
       "my0:driversLicence": driversLicence,
@@ -377,6 +379,16 @@ class FormPersonal extends Component {
             </div>
           </div>
           <CustomInput
+            id="formerName"
+            label={
+              this.renderLabel(translatedProps, "formerName", lang) 
+            }
+            type="text"
+            value={formerName}
+            handleBlurEvent={this.handleBlur}
+            handleChange={this.handleInputChange}
+          />
+          <CustomInput
             id="email"
             label={this.renderLabel(translatedProps, "email", lang) + " *"}
             type="text"
@@ -386,10 +398,24 @@ class FormPersonal extends Component {
           />
           {error["my0:email"] ? <span className="error">Required</span> : ""}
           <CustomInput
-            id="phoneNumber"
-            label={this.renderLabel(translatedProps, "phoneNumber", lang)}
+            id="phoneNumberWork"
+            label={this.renderLabel(translatedProps, "phoneNumberWork", lang)}
             type="text"
-            value={phoneNumber}
+            value={phoneNumberWork}
+            handleChange={this.handleInputChange}
+          />
+          <CustomInput
+            id="phoneNumberHome"
+            label={this.renderLabel(translatedProps, "phoneNumberHome", lang)}
+            type="text"
+            value={phoneNumberHome}
+            handleChange={this.handleInputChange}
+          />
+          <CustomInput
+            id="phoneNumberMobile"
+            label={this.renderLabel(translatedProps, "phoneNumberMobile", lang)}
+            type="text"
+            value={phoneNumberMobile}
             handleChange={this.handleInputChange}
           />
           <div>
@@ -452,27 +478,6 @@ class FormPersonal extends Component {
             type="date"
             value={dateOfBirth}
             handleChange={this.handleInputChange}
-          />
-          <label className="label-rw">
-            {this.renderLabel(translatedProps, "hasCitizenship", lang)}
-          </label>
-          <Multiselect
-            name="hasCitizenship"
-            data={this.props.countries}
-            textField={lang}
-            valueField="@type"
-            value={hasCitizenship}
-            placeholder={this.renderLabel(
-              translatedProps,
-              "hasCitizenship",
-              lang
-            )}
-            caseSensitive={false}
-            minLength={3}
-            filter="contains"
-            onChange={value =>
-              this.handleMultiSelectChange("hasCitizenship", value, lang)
-            }
           />
           <label className="label-rw">
             {this.renderLabel(translatedProps, "hasNationality", lang)}

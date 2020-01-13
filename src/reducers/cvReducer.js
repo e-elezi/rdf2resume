@@ -122,6 +122,7 @@ const INITIAL_STATE = {
     "my0:hasNationality": [],
     "my0:firstName": "",
     "my0:lastName": "",
+    "my0:formerName": "",
     "my0:hasInstantMessaging": [],
     "my0:dateOfBirth": "",
     "@type": "my0:Person",
@@ -178,7 +179,9 @@ const INITIAL_STATE = {
         }
       ]
     },
-    "my0:phoneNumber": "",
+    "my0:phoneNumberHome": "",
+    "my0:phoneNumberWork": "",
+    "my0:phoneNumberMobile": "",
     "my0:personShortDescription": [{
         "@value": "",
         "@language": "en"

@@ -13,7 +13,7 @@ import {
   retrieveBaseProperties
 } from "../../../../../utilities/utilityQueries";
 import {
-  fetchCVJobModes,
+  fetchCVJobTypes,
   fetchCountries
 } from "../../../../../actions/utilityActions";
 import WorkHistoryModal from "./WorkHistoryModal";
@@ -27,7 +27,7 @@ class WorkHistoryReview extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchCVJobModes();
+    this.props.fetchCVJobTypes();
     this.props.fetchCountries();
   }
 
@@ -84,7 +84,7 @@ class WorkHistoryReview extends Component {
       "my0:startDate": startDate,
       "my0:endDate": endDate,
       "my0:jobTitle": jobTitle,
-      "my0:jobMode": jobMode,
+      "my0:jobType": jobType,
       // "my0:careerLevel" : careerLevel,
       "my0:jobDescription": jobDescription,
       "my0:isCurrent": isCurrent
@@ -132,7 +132,7 @@ class WorkHistoryReview extends Component {
             >
               <b>
                 {this.findTranslatedValue(jobTitle, lang)} |{" "}
-                {this.renderLabel(this.props.jobmodes, jobMode, lang)}
+                {this.renderLabel(this.props.jobtypes, jobType, lang)}
               </b>
             </Row>
             <Row
@@ -195,7 +195,7 @@ const mapstateToProps = (state, ownProps) => {
   return {
     language: state.utility.language,
     countries: retrieveCountryValues(state.utility.countryValues),
-    jobmodes: retrieveBaseProperties(state.utility.jobModeValues)
+    jobtypes: retrieveBaseProperties(state.utility.jobTypeValues)
   };
 };
 
@@ -204,6 +204,6 @@ export default connect(
   {
     removeWorkHistory,
     fetchCountries,
-    fetchCVJobModes
+    fetchCVJobTypes
   }
 )(WorkHistoryReview);

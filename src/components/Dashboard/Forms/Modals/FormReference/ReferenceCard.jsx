@@ -83,10 +83,13 @@ class ReferenceCard extends Component {
       "my0:firstName": firstName,
       "my0:lastName": lastName,
       "my0:address": address,
-      "my0:currentJob": currentJob,
       "my0:email": email,
-      "my0:hasTelephoneNumber": hasTelephoneNumber
+      "my0:phoneNumberWork": phoneNumberWork
     } = this.props.referenceObj["my0:referenceBy"];
+
+    let {
+      "my0:refRelationDescription": refRelationDescription
+    } = this.props.referenceObj;
 
     let {
       "my0:city": city,
@@ -97,7 +100,6 @@ class ReferenceCard extends Component {
 
     let lang = this.props.language;
 
-    let { "my0:jobTitle": jobTitle } = currentJob;
     return (
       <Card style={{ width: "18rem" }}>
         <Card.Header>
@@ -119,9 +121,6 @@ class ReferenceCard extends Component {
             {lastName}
           </Card.Title>
           <Card.Text>
-            {this.findTranslatedValue(jobTitle, lang)} | {currentJob["my0:employedIn"]["my0:organizationName"]}
-          </Card.Text>
-          <Card.Text>
             <p>{this.findTranslatedValue(street, lang)}</p>
             <p>
               {" "}
@@ -129,9 +128,12 @@ class ReferenceCard extends Component {
             </p>
             <p>{this.renderLabel(this.props.countries, country, lang)}</p>
           </Card.Text>
-          <Card.Text>{hasTelephoneNumber}</Card.Text>
+          <Card.Text>{phoneNumberWork}</Card.Text>
           <Card.Text>
             <Card.Link href="#">{email}</Card.Link>
+          </Card.Text>
+          <Card.Text>
+            <Card.Link href="#">{this.findTranslatedValue(refRelationDescription, lang)}</Card.Link>
           </Card.Text>
         </Card.Body>
         <ReferenceModal

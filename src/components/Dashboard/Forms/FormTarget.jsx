@@ -7,7 +7,7 @@ import { Combobox, Multiselect } from "react-widgets";
 import { connect } from "react-redux";
 import { updateTarget, updateCVLastUpdate } from "../../../actions";
 import {
-  fetchCVJobModes,
+  fetchCVJobTypes,
   fetchCVCareerLevels,
   fetchCountries,
   fetchCompanySizes,
@@ -30,7 +30,7 @@ class FormTarget extends Component {
 
   componentWillMount() {
     this.props.fetchCVCareerLevels();
-    this.props.fetchCVJobModes();
+    this.props.fetchCVJobTypes();
     this.props.fetchCompanySizes();
     this.props.fetchCountries();
     this.props.fetchAllIndustryTypess();
@@ -104,7 +104,7 @@ class FormTarget extends Component {
       "my0:targetCompanyField": targetCompanyField,
       "my0:targetRegion": targetRegion,
       "my0:targetCareerLevel": targetCareerLevel,
-      "my0:targetJobMode": targetJobMode,
+      "my0:targetJobType": targetJobType,
       "my0:targetWeeksNoticePeriod": targetWeeksNoticePeriod,
       "my0:targetJobTitle": targetJobTitle,
       "my0:targetConditionWillTravel": conditionWillTravel,
@@ -132,23 +132,23 @@ class FormTarget extends Component {
             handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
           <label className="label-rw">
-            {this.renderLabel(translatedProps, "targetJobMode", lang)}
+            {this.renderLabel(translatedProps, "targetJobType", lang)}
           </label>
           <Combobox
-            name="targetJobMode"
+            name="targetJobType"
             placeholder={this.renderLabel(
               translatedProps,
-              "targetJobMode",
+              "targetJobType",
               lang
             )}
-            data={this.props.jobModes}
+            data={this.props.jobTypes}
             textField={lang}
             valueField="@type"
-            value={targetJobMode}
+            value={targetJobType}
             caseSensitive={false}
             minLength={3}
             filter="contains"
-            onChange={value => this.handleSelectChange("targetJobMode", value)}
+            onChange={value => this.handleSelectChange("targetJobType", value)}
           />
           <label className="label-rw">
             {" "}
@@ -333,7 +333,7 @@ class FormTarget extends Component {
 const mapstateToProps = state => {
   return {
     countries: retrieveCountryValues(state.utility.countryValues),
-    jobModes: retrieveBaseProperties(state.utility.jobModeValues),
+    jobTypes: retrieveBaseProperties(state.utility.jobTypeValues),
     careerLevels: retrieveBaseProperties(state.utility.careerLevelValues),
     companySizes: retrieveBaseProperties(state.utility.companySizeValues),
     regions: retrieveBaseProperties(state.utility.regions),
@@ -347,7 +347,7 @@ const mapstateToProps = state => {
 export default connect(
   mapstateToProps,
   {
-    fetchCVJobModes,
+    fetchCVJobTypes,
     fetchCVCareerLevels,
     fetchCountries,
     fetchCompanySizes,

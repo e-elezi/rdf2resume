@@ -46,7 +46,7 @@ export const fetchSkillCategories = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:SkillCategoryProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:SkillCategoryProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -66,7 +66,7 @@ export const fetchCVCareerLevels = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:CVCareerLevel')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:CVCareerLevel')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -79,7 +79,7 @@ export const fetchCompanySizes = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:CompanySize')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:CompanySize')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -88,11 +88,11 @@ export const fetchCompanySizes = () => async dispatch => {
   });
 };
 
-export const fetchCVJobModes = () => async dispatch => {
+export const fetchCVJobTypes = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:CVJobMode')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:CVEmploymentType')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -105,7 +105,7 @@ export const fetchEduDegrees = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:EduDegree')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:EduDegree')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -118,7 +118,7 @@ export const fetchLanguageSkillSelfAssessmentProperties = () => async dispatch =
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:LanguageSkillProficiencyProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:LanguageSkillProficiencyProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -131,7 +131,7 @@ export const fetchTitleProperties = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:TitleProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:TitleProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -144,7 +144,7 @@ export const fetchGenders = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:GenderProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:GenderProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -157,7 +157,7 @@ export const fetchOtherCVInfoTypes = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:OtherCVInfoType')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:OtherCVInfoType')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -170,7 +170,7 @@ export const fetchAllIMTypess = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:InstantMessagingTypeProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:InstantMessagingTypeProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -183,7 +183,7 @@ export const fetchAllIndustryTypess = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:IndustryType')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:IndustryType')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -196,7 +196,7 @@ export const fetchAllRegionss = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:RegionProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:RegionProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -209,7 +209,7 @@ export const fetchAllWebsiteTypess = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:WebsiteTypeProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:WebsiteTypeProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
@@ -222,7 +222,7 @@ export const fetchAllPatentStatusess = () => async dispatch => {
   let queryUrl =
     "http://localhost:3030/resume/query" +
     "?query=" +
-    encodeURIComponent(fetchBaseProperties('mybase0:StatusProperty')) +
+    encodeURIComponent(fetchBaseProperties('myvalue0:StatusProperty')) +
     "&format=json";
   let response = await endpoint.get(queryUrl);
   dispatch({
