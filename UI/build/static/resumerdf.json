@@ -1,0 +1,1032 @@
+{
+  "my0:hasReference": [],
+  "my0:hasWorkHistory": [
+    {
+      "@type": "my0:WorkHistory",
+      "my0:startDate": "2016-03-01",
+      "my0:endDate": "2016-10-28",
+      "my0:jobTitle": [
+        {
+          "@value": "Web Development Intern",
+          "@language": "en"
+        },
+        {
+          "@value": "Stagista per lo sviluppo web",
+          "@language": "it"
+        },
+        {
+          "@value": "Stagiaire en développement Web",
+          "@language": "fr"
+        },
+        {
+          "@value": "Web-Entwicklung Praktikant",
+          "@language": "de"
+        },
+        {
+          "@value": "Praktikant për zhvillim web-i",
+          "@language": "sq"
+        }
+      ],
+      "my0:jobDescription": [
+        {
+          "@value": "-adding new functionalities to an existing project using Ext.NET,ASP.NET,JS,C# and VB.NET\n-creating reports for business analysis using SQL, SQL Server\n-working on web form based, MVC based projects",
+          "@language": "en"
+        },
+        {
+          "@value": "-aggiungere nuove funzionalità ad un progetto esistente utilizzando Ext.NET,ASP.NET,JS,C# e VB.NET\n-creare report per l'analisi aziendale utilizzando SQL, SQL Server\n-lavorare su progetti basati su moduli web, basati su MVC",
+          "@language": "it"
+        },
+        {
+          "@value": "-ajout de nouvelles fonctionnalités à un projet existant en utilisant Ext.NET,ASP.NET,JS,C# et VB.NET\n-création de rapports pour l'analyse de l'activité en utilisant SQL, SQL Server\n-travailler sur des projets basés sur des formulaires web et des MVC",
+          "@language": "fr"
+        },
+        {
+          "@value": "-Hinzufügen neuer Funktionalitäten zu einem bestehenden Projekt mit Ext.NET,ASP.NET,JS,C# und VB.NET\n-Erstellung von Berichten zur Geschäftsanalyse mit SQL, SQL Server\n-Arbeiten an webformularbasierten, MVC-basierten Projekten",
+          "@language": "de"
+        },
+        {
+          "@value": "-zbatimi i funksioneve të reja në një projekt ekzistues duke përdorur Ext.NET, ASP.NET, JS, C # dhe VB.NET\n-krijimi i raporteve për analizën e biznesit duke përdorur SQL, SQL Server\n-punimi në forma të bazuara në ueb, projekte me bazë MVC",
+          "@language": "sq"
+        }
+      ],
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Intern",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:isCurrent": false,
+      "my0:employedIn": {
+        "@type": "my0:Company",
+        "my0:orgName": "Raiffeisen Bank Albania",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [
+            {
+              "@value": "Tirana",
+              "@language": "en"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "it"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "fr"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "de"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": "1001"
+        },
+        "my0:orgDescription": [
+          {
+            "@value": "The Raiffeisen Bank is the largest bank in Albania, with more than 60% of all retail deposits and the largest branch network. Parent organization: Raiffeisen Bank International.",
+            "@language": "en"
+          },
+          {
+            "@value": "La Raiffeisen Bank è la più grande banca in Albania, con oltre il 60% di tutti i depositi al dettaglio e la più grande rete di filiali. Organizzazione capogruppo: Raiffeisen Bank International.",
+            "@language": "it"
+          },
+          {
+            "@value": "La Banque Raiffeisen est la plus grande banque d'Albanie, avec plus de 60% de tous les dépôts des particuliers et le plus grand réseau d'agences. Organisation mère : Raiffeisen Bank International.",
+            "@language": "fr"
+          },
+          {
+            "@value": "Die Raiffeisen Bank ist die größte Bank in Albanien, mit mehr als 60% aller Privatkundeneinlagen und dem größten Filialnetz. Die Muttergesellschaft: Raiffeisen Bank International.",
+            "@language": "de"
+          },
+          {
+            "@value": "Raiffeisen Bank është banka më e madhe në Shqipëri, me më shumë se 60% të të gjitha depozitave me pakicë dhe rrjetit më të madh të degëve. Organizata e prindërve: Raiffeisen Bank International.",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "https://www.raiffeisen.al/",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#Finance"
+      }
+    },
+    {
+      "@type": "my0:WorkHistory",
+      "my0:startDate": "2018-06-15",
+      "my0:endDate": "2019-03-29",
+      "my0:jobTitle": [
+        {
+          "@value": "Work Student Frontend Developer",
+          "@language": "en"
+        },
+        {
+          "@value": "Lavoro Studente Sviluppatore Frontend",
+          "@language": "it"
+        },
+        {
+          "@value": "Travailler Étudiant Développeur front-end",
+          "@language": "fr"
+        },
+        {
+          "@value": "Werkstudent Frontend-Entwickler",
+          "@language": "de"
+        },
+        {
+          "@value": "Punë studenti zhvillues web-i",
+          "@language": "sq"
+        }
+      ],
+      "my0:jobDescription": [
+        {
+          "@value": "Development of new features and bug fixing in already established projects using JQuery and JavaServer Pages (JSP).",
+          "@language": "en"
+        },
+        {
+          "@value": "Sviluppo di nuove funzionalità e correzione di bug in progetti già consolidati utilizzando JQuery e JavaServer Pages (JSP).",
+          "@language": "it"
+        },
+        {
+          "@value": "Développement de nouvelles fonctionnalités et correction de bogues dans des projets déjà établis utilisant JQuery et JavaServer Pages (JSP).",
+          "@language": "fr"
+        },
+        {
+          "@value": "Entwicklung neuer Features und Fehlerbehebung in bereits etablierten Projekten mit JQuery und JavaServer Pages (JSP).",
+          "@language": "de"
+        },
+        {
+          "@value": "Zhvillimi i veçorive të reja dhe rregullimi i gabimeve në projektet e krijuara tashmë duke përdorur JQuery dhe JavaServer Pages (JSP).",
+          "@language": "sq"
+        }
+      ],
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Contractor",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:isCurrent": false,
+      "my0:employedIn": {
+        "@type": "my0:Company",
+        "my0:orgName": "Publicis.Sapient",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [
+            {
+              "@value": "Cologne",
+              "@language": "en"
+            },
+            {
+              "@value": "Colonia",
+              "@language": "it"
+            },
+            {
+              "@value": "Cologne",
+              "@language": "fr"
+            },
+            {
+              "@value": "Köln",
+              "@language": "de"
+            },
+            {
+              "@value": "Këln",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": "50672"
+        },
+        "my0:orgDescription": [
+          {
+            "@value": "Business management consultant in Cologne, North Rhine-Westphalia",
+            "@language": "en"
+          },
+          {
+            "@value": "Consulente di gestione aziendale a Colonia, Nord Reno-Westfalia.",
+            "@language": "it"
+          },
+          {
+            "@value": "Conseiller en gestion d'entreprise à Cologne, Rhénanie-du-Nord-Westphalie.",
+            "@language": "fr"
+          },
+          {
+            "@value": "Betriebswirtschaftlicher Berater in Köln, Nordrhein-Westfalen",
+            "@language": "de"
+          },
+          {
+            "@value": "Konsulent për menaxhimin e biznesit në Këln, North Rhine-Westphalia.",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "https://www.publicissapient.com/",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#InformationTechnology"
+      }
+    },
+    {
+      "@type": "my0:WorkHistory",
+      "my0:startDate": "2019-04-01",
+      "my0:endDate": "",
+      "my0:jobTitle": [
+        {
+          "@value": "Student Research Assistant",
+          "@language": "en"
+        },
+        {
+          "@value": "Assistente alla ricerca",
+          "@language": "it"
+        },
+        {
+          "@value": "Assistant de recherche",
+          "@language": "fr"
+        },
+        {
+          "@value": "Wissenschaftliche Mitarbeiterin",
+          "@language": "de"
+        },
+        {
+          "@value": "Asistent kërkimor",
+          "@language": "sq"
+        }
+      ],
+      "my0:jobDescription": [
+        {
+          "@value": "Designing and creating wireframes using Adobe XD. \nDevelopment of simple Web Apps using React and improvement of a web app (Visual Query Builder for Sparql Endpoints) by adding new features and bug fixing.",
+          "@language": "en"
+        },
+        {
+          "@value": "Progettazione e creazione di wireframe utilizzando Adobe XD. \nSviluppo di semplici Web Apps utilizzando React e miglioramento di una web app (Visual Query Builder per Sparql Endpoints) con l'aggiunta di nuove funzionalità e correzione di bug.",
+          "@language": "it"
+        },
+        {
+          "@value": "Conception et création de filières à l'aide d'Adobe XD. \nDéveloppement d'applications Web simples en utilisant React et amélioration d'une application Web (Visual Query Builder for Sparql Endpoints) en ajoutant de nouvelles fonctionnalités et en corrigeant des bugs.",
+          "@language": "fr"
+        },
+        {
+          "@value": "Entwerfen und Erstellen von Wireframes mit Adobe XD. \nEntwicklung von einfachen Web-Apps mit React und Verbesserung einer Web-App (Visual Query Builder for Sparql Endpoints) durch Hinzufügen neuer Funktionen und Fehlerbehebung.",
+          "@language": "de"
+        },
+        {
+          "@value": "Dizajnimi dhe krijimi i faqes duke përdorur Adobe XD.\nZhvillimi i Aplikacioneve të thjeshta në Internet duke përdorur React dhe përmirësimin e një aplikacioni në internet (Visual Query Builder for Sparql Endpoints) duke shtuar karakteristika të reja dhe rregullimin e gabimeve.",
+          "@language": "sq"
+        }
+      ],
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Contractor",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:isCurrent": true,
+      "my0:employedIn": {
+        "@type": "my0:Company",
+        "my0:orgName": "Fraunhofer IAIS",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [
+            {
+              "@value": "Sankt Augustin",
+              "@language": "en"
+            },
+            {
+              "@value": "Sankt Augustin",
+              "@language": "it"
+            },
+            {
+              "@value": "Saint Augustin",
+              "@language": "fr"
+            },
+            {
+              "@value": "Sankt Augustin",
+              "@language": "de"
+            },
+            {
+              "@value": "Sankt Augustin",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": ""
+        },
+        "my0:orgDescription": [
+          {
+            "@value": "Fraunhofer Institute for Intelligent Analysis and Information Systems.",
+            "@language": "en"
+          },
+          {
+            "@value": "Fraunhofer Institute for Intelligent Analysis and Information Systems IAIS",
+            "@language": "it"
+          },
+          {
+            "@value": "Institut Fraunhofer pour l'analyse intelligente et les systèmes d'information.",
+            "@language": "fr"
+          },
+          {
+            "@value": "Fraunhofer-Institut für Intelligente Analyse- und Informationssysteme IAIS",
+            "@language": "de"
+          },
+          {
+            "@value": "Instituti Fraunhofer për Analizë Inteligjente dhe Sisteme të Informacionit IAIS",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "https://www.iais.fraunhofer.de/",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#InformationTechnology"
+      }
+    }
+  ],
+  "my0:cvLastUpdate": "2020-1-4",
+  "my0:cvIsConfidential": false,
+  "my0:cvCopyright": [
+    {
+      "@value": "Enkeleda Elezi",
+      "@language": "en"
+    },
+    {
+      "@value": "Enkeleda Elezi",
+      "@language": "de"
+    },
+    {
+      "@value": "Enkeleda Elezi",
+      "@language": "it"
+    },
+    {
+      "@value": "Enkeleda Elezi",
+      "@language": "fr"
+    },
+    {
+      "@value": "Enkeleda Elezi",
+      "@language": "sq"
+    }
+  ],
+  "my0:cvNotes": [
+    {
+      "@value": "This CV belongs to Enkeleda Elezi",
+      "@language": "en"
+    },
+    {
+      "@value": "Dieser Lebenslauf gehört Enkeleda Elezi.",
+      "@language": "de"
+    },
+    {
+      "@value": "Questo CV appartiene a Enkeleda Elezi.",
+      "@language": "it"
+    },
+    {
+      "@value": "Ce CV appartient à Enkeleda Elezi.",
+      "@language": "fr"
+    },
+    {
+      "@value": "Kjo CV i përket Enkeleda Elezit.",
+      "@language": "sq"
+    }
+  ],
+  "my0:hasCourse": [],
+  "my0:aboutPerson": {
+    "my0:hasNationality": [
+      "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
+    ],
+    "my0:firstName": "Enkeleda",
+    "my0:lastName": "Elezi",
+    "my0:hasInstantMessaging": [
+      {
+        "@type": "my0:InstantMessaging",
+        "my0:instantMessagingName": "http://example.com/rdf2resume_base_ontology.rdf#Skype",
+        "my0:instantMessagingUsername": "enkeleda.elezi25"
+      }
+    ],
+    "my0:dateOfBirth": "1994-11-25",
+    "@type": "my0:Person",
+    "my0:email": "enkeleda.elezi@gmail.com",
+    "my0:photo": "",
+    "my0:title": "http://example.com/rdf2resume_base_ontology.rdf#Miss",
+    "my0:driversLicence": "None",
+    "my0:hasCitizenship": [
+      "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
+    ],
+    "my0:hasWebsite": [
+      {
+        "@type": "my0:Website",
+        "my0:websiteURL": "https://www.linkedin.com/in/enkeleda-elezi-928532a0/",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Linkedin"
+      },
+      {
+        "@type": "my0:Website",
+        "my0:websiteURL": "https://github.com/e-elezi",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Github"
+      },
+      {
+        "@type": "my0:Website",
+        "my0:websiteURL": "https://www.instagram.com/enkeleda.elezi/",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Instagram"
+      },
+      {
+        "@type": "my0:Website",
+        "my0:websiteURL": "https://www.instagram.com/enkeleda.elezi/",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Personal"
+      }
+    ],
+    "my0:address": {
+      "@type": "my0:Address",
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+      "my0:postalCode": "53119",
+      "my0:street": [
+        {
+          "@value": "Hirschberger 60",
+          "@language": "en"
+        },
+        {
+          "@value": "Hirschberger 60",
+          "@language": "de"
+        },
+        {
+          "@value": "Hirschberger 60",
+          "@language": "it"
+        },
+        {
+          "@value": "Hirschberger 60",
+          "@language": "fr"
+        },
+        {
+          "@value": "Hirschberger 60",
+          "@language": "sq"
+        }
+      ],
+      "my0:city": [
+        {
+          "@value": "Bonn",
+          "@language": "en"
+        },
+        {
+          "@value": "Bonn",
+          "@language": "de"
+        },
+        {
+          "@value": "Bonn",
+          "@language": "it"
+        },
+        {
+          "@value": "Bonn",
+          "@language": "fr"
+        },
+        {
+          "@value": "Bonn",
+          "@language": "sq"
+        }
+      ]
+    },
+    "my0:phoneNumber": "+49 1522 7575755",
+    "my0:personShortDescription": [
+      {
+        "@value": "When there is will and coffee, there is a way.",
+        "@language": "en"
+      },
+      {
+        "@value": "Quando c'è volontà e caffè, c'è un modo.",
+        "@language": "it"
+      },
+      {
+        "@value": "Quand il y a de la volonté et du café, il y a un moyen.",
+        "@language": "fr"
+      },
+      {
+        "@value": "Wenn es Testament und Kaffee gibt, gibt es einen Weg.",
+        "@language": "de"
+      },
+      {
+        "@value": "Kur ka vullnet dhe kafe, ka një mënyrë.",
+        "@language": "sq"
+      }
+    ],
+    "my0:personLongDescription": [
+      {
+        "@value": "An ambitious and driven self-starter determined to make meaningful contributions to the projects and teams I'm a part of.\nAbility to grasp new technologies and to apply them to build applications.\nStrong communication skills, time management and team skills with an intention to work hard to meet project deadlines.",
+        "@language": "en"
+      },
+      {
+        "@value": "Un'ambiziosa e determinata a dare un contributo significativo ai progetti e ai team di cui faccio parte.\nCapacità di cogliere le nuove tecnologie e di applicarle per costruire applicazioni.\nForti capacità di comunicazione, gestione del tempo e competenze di team con l'intenzione di lavorare sodo per rispettare le scadenze dei progetti.",
+        "@language": "it"
+      },
+      {
+        "@value": "Une personne ambitieuse et motivée, déterminée à apporter une contribution significative aux projets et aux équipes dont je fais partie.\nCapacité à appréhender les nouvelles technologies et à les appliquer pour construire des applications.\nDe solides compétences en communication, en gestion du temps et en travail d'équipe avec l'intention de travailler fort pour respecter les échéances des projets.",
+        "@language": "fr"
+      },
+      {
+        "@value": "Ein ehrgeiziger und motivierter Selbststarter, der entschlossen ist, sinnvolle Beiträge zu den Projekten und Teams zu leisten, in denen ich ein Teil bin.\nDie Fähigkeit, neue Technologien zu begreifen und sie für die Erstellung von Anwendungen einzusetzen.\nAusgeprägte Kommunikationsfähigkeiten, Zeitmanagement und Teamfähigkeit mit der Absicht, hart zu arbeiten, um Projekttermine einzuhalten.",
+        "@language": "de"
+      },
+      {
+        "@value": "Një vetë-fillestar ambicioz dhe i shtyrë i vendosur për të dhënë kontribute domethënëse për projektet dhe ekipet ku unë jam pjesë e.\nAftësia për të kuptuar teknologjitë e reja dhe për t'i zbatuar ato për të krijuar aplikime.\nAftësi të forta komunikimi, menaxhim kohe dhe aftësi ekipore me qëllim që të punojnë shumë për të përmbushur afatet e projektit.",
+        "@language": "sq"
+      }
+    ],
+    "my0:gender": "http://example.com/rdf2resume_base_ontology.rdf#Female"
+  },
+  "my0:hasSkill": [],
+  "@type": "my0:CV",
+  "my0:hasTarget": {
+    "@type": "my0:Target",
+    "my0:targetJobDescription": [
+      {
+        "@value": "    Degree in Computer Science or related field.\n    Understanding of key design principles.\n    Proficiency with HTML, CSS, JavaScript and jQuery.\n    Understanding of server-side CSS.\n    Experience with graphic design applications such as Adobe Illustrator.\n    Experience with responsive and adaptive design.\n    Understanding of SEO principles.\n    Good problem solving skills.\n    Excellent verbal communication skills.\n    Good interpersonal skills.",
+        "@language": "en"
+      },
+      {
+        "@value": "    Abschluss in Informatik oder einem verwandten Fachgebiet.\n    Verständnis für die wichtigsten Konstruktionsprinzipien.\n    Beherrschung von HTML, CSS, JavaScript und jQuery.\n    Verständnis von server-seitigem CSS.\n    Erfahrung mit Grafikdesign-Anwendungen wie Adobe Illustrator.\n    Erfahrung mit reaktionsfähigem und adaptivem Design.\n    Verständnis der SEO-Prinzipien.\n    Gute Fähigkeiten zur Problemlösung.\n    Ausgezeichnete verbale Kommunikationsfähigkeiten.\n    Gute zwischenmenschliche Fähigkeiten.",
+        "@language": "de"
+      },
+      {
+        "@value": "    Laurea in Informatica o settore affine.\n    Comprensione dei principi chiave della progettazione.\n    Competenza con HTML, CSS, JavaScript e jQuery.\n    Comprensione dei CSS lato server.\n    Esperienza con applicazioni di progettazione grafica come Adobe Illustrator.\n    Esperienza con il design reattivo e adattivo.\n    Comprensione dei principi SEO.\n    Buone capacità di risoluzione dei problemi.\n    Eccellenti capacità di comunicazione verbale.\n    Buone capacità relazionali.",
+        "@language": "it"
+      },
+      {
+        "@value": "    Diplôme en informatique ou dans un domaine connexe.\n    Compréhension des principes clés de la conception.\n    Maîtrise de HTML, CSS, JavaScript et jQuery.\n    Compréhension des CSS côté serveur.\n    Expérience avec les applications de conception graphique telles que Adobe Illustrator.\n    Expérience en conception réactive et adaptative.\n    Compréhension des principes de référencement.\n    Bonne capacité à résoudre les problèmes.\n    Excellentes compétences en communication verbale.\n    Bonnes compétences interpersonnelles.",
+        "@language": "fr"
+      },
+      {
+        "@value": "Diplomë në Shkencë Kompjuterike ose fushë përkatëse.\n     Kuptimi i parimeve kryesore të projektimit.\n     Shkathtësi me HTML, CSS, JavaScript dhe jQuery.\n     Kuptimi i CSS nga serveri.\n     Përvojë me aplikacione të dizajnit grafik siç është Adobe Illustrator.\n     Përvojë me një model të përgjegjshëm dhe adaptues.\n     Kuptimi i parimeve të SEO.\n     Aftësi të mira për zgjidhjen e problemeve.\n     Aftësi të shkëlqyera të komunikimit verbal.\n     Aftësi të mira ndërpersonale.",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetJobTitle": [
+      {
+        "@value": "Frontend Developer",
+        "@language": "en"
+      },
+      {
+        "@value": "Frontend Entwickler/in",
+        "@language": "de"
+      },
+      {
+        "@value": "Sviluppatore frontend",
+        "@language": "it"
+      },
+      {
+        "@value": "Développeur front-end",
+        "@language": "fr"
+      },
+      {
+        "@value": "Zhvillues Frontend",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetWeeksNoticePeriod": [
+      {
+        "@value": "1 month",
+        "@language": "en"
+      },
+      {
+        "@value": "1 Monat",
+        "@language": "de"
+      },
+      {
+        "@value": "1 mese",
+        "@language": "it"
+      },
+      {
+        "@value": "1 mois",
+        "@language": "fr"
+      },
+      {
+        "@value": "1 muaj",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetCountry": [
+      "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany"
+    ],
+    "my0:targetConditionWillRelocate": true,
+    "my0:targetConditionWillTravel": true,
+    "my0:conditionWillRelocate": true,
+    "my0:targetSalaryRange": "50 000 - 60 000 Euros",
+    "my0:targetCompanySize": "http://example.com/rdf2resume_base_ontology.rdf#MediumCompany",
+    "my0:targetCareerLevel": "http://example.com/rdf2resume_base_ontology.rdf#EntryLvl",
+    "my0:targetCompanyDescription": [
+      {
+        "@value": "A medium sized company that deals with project development or product development. Preferred technology stack for frontend is ReactJS.",
+        "@language": "en"
+      },
+      {
+        "@value": "Ein mittelständisches Unternehmen, das sich mit Projektentwicklung oder Produktentwicklung beschäftigt. Bevorzugter Technologiestack für das Frontend ist ReactJS.",
+        "@language": "de"
+      },
+      {
+        "@value": "Una società di medie dimensioni che si occupa dello sviluppo di progetti o dello sviluppo di prodotti. Lo stack tecnologico preferito per il frontend è ReactJS.",
+        "@language": "it"
+      },
+      {
+        "@value": "Une entreprise de taille moyenne qui s'occupe du développement de projets ou du développement de produits. La pile technologique préférée pour le frontend est ReactJS.",
+        "@language": "fr"
+      },
+      {
+        "@value": "Një kompani e mesme që merret me zhvillimin e projektit ose zhvillimin e produktit. Teknologjia e preferuar për frontin është ReactJS.",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetCompanyField": [
+      "http://example.com/rdf2resume_base_ontology.rdf#InformationIndustry"
+    ],
+    "my0:targetRegion": [
+      "http://example.com/rdf2resume_base_ontology.rdf#Europe"
+    ],
+    "my0:targetJobMode": "http://example.com/rdf2resume_base_ontology.rdf#EmployeeFull"
+  },
+  "my0:hasOtherInfo": [
+    {
+      "@type": "my0:OtherInfo",
+      "my0:otherInfoType": "http://example.com/rdf2resume_base_ontology.rdf#Interests",
+      "my0:otherInfoDescription": [
+        {
+          "@value": "Photography",
+          "@language": "en"
+        },
+        {
+          "@value": "Fotografia",
+          "@language": "it"
+        },
+        {
+          "@value": "Photographie",
+          "@language": "fr"
+        },
+        {
+          "@value": "Fotografie",
+          "@language": "de"
+        },
+        {
+          "@value": "Fotografi",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:hasPublication": [],
+  "my0:hasPatent": [],
+  "my0:hasProject": [],
+  "my0:hasHonorAward": [],
+  "my0:hasEducation": [
+    {
+      "@type": "my0:Education",
+      "my0:studiedIn": {
+        "@type": "my0:EducationalOrg",
+        "my0:orgName": [
+          {
+            "@value": "University of Tirana, Faculty of Natural Sciences",
+            "@language": "en"
+          },
+          {
+            "@value": "Università di Tirana, Facoltà di Scienze Naturali",
+            "@language": "it"
+          },
+          {
+            "@value": "Université de Tirana, Faculté des sciences naturelles",
+            "@language": "fr"
+          },
+          {
+            "@value": "Universität Tirana, Fakultät für Naturwissenschaften",
+            "@language": "de"
+          },
+          {
+            "@value": "Universiteti i Tiranës, Fakulteti i Shkencave Natyrore",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgDescription": [
+          {
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "http://www.fshn.edu.al/",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [
+            {
+              "@value": "Tirana",
+              "@language": "en"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "it"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "fr"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "de"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": "1001"
+        }
+      },
+      "my0:isEduCurrent": false,
+      "my0:eduStartDate": "2013-10-01",
+      "my0:eduGradDate": "2016-07-15",
+      "my0:degreeType": "http://example.com/rdf2resume_base_ontology.rdf#EduBachelor",
+      "my0:degree": [
+        {
+          "@value": "Informatics",
+          "@language": "en"
+        },
+        {
+          "@value": "Informatica",
+          "@language": "it"
+        },
+        {
+          "@value": "Informatique",
+          "@language": "fr"
+        },
+        {
+          "@value": "Informatik",
+          "@language": "de"
+        },
+        {
+          "@value": "Informatikë",
+          "@language": "sq"
+        }
+      ],
+      "my0:eduDescription": [
+        {
+          "@value": "General\n-Mathematics, English, Physics\nOccupational\n-Algorithms under C++, Data Structures under C, Java Programming, Computer Organization and\nArchitecture, Database under Oracle, Web Programming and Software Engineering, Operating\nSystems, Networks",
+          "@language": "en"
+        },
+        {
+          "@value": "Generale\n-Matematica, Inglese, Fisica\nProfessionale\n-Algoritmi in C++, Strutture dati in C, Programmazione Java, Organizzazione computerizzata e\nArchitettura, Database in Oracle, Programmazione Web e Ingegneria del Software, Operativa\nSistemi, reti",
+          "@language": "it"
+        },
+        {
+          "@value": "Généralités\n-Mathématiques, Anglais, Physique\nProfessionnel\n-Algorithmes sous C++, Structures de données sous C, Programmation Java, Organisation informatique et\nArchitecture, Base de données sous Oracle, Programmation Web et génie logiciel, Exploitation\nSystèmes, Réseaux",
+          "@language": "fr"
+        },
+        {
+          "@value": "Allgemein\n-Mathematik, Englisch, Physik\nBeruflich\n-Algorithmen unter C++, Datenstrukturen unter C, Java-Programmierung, Rechnerorganisation und\nArchitektur, Datenbank unter Oracle, Webprogrammierung und Softwareentwicklung, Betrieb\nSysteme, Netzwerke\n",
+          "@language": "de"
+        },
+        {
+          "@value": "Të përgjithshme\n-Matematika, Anglishtja, Fizika\nProfesionale\n-Algoritmet nën C ++, Strukturat e të Dhënave nën C, Programim Java, Organizimi i kompjuterave dhe\nArkitektura, Baza e të dhënave nën Oracle, Programim në Ueb dhe Inxhinieri Softuerësh, Rrjetet",
+          "@language": "sq"
+        }
+      ]
+    },
+    {
+      "@type": "my0:Education",
+      "my0:studiedIn": {
+        "@type": "my0:EducationalOrg",
+        "my0:orgName": [
+          {
+            "@value": "University of Bonn",
+            "@language": "en"
+          },
+          {
+            "@value": "Università di Bonn",
+            "@language": "it"
+          },
+          {
+            "@value": "L'Université de Bonn",
+            "@language": "fr"
+          },
+          {
+            "@value": "Universität Bonn",
+            "@language": "de"
+          },
+          {
+            "@value": "Universiteti i Bonit",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgDescription": [
+          {
+            "@value": "The University of Bonn is a public research university located in Bonn, Germany. It was founded in its present form as the Rhein-Universität on 18 October 1818 by Frederick William III, as the linear successor of the Kurkölnische Akademie Bonn which was founded in 1777. ",
+            "@language": "en"
+          },
+          {
+            "@value": "L'Università di Bonn è un'università di ricerca pubblica situata a Bonn, in Germania. Fu fondata nella sua forma attuale come Rhein-Universität il 18 ottobre 1818 da Federico Guglielmo III, come successore lineare della Kurkölnische Akademie Bonn, fondata nel 1777. ",
+            "@language": "it"
+          },
+          {
+            "@value": "L'Université de Bonn est une université de recherche publique située à Bonn, en Allemagne. Elle a été fondée sous sa forme actuelle, la Rhein-Universität, le 18 octobre 1818 par Frederick William III, en tant que successeur linéaire de la Kurkölnische Akademie Bonn qui a été fondée en 1777. ",
+            "@language": "fr"
+          },
+          {
+            "@value": "Die Universität Bonn ist eine öffentliche Forschungsuniversität mit Sitz in Bonn, Deutschland. Sie wurde in ihrer heutigen Form als Rhein-Universität am 18. Oktober 1818 von Friedrich Wilhelm III. als lineare Nachfolgerin der 1777 gegründeten Kurkölnischen Akademie Bonn gegründet. ",
+            "@language": "de"
+          },
+          {
+            "@value": "Universiteti i Bonit është një universitet i kërkimit publik, i vendosur në Bon, Gjermani. Ajo u themelua në formën e saj të tanishme si Rhein-Universität më 18 tetor 1818 nga Frederick William III, si pasardhësi linear i Kurkölnische Akademie Bon, i cili u themelua në 1777.",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgPhoneNumber": "",
+        "my0:orgWebsite": "https://www.uni-bonn.de/the-university",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [
+            {
+              "@value": "Bonn",
+              "@language": "en"
+            },
+            {
+              "@value": "Bonn",
+              "@language": "it"
+            },
+            {
+              "@value": "Bonn",
+              "@language": "fr"
+            },
+            {
+              "@value": "Bonn",
+              "@language": "de"
+            },
+            {
+              "@value": "Bonn",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": "53113"
+        }
+      },
+      "my0:isEduCurrent": true,
+      "my0:eduStartDate": "2017-10-02",
+      "my0:eduGradDate": "2020-03-31",
+      "my0:degreeType": "http://example.com/rdf2resume_base_ontology.rdf#EduMaster",
+      "my0:degree": [
+        {
+          "@value": "Computer Science",
+          "@language": "en"
+        },
+        {
+          "@value": "informatica",
+          "@language": "it"
+        },
+        {
+          "@value": "Science Informatique",
+          "@language": "fr"
+        },
+        {
+          "@value": "Computerwissenschaft",
+          "@language": "de"
+        },
+        {
+          "@value": "Shkenca kompjuterike",
+          "@language": "sq"
+        }
+      ],
+      "my0:eduDescription": [
+        {
+          "@value": " Focus: Intelligent Systems, Semantic Web Technologies, Knowledge Graph Analysis",
+          "@language": "en"
+        },
+        {
+          "@value": " Focus: Sistemi Intelligenti, Tecnologie del Web Semantico, Analisi dei Grafici della Conoscenza",
+          "@language": "it"
+        },
+        {
+          "@value": "Focus : Systèmes intelligents, technologies du Web sémantique, analyse des graphiques de connaissances",
+          "@language": "fr"
+        },
+        {
+          "@value": " Schwerpunkte: Intelligente Systeme, Semantic Web Technologien, Wissensgraphenanalyse",
+          "@language": "de"
+        },
+        {
+          "@value": "Përqendrimi: Sistemet inteligjente, Teknologjitë e të dhënave Semantike, Analiza e Grafikut të Njohurive",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:cvIsActive": true,
+  "@context": {
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
+    "my0": "http://example.com/rdf2resume_ontology.rdf#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
+  }
+}

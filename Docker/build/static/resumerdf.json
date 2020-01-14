@@ -1,0 +1,277 @@
+{
+  "my0:hasReference": [],
+  "my0:hasWorkHistory": [],
+  "my0:cvLastUpdate": "2020-1-15",
+  "my0:cvIsConfidential": false,
+  "my0:cvCopyright": [
+    {
+      "@value": "",
+      "@language": "en"
+    },
+    {
+      "@value": "",
+      "@language": "de"
+    },
+    {
+      "@value": "",
+      "@language": "it"
+    },
+    {
+      "@value": "",
+      "@language": "fr"
+    },
+    {
+      "@value": "",
+      "@language": "sq"
+    }
+  ],
+  "my0:cvNotes": [
+    {
+      "@value": "",
+      "@language": "en"
+    },
+    {
+      "@value": "",
+      "@language": "de"
+    },
+    {
+      "@value": "",
+      "@language": "it"
+    },
+    {
+      "@value": "",
+      "@language": "fr"
+    },
+    {
+      "@value": "",
+      "@language": "sq"
+    }
+  ],
+  "my0:hasCourse": [],
+  "my0:aboutPerson": {
+    "my0:hasNationality": [],
+    "my0:firstName": "leda",
+    "my0:lastName": "Elezi",
+    "my0:hasInstantMessaging": [],
+    "my0:dateOfBirth": "",
+    "@type": "my0:Person",
+    "my0:email": "enkeleda.elezi@gmail.com",
+    "my0:photo": "",
+    "my0:title": "",
+    "my0:driversLicence": "",
+    "my0:hasCitizenship": [],
+    "my0:hasWebsite": [],
+    "my0:address": {
+      "@type": "my0:Address",
+      "my0:country": "",
+      "my0:postalCode": "",
+      "my0:street": [
+        {
+          "@value": "",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:city": [
+        {
+          "@value": "",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    },
+    "my0:phoneNumber": "",
+    "my0:personShortDescription": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:personLongDescription": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:gender": ""
+  },
+  "my0:hasSkill": [],
+  "@type": "my0:CV",
+  "my0:hasTarget": {
+    "@type": "my0:Target",
+    "my0:targetJobDescription": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetJobTitle": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetWeeksNoticePeriod": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetCountry": [],
+    "my0:targetConditionWillRelocate": true,
+    "my0:targetConditionWillTravel": "",
+    "my0:conditionWillRelocate": true,
+    "my0:targetSalaryRange": "",
+    "my0:targetCompanySize": "",
+    "my0:targetCareerLevel": "",
+    "my0:targetCompanyDescription": [
+      {
+        "@value": "",
+        "@language": "en"
+      },
+      {
+        "@value": "",
+        "@language": "de"
+      },
+      {
+        "@value": "",
+        "@language": "it"
+      },
+      {
+        "@value": "",
+        "@language": "fr"
+      },
+      {
+        "@value": "",
+        "@language": "sq"
+      }
+    ],
+    "my0:targetCompanyField": [],
+    "my0:targetRegion": []
+  },
+  "my0:hasOtherInfo": [],
+  "my0:hasPublication": [],
+  "my0:hasPatent": [],
+  "my0:hasProject": [],
+  "my0:hasHonorAward": [],
+  "my0:hasEducation": [],
+  "my0:cvIsActive": true,
+  "@context": {
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
+    "my0": "http://example.com/rdf2resume_ontology.rdf#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
+  }
+}

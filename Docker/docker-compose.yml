@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  server:
+    build: .
+    environment:
+      FLASK_ENV: development
+    volumes:
+      - .:/srv/app
+    ports:
+      - 5000:5000
