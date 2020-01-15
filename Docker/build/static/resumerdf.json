@@ -1,88 +1,95 @@
 {
-  "my0:hasReference": [{
-    "@type": "my0:Reference",
-    "my0:refRelationDescription": [{
-        "@value": "Master thesis supervisor and team leader in Fraunfoher project.",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Betreuer der Masterarbeit und Teamleiter im Projekt Fraunfoher.",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
+  "my0:hasReference": [
+    {
+      "@type": "my0:Reference",
+      "my0:refRelationDescription": [
+        {
+          "@value": "Master thesis supervisor and team leader in Fraunfoher project.",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Betreuer der Masterarbeit und Teamleiter im Projekt Fraunfoher.",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:referenceBy": {
+        "@type": "my0:Person",
+        "my0:title": "http://example.com/resume2rdf_value_ontology.rdf#Dr",
+        "my0:firstName": "Damien",
+        "my0:lastName": "Graux",
+        "my0:address": {
+          "@type": "my0:Address",
+          "my0:city": [
+            {
+              "@value": "Dublin",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "Dublin",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Ireland",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": ""
+        },
+        "my0:phoneNumberWork": "",
+        "my0:email": "damien.graux@adaptcentre.ie"
       }
-    ],
-    "my0:referenceBy": {
-      "@type": "my0:Person",
-      "my0:title": "http://example.com/resume2rdf_value_ontology.rdf#Dr",
-      "my0:firstName": "Damien",
-      "my0:lastName": "Graux",
-      "my0:address": {
-        "@type": "my0:Address",
-        "my0:city": [{
-            "@value": "Dublin",
-            "@language": "en"
-          },
-          {
-            "@value": "",
-            "@language": "it"
-          },
-          {
-            "@value": "",
-            "@language": "fr"
-          },
-          {
-            "@value": "Dublin",
-            "@language": "de"
-          },
-          {
-            "@value": "",
-            "@language": "sq"
-          }
-        ],
-        "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Ireland",
-        "my0:street": [{
-            "@value": "",
-            "@language": "en"
-          },
-          {
-            "@value": "",
-            "@language": "it"
-          },
-          {
-            "@value": "",
-            "@language": "fr"
-          },
-          {
-            "@value": "",
-            "@language": "de"
-          },
-          {
-            "@value": "",
-            "@language": "sq"
-          }
-        ],
-        "my0:postalCode": ""
-      },
-      "my0:phoneNumberWork": "",
-      "my0:email": "damien.graux@adaptcentre.ie"
     }
-  }],
-  "my0:hasWorkHistory": [{
+  ],
+  "my0:hasWorkHistory": [
+    {
       "@type": "my0:WorkHistory",
       "my0:startDate": "2016-03-01",
       "my0:endDate": "2016-10-28",
-      "my0:jobTitle": [{
+      "my0:jobTitle": [
+        {
           "@value": "Web Development Intern",
           "@language": "en"
         },
@@ -103,7 +110,8 @@
           "@language": "sq"
         }
       ],
-      "my0:jobDescription": [{
+      "my0:jobDescription": [
+        {
           "@value": "-adding new functionalities to an existing project using Ext.NET,ASP.NET,JS,C# and VB.NET\n-creating reports for business analysis using SQL, SQL Server\n-working on web form based, MVC based projects",
           "@language": "en"
         },
@@ -132,7 +140,8 @@
         "my0:orgName": "Raiffeisen Bank Albania",
         "my0:orgAddress": {
           "@type": "Address",
-          "my0:city": [{
+          "my0:city": [
+            {
               "@value": "Tirana",
               "@language": "en"
             },
@@ -154,7 +163,8 @@
             }
           ],
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
-          "my0:street": [{
+          "my0:street": [
+            {
               "@value": "",
               "@language": "en"
             },
@@ -177,7 +187,8 @@
           ],
           "my0:postalCode": ""
         },
-        "my0:orgDescription": [{
+        "my0:orgDescription": [
+          {
             "@value": "",
             "@language": "en"
           },
@@ -206,7 +217,8 @@
       "@type": "my0:WorkHistory",
       "my0:startDate": "2018-06-15",
       "my0:endDate": "2019-03-29",
-      "my0:jobTitle": [{
+      "my0:jobTitle": [
+        {
           "@value": "Work Student Frontend Developer",
           "@language": "en"
         },
@@ -227,7 +239,8 @@
           "@language": "sq"
         }
       ],
-      "my0:jobDescription": [{
+      "my0:jobDescription": [
+        {
           "@value": "Development of new features and bug fixing in already established projects using JQuery and JavaServer Pages (JSP).",
           "@language": "en"
         },
@@ -256,7 +269,8 @@
         "my0:orgName": "Publicis.Sapient",
         "my0:orgAddress": {
           "@type": "Address",
-          "my0:city": [{
+          "my0:city": [
+            {
               "@value": "Cologne",
               "@language": "en"
             },
@@ -278,7 +292,8 @@
             }
           ],
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
-          "my0:street": [{
+          "my0:street": [
+            {
               "@value": "",
               "@language": "en"
             },
@@ -301,7 +316,8 @@
           ],
           "my0:postalCode": ""
         },
-        "my0:orgDescription": [{
+        "my0:orgDescription": [
+          {
             "@value": "",
             "@language": "en"
           },
@@ -330,7 +346,8 @@
       "@type": "my0:WorkHistory",
       "my0:startDate": "2019-04-01",
       "my0:endDate": "",
-      "my0:jobTitle": [{
+      "my0:jobTitle": [
+        {
           "@value": "Student Research Assistant",
           "@language": "en"
         },
@@ -351,7 +368,8 @@
           "@language": "sq"
         }
       ],
-      "my0:jobDescription": [{
+      "my0:jobDescription": [
+        {
           "@value": "Designing and creating wireframes using Adobe XD. \nDevelopment of simple Web Apps using React and improvement of a web app (Visual Query Builder for Sparql Endpoints) by adding new features and bug fixing.",
           "@language": "en"
         },
@@ -380,7 +398,8 @@
         "my0:orgName": "Fraunhofer IAIS",
         "my0:orgAddress": {
           "@type": "Address",
-          "my0:city": [{
+          "my0:city": [
+            {
               "@value": "Bonn",
               "@language": "en"
             },
@@ -402,7 +421,8 @@
             }
           ],
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
-          "my0:street": [{
+          "my0:street": [
+            {
               "@value": "",
               "@language": "en"
             },
@@ -425,7 +445,8 @@
           ],
           "my0:postalCode": ""
         },
-        "my0:orgDescription": [{
+        "my0:orgDescription": [
+          {
             "@value": "",
             "@language": "en"
           },
@@ -453,7 +474,8 @@
   ],
   "my0:cvLastUpdate": "2020-1-16",
   "my0:cvIsConfidential": false,
-  "my0:cvCopyright": [{
+  "my0:cvCopyright": [
+    {
       "@value": "Enkeleda Elezi",
       "@language": "en"
     },
@@ -474,7 +496,8 @@
       "@language": "sq"
     }
   ],
-  "my0:cvNotes": [{
+  "my0:cvNotes": [
+    {
       "@value": "This CV belongs to Enkeleda Elezi",
       "@language": "en"
     },
@@ -495,106 +518,13 @@
       "@language": "sq"
     }
   ],
-  "my0:hasCourse": [{
-    "@type": "my0:Course",
-    "my0:hasCertification": true,
-    "my0:courseTitle": [{
-        "@value": "Modern React with Redux",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Modernes React mit Redux",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:courseDescription": [{
-        "@value": "This course features hundreds of videos with dozens of custom diagrams to help you understand how React and Redux work.  No prior experience with either is necessary. Through tireless, patient explanations and many interesting practical examples, you\"ll learn the fundamentals of building dynamic and live web apps using React.",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Dieser Kurs beinhaltet hunderte von Videos mit dutzenden von benutzerdefinierten Diagrammen, die Ihnen helfen, die Funktionsweise von React und Redux zu verstehen. Es sind keine Vorkenntnisse mit beiden notwendig. Durch unermüdliche, geduldige Erklärungen und viele interessante Praxisbeispiele lernen Sie die Grundlagen der Erstellung dynamischer und lebendiger Webanwendungen mit React.",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:courseURL": "https://www.udemy.com/course/react-redux/",
-    "my0:courseStartDate": "2019-05-01",
-    "my0:courseFinishDate": "2019-06-28",
-    "my0:organizedBy": {
-      "@type": "my0:Organization",
-      "my0:orgName": "Udemy",
-      "my0:orgAddress": {
-        "@type": "Address",
-        "my0:city": [{
-            "@value": "",
-            "@language": "en"
-          },
-          {
-            "@value": "",
-            "@language": "it"
-          },
-          {
-            "@value": "",
-            "@language": "fr"
-          },
-          {
-            "@value": "",
-            "@language": "de"
-          },
-          {
-            "@value": "",
-            "@language": "sq"
-          }
-        ],
-        "my0:country": "",
-        "my0:street": [{
-            "@value": "",
-            "@language": "en"
-          },
-          {
-            "@value": "",
-            "@language": "it"
-          },
-          {
-            "@value": "",
-            "@language": "fr"
-          },
-          {
-            "@value": "",
-            "@language": "de"
-          },
-          {
-            "@value": "",
-            "@language": "sq"
-          }
-        ],
-        "my0:postalCode": ""
-      },
-      "my0:orgDescription": [{
-          "@value": "",
+  "my0:hasCourse": [
+    {
+      "@type": "my0:Course",
+      "my0:hasCertification": true,
+      "my0:courseTitle": [
+        {
+          "@value": "Modern React with Redux",
           "@language": "en"
         },
         {
@@ -606,7 +536,7 @@
           "@language": "fr"
         },
         {
-          "@value": "",
+          "@value": "Modernes React mit Redux",
           "@language": "de"
         },
         {
@@ -614,20 +544,122 @@
           "@language": "sq"
         }
       ],
-      "my0:orgWebsite": ""
+      "my0:courseDescription": [
+        {
+          "@value": "This course features hundreds of videos with dozens of custom diagrams to help you understand how React and Redux work.  No prior experience with either is necessary. Through tireless, patient explanations and many interesting practical examples, you'll learn the fundamentals of building dynamic and live web apps using React.",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Dieser Kurs beinhaltet hunderte von Videos mit dutzenden von benutzerdefinierten Diagrammen, die Ihnen helfen, die Funktionsweise von React und Redux zu verstehen. Es sind keine Vorkenntnisse mit beiden notwendig. Durch unermüdliche, geduldige Erklärungen und viele interessante Praxisbeispiele lernen Sie die Grundlagen der Erstellung dynamischer und lebendiger Webanwendungen mit React.",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:courseURL": "https://www.udemy.com/course/react-redux/",
+      "my0:courseStartDate": "2019-05-01",
+      "my0:courseFinishDate": "2019-06-28",
+      "my0:organizedBy": {
+        "@type": "my0:Organization",
+        "my0:orgName": "Udemy",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "",
+          "my0:street": [
+            {
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": ""
+        },
+        "my0:orgDescription": [
+          {
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgWebsite": ""
+      }
     }
-  }],
+  ],
   "my0:aboutPerson": {
     "my0:hasNationality": [
       "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
     ],
     "my0:firstName": "Enkeleda",
     "my0:lastName": "Elezi",
-    "my0:hasInstantMessaging": [{
-      "@type": "my0:InstantMessaging",
-      "my0:instantMessagingName": "http://example.com/resume2rdf_value_ontology.rdf#Skype",
-      "my0:instantMessagingUsername": "enkeleda.elezi25"
-    }],
+    "my0:hasInstantMessaging": [
+      {
+        "@type": "my0:InstantMessaging",
+        "my0:instantMessagingName": "http://example.com/resume2rdf_value_ontology.rdf#Skype",
+        "my0:instantMessagingUsername": "enkeleda.elezi25"
+      }
+    ],
     "my0:dateOfBirth": "1994-11-25",
     "@type": "my0:Person",
     "my0:email": "enkeleda.elezi@gmail.com",
@@ -637,7 +669,8 @@
     "my0:hasCitizenship": [
       "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
     ],
-    "my0:hasWebsite": [{
+    "my0:hasWebsite": [
+      {
         "@type": "my0:Website",
         "my0:websiteURL": "https://www.linkedin.com/in/enkeleda-elezi-928532a0/",
         "my0:websiteType": "http://example.com/resume2rdf_value_ontology.rdf#Linkedin"
@@ -662,7 +695,8 @@
       "@type": "my0:Address",
       "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
       "my0:postalCode": "53119",
-      "my0:street": [{
+      "my0:street": [
+        {
           "@value": "Hirschberger Str 60",
           "@language": "en"
         },
@@ -683,7 +717,8 @@
           "@language": "sq"
         }
       ],
-      "my0:city": [{
+      "my0:city": [
+        {
           "@value": "Bonn",
           "@language": "en"
         },
@@ -706,7 +741,8 @@
       ]
     },
     "my0:phoneNumberMobile": "+49 1522 7575755",
-    "my0:personShortDescription": [{
+    "my0:personShortDescription": [
+      {
         "@value": "When there is will and coffee, there is a way.",
         "@language": "en"
       },
@@ -727,8 +763,9 @@
         "@language": "sq"
       }
     ],
-    "my0:personLongDescription": [{
-        "@value": "An ambitious and driven self-starter determined to make meaningful contributions to the projects and teams I\"m a part of.\nAbility to grasp new technologies and to apply them to build applications.\nStrong communication skills, time management and team skills with an intention to work hard to meet project deadlines.",
+    "my0:personLongDescription": [
+      {
+        "@value": "An ambitious and driven self-starter determined to make meaningful contributions to the projects and teams I'm a part of.\nAbility to grasp new technologies and to apply them to build applications.\nStrong communication skills, time management and team skills with an intention to work hard to meet project deadlines.",
         "@language": "en"
       },
       {
@@ -744,15 +781,17 @@
         "@language": "de"
       },
       {
-        "@value": "Një vetë-fillestare ambicioze dhe e vendosur për të dhënë kontribute domethënëse për projektet dhe ekipet ku merr pjesë.\nAftësi për të kuptuar teknologjitë e reja në pak kohë dhe për t\"i zbatuar në aplikime.\nAftësi të forta komunikimi dhe menaxhimi kohe me qëllim përmbushushjen e afateve të projektit.",
+        "@value": "Një vetë-fillestare ambicioze dhe e vendosur për të dhënë kontribute domethënëse për projektet dhe ekipet ku merr pjesë.\nAftësi për të kuptuar teknologjitë e reja në pak kohë dhe për t'i zbatuar në aplikime.\nAftësi të forta komunikimi dhe menaxhimi kohe me qëllim përmbushushjen e afateve të projektit.",
         "@language": "sq"
       }
     ],
     "my0:gender": "http://example.com/resume2rdf_value_ontology.rdf#Female"
   },
-  "my0:hasSkill": [{
+  "my0:hasSkill": [
+    {
       "@type": "my0:LanguageSkill",
-      "my0:skillName": [{
+      "my0:skillName": [
+        {
           "@value": "Albanian",
           "@language": "en"
         },
@@ -775,7 +814,8 @@
       ],
       "my0:languageSkillProficiency": "http://example.com/resume2rdf_value_ontology.rdf#NativeProficiency",
       "my0:skillHasCertificate": false,
-      "my0:skillCertificateName": [{
+      "my0:skillCertificateName": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -799,7 +839,8 @@
     },
     {
       "@type": "my0:LanguageSkill",
-      "my0:skillName": [{
+      "my0:skillName": [
+        {
           "@value": "English",
           "@language": "en"
         },
@@ -822,7 +863,8 @@
       ],
       "my0:languageSkillProficiency": "http://example.com/resume2rdf_value_ontology.rdf#FullProfessionalProficiency",
       "my0:skillHasCertificate": true,
-      "my0:skillCertificateName": [{
+      "my0:skillCertificateName": [
+        {
           "@value": "TOEFL",
           "@language": "en"
         },
@@ -846,7 +888,8 @@
     },
     {
       "@type": "my0:LanguageSkill",
-      "my0:skillName": [{
+      "my0:skillName": [
+        {
           "@value": "German",
           "@language": "en"
         },
@@ -869,7 +912,8 @@
       ],
       "my0:languageSkillProficiency": "http://example.com/resume2rdf_value_ontology.rdf#LimitedWorkingProficiency",
       "my0:skillHasCertificate": false,
-      "my0:skillCertificateName": [{
+      "my0:skillCertificateName": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -893,7 +937,8 @@
     },
     {
       "@type": "my0:LanguageSkill",
-      "my0:skillName": [{
+      "my0:skillName": [
+        {
           "@value": "Italian",
           "@language": "en"
         },
@@ -916,7 +961,8 @@
       ],
       "my0:languageSkillProficiency": "http://example.com/resume2rdf_value_ontology.rdf#LimitedWorkingProficiency",
       "my0:skillHasCertificate": false,
-      "my0:skillCertificateName": [{
+      "my0:skillCertificateName": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -940,7 +986,8 @@
     },
     {
       "@type": "my0:Skill",
-      "my0:skillName": [{
+      "my0:skillName": [
+        {
           "@value": "JavaScript",
           "@language": "en"
         },
@@ -961,7 +1008,8 @@
           "@language": "sq"
         }
       ],
-      "my0:skillDescription": [{
+      "my0:skillDescription": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -985,7 +1033,8 @@
       "my0:skillCategory": "http://example.com/resume2rdf_value_ontology.rdf#ToolsTechnologies",
       "my0:skillLevel": "5",
       "my0:skillHasCertificate": false,
-      "my0:skillCertificateName": [{
+      "my0:skillCertificateName": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -1009,7 +1058,8 @@
     },
     {
       "@type": "my0:Skill",
-      "my0:skillName": [{
+      "my0:skillName": [
+        {
           "@value": "Java (computer programming)",
           "@language": "en"
         },
@@ -1030,7 +1080,8 @@
           "@language": "sq"
         }
       ],
-      "my0:skillDescription": [{
+      "my0:skillDescription": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -1054,7 +1105,8 @@
       "my0:skillCategory": "http://example.com/resume2rdf_value_ontology.rdf#ToolsTechnologies",
       "my0:skillLevel": "3",
       "my0:skillHasCertificate": false,
-      "my0:skillCertificateName": [{
+      "my0:skillCertificateName": [
+        {
           "@value": "",
           "@language": "en"
         },
@@ -1080,7 +1132,8 @@
   "@type": "my0:CV",
   "my0:hasTarget": {
     "@type": "my0:Target",
-    "my0:targetJobDescription": [{
+    "my0:targetJobDescription": [
+      {
         "@value": "    Degree in Computer Science or related field.\n    Understanding of key design principles.\n    Proficiency with HTML, CSS, JavaScript and jQuery.\n    Understanding of server-side CSS.\n    Experience with graphic design applications such as Adobe Illustrator.\n    Experience with responsive and adaptive design.\n    Understanding of SEO principles.\n    Good problem solving skills.\n    Excellent verbal communication skills.\n    Good interpersonal skills.",
         "@language": "en"
       },
@@ -1101,7 +1154,8 @@
         "@language": "sq"
       }
     ],
-    "my0:targetJobTitle": [{
+    "my0:targetJobTitle": [
+      {
         "@value": "Frontend Developer",
         "@language": "en"
       },
@@ -1122,7 +1176,8 @@
         "@language": "sq"
       }
     ],
-    "my0:targetWeeksNoticePeriod": [{
+    "my0:targetWeeksNoticePeriod": [
+      {
         "@value": "1 month",
         "@language": "en"
       },
@@ -1152,7 +1207,8 @@
     "my0:targetSalaryRange": "50 000 - 60 000 Euros",
     "my0:targetCompanySize": "http://example.com/resume2rdf_value_ontology.rdf#MediumCompany",
     "my0:targetCareerLevel": "http://example.com/resume2rdf_value_ontology.rdf#EntryLvl",
-    "my0:targetCompanyDescription": [{
+    "my0:targetCompanyDescription": [
+      {
         "@value": "A medium sized company that deals with project development or product development. Preferred technology stack for frontend is ReactJS.",
         "@language": "en"
       },
@@ -1165,7 +1221,7 @@
         "@language": "it"
       },
       {
-        "@value": "Une entreprise de taille moyenne qui s\"occupe du développement de projets ou du développement de produits. La pile technologique préférée pour le frontend est ReactJS.",
+        "@value": "Une entreprise de taille moyenne qui s'occupe du développement de projets ou du développement de produits. La pile technologique préférée pour le frontend est ReactJS.",
         "@language": "fr"
       },
       {
@@ -1181,314 +1237,339 @@
     ],
     "my0:targetJobMode": "http://example.com/resume2rdf_value_ontology.rdf#EmployeeFull"
   },
-  "my0:hasOtherInfo": [{
-    "@type": "my0:OtherInfo",
-    "my0:otherInfoType": "http://example.com/resume2rdf_value_ontology.rdf#Interests",
-    "my0:otherInfoDescription": [{
-        "@value": "Photography",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Fotografie",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ]
-  }],
-  "my0:hasPublication": [{
-    "@type": "my0:Publication",
-    "my0:publicationTitle": [{
-        "@value": "RDF2Résumé",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "RDF2Résumé",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:publicationPublisher": "University of Bonn",
-    "my0:publicationDate": "2020-01-14",
-    "my0:publicationAuthor": "Enkeleda Elezi",
-    "my0:publicationURL": "",
-    "my0:publicationDescription": [{
-        "@value": "Paper about the Master thesis RDF2Résumé.",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Arbeit über die Masterarbeit RDF2Résumé",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ]
-  }],
-  "my0:hasPatent": [{
-    "@type": "my0:Patent",
-    "my0:patentTitle": [{
-        "@value": "Example-Title",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Beispiel-Titel",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:patentOffice": [{
-        "@value": "Bonn",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Bonn",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:patentNumber": "L123456789",
-    "my0:patentInventor": "Enkeleda Elezi",
-    "my0:patentURL": "",
-    "my0:patentIssuedDate": "2019-12-25",
-    "my0:patentStatus": "http://example.com/resume2rdf_value_ontology.rdf#PatentPending",
-    "my0:patentDescription": [{
-        "@value": "Fake Patent",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Gefälschtes Patent",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ]
-  }],
-  "my0:hasProject": [{
-    "@type": "my0:Project",
-    "my0:projectName": [{
-        "@value": "BONSAI",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "BONSAI",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:projectIsCurrent": "",
-    "my0:projectStartDate": "2019-04-01",
-    "my0:projectEndDate": "2019-12-31",
-    "my0:projectCreator": [{
-        "@value": "Fraunhofer IAIS",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Fraunhofer IAIS",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:projectRole": [{
-        "@value": "Frontend Developer",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Frontend-Entwicklerin",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:projectURL": "",
-    "my0:projectDescription": [{
-        "@value": "Creating a Visual Sparql Builder.",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Erstellen eines Visual Query Builder",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ]
-  }],
-  "my0:hasHonorAward": [{
-    "@type": "my0:Honor",
-    "my0:honortitle": [{
-        "@value": "Best Student of Bonn",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Beste Studentin von Bonn",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:honorIssuedDate": "2020-01-22",
-    "my0:honorIssuer": [{
-        "@value": "University of Bonn",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Universität Bonn",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ],
-    "my0:honorDescription": [{
-        "@value": "Fake award",
-        "@language": "en"
-      },
-      {
-        "@value": "",
-        "@language": "it"
-      },
-      {
-        "@value": "",
-        "@language": "fr"
-      },
-      {
-        "@value": "Gefälschte Auszeichnung",
-        "@language": "de"
-      },
-      {
-        "@value": "",
-        "@language": "sq"
-      }
-    ]
-  }],
-  "my0:hasEducation": [{
+  "my0:hasOtherInfo": [
+    {
+      "@type": "my0:OtherInfo",
+      "my0:otherInfoType": "http://example.com/resume2rdf_value_ontology.rdf#Interests",
+      "my0:otherInfoDescription": [
+        {
+          "@value": "Photography",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Fotografie",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:hasPublication": [
+    {
+      "@type": "my0:Publication",
+      "my0:publicationTitle": [
+        {
+          "@value": "RDF2Résumé",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "RDF2Résumé",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:publicationPublisher": "University of Bonn",
+      "my0:publicationDate": "2020-01-14",
+      "my0:publicationAuthor": "Enkeleda Elezi",
+      "my0:publicationURL": "",
+      "my0:publicationDescription": [
+        {
+          "@value": "Paper about the Master thesis RDF2Résumé.",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Arbeit über die Masterarbeit RDF2Résumé",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:hasPatent": [
+    {
+      "@type": "my0:Patent",
+      "my0:patentTitle": [
+        {
+          "@value": "Example-Title",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Beispiel-Titel",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:patentOffice": [
+        {
+          "@value": "Bonn",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Bonn",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:patentNumber": "L123456789",
+      "my0:patentInventor": "Enkeleda Elezi",
+      "my0:patentURL": "",
+      "my0:patentIssuedDate": "2019-12-25",
+      "my0:patentStatus": "http://example.com/resume2rdf_value_ontology.rdf#PatentPending",
+      "my0:patentDescription": [
+        {
+          "@value": "Fake Patent",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Gefälschtes Patent",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:hasProject": [
+    {
+      "@type": "my0:Project",
+      "my0:projectName": [
+        {
+          "@value": "BONSAI",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "BONSAI",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:projectIsCurrent": "",
+      "my0:projectStartDate": "2019-04-01",
+      "my0:projectEndDate": "2019-12-31",
+      "my0:projectCreator": [
+        {
+          "@value": "Fraunhofer IAIS",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Fraunhofer IAIS",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:projectRole": [
+        {
+          "@value": "Frontend Developer",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Frontend-Entwicklerin",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:projectURL": "",
+      "my0:projectDescription": [
+        {
+          "@value": "Creating a Visual Sparql Builder.",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Erstellen eines Visual Query Builder",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:hasHonorAward": [
+    {
+      "@type": "my0:Honor",
+      "my0:honortitle": [
+        {
+          "@value": "Best Student of Bonn",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Beste Studentin von Bonn",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:honorIssuedDate": "2020-01-22",
+      "my0:honorIssuer": [
+        {
+          "@value": "University of Bonn",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Universität Bonn",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:honorDescription": [
+        {
+          "@value": "Fake award",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Gefälschte Auszeichnung",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    }
+  ],
+  "my0:hasEducation": [
+    {
       "@type": "my0:Education",
       "my0:studiedIn": {
         "@type": "my0:EducationalOrg",
-        "my0:orgName": [{
+        "my0:orgName": [
+          {
             "@value": "The Faculty of Natural Sciences/Tirana University",
             "@language": "en"
           },
@@ -1509,7 +1590,8 @@
             "@language": "sq"
           }
         ],
-        "my0:orgDescription": [{
+        "my0:orgDescription": [
+          {
             "@value": "",
             "@language": "en"
           },
@@ -1533,7 +1615,8 @@
         "my0:orgWebsite": "",
         "my0:orgAddress": {
           "@type": "Address",
-          "my0:city": [{
+          "my0:city": [
+            {
               "@value": "Tirana",
               "@language": "en"
             },
@@ -1555,7 +1638,8 @@
             }
           ],
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
-          "my0:street": [{
+          "my0:street": [
+            {
               "@value": "",
               "@language": "en"
             },
@@ -1583,7 +1667,8 @@
       "my0:eduStartDate": "2013-10-01",
       "my0:eduGradDate": "2016-07-15",
       "my0:degree": "http://example.com/resume2rdf_value_ontology.rdf#EduBachelor",
-      "my0:degreeFieldOfStudy": [{
+      "my0:degreeFieldOfStudy": [
+        {
           "@value": "Informatics",
           "@language": "en"
         },
@@ -1604,7 +1689,8 @@
           "@language": "sq"
         }
       ],
-      "my0:eduDescription": [{
+      "my0:eduDescription": [
+        {
           "@value": "General\n-Mathematics, English, Physics\nOccupational\n-Algorithms under C++, Data Structures under C, Java Programming, Computer Organization and\nArchitecture, Database under Oracle, Web Programming and Software Engineering, Operating\nSystems, Networks",
           "@language": "en"
         },
@@ -1630,7 +1716,8 @@
       "@type": "my0:Education",
       "my0:studiedIn": {
         "@type": "my0:EducationalOrg",
-        "my0:orgName": [{
+        "my0:orgName": [
+          {
             "@value": "The University of Bonn",
             "@language": "en"
           },
@@ -1651,7 +1738,8 @@
             "@language": "sq"
           }
         ],
-        "my0:orgDescription": [{
+        "my0:orgDescription": [
+          {
             "@value": "",
             "@language": "en"
           },
@@ -1675,7 +1763,8 @@
         "my0:orgWebsite": "",
         "my0:orgAddress": {
           "@type": "Address",
-          "my0:city": [{
+          "my0:city": [
+            {
               "@value": "Bonn",
               "@language": "en"
             },
@@ -1697,7 +1786,8 @@
             }
           ],
           "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
-          "my0:street": [{
+          "my0:street": [
+            {
               "@value": "",
               "@language": "en"
             },
@@ -1725,7 +1815,8 @@
       "my0:eduStartDate": "2017-10-02",
       "my0:eduGradDate": "2020-03-31",
       "my0:degree": "http://example.com/resume2rdf_value_ontology.rdf#EduMaster",
-      "my0:degreeFieldOfStudy": [{
+      "my0:degreeFieldOfStudy": [
+        {
           "@value": "Computer Science",
           "@language": "en"
         },
@@ -1746,7 +1837,8 @@
           "@language": "sq"
         }
       ],
-      "my0:eduDescription": [{
+      "my0:eduDescription": [
+        {
           "@value": "Focus: Intelligent Systems, Semantic Web Technologies, Knowledge Graph Analysis",
           "@language": "en"
         },
