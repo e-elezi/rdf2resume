@@ -17,7 +17,7 @@ app.config['UPLOAD_FOLDER'] = "build/static/media/pdf"
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+  return render_template('index.html')
 
 @app.route('/get_categories', methods=['GET'])
 def get_categories():

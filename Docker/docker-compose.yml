@@ -1,6 +1,19 @@
 version: '2'
 
 services:
+  fuseki:
+    # user: fuseki
+    image: stain/jena-fuseki
+    container_name: fuseki
+    restart: always
+    volumes:
+      - ${BASE}/dckr:/fuseki
+      - ${BASE}/dckr-staging:/staging
+    ports:
+      - "127.0.0.1:3030:3030"
+    environment:
+      ADMIN_PASSWORD: pw123
+
   server:
     build: .
     environment:
