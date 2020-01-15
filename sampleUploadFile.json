@@ -1,0 +1,489 @@
+{
+  "my0:hasPublication": [
+    {
+      "my0:publicationAuthor": "Enkeleda Elezi",
+      "@type": "my0:Publication",
+      "my0:publicationDate": "2019-09-10",
+      "my0:publicationTitle": "RDF2Résumé",
+      "my0:publicationPublisher": "University of Bonn",
+      "my0:publicationURL": "https://www.iais.fraunhofer.de/de/kontakt.html",
+      "my0:publicationDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. "
+    }
+  ],
+  "my0:cvIsConfidential": false,
+  "my0:hasEducation": [
+    {
+      "my0:degree": "Informatics",
+      "my0:eduDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
+      "@type": "my0:Education",
+      "my0:degreeType": "http://example.com/rdf2resume_base_ontology.rdf#EduBachelor",
+      "my0:eduStartDate": "2013-10-07",
+      "my0:isEduCurrent": false,
+      "my0:studiedIn": {
+        "my0:orgPhoneNumber": "+355 4 255 6987",
+        "@type": "my0:EducationalOrg",
+        "my0:orgName": "Faculty of Natural Sciences",
+        "my0:orgDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
+        "my0:orgAddress": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+          "my0:postalCode": "1001",
+          "@type": "Address",
+          "my0:city": "Tirana",
+          "my0:street": ""
+        },
+        "my0:orgWebsite": "http://www.fshn.edu.al/"
+      },
+      "my0:eduGradDate": "2016-07-15"
+    },
+    {
+      "my0:degree": "Computer Science",
+      "my0:eduDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
+      "@type": "my0:Education",
+      "my0:degreeType": "http://example.com/rdf2resume_base_ontology.rdf#EduMaster",
+      "my0:eduStartDate": "2017-10-02",
+      "my0:isEduCurrent": true,
+      "my0:studiedIn": {
+        "my0:orgPhoneNumber": "",
+        "@type": "my0:EducationalOrg",
+        "my0:orgName": "University of Bonn",
+        "my0:orgDescription": "Public university in Bonn, North Rhine-Westphalia",
+        "my0:orgAddress": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:postalCode": "53113",
+          "@type": "Address",
+          "my0:city": "Bonn",
+          "my0:street": ""
+        },
+        "my0:orgWebsite": "https://www.uni-bonn.de/the-university"
+      },
+      "my0:eduGradDate": "2020-01-06"
+    }
+  ],
+  "my0:hasTarget": {
+    "my0:targetConditionWillRelocate": true,
+    "my0:targetCountry": [
+      "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany"
+    ],
+    "my0:targetCareerLevel": "http://example.com/rdf2resume_base_ontology.rdf#EntryLvl",
+    "my0:targetCompanyDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+    "my0:targetJobTitle": "Frontend Developer",
+    "my0:targetJobMode": "http://example.com/rdf2resume_base_ontology.rdf#EmployeeFull",
+    "my0:targetCompanyLocality": "",
+    "@type": "my0:Target",
+    "my0:targetCompanySize": "http://example.com/rdf2resume_base_ontology.rdf#MediumCompany",
+    "my0:conditionWillRelocate": true,
+    "my0:targetJobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+    "my0:targetWeeksNoticePeriod": "4 weeks",
+    "my0:targetRegion": [
+      "http://example.com/rdf2resume_base_ontology.rdf#Europe",
+      "http://example.com/rdf2resume_base_ontology.rdf#NorthAmerica"
+    ],
+    "my0:targetConditionWillTravel": true,
+    "my0:targetCompanyField": [
+      "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry"
+    ],
+    "my0:targetSalaryRange": "100000 Euro"
+  },
+  "my0:hasCourse": [
+    {
+      "my0:organizedBy": {
+        "my0:orgPhoneNumber": "",
+        "@type": "my0:Organization",
+        "my0:orgName": "Udemy, Inc.",
+        "my0:orgDescription": "Udemy.com is the world's largest online learning platform. It is aimed at professional adults and students. Udemy has more than 30 million students and 50,000 instructors teaching courses in over 60 languages. ",
+        "my0:orgAddress": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#UnitedStates",
+          "my0:postalCode": "",
+          "@type": "Address",
+          "my0:city": "San Fransisco",
+          "my0:street": ""
+        },
+        "my0:orgWebsite": "https://www.udemy.com/"
+      },
+      "@type": "my0:Course",
+      "my0:hasQualification": "",
+      "my0:courseDescription": "Thousands of other engineers have learned React and Redux, and you can too.  This course uses a time-tested, battle-proven method to make sure you understand exactly how React and Redux work, and will get you a new job working as a software engineer or help you build that app you've always been dreaming about.",
+      "my0:hasCertification": true,
+      "my0:courseTitle": "Modern React with Redux",
+      "my0:courseStartDate": "2019-05-29",
+      "my0:courseFinishDate": "2019-06-28",
+      "my0:courseURL": "https://www.udemy.com/react-redux/"
+    }
+  ],
+  "my0:hasWorkHistory": [
+    {
+      "my0:startDate": "2016-03-01",
+      "@type": "my0:WorkHistory",
+      "my0:isCurrent": false,
+      "my0:endDate": "2016-10-03",
+      "my0:jobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+      "my0:employedIn": {
+        "my0:orgPhoneNumber": "",
+        "@type": "my0:Company",
+        "my0:orgName": "Raiffeisen Albania",
+        "my0:orgDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#Finance",
+        "my0:orgAddress": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+          "my0:postalCode": "1001",
+          "@type": "Address",
+          "my0:city": "Tirana",
+          "my0:street": ""
+        },
+        "my0:orgWebsite": "https://www.raiffeisen.al/"
+      },
+      "my0:jobTitle": "Web developer",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Intern"
+    },
+    {
+      "my0:startDate": "2018-06-15",
+      "@type": "my0:WorkHistory",
+      "my0:isCurrent": false,
+      "my0:endDate": "2019-03-29",
+      "my0:jobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+      "my0:employedIn": {
+        "my0:orgPhoneNumber": " 0221 65027100",
+        "@type": "my0:Company",
+        "my0:orgName": "Publicis Sapient",
+        "my0:orgDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry",
+        "my0:orgAddress": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:postalCode": "50672",
+          "@type": "Address",
+          "my0:city": "Cologne",
+          "my0:street": ""
+        },
+        "my0:orgWebsite": "https://www.publicissapient.com/"
+      },
+      "my0:jobTitle": "Frontend Developer",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Contractor"
+    },
+    {
+      "my0:startDate": "2019-04-01",
+      "@type": "my0:WorkHistory",
+      "my0:isCurrent": true,
+      "my0:endDate": "",
+      "my0:jobDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+      "my0:employedIn": {
+        "my0:orgPhoneNumber": "02241 14-3000",
+        "@type": "my0:Company",
+        "my0:orgName": "Fraunhofer",
+        "my0:orgDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+        "my0:orgField": "http://example.com/rdf2resume_base_ontology.rdf#ITIndustry",
+        "my0:orgAddress": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:postalCode": "53757",
+          "@type": "Address",
+          "my0:city": "Sankt Augustin",
+          "my0:street": ""
+        },
+        "my0:orgWebsite": "https://www.fraunhofer.de/en.html"
+      },
+      "my0:jobTitle": "Student Research Assistant",
+      "my0:careerLevel": "http://example.com/rdf2resume_base_ontology.rdf#Student",
+      "my0:jobMode": "http://example.com/rdf2resume_base_ontology.rdf#Contractor"
+    }
+  ],
+  "my0:hasReference": [
+    {
+      "@type": "my0:Reference",
+      "my0:referenceBy": {
+        "my0:address": {
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:postalCode": "53757",
+          "@type": "my0:Address",
+          "my0:city": "Sankt Augustin",
+          "my0:street": "Schloss Birlinghoven"
+        },
+        "@type": "my0:Person",
+        "my0:firstName": "Damien",
+        "my0:lastName": "Graux",
+        "my0:phoneNumber": "",
+        "my0:email": "damien.graux@iais.fraunhofer.de",
+        "my0:title": "http://example.com/rdf2resume_base_ontology.rdf#DrMr",
+        "my0:currentJob": {
+          "@type": "my0:WorkHistory",
+          "my0:jobTitle": "Senior Researcher",
+          "my0:employedIn": {
+            "my0:orgName": "Fraunhofer",
+            "@type": "my0:Company"
+          }
+        }
+      }
+    }
+  ],
+  "my0:cvCopyright": "Enkeleda Elezi",
+  "@type": "my0:CV",
+  "my0:cvIsActive": true,
+  "my0:hasHonorAward": [],
+  "my0:hasProject": [
+    {
+      "my0:projectURL": "https://www.iais.fraunhofer.de/de/kontakt.html",
+      "@type": "my0:Project",
+      "my0:projectDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
+      "my0:projectIsCurrent": true,
+      "my0:projectEndDate": "",
+      "my0:projectCreator": "Fraunhofer",
+      "my0:projectStartDate": "2019-04-01",
+      "my0:projectName": "BONSAI"
+    }
+  ],
+  "my0:cvLastUpdate": "",
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "my0": "http://example.com/rdf2resume_ontology.rdf#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "mybase0": "http://example.com/rdf2resume_base_ontology.rdf#"
+  },
+  "my0:hasOtherInfo": [
+    {
+      "@type": "my0:OtherInfo",
+      "my0:otherInfoType": "http://example.com/rdf2resume_base_ontology.rdf#Interests",
+      "my0:otherInfoDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. "
+    }
+  ],
+  "my0:aboutPerson": {
+    "my0:address": {
+      "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+      "my0:postalCode": "53119",
+      "@type": "my0:Address",
+      "my0:city": "Bonn",
+      "my0:street": "Hirschberger Str 60"
+    },
+    "my0:firstName": "Enkeleda",
+    "my0:driversLicence": "",
+    "my0:personShortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+    "my0:personLongDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. ",
+    "my0:email": "enkeleda.elezi@gmail.com",
+    "my0:photo": "",
+    "my0:title": "http://example.com/rdf2resume_base_ontology.rdf#Mrs",
+    "my0:gender": "http://example.com/rdf2resume_base_ontology.rdf#Female",
+    "my0:lastName": "Elezi",
+    "@type": "my0:Person",
+    "my0:hasWebsite": [
+      {
+        "my0:websiteURL": "https://www.linkedin.com/in/enkeleda-elezi-928532a0/",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Linkedin",
+        "@type": "my0:Website"
+      },
+      {
+        "my0:websiteURL": "https://github.com/e-elezi",
+        "my0:websiteType": "http://example.com/rdf2resume_base_ontology.rdf#Github",
+        "@type": "my0:Website"
+      }
+    ],
+    "my0:dateOfBirth": "1994-11-25",
+    "my0:hasNationality": [
+      "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
+    ],
+    "my0:phoneNumber": "+4915227589766",
+    "my0:hasInstantMessaging": [
+      {
+        "my0:instantMessagingUsername": "enkeleda.elezi25",
+        "@type": "my0:InstantMessaging",
+        "my0:instantMessagingName": "http://example.com/rdf2resume_base_ontology.rdf#Skype"
+      },
+      {
+        "my0:instantMessagingUsername": "enkeleda25",
+        "@type": "my0:InstantMessaging",
+        "my0:instantMessagingName": "http://example.com/rdf2resume_base_ontology.rdf#Twitter"
+      }
+    ],
+    "my0:hasCitizenship": [
+      "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania"
+    ]
+  },
+  "my0:hasSkill": [
+    {
+      "my0:skillName": "Albanian",
+      "@type": "my0:LanguageSkill",
+      "my0:languageSkillProficiency": "http://example.com/rdf2resume_base_ontology.rdf#NativeProficiency"
+    },
+    {
+      "my0:skillName": "English",
+      "@type": "my0:LanguageSkill",
+      "my0:languageSkillProficiency": "http://example.com/rdf2resume_base_ontology.rdf#NativeProficiency"
+    },
+    {
+      "my0:skillName": "German",
+      "@type": "my0:LanguageSkill",
+      "my0:languageSkillProficiency": "http://example.com/rdf2resume_base_ontology.rdf#LimitedWorkingProficiency"
+    },
+    {
+      "my0:skillName": "Italian",
+      "@type": "my0:LanguageSkill",
+      "my0:languageSkillProficiency": "http://example.com/rdf2resume_base_ontology.rdf#LimitedWorkingProficiency"
+    },
+    {
+      "my0:skillName": "Javascript",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": "Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsum"
+    },
+    {
+      "my0:skillName": "HTML5",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"
+    },
+    {
+      "my0:skillName": "CSS3",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsum"
+    },
+    {
+      "my0:skillName": "React",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "4",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsum"
+    },
+    {
+      "my0:skillName": "AngularJS",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "3",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "JQuery",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "4",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Teamwork",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#InterpersonalSkills",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Management",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#InterpersonalSkills",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Public Speaking",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#InterpersonalSkills",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Leadership",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#InterpersonalSkills",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Software Development",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge",
+      "my0:skillDescription": "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"
+    },
+    {
+      "my0:skillName": "Project Management",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Web Development",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Git",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Linux",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Python",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "3",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Java",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "3",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#ToolsTechnologies",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "Databases",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge",
+      "my0:skillDescription": ""
+    },
+    {
+      "my0:skillName": "RDF Graphs",
+      "@type": "my0:Skill",
+      "my0:skillLevel": "5",
+      "my0:skillHasCertificate": false,
+      "my0:skillCategory": "http://example.com/rdf2resume_base_ontology.rdf#IndustryKnowledge",
+      "my0:skillDescription": ""
+    }
+  ],
+  "my0:hasPatent": [
+    {
+      "@type": "my0:Patent",
+      "my0:patentNumber": "LM101118KOT",
+      "my0:patentTitle": "Patent-Title",
+      "my0:patentInventor": "Enkeleda Elezi",
+      "my0:patentURL": "https://www.iais.fraunhofer.de/de/kontakt.html",
+      "my0:patentStatus": "http://example.com/rdf2resume_base_ontology.rdf#PatentPending",
+      "my0:patentOffice": "Patent-Bonn",
+      "my0:patentDescription": "Proin ut laoreet massa. Quisque quam nisi, commodo quis diam eu, tempus gravida sem. In hac habitasse platea dictumst. Donec in urna sapien. Vestibulum efficitur, ex quis pulvinar molestie, mi velit blandit purus, vitae vehicula enim augue vitae quam. ",
+      "my0:patentIssuedDate": ""
+    }
+  ],
+  "my0:cvNotes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula leo. Aenean est neque, lobortis nec tristique sed, gravida eget ligula. Duis sit amet nisi non sem maximus sollicitudin non ut arcu. Ut interdum posuere dui, eleifend maximus lectus egestas sed. Duis ultricies convallis ante ac aliquam. "
+}

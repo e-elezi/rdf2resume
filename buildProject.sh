@@ -2,10 +2,6 @@
 
 # GENERIC IMAGES
 
-# fuseki
-#docker run --name fuseki-data -v /fuseki busybox
-#docker run -p 3030:3030 -e ADMIN_PASSWORD=pw123 stain/jena-fuseki
-
 # build ui
 cd ./UI
 npm run build
