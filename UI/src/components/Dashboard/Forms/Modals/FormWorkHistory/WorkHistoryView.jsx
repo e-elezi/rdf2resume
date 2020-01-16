@@ -109,76 +109,73 @@ class WorkHistoryReview extends Component {
 
     return (
       <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            display: "flex",
-            marginBottom: "10px"
-          }}
-        >
-          <Col md={2}>
-            <p>
-              {renderPartialDate(startDate)} -{isCurrent ? current[lang] : renderPartialDate(endDate)}
-            </p>
-          </Col>
-          <Col md={6}>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                {this.findTranslatedValue(jobTitle, lang)} |{" "}
-                {this.renderLabel(this.props.jobtypes, jobType, lang)}
-              </b>
+        <div className="card">
+          <div className="card-header">
+            <Col md={2} style={{ paddingLeft: '0' }}>
+              <p>
+                {renderPartialDate(startDate)} -{isCurrent ? current[lang] : renderPartialDate(endDate)}
+              </p>
+            </Col>
+            <Col md={8}>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  {this.findTranslatedValue(jobTitle, lang)} |{" "}
+                  {this.renderLabel(this.props.jobtypes, jobType, lang)}
+                </b>
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  {` `}
+                  <a
+                    href={orgWebsite}
+                    className="inline-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {orgName}
+                  </a>
+                  {" , "}
+                  {this.findTranslatedValue(city, lang)} {` `}{" "}
+                  {this.renderLabel(this.props.countries, country, lang)}
+                </b>
+              </Row>
+            </Col>
+            <Col md={2} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => this.handleUpdateClick()}
+              />
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => this.props.removeWorkHistory(this.props.id)}
+              />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                {this.findTranslatedValue(jobDescription, lang)}
+              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
-                {` `}
-                <a
-                  href={orgWebsite}
-                  className="inline-link"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {orgName}
-                </a>
-                {" , "}
-                {this.findTranslatedValue(city, lang)} {` `}{" "}
-                {this.renderLabel(this.props.countries, country, lang)}
-              </b>
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              {this.findTranslatedValue(jobDescription, lang)}
-            </Row>
-          </Col>
-          <Col md={4}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => this.handleUpdateClick()}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => this.props.removeWorkHistory(this.props.id)}
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
         <WorkHistoryModal
           show={this.state.editMode}
           id={this.props.id}

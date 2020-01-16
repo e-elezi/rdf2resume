@@ -107,76 +107,73 @@ class EducationView extends Component {
 
     return (
       <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            display: "flex",
-            marginBottom: '10px'
-          }}
-        >
-          <Col md={2}>
-            <p>
-              {renderPartialDate(eduStartDate)} - {isEduCurrent ? current[lang] : renderPartialDate(eduGradDate)}
-            </p>
-          </Col>
-          <Col md={6}>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                {this.findTranslatedValue(degreeFieldOfStudy, lang)} | {this.renderLabel(this.props.eduDegrees, degree, lang)}
-              </b>
+        <div className="card">
+          <div className="card-header">
+            <Col md={2} style={{ paddingLeft: '0' }}>
+              <p>
+                {renderPartialDate(eduStartDate)} - {isEduCurrent ? current[lang] : renderPartialDate(eduGradDate)}
+              </p>
+            </Col>
+            <Col md={8}>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  {this.findTranslatedValue(degreeFieldOfStudy, lang)} | {this.renderLabel(this.props.eduDegrees, degree, lang)}
+                </b>
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  {` `}
+                  <a
+                    href={orgWebsite}
+                    className="inline-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {this.findTranslatedValue(orgName, lang)}
+                  </a>{" , "}
+                  {
+                    this.findTranslatedValue(city, lang)
+                  } {` `}{" "}
+                  {this.renderLabel(this.props.countries, country, lang)}
+                </b>
+              </Row>
+            </Col>
+            <Col md={2} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => this.handleUpdateClick()}
+              />
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => this.props.removeEducation(this.props.id)}
+              />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                {this.findTranslatedValue(eduDescription, lang)}
+              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faMapMarkerAlt} /> {` `}
-                {` `}
-                <a
-                  href={orgWebsite}
-                  className="inline-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {this.findTranslatedValue(orgName, lang)}
-                </a>{" , "}
-                {
-                  this.findTranslatedValue(city, lang)
-                } {` `}{" "}
-                {this.renderLabel(this.props.countries, country, lang)}
-              </b>
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              {this.findTranslatedValue(eduDescription, lang)}
-            </Row>
-          </Col>
-          <Col md={4}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => this.handleUpdateClick()}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => this.props.removeEducation(this.props.id)}
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
         <EducationModal
           show={this.state.editMode}
           isUpdate={true}

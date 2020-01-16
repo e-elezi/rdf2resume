@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { connect } from "react-redux";
 import WorkHistoryModal from "./Modals/FormWorkHistory/WorkHistoryModal";
 import WorkHistoryView from "./Modals/FormWorkHistory/WorkHistoryView";
@@ -55,10 +55,14 @@ class FormWorkHistory extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.workHistories.length === 0 ? workNoTitle[lang] : ""}
-        {this.props.workHistories.map((workHistory, index) => (
-          <WorkHistoryView workHistory={workHistory} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.workHistories.length === 0 ? workNoTitle[lang] : ""}
+          {this.props.workHistories.map((workHistory, index) => (
+            <ListGroupItem key={index} className="other-card">
+              <WorkHistoryView workHistory={workHistory} id={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

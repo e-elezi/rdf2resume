@@ -13,7 +13,8 @@ import {
   fetchCountries,
   fetchCompanySizes,
   fetchMainPropertiess,
-  fetchAllIndustryTypess
+  fetchAllIndustryTypess,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveCountryValues,
@@ -28,11 +29,14 @@ import {
   startDate,
   endDate,
   workAddTitle,
-  workUpdateTitle
+  workUpdateTitle,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class WorkHistoryModal extends Component {
   state = {
+    language: '',
     workHistory: {
       "@type": "my0:WorkHistory",
       "my0:startDate": "",
@@ -169,6 +173,9 @@ class WorkHistoryModal extends Component {
     this.props.fetchMainPropertiess("my0:Organization");
     this.props.fetchMainPropertiess("my0:Address");
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -429,6 +436,14 @@ class WorkHistoryModal extends Component {
     e.preventDefault();
     this.props.createWorkHistory(this.state.workHistory);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = e => {
@@ -438,6 +453,14 @@ class WorkHistoryModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleRenderingSubmitButton = lang => {
@@ -513,7 +536,9 @@ class WorkHistoryModal extends Component {
 
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language
+
+    let changeLanguage = (value) => this.setState({ language: value });
 
     let {
       translatedProps,
@@ -838,6 +863,7 @@ class WorkHistoryModal extends Component {
             </Row>
           </Modal.Body>
           <Modal.Footer>
+            <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
             {this.handleRenderingSubmitButton(lang)}
             <Button className="btn-reset" onClick={this.clearForm}>
               {resetLabel[lang]}
@@ -880,6 +906,7 @@ export default connect(
     fetchCompanySizes,
     fetchAllIndustryTypess,
     fetchMainPropertiess,
-    updateCVLastUpdate
+    updateCVLastUpdate,
+    updateLanguage
   }
 )(WorkHistoryModal);

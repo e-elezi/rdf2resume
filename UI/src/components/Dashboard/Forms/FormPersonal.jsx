@@ -562,7 +562,7 @@ class FormPersonal extends Component {
               <Col md={1}>
                 <RemoveButton
                   classnames="shift-left"
-                  handleClick={() => this.removeInstantMessaging(index)}
+                  handleClick={() => this.removeWebsite(index)}
                 />
               </Col>
             </Row>

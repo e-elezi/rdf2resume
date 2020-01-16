@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { connect } from "react-redux";
 import EducationModal from "./Modals/FormEducation/EducationModal";
 import EducationView from "./Modals/FormEducation/EducationView";
@@ -44,7 +44,7 @@ class FormEducation extends Component {
                   classnames="add-button"
                   handleClick={this.handleShow}
                 />
-                <EducationModal show={showModal} onHide={this.handleClose} />
+                <EducationModal key={this.state.key} show={showModal} onHide={this.handleClose} />
               </Col>
               <Col md={10} className="button-label">
                 <p>{educationAddTitle[lang]}</p>
@@ -52,10 +52,14 @@ class FormEducation extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.education.length === 0 ? educationNoTitle[lang] : ""}
-        {this.props.education.map((edu, index) => (
-          <EducationView educationObj={edu} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.education.length === 0 ? educationNoTitle[lang] : ""}
+          {this.props.education.map((edu, index) => (
+            <ListGroupItem key={index} className="other-card">
+              <EducationView educationObj={edu} id={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

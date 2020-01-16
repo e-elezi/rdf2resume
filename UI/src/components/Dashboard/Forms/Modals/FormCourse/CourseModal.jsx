@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
 import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
-import { Combobox } from "react-widgets";
 import Swal from "sweetalert2";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
@@ -543,12 +541,12 @@ class CourseModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             <Row>
-              <Col md={7}>
+              <Col md={8}>
                 {this.props.isUpdate
                   ? courseUpdateTitle[lang]
                   : courseAddTitle[lang]}
               </Col>
-              <Col md={5}>
+              <Col md={3}>
                 <CustomCheckbox
                   id="my0:hasCertification"
                   type="checkbox"
@@ -561,6 +559,7 @@ class CourseModal extends Component {
                   handleChange={this.handleCheckboxChange}
                 />
               </Col>
+              <Col md={1}></Col>
             </Row>
           </Modal.Title>
         </Modal.Header>

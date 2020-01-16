@@ -4,6 +4,7 @@
 
 # build ui
 cd ./UI
+npm install
 npm run build
 rm -Rf ../Docker/build
 cp -fR build/ ../Docker/build/
