@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
@@ -9,7 +10,8 @@ import CustomCheckbox from "../../../../core/CustomCheckbox";
 import {
   fetchMainPropertiess,
   fetchSkillCategories,
-  fetchSkillSuggestion
+  fetchSkillSuggestion,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveMainProperties,
@@ -19,16 +21,19 @@ import {
   cancelLabel,
   resetLabel,
   saveLabel,
-  updateLabel
+  updateLabel,
+  successTitle
 } from "../../../../../translations/translations";
 import CustomLevelButton from "../../../../core/CustomLevelButton";
 import {
   skillAddTitle,
   skillUpdateTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class SkillModal extends Component {
   state = {
+    language: '',
     otherSkill: {
       "@type": "my0:Skill",
       "my0:skillName": [{
@@ -105,6 +110,9 @@ class SkillModal extends Component {
     this.props.fetchSkillCategories();
     this.props.fetchMainPropertiess("my0:Skill");
     this.props.fetchSkillSuggestion();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -255,9 +263,16 @@ class SkillModal extends Component {
 
   handleSave = e => {
     e.preventDefault();
-    //console.log(this.state.otherSkill);
     this.props.createOtherSkill(this.state.otherSkill);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = e => {
@@ -266,6 +281,14 @@ class SkillModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleRenderingSubmitButton = lang => {
@@ -353,9 +376,11 @@ class SkillModal extends Component {
 
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
 
     let { translatedProps } = this.props;
+
+    let changeLanguage = (value) => this.setState({ language: value });
 
     return (
       <Modal
@@ -464,6 +489,7 @@ class SkillModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -495,6 +521,7 @@ export default connect(
     createOtherSkill,
     updateOtherSkill,
     fetchMainPropertiess,
-    updateCVLastUpdate
+    updateCVLastUpdate,
+    updateLanguage
   }
 )(SkillModal);

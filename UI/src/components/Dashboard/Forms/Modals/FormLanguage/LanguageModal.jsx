@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import { createOtherSkill, updateOtherSkill, updateCVLastUpdate } from "../../../../../actions";
@@ -7,7 +8,8 @@ import CustomInput from "../../../../core/CustomInput";
 import CustomCheckbox from "../../../../core/CustomCheckbox";
 import {
   fetchLanguageSkillSelfAssessmentProperties,
-  fetchMainPropertiess
+  fetchMainPropertiess,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveMainProperties,
@@ -19,11 +21,14 @@ import {
   saveLabel,
   updateLabel,
   languageAddTitle,
-  languageUpdateTitle
+  languageUpdateTitle,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class LanguageModal extends Component {
   state = {
+    language: '',
     languageSkill: {
       "@type": "my0:LanguageSkill",
       "my0:skillName": [{
@@ -78,6 +83,9 @@ class LanguageModal extends Component {
     this.props.fetchMainPropertiess("my0:LanguageSkill");
     this.props.fetchMainPropertiess("my0:Skill");
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -198,6 +206,14 @@ class LanguageModal extends Component {
     e.preventDefault();
     this.props.createOtherSkill(this.state.languageSkill);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = e => {
@@ -206,6 +222,14 @@ class LanguageModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   findInArray(data, name) {
@@ -277,7 +301,8 @@ class LanguageModal extends Component {
     } = this.state.languageSkill;
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
+    let changeLanguage = (value) => this.setState({ language: value });
     let types = this.props.types;
     let { translatedProps, translatedPropsSkill } = this.props;
     return (
@@ -301,91 +326,85 @@ class LanguageModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row style={{ alignItems: "flex-start" }}>
-            <Col md={1} style={{ paddingRight: "25px" }}></Col>
-            <Col md={10} style={{ paddingRight: "25px" }}>
-              <Row
-                style={{
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                  display: "flex",
-                  marginLeft: "0px"
-                }}
-              >
-                <CustomInput
-                  id="my0:skillName"
-                  label={
-                    this.renderLabel(translatedPropsSkill, "skillName", lang) +
-                    " *"
-                  }
-                  type="text"
-                  value={this.findTranslatedValue(skillName, lang)}
-                  handleChange={(e) => this.handleInputChange(e, lang)}
-                />
-              </Row>
-              <Row
-                style={{
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                  display: "flex",
-                  marginLeft: "0px",
-                  marginTop: "10px"
-                }}
-              >
-                <label className="label-rw">
-                  {this.renderLabel(
-                    translatedProps,
-                    "languageSkillProficiency",
-                    lang
-                  ) + " *"}
-                </label>
-                <Combobox
-                  name="my0:languageSkillProficiency"
-                  placeholder={this.renderLabel(
-                    translatedProps,
-                    "languageSkillProficiency",
-                    lang
-                  )}
-                  data={types}
-                  textField={lang}
-                  valueField="@type"
-                  value={languageSkillProficiency}
-                  caseSensitive={false}
-                  minLength={3}
-                  filter="contains"
-                  onChange={value =>
-                    this.handleSelectChange(
-                      value,
-                      "my0:languageSkillProficiency"
-                    )
-                  }
-                />
-                <CustomCheckbox
-                  id="my0:skillHasCertificate"
-                  type="checkbox"
-                  label={this.renderLabel(
-                    translatedProps,
-                    "skillHasCertificate",
-                    lang
-                  )}
-                  checked={skillHasCertificate}
-                  handleChange={this.handleCheckboxChange}
-                />
-                <CustomInput
-                  id="my0:skillCertificateName"
-                  label={
-                    this.renderLabel(translatedProps, "skillCertificateName", lang)
-                  }
-                  type="text"
-                  value={this.findTranslatedValue(skillCertificateName, lang)}
-                  handleChange={(e) => this.handleInputChange(e, lang)}
-                />
-              </Row>
-            </Col>
-            <Col md={1} style={{ paddingRight: "25px" }}></Col>
+          <Row
+            style={{
+              width: "100%",
+              justifyContent: "left",
+              marginLeft: "0px",
+              marginBottom: "8px"
+            }}
+          >
+            <CustomInput
+              id="my0:skillName"
+              label={
+                this.renderLabel(translatedPropsSkill, "skillName", lang) +
+                " *"
+              }
+              type="text"
+              value={this.findTranslatedValue(skillName, lang)}
+              handleChange={(e) => this.handleInputChange(e, lang)}
+            />
           </Row>
+          <Row
+            style={{
+              width: "100%",
+              justifyContent: "left",
+              marginLeft: "0px",
+              marginBottom: "8px"
+            }}
+          >
+            <label className="label-rw">
+              {this.renderLabel(
+                translatedProps,
+                "languageSkillProficiency",
+                lang
+              ) + " *"}
+            </label>
+            <Combobox
+              name="my0:languageSkillProficiency"
+              placeholder={this.renderLabel(
+                translatedProps,
+                "languageSkillProficiency",
+                lang
+              )}
+              data={types}
+              textField={lang}
+              valueField="@type"
+              value={languageSkillProficiency}
+              caseSensitive={false}
+              minLength={3}
+              filter="contains"
+              onChange={value =>
+                this.handleSelectChange(
+                  value,
+                  "my0:languageSkillProficiency"
+                )
+              }
+            />
+          </Row>
+          <CustomCheckbox
+            id="my0:skillHasCertificate"
+            type="checkbox"
+            label={this.renderLabel(
+              translatedPropsSkill,
+              "skillHasCertificate",
+              lang
+            )}
+            checked={skillHasCertificate}
+            handleChange={this.handleCheckboxChange}
+          />
+          <CustomInput
+            id="my0:skillCertificateName"
+            label={
+              this.renderLabel(translatedPropsSkill, "skillCertificateName", lang)
+            }
+            type="text"
+            value={this.findTranslatedValue(skillCertificateName, lang)}
+            handleChange={(e) => this.handleInputChange(e, lang)}
+          />
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -416,6 +435,7 @@ export default connect(
     updateOtherSkill,
     fetchLanguageSkillSelfAssessmentProperties,
     fetchMainPropertiess,
-    updateCVLastUpdate
+    updateCVLastUpdate,
+    updateLanguage
   }
 )(LanguageModal);
