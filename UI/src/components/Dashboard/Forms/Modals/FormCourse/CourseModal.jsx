@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
+import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import Swal from "sweetalert2";
@@ -10,6 +12,7 @@ import { createCourse, updateCourse, updateCVLastUpdate } from "../../../../../a
 import {
   fetchCountries,
   fetchMainPropertiess,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveCountryValues,
@@ -23,11 +26,14 @@ import {
   saveLabel,
   updateLabel,
   startDate,
-  endDate
+  endDate,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class CourseModal extends Component {
   state = {
+    language: '',
     course: {
       "@type": "my0:Course",
       "my0:hasCertification": true,
@@ -158,6 +164,9 @@ class CourseModal extends Component {
     this.props.fetchMainPropertiess("my0:Organization");
     this.props.fetchMainPropertiess("my0:Address");
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -413,6 +422,14 @@ class CourseModal extends Component {
   handleSave = () => {
     this.props.createCourse(this.state.course);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = () => {
@@ -421,6 +438,14 @@ class CourseModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   findInArray(data, name) {
@@ -496,13 +521,15 @@ class CourseModal extends Component {
 
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
 
     let {
       translatedProps,
       translatedPropsOrg,
       translatedPropsAddr
     } = this.props;
+
+    let changeLanguage = (value) => this.setState({ language: value });
 
     return (
       <Modal
@@ -728,6 +755,7 @@ class CourseModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -756,5 +784,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createCourse, fetchCountries, updateCVLastUpdate, updateCourse, fetchMainPropertiess }
+  { createCourse, updateLanguage, fetchCountries, updateCVLastUpdate, updateCourse, fetchMainPropertiess }
 )(CourseModal);
