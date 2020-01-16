@@ -65,6 +65,14 @@
   box-shadow: 0px 0px 5px 0px lightgray !important;
 }
 
+.footer-copyright a {
+  color: #4bb3cc !important;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 20px;
+}
+
 .footer {
   position: fixed;
   right: 0;
@@ -388,6 +396,10 @@
 }
 
 .fa-landmark {
+  color: #4bb3cc !important;
+}
+
+.fa-pencil-alt {
   color: #4bb3cc !important;
 }
 

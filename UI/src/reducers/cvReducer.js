@@ -352,12 +352,12 @@ function replaceLanguageValue(data, language, value) {
   return data;
 }
 
-function orderListByDate(listObject) {
+function orderListByDate(listObject, dateName) {
   console.log(listObject);
   let newOrderedList = listObject.sort(function (a, b) {
     // Turn your strings into dates, and then subtract them
     // to get a value that is either negative, positive, or zero.
-    return new Date(b["my0:honorIssuedDate"]) - new Date(a["my0:honorIssuedDate"]);
+    return new Date(b[dateName]) - new Date(a[dateName]);
   });
   return newOrderedList
 }
@@ -431,13 +431,19 @@ export default (state = INITIAL_STATE, action) => {
       let pubs = {
         ...state
       };
-      pubs['my0:hasPublication'].push(action.payload);
+      let puArray = pubs['my0:hasPublication'];
+      puArray.push(action.payload);
+      let sortedpuArray = orderListByDate(puArray, "my0:publicationDate");
+      pubs['my0:hasPublication'] = sortedpuArray;
       return pubs;
     case UPDATE_PUBLICATION:
       let updatedpubs = {
         ...state
       };
-      updatedpubs['my0:hasPublication'][action.payload.index] = action.payload.object;
+      let uppuArray = updatedpubs['my0:hasPublication'];
+      uppuArray[action.payload.index] = action.payload.object;
+      let sorteduppuArray = orderListByDate(uppuArray, "my0:publicationDate");
+      updatedpubs['my0:hasPublication'] = sorteduppuArray;
       return updatedpubs;
     case REMOVE_PUBLICATION:
       let removepub = {
@@ -454,13 +460,19 @@ export default (state = INITIAL_STATE, action) => {
       let pats = {
         ...state
       };
-      pats['my0:hasPatent'].push(action.payload);
+      let paArray = pats['my0:hasPatent'];
+      paArray.push(action.payload);
+      let sortedpaArray = orderListByDate(paArray, "my0:patentIssuedDate");
+      pats['my0:hasPatent'] = sortedpaArray;
       return pats;
     case UPDATE_PATENT:
       let updatedpats = {
         ...state
       };
-      updatedpats['my0:hasPatent'][action.payload.index] = action.payload.object;
+      let uppaArray = updatedpats['my0:hasPatent'];
+      uppaArray[action.payload.index] = action.payload.object;
+      let sorteduppaArray = orderListByDate(uppaArray, "my0:patentIssuedDate");
+      updatedpats['my0:hasPatent'] = sorteduppaArray;
       return updatedpats;
     case REMOVE_PATENT:
       let removepat = {
@@ -477,13 +489,19 @@ export default (state = INITIAL_STATE, action) => {
       let pros = {
         ...state
       };
-      pros['my0:hasProject'].push(action.payload);
+      let poArray = pros['my0:hasProject'];
+      poArray.push(action.payload);
+      let sortedpoArray = orderListByDate(poArray, "my0:projectStartDate");
+      pros['my0:hasProject'] = sortedpoArray;
       return pros;
     case UPDATE_PROJECT:
       let updatedpros = {
         ...state
       };
-      updatedpros['my0:hasProject'][action.payload.index] = action.payload.object;
+      let uppoArray = updatedpros['my0:hasProject'];
+      uppoArray[action.payload.index] = action.payload.object;
+      let sorteduppoArray = orderListByDate(uppoArray, "my0:projectStartDate");
+      updatedpros['my0:hasProject'] = sorteduppoArray;
       return updatedpros;
     case REMOVE_PROJECT:
       let removepros = {
@@ -502,7 +520,7 @@ export default (state = INITIAL_STATE, action) => {
       };
       let honsArray = hons['my0:hasHonorAward']
       honsArray.push(action.payload);
-      let sortedHonsArray = orderListByDate(honsArray);
+      let sortedHonsArray = orderListByDate(honsArray, "my0:honorIssuedDate");
       hons['my0:hasHonorAward'] = sortedHonsArray;
       return hons;
     case UPDATE_HONOR:
@@ -511,7 +529,7 @@ export default (state = INITIAL_STATE, action) => {
       };
       let uphonsArray = updateshons['my0:hasHonorAward']
       uphonsArray[action.payload.index] = action.payload.object;
-      let sortedupHonsArray = orderListByDate(uphonsArray);
+      let sortedupHonsArray = orderListByDate(uphonsArray, "my0:honorIssuedDate");
       updateshons['my0:hasHonorAward'] = sortedupHonsArray;
       return updateshons;
     case REMOVE_HONOR:
@@ -552,13 +570,19 @@ export default (state = INITIAL_STATE, action) => {
       let workhistories = {
         ...state
       };
-      workhistories['my0:hasWorkHistory'].push(action.payload);
+      let workArray = workhistories['my0:hasWorkHistory'];
+      workArray.push(action.payload);
+      let sortedworkArray = orderListByDate(workArray, "my0:startDate");
+      workhistories['my0:hasWorkHistory'] = sortedworkArray;
       return workhistories;
     case UPDATE_WORK_HISTORY:
       let updateworkhistories = {
         ...state
       };
-      updateworkhistories['my0:hasWorkHistory'][action.payload.index] = action.payload.object;
+      let upworkArray = updateworkhistories['my0:hasWorkHistory'];
+      upworkArray[action.payload.index] = action.payload.object;
+      let sortedupworkArray = orderListByDate(upworkArray, "my0:startDate");
+      updateworkhistories['my0:hasWorkHistory'] = sortedupworkArray;
       return updateworkhistories;
     case REMOVE_WORK_HISTORY:
       let removeworkhistory = {
@@ -575,13 +599,19 @@ export default (state = INITIAL_STATE, action) => {
       let educations = {
         ...state
       };
-      educations['my0:hasEducation'].push(action.payload);
+      let eduArray = educations['my0:hasEducation'];
+      eduArray.push(action.payload);
+      let sortededuArray = orderListByDate(eduArray, "my0:eduStartDate");
+      educations['my0:hasEducation'] = sortededuArray;
       return educations;
     case UPDATE_EDUCATION:
       let updateeducations = {
         ...state
       };
-      updateeducations['my0:hasEducation'][action.payload.index] = action.payload.object;
+      let upeduArray = updateeducations['my0:hasEducation'];
+      upeduArray[action.payload.index] = action.payload.object;
+      let sortedupeduArray = orderListByDate(upeduArray, "my0:eduStartDate");
+      updateeducations['my0:hasEducation'] = sortedupeduArray;
       return updateeducations;
     case REMOVE_EDUCATION:
       let removeeducation = {
@@ -598,13 +628,19 @@ export default (state = INITIAL_STATE, action) => {
       let courses = {
         ...state
       };
-      courses['my0:hasCourse'].push(action.payload);
+      let coArray = courses['my0:hasCourse'];
+      coArray.push(action.payload);
+      let sortedcoArray = orderListByDate(coArray, "my0:courseStartDate");
+      courses['my0:hasCourse'] = sortedcoArray;
       return courses;
     case UPDATE_COURSE:
       let updatecourses = {
         ...state
       };
-      updatecourses['my0:hasCourse'][action.payload.index] = action.payload.object;
+      let upcoArray = updatecourses['my0:hasCourse'];
+      upcoArray[action.payload.index] = action.payload.object;;
+      let sortedupcoArray = orderListByDate(upcoArray, "my0:courseStartDate");
+      updatecourses['my0:hasCourse'] = sortedupcoArray;
       return updatecourses;
     case REMOVE_COURSE:
       let removecourses = {

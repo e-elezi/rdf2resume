@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { connect } from "react-redux";
 import ProjectModal from "./Modals/FormProject/ProjectModal";
 import ProjectView from "./Modals/FormProject/ProjectView";
@@ -56,10 +56,14 @@ class FormCourse extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.projects.length === 0 ? projectNoTitle[lang] : ""}
-        {this.props.projects.map((co, index) => (
-          <ProjectView projectObj={co} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.projects.length === 0 ? projectNoTitle[lang] : ""}
+          {this.props.projects.map((co, index) => (
+            <ListGroupItem key={index} className="other-card">
+              <ProjectView projectObj={co} id={index} key={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

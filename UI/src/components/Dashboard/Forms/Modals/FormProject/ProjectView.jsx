@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faUser, faTrash, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faUser, faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { removeProject } from "../../../../../actions";
 import ProjectModal from "./ProjectModal";
 import { now } from '../../../../../translations/translations';
@@ -57,86 +57,82 @@ class ProjectView extends Component {
 
     return (
       <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            display: "flex",
-            marginBottom: '10px'
-          }}
-        >
-          <Col md={2}>
-            <p>
-              {renderPartialDate(projectStartDate)} -{" "}
-              {projectIsCurrent ? current[lang] : renderPartialDate(projectEndDate)}
-            </p>
-          </Col>
-          <Col md={6}>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <a
-                  href={projectURL}
-                  className="inline-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {this.findTranslatedValue(projectName, lang)}
-                </a>
-              </b>
+        <div className="card">
+          <div className="card-header">
+            <Col md={2} style={{ paddingLeft: '0' }}>
+              <p>
+                {renderPartialDate(projectStartDate)} -{" "}
+                {projectIsCurrent ? current[lang] : renderPartialDate(projectEndDate)}
+              </p>
+            </Col>
+            <Col md={8}>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <a
+                    href={projectURL}
+                    className="inline-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {this.findTranslatedValue(projectName, lang)}
+                  </a>
+                </b>
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <FontAwesomeIcon icon={faPencilAlt} /> {` `}
+                  {` `}
+                  {this.findTranslatedValue(projectCreator, lang)}
+                </b>
+              </Row>
+            </Col>
+            <Col md={2} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => this.handleUpdateClick()}
+              />
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => this.props.removeProject(this.props.id)}
+              />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                {this.findTranslatedValue(projectDescription, lang)}
+              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faBookOpen} /> {` `}
-                {` `}
-                {this.findTranslatedValue(projectCreator, lang)}
-              </b>
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                <b>
+                  <FontAwesomeIcon icon={faUser} /> {` `}
+                  {` `}
+                  {this.findTranslatedValue(projectRole, lang)}
+                </b>              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faUser} /> {` `}
-                {` `}
-                {this.findTranslatedValue(projectRole, lang)}
-              </b>
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              {this.findTranslatedValue(projectDescription, lang)}
-            </Row>
-          </Col>
-          <Col md={4}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => this.handleUpdateClick()}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => this.props.removeCourse(this.props.id)}
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
         <ProjectModal
           show={this.state.editMode}
           isUpdate={true}

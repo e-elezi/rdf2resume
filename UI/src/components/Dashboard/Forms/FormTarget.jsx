@@ -122,7 +122,7 @@ class FormTarget extends Component {
 
     return (
       <Row className="main-content-row">
-        <Col md={4}>
+        <Col lg={4} md={6}>
           <h4>{targetTitleJob[lang]}</h4>
           <CustomInput
             id="targetJobTitle"
@@ -226,7 +226,7 @@ class FormTarget extends Component {
             handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
         </Col>
-        <Col md={4}>
+        <Col lg={4} md={6}>
           <h4>{targetTitleCompany[lang]}</h4>
           <label className="label-rw">
             {this.renderLabel(translatedProps, "targetRegion", lang)}
@@ -324,7 +324,7 @@ class FormTarget extends Component {
             handleChange={(e) => this.handleInputChangeWithLanguage(e, lang)}
           />
         </Col>
-        <Col md={4}> </Col>
+        <Col lg={4} md={0}> </Col>
       </Row>
     );
   }
