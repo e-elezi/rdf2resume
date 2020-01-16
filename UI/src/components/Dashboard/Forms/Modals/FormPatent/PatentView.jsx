@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
-  faBookOpen,
+  faLandmark,
   faCopyright
 } from "@fortawesome/free-solid-svg-icons";
 import { removePatent } from "../../../../../actions";
@@ -88,84 +88,82 @@ class PatentView extends Component {
 
     return (
       <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            display: "flex",
-            marginBottom: '10px'
-          }}
-        >
-          <Col md={2}>
-            <p style={{ marginBottom: "10px" }}>{renderPartialDate(patentIssuedDate)}</p>
-            <p>
-              <u>{this.renderLabel(this.props.statuses, patentStatus, lang)}</u>
-            </p>
-          </Col>
-          <Col md={6}>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <a
-                  href={patentURL}
-                  className="inline-link"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {this.findTranslatedValue(patentTitle, lang)}
-                </a>
-              </b>{" "}
-              - {patentNumber}
+        <div className="card">
+          <div className="card-header">
+            <Col md={2} style={{ paddingLeft: '0' }}>
+              {
+                patentIssuedDate !== '' ? <p style={{ marginBottom: "10px" }}>{renderPartialDate(patentIssuedDate)}</p> :
+                  <p>
+                    <u>{this.renderLabel(this.props.statuses, patentStatus, lang)}</u>
+                  </p>
+              }
+            </Col>
+            <Col md={8}>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <a
+                    href={patentURL}
+                    className="inline-link"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {this.findTranslatedValue(patentTitle, lang)}
+                  </a>
+                </b>{" "}
+                - {patentNumber}
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <FontAwesomeIcon icon={faLandmark} />
+                  {` `}
+                  {this.findTranslatedValue(patentOffice, lang)}{" "}
+                </b>
+              </Row>
+            </Col>
+            <Col md={2} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => this.handleUpdateClick()}
+              />
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => this.props.removePatent(this.props.id)}
+              />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                {this.findTranslatedValue(patentDescription, lang)}
+              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faBookOpen} />
-                {` `}
-                {this.findTranslatedValue(patentOffice, lang)}{" "}
-              </b>
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                <FontAwesomeIcon icon={faCopyright} />
+                {` `} {patentInventor}              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              {this.findTranslatedValue(patentDescription, lang)}
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <FontAwesomeIcon icon={faCopyright} />
-              {` `} {patentInventor}
-            </Row>
-          </Col>
-          <Col md={4}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => this.handleUpdateClick()}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => this.props.removePatent(this.props.id)}
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
         <PatentModal
           show={this.state.editMode}
           isUpdate={true}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
@@ -8,7 +9,8 @@ import { createReference, updateReference, updateCVLastUpdate } from "../../../.
 import {
   fetchCountries,
   fetchTitleProperties,
-  fetchMainPropertiess
+  fetchMainPropertiess,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveCountryValues,
@@ -21,11 +23,14 @@ import {
   saveLabel,
   updateLabel,
   referenceAddTitle,
-  referenceUpdateTitle
+  referenceUpdateTitle,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class ReferenceModal extends Component {
   state = {
+    language: '',
     reference: {
       "@type": "my0:Reference",
       "my0:refRelationDescription": [{
@@ -114,6 +119,9 @@ class ReferenceModal extends Component {
     this.props.fetchMainPropertiess("my0:Reference");
     this.props.fetchMainPropertiess("my0:Address");
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -281,6 +289,14 @@ class ReferenceModal extends Component {
   handleSave = () => {
     this.props.createReference(this.state.reference);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = () => {
@@ -289,6 +305,14 @@ class ReferenceModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleRenderingSubmitButton = lang => {
@@ -358,7 +382,9 @@ class ReferenceModal extends Component {
       "my0:refRelationDescription": refRelationDescription
     } = this.state.reference;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
+
+    let changeLanguage = (value) => this.setState({ language: value });
 
     let {
       translatedProps,
@@ -538,6 +564,7 @@ class ReferenceModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -574,6 +601,7 @@ export default connect(
     fetchTitleProperties,
     updateReference,
     fetchMainPropertiess,
-    updateCVLastUpdate
+    updateCVLastUpdate,
+    updateLanguage
   }
 )(ReferenceModal);

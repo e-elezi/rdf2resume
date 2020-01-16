@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { connect } from "react-redux";
 import PatentModal from "./Modals/FormPatent/PatentModal";
 import PatentView from "./Modals/FormPatent/PatentView";
@@ -56,10 +56,14 @@ class FormPatent extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.patents.length === 0 ? patentNoTitle[lang] : ""}
-        {this.props.patents.map((co, index) => (
-          <PatentView patentObj={co} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.patents.length === 0 ? patentNoTitle[lang] : ""}
+          {this.props.patents.map((co, index) => (
+            <ListGroupItem key={index} className="other-card">
+              <PatentView patentObj={co} id={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

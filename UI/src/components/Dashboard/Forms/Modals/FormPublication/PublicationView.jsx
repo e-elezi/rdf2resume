@@ -57,81 +57,77 @@ class PublicationView extends Component {
 
     return (
       <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            display: "flex",
-            marginBottom: '10px'
-          }}
-        >
-          <Col md={2}>
-            <p>{renderPartialDate(publicationDate)}</p>
-          </Col>
-          <Col md={6}>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <a
-                  href={publicationURL}
-                  className="inline-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {this.findTranslatedValue(publicationTitle, lang)}
-                </a>
-              </b>
+        <div className="card">
+          <div className="card-header">
+            <Col md={2} style={{ paddingLeft: '0' }}>
+              <p>{renderPartialDate(publicationDate)}</p>
+            </Col>
+            <Col md={8}>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <a
+                    href={publicationURL}
+                    className="inline-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {this.findTranslatedValue(publicationTitle, lang)}
+                  </a>
+                </b>
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <FontAwesomeIcon icon={faBookOpen} />
+                  {` `}
+                  {publicationPublisher}{" "}
+                </b>
+              </Row>
+            </Col>
+            <Col md={2} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => this.handleUpdateClick()}
+              />
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => this.props.removePublication(this.props.id)}
+              />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                {this.findTranslatedValue(publicationDescription, lang)}
+              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faBookOpen} />
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                <FontAwesomeIcon icon={faCopyright} />
                 {` `}
-                {publicationPublisher}{" "}
-              </b>
+                {publicationAuthor}              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              {this.findTranslatedValue(publicationDescription, lang)}
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <FontAwesomeIcon icon={faCopyright} />
-              {` `}
-              {publicationAuthor}
-            </Row>
-          </Col>
-          <Col md={4}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => this.handleUpdateClick()}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => this.props.removePublication(this.props.id)}
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
         <PublicationModal
           show={this.state.editMode}
           isUpdate={true}

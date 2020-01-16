@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { connect } from "react-redux";
 import PublicationModal from "./Modals/FormPublication/PublicationModal";
 import PublicationView from "./Modals/FormPublication/PublicationView";
@@ -56,10 +56,14 @@ class FormPublication extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.publications.length === 0 ? publicationNoTitle[lang] : ""}
-        {this.props.publications.map((pu, index) => (
-          <PublicationView publicationObject={pu} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.publications.length === 0 ? publicationNoTitle[lang] : ""}
+          {this.props.publications.map((pu, index) => (
+            <ListGroupItem key={index} className="other-card">
+              <PublicationView publicationObject={pu} id={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

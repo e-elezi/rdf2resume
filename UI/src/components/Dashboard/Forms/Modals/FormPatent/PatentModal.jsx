@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
+import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomRadioGroup from "../../../../core/CustomRadioGroup";
@@ -7,7 +9,8 @@ import CustomInput from "../../../../core/CustomInput";
 import { createPatent, updatePatent, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchMainPropertiess,
-  fetchAllPatentStatusess
+  fetchAllPatentStatusess,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveMainProperties,
@@ -19,11 +22,14 @@ import {
   saveLabel,
   updateLabel,
   patentAddTitle,
-  patentUpdateTitle
+  patentUpdateTitle,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class PatentModal extends Component {
   state = {
+    language: '',
     patent: {
       "@type": "my0:Patent",
       "my0:patentTitle": [{
@@ -101,6 +107,9 @@ class PatentModal extends Component {
     this.props.fetchMainPropertiess("my0:Patent");
     this.props.fetchAllPatentStatusess();
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -237,6 +246,14 @@ class PatentModal extends Component {
   handleSave = () => {
     this.props.createPatent(this.state.patent);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = () => {
@@ -245,6 +262,14 @@ class PatentModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   findInArray(data, name) {
@@ -303,8 +328,6 @@ class PatentModal extends Component {
   handleRadioChange = e => {
     let obj = { ...this.state.patent };
     let label = e.target.name;
-    console.log(label);
-    console.log(e.target.id);
     obj[label] = e.target.id;
     this.setState({
       patent: obj
@@ -325,9 +348,11 @@ class PatentModal extends Component {
 
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
 
     let { translatedProps } = this.props;
+
+    let changeLanguage = (value) => this.setState({ language: value });
 
     return (
       <Modal
@@ -350,7 +375,7 @@ class PatentModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row style={{ alignItems: "flex-start", margin: "0 40px" }}>
+          <Row style={{ alignItems: "flex-start", margin: "0" }}>
             <Row
               style={{
                 justifyContent: "flex-start",
@@ -480,6 +505,7 @@ class PatentModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -504,5 +530,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createPatent, updateCVLastUpdate, updatePatent, fetchMainPropertiess, fetchAllPatentStatusess }
+  { createPatent, updateLanguage, updateCVLastUpdate, updatePatent, fetchMainPropertiess, fetchAllPatentStatusess }
 )(PatentModal);
