@@ -402,3 +402,29 @@
   margin-right: 5px;
   margin-top: 4px;
 }
+
+/******************************************** 
+********************* CARD ******************
+*********************************************
+*********************************************/
+
+.list-group-item.other-card {
+  border: 0;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.list-group-item.other-card .card {
+  margin: 0;
+  border: 0;
+  border-radius: 5px;
+}
+
+.list-group-item.other-card .card .card-header {
+  padding-bottom: 0.2em;
+}
+
+.list-group-item.other-card .card .card-body {
+  padding-top: 0;
+  padding-bottom: 1em;
+}

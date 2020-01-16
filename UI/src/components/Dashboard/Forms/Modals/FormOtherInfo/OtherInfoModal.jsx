@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import { Combobox } from "react-widgets";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import { createOtherInfo, updateOtherInfo, updateCVLastUpdate } from "../../../../../actions";
 import {
   fetchOtherCVInfoTypes,
-  fetchMainPropertiess
+  fetchMainPropertiess,
+  updateLanguage
 } from "../../../../../actions/utilityActions";
 import {
   retrieveMainProperties,
@@ -18,8 +20,10 @@ import {
   saveLabel,
   updateLabel,
   otherInfoAddTitle,
-  otherInfoUpdateTitle
+  otherInfoUpdateTitle,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class OtherInfoModal extends Component {
   state = {
@@ -134,6 +138,13 @@ class OtherInfoModal extends Component {
     e.preventDefault();
     this.props.createOtherInfo(this.state.otherInfo);
     this.props.updateCVLastUpdate();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = e => {
@@ -142,12 +153,18 @@ class OtherInfoModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleRenderingSubmitButton = lang => {
     let isDisabled =
-      this.state.otherInfo["my0:otherInfoDescription"] === "" ||
-      this.state.otherInfo["my0:otherInfoType"] === "";
+      this.state.otherInfo["my0:otherInfoDescription"] === "";
     if (!this.props.isUpdate) {
       return (
         <Button
@@ -217,6 +234,8 @@ class OtherInfoModal extends Component {
 
     let translatedProps = this.props.translatedProps;
 
+    let changeLanguage = (value) => this.props.updateLanguage(value);
+
     return (
       <Modal
         show={this.props.show}
@@ -277,7 +296,7 @@ class OtherInfoModal extends Component {
                   translatedProps,
                   "otherInfoDescription",
                   lang
-                ) + " *"
+                )
               }
               value={this.findTranslatedValue(otherInfoDescription, lang)}
               handleChange={(e) => this.handleInputChange(e, lang)}
@@ -285,6 +304,7 @@ class OtherInfoModal extends Component {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -314,6 +334,7 @@ export default connect(
     fetchOtherCVInfoTypes,
     updateOtherInfo,
     fetchMainPropertiess,
-    updateCVLastUpdate
+    updateCVLastUpdate,
+    updateLanguage
   }
 )(OtherInfoModal);

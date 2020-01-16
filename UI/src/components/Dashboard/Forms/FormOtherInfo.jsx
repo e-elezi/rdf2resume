@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import AddButton from "../../core/AddButton";
 import OtherInfoView from "./Modals/FormOtherInfo/OtherInfoView";
 import OtherInfoModal from "./Modals/FormOtherInfo/OtherInfoModal";
@@ -56,10 +56,14 @@ class FormOtherInfo extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.otherInfos.length === 0 ? otherInfoNoTitle[lang] : ""}
-        {this.props.otherInfos.map((otherinfo, index) => (
-          <OtherInfoView otherInfoObject={otherinfo} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.otherInfos.length === 0 ? otherInfoNoTitle[lang] : ""}
+          {this.props.otherInfos.map((otherinfo, index) => (
+            <ListGroupItem className="other-card">
+              <OtherInfoView otherInfoObject={otherinfo} id={index} key={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

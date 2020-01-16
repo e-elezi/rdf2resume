@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removeOtherInfo } from "../../../../../actions";
 import { connect } from "react-redux";
@@ -72,26 +72,19 @@ class OtherInfoView extends Component {
     let lang = this.props.language;
 
     return (
-      <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            marginLeft: "0px",
-            marginBottom: "10px"
-          }}
-        >
-          <Col md={8} style={{ paddingLeft: "0" }}>
-            <h4>
+      <div class="card">
+        <div class="card-header">
+          <Col md={8} sm={8} style={{ paddingLeft: "0" }}>
+            <h5>
               <u>{categorieLabel[lang]}:</u>{" "}
               {this.renderLabel(
                 this.props.others,
                 otherInfoObject["my0:otherInfoType"],
                 lang
               )}
-            </h4>
+            </h5>
           </Col>
-          <Col md={4}>
+          <Col md={4} sm={4} style={{ display: "flex", justifyContent: "flex-end" }}>
             <FontAwesomeIcon
               icon={faEdit}
               onClick={() => this.handleUpdateClick()}
@@ -101,22 +94,10 @@ class OtherInfoView extends Component {
               onClick={() => this.props.removeOtherInfo(this.props.id)}
             />
           </Col>
-        </Row>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            marginLeft: "0px"
-          }}
-        >
-          <p
-            style={{
-              width: "80%"
-            }}
-          >
-            {this.findTranslatedValue(otherInfoObject["my0:otherInfoDescription"], lang)}
-          </p>
-        </Row>
+        </div>
+        <div class="card-body">
+          {this.findTranslatedValue(otherInfoObject["my0:otherInfoDescription"], lang)}
+        </div>
         <OtherInfoModal
           show={this.state.editMode}
           id={this.props.id}
@@ -125,7 +106,7 @@ class OtherInfoView extends Component {
           otherInfoObject={this.props.otherInfoObject}
           key={this.state.key}
         />
-      </React.Fragment>
+      </div>
     );
   }
 }

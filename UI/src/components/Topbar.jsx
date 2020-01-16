@@ -67,7 +67,7 @@ const Topbar = props => {
             })}
           </Nav>
           <Nav className="justify-content-end">
-            <Combobox onChange={changeLanguage} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
+            <Combobox onChange={changeLanguage} value={props.language} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           </Nav>
         </Navbar>
       </Col>{" "}
