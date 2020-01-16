@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
-  faBookOpen
+  faLandmark
 } from "@fortawesome/free-solid-svg-icons";
 import { removeHonor } from "../../../../../actions";
 import HonorModal from "./HonorModal";
@@ -54,67 +54,64 @@ class HonorView extends Component {
 
     return (
       <React.Fragment>
-        <Row
-          style={{
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            display: "flex",
-            marginBottom: '10px'
-          }}
-        >
-          <Col md={2}>
-            <p>
-              {renderPartialDate(honorIssuedDate)}
-            </p>
-          </Col>
-          <Col md={6}>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                {this.findTranslatedValue(honortitle, lang)}
-              </b>
+        <div className="card">
+          <div className="card-header">
+            <Col md={2} style={{ paddingLeft: '0' }}>
+              <p>
+                {renderPartialDate(honorIssuedDate)}
+              </p>
+            </Col>
+            <Col md={8}>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  {this.findTranslatedValue(honortitle, lang)}
+                </b>
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  display: "flex"
+                }}
+              >
+                <b>
+                  <FontAwesomeIcon icon={faLandmark} /> {` `}
+                  {` `}
+                  {this.findTranslatedValue(honorIssuer, lang)}
+                </b>
+              </Row>
+            </Col>
+            <Col md={2} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                onClick={() => this.handleUpdateClick()}
+              />
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => this.props.removeHonor(
+                  this.props.id
+                )}
+              />
+            </Col>
+          </div>
+          <div className="card-body">
+            <Row>
+              <Col md={2}>
+              </Col>
+              <Col md={8} style={{ paddingLeft: '0' }}>
+                {this.findTranslatedValue(honorDescription, lang)}
+              </Col>
+              <Col md={2}>
+              </Col>
             </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              <b>
-                <FontAwesomeIcon icon={faBookOpen} /> {` `}
-                {` `}
-                {this.findTranslatedValue(honorIssuer, lang)}
-              </b>
-            </Row>
-            <Row
-              style={{
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                display: "flex"
-              }}
-            >
-              {this.findTranslatedValue(honorDescription, lang)}
-            </Row>
-          </Col>
-          <Col md={4}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => this.handleUpdateClick()}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => this.props.removeHonor(
-                this.props.id
-              )}
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
         <HonorModal
           show={this.state.editMode}
           isUpdate={true}

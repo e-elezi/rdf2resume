@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Row } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import warning from "../../images/warning.svg";
@@ -28,25 +28,21 @@ const Sidebar = props => {
                   src={warning}
                   width="30px"
                   height="30px"
-                  style={{ marginBottom: '5px', marginLeft: '10px'}}
+                  style={{ marginBottom: '5px', marginLeft: '10px' }}
                   alt="warning"
                 ></img>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </NavLink>
           );
         })}
       </Nav>
-      <Row className="footer-copyright">
-        <a
-          rel="noopener noreferrer"
-          href="https://www.linkedin.com/in/enkeleda-elezi-928532a0/"
-          target="_blank"
-        >
-          @Enkeleda Elezi
-        </a>
-      </Row>
+      <footer className="footer mt-auto py-3">
+        <div className="footer-content justify-content-end">
+          <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/enkeleda-elezi-928532a0/">@Enkeleda Elezi</a>
+        </div>
+      </footer>
     </React.Fragment>
   );
 };

@@ -34,10 +34,10 @@ class FormOtherInfo extends Component {
     return (
       <React.Fragment>
         <Row>
-          <Col md={8}>
+          <Col md={6}>
             <h4 style={{ marginTop: "10px" }}>{otherInfoTitle[lang]}</h4>
           </Col>
-          <Col md={4} className="side-button-wrapper">
+          <Col md={6} className="side-button-wrapper">
             <Row>
               <Col md={2}>
                 <AddButton

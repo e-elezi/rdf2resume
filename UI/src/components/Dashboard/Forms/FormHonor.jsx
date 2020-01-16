@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { connect } from "react-redux";
 import HonorModal from "./Modals/FormHonor/HonorModal";
 import HonorView from "./Modals/FormHonor/HonorView";
@@ -34,10 +34,10 @@ class FormHonor extends Component {
     return (
       <React.Fragment>
         <Row>
-          <Col md={8}>
+          <Col md={6} sm={12}>
             <h4 style={{ marginTop: "10px" }}>{honorTitle[lang]}</h4>
           </Col>
-          <Col md={4} className="side-button-wrapper">
+          <Col md={6} sm={12} className="side-button-wrapper">
             <Row>
               <Col md={2}>
                 <AddButton
@@ -56,10 +56,14 @@ class FormHonor extends Component {
             </Row>
           </Col>
         </Row>
-        {this.props.honors.length === 0 ? honorNoTitle[lang] : ""}
-        {this.props.honors.map((co, index) => (
-          <HonorView honorObj={co} id={index} key={index} />
-        ))}
+        <ListGroup className="col-md-8 col-sm-12">
+          {this.props.honors.length === 0 ? honorNoTitle[lang] : ""}
+          {this.props.honors.map((co, index) => (
+            <ListGroupItem key={index} className="other-card">
+              <HonorView honorObj={co} id={index} />
+            </ListGroupItem>
+          ))}
+        </ListGroup>
       </React.Fragment>
     );
   }

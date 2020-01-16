@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
+import { Combobox } from "react-widgets";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import CustomTextarea from "../../../../core/CustomTextarea";
 import CustomInput from "../../../../core/CustomInput";
 import { createHonor, updateHonor, updateCVLastUpdate } from "../../../../../actions";
-import { fetchMainPropertiess } from "../../../../../actions/utilityActions";
+import { fetchMainPropertiess, updateLanguage } from "../../../../../actions/utilityActions";
 import { retrieveMainProperties } from "../../../../../utilities/utilityQueries";
 import {
   cancelLabel,
@@ -12,11 +14,14 @@ import {
   saveLabel,
   updateLabel,
   honorAddTitle,
-  honorUpdateTitle
+  honorUpdateTitle,
+  successTitle
 } from "../../../../../translations/translations";
+import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class HonorModal extends Component {
   state = {
+    language: '',
     honor: {
       "@type": "my0:Honor",
       "my0:honortitle": [{
@@ -89,6 +94,9 @@ class HonorModal extends Component {
   componentWillMount() {
     this.props.fetchMainPropertiess("my0:HonorAward");
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -217,6 +225,14 @@ class HonorModal extends Component {
   handleSave = () => {
     this.props.createHonor(this.state.honor);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   handleUpdate = () => {
@@ -225,6 +241,14 @@ class HonorModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
+    Swal.fire({
+      title: successTitle[this.props.language],
+      type: "success",
+      confirmButtonColor: "#4bb3cc",
+      heightAuto: false,
+      confirmButtonText: "Okay"
+    });
   };
 
   findInArray(data, name) {
@@ -287,9 +311,11 @@ class HonorModal extends Component {
 
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
 
     let { translatedProps } = this.props;
+
+    let changeLanguage = (value) => this.setState({ language: value });
 
     return (
       <Modal
@@ -312,7 +338,7 @@ class HonorModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row style={{ alignItems: "flex-start", margin: "0 40px" }}>
+          <Row style={{ alignItems: "flex-start", margin: "0 0px" }}>
             <Row
               style={{
                 justifyContent: "flex-start",
@@ -327,7 +353,7 @@ class HonorModal extends Component {
                   id="my0:honortitle"
                   name="honor"
                   label={
-                    this.renderLabel(translatedProps, "honortitle", lang) + " *"
+                    this.renderLabel(translatedProps, "honortitle", lang)
                   }
                   type="text"
                   value={this.findTranslatedValue(honortitle, lang)}
@@ -375,6 +401,7 @@ class HonorModal extends Component {
           </Row>
         </Modal.Body>
         <Modal.Footer>
+          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
@@ -398,5 +425,5 @@ const mapstateToProps = (state, ownProps) => {
 
 export default connect(
   mapstateToProps,
-  { createHonor, updateHonor, fetchMainPropertiess, updateCVLastUpdate }
+  { createHonor, updateHonor, updateLanguage, fetchMainPropertiess, updateCVLastUpdate }
 )(HonorModal);

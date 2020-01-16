@@ -12,35 +12,35 @@ import { updateLanguage } from "../actions/utilityActions";
 import { connect } from "react-redux";
 
 const Topbar = props => {
-  
+
   let ListItem = ({ item }) => (
     <React.Fragment>
       <span>
         {item === "de" ? (
           <img src={de} width="20px" height="20px" alt={item}></img>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {item === "sq" ? (
           <img src={sq} width="20px" height="20px" alt={item}></img>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {item === "fr" ? (
           <img src={fr} width="20px" height="20px" alt={item}></img>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {item === "it" ? (
           <img src={it} width="20px" height="20px" alt={item}></img>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {item === "en" ? (
           <img src={en} width="20px" height="20px" alt={item}></img>
         ) : (
-          ""
-        )}{" "}
+            ""
+          )}{" "}
         <span style={{ textTransform: 'uppercase' }} >{item}</span>
       </span>
     </React.Fragment>
@@ -52,10 +52,10 @@ const Topbar = props => {
 
   return (
     <Row className="container-fluid">
-      <Col className="sidebar" md={2} style={{ padding: 0 }}>
-        <div className="logo">{/* <img src={mylogo} alt={'Logo'} /> */}</div>
+      <Col className="sidebar" lg={2} md={3} style={{ padding: 0 }}>
+        <div className="logo">RDF2Resume</div>
       </Col>
-      <Col md={10}>
+      <Col lg={10} md={9} sm={12}>
         <Navbar bg="light" variant="light">
           <Nav className="justify-content-end">
             {props.links.map(link => {

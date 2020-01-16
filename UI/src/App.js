@@ -42,22 +42,6 @@ const LoadingIndicator = props => {
   );
 };
 
-// const LoadingIndicator2 = props => {
-//   return (
-//     <div
-//         style={{
-//           zIndex: "500",
-//           position: "fixed",
-//           display: "block",
-//           top: "50%",
-//           left: "50%"
-//         }}
-//       >
-//       <Loader type="ThreeDots" color="#2d889e" height="100" width="100" />
-//     </div>
-//   );
-// };
-
 class App extends Component {
   state = {
     showInitialPage: true,
@@ -82,7 +66,6 @@ class App extends Component {
     return (
       <React.Fragment>
         <LoadingIndicator />
-        {/* <LoadingIndicator2 /> */}
         {this.state.showInitialPage ? (
           <Container className="initial-content">
             <Row className="logo">

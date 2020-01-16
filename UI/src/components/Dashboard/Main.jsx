@@ -29,43 +29,45 @@ class Main extends Component {
     } = this.props;
 
     return (
-      <Row className="container-fluid" style={{ height: "100%" }}>
-        <Col className="sidebar" md={2} style={{ height: "100%", padding: 0 }}>
-          <Sidebar links={mainSidebar} />
-        </Col>
-        <Col md={10} style={{ overflow: "scroll" }}>
-          <Form>
-            <Route path="/d/about" component={FormAboutCV} />
-             <Route
-              path="/d/personal"
-              render={props => (
-                <FormPersonal
-                  {...props}
-                  handleStateObjectUpdate={handleStateObjectUpdate}
-                />
-              )}
-            />
-            
-            <Route path="/d/target" component={FormTarget} />
-            <Route path="/d/work" component={FormWorkHistory} />
-            <Route path="/d/education" component={FormEducation} />
-            <Route path="/d/course" component={FormCourse} />
-            <Route path="/d/skill" component={FormSkill} />
-            <Route path="/d/reference" component={FormReference} />
-            <Route path="/d/other" component={FormOtherInfo} />
-            <Route path="/d/publication" component={FormPublication} />
-            <Route path="/d/patent" component={FormPatent} />
-            <Route path="/d/project" component={FormProject} />
-            <Route path="/d/honor" component={FormHonor} />
-            <Route
-              path="/d/submit"
-              render={props => (
-                <FormSubmit {...props} handleClick={handleFormSubmit} />
-              )}
-            /> 
-          </Form>
-        </Col>
-      </Row>
+      <React.Fragment>
+        <Row className="container-fluid" style={{ height: '100vh' }}>
+          <Col className="sidebar" lg={2} md={3} style={{ height: '100vh', padding: 0 }}>
+            <Sidebar links={mainSidebar} />
+          </Col>
+          <Col sm={12} lg={10} md={9} style={{ overflow: "scroll" }}>
+            <Form>
+              <Route path="/d/about" component={FormAboutCV} />
+              <Route
+                path="/d/personal"
+                render={props => (
+                  <FormPersonal
+                    {...props}
+                    handleStateObjectUpdate={handleStateObjectUpdate}
+                  />
+                )}
+              />
+
+              <Route path="/d/target" component={FormTarget} />
+              <Route path="/d/work" component={FormWorkHistory} />
+              <Route path="/d/education" component={FormEducation} />
+              <Route path="/d/course" component={FormCourse} />
+              <Route path="/d/skill" component={FormSkill} />
+              <Route path="/d/reference" component={FormReference} />
+              <Route path="/d/other" component={FormOtherInfo} />
+              <Route path="/d/publication" component={FormPublication} />
+              <Route path="/d/patent" component={FormPatent} />
+              <Route path="/d/project" component={FormProject} />
+              <Route path="/d/honor" component={FormHonor} />
+              <Route
+                path="/d/submit"
+                render={props => (
+                  <FormSubmit {...props} handleClick={handleFormSubmit} />
+                )}
+              />
+            </Form>
+          </Col>
+        </Row>
+      </React.Fragment>
     );
   }
 }

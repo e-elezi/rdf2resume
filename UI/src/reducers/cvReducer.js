@@ -352,6 +352,16 @@ function replaceLanguageValue(data, language, value) {
   return data;
 }
 
+function orderListByDate(listObject) {
+  console.log(listObject);
+  let newOrderedList = listObject.sort(function (a, b) {
+    // Turn your strings into dates, and then subtract them
+    // to get a value that is either negative, positive, or zero.
+    return new Date(b["my0:honorIssuedDate"]) - new Date(a["my0:honorIssuedDate"]);
+  });
+  return newOrderedList
+}
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_CV:
@@ -490,13 +500,19 @@ export default (state = INITIAL_STATE, action) => {
       let hons = {
         ...state
       };
-      hons['my0:hasHonorAward'].push(action.payload);
+      let honsArray = hons['my0:hasHonorAward']
+      honsArray.push(action.payload);
+      let sortedHonsArray = orderListByDate(honsArray);
+      hons['my0:hasHonorAward'] = sortedHonsArray;
       return hons;
     case UPDATE_HONOR:
       let updateshons = {
         ...state
       };
-      updateshons['my0:hasHonorAward'][action.payload.index] = action.payload.object;
+      let uphonsArray = updateshons['my0:hasHonorAward']
+      uphonsArray[action.payload.index] = action.payload.object;
+      let sortedupHonsArray = orderListByDate(uphonsArray);
+      updateshons['my0:hasHonorAward'] = sortedupHonsArray;
       return updateshons;
     case REMOVE_HONOR:
       let removehons = {

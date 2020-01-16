@@ -27,6 +27,7 @@ import { ListItem, languages } from "../../../../core/LanguageToggle";
 
 class OtherInfoModal extends Component {
   state = {
+    language: '',
     otherInfo: {
       "@type": "my0:OtherInfo",
       "my0:otherInfoType": "",
@@ -58,6 +59,9 @@ class OtherInfoModal extends Component {
     this.props.fetchOtherCVInfoTypes();
     this.props.fetchMainPropertiess("my0:OtherInfo");
     this.setInitialValues();
+    this.setState({
+      language: this.props.language
+    })
   }
 
   setInitialValues = () => {
@@ -138,6 +142,7 @@ class OtherInfoModal extends Component {
     e.preventDefault();
     this.props.createOtherInfo(this.state.otherInfo);
     this.props.updateCVLastUpdate();
+    this.props.onHide();
     Swal.fire({
       title: successTitle[this.props.language],
       type: "success",
@@ -153,6 +158,7 @@ class OtherInfoModal extends Component {
       index: this.props.id
     });
     this.props.updateCVLastUpdate();
+    this.props.onHide();
     Swal.fire({
       title: successTitle[this.props.language],
       type: "success",
@@ -230,11 +236,11 @@ class OtherInfoModal extends Component {
 
     let { onHide } = this.props;
 
-    let lang = this.props.language;
+    let lang = this.state.language;
 
     let translatedProps = this.props.translatedProps;
 
-    let changeLanguage = (value) => this.props.updateLanguage(value);
+    let changeLanguage = (value) => this.setState({ language: value });
 
     return (
       <Modal
@@ -304,7 +310,7 @@ class OtherInfoModal extends Component {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Combobox onChange={changeLanguage} value={lang} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
+          <Combobox onChange={changeLanguage} value={this.state.language} defaultValue={"en"} containerClassName="languagebox" data={languages} itemComponent={ListItem} />
           {this.handleRenderingSubmitButton(lang)}
           <Button className="btn-reset" onClick={this.clearForm}>
             {resetLabel[lang]}
