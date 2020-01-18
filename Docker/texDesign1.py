@@ -1,6 +1,6 @@
 from datetime import datetime
 from queries import runQueryDBPEDIA, runQueryMainOntology, runQueryCountryMainOntology
-from translations import courseTitle, workTitle, educationTitle, languageTitle, referenceTitle, skillTitle, aboutMeTitle, otherTitle, otherInfoTitle, skilllevel, getnameURI, projectTitle, patentTitle, publicationTitle, current, pending, doesURIContainWord
+from translations import getValueFromLang, courseTitle, workTitle, educationTitle, languageTitle, referenceTitle, skillTitle, aboutMeTitle, otherTitle, otherInfoTitle, skilllevel, getnameURI, projectTitle, patentTitle, publicationTitle, current, pending, doesURIContainWord
 
 headerCV1 = r'''
     \documentclass[letterpaper,11pt]{article}
@@ -76,14 +76,16 @@ def generateMainDesign1(data, language):
 
     if (data['my0:aboutPerson']):
         item = data['my0:aboutPerson']
-        country = getnameURI(item['my0:address']['my0:country'])
+        address = item['my0:address']
+        country = runQueryCountryMainOntology(address['my0:country'], language)
+        
         # write personal information about the user
         main = main + r'''
       \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
       \textbf{\Large ''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''} &
-       \textbf{\today} \\
-      ''' + item['my0:address']['my0:street'] + space + item['my0:address']['my0:postalCode'] + r''' & ''' + item['my0:email'] + r'''\\
-      ''' + item['my0:address']['my0:city'] + comma + country + r''' & ''' + item['my0:phoneNumber'] + r'''\\'''
+       \textbf{} \\
+      ''' + getValueFromLang(address['my0:street'], language) + space + address['my0:postalCode'] + r''' & ''' + item['my0:email'] + r'''\\
+      ''' + getValueFromLang(address['my0:city'],language) + comma + country + r''' & ''' + item['my0:phoneNumberMobile'] + r'''\\'''
 
         # write website information about the user
         for website in (item['my0:hasWebsite']):
@@ -118,12 +120,12 @@ def generateMainDesign1(data, language):
             if item['my0:endDate'] == "":
                 endDate = current[language]
             main = main + r'''
-        \item \ressubheading{''' + item['my0:employedIn']['my0:organizationName'] + r'''}{''' + item['my0:employedIn']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:employedIn']['my0:organizationAddress']['my0:country']) + r'''}{''' + item['my0:jobTitle'] + comma + getnameURI(item['my0:jobMode']) + r'''}{''' + item['my0:startDate'] + r''' - ''' + endDate + r'''}\\
+        \item \ressubheading{''' + item['my0:employedIn']['my0:orgName'] + r'''}{''' + getValueFromLang(item['my0:employedIn']['my0:orgAddress']['my0:city'], language) + r''', ''' + runQueryCountryMainOntology(item['my0:employedIn']['my0:orgAddress']['my0:country'], language) + r'''}{''' + getValueFromLang(item['my0:jobTitle'], language) + comma + runQueryMainOntology(item['my0:jobType'], language) + r'''}{''' + item['my0:startDate'] + r''' - ''' + endDate + r'''}\\
         \begin{itemize}
-        \item[]{''' + item['my0:jobDescription'] + r'''}
+        \item[]{''' + getValueFromLang(item['my0:jobDescription'], language) + r'''}
         \end{itemize}'''
 
-    main = main + r'''\end{itemize}'''
+        main = main + r'''\end{itemize}'''
 
     if (data['my0:hasEducation']):
         main = main + r'''
@@ -141,9 +143,9 @@ def generateMainDesign1(data, language):
             if item['my0:eduGradDate'] == "":
                 endDate = current[language]
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:studiedIn']['my0:organizationName'] + r'''}{''' + item['my0:studiedIn']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:studiedIn']['my0:organizationAddress']['my0:country']) + r'''}{''' + getnameURI(item['my0:degreeType']) + comma + item['my0:degree'] + r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + endDate + r'''}\\
+		    \item \ressubheading{''' + getValueFromLang(item['my0:studiedIn']['my0:orgName'], language) + r'''}{''' + getValueFromLang(item['my0:studiedIn']['my0:orgAddress']['my0:city'], language) + r''', ''' + runQueryCountryMainOntology(item['my0:studiedIn']['my0:orgAddress']['my0:country'], language) + r'''}{''' + runQueryMainOntology(item['my0:degree'], language) + comma + getValueFromLang(item['my0:degreeFieldOfStudy'], language) + r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + endDate + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:eduDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:eduDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -163,9 +165,9 @@ def generateMainDesign1(data, language):
             if item['my0:courseFinishDate'] == "":
                 endDate = current[language]
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:organizedBy']['my0:organizationName'] + r'''}{''' + item['my0:organizedBy']['my0:organizationAddress']['my0:city'] + r''', ''' + getnameURI(item['my0:organizedBy']['my0:organizationAddress']['my0:country']) + r'''}{''' + item['my0:courseTitle'] + comma + item['my0:courseURL'] + r'''}{''' + item['my0:courseStartDate'] + r''' - ''' + endDate + r'''}\\
+		    \item \ressubheading{''' + item['my0:organizedBy']['my0:orgName'] + r'''}{''' + getValueFromLang(item['my0:organizedBy']['my0:orgAddress']['my0:city'], language) + r''', ''' + runQueryCountryMainOntology(item['my0:organizedBy']['my0:orgAddress']['my0:country'], language) + r'''}{''' + getValueFromLang(item['my0:courseTitle'], language) + comma + item['my0:courseURL'] + r'''}{''' + item['my0:courseStartDate'] + r''' - ''' + endDate + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:courseDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:courseDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -182,9 +184,9 @@ def generateMainDesign1(data, language):
         )
         for item in (publications):
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:publicationTitle'] + r'''}{''' + item['my0:publicationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publicationDate'] + r'''}\\
+		    \item \ressubheading{''' + getValueFromLang(item['my0:publicationTitle'], language) + r'''}{''' + item['my0:publicationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publicationDate'] + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:publicationDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:publicationDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -204,9 +206,9 @@ def generateMainDesign1(data, language):
             if item['my0:projectEndDate'] == "":
                 endDate = current[language]
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:projectName'] + r'''}{''' + item['my0:projectCreator'] + r'''}{}{''' + item['my0:projectStartDate'] + r''' - ''' + endDate + r'''}\\
+		    \item \ressubheading{''' + getValueFromLang(item['my0:projectName'], language) + r'''}{''' + getValueFromLang(item['my0:projectCreator'], language) + r'''}{''' + getValueFromLang(item['my0:projectRole'], language) + r'''}{''' + item['my0:projectStartDate'] + r''' - ''' + endDate + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:projectDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:projectDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -226,9 +228,9 @@ def generateMainDesign1(data, language):
             if item['my0:patentIssuedDate'] == "":
                 endDate = pending[language]
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:patentTitle'] + r'''}{''' + item['my0:patentOffice'] + r'''}{''' + item['my0:patentInventor'] + r'''}{''' + endDate + r'''}\\
+		    \item \ressubheading{''' + item['my0:patentNumber'] + r''' - ''' + getValueFromLang(item['my0:patentTitle'], language) + r'''}{''' + getValueFromLang(item['my0:patentOffice'], language) + r'''}{''' + item['my0:patentInventor'] + r'''}{''' + endDate + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:patentDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:patentDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -241,7 +243,7 @@ def generateMainDesign1(data, language):
 	    \begin{itemize}'''
         for item in (data['my0:hasOtherInfo']):
             main = main + r'''
-		    \item[] \ressubheading{''' + getnameURI(item['my0:otherInfoType']) + r'''}{}{}{}\\*''' + item['my0:otherInfoDescription']
+		    \item[] \ressubheading{''' + runQueryMainOntology(item['my0:otherInfoType'], language) + r'''}{}{}{}\\*''' + getValueFromLang(item['my0:otherInfoDescription'], language)
 
         main = main + r'''\end{itemize}'''
     return main
@@ -254,14 +256,14 @@ def generateMainDesign1Enriched(data, language):
         item = data['my0:aboutPerson']
         address = item['my0:address']
         country = runQueryCountryMainOntology(address['my0:country'], language)
-        full_address = address['my0:street'] + space + address['my0:city'] + \
+        full_address = getValueFromLang(address['my0:street'], language) + space + getValueFromLang(address['my0:city'], language) + \
             space + address['my0:postalCode'] + space + country
 
         # write personal information about the user
         main = main + r'''
       \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
       \textbf{\Large ''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''} & \textbf{\today} \\
-      ''' + address['my0:street'] + space + address['my0:postalCode'] + r''' & ''' + item['my0:email'] + r'''\\''' + address['my0:city'] + comma + country + r'''\href{https://www.openstreetmap.org/search?query=''' + full_address + r'''}{\faMapMarker}  & ''' + item['my0:phoneNumber'] + r'''\\
+      ''' + getValueFromLang(address['my0:street'], language) + space + address['my0:postalCode'] + r''' & ''' + item['my0:email'] + r'''\\''' + getValueFromLang(address['my0:city'], language) + comma + country + r'''\href{https://www.openstreetmap.org/search?query=''' + full_address + r'''}{\faMapMarker}  & ''' + item['my0:phoneNumberMobile'] + r'''\\
       '''
         # write website information about the user
         for website in (item['my0:hasWebsite']):
@@ -289,8 +291,8 @@ def generateMainDesign1Enriched(data, language):
       \begin{itemize}'''
         for item in (data['my0:hasWorkHistory']):
 
-            address = item['my0:employedIn']['my0:organizationAddress']
-            orgName = item['my0:employedIn']['my0:organizationName']
+            address = item['my0:employedIn']['my0:orgAddress']
+            orgName = item['my0:employedIn']['my0:orgName']
             orgURL = runQueryDBPEDIA(orgName, language)
             if orgURL != "":
                 orgName = r'''\href{''' + orgURL + \
@@ -299,19 +301,19 @@ def generateMainDesign1Enriched(data, language):
                 address['my0:country'], language)
             country = r'''\href{''' + country + r'''}{''' + \
                 getnameURI(address['my0:country']) + r'''}'''
-            city = address['my0:city']
+            city = getValueFromLang(address['my0:city'], language)
             cityURL = runQueryDBPEDIA(city, language)
             if cityURL != "":
                 city = r'''\href{''' + cityURL + r'''}{''' + city + r'''}'''
-            jobMode = runQueryMainOntology(item['my0:jobMode'], language)
+            jobMode = runQueryMainOntology(item['my0:jobType'], language)
             endDate = item['my0:endDate']
             if item['my0:endDate'] == "":
                 endDate = current[language]
 
             main = main + r'''
-        \item \ressubheading{''' + orgName + r'''}{''' + city + r''', ''' + country + r'''}{''' + item['my0:jobTitle'] + comma + jobMode + r'''}{''' + item['my0:startDate'] + r''' - ''' + endDate + r'''}\\
+        \item \ressubheading{''' + orgName + r'''}{''' + city + r''', ''' + country + r'''}{''' + getValueFromLang(item['my0:jobTitle'], language) + comma + jobMode + r'''}{''' + item['my0:startDate'] + r''' - ''' + endDate + r'''}\\
         \begin{itemize}
-        \item[]{''' + item['my0:jobDescription'] + r'''}
+        \item[]{''' + getValueFromLang(item['my0:jobDescription'], language) + r'''}
         \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -323,8 +325,8 @@ def generateMainDesign1Enriched(data, language):
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	    \begin{itemize}'''
         for item in (data['my0:hasEducation']):
-            address = item['my0:studiedIn']['my0:organizationAddress']
-            orgName = item['my0:studiedIn']['my0:organizationName']
+            address = item['my0:studiedIn']['my0:orgAddress']
+            orgName = getValueFromLang(item['my0:studiedIn']['my0:orgName'], language)
             orgURL = runQueryDBPEDIA(orgName, language)
             if orgURL != "":
                 orgName = r'''\href{''' + orgURL + \
@@ -333,19 +335,19 @@ def generateMainDesign1Enriched(data, language):
                 address['my0:country'], language)
             country = r'''\href{''' + country + r'''}{''' + \
                 getnameURI(address['my0:country']) + r'''}'''
-            city = address['my0:city']
+            city = getValueFromLang(address['my0:city'], language)
             cityURL = runQueryDBPEDIA(city, language)
             if cityURL != "":
                 city = r'''\href{''' + cityURL + r'''}{''' + city + r'''}'''
             endDate = item['my0:eduGradDate']
             if item['my0:eduGradDate'] == "":
                 endDate = current[language]
-            degreeType = runQueryMainOntology(item['my0:degreeType'], language)
+            degreeType = runQueryMainOntology(item['my0:degree'], language)
 
             main = main + r'''
-        \item \ressubheading{''' + orgName + r'''}{''' + city + r''', ''' + country + r'''}{''' + item['my0:degree'] + comma + degreeType + r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + endDate + r'''}\\
+        \item \ressubheading{''' + orgName + r'''}{''' + city + r''', ''' + country + r'''}{''' + getValueFromLang(item['my0:degreeFieldOfStudy'], language) + comma + degreeType + r'''}{''' + item['my0:eduStartDate'] + r''' - ''' + endDate + r'''}\\
         \begin{itemize}
-        \item[]{''' + item['my0:eduDescription'] + r'''}
+        \item[]{''' + getValueFromLang(item['my0:eduDescription'], language) + r'''}
         \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -357,8 +359,8 @@ def generateMainDesign1Enriched(data, language):
 	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	    \begin{itemize}'''
         for item in (data['my0:hasCourse']):
-            address = item['my0:organizedBy']['my0:organizationAddress']
-            orgName = item['my0:organizedBy']['my0:organizationName']
+            address = item['my0:organizedBy']['my0:orgAddress']
+            orgName = item['my0:organizedBy']['my0:orgName']
             orgURL = runQueryDBPEDIA(orgName, language)
             if orgURL != "":
                 orgName = r'''\href{''' + orgURL + \
@@ -367,22 +369,22 @@ def generateMainDesign1Enriched(data, language):
                 address['my0:country'], language)
             country = r'''\href{''' + country + r'''}{''' + \
                 getnameURI(address['my0:country']) + r'''}'''
-            city = address['my0:city']
+            city = getValueFromLang(address['my0:city'], language)
             cityURL = runQueryDBPEDIA(city, language)
             if cityURL != "":
                 city = r'''\href{''' + cityURL + r'''}{''' + city + r'''}'''
             endDate = item['my0:courseFinishDate']
             if item['my0:courseFinishDate'] == "":
                 endDate = current[language]
-            coursetit = item['my0:courseTitle']
+            coursetit = getValueFromLang(item['my0:courseTitle'], language)
             if item['my0:courseURL']:
                 coursetit = r'''\href{''' + item['my0:courseURL'] + \
-                    r'''}{''' + item['my0:courseTitle'] + r'''}'''
+                    r'''}{''' + getValueFromLang(item['my0:courseTitle'], language) + r'''}'''
 
             main = main + r'''
         \item \ressubheading{''' + orgName + r'''}{''' + city + r''', ''' + country + r'''}{''' + coursetit + r'''}{''' + item['my0:courseStartDate'] + r''' - ''' + endDate + r'''}\\
         \begin{itemize}
-        \item[]{''' + item['my0:courseDescription'] + r'''}
+        \item[]{''' + getValueFromLang(item['my0:courseDescription'], language) + r'''}
         \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -399,9 +401,9 @@ def generateMainDesign1Enriched(data, language):
         )
         for item in (publications):
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:publicationTitle'] + r'''}{''' + item['my0:publicationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publicationDate'] + r'''}\\
+		    \item \ressubheading{''' + getValueFromLang(item['my0:publicationTitle'], language) + r'''}{''' + item['my0:publicationPublisher'] + r'''}{''' + item['my0:publicationAuthor'] + r'''}{''' + item['my0:publicationDate'] + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:publicationDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:publicationDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -421,9 +423,9 @@ def generateMainDesign1Enriched(data, language):
             if item['my0:projectEndDate'] == "":
                 endDate = current[language]
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:projectName'] + r'''}{''' + item['my0:projectCreator'] + r'''}{}{''' + item['my0:projectStartDate'] + r''' - ''' + endDate + r'''}\\
+		    \item \ressubheading{''' + getValueFromLang(item['my0:projectName'], language) + r'''}{''' + getValueFromLang(item['my0:projectCreator'], language) + r'''}{''' + getValueFromLang(item['my0:projectRole'], language) + r'''}{''' + item['my0:projectStartDate'] + r''' - ''' + endDate + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:projectDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:projectDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -444,9 +446,9 @@ def generateMainDesign1Enriched(data, language):
                 endDate = pending[language]
             patentNumber = item['my0:patentNumber']
             main = main + r'''
-		    \item \ressubheading{''' + item['my0:patentTitle'] + r''' - ''' + patentNumber + r'''}{''' + item['my0:patentOffice'] + r'''}{''' + item['my0:patentInventor'] + r'''}{''' + endDate + r'''}\\
+		    \item \ressubheading{''' + getValueFromLang(item['my0:patentTitle'], language) + r''' - ''' + patentNumber + r'''}{''' + getValueFromLang(item['my0:patentOffice'], language) + r'''}{''' + item['my0:patentInventor'] + r'''}{''' + endDate + r'''}\\
 		    \begin{itemize}
-		    \item[]{''' + item['my0:patentDescription'] + r'''}
+		    \item[]{''' + getValueFromLang(item['my0:patentDescription'], language) + r'''}
 		    \end{itemize}'''
 
         main = main + r'''\end{itemize}'''
@@ -461,7 +463,7 @@ def generateMainDesign1Enriched(data, language):
             types = runQueryMainOntology(item['my0:otherInfoType'], language)
 
             main = main + r'''
-		    \item[] \ressubheading{''' + types + r'''}{}{}{}\\*''' + item['my0:otherInfoDescription']
+		    \item[] \ressubheading{''' + types + r'''}{}{}{}\\*''' + getValueFromLang(item['my0:otherInfoDescription'], language)
 
         main = main + r'''\end{itemize}'''
     return main

@@ -35,7 +35,7 @@ my0:CV
 
 my0:cvLastUpdate
   a owl:DatatypeProperty ;
-  rdfs:comment "Date when the information in CV was last updated."@en ;
+  rdfs:comment "Date when CV was last updated."@en ;
   rdfs:label "Last Update"@en,
   "Letztes Update"@de,
   "Dernière mise à jour"@fr,
@@ -46,7 +46,7 @@ my0:cvLastUpdate
 
 my0:cvNotes
   a owl:DatatypeProperty ;
-  rdfs:comment "Notes about specific things the person wants to have known"@en ;
+  rdfs:comment "Notes about CV"@en ;
   rdfs:label "CV Notes"@en,
   "CV-Hinweise"@de,
   "Notes de CV"@fr,
@@ -191,7 +191,7 @@ my0:publicationPublisher
   "Botuesi"@sq,
   "Éditeur"@fr,
   "Editore"@it ;
-  rdfs:comment "Indicates the publisher of the publication"@en ;
+  rdfs:comment "Indicates the publisher entity of the publication"@en ;
   rdfs:domain my0:Publication ;
   rdfs:range xsd:string .
 
@@ -266,7 +266,7 @@ my0:patentOffice
   "Zyra e patentës"@sq,
   "Office des brevets"@fr,
   "Ufficio Brevetti"@it ;
-  rdfs:comment "Indicates the patent office of the patent"@en ;
+  rdfs:comment "Indicates the patent office where the patent was applied for/approved."@en ;
   rdfs:domain my0:Patent ;
   rdfs:range xsd:string .
 
@@ -277,7 +277,7 @@ my0:patentNumber
   "Numri i patentës ose i aplikimit"@sq,
   "Numéro du brevet ou de la demande"@fr,
   "Numero di brevetto o di domanda"@it ;
-  rdfs:comment "Indicates the number of the patent or the application"@en ;
+  rdfs:comment "Indicates the number of the patent or the application of the patent"@en ;
   rdfs:domain my0:Patent ;
   rdfs:range xsd:date .
 
@@ -326,13 +326,13 @@ my0:patentIssuedDate
   rdfs:range xsd:date .
 
 my0:patentStatus
-  a owl:DatatypeProperty ;
+  a owl:ObjectProperty ;
   rdfs:label "Status"@en,
   "Status"@de,
   "Statut"@fr,
   "Statusi"@sq,
   "Stato"@it ;
-  rdfs:comment "Indicates the status of the patent"@en ;
+  rdfs:comment "Indicates the status of the patent (pending or issued)"@en ;
   rdfs:domain my0:Patent ;
   rdfs:range myvalue0:StatusProperty .
 
@@ -363,10 +363,9 @@ my0:projectIsCurrent
   "Ich arbeite derzeit an diesem Projekt."@de,
   "Je travaille actuellement sur ce projet"@fr,
   "Attualmente sto lavorando a questo progetto"@it ;
-  rdfs:comment "Indicates the person is currently working on this project"@en ;
+  rdfs:comment "Indicates if the person is currently working on this project"@en ;
   rdfs:domain my0:Project ;
   rdfs:range xsd:boolean .
-
 
 my0:projectStartDate
   a owl:DatatypeProperty ;
@@ -397,7 +396,7 @@ my0:projectName
   "Roli në Projekt"@sq,
   "Rôle du projet"@fr,
   "Ruolo del progetto"@it ;
-  rdfs:comment "Indicates the role in the project"@en ;
+  rdfs:comment "Indicates the role the person had in the project"@en ;
   rdfs:domain my0:Project ;
   rdfs:range xsd:string .
 
@@ -408,7 +407,7 @@ my0:projectCreator
   "Créateur"@fr,
   "Krijuesi"@sq,
   "Creatore"@it ;
-  rdfs:comment "Indicates the creators of the project"@en ;
+  rdfs:comment "Indicates the creator(s) of the project"@en ;
   rdfs:domain my0:Project ;
   rdfs:range xsd:string .
 
@@ -445,10 +444,9 @@ my0:projectRole
   rdfs:domain my0:Project ;
   rdfs:range xsd:string .
 
-
 my0:HonorAward
   a owl:Class ;
-  rdfs:comment "Honors & Awards Class that defines neccessary information about a specific honor/award"@en ;
+  rdfs:comment "Honors & Awards Class that defines neccessary information about a specific honor/award the person received."@en ;
   rdfs:label "Honors & Awards"@en,
   "Ehrungen & Auszeichnungen"@de,
   "Nderime & Çmime"@sq,
@@ -462,7 +460,7 @@ my0:honortitle
   "Titulli"@sq,
   "Titre"@fr,
   "Titolo"@it ;
-  rdfs:comment "Indicates the title of the HonorAward"@en ;
+  rdfs:comment "Indicates the title of the honor/award"@en ;
   rdfs:domain my0:HonorAward ;
   rdfs:range xsd:string .
 
@@ -484,7 +482,7 @@ my0:honorIssuer
   "Émetteur"@fr,
   "Lëshuesi"@sq,
   "Emittente"@it ;
-  rdfs:comment "Indicates the issuer of the honor/award"@en ;
+  rdfs:comment "Indicates the issuer entity of the honor/award"@en ;
   rdfs:domain my0:HonorAward ;
   rdfs:range xsd:string .
 
@@ -550,7 +548,7 @@ my0:formerName
   "Emri i dikurshëm"@sq,
   "Ancien nom"@fr,
   "Nome precedente"@it ;
-  rdfs:comment "Indicates the former name of the person"@en ;
+  rdfs:comment "Indicates the former name of the person (if the person changed their name)"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
@@ -561,7 +559,7 @@ my0:title
   "Titulli"@sq,
   "Titre"@fr,
   "Titolo"@it ;
-  rdfs:comment "Indicates the title of the person"@en ;
+  rdfs:comment "Indicates the title of the person (ex: doctorates, professorships and so on)"@en ;
   rdfs:domain my0:Person ;
   rdfs:range myvalue0:TitleProperty .
 
@@ -589,7 +587,7 @@ my0:gender
 
 my0:hasNationality
   a owl:ObjectProperty ;
-  rdfs:comment "Person's nationality."@en ;
+  rdfs:comment "Indicates the person's nationality"@en ;
   rdfs:label "Nationality"@en,
   "Nationalität"@de,
   "Nacionaliteti"@sq,
@@ -605,7 +603,7 @@ my0:driversLicence
   "Patenta"@sq,
   "Permis de conduire"@fr,
   "Patente di guida"@it ;
-  rdfs:comment "Indicates the person's drivers license."@en ;
+  rdfs:comment "Indicates the person's drivers license name."@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
@@ -640,7 +638,7 @@ my0:street
   "Rue"@fr,
   "Rruga"@sq,
   "Via"@it ;
-  rdfs:comment "Indicates the street (name+code) in an address"@en ;
+  rdfs:comment "Indicates the street (name+number) in an address"@en ;
   rdfs:domain my0:Address ;
   rdfs:range xsd:string .
 
@@ -695,7 +693,7 @@ my0:personShortDescription
   "Përshkrim i shkurtër / Shënime të shkurtra rreth meje"@sq,
   "Brève description / Notes sur moi"@fr,
   "Breve descrizione / Note su di me"@it ;
-  rdfs:comment "Indicates the short person's description about themselves"@en ;
+  rdfs:comment "Indicates the short person's description about themselves (ex: quote)"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
@@ -706,7 +704,7 @@ my0:personLongDescription
   "Përshkrim i gjatë/ Shënime të gjata rreth meje"@sq,
   "Description longue / Notes sur moi"@fr,
   "Lunga descrizione / Note su di me"@it ;
-  rdfs:comment "Indicates the long person's description about themselves"@en ;
+  rdfs:comment "Indicates the long person's description about themselves (ex: motivation)"@en ;
   rdfs:domain my0:Person ;
   rdfs:range xsd:string .
 
@@ -744,7 +742,7 @@ my0:phoneNumberMobile
   rdfs:range xsd:string .
 
 my0:hasWebsite
-  a owl:DatatypeProperty ;
+  a owl:ObjectProperty ;
   rdfs:label "Website"@en,
   "Website"@de,
   "Siti i web-it"@sq,
@@ -810,7 +808,7 @@ my0:InstantMessaging
   rdfs:comment "Indicates the type and username of the instant messaging options of a person"@en .
 
 my0:instantMessagingName
-  a owl:DatatypeProperty ;
+  a owl:ObjectProperty ;
   rdfs:label "App Name"@en,
   "App-Name"@de,
   "Emri i aplikacionit"@sq,
@@ -867,7 +865,7 @@ my0:Company
   rdfs:subClassOf my0:Organization .
 
 my0:orgField
-  a owl:DatatypeProperty ;
+  a owl:ObjectProperty ;
   rdfs:comment "Field/Sector of the organization"@en ;
   rdfs:label "Organization Field/Sector"@en,
   "Organisationsfeld / Sektor"@de,
@@ -899,7 +897,7 @@ my0:orgName
   rdfs:range xsd:string .
 
 my0:orgSize
-  a owl:DatatypeProperty ;
+  a owl:ObjectProperty ;
   rdfs:comment "Size of the organization"@en ;
   rdfs:label "Organization Size"@en,
   "Unternehmensgröße"@de,
@@ -948,7 +946,7 @@ my0:WorkHistory
                     owl:onProperty my0:employedIn ;
                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
                   ];
-  rdfs:comment "CV entry for work history"@en ;
+  rdfs:comment "CV record for work history"@en ;
   rdfs:label "Work History"@en,
   "Arbeitsablauf"@de,
   "Historia e punës"@sq,
@@ -973,7 +971,7 @@ my0:startDate
   "Data e fillimit"@sq,
   "Date de début"@fr,
   "Data d'inizio"@it ;
-  rdfs:comment "Start date of employment.Format: YYYY-MM-DD May contain only year or year and month."@en ;
+  rdfs:comment "Start date of employment.Format: YYYY-MM-DD."@en ;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:date .
 
@@ -984,7 +982,7 @@ my0:endDate
   "Data e mbarimit"@sq,
   "Date de fin"@fr,
   "Data di fine"@it ;
-  rdfs:comment "End date of employment.Format: YYYY-MM-DD May contain only year or year and month."@en;
+  rdfs:comment "End date of employment.Format: YYYY-MM-DD."@en;
   rdfs:domain my0:WorkHistory ;
   rdfs:range xsd:date .
 
@@ -1023,7 +1021,7 @@ my0:careerLevel
 
 my0:jobType
   a owl:ObjectProperty ;
-  rdfs:comment "Type of the job: employee / contractor / intern"@en ;
+  rdfs:comment "Type of the job: employee / contractor / intern and so on."@en ;
   rdfs:label "Job Type"@en,
   "Auftragstyp"@de,
   "Tipi i punës"@sq,
@@ -1086,7 +1084,7 @@ my0:eduStartDate
   "Data e fillimit të edukimit"@sq,
   "Date de début de l'éducation"@fr,
   "Data di inizio della educazione"@it ;
-  rdfs:comment "Education start date (YYYY-MM-DD)May contain only year or year and month."@en ;
+  rdfs:comment "Education start date (YYYY-MM-DD)."@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:date .
 
@@ -1097,7 +1095,7 @@ my0:eduGradDate
   "Data e diplomimit"@sq,
   "Date d'obtention du diplôme"@fr,
   "Data di laurea"@it ;
-  rdfs:comment "Education end (graduation) date (YYYY-MM-DD)May contain only year or year and month."@en ;
+  rdfs:comment "Education end (graduation) date (YYYY-MM-DD)."@en ;
   rdfs:domain my0:Education ;
   rdfs:range xsd:date .
 
@@ -1118,6 +1116,7 @@ my0:degree
   "Tipi i diplomës"@sq,
   "Type de diplôme"@fr,
   "Tipo di laurea"@it ;
+  rdfs:comment "Type of degree acquired(Bachelor, Masters and so on)."@en ;
   rdfs:domain my0:Education ;
   rdfs:range myvalue0:EduDegree .
 
@@ -1289,7 +1288,7 @@ my0:skillLevel
 
 my0:skillHasCertificate
   a owl:DatatypeProperty ;
-  rdfs:comment "Property regarding the certificate of the skill"@en ;
+  rdfs:comment "Indicates if skill has certificate."@en ;
   rdfs:label "Has Certification?"@en,
   "Hat die Zertifizierung?"@de,
   "Është i çertifikuar?"@sq,
@@ -1299,7 +1298,7 @@ my0:skillHasCertificate
   rdfs:range xsd:boolean .
 
 my0:skillCertificateName
-  a owl:ObjectProperty ;
+  a owl:DatatypeProperty ;
   rdfs:comment "Certificate name for skill"@en ;
   rdfs:label "Certificate Name"@en,
   "Name des Zertifikats"@de,
@@ -1356,7 +1355,7 @@ my0:referenceBy
 
 my0:refRelationDescription
   a owl:DatatypeProperty ;
-  rdfs:label "Relation Description"@en,
+  rdfs:label "Relation Description between the person who owns the CV and the referenced person."@en,
   "Beziehung Beschreibung"@de,
   "Përshkrimi i marrëdhënies"@sq,
   "Description de la relation"@fr,
@@ -1391,13 +1390,13 @@ my0:targetCompanyDescription
   "Përshkrimi i kompanisë"@sq,
   "Description de l'entreprise"@fr,
   "Descrizione dell'azienda"@it ;
-  rdfs:comment "Description on the company where the candidate would like to work."@en ;
+  rdfs:comment "Description of a company where the candidate would like to work."@en ;
   rdfs:domain my0:Target ;
   rdfs:range xsd:string .
 
 my0:targetCompanyField
-  a owl:DatatypeProperty ;
-  rdfs:comment "Industry of the company where the candidate would like to work."@en ;
+  a owl:ObjectProperty ;
+  rdfs:comment "Industry of a company where the candidate would like to work."@en ;
   rdfs:label "Company Field/Sector"@en,
   "Unternehmensfeld / Branche"@de,
   "Fusha/Sektori i kompanisë"@sq,
@@ -1463,7 +1462,7 @@ my0:targetJobDescription
 
 my0:targetJobType
   a owl:ObjectProperty ;
-  rdfs:comment "Job type: full-time / part-time"@en ;
+  rdfs:comment "Job type: full-time / part-time and so on."@en ;
   rdfs:label "Job Type"@en,
   "Auftragstyp"@de,
   "Tipi i punës"@sq,
@@ -1475,7 +1474,7 @@ my0:targetJobType
 my0:targetSalaryRange
   a owl:DatatypeProperty ;
   ns0:maxCardinality "1" ;
-  rdfs:comment "Salary range"@en ;
+  rdfs:comment "Salary range applicant is seeking."@en ;
   rdfs:label "Salary Range"@en,
   "Gehaltsspanne"@de,
   "Paga"@sq,
@@ -1486,7 +1485,7 @@ my0:targetSalaryRange
 
 my0:targetWeeksNoticePeriod
   a owl:DatatypeProperty ;
-  rdfs:comment "Notice period in weeks when can start to work."@en ;
+  rdfs:comment "Notice period in weeks when applicant can start to work."@en ;
   rdfs:label "Notice Period"@en,
   "Kündigungsfrist"@de,
   "Periudha e njoftimit"@sq,
@@ -1533,7 +1532,7 @@ my0:otherInfoType
   "Type d'autres informations"@fr,
   "Tipi i informacionit shtesë"@sq,
   "Tipo di altre informazioni"@it ;
-  rdfs:comment "Type of other CV information (interests / awards / accomplishments / point of view / membership / social activities / other)"@en ;
+  rdfs:comment "Type of other CV information (interests / accomplishments / point of view / membership / social activities / other)"@en ;
   rdfs:domain my0:OtherInfo ;
   rdfs:range myvalue0:OtherCVInfoType .
 

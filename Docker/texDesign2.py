@@ -1,6 +1,6 @@
 from datetime import datetime
 from queries import runQueryDBPEDIA, runQueryMainOntology, runQueryCountryMainOntology
-from translations import courseTitle, workTitle, educationTitle, languageTitle, referenceTitle, skillTitle, aboutMeTitle, otherTitle, otherInfoTitle, skilllevel, getnameURI, projectTitle, patentTitle, publicationTitle, current, pending, doesURIContainWord
+from translations import getValueFromLang, courseTitle, workTitle, educationTitle, languageTitle, referenceTitle, skillTitle, aboutMeTitle, otherTitle, otherInfoTitle, skilllevel, getnameURI, projectTitle, patentTitle, publicationTitle, current, pending, doesURIContainWord
 
 headerCV2 = r'''%-------------------------------------
 % LaTeX Resume for Software Engineers
@@ -173,9 +173,9 @@ def generateMainDesign2(data, language):
         main = main + r'''\def \fullname {''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''}
       '''
 
-        if item['my0:phoneNumber']:
+        if item['my0:phoneNumberMobile']:
             main = main + r'''\def \phoneicon {\faPhone}
-        \def \phonetext {''' + item['my0:phoneNumber'] + r'''}
+        \def \phonetext {''' + item['my0:phoneNumberMobile'] + r'''}
         '''
 
         if item['my0:email']:
@@ -215,14 +215,14 @@ def generateMainDesign2(data, language):
         )
 
         for item in (educations):
-            orgName = item["my0:studiedIn"]["my0:organizationName"]
-            orgCity = item["my0:studiedIn"]["my0:organizationAddress"]["my0:city"]
-            orgCountry = getnameURI(
-                item["my0:studiedIn"]["my0:organizationAddress"]["my0:country"])
+            orgName = getValueFromLang(item["my0:studiedIn"]["my0:orgName"], language)
+            orgCity = getValueFromLang(item["my0:studiedIn"]["my0:orgAddress"]["my0:city"], language)
+            orgCountry = runQueryCountryMainOntology(
+                item["my0:studiedIn"]["my0:orgAddress"]["my0:country"], language)
             endDate = item['my0:eduGradDate']
             if item['my0:eduGradDate'] == "":
                 endDate = current[language]
-            degreeName = runQueryMainOntology(item['my0:degreeType'], language)
+            degreeName = runQueryMainOntology(item['my0:degree'], language)
 
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
@@ -231,7 +231,7 @@ def generateMainDesign2(data, language):
                 item['my0:eduStartDate'] + r''' -- ''' + \
                 endDate + r'''}'''
             main = main + r'''{''' + degreeName + r''' ''' + \
-                item["my0:degree"] + \
+                getValueFromLang(item["my0:degreeFieldOfStudy"], language) + \
                 r'''}{''' + orgCity + r''', ''' + orgCountry + r'''}'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -247,10 +247,10 @@ def generateMainDesign2(data, language):
             key=lambda x: x['my0:courseStartDate'], reverse=True
         )
         for item in (courses):
-            orgName = item["my0:organizedBy"]["my0:organizationName"]
-            orgCity = item["my0:organizedBy"]["my0:organizationAddress"]["my0:city"]
-            orgCountry = getnameURI(
-                item["my0:organizedBy"]["my0:organizationAddress"]["my0:country"])
+            orgName = item["my0:organizedBy"]["my0:orgName"]
+            orgCity = getValueFromLang(item["my0:organizedBy"]["my0:orgAddress"]["my0:city"], language)
+            orgCountry = runQueryCountryMainOntology(
+                item["my0:organizedBy"]["my0:orgAddress"]["my0:country"], language)
             endDate = item['my0:courseFinishDate']
             if item['my0:courseFinishDate'] == "":
                 endDate = current[language]
@@ -262,7 +262,7 @@ def generateMainDesign2(data, language):
                 item['my0:courseStartDate'] + r''' -- ''' + \
                 endDate + r'''}'''
             main = main + r'''{''' + \
-                item["my0:courseTitle"] + \
+                getValueFromLang(item["my0:courseTitle"], language) + \
                 r'''}{''' + orgCity + r''', ''' + orgCountry + r'''}'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -278,10 +278,10 @@ def generateMainDesign2(data, language):
             key=lambda x: x['my0:startDate'], reverse=True
         )
         for item in (works):
-            orgName = item["my0:employedIn"]["my0:organizationName"]
-            orgCity = item["my0:employedIn"]["my0:organizationAddress"]["my0:city"]
+            orgName = item["my0:employedIn"]["my0:orgName"]
+            orgCity = getValueFromLang(item["my0:employedIn"]["my0:orgAddress"]["my0:city"], language)
             orgCountry = getnameURI(
-                item["my0:employedIn"]["my0:organizationAddress"]["my0:country"])
+                item["my0:employedIn"]["my0:orgAddress"]["my0:country"])
             endDate = item['my0:endDate']
             if item['my0:endDate'] == "":
                 endDate = current[language]
@@ -292,10 +292,10 @@ def generateMainDesign2(data, language):
             main = main + r'''{''' + orgName + r'''}{''' + \
                 item['my0:startDate'] + r''' -- ''' + \
                 endDate + r'''}'''
-            main = main + r'''{''' + item['my0:jobTitle'] + \
+            main = main + r'''{''' + getValueFromLang(item['my0:jobTitle'], language) + \
                 r'''}{''' + orgCity + r''', ''' + orgCountry + r'''}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:jobDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:jobDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -319,11 +319,11 @@ def generateMainDesign2(data, language):
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
         '''
-            main = main + r'''{''' + item['my0:projectName'] + r'''}{
+            main = main + r'''{''' + getValueFromLang(item['my0:projectName'], language) + r'''}{
           ''' + item['my0:projectStartDate'] + r''' - ''' + endDate + r'''
-        }{''' + item['my0:projectCreator'] + r'''}{}'''
+        }{''' + getValueFromLang(item['my0:projectCreator'], language) + r'''}{}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:projectDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:projectDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -341,7 +341,7 @@ def generateMainDesign2(data, language):
         for item in (publications):
 
             title = r''' \href{''' + item['my0:publicationURL'] + \
-                r'''}{''' + item['my0:publicationTitle'] + r'''} '''
+                r'''}{''' + getValueFromLang(item['my0:publicationTitle'], language) + r'''} '''
 
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
@@ -350,7 +350,7 @@ def generateMainDesign2(data, language):
                 item['my0:publicationDate'] + r'''}{''' + item['my0:publicationAuthor'] + \
                 r'''}{''' + item['my0:publicationPublisher'] + r'''}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:publicationDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:publicationDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -368,7 +368,7 @@ def generateMainDesign2(data, language):
         for item in (patents):
 
             title = r''' \href{''' + item['my0:patentURL'] + r'''}{''' + \
-                item['my0:patentTitle'] + ''' - ''' + \
+                getValueFromLang(item['my0:patentTitle'], language) + ''' - ''' + \
                     item['my0:patentNumber'] + r'''} '''
             endDate = item['my0:patentIssuedDate']
             if item['my0:patentIssuedDate'] == "":
@@ -380,9 +380,9 @@ def generateMainDesign2(data, language):
             main = main + r'''{''' + title + r'''}{''' + \
                 endDate + \
                 r'''}{''' + item['my0:patentInventor'] + \
-                r'''}{''' + item['my0:patentOffice'] + r'''}'''
+                r'''}{''' + getValueFromLang(item['my0:patentOffice'], language) + r'''}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:patentDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:patentDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -402,9 +402,9 @@ def generateMainDesign2(data, language):
         for items in (data['my0:hasSkill']):
             if(items['@type'] == 'my0:LanguageSkill'):
                 if firstElementLanguage:
-                    main = main + comma + items['my0:skillName']
+                    main = main + comma + getValueFromLang(items['my0:skillName'], language)
                 else:
-                    main = main + items['my0:skillName']
+                    main = main + getValueFromLang(items['my0:skillName'], language)
                 firstElementLanguage = True
         main = main + r'''}
       \resumeEntryS{''' + otherTitle[language] + r''' }
@@ -413,9 +413,9 @@ def generateMainDesign2(data, language):
         for items in (data['my0:hasSkill']):
             if(items['@type'] == 'my0:Skill'):
                 if firstElementSkill:
-                    main = main + comma + items['my0:skillName']
+                    main = main + comma + getValueFromLang(items['my0:skillName'], language)
                 else:
-                    main = main + items['my0:skillName']
+                    main = main + getValueFromLang(items['my0:skillName'], language)
                 firstElementSkill = True
         main = main + r'''}\resumeEntryEnd
       '''
@@ -432,9 +432,9 @@ def generateMainDesign2Enriched(data, language):
         main = main + r'''\def \fullname {''' + item['my0:firstName'] + space + item['my0:lastName'] + r'''}
       '''
 
-        if item['my0:phoneNumber']:
+        if item['my0:phoneNumberMobile']:
             main = main + r'''\def \phoneicon {\faPhone}
-        \def \phonetext {''' + item['my0:phoneNumber'] + r'''}
+        \def \phonetext {''' + item['my0:phoneNumberMobile'] + r'''}
         '''
 
         if item['my0:email']:
@@ -474,24 +474,24 @@ def generateMainDesign2Enriched(data, language):
         )
 
         for item in (educations):
-            orgName = item["my0:studiedIn"]["my0:organizationName"]
+            orgName = getValueFromLang(item["my0:studiedIn"]["my0:orgName"], language)
             orgURL = runQueryDBPEDIA(orgName, language)
             if orgURL != "":
                 orgName = r'''\href{''' + orgURL + \
                     r'''}{''' + orgName + r'''}'''
 
-            orgCityName = item["my0:studiedIn"]["my0:organizationAddress"]["my0:city"]
+            orgCityName = getValueFromLang(item["my0:studiedIn"]["my0:orgAddress"]["my0:city"], language)
             orgCityURL = runQueryDBPEDIA(orgCityName, language)
             if orgCityURL != "":
                 orgCityName = r'''\href{''' + orgCityURL + \
                     r'''}{''' + orgCityName + r'''}'''
 
-            orgCountryName = getnameURI(item["my0:studiedIn"]["my0:organizationAddress"]["my0:country"])
+            orgCountryName = runQueryCountryMainOntology(item["my0:studiedIn"]["my0:orgAddress"]["my0:country"], language)
             orgCountryURL = runQueryDBPEDIA(orgCountryName, language)
             if orgCountryURL != "":
                 orgCountryName = r'''\href{''' + orgCountryURL + \
                     r'''}{''' + orgCountryName + r'''}'''
-            degreeName = runQueryMainOntology(item['my0:degreeType'], language)
+            degreeName = runQueryMainOntology(item['my0:degree'], language)
                     
             endDate = item['my0:eduGradDate']
             if item['my0:eduGradDate'] == "":
@@ -504,7 +504,7 @@ def generateMainDesign2Enriched(data, language):
                 item['my0:eduStartDate'] + r''' -- ''' + \
                 endDate + r'''}'''
             main = main + r'''{''' + degreeName + r''' ''' + \
-                item["my0:degree"] + \
+                getValueFromLang(item["my0:degreeFieldOfStudy"], language) + \
                 r'''}{''' + orgCityName + r''', ''' + orgCountryName + r'''}'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -520,19 +520,19 @@ def generateMainDesign2Enriched(data, language):
             key=lambda x: x['my0:courseStartDate'], reverse=True
         )
         for item in (courses):
-            orgName = item["my0:organizedBy"]["my0:organizationName"]
+            orgName = item["my0:organizedBy"]["my0:orgName"]
             orgURL = runQueryDBPEDIA(orgName, language)
             if orgURL != "":
                 orgName = r'''\href{''' + orgURL + \
                     r'''}{''' + orgName + r'''}'''
 
-            orgCityName = item["my0:organizedBy"]["my0:organizationAddress"]["my0:city"]
+            orgCityName = getValueFromLang(item["my0:organizedBy"]["my0:orgAddress"]["my0:city"], language)
             orgCityURL = runQueryDBPEDIA(orgCityName, language)
             if orgCityURL != "":
                 orgCityName = r'''\href{''' + orgCityURL + \
                     r'''}{''' + orgCityName + r'''}'''
 
-            orgCountryName = getnameURI(item["my0:organizedBy"]["my0:organizationAddress"]["my0:country"])
+            orgCountryName = runQueryMainOntology(item["my0:organizedBy"]["my0:orgAddress"]["my0:country"], language)
             orgCountryURL = runQueryDBPEDIA(orgCountryName, language)
             if orgCountryURL != "":
                 orgCountryName = r'''\href{''' + orgCountryURL + \
@@ -549,7 +549,7 @@ def generateMainDesign2Enriched(data, language):
                 item['my0:courseStartDate'] + r''' -- ''' + \
                 endDate + r'''}'''
             main = main + r'''{''' + \
-                item["my0:courseTitle"] + \
+                getValueFromLang(item["my0:courseTitle"], language) + \
                 r'''}{''' + orgCityName + r''', ''' + orgCountryName + r'''}'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -565,19 +565,19 @@ def generateMainDesign2Enriched(data, language):
             key=lambda x: x['my0:startDate'], reverse=True
         )
         for item in (works):
-            orgName = item["my0:employedIn"]["my0:organizationName"]
+            orgName = item["my0:employedIn"]["my0:orgName"]
             orgURL = runQueryDBPEDIA(orgName, language)
             if orgURL != "":
                 orgName = r'''\href{''' + orgURL + \
                     r'''}{''' + orgName + r'''}'''
 
-            orgCityName = item["my0:employedIn"]["my0:organizationAddress"]["my0:city"]
+            orgCityName = getValueFromLang(item["my0:employedIn"]["my0:orgAddress"]["my0:city"], language)
             orgCityURL = runQueryDBPEDIA(orgCityName, language)
             if orgCityURL != "":
                 orgCityName = r'''\href{''' + orgCityURL + \
                     r'''}{''' + orgCityName + r'''}'''
 
-            orgCountryName = getnameURI(item["my0:employedIn"]["my0:organizationAddress"]["my0:country"])
+            orgCountryName = getnameURI(item["my0:employedIn"]["my0:orgAddress"]["my0:country"])
             orgCountryURL = runQueryDBPEDIA(orgCountryName, language)
             if orgCountryURL != "":
                 orgCountryName = r'''\href{''' + orgCountryURL + \
@@ -592,10 +592,10 @@ def generateMainDesign2Enriched(data, language):
             main = main + r'''{''' + orgName + r'''}{''' + \
                 item['my0:startDate'] + r''' -- ''' + \
                 endDate + r'''}'''
-            main = main + r'''{''' + item['my0:jobTitle'] + \
+            main = main + r'''{''' + getValueFromLang(item['my0:jobTitle'], language) + \
                 r'''}{''' + orgCityName + r''', ''' + orgCountryName + r'''}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:jobDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:jobDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -619,11 +619,11 @@ def generateMainDesign2Enriched(data, language):
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
         '''
-            main = main + r'''{''' + item['my0:projectName'] + r'''}{
+            main = main + r'''{''' + getValueFromLang(item['my0:projectName'], language) + r'''}{
           ''' + item['my0:projectStartDate'] + r''' - ''' + endDate + r'''
-        }{''' + item['my0:projectCreator'] + r'''}{}'''
+        }{''' + getValueFromLang(item['my0:projectCreator'], language) + r'''}{}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:projectDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:projectDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -641,7 +641,7 @@ def generateMainDesign2Enriched(data, language):
         for item in (publications):
 
             title = r''' \href{''' + item['my0:publicationURL'] + \
-                r'''}{''' + item['my0:publicationTitle'] + r'''} '''
+                r'''}{''' + getValueFromLang(item['my0:publicationTitle'], language) + r'''} '''
 
             main = main + r'''  \resumeEntryStart
         \resumeEntryTSDL
@@ -650,7 +650,7 @@ def generateMainDesign2Enriched(data, language):
                 item['my0:publicationDate'] + r'''}{''' + item['my0:publicationAuthor'] + \
                 r'''}{''' + item['my0:publicationPublisher'] + r'''}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:publicationDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:publicationDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -668,7 +668,7 @@ def generateMainDesign2Enriched(data, language):
         for item in (patents):
 
             title = r''' \href{''' + item['my0:patentURL'] + r'''}{''' + \
-                item['my0:patentTitle'] + ''' - ''' + \
+                getValueFromLang(item['my0:patentTitle'], language) + ''' - ''' + \
                     item['my0:patentNumber'] + r'''} '''
             endDate = item['my0:patentIssuedDate']
             if item['my0:patentIssuedDate'] == "":
@@ -680,9 +680,9 @@ def generateMainDesign2Enriched(data, language):
             main = main + r'''{''' + title + r'''}{''' + \
                 endDate + \
                 r'''}{''' + item['my0:patentInventor'] + \
-                r'''}{''' + item['my0:patentOffice'] + r'''}'''
+                r'''}{''' + getValueFromLang(item['my0:patentOffice'], language) + r'''}'''
             main = main + r'''\resumeItemListStart
-        \resumeItem { ''' + item['my0:patentDescription'] + r'''}
+        \resumeItem { ''' + getValueFromLang(item['my0:patentDescription'], language) + r'''}
         \resumeItemListEnd'''
             main = main + r'''\resumeEntryEnd
         '''
@@ -702,9 +702,9 @@ def generateMainDesign2Enriched(data, language):
         for items in (data['my0:hasSkill']):
             if(items['@type'] == 'my0:LanguageSkill'):
                 if firstElementLanguage:
-                    main = main + comma + items['my0:skillName']
+                    main = main + comma + getValueFromLang(items['my0:skillName'], language)
                 else:
-                    main = main + items['my0:skillName']
+                    main = main + getValueFromLang(items['my0:skillName'], language)
                 firstElementLanguage = True
         main = main + r'''}
       \resumeEntryS{''' + otherTitle[language] + r''' }
@@ -713,9 +713,9 @@ def generateMainDesign2Enriched(data, language):
         for items in (data['my0:hasSkill']):
             if(items['@type'] == 'my0:Skill'):
                 if firstElementSkill:
-                    main = main + comma + items['my0:skillName']
+                    main = main + comma + getValueFromLang(items['my0:skillName'], language)
                 else:
-                    main = main + items['my0:skillName']
+                    main = main + getValueFromLang(items['my0:skillName'], language)
                 firstElementSkill = True
         main = main + r'''}\resumeEntryEnd
       '''

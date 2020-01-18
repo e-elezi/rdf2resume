@@ -3,12 +3,9 @@ import { connect } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import { Carousel } from "react-responsive-carousel";
 import { Combobox } from "react-widgets";
-import de from "../../../../../images/de.png";
-import fr from "../../../../../images/fr.png";
-import it from "../../../../../images/it.png";
-import en from "../../../../../images/en.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { submitModalTitle, submitModalConvert  } from '../../../../../translations/translations';
+import { ListItem, languages } from "../../../../core/LanguageToggle";
+import { submitModalTitle, submitModalConvert } from '../../../../../translations/translations';
 
 class SubmitModal extends Component {
   state = {
@@ -16,7 +13,7 @@ class SubmitModal extends Component {
     language: 'en'
   };
 
-  componentWillMount() {}
+  componentWillMount() { }
 
   handleSave = e => {
     e.preventDefault();
@@ -39,35 +36,6 @@ class SubmitModal extends Component {
   }
 
   render() {
-    let ListItem = ({ item }) => (
-      <React.Fragment>
-        <span>
-          {item === "de" ? (
-            <img src={de} width="20px" height="20px" alt={item}></img>
-          ) : (
-            ""
-          )}
-          {item === "fr" ? (
-            <img src={fr} width="20px" height="20px" alt={item}></img>
-          ) : (
-            ""
-          )}
-          {item === "it" ? (
-            <img src={it} width="20px" height="20px" alt={item}></img>
-          ) : (
-            ""
-          )}
-          {item === "en" ? (
-            <img src={en} width="20px" height="20px" alt={item}></img>
-          ) : (
-            ""
-          )}{" "}
-          <span style={{ textTransform: "uppercase" }}>{item}</span>
-        </span>
-      </React.Fragment>
-    );
-
-    let languages = ["de", "en", "it", "fr"];
 
     let lang = this.props.language;
 
@@ -103,15 +71,6 @@ class SubmitModal extends Component {
                 onClick={this.handleSliderClick}
                 style={{ height: "450px", width: "300px" }}
                 src={require("../../../../../images/Design2.png")}
-              />
-            </div>
-            <div>
-              <img
-                id="Design3"
-                alt="Design3"
-                onClick={this.handleSliderClick}
-                style={{ height: "450px", width: "300px" }}
-                src={require("../../../../../images/Design3.png")}
               />
             </div>
           </Carousel>
