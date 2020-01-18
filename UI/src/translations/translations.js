@@ -200,6 +200,14 @@ export const submitModalTitle = {
   it: "Scegli il tuo design preferito e scarica"
 };
 
+export const submitModalRDFaTitle = {
+  en: "Choose the language of RDfa",
+  sq: "Zgjidhni gjuhën e RDFa-s",
+  fr: "Choisissez la langue de RDfa",
+  de: "Wählen Sie die Sprache des RDfa",
+  it: "Scegli la lingua dell RDfa"
+};
+
 /*
  *   Translations for Course Form Page of App
  */

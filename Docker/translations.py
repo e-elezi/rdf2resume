@@ -181,3 +181,10 @@ def doesURIContainWord(uri, word):
         return True
     else:
         return False
+
+def getValueFromLang(arrayObj, lang):
+    length = len(arrayObj)
+    for i in range(length):
+        if arrayObj[i]["@language"] == lang:
+            return arrayObj[i]["@value"]
+    return ''

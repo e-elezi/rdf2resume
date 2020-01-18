@@ -17,7 +17,7 @@ app.config['UPLOAD_FOLDER'] = "build/static/media/pdf"
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+  return render_template('index.html')
 
 @app.route('/get_categories', methods=['GET'])
 def get_categories():
@@ -65,8 +65,8 @@ def generate_html():
     # if not os.path.exists('build/static/media/html'):
     #   os.mkdir('build/static/media/html')
     writeJSONtoHTML(content, "rdf2resume", language )
-    shutil.make_archive('build/static/rdf2resume', 'zip', 'build/static/media/html')
-    return "rdf2resume.zip"
+    shutil.make_archive('build/static/rdf2resume' + dt_string, 'zip', 'build/static/media/html')
+    return "rdf2resume" + dt_string + ".zip"
 
 @app.route('/generate_pdf_enriched', methods=['POST'])
 def generate_pdf_enriched():
@@ -106,5 +106,5 @@ def process_upload_photo():
       f.save(os.path.join('build/static/media/photos', f.filename))
       return(f.filename)
     
-# if __name__ == "__main__":
-#     app.run()
+if __name__ == "__main__":
+    app.run()

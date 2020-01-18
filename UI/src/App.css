@@ -434,3 +434,8 @@
   padding-top: 0;
   padding-bottom: 1em;
 }
+
+.modal-body .rw-combobox {
+  display: flex;
+  justify-content: center;
+}

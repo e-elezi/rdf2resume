@@ -20,5 +20,8 @@ services:
       FLASK_ENV: development
     volumes:
       - .:/srv/app
+    depends_on:
+      - fuseki
+    network_mode: "host"
     ports:
       - 5000:5000

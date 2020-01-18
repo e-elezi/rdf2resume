@@ -2,12 +2,12 @@ import React from "react";
 import { Navbar, Nav, Row, Col } from "react-bootstrap";
 import { NavLink, withRouter } from "react-router-dom";
 import { Combobox } from "react-widgets";
-// import mylogo from "../mylogo.svg";
 import de from "../images/de.png";
 import fr from "../images/fr.png";
 import it from "../images/it.png";
 import en from "../images/en.png";
 import sq from "../images/sq.png";
+import logo from "../images/logo.png";
 import { updateLanguage } from "../actions/utilityActions";
 import { connect } from "react-redux";
 
@@ -53,7 +53,7 @@ const Topbar = props => {
   return (
     <Row className="container-fluid">
       <Col className="sidebar" lg={2} md={3} style={{ padding: 0 }}>
-        <div className="logo">RDF2Resume</div>
+        <div className="logo">  <img src={logo} width="40px" height="40px" alt="Logo"></img> Résumé2RDF</div>
       </Col>
       <Col lg={10} md={9} sm={12}>
         <Navbar bg="light" variant="light">

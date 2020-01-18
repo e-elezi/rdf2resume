@@ -18,6 +18,7 @@ import {
   submitFourthButtonLabel,
   submitFifthButtonLabel
 } from "../../../translations/translations";
+import SubmitRDFaModal from "./Modals/Submit/SubmitRDFaModal";
 
 class FormSubmit extends Component {
   constructor(props) {
@@ -29,12 +30,24 @@ class FormSubmit extends Component {
       showModal: false,
       showModalEnriched: false,
       key: 0,
+      keyRDFa: 0,
+      showModalRDFa: false,
       showPDF: false,
       pdfPath: "",
       jsonPath: "",
       zipPath: ""
     };
   }
+
+  handleCloseRDFa = () => {
+    let keyRDFa = this.state.keyRDFa;
+    this.setState({ showModalRDFa: false, keyRDFa: ++keyRDFa });
+  };
+
+  handleShowRDFa = () => {
+    let keyRDFa = this.state.keyRDFa;
+    this.setState({ showModalRDFa: true, keyRDFa: ++keyRDFa });
+  };
 
   handleClose = () => {
     let key = this.state.key;
@@ -252,6 +265,8 @@ class FormSubmit extends Component {
   render() {
     let showModal = this.state.showModal;
 
+    let showModalRDFa = this.state.showModalRDFa;
+
     let lang = this.props.language;
 
     return (
@@ -282,7 +297,7 @@ class FormSubmit extends Component {
               <CustomButton
                 label={submitFifthButtonLabel[lang]}
                 classnames="final-submit"
-                handleClick={() => this.generateHTML(lang)}
+                handleClick={this.handleShowRDFa}
               />
               <a
                 ref={anchorTwoHiddenRef =>
@@ -296,6 +311,12 @@ class FormSubmit extends Component {
               >
                 {" "}
               </a>
+              <SubmitRDFaModal
+                generateHTML={this.generateHTML}
+                show={showModalRDFa}
+                key={this.state.keyRDFa}
+                onHide={this.handleCloseRDFa}
+              />
             </Row>
             <Row style={{ justifyContent: "left", marginLeft: 0 }}>
               <CustomButton

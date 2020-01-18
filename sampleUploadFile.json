@@ -623,6 +623,7 @@
     ],
     "my0:firstName": "Enkeleda",
     "my0:lastName": "Elezi",
+    "my0:formerName": "",
     "my0:hasInstantMessaging": [{
       "@type": "my0:InstantMessaging",
       "my0:instantMessagingName": "http://example.com/resume2rdf_value_ontology.rdf#Skype",
