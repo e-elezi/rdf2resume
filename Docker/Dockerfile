@@ -7,8 +7,7 @@ COPY . /srv/app
 # install dependencies
 RUN pip install -r requirements.txt
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends texlive-latex-recommended texlive-fonts-recommended && \
-    apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-extra texlive-lang-all && \
+    apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-extra && \
     rm -rf /var/lib/apt/lists/*
 
 ENV FLASK_APP app.py

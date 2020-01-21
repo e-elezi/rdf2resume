@@ -2,7 +2,7 @@
   "my0:hasReference": [{
     "@type": "my0:Reference",
     "my0:refRelationDescription": [{
-        "@value": "Master thesis supervisor and team leader in Fraunfoher project.",
+        "@value": "Supervisor in Publicis Sapient",
         "@language": "en"
       },
       {
@@ -14,23 +14,23 @@
         "@language": "fr"
       },
       {
-        "@value": "Betreuer der Masterarbeit und Teamleiter im Projekt Fraunfoher.",
+        "@value": "Vorgesetzter im Publicis Sapient.",
         "@language": "de"
       },
       {
-        "@value": "",
+        "@value": "Supervizor ne Publicis Sapient",
         "@language": "sq"
       }
     ],
     "my0:referenceBy": {
       "@type": "my0:Person",
-      "my0:title": "http://example.com/resume2rdf_value_ontology.rdf#Dr",
-      "my0:firstName": "Damien",
-      "my0:lastName": "Graux",
+      "my0:title": "",
+      "my0:firstName": "Alexander",
+      "my0:lastName": "Jagst",
       "my0:address": {
         "@type": "my0:Address",
         "my0:city": [{
-            "@value": "Dublin",
+            "@value": "Cologne",
             "@language": "en"
           },
           {
@@ -42,15 +42,15 @@
             "@language": "fr"
           },
           {
-            "@value": "Dublin",
+            "@value": "Köln",
             "@language": "de"
           },
           {
-            "@value": "",
+            "@value": "Këln",
             "@language": "sq"
           }
         ],
-        "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Ireland",
+        "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
         "my0:street": [{
             "@value": "",
             "@language": "en"
@@ -75,15 +75,15 @@
         "my0:postalCode": ""
       },
       "my0:phoneNumberWork": "",
-      "my0:email": "damien.graux@adaptcentre.ie"
+      "my0:email": "alexander.jagst@publicissapient.com"
     }
   }],
   "my0:hasWorkHistory": [{
       "@type": "my0:WorkHistory",
-      "my0:startDate": "2016-03-01",
-      "my0:endDate": "2016-10-28",
+      "my0:startDate": "2019-04-01",
+      "my0:endDate": "",
       "my0:jobTitle": [{
-          "@value": "Web Development Intern",
+          "@value": "Student Research Assistant",
           "@language": "en"
         },
         {
@@ -95,7 +95,7 @@
           "@language": "fr"
         },
         {
-          "@value": "Web-Entwicklung Praktikant",
+          "@value": "Wissenschaftlicher Mitarbeiter",
           "@language": "de"
         },
         {
@@ -104,7 +104,7 @@
         }
       ],
       "my0:jobDescription": [{
-          "@value": "-adding new functionalities to an existing project using Ext.NET,ASP.NET,JS,C# and VB.NET\n-creating reports for business analysis using SQL, SQL Server\n-working on web form based, MVC based projects",
+          "@value": "Designing and creating wireframes using Adobe XD. \nDevelopment of simple Web Apps using React and improvement of a web app (Visual Query Builder for Sparql Endpoints) by adding new features and bug fixing.",
           "@language": "en"
         },
         {
@@ -116,7 +116,7 @@
           "@language": "fr"
         },
         {
-          "@value": "-Hinzufügen neuer Funktionalitäten zu einem bestehenden Projekt mit Ext.NET,ASP.NET,JS,C# und VB.NET\n-Erstellung von Berichten zur Geschäftsanalyse mit SQL, SQL Server\n-Arbeiten an Web-Formular-basierten, MVC-basierten Projekten",
+          "@value": "Entwerfen und Erstellen von Wireframes mit Adobe XD. \nEntwicklung von einfachen Web-Apps mit React und Verbesserung einer Web-App (Visual Query Builder for Sparql Endpoints) durch Hinzufügen neuer Funktionen und Fehlerbehebung.",
           "@language": "de"
         },
         {
@@ -126,14 +126,14 @@
       ],
       "my0:jobType": "http://example.com/resume2rdf_value_ontology.rdf#Intern",
       "my0:careerLevel": "http://example.com/resume2rdf_value_ontology.rdf#Student",
-      "my0:isCurrent": false,
+      "my0:isCurrent": true,
       "my0:employedIn": {
         "@type": "my0:Company",
-        "my0:orgName": "Raiffeisen Bank Albania",
+        "my0:orgName": "Fraunhofer IAIS",
         "my0:orgAddress": {
           "@type": "Address",
           "my0:city": [{
-              "@value": "Tirana",
+              "@value": "Bonn",
               "@language": "en"
             },
             {
@@ -145,7 +145,7 @@
               "@language": "fr"
             },
             {
-              "@value": "Tirana",
+              "@value": "Bonn",
               "@language": "de"
             },
             {
@@ -153,7 +153,7 @@
               "@language": "sq"
             }
           ],
-          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
           "my0:street": [{
               "@value": "",
               "@language": "en"
@@ -199,7 +199,7 @@
           }
         ],
         "my0:orgWebsite": "",
-        "my0:orgField": "http://example.com/resume2rdf_value_ontology.rdf#BankingFinancial"
+        "my0:orgField": "http://example.com/resume2rdf_value_ontology.rdf#InternetIT"
       }
     },
     {
@@ -328,10 +328,10 @@
     },
     {
       "@type": "my0:WorkHistory",
-      "my0:startDate": "2019-04-01",
-      "my0:endDate": "",
+      "my0:startDate": "2016-03-01",
+      "my0:endDate": "2016-10-28",
       "my0:jobTitle": [{
-          "@value": "Student Research Assistant",
+          "@value": "Web Development Intern",
           "@language": "en"
         },
         {
@@ -343,7 +343,7 @@
           "@language": "fr"
         },
         {
-          "@value": "Wissenschaftlicher Mitarbeiter",
+          "@value": "Web-Entwicklung Praktikant",
           "@language": "de"
         },
         {
@@ -352,7 +352,7 @@
         }
       ],
       "my0:jobDescription": [{
-          "@value": "Designing and creating wireframes using Adobe XD. \nDevelopment of simple Web Apps using React and improvement of a web app (Visual Query Builder for Sparql Endpoints) by adding new features and bug fixing.",
+          "@value": "-adding new functionalities to an existing project using Ext.NET,ASP.NET,JS,C# and VB.NET\n-creating reports for business analysis using SQL, SQL Server\n-working on web form based, MVC based projects",
           "@language": "en"
         },
         {
@@ -364,7 +364,7 @@
           "@language": "fr"
         },
         {
-          "@value": "Entwerfen und Erstellen von Wireframes mit Adobe XD. \nEntwicklung von einfachen Web-Apps mit React und Verbesserung einer Web-App (Visual Query Builder for Sparql Endpoints) durch Hinzufügen neuer Funktionen und Fehlerbehebung.",
+          "@value": "-Hinzufügen neuer Funktionalitäten zu einem bestehenden Projekt mit Ext.NET,ASP.NET,JS,C# und VB.NET\n-Erstellung von Berichten zur Geschäftsanalyse mit SQL, SQL Server\n-Arbeiten an Web-Formular-basierten, MVC-basierten Projekten",
           "@language": "de"
         },
         {
@@ -374,14 +374,14 @@
       ],
       "my0:jobType": "http://example.com/resume2rdf_value_ontology.rdf#Intern",
       "my0:careerLevel": "http://example.com/resume2rdf_value_ontology.rdf#Student",
-      "my0:isCurrent": true,
+      "my0:isCurrent": false,
       "my0:employedIn": {
         "@type": "my0:Company",
-        "my0:orgName": "Fraunhofer IAIS",
+        "my0:orgName": "Raiffeisen Bank Albania",
         "my0:orgAddress": {
           "@type": "Address",
           "my0:city": [{
-              "@value": "Bonn",
+              "@value": "Tirana",
               "@language": "en"
             },
             {
@@ -393,7 +393,7 @@
               "@language": "fr"
             },
             {
-              "@value": "Bonn",
+              "@value": "Tirana",
               "@language": "de"
             },
             {
@@ -401,7 +401,7 @@
               "@language": "sq"
             }
           ],
-          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Germany",
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
           "my0:street": [{
               "@value": "",
               "@language": "en"
@@ -447,7 +447,7 @@
           }
         ],
         "my0:orgWebsite": "",
-        "my0:orgField": "http://example.com/resume2rdf_value_ontology.rdf#InternetIT"
+        "my0:orgField": "http://example.com/resume2rdf_value_ontology.rdf#BankingFinancial"
       }
     }
   ],
@@ -652,11 +652,6 @@
         "@type": "my0:Website",
         "my0:websiteURL": "https://www.instagram.com/enkeleda.elezi/",
         "my0:websiteType": "http://example.com/resume2rdf_value_ontology.rdf#Instagram"
-      },
-      {
-        "@type": "my0:Website",
-        "my0:websiteURL": "https://www.instagram.com/enkeleda.elezi/",
-        "my0:websiteType": "http://example.com/resume2rdf_value_ontology.rdf#Personal"
       }
     ],
     "my0:address": {
@@ -1180,7 +1175,7 @@
     "my0:targetRegion": [
       "http://example.com/resume2rdf_value_ontology.rdf#Europe"
     ],
-    "my0:targetJobMode": "http://example.com/resume2rdf_value_ontology.rdf#EmployeeFull"
+    "my0:targetJobType": "http://example.com/resume2rdf_value_ontology.rdf#EmployeeFull"
   },
   "my0:hasOtherInfo": [{
     "@type": "my0:OtherInfo",
@@ -1490,148 +1485,6 @@
       "my0:studiedIn": {
         "@type": "my0:EducationalOrg",
         "my0:orgName": [{
-            "@value": "The Faculty of Natural Sciences/Tirana University",
-            "@language": "en"
-          },
-          {
-            "@value": "",
-            "@language": "it"
-          },
-          {
-            "@value": "",
-            "@language": "fr"
-          },
-          {
-            "@value": "Die Fakultät für Naturwissenschaften/Tirana Universität",
-            "@language": "de"
-          },
-          {
-            "@value": "",
-            "@language": "sq"
-          }
-        ],
-        "my0:orgDescription": [{
-            "@value": "",
-            "@language": "en"
-          },
-          {
-            "@value": "",
-            "@language": "it"
-          },
-          {
-            "@value": "",
-            "@language": "fr"
-          },
-          {
-            "@value": "",
-            "@language": "de"
-          },
-          {
-            "@value": "",
-            "@language": "sq"
-          }
-        ],
-        "my0:orgWebsite": "",
-        "my0:orgAddress": {
-          "@type": "Address",
-          "my0:city": [{
-              "@value": "Tirana",
-              "@language": "en"
-            },
-            {
-              "@value": "",
-              "@language": "it"
-            },
-            {
-              "@value": "",
-              "@language": "fr"
-            },
-            {
-              "@value": "Tirana",
-              "@language": "de"
-            },
-            {
-              "@value": "",
-              "@language": "sq"
-            }
-          ],
-          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
-          "my0:street": [{
-              "@value": "",
-              "@language": "en"
-            },
-            {
-              "@value": "",
-              "@language": "it"
-            },
-            {
-              "@value": "",
-              "@language": "fr"
-            },
-            {
-              "@value": "",
-              "@language": "de"
-            },
-            {
-              "@value": "",
-              "@language": "sq"
-            }
-          ],
-          "my0:postalCode": ""
-        }
-      },
-      "my0:isEduCurrent": false,
-      "my0:eduStartDate": "2013-10-01",
-      "my0:eduGradDate": "2016-07-15",
-      "my0:degree": "http://example.com/resume2rdf_value_ontology.rdf#EduBachelor",
-      "my0:degreeFieldOfStudy": [{
-          "@value": "Informatics",
-          "@language": "en"
-        },
-        {
-          "@value": "",
-          "@language": "it"
-        },
-        {
-          "@value": "",
-          "@language": "fr"
-        },
-        {
-          "@value": "Informatik",
-          "@language": "de"
-        },
-        {
-          "@value": "",
-          "@language": "sq"
-        }
-      ],
-      "my0:eduDescription": [{
-          "@value": "General\n-Mathematics, English, Physics\nOccupational\n-Algorithms under C++, Data Structures under C, Java Programming, Computer Organization and\nArchitecture, Database under Oracle, Web Programming and Software Engineering, Operating\nSystems, Networks",
-          "@language": "en"
-        },
-        {
-          "@value": "",
-          "@language": "it"
-        },
-        {
-          "@value": "",
-          "@language": "fr"
-        },
-        {
-          "@value": "Allgemein\n-Mathematik, Englisch, Physik\nBeruflich\n-Algorithmen unter C++, Datenstrukturen unter C, Java-Programmierung, Rechnerorganisation und\nArchitektur, Datenbank unter Oracle, Webprogrammierung und Softwareentwicklung, Betrieb\nSysteme, Netzwerke",
-          "@language": "de"
-        },
-        {
-          "@value": "",
-          "@language": "sq"
-        }
-      ]
-    },
-    {
-      "@type": "my0:Education",
-      "my0:studiedIn": {
-        "@type": "my0:EducationalOrg",
-        "my0:orgName": [{
             "@value": "The University of Bonn",
             "@language": "en"
           },
@@ -1761,6 +1614,148 @@
         },
         {
           "@value": "Schwerpunkte: Intelligente Systeme, Semantic Web Technologien, Wissensgraphenanalyse",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ]
+    },
+    {
+      "@type": "my0:Education",
+      "my0:studiedIn": {
+        "@type": "my0:EducationalOrg",
+        "my0:orgName": [{
+            "@value": "The Faculty of Natural Sciences/Tirana University",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "Die Fakultät für Naturwissenschaften/Tirana Universität",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgDescription": [{
+            "@value": "",
+            "@language": "en"
+          },
+          {
+            "@value": "",
+            "@language": "it"
+          },
+          {
+            "@value": "",
+            "@language": "fr"
+          },
+          {
+            "@value": "",
+            "@language": "de"
+          },
+          {
+            "@value": "",
+            "@language": "sq"
+          }
+        ],
+        "my0:orgWebsite": "",
+        "my0:orgAddress": {
+          "@type": "Address",
+          "my0:city": [{
+              "@value": "Tirana",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "Tirana",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:country": "http://www.bpiresearch.com/BPMO/2004/03/03/cdl/Countries#Albania",
+          "my0:street": [{
+              "@value": "",
+              "@language": "en"
+            },
+            {
+              "@value": "",
+              "@language": "it"
+            },
+            {
+              "@value": "",
+              "@language": "fr"
+            },
+            {
+              "@value": "",
+              "@language": "de"
+            },
+            {
+              "@value": "",
+              "@language": "sq"
+            }
+          ],
+          "my0:postalCode": ""
+        }
+      },
+      "my0:isEduCurrent": false,
+      "my0:eduStartDate": "2013-10-01",
+      "my0:eduGradDate": "2016-07-15",
+      "my0:degree": "http://example.com/resume2rdf_value_ontology.rdf#EduBachelor",
+      "my0:degreeFieldOfStudy": [{
+          "@value": "Informatics",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Informatik",
+          "@language": "de"
+        },
+        {
+          "@value": "",
+          "@language": "sq"
+        }
+      ],
+      "my0:eduDescription": [{
+          "@value": "General\n-Mathematics, English, Physics\nOccupational\n-Algorithms under C++, Data Structures under C, Java Programming, Computer Organization and\nArchitecture, Database under Oracle, Web Programming and Software Engineering, Operating\nSystems, Networks",
+          "@language": "en"
+        },
+        {
+          "@value": "",
+          "@language": "it"
+        },
+        {
+          "@value": "",
+          "@language": "fr"
+        },
+        {
+          "@value": "Allgemein\n-Mathematik, Englisch, Physik\nBeruflich\n-Algorithmen unter C++, Datenstrukturen unter C, Java-Programmierung, Rechnerorganisation und\nArchitektur, Datenbank unter Oracle, Webprogrammierung und Softwareentwicklung, Betrieb\nSysteme, Netzwerke",
           "@language": "de"
         },
         {

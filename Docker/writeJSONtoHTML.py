@@ -125,7 +125,7 @@ def generateHTMLNAV(photoData, data, lang):
     photoText = r''''''
     if photoData != '':
         photoText = r'''
-                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src=''' + photoData + r''' alt="Profile Photo">
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/''' + photoData + r'''" alt="Profile Photo">
         '''
     workText = r''''''
     eduText = r''''''

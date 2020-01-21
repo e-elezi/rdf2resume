@@ -75,6 +75,8 @@ class LanguageView extends Component {
 
     let lang = this.props.language;
 
+    let certName = this.findTranslatedValue(skillCertificateName, lang)
+
     return (
       <React.Fragment>
         <Row
@@ -91,8 +93,11 @@ class LanguageView extends Component {
               this.props.types,
               languageSkillProficiency,
               this.props.language
-            )} -{" "}
-            {this.findTranslatedValue(skillCertificateName, lang)}
+            )}
+            {
+              certName !== "" ? "-" : ""
+            }
+            {certName}
           </Col>
           <Col md={4}>
             <FontAwesomeIcon

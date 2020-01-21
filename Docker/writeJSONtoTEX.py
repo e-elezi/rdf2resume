@@ -38,6 +38,7 @@ def writeJSONtoTEX(data, filename, desingNumber, language):
 
   os.unlink( filename + '.aux')
   os.unlink( filename + '.log')
+  os.unlink( filename + '.out')
   os.system("mv " + filename + ".pdf build/static/media/pdf")
   return f
 
@@ -62,5 +63,6 @@ def writeJSONtoTEXEnriched(data, filename, desingNumber, language):
 
   os.unlink( filename + '.aux')
   os.unlink( filename + '.log')
+  os.unlink( filename + '.out')
   os.system("mv " + filename + ".pdf build/static/media/pdf")
   return f

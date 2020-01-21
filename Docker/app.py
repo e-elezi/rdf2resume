@@ -65,6 +65,17 @@ def generate_html():
     # if not os.path.exists('build/static/media/html'):
     #   os.mkdir('build/static/media/html')
     writeJSONtoHTML(content, "rdf2resume", language )
+    #check if photo path exists
+    photoPath = content['my0:aboutPerson']['my0:photo']
+    if photoPath  != "":
+  
+      # Destination path 
+      destination = "build/static/media/html/img/"
+  
+      # Copy the content of 
+      # source to destination 
+      shutil.copyfile("build/static/media/photos/" + photoPath, destination + photoPath) 
+
     shutil.make_archive('build/static/rdf2resume' + dt_string, 'zip', 'build/static/media/html')
     return "rdf2resume" + dt_string + ".zip"
 

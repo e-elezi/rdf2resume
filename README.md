@@ -2,7 +2,7 @@
 
 1. Before running the application, **docker** and **docker-compose** should be installed in your system.
 2. `chmod +x buildProject.sh && ./buildProject.sh` - builds the UI and runs the docker containers
-3. If not previously run before, go to localhost:3030, create the dataset **resume** and add the 3 rdf files in the *Ontologies folder* (countries.ttl, resum32rdf_ontology.ttl, resume2rdf_value_ontology.ttl)
+3. If not previously run before, go to localhost:3030, create the dataset **resume** and add the 3 rdf files in the *Ontologies folder* (countries.ttl, resume2rdf_ontology.ttl, resume2rdf_value_ontology.ttl) Credentials are:  username: **admin** pass: **pw123**
 4. App is running on **localhost:5000**
 
 **HINT**

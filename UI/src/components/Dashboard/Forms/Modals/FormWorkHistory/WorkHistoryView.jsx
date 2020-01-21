@@ -147,7 +147,9 @@ class WorkHistoryReview extends Component {
                   >
                     {orgName}
                   </a>
-                  {" , "}
+                  {
+                    country !== '' ? ',' : ''
+                  }
                   {this.findTranslatedValue(city, lang)} {` `}{" "}
                   {this.renderLabel(this.props.countries, country, lang)}
                 </b>

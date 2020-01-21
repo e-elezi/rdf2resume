@@ -139,7 +139,9 @@ class CourseView extends Component {
                     rel="noopener noreferrer"
                   >
                     {orgName}
-                  </a>{" , "}
+                  </a>{
+                    country !== '' ? ',' : ''
+                  }
                   {` `}
                   {this.findTranslatedValue(city, lang)} {` `}{" "}
                   {this.renderLabel(this.props.countries, country, lang)}

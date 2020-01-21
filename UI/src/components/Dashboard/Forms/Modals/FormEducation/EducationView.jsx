@@ -143,7 +143,9 @@ class EducationView extends Component {
                     rel="noopener noreferrer"
                   >
                     {this.findTranslatedValue(orgName, lang)}
-                  </a>{" , "}
+                  </a>{
+                    country !== '' ? ',' : ''
+                  }
                   {
                     this.findTranslatedValue(city, lang)
                   } {` `}{" "}

@@ -27,9 +27,6 @@ def writeJSONtoTEX(data, filename, desingNumber, language):
 
   if(desingNumber==1):
     main = generateMainDesign2(data, language)
-
-  if(desingNumber==2):
-    main = generateMainDesign3(data, language)
     
   content = main + footer
 
