@@ -10,7 +10,7 @@ Flask-Cors==3.0.8
 idna==2.8
 isodate==0.6.0
 itsdangerous==1.1.0
-Jinja2==2.10.3
+Jinja2==2.11.3
 kiwisolver==1.1.0
 libarchive-c==2.8
 MarkupSafe==1.1.1
